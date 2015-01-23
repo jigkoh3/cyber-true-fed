@@ -283,7 +283,9 @@ smartApp.controller('MigratePreToPostController', function(
             if ($scope.cardInfo3.PrefixEN == "Miss") {
                 prefix = "T3";
             }
-
+            if ($scope.cardInfo3.PrefixTH == "นาง") {
+                prefix = "T2";
+            }
             var sex = "MALE";
             if ($scope.cardInfo3.Sex == "2") {
                 sex = "FEMALE";
@@ -291,6 +293,7 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.customer['id-number'] = $scope.cardInfo3.CitizenID;
             $('#citizenID3').val($scope.cardInfo3.CitizenID);
             $('#prefixTH3').val(prefix);
+            $scope.newOwner.prefixTH = prefix;
             $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
             $('#lastNameTH3').val($scope.cardInfo3.LastNameTH);
             $('#birthDay').val($scope.cardInfo3.BirthDay);
@@ -298,7 +301,6 @@ smartApp.controller('MigratePreToPostController', function(
             $('#expireDay').val($scope.cardInfo3.ExpireDay);
             $('#disableNewOwnerExpireDay').val($scope.cardInfo3.ExpireDay);
             $('#sex3').val(sex);
-
             $('#birthDay').removeClass('date-picker');
             $scope.newOwner.firstNameTH = $scope.cardInfo3.FirstNameTH;
             $scope.newOwner.lastNameTH = $scope.cardInfo3.LastNameTH;
