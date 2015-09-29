@@ -53,7 +53,7 @@
 							    'product-status': 'ACTIVE',
 							    'product-id-name': 'MSISDN',
 							    'product-id-number': msisdn,
-							    'mobile-servicetype': 'POSTPAID',
+							    'mobile-servicetype': 'HYBRID',
 							    'ou-hierarchytype': 'CHILD',
 							    'parent-ouId': '1234',
 							    'has-splitcharge': false,
@@ -125,7 +125,7 @@
         if (serviceType === 'PREPAID') {
             productType = 'ทรูมูฟเอช เติมเงิน';
         }
-        else if (serviceType === 'POSTPAID') {
+        else {
             productType = 'ทรูมูฟเอช รายเดือน';
         }
 
