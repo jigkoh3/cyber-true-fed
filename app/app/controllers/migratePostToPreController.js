@@ -12,7 +12,7 @@
 
     // Prepare page states
     //$scope.shopType = '0';
-    $scope.SubNo = $routeParams.subno;
+    $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
 
 
     // Initialize variables

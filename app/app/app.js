@@ -46,7 +46,7 @@ smartApp.config(function ($routeProvider, $httpProvider) {
 	    controller: 'CancelController'
 	})
 
-	.when('/changeSwapSim/:ID/:SubNo/:shopType', {
+	.when('/changeSwapSim/:id/:subno', {
 	    templateUrl: 'app/views/changeSwapSim.html?v=' + runTime,
 	    controller: 'ChangeSwapSimController'
 
@@ -54,7 +54,7 @@ smartApp.config(function ($routeProvider, $httpProvider) {
 	    templateUrl: 'app/views/changeSwapSim.html?v=' + runTime,
 	    controller: 'ChangeSwapSimController'
 
-	}).when('/migratePostToPre/:ID/:SubNo/:shopType', {
+	}).when('/migratePostToPre/:id/:subno', {
 	    templateUrl: 'app/views/migratePostToPre.html?v=' + runTime,
 	    controller: 'MigratePostToPreController'
 
@@ -62,7 +62,7 @@ smartApp.config(function ($routeProvider, $httpProvider) {
 	    templateUrl: 'app/views/migratePostToPre.html?v=' + runTime,
 	    controller: 'MigratePostToPreController'
 
-	}).when('/changeResume/:ID/:SubNo/:statusCancel/:shopType', {
+	}).when('/changeResume/:id/:subno', {
 	    templateUrl: 'app/views/changeResume.html?v=' + runTime,
 	    controller: 'ChangeResumeController'
 

@@ -10,7 +10,7 @@
 
     // Prepare page states
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
-    $scope.shopType = '0';
+    
 
 
     // Initialize variables
@@ -388,7 +388,7 @@
     var authenticate = function() {
         AuthenService.getAuthen(function(authResult) {
             $scope.getAuthen = authResult;
-
+            $scope.shopType = authResult.shopType;
             //console.log(authResult);
 
 
