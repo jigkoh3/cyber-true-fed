@@ -65,15 +65,31 @@
                         ]
                     }
                 },
-                // 'display-messages': [
-                // 	{
-                // 		'message': '',
-                // 		'message-type': 'ERROR',
-                // 		'en-message': 'VIP',
-                // 		'th-message': '',
-                // 		'technical-message': ''
-                // 	}
-                // ]
+                 'display-messages': [
+                 	{
+                 		'message': '',
+                 		'message-type': 'WARNING',
+                 		'en-message': 'VIP',
+                 		'th-message': '',
+                 		'technical-message': ''
+                 	}
+                 ]
+            };
+
+            var data2 = {
+                'status': 'SUCCESSFUL',
+                'trx-id': '3BDPN2HLK4TZ',
+                'process-instance': 'psaapdv1 (instance: SFF_node1)',
+                'status-code': '0',
+                'display-messages': [
+                   {
+                       'message': '',
+                       'message-type': 'ERROR',
+                       'en-message': 'ERR',
+                       'th-message': '',
+                       'technical-message': ''
+                   }
+                ]
             };
 
             $timeout(function () {
@@ -97,7 +113,8 @@
                 SystemService.showAlert(displayMsg);
             }, 1000);
 
-            return null;
+            //return null;
+            
         }
 
         delete customerProfile['installed-products'];

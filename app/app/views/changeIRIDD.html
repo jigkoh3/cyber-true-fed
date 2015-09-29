@@ -234,7 +234,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <span ng-show="shopType=='0'">
+                            <span ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)">
                                 <input type="button"
                                        href="#modal-pdf"
                                        value="ยืนยันและพิมพ์เอกสาร"

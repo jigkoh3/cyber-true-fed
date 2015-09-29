@@ -176,6 +176,7 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
 
     ////$scope.nextBillDate = SystemService.getNextBillDate();
     $scope.readCardError = function (msg) {
+        $.fancybox.close();
         SystemService.showAlert({
             "message": msg,
             "message-code": "",
@@ -710,6 +711,7 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
                 //if (!$scope.data.orderRequest['order']['order-items'][0]['primary-order-data']['OFFER-GROUP-IR']) {
                 //    alert('require. OFFER-GROUP-IR');
                 //}
+                $scope.irChecked();
                 $scope.data.orderRequest['order']['order-items'][0]['primary-order-data']['OFFER-GROUP-IR'] = $scope.offerGroup;
             }
 
@@ -858,7 +860,7 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
                     setTimeout(function () {
                         var srcPDF = url;
                         document.getElementById('iframePDF').src = url + '?clearData=N';
-                        if ($scope.shopType == "1") {
+                        if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
                             setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000);
                             setTimeout(function () { document.getElementById('iframePDF').src = srcPDF }, 2500);
                         }
@@ -1029,7 +1031,7 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
                                         $scope.changIR = false;
                                         $scope.isSubIRNo = false;
                                         $scope.isSubIDDNo = true;
-                                        $('#chkChangIDD').click();
+                                        //$('#chkChangIDD').click();
                                     }
                                     if (insPro[i]['offer-group'] == 'IR') {
                                         $scope.changereqType("ADD_IRIDD");
@@ -1047,6 +1049,14 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
                                 }
                                 if (all) {
                                     $scope.requestTypeDB = "IRIDD";
+                                    
+                                    setTimeout(function () { 
+                                        $('#chkChangIR').click();
+                                    }, 1000);
+                                } else {
+                                    if ($scope.requestTypeDB == "IDD") {
+                                        $('#chkChangIDD').click();
+                                    }
                                 }
                                 $scope.isValidateSave = false;
                                 ////check partner

@@ -13185,9 +13185,9 @@ textarea.remark-message {
     /*margin-bottom: 0px;*/
 }
 
-/*.form-control {
+.form-control {
     height: auto;
-}*/
+}
 
 .checkbox-circle2 input[type="checkbox"]:checked + label:before {
     background-color: #5cb85c;

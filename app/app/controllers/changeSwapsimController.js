@@ -9,7 +9,7 @@
 
 
     // Prepare page states
-    $scope.SubNo = $routeParams.SubNo ? $routeParams.SubNo : 'null';
+    $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.shopType = '0';
 
 

@@ -23,7 +23,7 @@
                         "contact-mobile-number": "",
                         "id-type": "",
                         "id-number": "1189900130607",
-                        "require-approve-code": "Y",
+                        "require-approve-code": "N",
                         "customer-id": "33896",
                         "customer-level": "NON-TOP",
                         "cvss-process-request": "N",
@@ -45,7 +45,7 @@
                             "has-splitcharge": false,
                             "is-childsim": false,
                             "is-softsuspend": false,
-                            "offer-group": "IDD",
+                            "offer-group": "",
                             "effective-date": "02/09/2015 00:00:00"
                         }, {
                             "ouId": "16058",

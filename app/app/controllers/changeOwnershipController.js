@@ -96,9 +96,9 @@ smartApp.controller('changeOwnershipController', function (
             "message": msg,
             "message-code": "",
             "message-type": "WARNING",
-            "en-message": "",
-            "th-message": "",
-            "technical-message": ""
+            "en-message": msg,
+            "th-message": msg,
+            "technical-message": "changeOwnerShipController"
         });
     };
 
@@ -355,10 +355,39 @@ smartApp.controller('changeOwnershipController', function (
 
                                     }
                                 });
+                                $("#btn-fancy-ReadCardLastest").fancybox({
+                                    'type': 'div',
+                                    width: '50%',
+                                    height: '95%',
+                                    openEffect: false,
+                                    closeEffect: false,
+                                    speedIn: 15000,
+                                    speedOut: 15000,
+                                    autoScale: false,
+                                    centerOnScroll: false, // and not 'true',
+                                    autoCenter: false, // and not 'true'
+                                    autoDimensions: 'false',
+                                    resize: 'Auto',
+                                    helpers: {
+                                        overlay: {
+                                            css: {
+                                                'background': 'transparent',
+                                                'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
+                                                'zoom': '1',
+                                                'background': 'rgba(42, 42, 42, 0.95)'
+                                            },
+                                            locked: true,
+                                            closeClick: false,
+                                        }
+
+                                    }
+                                });
+
+
                                 setTimeout(function () {
                                     $("#btn-fancy-ReadCard").fancybox().trigger('click');
                                 }, 1000);
-                                //$("#btn-fancy-ReadCard").fancybox().trigger('hide');
+                                $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
                             } else {
                                 $scope.isCustomerProfile = true;
                             }
@@ -578,6 +607,7 @@ smartApp.controller('changeOwnershipController', function (
     $scope.subCompanyType = "PRI";
     $scope.isAddressList = {};
     $scope.onInputCitizenID3 = function () {
+            
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;
         $scope.newOwner.firstNameTH = "";
@@ -631,6 +661,7 @@ smartApp.controller('changeOwnershipController', function (
 
                         changeOwnershipService.lastestCustomerCallback(cid, "I", function (lastestCustomer) {
                             $scope.isLastestUser = true;
+                            $.fancybox.close();
                             if (lastestCustomer.data['display-messages'].length > 0) {
                                 //ผู้จดทะเบียนใหม่
                                 //$scope.customer = customer;
@@ -800,7 +831,74 @@ smartApp.controller('changeOwnershipController', function (
 
         }
     };
+    //--------------------onInputIdLastest
+    $scope.onInputIdLastest = function () {
+        console.log($('#CitizenIDLastest').val().length);
+        var cid = $('#CitizenIDLastest').val();
 
+        if (cid.length >= 13) {
+            //setTimeout(function () {
+            //    //$.fancybox.close();
+            //}, 1000);
+            
+            $scope.customer['id-number'] = cid;
+            $scope.onInputCitizenID3();
+        }
+    };
+    $scope.secondAuthenDataLastest = {};
+    $scope.openSSOLastest = function () {
+        var openDialog = function (uri, name, options, closeCallback) {
+            var win = window.open(uri, name, options);
+            var interval = window.setInterval(function () {
+                try {
+                    if (win == null || win.closed) {
+                        window.clearInterval(interval);
+                        closeCallback(win);
+                    }
+                }
+                catch (e) {
+                }
+            }, 1000);
+            return win;
+        };
+        var url = SystemService.secondAuthenURL + "SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
+        if ($scope.getAuthen["isSecondAuthen"]) {
+            openDialog(url, "MsgWindow", "width=800, height=600", function (w) {
+                //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
+                SystemService.showLoading();
+                SystemService.second_authen($scope.TrxID, function (result) {
+                    //alert(result["status"]);
+                    SystemService.hideLoading();
+                    console.log(result);
+                    $scope.secondAuthenDataLastest = result;
+                    if (result["status"] == "SUCCESSFUL") {
+                        $('#CitizenIDLastest').prop('disabled', false);
+                        
+                        //$scope.approver = result['response-data'][0]['loginName'];
+                        //$scope.manualInputReadCard();
+                    } else {
+                        $.fancybox.close();
+                        //unsuccessul
+
+                        setTimeout(function () {
+                            SystemService.showAlert({
+                                "message": result["display-messages"][0]["message"],
+                                "message-code": result["display-messages"][0]["message-code"],
+                                "message-type": "WARNING",
+                                "en-message": result["display-messages"][0]["en-message"],
+                                "th-message": result["display-messages"][0]["th-message"],
+                                "technical-message": result["display-messages"][0]["technical-message"]
+                            });
+                        }, 1000);
+                    }
+                });
+
+            });
+        } else {
+            //$scope.isNonePartner = true;
+            //$scope.manualInputReadCard();
+        }
+    };
     $scope.openSSO = function () {
         var openDialog = function (uri, name, options, closeCallback) {
             var win = window.open(uri, name, options);
@@ -1854,8 +1952,8 @@ smartApp.controller('changeOwnershipController', function (
                         "message": result.error,
                         "message-code": "",
                         "message-type": "ERROR",
-                        "en-message": "",
-                        "th-message": "",
+                        "en-message": result.error,
+                        "th-message": result.error,
                         "technical-message": ""
                     });
                 }
@@ -1867,6 +1965,7 @@ smartApp.controller('changeOwnershipController', function (
     };
 
     $scope.varPhoto = "";
+    $scope.varPhotoLastest = "";
     $scope.printOrder = function () {
 
         $scope.attModalVal = "modal";
@@ -1988,7 +2087,7 @@ smartApp.controller('changeOwnershipController', function (
                     "title": newTitle,
                     "firstname": $scope.newOwner.firstNameTH,
                     "lastname": $scope.newOwner.lastNameTH,
-                    "photo": "/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAFk9Q05DOFlOSE5kXllphd6QhXp6hf/CzaHe////////////////////////////////////////////////////2wBDAV5kZIV1hf+QkP//////////////////////////////////////////////////////////////////////////wAARCAFjASkDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC3QRkYoooArBQlwAKWX5Zwx6UN/wAfIobm5GelACx/NMWHSkXm5ahRi546ULxcmgAi/wCPhqsVXj/17VYoAKKMj1oyPWgAooyPWjI9aACijI9aMj1oAKKMj1oyPWgAooyPWjI9aACijI9aMj1oAKKMj1oyPWgAooyPWjI9aACijI9aMj1oAKKMj1FGR6igAooyPUUZHrQAjKGGD0qvGNtxgdKs1XX/AI+TQAMdk5PWiDmVm6e1Ax9pOaI/9e2OlIAi/wBe1EP+uaiPids0Q/65jTAsUUUUAFFFFADTGC+7vSPGrnJ4PrT6KAGpGqnI60jxBjnkH2p9FADUQJ060OgcYOadRQBH5C+p/OjyF9T+dSUUAReQ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VNOqNTxT81JQtFJS0DCkzRRigApKXFFIApppaQ0xDWqdF2qBUUa7n9hU9UhMKD0NFFMRAM/hRSngkUKKYgANLS0UAJRS0UAKGI96cGBplFAySimAkUu/2pAFFFFMQnSilxSUALRRRQAlLRRQAYzTelOoAyaBjhQTgUHgVBJJu4HSkArzZzs/OpI2LoCetVamjfbwelADWXY9KDUjbZOM81HgqcGpZSY6ikpaQwpaSloASilpKAENNPSloC7mxTQmSRLhc9zTwQehqKd9iYHU1VDFTkHmqJL9FMikEi5796fQBGR8xoFK33jSUAFFLSUABooopiCigUtAxKWkpaBCnrRRRQAUlLQaACiiigAooooAKAcUUlACMS1RlPSpcUYpCK5UinCpStN24pjIiCjZFSq28c0pXIxUS5RsUgJcYoxQDkc9aWpaLQYooopDCkNLRiiwgAzSsRGuT1o6VE2WODV2JuQtlmJNKEqULRtoAahKHIqyrBhkVXxTkO00ASNw1JSsc9KSgQUUtFMYUUUUAFAoooEFFFJQA6iiigApTRRQA2loooGFHeiigQUUUUAwooooEFIaKKBhUcvaiigBRTu1FFJlIKKKKkoWloopolgelQ96KKYhwpaKKYCEUCiikA6iiigQtFFFABSUUUwFooooBBRRRQB//9k="
+                    "photo": $scope.varPhotoLastest
                 }
             }
         };
@@ -2001,7 +2100,7 @@ smartApp.controller('changeOwnershipController', function (
             setTimeout(function () {
                 var srcPDF = url;
                 document.getElementById('iframePDF').src = url + '?clearData=N';
-                if ($scope.shopType == "1") {
+                if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
                     setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000);
                     setTimeout(function () { document.getElementById('iframePDF').src = srcPDF }, 2500);
                 }
@@ -2362,6 +2461,8 @@ smartApp.controller('changeOwnershipController', function (
         $scope.slipType = Type;
     };
 
+
+    $scope.isCameraLastest = false;
     //start----------- camera ----------------
     $scope.initWebCam = function () {
 
@@ -2380,7 +2481,12 @@ smartApp.controller('changeOwnershipController', function (
     }
 
     function onCompleteSnap(msg) {
-        $scope.varPhoto = msg;
+        if ($scope.isCameraLastest) {
+            $scope.varPhotoLastest = msg;
+        } else {
+            $scope.varPhoto = msg;
+        }
+        
         var ie_preview_image = $("#ie_preview_image")[0];
         ie_preview_image.src = "data:image/png;base64," + msg;
 
@@ -2392,6 +2498,11 @@ smartApp.controller('changeOwnershipController', function (
         webcam.snap();
     }
     //end----------- camera ----------------
+    $scope.initWebCamLastest = function () {
+        $scope.initWebCam();
+    }
+
+
 
     //$scope.authorize = function () {
     //    $scope.isAuthorize = true;

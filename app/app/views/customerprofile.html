@@ -277,3 +277,45 @@
 
     </div>
 </div>
+
+<div id="fancy-ReadCardLastest" style="display:none;">
+    <h4 class="blue bigger">
+        <i class="ace-icon fa fa-user  grey"></i>
+        ผู้จดทะเบียนใหม่
+    </h4>
+    <hr />
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-3">ระบุหมายเลขบัตรประชาชน/<br />พาสปอร์ต/เลขที่นิติบุคคล</div>
+            <div class="col-md-5" ng-submit="onInputIdLastest()">
+                <input type="text"
+                       id="CitizenIDLastest"
+                       maxlength="20"
+                       placeholder=""
+                       ng-model="CitizenIDLastest"
+                       ng-keyup="$event.keyCode==13 && onInputIdLastest()"
+                       ng-change="onInputIdLastest()"
+                       class="form-control">
+            </div>
+            <div class="col-md-4">
+                <input type="hidden" id="divID" value="{{divID}}" />
+                <!--<input type="submit" value="อ่านบัตร" class="btn btn-danger" ng-click="ReadCardMockUp('3389225969739')">-->
+                <input type="submit" value="อ่านบัตร" class="btn btn-danger" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard'); ReadCard('ReadP');">
+                <input type="submit" value="ใส่ข้อมูล" class="btn btn-danger" id="btnSSOLastest" ng-click="openSSOLastest()">
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div id="loadingReadCardLastest">
+                    <i class="fa fa-spin fa-spinner"></i>
+                    กำลังอ่านข้อมูล...
+                </div>
+                <span id="unMatchLastest" style="color:red;">*หมายเลขบัตร/พาสปอร์ต/เลขที่นิติบุคคลไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง</span>
+            </div>
+        </div>
+
+    </div>
+</div>

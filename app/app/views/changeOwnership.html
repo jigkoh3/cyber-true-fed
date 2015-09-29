@@ -39,8 +39,8 @@
                                 </div>-->
                             <button type="button"
                                     href="#modal-ReadCamera"
-                                    ng-show="isCustomerProfile"
-                                    ng-click="initWebCam()"
+                                    ng-show="isCustomerProfile && shopType=='1' && getAuthen['isSecondAuthen'] == true"
+                                    ng-click="initWebCamLastest()"
                                     onclick="return false"
                                     data-toggle="modal"
                                     class="btn btn-camera">
@@ -219,7 +219,7 @@
                                     <div class="input-group">
                                         <input type="text"
                                                id="citizenID3"
-                                               ng-disabled="!isCustomerProfile"
+                                               ng-disabled="!isLastestUser && (shopType=='1' && getAuthen['isSecondAuthen'] == true)"
                                                ng-change="onInputCitizenID3()"
                                                ng-blur="onCheckInputForVerify()"
                                                ng-model="customer['id-number']"
@@ -229,7 +229,25 @@
                                                name="personnalids" required>
 
                                         <span class="input-group-btn">
-                                            <button title="อ่านจากการ์ด" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard');ReadCard('ReadP');" style="height:30px;" type="button" data-toggle="tooltip" class="btn credit_ie8">
+                                            <button ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true"
+                                                    style="height:30px;"
+                                                    onclick="$('#unMatchLastest').hide(); $('#loadingReadCardLastest').hide(); $('#CitizenIDLastest').val(''); $('#CitizenIDLastest').prop('disabled', true);"
+                                                    type="button"
+                                                    href="#fancy-ReadCardLastest"
+                                                    id="btn-fancy-ReadCardLastest"
+                                                    ng-disabled="!isCustomerProfile"
+                                                    data-toggle="tooltip"
+                                                    class="btn credit_ie8">
+                                                <i class="fa fa-credit-card"></i>
+                                            </button>
+                                            <button title="อ่านจากการ์ด"
+                                                    ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)"
+                                                    onclick="$('#ReadAuthorize').val('readNewOwnerReadCard');ReadCard('ReadP');"
+                                                    style="height:30px;"
+                                                    type="button"
+                                                    ng-disabled="!isCustomerProfile"
+                                                    data-toggle="tooltip"
+                                                    class="btn credit_ie8">
                                                 <i class="fa fa-credit-card"></i>
                                             </button>
                                             <!--<button href="#modal-ReadCard3" title="อ่านจากการ์ด" style="height:30px;" type="button" data-toggle="modal" class="btn credit_ie8">
@@ -1406,7 +1424,7 @@
 
                             <div class="modal-footer">
 
-                                <span ng-show="shopType=='0'"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์" data-dismiss="modal" ng-click="saveOrder()" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 1000);" class="btn btn-success"></span>
+                                <span ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์" data-dismiss="modal" ng-click="saveOrder()" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 1000);" class="btn btn-success"></span>
                                 <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-dismiss="modal" ng-click="saveOrder()" class="btn btn-success"></span>
 
                             </div>
@@ -1642,3 +1660,5 @@
         </div>
     </div>
 </div>
+
+
