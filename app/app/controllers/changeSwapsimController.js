@@ -1,4 +1,4 @@
-﻿smartApp.controller('ChangeSwapSimController', function ($routeParams, $scope, AuthenService, ChangeSwapSimService, DeviceService, sharedServices, SystemService) {
+﻿smartApp.controller('ChangeSwapSimController', function($routeParams, $scope, AuthenService, ChangeSwapSimService, DeviceService, sharedServices, SystemService) {
 
     // Templates
     var runTime = new Date().getTime();
@@ -21,20 +21,23 @@
 
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the SwapSIM page
-    $scope.onCustomerProfileTemplateLoaded = function () {
+    $scope.onCustomerProfileTemplateLoaded = function() {
         $('#unMatch2').hide();
         $scope.isAuthorize = false;
         $scope.isCustomerProfile = false;
+
+        //$('#btnSSO').hide();
+        //$('#CitizenID').show();
     };
 
 
     // Submit form
-    var isDataComplete = function () {
+    var isDataComplete = function() {
         //return !$('#simSerial').prop('disabled');
         return true;
     };
 
-    var generateOrderRequest = function () {
+    var generateOrderRequest = function() {
         return {
             orderData: orderData,
             customerProfile: $scope.data.customerProfile,
@@ -48,17 +51,17 @@
         };
     };
 
-    $scope.submit = function () {
+    $scope.submit = function() {
         $scope.hasSubmitted = true;
 
         var data = generateOrderRequest();
 
         SystemService.showLoading();
         console.log(data);
-        ChangeSwapSimService.submitSwapSIMOrder(data, function (result) {
+        ChangeSwapSimService.submitSwapSIMOrder(data, function(result) {
             SystemService.hideLoading();
 
-            setTimeout(function () {
+            setTimeout(function() {
                 var displayMsg = utils.getObject(result.data, 'display-messages.0');
 
                 if (!displayMsg || !displayMsg['message-type']) {
@@ -66,8 +69,7 @@
                         "message": "DEMO > " + result.data["display-messages"][0]["th-message"],
                         "message2": ""
                     });
-                }
-                else {
+                } else {
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
                         "message2": ""
@@ -77,7 +79,7 @@
         });
     };
 
-    $scope.openPDFDialog = function () {
+    $scope.openPDFDialog = function() {
         if (!isDataComplete()) {
             alert('กรุณากรอกข้อมูลให้ครบถ้วนก่อน');
             return;
@@ -112,7 +114,7 @@
             "district": "",
             "amphur": "",
             "province": ""
-            //NEW---
+                //NEW---
         };
 
         var data = {
@@ -152,23 +154,27 @@
                 "district": cardValueData["district"],
                 "amphur": cardValueData["amphur"],
                 "province": cardValueData["province"]
-                //NEW---
+                    //NEW---
             },
             'body': generateOrderRequest()
         };
         console.log(data);
-        SystemService.generatePDF(data, function (url) {
+        SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
 
-            setTimeout(function () {
+            setTimeout(function() {
                 $('#modalPDFOpener').click();
 
-                setTimeout(function () {
+                setTimeout(function() {
                     var srcPDF = url;
                     document.getElementById('iframePDF').src = url + '?clearData=N';
                     if ($scope.shopType == "1") {
-                        setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000);
-                        setTimeout(function () { document.getElementById('iframePDF').src = srcPDF }, 2500);
+                        setTimeout(function() {
+                            document.getElementById('iframePDF').src = 'javascript:window.print();'
+                        }, 2000);
+                        setTimeout(function() {
+                            document.getElementById('iframePDF').src = srcPDF
+                        }, 2500);
                     }
                 }, 500);
 
@@ -181,7 +187,7 @@
     // Get device list
     var deviceByCode = {};
 
-    var onGetDeviceTypeList = function (result) {
+    var onGetDeviceTypeList = function(result) {
         $scope.deviceTypeList = result.data['response-data'];
 
         if ($scope.deviceTypeList && $scope.deviceTypeList.length) {
@@ -189,7 +195,7 @@
 
             // Non-shop users always have only one device type, just auto-select it
             if ($scope.shopType === '0' || $scope.deviceTypeList.length === 1) {
-                setTimeout(function () {
+                setTimeout(function() {
                     $scope.deviceType = $scope.deviceTypeList[0]['device-code'];
                     $scope.$digest();
                 }, 0);
@@ -197,14 +203,13 @@
         }
     };
 
-    $scope.$watch('deviceType', function (val) {
+    $scope.$watch('deviceType', function(val) {
         if (deviceByCode[val]) {
             var device = deviceByCode[val];
 
             $scope.productCodes = device['product-codes'].join('/');
             $scope.simType = device['sim-type'];
-        }
-        else {
+        } else {
             $scope.productCodes = '';
             $scope.simType = ''
         }
@@ -212,7 +217,7 @@
 
 
     // Get current SIM data
-    var onGetSIMData = function (result) {
+    var onGetSIMData = function(result) {
         $scope.data = result.data;
         $scope.SubNo = result.data.header.subscriberno;
 
@@ -226,15 +231,19 @@
         }
     };
 
-    if ($scope.SubNo !== 'null') {
-        SystemService.showLoading();
-        ChangeSwapSimService.getSIMData($scope.SubNo, onGetSIMData);
+    $scope.onload = function() {
+        if ($scope.SubNo !== 'null') {
+            SystemService.showLoading();
+            ChangeSwapSimService.getSIMData($scope.SubNo, onGetSIMData);
+        }
     }
-    setTimeout(function () {
+
+
+    setTimeout(function() {
         SystemService.validateNummeric();
     }, 1000);
     $scope.isNumberSubNo = false;
-    $scope.onKeyUpSubNo = function (charCode) {
+    $scope.onKeyUpSubNo = function(charCode) {
         //console.log(charCode);
         var bool = SystemService.checkInputTel(charCode);
         $scope.isNumberSubNo = !bool;
@@ -245,7 +254,7 @@
         $scope.autoHideNumberSubNo = false;
         return bool;
     }
-    $scope.onInputSubNo = function () {
+    $scope.onInputSubNo = function() {
         console.log($('#dataSubNo').val().length);
         var dataSubNo = $('#dataSubNo').val();
         if (dataSubNo.length == 10) {
@@ -253,7 +262,7 @@
             $('#swapSubNo').prop('disabled', true);
             SystemService.showLoading();
 
-            ChangeSwapSimService.getSIMData(dataSubNo, function (result) {
+            ChangeSwapSimService.getSIMData(dataSubNo, function(result) {
                 $('#swapSubNo').prop('disabled', false);
 
                 onGetSIMData(result);
@@ -261,40 +270,40 @@
         }
 
     };
-    $scope.onInputSubNo_reset = function () {
+    $scope.onInputSubNo_reset = function() {
         $scope.isInputSubNo = false;
         $scope.onInputSubNo();
     };
 
 
     // Validate new SIM
-    var validateSIMType = function (simType) {
+    var validateSIMType = function(simType) {
         return jQuery.inArray(simType, ['1', '3', '5', 'S']) === -1 ? false : true;
     };
 
-    var validateResourceStatus = function (resourceStatus) {
+    var validateResourceStatus = function(resourceStatus) {
         return resourceStatus === 'AVAILABLE' ? true : false;
     };
 
-    $scope.onInputSIMSerial = function () {
+    $scope.onInputSIMSerial = function() {
         if ($scope.simSerial.length === $scope.simSerialLength) {
 
-            
+
 
             var data = {
                 'sim-serial': $scope.simSerial,
                 'dealer-code': $scope.dealerCode,
                 'company-code': $scope.data.simData['company-code'],
                 'mobile-servicetype': $scope.data.simData['mobile-servicetype'] == 'PREPAID' ? 'PREPAID' : 'POSTPAID'
-                //,'product-code': $scope.productCodes,
-                //'pair-msisdn': $scope.SubNo
+                    //,'product-code': $scope.productCodes,
+                    //'pair-msisdn': $scope.SubNo
             };
 
             if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == true) {
                 data['product-code'] = $scope.productCodes;
             }
             console.log(data);
-            ChangeSwapSimService.validateSIM(data, function (result) {
+            ChangeSwapSimService.validateSIM(data, function(result) {
                 var displayMsg = utils.getObject(result.data, 'display-messages.0');
 
                 if (displayMsg && displayMsg['message-type']) {
@@ -321,31 +330,29 @@
                     if (
                         // TODO: Validate (See Page 10 - NO 6)
                         // TODO: Validate (See Page 10 - NO 7)
-						validateSIMType(simDetails['sim-type']) &&
-						validateResourceStatus(simDetails['resource-status'])
+                        validateSIMType(simDetails['sim-type']) &&
+                        validateResourceStatus(simDetails['resource-status'])
                         // TODO: Validate (See Page 10 - NO 10)
                         // TODO: Validate (See Page 10 - NO 11)
                         // TODO: Validate (See Page 10 - NO 12)
-					) {
+                    ) {
                         $scope.printAble = true;
 
                         if ($scope.shopType === '1') {
                             $scope.openPDFDialog();
                         }
-                    }
-                    else {
-                        alert('หมายเลขซิมการ์ดใหม่ ไม่ถูกต้อง');// ปรับ alert message
+                    } else {
+                        alert('หมายเลขซิมการ์ดใหม่ ไม่ถูกต้อง'); // ปรับ alert message
 
                     }
                 }
             });
-        }
-        else {
+        } else {
             $scope.printAble = false;
         }
     };
 
-    $scope.onInputDealerCode = function () {
+    $scope.onInputDealerCode = function() {
         if ($scope.dealerCode.length === $scope.dealerCodeLength) {
 
             $('#dealerCodeInput').prop('disabled', true);
@@ -355,7 +362,7 @@
                 'function-type': 'SWAPSIM'
             };
 
-            sharedServices.validateDealerCode(data, function (result) {
+            sharedServices.validateDealerCode(data, function(result) {
                 $scope.alreadyValidatedDealerCode = true;
                 $scope.dealerCodeValid = false;
 
@@ -369,8 +376,7 @@
                     }
                 }
             });
-        }
-        else {
+        } else {
             $scope.dealerCodeValid = false;
         }
     };
@@ -379,9 +385,14 @@
     // Authentication
     var orderData = {};
 
-    var authenticate = function () {
-        AuthenService.getAuthen(function (authResult) {
+    var authenticate = function() {
+        AuthenService.getAuthen(function(authResult) {
             $scope.getAuthen = authResult;
+
+            //console.log(authResult);
+
+
+
 
             $scope.shopType = $scope.getAuthen['shopType'];
             if ($scope.shopType == '1') {
@@ -395,22 +406,21 @@
             if ($scope.dealerCodeList && $scope.dealerCodeList.length === 1) {
                 $scope.dealerCode = $scope.dealerCodeList[0];
                 $scope.dealerCodeValid = true;
-            }
-            else if ($scope.dealerCodeList && $scope.dealerCodeList.length > 1) {
+            } else if ($scope.dealerCodeList && $scope.dealerCodeList.length > 1) {
                 $scope.dealerCodeValid = true;
                 //$('#dealerCodeList').attr('size', $scope.dealerCodeList.length + 1);
             }
 
             var dealerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
 
-            SystemService.getOrderId($scope.getAuthen.channel, dealerCode, function (order) {
+            SystemService.getOrderId($scope.getAuthen.channel, dealerCode, function(order) {
                 SystemService.hideLoading();
 
                 orderData = order;
 
                 if ($scope.shopType === '1') {
                     // Auto-open the CardReader dialog
-                    setTimeout(function () {
+                    setTimeout(function() {
                         var fancyboxOptions = {
                             helpers: {
                                 overlay: {
@@ -418,13 +428,22 @@
                                 }
                             },
 
-                            beforeShow: function () {
-                                $('#CitizenID').prop('disabled', true);
+                            beforeShow: function() {
+
+                                if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
+                                    $('#btnSSO').hide();
+                                    //hidden button and disabled=false
+                                    $('#CitizenID').prop('disabled', false);
+                                } else {
+                                    //disabled=true
+                                    //alert('show');
+                                    $('#CitizenID').prop('disabled', true);
+                                }
                                 $('#loadingReadCard').hide();
                                 $('#unMatch').hide();
                             },
 
-                            afterClose: function () {
+                            afterClose: function() {
                                 if (!$scope.onInputId()) {
                                     //window.close();
                                 }
@@ -438,24 +457,23 @@
         });
     };
 
-    $scope.openSSO = function () {
-        var getReadyCitizenInput = function () {
+    $scope.openSSO = function() {
+        var getReadyCitizenInput = function() {
             $('#CitizenID').prop('disabled', false);
             $('#CitizenID').focus();
         };
 
         if ($scope.getAuthen.isSecondAuthen) {
-            var openDialog = function (uri, name, options, closeCallback) {
+            var openDialog = function(uri, name, options, closeCallback) {
                 var win = window.open(uri, name, options);
 
-                var interval = window.setInterval(function () {
+                var interval = window.setInterval(function() {
                     try {
                         if (!win || win.closed) {
                             window.clearInterval(interval);
                             closeCallback(win);
                         }
-                    }
-                    catch (ex) { }
+                    } catch (ex) {}
                 }, 1000);
 
                 return win;
@@ -463,32 +481,30 @@
 
             var url = SystemService.secondAuthenURL + 'SecondAuthen.jsp?App=WEBUI&TrxID=' + orderData.TrxID + '&Retry=yes&Goto=';
 
-            openDialog(url, 'MsgWindow', 'width=800, height=600', function (w) {
+            openDialog(url, 'MsgWindow', 'width=800, height=600', function(w) {
                 SystemService.showLoading();
 
-                SystemService.second_authen(orderData.TrxID, function (result) {
+                SystemService.second_authen(orderData.TrxID, function(result) {
                     SystemService.hideLoading();
 
                     var displayMsg = utils.getObject(result, 'display-messages.0');
                     if (!displayMsg || !displayMsg['message-type']) {
-                        setTimeout(function () {
+                        setTimeout(function() {
                             getReadyCitizenInput();
                         }, 1000);
-                    }
-                    else {
-                        setTimeout(function () {
+                    } else {
+                        setTimeout(function() {
                             SystemService.showAlert(displayMsg);
                         }, 1000);
                     }
                 });
             });
-        }
-        else {
+        } else {
             getReadyCitizenInput();
         }
     };
 
-    $scope.onInputId = function () {
+    $scope.onInputId = function() {
         var value = $('#CitizenID').val();
 
         if (value.length === 13) {
@@ -498,14 +514,13 @@
                 $('.fancybox-close').click();
 
                 return true;
-            }
-            else {
+            } else {
                 $('#unMatch').show();
             }
         }
     };
 
-    $scope.readCardError = function (msg) {
+    $scope.readCardError = function(msg) {
         SystemService.showAlert({
             'message': msg,
             'message-code': '',
@@ -516,7 +531,7 @@
         });
     };
 
-    $scope.SetCardValue = function (result) {
+    $scope.SetCardValue = function(result) {
         $scope.cardInfo = eval(result);
 
         $('#CitizenID').val($scope.cardInfo.CitizenID);
@@ -525,9 +540,9 @@
 
     //start----------- camera ----------------
     $scope.varPhoto = "";
-    $scope.initWebCam = function () {
+    $scope.initWebCam = function() {
 
-        setTimeout(function () {
+        setTimeout(function() {
             $('#btnSavePhoto').hide();
             var html = webcam.get_html(320, 240);
             $("#dataCamera").html(html);
@@ -550,23 +565,23 @@
         $('#btnSavePhoto').show();
     }
 
-    $scope.webcamSnap = function () {
-        webcam.snap();
-    }
-    //end----------- camera ----------------
+    $scope.webcamSnap = function() {
+            webcam.snap();
+        }
+        //end----------- camera ----------------
 
 });
 
 // TODO: Each function in sharedServices should be moved to another file
-smartApp.service('sharedServices', function ($timeout, SystemService) {
+smartApp.service('sharedServices', function($timeout, SystemService) {
 
-    this.validateDealerCode = function (payload, fnCallback) {
+    this.validateDealerCode = function(payload, fnCallback) {
         var params = utils.createParamGet(payload, [
-			'partner-code',
-			'function-type'
+            'partner-code',
+            'function-type'
         ]);
 
-        var cb = function (result) {
+        var cb = function(result) {
             var displayMsg = utils.getObject(result.data, 'display-messages.0');
 
             if (displayMsg && displayMsg['message-type']) {
@@ -579,11 +594,10 @@ smartApp.service('sharedServices', function ($timeout, SystemService) {
         if (!SystemService.demo) {
             var target = '/profiles/partner/validatepartner?' + params;
 
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 cb(result);
             });
-        }
-        else {
+        } else {
             var data = {
                 'status': 'SUCCESSFUL',
                 'display-messages': [],
@@ -610,7 +624,7 @@ smartApp.service('sharedServices', function ($timeout, SystemService) {
                 }
             };
 
-            $timeout(function () {
+            $timeout(function() {
                 cb({
                     status: true,
                     data: data,
