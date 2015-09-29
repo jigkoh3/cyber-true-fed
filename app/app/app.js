@@ -58,6 +58,10 @@ smartApp.config(function ($routeProvider, $httpProvider) {
 	    templateUrl: 'app/views/migratePostToPre.html?v=' + runTime,
 	    controller: 'MigratePostToPreController'
 
+	}).when('/migratePostToPre', {
+	    templateUrl: 'app/views/migratePostToPre.html?v=' + runTime,
+	    controller: 'MigratePostToPreController'
+
 	}).when('/changeResume/:ID/:SubNo/:statusCancel/:shopType', {
 	    templateUrl: 'app/views/changeResume.html?v=' + runTime,
 	    controller: 'ChangeResumeController'
