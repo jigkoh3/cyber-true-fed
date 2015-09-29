@@ -163,22 +163,37 @@ smartApp.controller('changeOwnershipController', function (
 
     $scope.SetCardValue3 = function (result) {
         $('#loadingReadCard3').hide();
-
+        $scope.showEnableNewOwnerBirthday = false;
+         $scope.showEnableNewOwnerExpireDay = false;
         $scope.cardInfo3 = eval(result);
-        console.log("aaaaaaa;;;;;;" + $scope.cardInfo3);
+        console.log($scope.cardInfo3);
+        var prefix = "T2";
+        if($scope.cardInfo3.PrefixEN == "Mr."){
+            prefix = "T1";
+        }   
+        if($scope.cardInfo3.PrefixEN == "Miss"){
+            prefix = "T3";
+        }
+
+        var sex = "MALE";
+        if($scope.cardInfo3.Sex == "2"){
+            sex = "FEMALE";
+        }
 
         $('#citizenID3').val($scope.cardInfo3.CitizenID);
-        $('#prefixTH3').val($scope.cardInfo3.PrefixTH);
+        $('#prefixTH3').val(prefix);
         $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
         $('#lastNameTH3').val($scope.cardInfo3.LastNameTH);
         $('#birthDay').val($scope.cardInfo3.BirthDay);
+        $('#disableNewOwnerBirthday').val($scope.cardInfo3.BirthDay);
         $('#expireDay').val($scope.cardInfo3.ExpireDay);
-        $('#sex3').val($scope.cardInfo3.Sex);
+        $('#disableNewOwnerExpireDay').val($scope.cardInfo3.ExpireDay);
+        $('#sex3').val(sex);
 
-        $scope.cardType = {
-            value: "I"
-        };
-        //$('#cardType').val('6');
+        $('#birthDay').removeClass('date-picker');
+
+        $scope.cardType.value= "I";
+        $('#cardType').val('I');
 
         //binding Tax Id
         $('#taxId3').val($scope.cardInfo3.CitizenID);
@@ -190,7 +205,7 @@ smartApp.controller('changeOwnershipController', function (
         $('#birthDayRegisterd').val($scope.cardInfo3.BirthDay);
 
 
-        //$scope.newOwner = {
+        // $scope.newOwner = {
         //    citizenID: $scope.cardInfo3.CitizenID,
         //    prefixTH: 'นาย',
         //    firstNameTH: $scope.cardInfo3.FirstNameTH,
@@ -202,8 +217,13 @@ smartApp.controller('changeOwnershipController', function (
         //    birthDay: $scope.cardInfo3.BirthDay,
         //    issueDay: $scope.cardInfo3.IssueDay,
         //    expireDay: $scope.cardInfo3.ExpireDay,
-        //};
+        // };
+        //$scope.onselectPrefix();    
         //console.log($scope.newOwner);
+        setTimeout(function(){
+            $('#idBindDataAgain').click();
+        }, 1000);
+        
     };
 
     $scope.changeType = function (customerType) {
@@ -323,6 +343,8 @@ smartApp.controller('changeOwnershipController', function (
                     changeOwnershipService.validateChangeOwnershipCallback($scope.SubNo, function (result) {
                         if (result.status) {
                             $scope.data = result;
+                            $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
+
                             $scope.data2 = result;
 
                             console.log($scope.data);
@@ -417,6 +439,17 @@ smartApp.controller('changeOwnershipController', function (
 
         });
     };
+
+    $scope.onChangeCardTypes = function(){
+        console.log($scope.cardType.value);
+        if($scope.cardType.value == "I"){
+
+            $scope.customer['tax-id'] = $scope.customer['id-number'];
+            console.log($scope.customer['tax-id'],$scope.customer['id-number']);
+        } else {
+            $scope.customer['tax-id'] = "0000000000000";
+        }
+    }
     $scope.onInputShopCode = function () {
         if ($scope.partnerCode && $scope.partnerCode.length == 8) {
             $scope.onCheckShopCode();
@@ -632,9 +665,9 @@ smartApp.controller('changeOwnershipController', function (
         //$scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
 
         var cid = $('#citizenID3').val();
-        if (cid.length == 13) {
+        if (cid.length >= 9) {
             SystemService.showLoading();
-            if (SystemService.validatePID(cid)) {
+            if (1==1) {
                 changeOwnershipService.validateGradingCallback(cid, function (resultData) {
                     console.log(resultData);
                     console.log(resultData.data["display-messages"]);
@@ -836,7 +869,7 @@ smartApp.controller('changeOwnershipController', function (
         console.log($('#CitizenIDLastest').val().length);
         var cid = $('#CitizenIDLastest').val();
 
-        if (cid.length >= 13) {
+        if (cid.length >= 9) {
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
@@ -1001,6 +1034,8 @@ smartApp.controller('changeOwnershipController', function (
     //    console.log(result);
     //    $scope.genders = result;
     //});
+    $scope.showEnableNewOwnerBirthday = true;
+    $scope.showEnableNewOwnerExpireDay = true;
     $scope.newOwner = {
         prefixTH: "T1",
         sex: "MALE"

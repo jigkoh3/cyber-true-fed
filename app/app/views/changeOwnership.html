@@ -224,7 +224,7 @@
                                                ng-blur="onCheckInputForVerify()"
                                                ng-model="customer['id-number']"
                                                placeholder=""
-                                               class="form-control numberic"
+                                               class="form-control"
                                                maxlength="13"
                                                name="personnalids" required>
 
@@ -271,7 +271,8 @@
                                     <label>ประเภทของบัตร<span style="color:red;">*</span> </label>
                                     <select name="cardTypes"
                                             ng-model="cardType.value"
-                                            ng-blur="onCheckInputForVerify()"
+                                            ng-blur="onCheckInputForVerify()" 
+                                            ng-change="onChangeCardTypes()"
                                             id="cardType"
                                             ng-disabled="!isLastestUser"
                                             class="form-control" required>
@@ -409,21 +410,36 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group has-feedback">
+                                <div ng-show="showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" readonly class="form-control date-picker" id="birthDay" required>
+                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" readonly class="form-control date-picker" id="birthDay"  required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
                                     </span>-->
                                 </div>
+                                <div ng-show="!showEnableNewOwnerBirthday" class="form-group has-feedback">
+                                    <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
+                                    <input id="disableNewOwnerBirthday" name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" readonly class="form-control "  required>
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                    <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
+                                        Required.
+                                    </span>-->
+                                </div>
+
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group has-feedback">
+                                <div ng-show="showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
                                     <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" class="form-control date-picker" id="expireDay">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
+                                <div ng-show="!showEnableNewOwnerExpireDay" class="form-group has-feedback">
+                                    <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
+                                    <input  id="disableNewOwnerExpireDay" type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" class="form-control">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            
                             </div>
                         </div>
 
