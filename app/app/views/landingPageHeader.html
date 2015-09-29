@@ -1,0 +1,171 @@
+﻿
+<div class="header">
+    <div class="container-fluid">
+        <div class="navbar-brand navbar-brand-center">
+            <div class="logo"></div>
+        </div>
+        <div class="aa">
+
+            <a href="javascript:;" onclick="$(this).parent().toggleClass('open');" class="btn btn-menu"><span class="btn-menu-icon"></span><span class="btn-menu-text">menu</span></a>
+
+            <div class="bb dropdown-menu mega-dropdown-menu menu">
+                <div class="menu-content">
+                    <div class="menu-content-read-card">
+                        <h4>ตรวจสอบข้อมูลลูกค้า</h4>
+                        <p>อ่านข้อมูลจากบัตรประชาชน</p><a href="#" class="btn btn-readcard"></a>
+                        <p>หรือ</p>
+                        <input type="text" placeholder="กรอกหมายเลขบัตร/หมายเลขบริการ" class="form-control">
+                    </div>
+                    <input id="search" placeholder="Search" class="form-control hide">
+                    <div class="menu-content-user-info hide">
+                        <h4>ข้อมูลลูกค้า</h4>
+                        <div class="card">
+                            <div class="card-img"><img src="images/cards/card-black.png" class="media-object"></div>
+                            <div class="card-detail">8891-3888-8007-2430 <br> EXP: 08/2015</div>
+                        </div>
+                        <h3><small>หมายเลขบัตรประชาชน/พาสปอร์ต</small> 3600800664204</h3>
+                        <h3><small>ชื่อ - นามสกุล</small> นางสาว สุขแสนสุข ใจอารีย์</h3>
+                        <button class="btn btn-danger">เสร็จสิ้นการให้บริการ</button>
+                    </div>
+
+                    <div class="navmenu">
+                        <ul class="nav navmenu-nav">
+                            <li data-toggle="collapse" data-target="#aftersale" class="collapsed">
+                                <a href="" class="dropdown-toggle-submenu-v2">บริการหลังการขาย <i class="fa fa-angle-down"></i></a>
+                                <ul class="sub-menu collapse dropdown-menu-v2" id="aftersale">
+                                    <li><a href="#/cancelOrder">Cancel Order</a></li>
+                                    <li><a href="#/changeInstallation">Change Installation</a></li>
+                                    <li><a href="#/changePromotion">Change Promotion</a></li>
+                                    <li><a href="#/disConnect">Disconnect</a></li>
+                                    <li><a href="#/deBundle">Debundle</a></li>
+                                    <li><a href="#/addOutlet">Add Outlet</a></li>
+                                    <li><a href="#/removeOutlet">Remove Outlet</a></li>
+                                    <li><a href="#/changeTelno">Change TelNo./Priceplan/Feature</a></li>
+                                </ul>
+                            </li>
+                            <li data-toggle="collapse" data-target="#saleservice" class="collapsed">
+                                <a href="" class="dropdown-toggle-submenu-v2">สินค้าและบริการ <i class="fa fa-angle-down"></i></a>
+                                <ul class="sub-menu collapse dropdown-menu-v2" id="saleservice">
+                                    <li><a href="#/sale">สินค้าและบริการ</a></li>
+                                    <li><a href="">โปรโมชั่นแนะนำ</a></li>
+                                    <li><a href="">เครื่องและอุปกรณ์</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="" data-toggle="modal" data-target=".modalbooking">ข้อมูลการจอง</a></li>
+                            <li><a class="disabled">ชำระสินค้าและบริการ</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="aa">
+            <a href="#" href="javascript:;" class="btn-login dropdown-toggle">
+                <p class="navbar-text navbar-text-right">
+                    <i class="fa fa-user"></i> ID: 01014764
+                </p>
+            </a>
+
+            <div class="login dropdown-menu navmenu-nav bb">
+                <div class="login-content">
+                    <div class="login-content-user-info">
+
+                        <div class="btn-official ">
+                            <h4>ข้อมูลพนักงาน</h4>
+                        </div>
+
+
+                        <h3><small>SALE ID</small> 01014764</h3>
+                        <h3><small>ชื่อ - นามสกุล</small>นางสาว ทรู ทรูมูฟเอช</h3>
+                        <h3><small>Shop Code</small>123456</h3>
+                        <h3><small>Shop Name</small>เซ็นทรัลพลาซา พระราม 2</h3>
+
+                    </div>
+                    <div class="navmenu">
+
+                        <ul class="nav navmenu-nav">
+                            <li><a class="disabled" href="#">ประวัติการให้บริการ</a></li>
+
+                            <li> <a href="#">ประวัติการขาย </a></li>
+                            <li class="dropdown-submenu-v2">
+                                <a href="#" class="dropdown-toggle-submenu-v2">ข้อมูลโปรโมชั่น</a>
+                                <ul class="dropdown-menu-v2">
+                                    <li><a href="sale.html">ข้อมูลโปรโมชั่น1</a></li>
+                                    <li><a href="#">ข้อมูลโปรโมชั่น2</a></li>
+                                    <li><a href="#">ข้อมูลโปรโมชั่น3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menu-content-nav">
+                        <button class="btn btn-danger btn-done">ออกจากระบบ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalbooking" tabindex="-1" class="modal fade modalbooking" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
+                <h5>ข้อมูลการจอง</h5>
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <b>ชื่อลูกค้า คุณสุขแสนสุข  ใจอารีย์</b>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <b>รวมจอง 2 รายการ</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">รหัสการจอง</div>
+                            <div class="col-md-8">20141733882</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">สินค้า</div>
+                            <div class="col-md-8">3000036061 iPhone 6 Plus 16GB Gold</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">นัดรับสินค้าที่</div>
+                            <div class="col-md-8">80000124 (True Shop ใยแก้ว)</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">วันที่นัดรับสินค้า</div>
+                            <div class="col-md-8">dd/mm/yyyy  hh:mmวันที่รับสินค้าจริง	ยังไม่ได้รับสินค้า</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">สถานะ</div>
+                            <div class="col-md-8">ยังไม่ได้รับสินค้า</div>
+                        </div>                       
+                       
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" ng-click="informationBooking()">เลือก</button>
+                <button class="btn btn-cancel" data-dismiss="modal">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

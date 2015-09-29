@@ -1,0 +1,38 @@
+﻿<div ng-controller="ngAlertController">
+    <div class="ngdialog-message">
+        <h3><i class="ace-icon fa fa-arrow-circle-right danger" style="color:red;"></i> {{ngDialogData["message-type"]}}</h3>
+        <h5>รายละเอียด</h5>
+        <!--<p ng-show="ngDialogData['message']" style="color:red;overflow-wrap: break-word;" class="ngdMessage">
+            {{ngDialogData["message"]}}
+        </p>-->
+        <p ng-show="ngDialogData['en-message']" style="overflow-wrap: break-word;">
+            EN : <span class="ngdEnMessage"> {{ngDialogData["en-message"]}}</span>
+        </p>
+        <p ng-show="ngDialogData['th-message']" style="overflow-wrap: break-word;">
+            TH : <span class="ngdThMessage"> {{ngDialogData["th-message"]}}</span>
+        </p>
+        <p ng-show="ngDialogData['technical-message']">
+            <input type="checkbox" class="hidden" ng-model="technicalmessage" />
+            <a href="#" onclick="return false;" ng-click="technicalmessage=technicalmessage?false:true" style="color:black;">
+                <i class="ace-icon fa fa-plus-square danger" ng-hide="technicalmessage" style="color:red;"></i>
+                <i class="ace-icon fa fa-minus-square danger" ng-show="technicalmessage" style="color:red;"></i>
+                Technical Error
+            </a>
+
+        </p>
+        <p ng-show="technicalmessage" style="overflow-wrap: break-word;">
+            &emsp; <span class="ngdTechnicalMessage"> {{ngDialogData["technical-message"]}}</span>
+        </p>
+        <p>
+            <b>* หากพบปัญหาในการใช้งาน กรุณาติดต่อ 5555 หรือ IT Service</b>
+        </p>
+    </div>
+    <div style="text-align:center;">
+        &nbsp;&nbsp;
+        <input type="button" ng-show="ngDialogData['message-type']=='ERROR' || ngDialogData['message-type']=='ERROR_CALL_SERVICE'" onclick="window.close();" value=" Close " class="btn btn-danger">
+        <input type="button" ng-hide="(ngDialogData['message-type']=='ERROR') || (ngDialogData['message-type']=='ERROR_CALL_SERVICE')" ng-click="ngBootBoxClose()" value="OK" id="btn_ngbOK" class="btn btn-success">
+    </div>
+    <div class="ngdialog-buttons">
+        &nbsp;
+    </div>
+</div>

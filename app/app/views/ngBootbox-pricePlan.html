@@ -1,0 +1,63 @@
+﻿<div ng-controller="ngBootboxPricePlanController">
+        <div class="modal-content">
+            <!--<div class="modal-header">
+                <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
+                <h5>Price Plan</h5>
+
+            </div>-->
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <input type="text" placeholder="ค้นหา" ng-model="pricePlan.pricePlanFilter" id="ppfilter2" class="form-control pricePlanFilter">
+                </div>
+                &nbsp;
+                <div class="table-responsive">
+                    <table class="table" style="margin-bottom: 0px;">
+                        <tr>
+                            <th colspan="5">
+                                <label class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-1">&nbsp;</div>
+                                        <div class="col-xs-6"><span style="color:green;"><h6>Price Plan</h6></span></div>
+                                        <div class="col-xs-1"><span style="color:green;text-align:center;"><h6>RC</h6></span></div>
+                                        <div class="col-xs-4"><span style="color:green;"><h6>รายการส่งเสริมการขาย</h6></span></div>
+                                    </div>
+                                </label>
+                            </th>
+                        </tr>
+
+                        <tr dir-paginate="pp in pricePlans | filter:pricePlan.pricePlanFilter | orderBy:'pricePlan'| itemsPerPage: pageSize" current-page="currentPage">
+                            <th colspan="5" style="padding:5px">
+                                <label class="col-xs-12" style="cursor:pointer;">
+                                    <div class="row">
+                                        <div class="col-xs-1"><input name="pricelsx" type="radio" ng-change="selectedPricePlan(pp)" ng-model="pricePlan2.name" ng-value="pp.pricePlan" /></div>
+                                        <div class="col-xs-7">{{pp.pricePlan}}</div>
+                                        <div class="col-xs-1 text-center">{{pp.rc | number}}</div>
+                                        <div class="col-xs-3" style="text-align:center;">{{pp.promotion}}</div>
+                                    </div>
+                                </label>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td colspan="5" class="text-center" style="margin-bottom: 0px;">
+                                <style>
+                                    .pagination {
+                                        margin: 0;
+                                    }
+                                </style>
+                                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></dir-pagination-controls>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="div_event"></div>
+            </div>
+            <div class="modal-footer" style=" padding-top: 0;">
+
+                <button class="btn btn-success" data-dismiss="modal" ng-click="selectedPricePlan2()">เลือก</button>
+                <button class="btn btn-cancel" data-dismiss="modal">ยกเลิก</button>
+            </div>
+        </div>
+    
+</div>

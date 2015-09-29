@@ -1,0 +1,18 @@
+﻿<div ng-controller="ngShowBeforeCloseController">
+    <div class="ngdialog-message" style="text-align:center;">
+        <h6 ng-show="ngDialogData['message']">
+            {{ngDialogData["message"]}}
+        </h6>
+        <h6 ng-show="ngDialogData['message2']">
+            {{ngDialogData["message2"]}}
+        </h6>
+
+    </div>
+    <div style="text-align:center;">
+        &nbsp;&nbsp;
+        <input type="submit" value="OK" class="btn btn-success" onclick="closeWP();">
+    </div>
+    <div class="ngdialog-buttons">
+
+    </div>
+</div>

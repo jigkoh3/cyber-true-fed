@@ -1,0 +1,279 @@
+<h4>ข้อมูลลูกค้า</h4>
+<div class="customer-info">
+    <!-- <a href="#" class="btn btn-camera"><img src="images/user.png"> </a> -->
+    <button type="button" class="hidden"
+            ng-click="onBindDataAgain()"
+            id="idBindDataAgain">
+        bind data again
+    </button>
+
+    <div class="row">
+        <div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <h4>
+                        <small></small>
+                        <small></small>
+                        <small ng-show="data.priceplan['account-category'] != 'B' && data.priceplan['account-category'] != 'C'">หมายเลขบัตรประชาชน/พาสปอร์ต</small>
+                        <small ng-show="data.priceplan['account-category'] == 'B' || data.priceplan['account-category'] == 'C'">เลขจดทะเบียนนิติบุคคล</small>
+                        {{data.customerProfile["id-number"]}}
+                    </h4>
+                    <span class="input-group-btn" style=" top: 8px;" ng-hide="shopType == '0' ">
+                        <!--<button title="อ่านจากการ์ด" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard');ReadCard('ReadP');" style="height:30px;" type="button" data-toggle="tooltip" class="btn credit_ie8">
+                            <i class="fa fa-credit-card"></i>
+                        </button>-->
+                        <!--<button href="#modal-ReadCard"
+                                title="อ่านจากการ์ด"
+                                ng-click="initModalReadCard()"
+                                style="height:30px;"
+                                type="button"
+                                data-toggle="modal"
+                                class="btn ">
+                            <i class="fa fa-credit-card"></i>
+                        </button>-->
+                        <button href="#fancy-ReadCard"
+                                ng-click="initModalReadCard()"
+                                style="height:32px;"
+                                type="button"
+                                id="btn-fancy-ReadCard"
+                                class="btn ">
+                            <i class="fa fa-credit-card"></i>
+                        </button>
+                        <!--<a href="#modal-ReadCard3" onclick="return false;" data-dismiss="modal" data-toggle="modal" class="btn btn-success">Ok</a>-->
+                        <!--<a href="#modal-SecoundAuthen" class="btn" onclick="return false;" data-toggle="modal"><i class="fa fa-credit-card"></i></a>-->
+                    </span>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <h4>
+                    <small ng-show="data.priceplan['account-category'] != 'B' && data.priceplan['account-category'] != 'C'">ชื่อ - นามสกุล</small>
+                    <small ng-show="data.priceplan['account-category'] == 'B' || data.priceplan['account-category'] == 'C'">ชื่อนิติบุคคล</small>
+                    {{data.customerProfile["title"]}} {{data.customerProfile["firstname"]}}  {{data.customerProfile["lastname"]}}
+                </h4>
+            </div>
+        </div>
+        <div ng-show="Level == 'OU'" class="hidden">
+            <div class="col-md-4">
+                <h4>
+                    <small>เลขจดทะเบียนนิติบุคคล</small>
+                    {{data.customerProfile["id-number"]}}
+                </h4>
+            </div>
+            <div class="col-md-3">
+                <h4>
+                    <small>ชื่อนิติบุคคล</small>
+                    {{data.customerProfile["title"]}} {{data.customerProfile["firstname"]}}  {{data.customerProfile["lastname"]}}
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-5">
+
+            <div ng-show="(isCustomerProfile == true) && (shopType == '1') && getAuthen['isSecondAuthen'] == true">
+                <button type="button" href="#modal-ReadCamera" ng-click="initWebCam()" onclick="return false" data-toggle="modal" class="btn btn-camera" style="margin-bottom: -10px;">
+                    <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
+                </button>
+            </div>
+            <!--<div ng-hide="shopType == '0' || Level == 'OU'"><a class="btn btn-camera" data-toggle="modal" ng-click="initModalReadCard()" onclick="return false;" href="#modal-ReadCard"> อ่านบัตร </a></div>-->
+
+        </div>
+    </div>
+    &nbsp;
+    <div id="divShowAuthorize" class="row">
+        <div class="col-md-12">
+            <div class="checkbox checkbox-circle2 checkbox-inline authorize">
+                <input type="checkbox"
+                       class="styled"
+                       id="authorize"
+                       ng-model="isAuthorize"
+                       ng-disabled="!isCustomerProfile"
+                       onclick="$('#loadingReadCard2').hide(); $('#CitizenID2').val(''); $('#authorizeFullName').val('');">
+                <label for="authorize">กรณีมอบอำนาจ </label>
+            </div>
+        </div>
+    </div>
+    <div ng-hide="isAuthorize==false">
+        <!--<div class="row">
+            <div class="col-md-12">
+                <div class="checkbox checkbox-circle2 checkbox-inline authorize">
+                    <input type="checkbox" class="styled" id="authorize_02" ng-model="isAuthorize">
+                    <label for="authorize_02">กรณีมอบอำนาจ </label>
+                </div>
+            </div>
+        </div>-->
+
+        <input type="hidden" id="ReadAuthorize" value="false" />
+
+        <div class="row">
+            <!--<div class="col-md-4">
+                <div class="input-group">
+                    <label>หมายเลขบัตรประชาชน / พาสปอร์ต ผู้รับมอบอำนาจ</label>
+                    <input type="text" placeholder="" id="CitizenID2" ng-model="CitizenID2" class="form-control">
+                    <span class="input-group-btn">
+                        <button title="อ่านจากการ์ด" onclick="$('#ReadAuthorize').val('true');ReadCard('ReadP');" class="btn credit_ie8" type="button" data-toggle="tooltip">
+                            <i class="fa fa-credit-card"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>-->
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>หมายเลขบัตรประชาชน / พาสปอร์ต ผู้รับมอบอำนาจ <span style="color:red;">*</span></label>
+                    <div class="input-group">
+                        <input type="text" placeholder="" id="CitizenID2" ng-model="CitizenID2" ng-change="onInputId2()" maxlength="17" class="form-control">
+                        <span class="input-group-btn">
+                            <button title="อ่านจากการ์ด" onclick="$('#ReadAuthorize').val('true');ReadCard('ReadP');" style="height:30px;" class="btn credit_ie8" type="button" data-toggle="tooltip">
+                                <i class="fa fa-credit-card"></i>
+                            </button>
+                        </span>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-3"></div>
+                    <div class="col-xs-8">
+                        <div id="loadingReadCard2">
+                            <i class="fa fa-spin fa-spinner"></i>
+                            กำลังอ่านข้อมูล...
+                        </div>
+                        <span id="unMatch2" style="color:red;">*ไม่พบหมายเลขบัตรนี้ในฐานข้อมูล</span>
+                    </div>
+                    <div class="col-xs-4"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>ชื่อ - นามสกุล ผู้รับมอบอำนาจ<span style="color:red;">*</span></label>
+                    <input type="text" name="ชื่อ" id="authorizeFullName" ng-model="authorizeFullName" class="form-control">
+                </div>
+            </div>
+            <!--<div class="col-md-5">
+                <div class="form-group" style="float:left;">
+                    <a class="btn btn-camera" onclick="$('#ReadAuthorize').val('true');ReadCard('ReadP');">
+                        <i class="fa fa-spin fa-spinner" id="loadingReadCard2"></i>
+                        อ่านบัตร
+                    </a>
+
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>
+<!-- authorize -->
+
+<div id="modal-camera" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="widget-box">
+                        <div class="widget-header">
+                            <h4>Modal</h4>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#modal-ReadCard" id="modalReadCard" class="btn btn-readcard hidden" onclick="return false;" data-toggle="modal"></a>
+<div id="modal-ReadCard" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+
+</div>
+
+
+
+<div id="modal-ReadCamera" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" class="close">&times;</button>
+                <h4 class="blue bigger">
+                    <i class="ace-icon fa fa-user  grey"></i>
+                    ถ่ายรูป
+                </h4>
+                <hr />
+            </div>
+
+
+
+
+            <div class="modal-body" style="margin-top: -50px;text-align:center;">
+                <div id="dataCamera"></div>
+
+                <img id="ie_preview_image" src="" />
+
+                &nbsp;
+
+                <form>
+                    <input type=button class="btn " value="Configure..." onclick="webcam.configure()">
+                    &nbsp;&nbsp;
+                    <input id="save_photo" class="btn " type=button value="ถ่ายรูป" ng-click="webcamSnap()">
+                    &nbsp;&nbsp;
+                    <input type="button" id="btnSavePhoto" value="ยืนยัน" data-dismiss="modal" class="btn btn-success" style="margin-top: 0px;">
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+    .fancybox-opened {
+        width: 800px !important;
+        top: 50px !important;
+    }
+</style>
+<div id="fancy-ReadCard" style="display:none;">
+    <h4 class="blue bigger">
+        <i class="ace-icon fa fa-user  grey"></i>
+        ตรวจสอบข้อมูลลูกค้า
+    </h4>
+    <hr />
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-3">ระบุหมายเลขบัตรประชาชน/<br />พาสปอร์ต/เลขที่นิติบุคคล</div>
+            <div class="col-md-5" ng-submit="onInputId()">
+                <input type="text"
+                       id="CitizenID"
+                       maxlength="20"
+                       placeholder=""
+                       ng-model="CitizenID"
+                       ng-keyup="$event.keyCode==13 && onInputId()"
+                       ng-change="onInputId()"
+                       class="form-control">
+            </div>
+            <div class="col-md-4">
+                <input type="hidden" id="divID" value="{{divID}}" />
+                <!--<input type="submit" value="อ่านบัตร" class="btn btn-danger" ng-click="ReadCardMockUp('3389225969739')">-->
+                <input type="submit" value="อ่านบัตร" class="btn btn-danger" onclick="$('#ReadAuthorize').val('false'); ReadCard('ReadP');">
+                <input type="submit" value="ใส่ข้อมูล" class="btn btn-danger" id="btnSSO" ng-click="openSSO()">
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div id="loadingReadCard">
+                    <i class="fa fa-spin fa-spinner"></i>
+                    กำลังอ่านข้อมูล...
+                </div>
+                <span id="unMatch" style="color:red;">*หมายเลขบัตร/พาสปอร์ต/เลขที่นิติบุคคลไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง</span>
+                <span id="readCardTimeOut" style="color:red;display:none;"><!--*ไม่พบเครื่องอ่านบัตร--></span>
+            </div>
+        </div>
+
+    </div>
+</div>

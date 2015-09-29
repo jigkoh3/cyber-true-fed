@@ -1,0 +1,207 @@
+﻿<div class="container" id="changeSwapSimContent">
+    <div class="content-top">
+    </div>
+    <div class="content m_content">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+
+
+
+            <div ng-include="template.header"></div>
+
+
+            <div class="clearfix"></div>
+            <h1 class="content-title">SWAP SIM</h1>
+            <div class="content-body">
+                <div ng-include="template.customerprofile" onload="onCustomerProfileTemplateLoaded()"></div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>ข้อมูลปัจจุบัน</h4>
+                        <div class="well" style="background-color:#ffffff;">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <p>&nbsp;</p>
+                                    &nbsp;
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="checkbox checkbox-circle2 checkbox-inline authorize">
+                                                <input id="checkBox4g" ng-disabled="true" type="checkbox" class="styled" ng-model="data.simData['is-4g']">
+                                                <label for="checkBox4g"><b style="position:relative;top:4px;">4G</b></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p></p>
+
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    &nbsp;
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-4"><b>Company SIM</b></div>
+                                        </div>
+                                        <p></p>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control" ng-model="data.simData['company-code-desc']" disabled />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="shopType=='1'">
+                                        <p>&nbsp;</p>
+                                        <div class="row">
+                                            <div class="col-md-4"><b>ประเภทอุปกรณ์ <span style="color:red;">*</span> </b></div>
+                                        </div>
+                                        &nbsp;
+                                        <div class="row">
+                                            <div class="col-md-12" ng-form="deviceTypeForm">
+                                                <select ng-model="deviceType" ng-disabled="!isCustomerProfile" name="deviceTypeDropdown" class="form-control" required>
+                                                    <option value="">Please Select</option>
+                                                    <option ng-repeat="device in deviceTypeList" value="{{ device['device-code'] }}">{{ device.deviceType }}</option>
+                                                </select>
+                                                <span class="error" style="color:red;" ng-show="hasSubmitted && deviceTypeForm.deviceTypeDropdown.$error.required">
+                                                    Required!
+                                                </span>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    &nbsp;
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>ข้อมูล SIM ใหม่</h4>
+                        <div class="well" style="background-color:#ffffff;">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <p>&nbsp;</p>
+                                    <div ng-show="!dealerCodeList || !dealerCodeList.length || dealerCodeList.length > 1">
+                                        <p></p>
+                                        <div class="row">
+                                            <div class="col-md-6"><b>Shop Code / Dealer Code <span style="color:red;">*</span> </b></div>
+                                        </div>
+                                        <p></p>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input id="dealerCodeInput" 
+                                                       ng-show="!dealerCodeList || !dealerCodeList.length" 
+                                                       ng-numeric-input type="text" 
+                                                       class="form-control" 
+                                                       ng-model="dealerCode" 
+                                                       ng-change="onInputDealerCode()" 
+                                                       maxlength="{{ dealerCodeLength }}" required />
+
+                                                <span class="error" style="color:red;" ng-show="!dealerCodeValid && alreadyValidatedDealerCode">
+                                                    Shop Code / Dealer Code ไม่ถูกต้อง
+                                                </span>
+
+                                                <select id="dealerCodeList" ng-show="dealerCodeList.length > 1" class="form-control" ng-model="dealerCode" required>
+                                                    <option value="">Please Select</option>
+                                                    <option ng-repeat="code in dealerCodeList" value="{{ code }}">{{ code }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                    <div ng-show="shopType=='1'">
+                                        <div class="row">
+                                            <div class="col-md-4"><b>Product Code</b></div>
+                                        </div>
+                                        <p></p>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control" ng-model="productCodes" disabled />
+                                            </div>
+                                        </div>
+                                        <p></p>
+                                        <div class="row">
+                                            <div class="col-md-4"><b>ประเภท SIM</b></div>
+                                        </div>
+                                        <p></p>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control" ng-model="simType" disabled />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p></p>
+                                    <div class="row">
+                                        <div class="col-md-5"><b>หมายเลขซิมการ์ดใหม่ <span style="color:red;">*</span> </b></div>
+                                    </div>
+                                    <p></p>
+                                    <div class="row" ng-form="simSerialForm">
+                                        <div class="col-md-12">
+                                            <input id="simSerial"
+                                                   ng-numeric-input type="text"
+                                                   name="simSerialInput"
+                                                   class="form-control"
+                                                   ng-model="simSerial"
+                                                   ng-change="onInputSIMSerial()"
+                                                   ng-disabled="!isCustomerProfile"
+                                                   maxlength="{{ simSerialLength }}" required />
+                                            <!-- ng-disabled="!dealerCode || !dealerCodeValid || !SubNo || !productCodes" -->
+
+                                            <span class="error" style="color:red;" ng-show="hasSubmitted && simSerialForm.simSerialInput.$error.required">
+                                                Required!
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal-pdf" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog" style="width:70%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>
+                                PDF
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <iframe id="iframePDF" src="" style="width: 100%; height: 400px;" frameborder="0" scrolling="no">
+                                <p>It appears your web browser doesn't support iframes.</p>
+                            </iframe>
+                        </div>
+
+                        <div class="modal-footer">
+                            <span ng-show="shopType === '0'">
+                                <input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000); setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 2500);" ng-click="submit()" class="btn btn-success" />
+                            </span>
+                            <span>
+                                <input type="button" href="#modal-pdf" value="ยืนยัน" data-toggle="modal" ng-click="submit()" class="btn btn-success" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 form-buttons">
+                <div class="form-group">
+                    <input ng-if="shopType === '0'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!printAble" />
+                    <input ng-if="shopType === '1'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!printAble" />
+                    
+                    <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
+
+                    <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

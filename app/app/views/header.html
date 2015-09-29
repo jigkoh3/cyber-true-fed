@@ -1,0 +1,24 @@
+﻿<div class="profile" ng-show="SubNo!='null'">
+    <h5>{{data.header["producttype"]}}</h5>
+    <h3><span ng-show="(Level == 'OU')">OU ID : {{data.priceplan["ouId"]}}</span></h3>
+    <h3><span ng-hide="(Level == 'OU')">{{data.header["subscriberno"]}}</span></h3>
+    <h4><span ng-hide="(Action == 'ADD')">{{data.header["currpriceplan"]}}</span></h4>
+</div>
+<div class="profile" style="width:50%;" ng-show="SubNo=='null'">
+    <h5 style="padding-top: 5px;"><b>หมายเลขทรูมูฟเอช</b></h5>
+    <div class="row" style="padding-top: 10px;" ng-form="onInputSubNo_reset()">
+        <div class="col-xs-6 text-right">
+            <input type="text"
+                   class="form-control telephone"
+                   style="font-size:20px;"
+                   id="dataSubNo"
+                   ng-model="dataSubNo"
+                   ng-keyup="onKeyUpSubNo($event.keyCode); onInputSubNo(); ($event.keyCode==13 && onInputSubNo_reset())"
+                   maxlength="10" />
+        </div>
+    </div>
+    <br />
+    <span style="color:red" ng-show="isNumberSubNo">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
+</div>
+
+

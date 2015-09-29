@@ -1,0 +1,24 @@
+﻿<div ng-include="template.landingheader"></div>
+
+<div class="container" id="allProductContent">
+    <div class="row content">
+        <div class="col-md-12 col-md-offset-2 sale-main">
+            <div class="row">
+                <div class="box-sale-product">
+                    <div class="box-sale-4" ng-repeat="item in categorydevice">
+                        <a href="#/saleDevice">
+                            <div class="product_img">
+                                <img src="{{item.Image}}" />
+                            </div>
+                            <div class="product_name">
+                                <h3>{{item.Name}}</h3>
+                            </div>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

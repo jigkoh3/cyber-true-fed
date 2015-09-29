@@ -1,0 +1,29 @@
+<h4>ข้อมูลหมายเลขปัจจุบัน</h4>
+<div class="row current-info" style="margin-left: 0px;">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="label">รายการส่งเสริมการขาย</p>
+        </div>
+        <div class="col-md-9" ng-hide="(Action == 'ADD')">
+            <div class="events" ng-repeat="item in data.offer">
+                <p>&nbsp;&nbsp;{{item["product-name"]}} : {{item["product-description"]}}</p>
+            </div>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <p class="label">Price Plan</p>
+        </div>
+        <div class="col-md-9" ng-hide="(Action == 'ADD')">
+            <p class="text-b">&nbsp;&nbsp;{{data.priceplan["product-name"]}} : {{data.priceplan["product-description"]}}</p>
+        </div>
+    </div>
+    <!-- <div class="col-md-4">
+        <p class="label">ค่าบริการรายเดือน</p>
+    </div>
+    <div class="col-md-8">
+        <p class="text-price">399 บาท</p>
+    </div> -->
+
+</div>

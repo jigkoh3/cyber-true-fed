@@ -1,0 +1,556 @@
+﻿ 
+<div ng-include="template.landingheader"></div>
+
+<!-------------------header---------------------->
+<div class="container" id="saleContent">
+    <div class="row top_tll">
+        <div class="col-md-9 col-md-offset-2">
+            <p class="ttl_main">สินค้าและบริการ</p>
+
+        </div>
+    </div>
+
+    <div class="row content">
+        <div class="col-md-10 col-md-offset-2 sale-main">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="pull-left ttl_main_sale">โปรโมชั่นแนะนำ</h4>
+                </div>
+                <div class="col-md-6">
+                    <a href="javascript:;" class="pull-right viewall"> ดูทั้งหมด</a>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="box-sale-main">
+                    <li class="box-sale-4" ng-repeat="item in promotionList">
+                        <a href="javascript:;" ng-click="showPopOver('pop'+item.id)">
+                            <div class="sale_ttl">
+                                <p>{{item.download}} </p> <span>/ {{item.upload}} Mbps.</span>
+
+                            </div>
+                            <div class="sale_logo">
+                                <img src="images/sale/logo_gold.png" />
+                            </div>
+                            <div class="sale_detail">
+                                <ul>
+                                    <li>TOL 50/5.0 Mbps. </li>
+                                    <li>TVS GOLD HD 170 ช่อง 39 HD</li>
+                                    <li>TMVH 450 mins+DATA 4GB</li>
+                                    <li>Fixline Plus 100 mins</li>
+                                </ul>
+                            </div>
+                            <div class="sale_price">
+                                <h3>4P Value+ {{item.price | number}}</h3>
+                            </div>
+                            <div class="sale_pomo">
+                                <a href="javascript:;">
+                                    <img src="images/sale/icon_pomo.png" />
+                                </a>
+                            </div>
+                        </a>
+                        <p class="docsis">ไฟเบอร์เคเบิลอินเทอร์เน็ต (Docsis)</p>
+                        <!--popover1-->
+                        <div id="pop{{item.id}}" class="popover popover_sale" align="center">
+                            <div class="h_popover">
+                                <h3 class="name_pro">4P Value+</h3>
+                                <a href="javascript:;" ng-click="closePopOver('pop'+item.id)" class="close_popover"></a>
+                            </div>
+                            <div class="popover-content">
+                                <div class="content-pop-sale">
+                                    <ul class="pop-sale-detail">
+                                        <li><button type="button" class="check__status login__submit btn">ตรวจสอบพื้นที่ให้บริการ</button></li>
+                                        <li>
+                                            <select class="form-control btn_open_tol hidden" disabled>
+                                                <option>+ ทรูออนไลน์</option>
+                                                <option>+ ทรูออนไลน์1</option>
+                                                <option>+ ทรูออนไลน์2</option>
+                                                <option>+ ทรูออนไลน์3</option>
+                                            </select>
+                                            <div class="btn-group bootstrap-select form-control btn_open_tol"><button type="button" class="btn dropdown-toggle disabled btn-default" data-toggle="dropdown" tabindex="-1" title="+ ทรูออนไลน์"><span class="filter-option pull-left">+ ทรูออนไลน์</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li data-original-index="0" class="disabled selected"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1" class="disabled"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์1</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์1</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2" class="disabled listitem3"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์2</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์2</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3" class="disabled"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์3</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์3</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div></div>
+                                        </li>
+                                        <li>
+                                            <select class="form-control btn_open_tvs hidden" disabled>
+                                                <option>+ ทรูออนไลน์</option>
+                                                <option>+ ทรูออนไลน์1</option>
+                                                <option>+ ทรูออนไลน์2</option>
+                                                <option>+ ทรูออนไลน์3</option>
+                                            </select>
+                                            <div class="btn-group bootstrap-select form-control btn_open_tvs"><button type="button" class="btn dropdown-toggle disabled btn-default" data-toggle="dropdown" tabindex="-1" title="+ ทรูออนไลน์"><span class="filter-option pull-left">+ ทรูออนไลน์</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li data-original-index="0" class="disabled selected"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1" class="disabled"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์1</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์1</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2" class="disabled listitem3"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์2</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์2</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3" class="disabled"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์3</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์3</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div></div>
+                                        </li>
+                                        <li>
+                                            <select class="form-control btn_open_tmv hidden" disabled>
+                                                <option>+ ทรูออนไลน์</option>
+                                                <option>+ ทรูออนไลน์1</option>
+                                                <option>+ ทรูออนไลน์2</option>
+                                                <option>+ ทรูออนไลน์3</option>
+                                            </select>
+                                            <div class="btn-group bootstrap-select form-control btn_open_tmv"><button type="button" class="btn dropdown-toggle disabled btn-default" data-toggle="dropdown" tabindex="-1" title="+ ทรูออนไลน์"><span class="filter-option pull-left">+ ทรูออนไลน์</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li data-original-index="0" class="disabled selected"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1" class="disabled"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์1</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์1</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2" class="disabled listitem3"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์2</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์2</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3" class="disabled"><a tabindex="-1" class="" data-normalized-text="<span class=&quot;text&quot;>+ ทรูออนไลน์3</span>" data-tokens="null" href="#"><span class="text">+ ทรูออนไลน์3</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div></div>
+                                        </li>
+                                        <li><button type="button" class="check_create btn" disabled>Create</button></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--popover1-->
+                    </li>
+                </ul>
+            </div>
+            <!----------------------สินค้าและบริการ------------------------>
+            <h4 class="pull-left ttl_main_sale">เปิดบริการใหม่</h4>
+            <div class="row">
+                <div class="new-open-data">
+                    <div class="box-sale-4">
+                        <div class="logo-open-data">
+                            <img src="images/commons/truemove_online.png" />
+                        </div>
+                        <a href="#/openTruemoveh">
+                            <div class="open-data-detail open-tol">
+                                <p>เปิดบริการใหม่</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="box-sale-4">
+                        <div class="logo-open-data">
+                            <img src="images/commons/truemove_visions.png" />
+                        </div>
+                        <a href="open-data-visions.html">
+                            <div class="open-data-detail open-tvs">
+                                <p>เปิดบริการใหม่</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="box-sale-4">
+                        <div class="logo-open-data">
+                            <img src="images/commons/truemoveh.png" />
+                        </div>
+                        <a href="#modalopenservice" data-toggle="modal" onclick="return false;">
+                            <div class="open-data-detail open-tmv">
+                                <p>เปิดบริการใหม่</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="box-sale-4">
+
+                        <a href="open-data-all.html">
+                            <div class="open-data-detail open-all">
+                                <p>+เปิดบริการทั้งหมด</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!----------------------เปิดบริการใหม่------------------------>
+            <!----------------------เครื่องและอุปกรณ์------------------------>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="pull-left ttl_main_sale">เครื่องและอุปกรณ์</h4>
+                </div>
+                <div class="col-md-6">
+                    <a href="#/allProduct" class="pull-right viewall"> ดูทั้งหมด</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="box-sale-product">
+                    <div class="box-sale-4" ng-repeat="item in detaildevice">
+                        <a href="javascript:;">
+                            <div class="product_img">
+                                <img src="{{item.Image}}" />
+                                <div class="product_img_3g">
+                                    <ul>
+                                        <li> <img src="{{item.Image3g}}" /> </li>
+                                        <li> <img src="{{item.Image4g}}" /> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product_name">
+                                <h3>{{item.Name}}</h3>
+                            </div>
+                            <div class="product_price">
+
+                                <!--<p class="price_t_main">ราคา 29,450.00 บาท</p>
+                                <p class="price_t_id hide">พิเศษ 19,450.00 บาท</p>-->
+                            </div>
+                        </a>
+                        <div class="gami_trigger">
+                            <!--<a href="#modalproduct" id="modalPricePlan" class="btn_gami_trigger btn " onclick="return false;" data-toggle="modal">สั่งซื้อ</a>-->
+                            <button type="button" class="btn_gami_trigger btn" ng-click="order()" >สั่งซื้อ</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!----------------------เครื่องและอุปกรณ์------------------------>
+
+        </div>
+    </div>
+</div>
+
+<div id="modalproduct" tabindex="-1" class="modal fade modalproduct" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-1"> </div>
+                    <div class="col-md-4">
+                        <h5>iPhone 6 Plus</h5>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="box-sale-4">
+                            <div class="product_img">
+
+                                <img src="images/product/iPhone_6_Plus.png" />
+                                <div class="product_img_3g">
+                                    <ul></ul>
+                                </div>
+                            </div>
+
+                            <div class="product_price">
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <b>&nbsp; Available</b>
+                                </div>
+                                <div class="row">
+                                    <p class="btn btn-info"><b>16 GB</b><br /> 23,450 บาท</p>
+                                </div>
+                                <div class="row">
+                                    <p><input type="text" onfocus="" class="form-control" style="border-radius:20px; width:100px;" /> </p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <b>&nbsp; Available</b>
+                                </div>
+                                <div class="row">
+                                    <p class="btn btn-info"><b>32 GB</b><br /> 33,400 บาท</p>
+                                </div>
+                                <div class="row">
+                                    <p><input type="text" onfocus="" class="form-control" style="border-radius: 20px; width: 100px;" /> </p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <b>&nbsp; Available</b>
+                                </div>
+                                <div class="row">
+                                    <p class="btn btn-info"><b>64 GB</b><br /> 37,300 บาท</p>
+                                </div>
+                                <div class="row">
+                                    <p><input type="text" onfocus="" class="form-control" style="border-radius: 20px; width: 100px;" /> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <b>&nbsp; Available</b>
+                                </div>
+                                <div class="row">
+                                    <p class="btn btn-info"><b>16 GB</b><br /> 23,450 บาท</p>
+                                </div>
+                                <div class="row">
+                                    <p><input type="text" onfocus="" class="form-control" style="border-radius:20px; width:100px;" /> </p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <b>&nbsp; Available</b>
+                                </div>
+                                <div class="row">
+                                    <p class="btn btn-info"><b>32 GB</b><br /> 33,400 บาท</p>
+                                </div>
+                                <div class="row">
+                                    <p><input type="text" onfocus="" class="form-control" style="border-radius: 20px; width: 100px;" /> </p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <b>&nbsp; Available</b>
+                                </div>
+                                <div class="row">
+                                    <p class="btn btn-info"><b>64 GB</b><br /> 37,300 บาท</p>
+                                </div>
+                                <div class="row">
+                                    <p><input type="text" onfocus="" class="form-control" style="border-radius: 20px; width: 100px;" /> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <b>&nbsp; Available</b>
+                                </div>
+                                <div class="row">
+                                    <p class="btn btn-info"><b>16 GB</b><br /> 23,450 บาท</p>
+                                </div>
+                                <div class="row">
+                                    <p><input type="text" onfocus="" class="form-control" style="border-radius: 20px; width: 100px;" /> </p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <b>&nbsp; Available</b>
+                                </div>
+                                <div class="row">
+                                    <p class="btn btn-info"><b>32 GB</b><br /> 33,400 บาท</p>
+                                </div>
+                                <div class="row">
+                                    <p><input type="text" onfocus="" class="form-control" style="border-radius: 20px; width: 100px;" /> </p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <b>&nbsp; Available</b>
+                                </div>
+                                <div class="row">
+                                    <p class="btn btn-info"><b>64 GB</b><br /> 37,300 บาท</p>
+                                </div>
+                                <div class="row">
+                                    <p><input type="text" onfocus="" class="form-control" style="border-radius: 20px; width: 100px;" /> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-1">
+
+                        </div>
+                        <div class="col-md-4">
+                            <h5>I Phone 6 Plus (สีทอง)</h5>
+                        </div>
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-2">
+                            <h5>29,450 บาท</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-warning" data-dismiss="modal" style="margin-top:15px;" ng-click="buyDevice()">ซื้อเครื่องเปล่า</button>
+                <button class="btn btn-success" data-dismiss="modal">โปรโมชั่น</button>                
+                <button class="btn btn-cancel" data-dismiss="modal">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalopenservice" tabindex="-1" class="modal fade modalopenservice" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btnSecoundAuthenClose" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="blue bigger">
+                    เปิดบริการใหม่
+                </h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                   <div class="col-md-6">
+                       <div data-toggle="buttons" class="btn-group btn-group-justified">
+                           <label class="btn btn-default active" ng-click="changeType('N')">
+                               <input type="radio" name="type" ng-model="serviceType" value="N"> รายเดือน
+                           </label>
+                           <label class="btn btn-default" ng-click="changeType('B')">
+                               <input type="radio" name="type" ng-model="serviceType" value="B"> เติมเงิน
+                           </label>
+
+                       </div>
+                   </div>
+                    <div class="col-md-6 ">
+                        <div class="col-md-6">
+                            จำนวนเบอร์ที่ขอเปิด
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" placeholder="จำนวน" class="form-control">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a href="#modalopennumber" onclick="return false;" data-dismiss="modal" data-toggle="modal" class="btn btn-success">Ok</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalopennumber" tabindex="-1" class="modal fade modalopenservice" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btnSecoundAuthenClose" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="blue bigger">
+                    เปิดบริการใหม่
+                </h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div data-toggle="buttons" class="btn-group btn-group-justified">
+                            <input type="radio" checked name="fft" > เปิดบริการหมายเลขใหม่
+                            <input type="radio" disabled name="fft" > ใช้บริการหมายเลขเดิม                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>ประเภทลูกค้าย่อย <span style="color:red;">*</span></label>
+                            <select ng-model="subCompanyType" ng-options="key as value for (key , value) in subCompanyTypeOptions" class="form-control">
+                                <!--<option>เลือก</option>-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>ประเภทลูกค้าย่อย <span style="color:red;">*</span></label>
+                            <select ng-model="subCompanyType" ng-options="key as value for (key , value) in subCompanyTypeOptions" class="form-control">
+                                <!--<option>เลือก</option>-->
+                            </select>
+                        </div>
+                    </div>
+                </div>        
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>หมายเลขโทรศัพท์ที่ต้องการเปิดบริการใหม่ <span style="color:red;">*</span></label>
+                            <input type="text" class="form-control" />
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>หมายเลขโทรศัพท์ที่ลูกค้าจองไว้ <span style="color:red;">*</span></label>
+                            <textarea class="form-control" style="height:100%"></textarea>
+                        </div>
+                    </div>
+                </div>     
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Sim Serial </label>
+                            <input type="text" class="form-control" />
+
+                        </div>
+                    </div>
+                   
+                </div>        
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Price Plan </label>
+                            <div class="col-md-4" id="priceplan_sl">
+                                <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" placeholder="ค้นหา" ng-model="pricePlan.pricePlanFilter" id="ppfilter" class="form-control pricePlanFilter">
+                            </div>
+                            <div class="col-md-2">
+                                <span class="input-group" style="background-color: #37B624;">
+                                    <a ng-click="selectedPricePlan3()" href="#modalPricePlan" id="modalnewpriceplan" class="btn" onclick="return false;" data-toggle="modal"><span style="color:white;">...</span></a>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>                           
+            </div>
+            <div class="modal-footer">
+                <a href="" ng-click="openTruemove()" data-dismiss="modal" class="btn btn-default" style="width:100px;">ถัดไป</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalPricePlan" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
+                <h5>Price Plan</h5>
+
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <input type="text" placeholder="ค้นหา" ng-model="pricePlan.pricePlanFilter" id="ppfilter2" class="form-control pricePlanFilter">
+                </div>
+                &nbsp;
+                <div class="table-responsive">
+                    <table class="table">
+                        <!--<tr class="row">
+                            <th class="col-md-1"></th>
+                            <th class="col-md-7"><span style="color:green;"> Price Plan</span></th>
+                            <th class="col-md-1" style="text-align: center;"><span style="color:green;"> RC</span></th>
+                            <th class="col-md-3"><span style="color:green;"> รายการส่งเสริมการขาย</span></th>
+
+                        </tr>-->
+                        <!--<tr class="row " ng-repeat="pp in pricePlans | filter:pricePlanFilter">
+                            <th class="col-md-1"><input name="pricels" type="radio" ng-change="selectedPricePlan(pp)" ng-model="pricePlan.name" ng-value="pp.pricePlan" /></th>
+                            <th class="col-md-7">{{pp.pricePlan}}</th>
+                            <th class="col-md-1" style="text-align:center;">{{pp.rc}}</th>
+                            <th class="col-md-3">{{pp.promotion}}</th>
+
+                        </tr>-->
+                        <tr>
+                            <th colspan="5">
+                                <label class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-1">&nbsp;</div>
+                                        <div class="col-xs-7"><span style="color:green;"><h6>Price Plan</h6></span></div>
+                                        <div class="col-xs-1"><span style="color:green;text-align:center;"><h6>RC</h6></span></div>
+                                        <div class="col-xs-3"><span style="color:green;"><h6>รายการส่งเสริมการขาย</h6></span></div>
+                                    </div>
+                                </label>
+                            </th>
+                        </tr>
+                        <tr ng-repeat="pp in pricePlans | filter:pricePlan.pricePlanFilter | orderBy:'pricePlan'">
+                            <th colspan="5">
+                                <label class="col-xs-12" style="cursor:pointer;">
+                                    <div class="row">
+                                        <div class="col-xs-1"><input name="pricelsx" type="radio" ng-change="selectedPricePlan(pp)" ng-model="pricePlan2.name" ng-value="pp.pricePlan" /></div>
+                                        <div class="col-xs-7">{{pp.pricePlan}}</div>
+                                        <div class="col-xs-1 text-center">{{pp.rc | number}}</div>
+                                        <div class="col-xs-3" style="text-align:center;">{{pp.promotion}}</div>
+                                    </div>
+                                </label>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="div_event"></div>
+            </div>
+            <div class="modal-footer">
+
+                <button class="btn btn-success" data-dismiss="modal" ng-click="selectedPricePlan2()">เลือก</button>
+                <button class="btn btn-cancel" data-dismiss="modal">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+</div>

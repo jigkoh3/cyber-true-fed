@@ -1,0 +1,2228 @@
+﻿smartApp.service('SystemService', function ($ngBootbox, $filter, $http, ModalService, ValidateMsgService) {
+    console.log('SystemService');
+    var that = this;
+    this.demo = true;
+    //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
+    this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//UAT
+    //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
+
+
+    this.pricePlans = [];
+    var runTime = new Date().getTime();
+
+    this.checkObj = function (obj, arr) {
+        try {
+            var o1 = obj;
+            var count = 0;
+            for (var i = 0; i < arr.length; i++) {
+                o1 = o1[arr[i]];
+                if (o1) {
+                    count++;
+                }
+            }
+            return (count == arr.length);
+        } catch (e) {
+            return false;
+        }
+    };
+    this.validateEmail = function (email) {
+        var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        return re.test(email);
+    };
+    this.setValidateEmail = function (email) {
+        if (!that.validateEmail(email)) {
+            that.showAlert(ValidateMsgService.data.errFormatEmail);
+        }
+    };
+    this.validatePID = function (pid) {
+        function checkPID() {
+            pid = pid.toString().replace(/\D/g, '');
+            if (pid.length == 13) {
+                var sum = 0;
+                for (var i = 0; i < pid.length - 1; i++) {
+                    sum += Number(pid.charAt(i)) * (pid.length - i);
+                }
+                var last_digit = (11 - sum % 11) % 10;
+                return pid.charAt(12) == last_digit;
+            } else {
+                return false;
+            }
+        }
+        if (checkPID(pid)) {
+            if (pid == '1212121211221' || pid == '1212121212121' || pid == '1212121212112' || pid == '1212122122222' || pid == '1221221212121' || pid == '0000000000001') {
+                that.showAlert(ValidateMsgService.data.errFormatIdCard);
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            that.showAlert(ValidateMsgService.data.errFormatIdCard);
+            return false;
+        }
+    }
+
+    this.callServiceGetByPass = function (target, headers, fnCallback) {
+        var requestData = { target: target };
+        var httpRequest = {
+            method: "POST",
+            //url: '/webui/services/gateway/get.service',
+            url: getURL('services/gateway/get.service'),
+            data: requestData,
+            timeout: 180000
+        };
+        if (headers != null) {
+            httpRequest.headers = headers;
+        }
+        if (localStorage.getItem('orderId')) {
+            httpRequest.headers = {
+                'WEB_METHOD_CHANNEL': 'WEBUI',
+                'E2E_REFID': localStorage.getItem('orderId')
+            };
+        }
+        $http(httpRequest).success(function (data) {
+            console.log('success ::: callServiceGetByPass');
+            console.log(requestData.target);
+            console.log(data);
+
+            if (data.status == "SUCCESSFUL") {
+                fnCallback({
+                    status: true,
+                    data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: false,
+                    data: data,
+                    error: "ERROR",
+                    msgErr: ""
+                });
+            }
+        }).error(function (data, status, errorJSON) {
+            console.log('error ::: callServiceGet');
+            console.log(requestData.target);
+            console.log("ERROR");
+            console.log(status, data, errorJSON);
+            fnCallback({
+                status: false,
+                data: "",
+                error: status,
+                msgErr: status == 0 ? "Can not connect!" : ""
+            });
+            setTimeout(function () {
+                that.showAlert({
+                    "message": "Can not connect!",
+                    "message-code": "",
+                    "message-type": "ERROR",
+                    "en-message": "Can not connect",
+                    "th-message": "Can not connect",
+                    "technical-message": target
+                });
+            }, 1000);
+        });
+    };
+    this.callServiceGet = function (target, headers, fnCallback) {
+        var requestData = { target: target };
+        var httpRequest = {
+            method: "POST",
+            //url: '/webui/services/gateway/get.service',
+            url: getURL('services/gateway/get.service'),
+            data: requestData,
+            timeout: 180000
+        };
+        if (headers != null) {
+            httpRequest.headers = headers;
+        }
+        if (localStorage.getItem('orderId')) {
+            httpRequest.headers = {
+                'WEB_METHOD_CHANNEL': 'WEBUI',
+                'E2E_REFID': localStorage.getItem('orderId')
+            };
+        }
+        //console.log(httpRequest);
+        $http(httpRequest).success(function (data) {
+            console.log('success ::: callServiceGet');
+            console.log(requestData.target);
+            console.log(data);
+
+            if (data.status == "SUCCESSFUL") {
+                fnCallback({
+                    status: true,
+                    data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: false,
+                    data: data,
+                    error: "ERROR",
+                    msgErr: ""
+                });
+                setTimeout(function () {
+                    that.showAlert({
+                        "message": data["display-messages"][0]["message"],
+                        "message-code": data["display-messages"][0]["message-code"],
+                        "message-type": "ERROR",
+                        "en-message": data["display-messages"][0]["en-message"],
+                        "th-message": data["display-messages"][0]["th-message"],
+                        "technical-message": data["display-messages"][0]["technical-message"]
+                    });
+                }, 1000);
+            }
+        }).error(function (data, status, errorJSON) {
+            console.log('error ::: callServiceGet');
+            console.log(requestData.target);
+            console.log("ERROR");
+            console.log(status, data, errorJSON);
+            fnCallback({
+                status: false,
+                data: "",
+                error: status,
+                msgErr: status == 0 ? "Can not connect!" : ""
+            });
+            that.showAlert({
+                "message": "Can not connect!",
+                "message-code": "",
+                "message-type": "ERROR",
+                "en-message": "Can not connect",
+                "th-message": "Can not connect",
+                "technical-message": target
+            });
+        });
+    };
+    this.callServicePost = function (data, headers, fnCallback) {
+        console.log(data);
+        var httpRequest = {
+            method: "POST",
+            //url: '/webui/services/gateway/post.service',
+            url: getURL('services/gateway/post.service'),
+            data: data,
+            timeout: 180000
+        };
+
+        if (headers != null) {
+            //httpRequest.headers = headers;
+        }
+        if (localStorage.getItem('orderId')) {
+            httpRequest.headers = {
+                'WEB_METHOD_CHANNEL': 'WEBUI',
+                'E2E_REFID': localStorage.getItem('orderId')
+            };
+        }
+        $http(httpRequest).success(function (data) {
+            console.log(data);
+            if (data.status == "SUCCESSFUL") {
+                fnCallback({
+                    status: true,
+                    data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: false,
+                    data: data,
+                    error: "ERROR",
+                    msgErr: ""
+                });
+                setTimeout(function () {
+                    that.showAlert({
+                        "message": data["display-messages"][0]["message"],
+                        "message-code": data["display-messages"][0]["message-code"],
+                        "message-type": "ERROR",
+                        "en-message": data["display-messages"][0]["en-message"],
+                        "th-message": data["display-messages"][0]["th-message"],
+                        "technical-message": data["display-messages"][0]["technical-message"]
+                    });
+                }, 1000);
+            }
+        }).error(function (dataErr, status) {
+            console.log("ERROR");
+            console.log(status, dataErr);
+            fnCallback({
+                status: false,
+                data: "",
+                error: status,
+                msgErr: status == 0 ? "Can not connect!" : ""
+            });
+            setTimeout(function () {
+                that.showAlert({
+                    "message": "Can not connect!",
+                    "message-code": "",
+                    "message-type": "ERROR",
+                    "en-message": "Can not connect",
+                    "th-message": "Can not connect",
+                    "technical-message": data.target
+                });
+            }, 1000);
+
+        });
+    };
+    this.callServicePostByPass = function (data, headers, fnCallback) {
+        console.log(data);
+        var httpRequest = {
+            method: "POST",
+            url: getURL('services/gateway/post.service'),
+            data: data,
+            timeout: 180000
+        };
+
+        if (headers != null) {
+            //httpRequest.headers = headers;
+        }
+        if (localStorage.getItem('orderId')) {
+            httpRequest.headers = {
+                'WEB_METHOD_CHANNEL': 'WEBUI',
+                'E2E_REFID': localStorage.getItem('orderId')
+            };
+        }
+        $http(httpRequest).success(function (data) {
+            console.log(data);
+            if (data.status == "SUCCESSFUL") {
+                fnCallback({
+                    status: true,
+                    data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: false,
+                    data: data,
+                    error: "ERROR",
+                    msgErr: ""
+                });
+            }
+        }).error(function (dataErr, status) {
+            console.log("ERROR");
+            console.log(status, dataErr);
+            fnCallback({
+                status: false,
+                data: "",
+                error: status,
+                msgErr: status == 0 ? "Can not connect!" : ""
+            });
+            setTimeout(function () {
+                that.showAlert({
+                    "message": "Can not connect!",
+                    "message-code": "",
+                    "message-type": "ERROR",
+                    "en-message": "Can not connect",
+                    "th-message": "Can not connect",
+                    "technical-message": data.target
+                });
+            }, 1000);
+
+        });
+    };
+
+
+    this.generateOrderId = function (parameter, fnCallback) {
+        //var target = 'aftersales/order/generate-id?channel=WEBUI&dealer=80000011';
+        var target = 'aftersales/order/generate-id' + parameter;
+        var headers = {
+            'WEB_METHOD_CHANNEL': 'WEBUI'
+        };
+        if (!that.demo) {
+            that.callServiceGet(target, headers, function (result) {
+                fnCallback(result.data);
+            });
+        } else {
+            fnCallback({
+                "status": "SUCCESSFUL",
+                "trx-id": "4EONTQNYU4VZ",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "response-data": "15070800DEMO000000002"
+            });
+        }
+
+    };
+    this.second_authen = function (trx_id, fnCallback) {
+        var target = 'security/identity/second_authen?trx_id=' + trx_id + '&app_id=WEBUI';
+        var headers = {
+            'WEB_METHOD_CHANNEL': 'WEBUI'
+        };
+        if (!that.demo) {
+            that.callServiceGetByPass(target, headers, function (result) {
+                fnCallback(result.data);
+            });
+        } else {
+            var data = {
+                "status": "SUCCESSFUL",
+                "trx-id": "6OKMIN4J8HDZ",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "response-data": [{
+                    "loginName": "UserTSM4",
+                    "employeeId": "10000004",
+                    "authRes": {
+                        "app": "WEBUI",
+                        "info": "COMPANY=True Information Technology company limited;;DEPARTMENT=Information Technology (Infrastructure);;DIVISION=--;;EMPLOYEEID=10000004;;ENGLISHNAME=User Test4;;FIRSTNAME=User;;INITIALS=Mr.;;LOGINNAME=UserTSM4;;MAIL=usr_tsm4@Truecorp.co.th;;POSITION=IT Security Administration;;ROLES=CN=R-TSM-USER2,OU=Groups,DC=essoad,DC=th|CN=R-INCT-SALESUP,OU=Unused,OU=Groups,DC=essoad,DC=th;;SECTION=IT Security Administration;;SHOPCODE=80000001|80000001|80000005|80000008;;SURNAME=Test4;;THAINAME=นาย ไทย test4",
+                        "responseCode": "200",
+                        "responseDesc": "Success",
+                        "trxID": "71e5603394694c40a744739188496b83"
+                    }
+                }]
+            };
+            var data2 = {
+                "status": "UNSUCCESSFUL",
+                "display-messages": [{
+                    "message": "",
+                    "message-code": "1",
+                    "message-type": "ERROR",
+                    "en-message": "Data not found",
+                    "th-message": "Data not found",
+                    "technical-message": ""
+                }, {
+                    "message": "",
+                    "message-code": "1",
+                    "message-type": "ERROR",
+                    "en-message": "สิทธิการใช้งานต่างประเทศจะถูกยกเลิก",
+                    "th-message": "สิทธิการใช้งานต่างประเทศจะถูกยกเลิก",
+                    "technical-message": ""
+                }],
+                "trx-id": "6OKMIN4J8HDZ",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "response-data": [{
+                    "loginName": "UserTSM4",
+                    "employeeId": "10000004",
+                    "authRes": {
+                        "app": "WEBUI",
+                        "info": "COMPANY=True Information Technology company limited;;DEPARTMENT=Information Technology (Infrastructure);;DIVISION=--;;EMPLOYEEID=10000004;;ENGLISHNAME=User Test4;;FIRSTNAME=User;;INITIALS=Mr.;;LOGINNAME=UserTSM4;;MAIL=usr_tsm4@Truecorp.co.th;;POSITION=IT Security Administration;;ROLES=CN=R-TSM-USER2,OU=Groups,DC=essoad,DC=th|CN=R-INCT-SALESUP,OU=Unused,OU=Groups,DC=essoad,DC=th;;SECTION=IT Security Administration;;SHOPCODE=80000001|80000001|80000005|80000008;;SURNAME=Test4;;THAINAME=นาย ไทย test4",
+                        "responseCode": "200",
+                        "responseDesc": "Success",
+                        "trxID": "71e5603394694c40a744739188496b83"
+                    }
+                }]
+            };
+            if (trx_id == "4EONTQNYU4VZ") {
+                fnCallback(data);
+            } else {
+                fnCallback(data2);
+            }
+
+        }
+
+    };
+    this.generatePDF = function (data, fnCallback) {
+        var url = '';
+
+
+        if (!that.demo) {
+            var httpRequest = {
+                method: "POST",
+                url: getURL('services/report/createReport.service'),
+                data: data,
+                timeout: 30000
+            };
+            $http(httpRequest).success(function (response) {
+                url = getURL('report/view/pdf/') + response.reportId + '.action';
+                fnCallback(url);
+            });
+        } else {
+            url = 'PDFs/AfterSaleReport.pdf';
+            fnCallback(url);
+        }
+    };
+
+
+    this.customerProfile = function (subscriberno, fnCallback) {
+        var requestData = { target: 'profiles/customer/tmv/customerProfile/' + subscriberno };
+        $http({
+            method: "POST",
+            url: getURL('services/gateway/get.service'),
+            data: requestData,
+            timeout: 30000,
+            //contentType: "application/JSON"
+        }).success(function (data) {
+            console.log(data);
+            if (data["status-code"] != "2") {
+                var priceplan = $filter('filter')(data.customer["installed-products"], { "product-type": "PRICEPLAN" })[0];
+                var offer = $filter('filter')(data.customer["installed-products"], { "product-type": "!PRICEPLAN" });
+
+                var mobileServiceType = "ทรูมูฟเอช เติมเงิน";
+                if (priceplan["mobile-servicetype"] == "POSTPAID")
+                    mobileServiceType = "ทรูมูฟเอช รายเดือน";
+
+                var rusult = {
+                    header: {
+                        "producttype": mobileServiceType,
+                        "subscriberno": subscriberno,
+                        "currpriceplan": priceplan["product-name"] + ": " + priceplan["product-description"],
+                    },
+                    customerProfile: {
+                        "id-number": data["customer"]["id-number"],
+                        "title": data["customer"]["title"],
+                        "firstname": data["customer"]["firstname"],
+                        "lastname": data["customer"]["lastname"],
+                    },
+                    priceplan: priceplan,
+                    offer: offer,
+                    "display-messages": data["display-messages"],
+                    "status-code": data["status-code"],
+                    "status": data["status"]
+                };
+                fnCallback({
+                    status: true,
+                    data: rusult,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: true,
+                    data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            }
+        }).error(function (data, status) {
+            console.log("ERROR");
+            console.log(data, status);
+            fnCallback({
+                status: false,
+                data: [],
+                error: status,
+                msgErr: data
+            });
+        });
+
+    }
+    this.get = function (subscriberno, fnCallback) {
+        var data = {
+            'status': 'SUCCESSFUL',
+            'customer': {
+                'title': 'Miss',
+                'title-code': 'T3',
+                'firstname': 'Nate',
+                'lastname': 'Phutthicha',
+                'contact-number': null,
+                'id-number': '3389225969739',
+                'id-type': '',
+                'installed-products': [{
+                    'ouId': '5010',
+                    'ban': '20009628',
+                    'product-category': 'TMH',
+                    'product-type': 'PRICEPLAN',
+                    'product-status': '',
+                    'number-status': 'A',
+                    'account-category': 'I',
+                    'account-sub-type': 'FIN',
+                    'product-id': 'EDATAP69',
+                    'product-name': 'EDATAP69',
+                    'product-description': 'Biz &amp; Ent 900,Data UNL5GB/128,WiFi',
+                    'bill-cycle': '2',
+                    'bill-cycle-next-date': '02/07/2015',
+                    'company-code': 'RF',
+                    'service-level': 'C',
+                    'product-id-name': 'MSISDN',
+                    'product-id-number': '0689100006',
+                    'installed-date': 1431363600000,
+                    'mobile-servicetype': 'POSTPAID',
+                    'has-splitcharge': false,
+                    'is-childsim': false,
+                    'is-softsuspend': false,
+                    'next-priceplan-code': 'NETSVP73',
+                    'next-priceplan-desc': 'V0S0G1_Multi SIM 300, Data only 1GB'
+                }, {
+                    'product-category': 'TMH',
+                    'product-type': 'PROPOSITION',
+                    'product-status': '',
+                    'product-id': 'RMV0000000002720',
+                    'product-name': 'RMV0000000002720',
+                    'product-description': 'iPhone 4_8GB,Free RC 699*7 mths (Penalty 4,893.-,Contract 18 mths)',
+                    'product-soc-code': 'installedProductTmv2',
+                    'product-id-name': 'MSISDN',
+                    'product-id-number': '0689100006',
+                    'has-splitcharge': false,
+                    'is-childsim': false,
+                    'is-softsuspend': false
+                }, {
+                    'product-category': 'TMH',
+                    'product-type': 'PROPOSITION',
+                    'product-status': '',
+                    'product-id': 'RMV0000000002721',
+                    'product-name': 'RMV0000000002721',
+                    'product-description': 'iPhone 4_8GB,Free RC 699*7 mths (Penalty 4,893.-,Contract 18 mths)',
+                    'product-soc-code': 'installedProductTmv2',
+                    'product-id-name': 'MSISDN',
+                    'product-id-number': '0689100006',
+                    'has-splitcharge': false,
+                    'is-childsim': false,
+                    'is-softsuspend': false
+                }, {
+                    'product-category': 'TMH',
+                    'product-type': 'DISCOUNT',
+                    'product-status': '',
+                    'product-id': 'DIR040',
+                    'product-name': 'DIR040',
+                    'product-description': 'Discount 100 bt on Monthly fee',
+                    'product-soc-code': '31891',
+                    'product-id-name': 'MSISDN',
+                    'product-id-number': '0689100006',
+                    'has-splitcharge': false,
+                    'is-childsim': false,
+                    'is-softsuspend': false
+                }, {
+                    'product-category': 'TMH',
+                    'product-type': 'DISCOUNT',
+                    'product-status': '',
+                    'product-id': 'DIR040',
+                    'product-name': 'DIR040',
+                    'product-description': 'Discount 100 bt on Monthly fee',
+                    'product-soc-code': '31891',
+                    'product-id-name': 'MSISDN',
+                    'product-id-number': '0689100006',
+                    'has-splitcharge': false,
+                    'is-childsim': false,
+                    'is-softsuspend': false
+                }]
+            },
+            'display-messages': [],
+            'trx-id': '3BDPN2HLK4TZ',
+            'process-instance': 'psaapdv1 (instance: SFF_node1)',
+            'status-code': '0'
+        };
+        if (data["status-code"] != "2") {
+            var priceplan = $filter('filter')(data.customer["installed-products"], { "product-type": "PRICEPLAN" })[0];
+            var offer = $filter('filter')(data.customer["installed-products"], { "product-type": "!PRICEPLAN" });
+
+            var mobileServiceType = "ทรูมูฟเอช เติมเงิน";
+            if (priceplan["mobile-servicetype"] == "POSTPAID")
+                mobileServiceType = "ทรูมูฟเอช รายเดือน";
+
+            var rusult = {
+                header: {
+                    "producttype": mobileServiceType,
+                    "subscriberno": subscriberno,
+                    "currpriceplan": priceplan["product-name"] + ": " + priceplan["product-description"],
+                },
+                customerProfile: {
+                    "id-number": data["customer"]["id-number"],
+                    "title": data["customer"]["title"],
+                    "firstname": data["customer"]["firstname"],
+                    "lastname": data["customer"]["lastname"],
+                    "title-code": data["customer"]["title-code"]
+                },
+                priceplan: priceplan,
+                offer: offer,
+                "display-messages": data["display-messages"],
+                "status-code": data["status-code"],
+                "status": data["status"]
+            };
+            fnCallback({
+                status: true,
+                data: rusult,
+                error: "",
+                msgErr: ""
+            });
+        } else {
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
+        }
+
+
+    }
+
+    this.getReasons = function (activityCode, fnCallback) {
+        var data = {
+            'status': 'SUCCESSFUL',
+            'trx-id': '5NH31QALNK0N',
+            'process-instance': 'psaapdv1 (instance: SFF_node1)',
+            'response-data': {
+                'activity-code': '119',
+                'activity-name': 'TMV-Change priceplan reason codes',
+                'available-reasons': {
+                    'CPP08': 'Priceplan : Next PP-go DTAC',
+                    'CPP07': 'Priceplan : Next PP-go AIS',
+                    'CPP06': 'Priceplan : Non Voice-go other',
+                    'CPP05': 'Priceplan : Non Voice-go DTAC',
+                    'CPP09': 'Priceplan : Next PP-go other',
+                    'CNOU': 'Cancel : No Usage',
+                    'CCL01': 'Collection : Unhappy',
+                    'CPP04': 'Priceplan : Voice - go AIS',
+                    'CPP03': 'Priceplan : Voice - go other',
+                    'CPP02': 'Priceplan : Voice - go DTAC',
+                    'CPP01': 'Priceplan : Voice - go AIS',
+                    'MNPHR': 'Cancel RMV Sub - Port Reverse',
+                    'COT01': 'Other : Fatality',
+                    'COT02': 'Other : Go abroad',
+                    'COT03': 'Other : Fraud-Innocent victim',
+                    'CHMNRF': 'Cancel TMH Post Sub PO to RF',
+                    'MGPRE': 'Mig from Postpaid CCBS to Pre',
+                    'COLB': 'Collection batch',
+                    'COLL': 'CC Subs - Collection Batch',
+                    '27': 'Leaving Country',
+                    '2': 'Winback',
+                    'CDE01': 'Dealer - free sim',
+                    '30': 'Other:...',
+                    'MTEN': 'Cancel Move to Ensemble',
+                    'TCCBS': 'Cancel RMV Sub to CCBS',
+                    '17': 'Customer Dissatisfied because of Service Quality',
+                    'MNPRV': 'Cancel Sub - Port Reversal',
+                    'MGJ5': 'Migrate Post to Pre',
+                    '16': 'Customer Dissatisfied because of Price Structure',
+                    '13': 'Customer left without Notifying',
+                    'SF002': 'Cancel : Premium Rate Fraud',
+                    'SF001': 'Cancel : Unable to contact',
+                    'MNPRE': 'Cancel Sub - MNP',
+                    'NW10': 'Network : Customer Test',
+                    'DE02': 'Dealer - Cancel',
+                    'RFREOT': 'Cancel RF Port Reverse',
+                    '94': 'OLO Request',
+                    'COWN': 'Change Ownership',
+                    'CMLBS': 'Cancel to Act Multi SIM CCBS',
+                    '10': 'Data Quality Problem',
+                    'CSV01': 'Service : Unhappy - shop',
+                    'CSV05': 'Service : Unhappy - channel',
+                    'CSV04': 'Service : Unhappy - Telesale',
+                    'CSV03': 'Service : Unhappy - AE',
+                    'CSV02': 'Service : Unhappy-Call Center',
+                    'CSV08': 'Service : Unhappy - After Sale',
+                    'CSV07': 'Service : Unhappy - Dealer TVS',
+                    'CSV06': 'Service : Unhappy - Dealer',
+                    'CCV02': 'Convergence:TLFV contract end',
+                    'CCV03': 'Convergence:no need net ATB3',
+                    'SV051': 'Cancel : SIM & Accessories',
+                    'RFPOTM': 'Cancel RF Sub- RF to TMV Postpay',
+                    'RFPOTO': 'Cancel RF Sub-MNP Postpay',
+                    'SF015': 'Cancel : Dealer Fraud',
+                    'RFPOTH': 'Cancel RF Sub- RF to TMH Postpay',
+                    'SF016': 'Cancel : Subscription fraud',
+                    'CCV01': 'Convergence:no need TLFV',
+                    'MCCBS': 'Cancel Sub – CCBS Migration',
+                    '7MCN': 'Cancel Sub - Move to CCBS',
+                    'CAN': 'Cancel Subs Req - No Need',
+                    'HRC01': 'Cancel Sub - Unidentify Owner',
+                    'CPA01': 'Payment : payment fee',
+                    'SF009': 'Cancel : Not Known at Address',
+                    'HMPORF': 'Cancel TMH Sub-TMH to RF',
+                    'SF008': 'Cancel : Internal Fraud',
+                    'SF007': 'Cancel : Roaming Fraud',
+                    'SF006': 'Cancel : Call Selling',
+                    'SF003': 'Cancel : Returned Bill',
+                    'SF012': 'Cancel:International Call Sell',
+                    'CCANR': 'Regular Collection Cancellation due to root FA.',
+                    'SF010': 'Cancel : Customer Not known',
+                    'SF011': 'Cancel : Innocent Victim',
+                    'RMTMV': 'Cancel RMV Sub-PO to TMV',
+                    'AA02': 'Require installment',
+                    'AA03': 'Require device discount',
+                    'AA01': 'Discount expired',
+                    'AA06': 'Sook X3 / Cant install TOL',
+                    'CCC01': 'Cost Control:Too many SIMs',
+                    'AA04': 'Broken device',
+                    'AA05': 'Fair usage',
+                    'CCC04': 'Cost Control:Corporate Policy',
+                    'SC001': 'Cancel : Manual Collection',
+                    'CNW02': 'Network:Voice Quality-go DTAC',
+                    'CNW03': 'Network:Voice Quality-go Other',
+                    '56': 'Customer Deceased',
+                    'CNW01': 'Network:Voice Quality-go AIS',
+                    'CREQ': 'Customer request',
+                    'CBL01': 'Billing : Complicated Billing',
+                    'CBL02': 'Billing : Unhappy - One Bill',
+                    'CBL04': 'Billing : VAS Billing Error',
+                    'CBL03': 'Billing : Voice Billing Error',
+                    'CNW07': 'Network:Coverage-go AIS',
+                    'CNW06': 'Network:Non Voice-go Other',
+                    'CNW05': 'Network:Non Voice-go DTAC',
+                    'CNW04': 'Network:Non Voice-go AIS',
+                    'MGPOR': 'Mig Post CCBS to Amdocs-RETEN',
+                    'CNW09': 'Network:Coverage-go Other',
+                    'CNW08': 'Network:Coverage-go DTAC',
+                    'MGPOS': 'Mig Post from CCBS to Amdocs',
+                    'MNPOH': 'Cancel RMV Sub - MNP Postpay',
+                    'RH01': 'Cancel: Sub Retain to New TMH',
+                    'CV04': 'Convergence:TLFV Damage(Flood)',
+                    'MNPOS': 'Cancel Sub - MNP',
+                    'CPD02': 'Product : Accessories Problem',
+                    'CPD01': 'Product : Handset Problem',
+                    'CCR01': 'Credit Limit',
+                    'CPD03': 'Product : Lost/stolen'
+                }
+            }
+        };
+
+
+        if (data["status"] == "SUCCESSFUL") {
+            var availableReasons = $filter('filter')(data["response-data"]["available-reasons"]);
+            //console.log("availableReasons:");
+            //console.log(availableReasons);
+
+            var rusult = {
+                reasons: availableReasons
+            };
+            fnCallback({
+                status: true,
+                data: rusult,
+                error: "",
+                msgErr: ""
+            });
+        }
+
+
+    };
+
+    this.getNextBillDate = function () {
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+
+        return $filter('date')(date, 'dd/MM/yyyy');
+    };
+
+    this.genDatePicker = function () {
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+
+        setTimeout(function () {
+            var picker = new Pikaday({
+                field: document.getElementsByClassName('fec-date-picker')[0],
+                format: "DD/MM/YYYY",
+                defaultDate: date,
+                isBuddhist: true,
+                minDate: date,
+                i18n: {
+                    previousMonth: 'ย้อนหลัง',
+                    nextMonth: 'ถัดไป',
+                    months: [
+                        'มกราคม',
+                        'กุมภาพันธ์',
+                        'มีนาคม',
+                        'เมษายน',
+                        'พฤษภาคม',
+                        'มิถุนายน',
+                        'กรกฎาคม',
+                        'สิงหาคม',
+                        'กันยายน',
+                        'ตุลาคม',
+                        'พฤศจิกายน',
+                        'ธันวาคม'],
+                    weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
+                    weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
+                },
+                onSelect: function () {
+
+                }
+
+            });
+        }, 500);
+
+        setTimeout(function () {
+            var picker = new Pikaday({
+                field: document.getElementsByClassName('fec-date-picker-birthDay')[0],
+                format: "DD/MM/YYYY",
+                defaultDate: date,
+                isBuddhist: true,
+                i18n: {
+                    previousMonth: 'ย้อนหลัง',
+                    nextMonth: 'ถัดไป',
+                    months: [
+                        'มกราคม',
+                        'กุมภาพันธ์',
+                        'มีนาคม',
+                        'เมษายน',
+                        'พฤษภาคม',
+                        'มิถุนายน',
+                        'กรกฎาคม',
+                        'สิงหาคม',
+                        'กันยายน',
+                        'ตุลาคม',
+                        'พฤศจิกายน',
+                        'ธันวาคม'],
+                    weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
+                    weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
+                },
+                onSelect: function () {
+
+                }
+
+            });
+        }, 500);
+        setTimeout(function () {
+            var picker = new Pikaday({
+                field: document.getElementsByClassName('fec-date-picker-expireDay')[0],
+                format: "DD/MM/YYYY",
+                defaultDate: date,
+                isBuddhist: true,
+                i18n: {
+                    previousMonth: 'ย้อนหลัง',
+                    nextMonth: 'ถัดไป',
+                    months: [
+                        'มกราคม',
+                        'กุมภาพันธ์',
+                        'มีนาคม',
+                        'เมษายน',
+                        'พฤษภาคม',
+                        'มิถุนายน',
+                        'กรกฎาคม',
+                        'สิงหาคม',
+                        'กันยายน',
+                        'ตุลาคม',
+                        'พฤศจิกายน',
+                        'ธันวาคม'],
+                    weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
+                    weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
+                },
+                onSelect: function () {
+
+                }
+
+            });
+        }, 500);
+
+
+
+    }
+
+    //ngDialog -----------
+    this.ngDialogData = {
+        "message": "",
+        "message-code": "",
+        "message-type": "",
+        "en-message": "",
+        "th-message": "",
+        "technical-message": ""
+    };
+    this.showAlert = function (msgModel) {
+        //ModalService.showAlert(msgModel);
+
+        that.ngDialogData = msgModel;
+
+        $ngBootbox.customDialog({
+            templateUrl: 'app/views/ngBootbox-template.html?v=' + runTime,
+            onEscape: function () {
+                return false;
+            },
+            show: true,
+            backdrop: true,
+            closeButton: false,
+            animate: true
+        });
+        setTimeout(function () {
+            $("#btn_ngbOK").focus();
+        }, 800);
+
+    };
+    this.showLoading = function () {
+        //ModalService.showLoading();
+        $ngBootbox.customDialog({
+            templateUrl: 'app/views/ngBootbox-loading.html?v=' + runTime,
+            onEscape: function () {
+                return false;
+            },
+            show: true,
+            backdrop: true,
+            closeButton: false,
+            animate: true
+        });
+
+    };
+    this.hideLoading = function () {
+        //ModalService.hideLoading();
+        //alert('hideLoading');
+        setTimeout(function () {
+            $ngBootbox.hideAll();
+        }, 1000);
+    };
+    this.showConfirm = function () {
+        return ModalService.showConfirm();
+    };
+    this.showBeforeClose = function (msgModel, approveFunction, cancelFunction) {
+        //$ngBootbox.hideAll();
+        that.ngDialogData = msgModel;
+        $ngBootbox.customDialog({
+            templateUrl: 'app/views/ngBootbox-showBeforeClose.html?v=' + runTime,
+            onEscape: function () {
+                return false;
+            },
+            show: true,
+            backdrop: true,
+            closeButton: false,
+            animate: true
+        });
+        //ModalService.showBeforeClose(msgModel, approveFunction, cancelFunction);
+
+    };
+
+    //change onwnership
+    this.getAddressByType = function (type, fnCallback) {
+        var rusult = {};
+
+        if (type == "0") {
+            rusult = {
+                citizenID: '3400400489300',
+                prefixTH: 'นาย',
+                firstNameTH: 'ทวัชร์',
+                lastNameTH: 'แสงถลุงเหล็ก',
+                prefixEN: 'Mr.',
+                firstNameEN: 'Thawat',
+                lastNameEN: 'Saengthalunglek',
+                sex: '1',
+                birthDay: '13/07/2526',
+                issueDay: '01/08/2551',
+                expireDay: '12/07/2558',
+                homeNumber: '76',
+                moo: '5',
+                trok: '',
+                soi: '',
+                road: '',
+                district: 'โนนทัน',
+                amphur: 'หนองเรือ',
+                province: 'ขอนแก่น',
+                postcode: '40210',
+                photoID: '40040108011454',
+                photo: ''
+            }
+        }
+        else if (type == "1") {
+            rusult = {
+                citizenID: '3400400489300',
+                prefixTH: 'นาย',
+                firstNameTH: 'ทวัชร์',
+                lastNameTH: 'แสงถลุงเหล็ก',
+                prefixEN: 'Mr.',
+                firstNameEN: 'Thawat',
+                lastNameEN: 'Saengthalunglek',
+                sex: '1',
+                birthDay: '13/07/2526',
+                issueDay: '01/08/2551',
+                expireDay: '12/07/2558',
+                homeNumber: '96/229',
+                moo: '6',
+                trok: '',
+                soi: '',
+                road: 'ลำลูกกา 2',
+                district: 'คูคต',
+                amphur: 'ลำลูกกา',
+                province: 'ปทุมธานี',
+                postcode: '12130',
+                photoID: '40040108011454',
+                photo: ''
+            }
+        }
+        else {
+            rusult = {
+                citizenID: '3400400489300',
+                prefixTH: 'นาย',
+                firstNameTH: 'ทวัชร์',
+                lastNameTH: 'แสงถลุงเหล็ก',
+                prefixEN: 'Mr.',
+                firstNameEN: 'Thawat',
+                lastNameEN: 'Saengthalunglek',
+                sex: '1',
+                birthDay: '13/07/2526',
+                issueDay: '01/08/2551',
+                expireDay: '12/07/2558',
+                homeNumber: '55/6',
+                moo: '11',
+                trok: '',
+                soi: '',
+                road: '',
+                district: 'บึงคำพร้อย',
+                amphur: 'ลำลูกกา',
+                province: 'ปทุมธานี',
+                postcode: '12150',
+                photoID: '40040108011454',
+                photo: ''
+            }
+        }
+
+        fnCallback({
+            status: true,
+            data: rusult,
+            error: "",
+            msgErr: ""
+        });
+    };
+
+    //masterData ------//for demo-----
+    this.getMasterGender = function () {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "4819LRXVSQHUM",
+            "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+            "response-data": {
+                "id": "CUST-GENDER",
+                "name": "Customer genders",
+                "description": "List of customer genders",
+                "configuration-items": [{
+                    "key": "FEMALE",
+                    "value": "FEMALE",
+                    "description": "Gender type FEMALE",
+                    "en-description": "FEMALE",
+                    "th-description": "ผู้หญิง"
+                }, {
+                    "key": "MALE",
+                    "value": "MALE",
+                    "description": "Gender type MALE",
+                    "en-description": "MALE",
+                    "th-description": "ผู้ชาย"
+                }]
+            }
+        };
+    };
+    this.getMasterTitleType = function () {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "4CN1Y7BQSIJR",
+            "process-instance": "psaapdv1 (instance: SFF_node1)",
+            "response-data": {
+                "id": "CUST-TITLE-TYPE",
+                "name": "Customer title",
+                "description": "List of standard customer title",
+                "configuration-items": [{
+                    "key": "DR.",
+                    "value": "T4",
+                    "description": "ดร.",
+                    "en-description": "Dr.",
+                    "th-description": "ดร."
+                }, {
+                    "key": "MISS",
+                    "value": "T3",
+                    "description": "นางสาว",
+                    "en-description": "Miss",
+                    "th-description": "นางสาว"
+                }, {
+                    "key": "MR.",
+                    "value": "T1",
+                    "description": "นาย",
+                    "en-description": "Mr.",
+                    "th-description": "นาย"
+                }, {
+                    "key": "MRS.",
+                    "value": "T2",
+                    "description": "นาง",
+                    "en-description": "Mrs.",
+                    "th-description": "นาง"
+                }, {
+                    "key": "OTHER",
+                    "value": "T5",
+                    "description": "อื่่น ๆ",
+                    "en-description": "Other",
+                    "th-description": "อื่น ๆ"
+                }]
+            }
+        };
+    };
+    this.getMasterTitleOtherType = function () {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "4CN1Y7BQSIJR",
+            "process-instance": "psaapdv1 (instance: SFF_node1)",
+            "response-data": {
+                "id": "CUST-TITLE-TYPE",
+                "name": "Customer title",
+                "description": "List of standard customer title",
+                "configuration-items": [{
+                    "key": "DR.",
+                    "value": "O1",
+                    "description": "ด.ญ.",
+                    "en-description": "Girl",
+                    "th-description": "ด.ญ."
+                }, {
+                    "key": "DC",
+                    "value": "O2",
+                    "description": "ด.ช.",
+                    "en-description": "Boy",
+                    "th-description": "ด.ช."
+                }]
+            }
+        };
+    };
+    this.getMasterIdTypeB = function () {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "4CN2228VJ5XJ",
+            "process-instance": "psaapdv1 (instance: SFF_node1)",
+            "response-data": {
+                "id": "CUST-ID-TYPE-B",
+                "name": "Customer ID type for business customer",
+                "description": "LIst of id types for business customer",
+                "configuration-items": [{
+                    "key": "A",
+                    "value": "A",
+                    "description": "บัตรประจำตัวคนต่างด้าว"
+                }, {
+                    "key": "B",
+                    "value": "B",
+                    "description": "บัญชีมูลนิธิ"
+                }, {
+                    "key": "C",
+                    "value": "C",
+                    "description": "หนังสือรับรองบริษัท/ห้างฯ"
+                }, {
+                    "key": "H",
+                    "value": "H",
+                    "description": "อื่นๆ"
+                }, {
+                    "key": "I",
+                    "value": "I",
+                    "description": "บัตรประชาชน"
+                }, {
+                    "key": "J",
+                    "value": "J",
+                    "description": "หนังสือรับรองการจัดตั้งสมาคม"
+                }, {
+                    "key": "M",
+                    "value": "M",
+                    "description": "ใบสุทธิ"
+                }, {
+                    "key": "O",
+                    "value": "O",
+                    "description": "ทะเบียนพาณิชย์"
+                }, {
+                    "key": "P",
+                    "value": "P",
+                    "description": "หนังสือเดินทาง"
+                }, {
+                    "key": "T",
+                    "value": "T",
+                    "description": "ทะเบียนวัด"
+                }]
+            }
+        };
+    };
+    this.getMasterIdTypeC = function () {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "4CN1ZTT9NERJ",
+            "process-instance": "psaapdv1 (instance: SFF_node1)",
+            "response-data": {
+                "id": "CUST-ID-TYPE-C",
+                "name": "Customer id type for corporate customer",
+                "description": "List of id types for corporate customer",
+                "configuration-items": [{
+                    "key": "A",
+                    "value": "A",
+                    "description": "บัตรประจำตัวคนต่างด้าว"
+                }, {
+                    "key": "B",
+                    "value": "B",
+                    "description": "บัญชีมูลนิธิ หรือ หนังสือจัดตั้งมูลนิธิ"
+                }, {
+                    "key": "C",
+                    "value": "C",
+                    "description": "หนังสือรับรองบริษัท/ห้างฯ"
+                }, {
+                    "key": "H",
+                    "value": "H",
+                    "description": "อื่นๆ"
+                }, {
+                    "key": "I",
+                    "value": "I",
+                    "description": "บัตรประชาชน"
+                }, {
+                    "key": "J",
+                    "value": "J",
+                    "description": "หนังสือรับรองการจัดตั้งสมาคม"
+                }, {
+                    "key": "M",
+                    "value": "M",
+                    "description": "ใบสุทธิ"
+                }, {
+                    "key": "O",
+                    "value": "O",
+                    "description": "ทะเบียนพาณิชย์"
+                }, {
+                    "key": "P",
+                    "value": "P",
+                    "description": "หนังสือเดินทาง"
+                }, {
+                    "key": "T",
+                    "value": "T",
+                    "description": "ทะเบียนวัด"
+                }]
+            }
+        };
+    };
+    this.getMasterIdTypeI = function () {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "4CN22BAIHEDJ",
+            "process-instance": "psaapdv1 (instance: SFF_node1)",
+            "response-data": {
+                "id": "CUST-ID-TYPE-I",
+                "name": "Customer ID type for individual customer",
+                "description": "List of id types for individual customer",
+                "configuration-items": [{
+                    "key": "A",
+                    "value": "A",
+                    "description": "บัตรประจำตัวคนต่างด้าว"
+                }, {
+                    "key": "D",
+                    "value": "D",
+                    "description": "บัตรประจำตัวพนักงานรัฐวิสาหกิจ"
+                }, {
+                    "key": "E",
+                    "value": "E",
+                    "description": "ใบขับขี่"
+                }, {
+                    "key": "F",
+                    "value": "F",
+                    "description": "บัตรนักเรียน"
+                }, {
+                    "key": "G",
+                    "value": "G",
+                    "description": "บัตรประจำตัวข้าราชการ"
+                }, {
+                    "key": "H",
+                    "value": "H",
+                    "description": "บัตรแสดงตนอื่นๆ"
+                }, {
+                    "key": "I",
+                    "value": "I",
+                    "description": "บัตรประจำตัวประชาชน"
+                }, {
+                    "key": "M",
+                    "value": "M",
+                    "description": "ใบสุทธิ"
+                }, {
+                    "key": "O",
+                    "value": "O",
+                    "description": "ทะเบียนพาณิชย์"
+                }, {
+                    "key": "P",
+                    "value": "P",
+                    "description": "หนังสือเดินทาง"
+                }, {
+                    "key": "T",
+                    "value": "T",
+                    "description": "ทะเบียนวัด"
+                }]
+            }
+        };
+    };
+    this.getMasterIdTypeP = function () {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "4CN1Z6WKVSSF",
+            "process-instance": "psaapdv1 (instance: SFF_node1)",
+            "response-data": {
+                "id": "CUST-ID-TYPE-P",
+                "name": "Customer id type for prepaid customer",
+                "description": "List of id types for prepaid customer",
+                "configuration-items": [{
+                    "key": "A",
+                    "value": "A",
+                    "description": "บัตรประจำตัวคนต่างด้าว"
+                }, {
+                    "key": "D",
+                    "value": "D",
+                    "description": "บัตรประจำตัวพนักงานรัฐวิสาหกิจ"
+                }, {
+                    "key": "E",
+                    "value": "E",
+                    "description": "ใบขับขี่"
+                }, {
+                    "key": "F",
+                    "value": "F",
+                    "description": "บัตรนักเรียน"
+                }, {
+                    "key": "G",
+                    "value": "G",
+                    "description": "บัตรประจำตัวข้าราชการ"
+                }, {
+                    "key": "H",
+                    "value": "H",
+                    "description": "บัตรแสดงตนอื่นๆ"
+                }, {
+                    "key": "I",
+                    "value": "I",
+                    "description": "บัตรประจำตัวประชาชน"
+                }, {
+                    "key": "M",
+                    "value": "M",
+                    "description": "ใบสุทธิ"
+                }, {
+                    "key": "O",
+                    "value": "O",
+                    "description": "ทะเบียนพาณิชย์"
+                }, {
+                    "key": "P",
+                    "value": "P",
+                    "description": "หนังสือเดินทาง"
+                }, {
+                    "key": "T",
+                    "value": "T",
+                    "description": "ทะเบียนวัด"
+                }]
+            }
+        };
+    };
+    //masterData ------//for demo-----
+    this.getMasterData = function (target, headers, fnCallback) {
+        var result = {};
+        var status = true;
+        if (target == 'aftersales/configuration/master/CUST-GENDER') {
+            result = that.getMasterGender();
+        }
+        else if (target == 'aftersales/configuration/master/CUST-TITLE-TYPE') {
+            result = that.getMasterTitleType();
+        }
+        else if (target == 'aftersales/configuration/master/CUST-TITLE-OTHER-TYPE') {
+            result = that.getMasterTitleOtherType();
+        }
+        else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-B') {
+            result = that.getMasterIdTypeB();
+        }
+        else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-C') {
+            result = that.getMasterIdTypeC();
+        }
+        else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-I') {
+            result = that.getMasterIdTypeI();
+        }
+        else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-P') {
+            result = that.getMasterIdTypeP();
+        } else {
+            status = false;
+        }
+        fnCallback({
+            status: status,
+            data: result,
+            error: "",
+            msgErr: ""
+        });
+
+    };
+
+    this.calendarDatePicker = function () {
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            language: 'th-th'
+        });
+
+        $('.date-picker-start').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            language: 'th-th',
+            startDate: date
+        });
+
+    };
+    //masterData //for deploy
+    this.getMaster = function (target, fnCallback) {
+        var masterUrl = "aftersales/configuration/master/";
+        if (that.demo) {
+            data = that.getMasterData(masterUrl + target, null, function (result) {
+                fnCallback(result);
+            });
+        } else {
+            that.callServiceGet(masterUrl + target, null, function (result) {
+                fnCallback(result);
+            });
+        }
+    };
+    this.getMaster_list = function (target, fnCallback) {
+        var listArray = [];
+        that.getMaster(target, function (result) {
+            console.log(result);
+            if (result.status) {
+                //listArray = $filter('filter')(result.data["response-data"]["configuration-items"]);
+                listArray = result.data["response-data"]["configuration-items"];
+                fnCallback(listArray);
+            } else {
+                that.showAlert({
+                    "message": "Error",
+                    "message-code": "",
+                    "message-type": "ERROR",
+                    "en-message": "Error",
+                    "th-message": "Error",
+                    "technical-message": "systemService"
+                });
+                fnCallback(listArray);
+            }
+        });
+    };
+    this.getTimestamp = function () {
+        var d = new Date();
+        var n = d.getTime();
+        return n;
+    };
+    this.setTimestamp = function (time) {
+        return new Date(time);
+    };
+    this.checkInputTel = function (charCode) {
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+    this.validateNummeric = function () {
+        //$(".numberic").keypress(function (evt) {
+        //    var charCode = (evt.which) ? evt.which : evt.keyCode
+        //    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode == 190)
+        //        return false;
+
+        //    return true;
+        //});
+        $(".numberic").keypress(function (e) {
+            var charCode = (e.which) ? e.which : e.keyCode;
+            if (this.value.indexOf(".") >= 0) {
+                if (charCode == 46) {
+                    return false;
+                }
+            }
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+        });
+
+        $(".telephone").keypress(function (evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        });
+        //// disable right click
+        //$('.telephone').mousedown(function (event) {
+        //    if (event.which == 3) {
+        //        return false;
+        //    }
+
+        //});
+    };
+
+    this.getDateDDMMYYYY = function (lang) {
+        var ln = lang == 'TH' ? 543 : 0;
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+
+        var yyyy = today.getFullYear() + ln;
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        var today = dd + '/' + mm + '/' + yyyy;
+        return today;
+    };
+
+    this.getDateDDMMYYYY_nextBill = function (nextDay, lang) {
+
+        var date = new Date();
+        date.setDate(date.getDate() + nextDay);
+
+        var ln = lang == 'TH' ? 543 : 0;
+        var today = date;
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+
+        var yyyy = today.getFullYear() + ln;
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        var today = dd + '/' + mm + '/' + yyyy;
+        return today;
+    };
+    this.convertDateTo = function (ddMMyyyy, lang) {
+        var ssc = "-";
+        var ln = lang == 'TH' ? 543 : -543;
+        var arr = ddMMyyyy.split("/");
+        return "" + (Number(arr[2]) + ln) + ssc + arr[1] + ssc + arr[0];
+    };
+    this.convertDateToEng = function (ddMMyyyy, lang) {
+        if (ddMMyyyy) {
+            var ssc = "/";
+            var ln = lang == 'TH' ? 543 : -543;
+            var arr = ddMMyyyy.split("/");
+            return "" + arr[0] + ssc + arr[1] + ssc + (Number(arr[2]) + ln);
+        } else {
+            return ddMMyyyy;
+        }
+    };
+    this.convertDateToTH = function (ddMMyyyy, lang) {
+        if (ddMMyyyy) {
+            var ssc = "/";
+            var ln = lang == 'TH' ? 543 : -543;
+            var arr = ddMMyyyy.split("/");
+            return "" + arr[0] + ssc + arr[1] + ssc + (Number(arr[2]) + ln);
+        } else {
+            return ddMMyyyy;
+        }
+    };
+    this.convertDataThToLongDate = function (dateTH) {
+        //dateTH : "28/08/2558"
+        //return : "2015-07-20T00:00:00+0700"
+        if (dateTH) {
+            var ssc = "-";
+            var arr = dateTH.split("/");
+            return "" + (Number(arr[2]) - 543) + ssc + arr[1] + ssc + arr[0] + "T00:00:00+0700";
+        } else {
+            return "";
+        }
+    };
+    this.getContactNo = function (contactNo, returnField) {
+        //contactNO : "02994848#123
+        //returnField : "number" || "continued"
+        var result = "";
+        var arr = ["", ""];
+        if (contactNo) {
+            if (contactNo.indexOf('#') >= 0) {
+                var arrx = contactNo.split("#");
+                arr[0] = arrx[0];
+                arr[1] = arrx[1];
+            } else {
+                arr[0] = contactNo;
+            }
+        }
+        if (returnField == "number") {
+            result = arr[0];
+        } else {
+            result = arr[1];
+        }
+        return result;
+    };
+    this.guid = function () {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+    };
+    this.convertArray = function (arr, oparator) {
+        var resultArr = [];
+        console.log(arr);
+        if (arr) {
+            for (var i = 0; i < arr.length; i++) {
+                var list = arr[i].split(oparator);
+                resultArr.push({
+                    id: list[0],
+                    value: list[1]
+                });
+            }
+        }
+        return resultArr;
+    };
+    this.searchIdArray = function (arr, select) {
+        console.log(arr, select);
+        var result = $filter('filter')(arr, { value: select });
+        var id = "";
+        console.log(result);
+        if (result.length) {
+            id = result[0].id;
+        }
+        return id;
+    };
+
+    this.setupFancyBox = function (id) {
+        $("#" + id).fancybox({
+            showCloseButton: false
+        });
+    };
+    //--------------- fancyBox -----------------------
+    that.setupFancyBox("btn-fancy-alertDialog");
+
+    //----------------end fancyBox -------------------
+
+    this.getOrderId = function (channel, shopcodes, fnCallback) {
+        var generateOrder_target = "?channel=" + (channel ? channel : "") + "&dealer=" + (shopcodes ? shopcodes : "");
+        //generateOrder_target = "";
+
+        if (generateOrder_target == "") {
+            if (channel) {
+                generateOrder_target = "?channel=" + channel;
+            }
+            if (shopcodes && shopcodes.length > 0) {
+                if (generateOrder_target) {
+                    generateOrder_target = "?dealer=" + shopcodes[0];
+                } else {
+                    generateOrder_target += "&dealer=" + shopcodes[0];
+                }
+            }
+        }
+        //alert(generateOrder_target);
+        //call generate-order-id
+        that.generateOrderId(generateOrder_target, function (data) {
+            fnCallback({
+                TrxID: data["trx-id"],
+                orderId: data["response-data"]
+            });
+        });
+    };
+
+    this.getAddressMaster = function (target, fnCallback) {
+        if (that.demo) {
+            var data = {
+                "status": "SUCCESSFUL",
+                "trx-id": "4I1AKKSUOGER5",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": [{
+                    "subdistrict": "ตลาด",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "ตลาด",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10132"
+                }, {
+                    "subdistrict": "ทรงคนอง",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "บางกระสอบ",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "บางกอบัว",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "บางกะเจ้า",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "บางครุ",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "บางจาก",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "บางน้ำผึ้ง",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "โนนสูง",
+                    "district": "เมืองอุดรธานี",
+                    "province": "อุดรธานี",
+                    "zipcode": "41010"
+                }, {
+                    "subdistrict": "คลองเตยเหนือ",
+                    "district": "วัฒนา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10117"
+                }, {
+                    "subdistrict": "พระโขนงเหนือ",
+                    "district": "วัฒนา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10110"
+                }, {
+                    "subdistrict": "ช้างคลาน",
+                    "district": "เมืองเชียงใหม่",
+                    "province": "เชียงใหม่",
+                    "zipcode": "50101"
+                }, {
+                    "subdistrict": "จักรวรรดิ์",
+                    "district": "สัมพันธวงศ์",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10100"
+                }, {
+                    "subdistrict": "จักรวรรดิ์",
+                    "district": "สัมพันธวงศ์",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10101"
+                }, {
+                    "subdistrict": "ตลาดน้อย",
+                    "district": "สัมพันธวงศ์",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10100"
+                }, {
+                    "subdistrict": "สัมพันธวงศ์",
+                    "district": "สัมพันธวงศ์",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10100"
+                }, {
+                    "subdistrict": "ทุ่งมหาเมฆ",
+                    "district": "สาทร",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10120"
+                }, {
+                    "subdistrict": "ทุ่งมหาเมฆ",
+                    "district": "สาทร",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10121"
+                }, {
+                    "subdistrict": "ทุ่งวัดดอน",
+                    "district": "สาทร",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10120"
+                }, {
+                    "subdistrict": "ยานนาวา",
+                    "district": "สาทร",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10120"
+                }, {
+                    "subdistrict": "หนองแขม",
+                    "district": "หนองแขม",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "หนองค้างพลู",
+                    "district": "หนองแขม",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "บางปะกอก",
+                    "district": "ราษฎร์บูรณะ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10140"
+                }, {
+                    "subdistrict": "บางปะกอก",
+                    "district": "ราษฎร์บูรณะ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10141"
+                }, {
+                    "subdistrict": "ราษฎร์บูรณะ",
+                    "district": "ราษฎร์บูรณะ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10140"
+                }, {
+                    "subdistrict": "คลองตันเหนือ",
+                    "district": "วัฒนา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10110"
+                }, {
+                    "subdistrict": "คลองตันเหนือ",
+                    "district": "วัฒนา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10116"
+                }, {
+                    "subdistrict": "คลองเตยเหนือ",
+                    "district": "วัฒนา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10110"
+                }, {
+                    "subdistrict": "คลองเตยเหนือ",
+                    "district": "วัฒนา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10114"
+                }, {
+                    "subdistrict": "คลองขวาง",
+                    "district": "ภาษีเจริญ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "คูหาสวรรค์",
+                    "district": "ภาษีเจริญ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "บางจาก",
+                    "district": "ภาษีเจริญ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "บางด้วน",
+                    "district": "ภาษีเจริญ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "บางแวก",
+                    "district": "ภาษีเจริญ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "บางหว้า",
+                    "district": "ภาษีเจริญ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "บางหว้า",
+                    "district": "ภาษีเจริญ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10161"
+                }, {
+                    "subdistrict": "บางหว้า",
+                    "district": "ภาษีเจริญ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10163"
+                }, {
+                    "subdistrict": "ปากคลองภาษีเจริญ",
+                    "district": "ภาษีเจริญ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "หนองแขม",
+                    "district": "หนองแขม",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10164"
+                }, {
+                    "subdistrict": "ช่องนนทรี",
+                    "district": "ยานนาวา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10120"
+                }, {
+                    "subdistrict": "บางโพงพาง",
+                    "district": "ยานนาวา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10120"
+                }, {
+                    "subdistrict": "บางโพงพาง",
+                    "district": "ยานนาวา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10124"
+                }, {
+                    "subdistrict": "บางโพงพาง",
+                    "district": "ยานนาวา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10125"
+                }, {
+                    "subdistrict": "คลองมหานาค",
+                    "district": "ป้อมปราบศัตรูพ่าย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10100"
+                }, {
+                    "subdistrict": "บ้านบาตร",
+                    "district": "ป้อมปราบศัตรูพ่าย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10100"
+                }, {
+                    "subdistrict": "ป้อมปราบ",
+                    "district": "ป้อมปราบศัตรูพ่าย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10100"
+                }, {
+                    "subdistrict": "ป้อมปราบ",
+                    "district": "ป้อมปราบศัตรูพ่าย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10103"
+                }, {
+                    "subdistrict": "วัดเทพศิรินทร์",
+                    "district": "ป้อมปราบศัตรูพ่าย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10100"
+                }, {
+                    "subdistrict": "วัดโสมนัส",
+                    "district": "ป้อมปราบศัตรูพ่าย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10100"
+                }, {
+                    "subdistrict": "วัดโสมนัส",
+                    "district": "ป้อมปราบศัตรูพ่าย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10102"
+                }, {
+                    "subdistrict": "วังใหม่",
+                    "district": "ปทุมวัน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10110"
+                }, {
+                    "subdistrict": "วังใหม่",
+                    "district": "ปทุมวัน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10120"
+                }, {
+                    "subdistrict": "บางแคเหนือ",
+                    "district": "บางแค",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "บางไผ่",
+                    "district": "บางแค",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "หลักสอง",
+                    "district": "บางแค",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "บางบอน",
+                    "district": "บางบอน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10150"
+                }, {
+                    "subdistrict": "บางบอน",
+                    "district": "บางบอน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10151"
+                }, {
+                    "subdistrict": "ท่าข้าม",
+                    "district": "บางขุนเทียน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10150"
+                }, {
+                    "subdistrict": "แสมดำ",
+                    "district": "บางขุนเทียน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10150"
+                }, {
+                    "subdistrict": "แสมดำ",
+                    "district": "บางขุนเทียน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10152"
+                }, {
+                    "subdistrict": "บางคอแหลม",
+                    "district": "บางคอแหลม",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10120"
+                }, {
+                    "subdistrict": "บางคอแหลม",
+                    "district": "บางคอแหลม",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10122"
+                }, {
+                    "subdistrict": "บางโคล่",
+                    "district": "บางคอแหลม",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10120"
+                }, {
+                    "subdistrict": "วัดพระยาไกร",
+                    "district": "บางคอแหลม",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10120"
+                }, {
+                    "subdistrict": "วัดพระยาไกร",
+                    "district": "บางคอแหลม",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10123"
+                }, {
+                    "subdistrict": "บางแค",
+                    "district": "บางแค",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10160"
+                }, {
+                    "subdistrict": "คลองชักพระ",
+                    "district": "ตลิ่งชัน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10170"
+                }, {
+                    "subdistrict": "ฉิมพลี",
+                    "district": "ตลิ่งชัน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10170"
+                }, {
+                    "subdistrict": "ตลิ่งชัน",
+                    "district": "ตลิ่งชัน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10170"
+                }, {
+                    "subdistrict": "บางเชือกหนัง",
+                    "district": "ตลิ่งชัน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10170"
+                }, {
+                    "subdistrict": "บางพรม",
+                    "district": "ตลิ่งชัน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10170"
+                }, {
+                    "subdistrict": "บางระมาด",
+                    "district": "ตลิ่งชัน",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10170"
+                }, {
+                    "subdistrict": "ทวีวัฒนา",
+                    "district": "ทวีวัฒนา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10170"
+                }, {
+                    "subdistrict": "ศาลาธรรมสพน์",
+                    "district": "ทวีวัฒนา",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10170"
+                }, {
+                    "subdistrict": "ทุ่งครุ",
+                    "district": "ทุ่งครุ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10140"
+                }, {
+                    "subdistrict": "บางมด",
+                    "district": "ทุ่งครุ",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10140"
+                }, {
+                    "subdistrict": "คลองตัน",
+                    "district": "คลองเตย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10110"
+                }, {
+                    "subdistrict": "คลองเตย",
+                    "district": "คลองเตย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10110"
+                }, {
+                    "subdistrict": "คลองเตย",
+                    "district": "คลองเตย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10111"
+                }, {
+                    "subdistrict": "หนองค้างพลู",
+                    "district": "หนองแขม",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10162"
+                }, {
+                    "subdistrict": "จอมทอง",
+                    "district": "จอมทอง",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10150"
+                }, {
+                    "subdistrict": "บางขุนเทียน",
+                    "district": "จอมทอง",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10150"
+                }, {
+                    "subdistrict": "บางค้อ",
+                    "district": "จอมทอง",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10150"
+                }, {
+                    "subdistrict": "บางมด",
+                    "district": "จอมทอง",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10150"
+                }, {
+                    "subdistrict": "คลองเตย",
+                    "district": "คลองเตย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10112"
+                }, {
+                    "subdistrict": "คลองเตย",
+                    "district": "คลองเตย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10113"
+                }, {
+                    "subdistrict": "พระโขนง",
+                    "district": "คลองเตย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10110"
+                }, {
+                    "subdistrict": "พระโขนง",
+                    "district": "คลองเตย",
+                    "province": "กรุงเทพมหานคร",
+                    "zipcode": "10115"
+                }, {
+                    "subdistrict": "อุโมงค์",
+                    "district": "เมืองลำพูน",
+                    "province": "ลำพูน",
+                    "zipcode": "51010"
+                }, {
+                    "subdistrict": "บางพึ่ง",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "บางยอ",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "บางหญ้าแพรก",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "บางหัวเสือ",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "สำโรง",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "สำโรงกลาง",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                }, {
+                    "subdistrict": "สำโรงกลาง",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10131"
+                }, {
+                    "subdistrict": "สำโรงใต้",
+                    "district": "พระประแดง",
+                    "province": "สมุทรปราการ",
+                    "zipcode": "10130"
+                },
+                {
+                    "subdistrict": "สันปูเลย",
+                    "district": "ดอยสะเก็ด",
+                    "province": "เชียงใหม่",
+                    "zipcode": "50220"
+                }, {
+                    "subdistrict": "นาดี",
+                    "district": "ด่านซ้าย",
+                    "province": "เลย",
+                    "zipcode": "42120"
+                }, {
+                    "subdistrict": "นาหอ",
+                    "district": "ด่านซ้าย",
+                    "province": "เลย",
+                    "zipcode": "42120"
+                }, {
+                    "subdistrict": "ปากหมัน",
+                    "district": "ด่านซ้าย",
+                    "province": "เลย",
+                    "zipcode": "42120"
+                }, {
+                    "subdistrict": "โป่ง",
+                    "district": "ด่านซ้าย",
+                    "province": "เลย",
+                    "zipcode": "42120"
+                }, {
+                    "subdistrict": "โพนสูง",
+                    "district": "ด่านซ้าย",
+                    "province": "เลย",
+                    "zipcode": "42120"
+                }, {
+                    "subdistrict": "วังยาว",
+                    "district": "ด่านซ้าย",
+                    "province": "เลย",
+                    "zipcode": "42120"
+                }]
+            };
+
+            if (target.indexOf('lang=EN') >= 0) {
+                fnCallback({
+                    status: true,
+                    data: {
+                        "status": "SUCCESSFUL",
+                        "trx-id": "4I1AKKSUOGER5",
+                        "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                        "response-data": [{
+                            "subdistrict": "Din Daeng",
+                            "district": "Din Daeng",
+                            "province": "Bangkok",
+                            "zipcode": "10130"
+                        }]
+                    },
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: true,
+                    data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            }
+            
+        } else {
+            that.callServiceGetByPass(target, null, function (result) {
+                fnCallback(result);
+            });
+        }
+    };
+});

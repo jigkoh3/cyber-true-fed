@@ -1,0 +1,570 @@
+﻿
+<div ng-include="template.landingheader"></div>
+<div class="container" id="changePromotionContent">
+    <div class="content m_content">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">           
+            <h4 ng-show="packages == ''">Change Promotion / Package / Speed</h4>
+           
+            <div id="menupackadge" ng-hide="ispackages == true">
+                <div class="row">
+                    <div class="new-open-data">
+                        <div class="box-sale-4">
+
+                            <a href="" ng-click="changepackage('H')">
+                                <div class="open-data-detail open-tol">
+                                    <p>HSI</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box-sale-4">
+
+                            <a href="" ng-click="changepackage('F')">
+                                <div class="open-data-detail open-tol">
+                                    <p>FiberTV</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box-sale-4">
+
+                            <a href="" ng-click="changepackage('C')">
+                                <div class="open-data-detail open-tol">
+                                    <p>Convergence</p>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="hsi" ng-show="packages == 'H'">
+                <h4>Change Promotion / Package / Speed(สำหรับ HSI)</h4>
+                <div ng-include="template.customerprofile" scope="" onload=""></div>
+                <h4>ข้อมูลปัจจุบัน</h4>
+                <div class="well" style="background-color:#ffffff">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="well">
+                                <div class="row">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label"><b>หมายเลข True Online :</b></label>
+                                                    <label class="col-md-4 control-label"><b>654321</b></label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">Promotion :</label>
+                                                    <label class="col-md-4 control-label">CMC63-30-New Ultra hi-speed</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">Speed :</label>
+                                                    <label class="col-md-4 control-label">18 Mb</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">สถานที่ติดตั้ง :</label>
+                                                    <label class="col-md-4 control-label">55/5 หมู่บ้าน แสนสุข ถนน เขต กรุงเทพ</label>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="well">
+                                <div class="row">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label"><b>หมายเลข True Online :</b></label>
+                                                    <label class="col-md-4 control-label"><b>654321</b></label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">Promotion :</label>
+                                                    <label class="col-md-4 control-label">CMC63-30-New Ultra hi-speed</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">Speed :</label>
+                                                    <label class="col-md-4 control-label">18 Mb</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">สถานที่ติดตั้ง :</label>
+                                                    <label class="col-md-4 control-label">55/5 หมู่บ้าน แสนสุข ถนน เขต กรุงเทพ</label>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4>ข้อมูลใหม่</h4>
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>Promotion</label>
+                                <select class="form-control">
+                                    <option>เลือก</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>Speed</label>
+                                <select class="form-control">
+                                    <option>เลือก</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <b>ส่วนลดอื่นๆ</b>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group imp">
+                                <label>ส่วนลด(Discount %)</label>
+                                <select class="form-control">
+                                    <option>เลือก</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group imp">
+                                <label>จำนวนเดือน(Month)</label>
+                                <select class="form-control">
+                                    <option>เลือก</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>ฟรีค่าติดตั้งโมเด็ม(Free Modem Install Fee)</label>
+                                <select class="form-control">
+                                    <option>เลือก</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>หมายเหตุ</label>
+                                <textarea class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 form-buttons">
+                    <div class="form-group">
+
+                        <input type="submit" value="ยินยันการแก้ไข" class="btn btn-success">
+                        <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="parent.jQuery.fancybox.close()">
+                    </div>
+                </div>
+            </div>
+            <div id="fibertv" ng-show="packages == 'F'">
+                <h4>Change Promotion / Package / Speed(สำหรับ FiberTV)</h4>
+                <div ng-include="template.customerprofile" scope="" onload=""></div>
+                <h4>ข้อมูลปัจจุบัน</h4>
+                <div class="well" style="background-color:#ffffff">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="well">
+                                <div class="row">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label"><b>หมายเลข True Online :</b></label>
+                                                    <label class="col-md-4 control-label"><b>654321</b></label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">โปรโมชั่น :</label>
+                                                    <label class="col-md-4 control-label">Nationwide Cable Hight Tier</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">แพ็คเก็จ :</label>
+                                                    <label class="col-md-4 control-label">Platinum HD 6 จุด</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">สถานที่ติดตั้ง :</label>
+                                                    <label class="col-md-4 control-label">55/5 หมู่บ้าน แสนสุข ถนน เขต กรุงเทพ</label>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="well">
+                                <div class="row">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label"><b>หมายเลข True Online :</b></label>
+                                                    <label class="col-md-4 control-label"><b>654321</b></label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">โปรโมชั่น :</label>
+                                                    <label class="col-md-4 control-label">Nationwide Cable Hight Tier</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">แพ็คเก็จ :</label>
+                                                    <label class="col-md-4 control-label">Platinum HD 6 จุด</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-md-4 control-label">สถานที่ติดตั้ง :</label>
+                                                    <label class="col-md-4 control-label">55/5 หมู่บ้าน แสนสุข ถนน เขต กรุงเทพ</label>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4>ข้อมูลใหม่</h4>
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>แพคเก็จ</label>
+                                <select class="form-control">
+                                    <option>เลือก</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>เหตุผล</label>
+                                <select class="form-control">
+                                    <option>เลือก</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+                <div ng-include="template.effectivepriceplan" scope="" onload=""></div>
+                <div class="col-md-12 form-buttons">
+                    <div class="form-group">
+
+                        <input type="submit" value="ยินยันการแก้ไข" class="btn btn-success">
+                        <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="parent.jQuery.fancybox.close()">
+                    </div>
+                </div>
+            </div>
+            <div id="convergence" ng-show="packages == 'C'">
+                <h4>Change Package Convergence</h4>
+                <h4>ค้นหาข้อมูล</h4>
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>ค้นหาตาม</label>
+                                <select class="form-control">
+                                    <option>Moblie number</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>หมายเลข</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">                                
+                                <button type="button" class="btn btn-success" ng-click="searchConver()">ค้นหา</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="isSearch == true">
+                    <div ng-include="template.customerprofile" scope="" onload=""></div>
+                    <h4>ข้อมูลปัจจุบัน</h4>
+                    <div class="well" style="background-color:#ffffff">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="well">
+                                    <div class="row">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label"><b>หมายเลข True Life :</b></label>
+                                                        <label class="col-md-4 control-label"><b>654321</b></label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">Convergence Profile :</label>
+                                                        <label class="col-md-4 control-label">CMC63-30-New Ultra hi-speed</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">หมายเลข True Online:</label>
+                                                        <label class="col-md-4 control-label">-</label>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 control-label">หมายเลข Fixedline Plus:</label>
+                                                    <label class="col-md-4 control-label">-</label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 control-label">หมายเลขสมาชิก True Visions:</label>
+                                                    <label class="col-md-4 control-label">-</label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 control-label">หมายเลขโทรศัพท์ True Move H:</label>
+                                                    <label class="col-md-4 control-label">-</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="well">
+                                    <div class="row">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label"><b>หมายเลข True Life :</b></label>
+                                                        <label class="col-md-4 control-label"><b>654321</b></label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">Convergence Profile :</label>
+                                                        <label class="col-md-4 control-label">CMC63-30-New Ultra hi-speed</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">หมายเลข True Online:</label>
+                                                        <label class="col-md-4 control-label">-</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 control-label">หมายเลข Fixedline Plus:</label>
+                                                    <label class="col-md-4 control-label">-</label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 control-label">หมายเลขสมาชิก True Visions:</label>
+                                                    <label class="col-md-4 control-label">-</label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 control-label">หมายเลขโทรศัพท์ True Move H:</label>
+                                                    <label class="col-md-4 control-label">-</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>ข้อมูลปัจจุบัน</h4>
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>True Online Promotion</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label>CMD50-18</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>True Online Speed</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label>18 Mb</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Fixedline Plus Price Plan</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label>เหมาจ่าย 100 บาท โทนได้ 50 นาที</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>True Vision Package</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label>ลูกค้าสุขคูณ 3 </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>True Move H Price Plan</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label>3G iSmart 599</label>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>ข้อมูลใหม่</h4>
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label><b>True Online</b></label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>Promotion</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">  
+                            <div class="col-md-3">
+
+                            </div>                          
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>Speed</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label><b>True Vision</b></label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>Promotion</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>Package</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label><b>Fixedline Plus</b></label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>Marketing Code</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>Price Plan</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-buttons">
+                        <div class="form-group">
+
+                            <input type="submit" value="ยินยันการแก้ไข" class="btn btn-success">
+                            <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="parent.jQuery.fancybox.close()">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+

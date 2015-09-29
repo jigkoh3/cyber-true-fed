@@ -1,0 +1,3 @@
+﻿smartApp.service('SaleService', function () {
+   
+});

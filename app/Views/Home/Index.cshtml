@@ -1,0 +1,343 @@
+﻿<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+    <script>
+        
+        function ReadCard(Method) {
+
+            //setTimeout(function () {
+            //    if ($('#loadingReadCard').css("display") == 'block') {
+            //        $('#loadingReadCard').hide();
+            //        //$('#readCardTimeOut').show();
+                    
+            //        angular.element(document.getElementById('' + $('#divID').val())).scope().readCardError("ไม่พบเครื่องอ่านบัตร");
+            //    }
+            //}, 20000);
+
+            if ($('#ReadAuthorize').val() == 'true') {
+                $('#loadingReadCard2').show();
+            }
+            else if ($('#ReadAuthorize').val() == 'readNewOwnerReadCard') {
+                $('#loadingReadCard3').show();
+            }
+            else {
+                $('#loadingReadCard').show();
+                $('#unMatch').hide();
+            }
+
+            //$('#readCardTimeOut').hide();
+            document.getElementById("CitizenID").disabled = true;
+
+            //document.getElementById('photo').src = '';
+            if (navigator.userAgent.indexOf('Chrome') > 0) {
+                try {
+                    var str = document.getElementById('card').Run(Method.replace('Read', 'ReadWait'));
+                    ShowData(str);
+                }
+                catch (err) {
+                    var loading = $('#loadingReadCard');
+                    if ($('#ReadAuthorize').val() == 'true') {
+                        loading = $('#loadingReadCard2');
+                    }
+                    else if ($('#ReadAuthorize').val() == 'readNewOwnerReadCard') {
+                        loading = $('#loadingReadCard3');
+                    }
+                    else {
+                        loading = $('#loadingReadCard');
+                        $('#unMatch').hide();
+                    }
+                    if (loading.css("display") == 'block') {
+                        loading.hide();
+                        angular.element(document.getElementById('' + $('#divID').val())).scope().readCardError("Chrome : ไม่พบเครื่องอ่านบัตร");
+                    }
+                }
+                
+            }
+            else {
+                document.getElementById('card').Run(Method);
+            }
+        }
+        function ShowData(str) {
+            var obj = eval(str);
+            //alert(str);
+        }
+        
+    </script>
+    <script type="text/javascript">
+        function closeWP() {
+            var Browser = navigator.appName;
+            var indexB = Browser.indexOf('Explorer');
+
+            if (indexB > 0) {
+                var indexV = navigator.userAgent.indexOf('MSIE') + 5;
+                var Version = navigator.userAgent.substring(indexV, indexV + 1);
+
+                if (Version >= 7) {
+                    window.open('', '_self', '');
+                    window.close();
+                }
+                else if (Version == 6) {
+                    window.opener = null;
+                    window.close();
+                }
+                else {
+                    window.opener = '';
+                    window.close();
+                }
+
+            }
+            else {
+                window.close();
+            }
+        }
+    </script>
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <title>True Store</title>
+    
+    <link href="css/app.css" rel="stylesheet">
+    <!-- @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@ -->
+    <link href="~/css/bootstrap-toggle.css" rel="stylesheet" />
+    <link href="css/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/css/ngDialog.css" rel="stylesheet" />
+    <link href="~/css/ngDialog-theme-default.css" rel="stylesheet" />
+    <link href="~/css/datepicker.css" rel="stylesheet" />
+    
+    
+    <!-- libary -->
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+    <script src="js/moment.js"></script>
+    <script src="js/webcam/webcam.js"></script>
+    <script src="js/lodash.js"></script>
+    
+    <!-- @*<script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>*@ -->
+    
+        <script src="lib/angularjs-1.2/angular.min.js"></script>
+        <script src="lib/angularjs-1.2/angular-route.min.js"></script>
+
+    
+    <!-- angular starter -->
+    <script src="app/app.js"></script>
+    <!--<script src="app/app.services.js"></script>-->
+    <script src="~/js/ngDialog.js"></script>
+    <script src="lib/ngBootbox.js"></script>
+    <script src="app/utils.js"></script>
+    <!-- main services -->
+    <script src="app/services/masterDataService.js"></script>
+    <script src="app/services/modalService.js"></script>
+    <script src="app/services/systemService.js"></script>
+    <script src="app/services/authenService.js"></script>
+    <script src="app/services/deviceService.js"></script>
+    <script src="app/services/cancelService.js"></script>
+
+    <!-- child services -->
+    <script src="app/services/homeService.js"></script>
+    <script src="app/services/saleService.js"></script>
+    <script src="app/services/productService.js"></script>
+    <script src="app/services/reasonService.js"></script>
+    <script src="app/services/changePricePlanService.js"></script>
+    <script src="app/services/changeOwnershipService.js"></script>
+    <script src="app/services/changeIRIDDService.js"></script>
+    <script src="app/services/changeSwapSimService.js"></script>
+    <script src="app/services/migratePostToPreService.js"></script>
+    
+
+    <script src="app/services/smartCardReaderService.js"></script>
+    <!-- <script src="app/services/customerProfileService.js"></script> -->
+    <!-- controller -->
+    <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/saleController.js"></script>
+    <script src="app/controllers/productController.js"></script>
+    <script src="app/controllers/changePricePlanController.js"></script>
+    <script src="app/controllers/changeOwnershipController.js"></script>
+    <script src="app/controllers/changeIRIDDController.js"></script>
+    <script src="app/controllers/changeSuspendController.js"></script>
+    <script src="app/controllers/changeRestoreController.js"></script>
+    <script src="app/controllers/migratePostToPreController.js"></script>
+    <script src="app/controllers/migratePreToPostController.js"></script>
+    <script src="app/controllers/changeSwapsimController.js"></script> 
+    <script src="app/controllers/changeResumeConroller.js"></script> 
+    <script src="app/controllers/cancelController.js"></script> 
+    <script src="app/controllers/saleDeviceController.js"></script> 
+    <script src="app/controllers/openTruemovehController.js"></script> 
+    <script src="app/controllers/allProductController.js"></script> 
+    <script src="app/controllers/orderDeviceController.js"></script> 
+    <script src="app/controllers/listPaymentController.js"></script>
+    <script src="app/controllers/newCustomerController.js"></script>
+    <script src="app/controllers/promotionDeviceController.js"></script>
+    <script src="app/controllers/getPaidController.js"></script>
+    <script src="app/controllers/cancelOrderController.js"></script>
+    <script src="app/controllers/changeInstallationController.js"></script>
+    <script src="app/controllers/changePromotionController.js"></script>
+    <script src="app/controllers/disConnectController.js"></script>
+    <script src="app/controllers/deBundleController.js"></script>
+    <script src="app/controllers/addOutletController.js"></script>
+    <script src="app/controllers/removeOutletController.js"></script>
+    <script src="app/controllers/changeTelnoController.js"></script>
+
+
+    
+</head>
+<body ng-app="smartApp" id="smartBody" style="overflow-y:scroll;">
+
+    
+    <!-- ngDialog -->
+    <script type="text/ng-template" id="alertDialog">
+        <div class="ngdialog-message">
+            <h3><i class="ace-icon fa fa-arrow-circle-right danger" style="color:red;"></i> {{ngDialogData["message-type"]}}</h3>
+            <h5>รายละเอียด</h5>
+            <p ng-show="ngDialogData['message']" style="color:red;overflow-wrap: break-word;">
+                {{ngDialogData["message"]}}
+            </p>
+            <p ng-show="ngDialogData['en-message']" style="overflow-wrap: break-word;">
+                EN : {{ngDialogData["en-message"]}}
+            </p>
+            <p ng-show="ngDialogData['th-message']" style="overflow-wrap: break-word;">
+                TH : {{ngDialogData["th-message"]}}
+            </p>
+            <p ng-show="ngDialogData['technical-message']">
+                <input type="checkbox" class="hidden" ng-model="technicalmessage" />
+                <a href="#" onclick="return false;" ng-click="technicalmessage=technicalmessage?false:true" style="color:black;">
+                    <i class="ace-icon fa fa-plus-square danger" ng-hide="technicalmessage" style="color:red;"></i>
+                    <i class="ace-icon fa fa-minus-square danger" ng-show="technicalmessage" style="color:red;"></i>
+                    Technical Error
+                </a>
+
+            </p>
+            <p ng-show="technicalmessage" style="overflow-wrap: break-word;">&emsp;{{ngDialogData["technical-message"]}}</p>
+            <p>
+                <b>* หากพบปัญหาในการใช้งาน กรุณาติดต่อ 5555 หรือ IT Service</b>
+            </p>
+        </div>
+        <div style="text-align:center;">
+            &nbsp;&nbsp;
+            <input type="button" ng-show="ngDialogData['message-type']=='ERROR'" onclick="window.close();" value=" Close " class="btn btn-danger">
+            <input type="button" ng-hide="ngDialogData['message-type']=='ERROR'" ng-click="closeThisDialog('close')" value="OK" class="btn btn-success">
+        </div>
+        <div class="ngdialog-buttons">
+            &nbsp;
+        </div>
+        
+    </script>
+    <script type="text/ng-template" id="showBeforeClose">
+        <div class="ngdialog-message" style="text-align:center;">
+            <h6 ng-show="ngDialogData['message']">
+                {{ngDialogData["message"]}}
+            </h6>
+            <h6 ng-show="ngDialogData['message2']">
+                {{ngDialogData["message2"]}}
+            </h6>
+
+        </div>
+        <div style="text-align:center;">
+            &nbsp;&nbsp;
+            <input type="submit" value="OK" class="btn btn-success" onclick="closeWP();">
+        </div>
+        <div class="ngdialog-buttons">
+
+        </div>
+    </script>
+    <script type="text/ng-template" id="modalConfirm">
+        <div class="ngdialog-message" style="text-align:center;">
+            <h3>ยืนยันการทำรายการ</h3>
+        </div>
+        <div style="text-align:center;">
+            &nbsp;&nbsp;
+            <input type="button" ng-click="confirm('ok')" value="OK" class="btn btn-success">
+            <input type="button" ng-click="closeThisDialog('button')" value="Cancel" class="btn btn-cancel">
+        </div>
+        <div class="ngdialog-buttons">
+            &nbsp;
+        </div>
+    </script>
+    <script type="text/ng-template" id="modalLoading">
+        <div class="ngdialog-message" style="text-align:center;">
+            <h3>กำลังโหลดข้อมูล</h3>
+        </div>
+        <div style="text-align:center;">
+            &nbsp;&nbsp;
+            <i class="fa fa-spin fa-2x fa-spinner"></i>
+        </div>
+        <div class="ngdialog-buttons">
+            &nbsp;
+        </div>
+    </script>
+    <!-- end ngDialog -->
+
+
+
+
+    <div ng-view=""></div>
+
+
+
+
+
+    <object id="card" classid="CLSID:D6083DBA-4351-4DA9-85D5-9069544998F1" style="width:0px;height:0px;"></object>
+    <script for="card" event="CardChange(state,args)">
+        function card::CardChange(state, args) {
+            $('#CitizenID').val('');
+            //document.getElementById('span_event').innerHTML = ('Event : ' + state + '<br/>Args : ' + args);
+            if (state == 'ReadSuccess') {
+                if ($('#ReadAuthorize').val() == 'true') {
+                    angular.element(document.getElementById('' + $('#divID').val())).scope().SetCardValue2(args);
+                }
+                else if ($('#ReadAuthorize').val() == 'readNewOwnerReadCard') {
+                    angular.element(document.getElementById('' + $('#divID').val())).scope().SetCardValue3(args);
+                    $('#btnReadCard3Close').click();
+                }
+                else {
+                    angular.element(document.getElementById('' + $('#divID').val())).scope().SetCardValue(args);
+                }
+            }
+            if (state == 'Error') {
+                $('#loadingReadCard').hide();
+                $('#loadingReadCard2').hide();
+                $('#loadingReadCard3').hide();
+                //alert(state + ' : ' + args);
+                angular.element(document.getElementById('' + $('#divID').val())).scope().readCardError(args);
+
+            }
+
+        }
+    </script>
+    
+    <!-- True js -->
+    
+
+    <script src="js/all.js"></script>
+    <!-- @*<script src="~/Scripts/bootstrap.min.js"></script>*@ -->
+    <script src="js/check_status.js"></script>
+    
+    <script type="text/javascript" src="js/jquery.fancybox.js"></script>
+    <script src="~/js/bootbox.js"></script>
+
+    
+
+
+    <script src="~/js/bootstrap-toggle.min.js"></script>
+    <!-- @*<script src="~/js/daterangepicker.js"></script>*@ -->
+    <script src="~/js/bootstrap-datepicker.js"></script>
+    <script src="~/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/js/bootstrap-datepicker-thai.js"></script>
+    <script src="~/js/bootstrap-datepicker.th.js"></script>
+    <!--<script src="js/pikaday.js"></script>-->
+
+    
+    <script src="~/lib/paging/dirPagination.js"></script>
+
+   
+
+
+</body>
+</html>

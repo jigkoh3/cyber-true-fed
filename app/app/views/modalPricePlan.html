@@ -1,0 +1,118 @@
+﻿<div class="form-group">
+    <label class="col-md-3 control-label priceplaneText">Price Plan <span style="color:red;">*</span></label>
+    <div class="col-md-6" id="priceplan_sl">
+        <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
+    </div>
+    <div class="col-md-2" ng-submit="openPricePlanDialog()">
+        <input type="text"
+               placeholder="ค้นหา"
+               ng-keyup="$event.keyCode==13 && openPricePlanDialog()"
+               ng-focus="focusPricePlanFilter()"
+               ng-model="pricePlanFilter.value"
+               id="ppfilter"
+               class="form-control pricePlanFilter">
+    </div>
+    <div class="col-md-1">
+        <!--<button type="button"
+                ng-click="selectedPricePlan3()"
+                ng-disabled="!isCustomerProfile"
+                id="modalnewpriceplan"
+                class="btn"
+                onclick="return false;"
+                style="background-color: #5cb85c; border-color: #4cae4c; ">
+            <span style="color:white;">...</span>
+        </button>-->
+        <button type="button"
+                ng-click="selectedPricePlan3()"
+                ng-disabled="!isCustomerProfile"
+                href="#modalPricePlan"
+                data-toggle="modal"
+                id="modalnewpriceplan"
+                class="btn isCustomerProfile"
+                onclick="return false;"
+                style="background-color: #5cb85c; border-color: #4cae4c; ">
+            <span style="color:white;">...</span>
+        </button>
+
+    </div>
+
+</div>
+
+<div class="form-group" ng-hide="showPricePlanRC">
+    <label class="col-md-3 control-label">ค่าบริการรายเดือนก่อนหักส่วนลด</label>
+    <div class="col-md-5">
+        <input type="text" ng-model="pricePlan.rc" placeholder="0" class="form-control" readonly>
+    </div>
+</div>
+
+<div id="modalPricePlan" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!--<div class="modal-header">
+                <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
+                <h5>Price Plan</h5>
+
+            </div>-->
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter.value" id="ppfilter2" class="form-control pricePlanFilter">
+                </div>
+                &nbsp;
+                <div class="table-responsive">
+                    <table class="table" style="margin-bottom: 0px;">
+                        <tr>
+                            <th colspan="5">
+                                <label class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-1">&nbsp;</div>
+                                        <div class="col-xs-7"><span style="color:green;"><h6>Price Plan</h6></span></div>
+                                        <div class="col-xs-1"><span style="color:green;text-align:center;"><h6>RC</h6></span></div>
+                                        <div class="col-xs-3"><span style="color:green;"><h6>รายการส่งเสริมการขาย</h6></span></div>
+                                    </div>
+                                </label>
+                            </th>
+                        </tr>
+
+                        <tr dir-paginate="pp in propositionList | filter:pricePlanFilter.value | orderBy:'pricePlan'| itemsPerPage: pageSize"
+                            pagination-id="PPList"
+                            current-page="currentPage">
+                            <th colspan="5" style="padding: 5px; padding-bottom: 0px;">
+                                <label class="col-xs-12" style="cursor:pointer;">
+                                    <div class="row">
+                                        <div class="col-xs-1">
+                                            <input name="pricelsx"
+                                                   type="radio"
+                                                   ng-click="selectedPricePlan(pp)"
+                                                   ng-value="pp.pricePlan" class="radioPriceplan" />
+                                        </div>
+                                        <div class="col-xs-7">{{pp.pricePlan}}</div>
+                                        <div class="col-xs-1 text-center">{{pp.rc | number}}</div>
+                                        <div class="col-xs-3" style="text-align:center;">{{pp.promotion}}</div>
+                                    </div>
+                                </label>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td id="divPage" colspan="5" class="text-center" style="margin-bottom: 0px;">
+                                <style>
+                                    .pagination {
+                                        margin: 0;
+                                    }
+                                </style>
+                                <div dir-pagination-controls pagination-id="PPList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="div_event"></div>
+            </div>
+            <div class="modal-footer" style=" padding-top: 0;">
+
+                <button class="btn btn-success" data-dismiss="modal" ng-disabled="!isSelectedPricePlan2" ng-click="selectedPricePlan2()">เลือก</button>
+                <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,502 @@
+﻿<div ng-include="template.landingheader"></div>
+<div class="container" id="changeTelnoContent">
+    <div class="content m_content">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <h4>Change Tel No. / Price Plan / Feature (FLP)</h4>
+            <div id="convergence">
+                <h4>ค้นหาข้อมูล</h4>
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>ค้นหาตาม</label>
+                                <select class="form-control">
+                                    <option>Moblie number</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>หมายเลข</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <button type="button" class="btn btn-success" ng-click="searchConver()">ค้นหา</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="isSearch == true">
+                    <div ng-include="template.customerprofile" scope="" onload=""></div>
+                    <h4>ข้อมูลปัจจุบัน</h4>
+                    <div class="well" style="background-color:#ffffff">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="well">
+                                    <div class="row">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label"><b>หมายเลข โทรศัพท์ :</b></label>
+                                                        <label class="col-md-8 control-label" style="text-align:left"><b>021345678</b></label>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">สถานที่ติดตั้ง :</label>
+                                                        <label class="col-md-8 control-label" style="text-align:left">88/8 หมู่บ้าน แสนสุข เขตบางบอน กรุงเทพ</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="well">
+                                    <div class="row">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label"><b>หมายเลข โทรศัพท์ :</b></label>
+                                                        <label class="col-md-8 control-label" style="text-align:left"><b>021345678</b></label>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">สถานที่ติดตั้ง :</label>
+                                                        <label class="col-md-8 control-label" style="text-align:left">88/8 หมู่บ้าน แสนสุข เขตบางบอน กรุงเทพ</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>ข้อมูลใหม่</h4>
+                    <div class="well">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>เหตุผล</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>หมายเหตุ</label>
+                                    <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <h4>เปลี่ยนแปลงหมายเลข (Change Number)</h4>
+                    <div class="well">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>Project Code</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>หมายเลขโทรศัพท์ที่ต้องการ</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" class="btn btn-success" value="..." />
+                            </div>
+                        </div>
+
+                    </div>
+                    <h4>เลือก Price Plan</h4>
+                    <div class="well" style="background-color:#ffffff">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>เหตุผล</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group imp">
+                                    <label>Price Plan</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <h4>Onetime Change</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <div class="col-md-10">
+                                        <label>Change Telephone Number 500 Bath/Number(OIO8)</label>
+                                    </div>
+                                    <input type="checkbox" id="chkchangtel" ng-change="chToggle()" ng-model="chkchangtel"  class="toggleactive">                                    
+                                    <!--<div>{{chkchangtel}}</div>
+                                    <div id="console-event"></div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>Change Installation address 1,500 Bath/Number(OIO5)</label>
+                                    </div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>Re-Connect 500 Bath(OIO7)</label>
+                                    </div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <h4>ส่วนลดอื่นๆ</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>ส่วนลด One Time Change</label>
+                                    <select class="form-control">
+                                        <option>ไม่รับส่วนลด</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>ส่วนลดค่าใช้บริการ (RC & UC)</label>
+                                    <select class="form-control">
+                                        <option>ไม่รับส่วนลด</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>จำนวนเดือน</label>
+                                    <select class="form-control">
+                                        <option>ไม่รับส่วนลด</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>Free Porate</label>
+                                    <select class="form-control">
+                                        <option>ใช่</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>ส่วนลดค่าบริการรายเดือน (RC Only)</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>จำนวนเดือน</label>
+                                    <select class="form-control">
+                                        <option>ไม่รับส่วนลด</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>Free Porate</label>
+                                    <select class="form-control">
+                                        <option>ใช่</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>ส่วนลดค่าใช้ส่วนเกิน (UC Only)</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>จำนวนเดือน</label>
+                                    <select class="form-control">
+                                        <option>ไม่รับส่วนลด</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>Free Porate</label>
+                                    <select class="form-control">
+                                        <option>ใช่</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group imp">
+                                    <label>ส่วนลดค่าโทรทางไกลต่างประเทศ IDD 006</label>
+                                    <select class="form-control">
+                                        <option>เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div ng-include="template.effectivepriceplan"></div>
+                    </div>
+                    <h4>บริการพิเศษ(Feature)ที่ใช้งานอยู่ปัจจุบัน</h4>
+                    <div class="well" style="background-color:#ffffff">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>Caller Id(CLI)</label>
+                                    </div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>CallAtNight Fixedline plus Free ONNET(FNOO)</label>
+                                    </div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>บริการพิเศษ(Feature)ที่ท่านสามารถใช้บริการได้</h4>
+                    <div class="well" style="background-color:#ffffff">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Call Barring - Mobile and Local Calls Only(BITD)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Call Barring - Local Calls Use Only(BIO4)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Call Barring - Long Distance Operator(BI12)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Call Barring - Long Distance&Mobile(BSTD)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Outbound Call Barring(BAR)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label>Bar Code = </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>R1 งดโทรต่างประเทศ AUTO & 006(BISD)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>R1 งดโทรปทใกล้เคียง OPE & 006(BI13)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Call Forward for Hunting No Charge(TRFC)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Call Forward to Announcement for Hunting(TRFA)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Call Forwarding Uncondition(TRF)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Call Waiting(WAT)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Abbreviated Dialog(ABB)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Conference Call(CFR)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Hunting(Random without Hunting,HRWO)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Hunting(Sequence without Hunting,HSWO)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Voice Mail Type 1(VMA1)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Voice Mail Type 3(VMA3)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Fixedline Plus Easy Moving(MOVP1)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10"><label>Call Forward to Moblile on Busy(CFMB)</label></div>
+                                    <input type="checkbox" class="toggleactive" data-toggle="toggle">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-buttons">
+                        <div class="form-group">
+                            <input type="submit" value="ยินยันการแก้ไข" class="btn btn-success">
+                            <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="parent.jQuery.fancybox.close()">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

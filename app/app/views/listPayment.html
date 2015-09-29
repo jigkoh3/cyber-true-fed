@@ -1,0 +1,91 @@
+﻿<div ng-include="template.landingheader"></div>
+
+<div class="container" id="changeOwnershipContent">
+    <div class="content-top">
+    </div>
+    <div class="content m_content">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+
+            <h5 class="">Order Summary</h5>
+            <br />
+            <div class="content-body">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr class="row">
+                                <th class="col-md-8" style="background-color: #c8bbbb; "><span> รายการรับชำระ</span></th>
+                                <th class="col-md-3" style="background-color: #c8bbbb; "><span> ราคา</span></th>
+
+                            </tr>
+                            <tr class="row">
+                                <th class="col-md-8">1. 3000036063  iPhone 6 Plus, 16GB, Gold</th>
+                                <th class="col-md-3">29,450.00 <span> &nbsp; บาท</span></th>
+
+                            </tr>
+                            <tr class="row">
+                                <th>
+                                    <i class="fa fa-plus-circle fa-lg fa-2x" style="color:red"></i>
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr class="row">
+                                
+                                <th class="col-md-8 form-control-feedback" style="text-align:right;" >
+                                    จำนวนเงินที่ต้องชำระ
+                                </th>
+                                <th class="col-md-3">
+                                    29,450.00 <span> &nbsp; บาท</span>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-8">
+                        <h5>ประเภทการรับชำระ</h5>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <input type="radio" name="typepayment" checked value="N"> เงินสด
+                        </div>
+                        <div class="col-md-4">
+                            <input type="radio" name="typepayment" value="B"> บัตรเครดิตเต็มจำนวน
+                        </div>
+                        <div class="col-md-4">
+                            <input type="radio" name="typepayment" value="O"> บัตรเครดิตผ่อนจ่าย
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-12 form-buttons">
+                    <div class="row">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="submit" ng-click="newCustomer()" value="ตกลง" class="btn btn-success">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

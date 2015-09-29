@@ -1,0 +1,153 @@
+﻿<div ng-include="template.landingheader"></div>
+<div class="container" id="deBundleContent">
+    <div class="content m_content">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <h4>Debundle (Convergence)</h4>
+            <div id="convergence">
+                <h4>ค้นหาข้อมูล</h4>
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>ค้นหาตาม</label>
+                                <select class="form-control">
+                                    <option>Moblie number</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>หมายเลข</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <button type="button" class="btn btn-success" ng-click="searchConver()">ค้นหา</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="isSearch == true">
+                    <div ng-include="template.customerprofile" scope="" onload=""></div>
+                    <h4>ข้อมูลปัจจุบัน</h4>
+                    <div class="well" style="background-color:#ffffff">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="well">
+                                    <div class="row">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label"><b>หมายเลข True Life :</b></label>
+                                                        <label class="col-md-4 control-label" style="text-align:left;"><b>654321</b></label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">Convergence Profile :</label>
+                                                        <label class="col-md-4 control-label" style="text-align:left;">SOOKMX3</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">หมายเลข True Online:</label>
+                                                        <label class="col-md-4 control-label" style="text-align:left;">91108987654</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">หมายเลข Fixedline Plus:</label>
+                                                        <label class="col-md-4 control-label" style="text-align:left;">-</label>
+                                                    </div>
+                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label class="col-md-4 control-label">หมายเลขสมาชิก True Visions:</label>
+                                                            <label class="col-md-4 control-label" style="text-align:left;">165427167</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label class="col-md-4 control-label">หมายเลขโทรศัพท์ True Move H:</label>
+                                                            <label class="col-md-4 control-label" style="text-align:left;">-</label>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="well">
+                                    <div class="row">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label"><b>หมายเลข True Life :</b></label>
+                                                        <label class="col-md-4 control-label" style="text-align:left;"><b>654321</b></label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">Convergence Profile :</label>
+                                                        <label class="col-md-4 control-label" style="text-align:left;">SOOKMX3</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">หมายเลข True Online:</label>
+                                                        <label class="col-md-4 control-label" style="text-align:left;">91108987654</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-4 control-label">หมายเลข Fixedline Plus:</label>
+                                                        <label class="col-md-4 control-label" style="text-align:left;">-</label>
+                                                    </div>
+                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label class="col-md-4 control-label">หมายเลขสมาชิก True Visions:</label>
+                                                            <label class="col-md-4 control-label" style="text-align:left;">165427167</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label class="col-md-4 control-label">หมายเลขโทรศัพท์ True Move H:</label>
+                                                            <label class="col-md-4 control-label" style="text-align:left;">0896541654</label>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12 form-buttons">
+                        <div class="form-group">
+
+                            <input type="submit" value="ยินยันการแก้ไข" class="btn btn-success">
+                            <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="parent.jQuery.fancybox.close()">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
