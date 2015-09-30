@@ -23,7 +23,7 @@
                         "contact-mobile-number": "",
                         "id-type": "",
                         "id-number": "1189900130607",
-                        "require-approve-code": "N",
+                        "require-approve-code": "Y",
                         "customer-id": "33896",
                         "customer-level": "NON-TOP",
                         "cvss-process-request": "N",
