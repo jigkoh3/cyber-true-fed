@@ -304,12 +304,14 @@
                 else {
                     angular.element(document.getElementById('' + $('#divID').val())).scope().SetCardValue(args);
                 }
+                $('#loadingReadCardLastest').hide();
             }
             if (state == 'Error') {
                 $('.idBtnReadCard').prop('disabled', false);
                 $('#loadingReadCard').hide();
                 $('#loadingReadCard2').hide();
                 $('#loadingReadCard3').hide();
+                $('#loadingReadCardLastest').hide();
                 //alert(state + ' : ' + args);
                 angular.element(document.getElementById('' + $('#divID').val())).scope().readCardError(args);
 
