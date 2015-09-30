@@ -291,6 +291,8 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
             $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
             $.fancybox.close();
+
+                $scope.changereqType("ADD_IRIDD");
             setTimeout(function () {
                 $('#idBindDataAgain').click();
             }, 500);
@@ -662,6 +664,8 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
             errorFUTURE = isNull($('.dateManual').val());
         }
 
+        console.log(errorAuthorizeID,errorAuthorizeName, errorFUTURE);
+
         //check error validate
         if (errorAuthorizeID) {
             showValidate("CitizenID2", ValidateMsgService.data.authorizeIdMsg);
@@ -674,6 +678,7 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
             if (isFocus) {
                 return false;
             } else {
+                //$scope.isValidateSave = false;
                 return true;
             }
         }
@@ -1233,7 +1238,7 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
     $scope.afterCloseWarning = function () {
         if ($scope.isValidateSave == false) {
             $('#referralcodes').focus();
-            $scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = "";
+            //$scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = "";
             isFocus = false;
         } else {
             isFocus = true;

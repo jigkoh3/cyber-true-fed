@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div ng-show="shopType=='1' && isSecondAuthen == 'false'">
+                                    <div ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true">
                                         <p>&nbsp;</p>
                                         <div class="row">
                                             <div class="col-md-4"><b>ประเภทอุปกรณ์ <span style="color:red;">*</span> </b></div>
@@ -112,7 +112,7 @@
                                         </div>
                                         <p></p>
                                     </div>
-                                    <div ng-show="shopType=='1' && isSecondAuthen == 'false'">
+                                    <div ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true">
                                         <div class="row">
                                             <div class="col-md-4"><b>Product Code</b></div>
                                         </div>
@@ -181,7 +181,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <span ng-show="shopType === '1' && isSecondAuthen === 'false' | shopType === '0'">
+                            <span ng-show="(shopType === '1' && getAuthen['isSecondAuthen'] === false) || shopType === '0'">
                                 <input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000); setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 2500);" ng-click="submit()" class="btn btn-success" />
                             </span>
                             <span>
