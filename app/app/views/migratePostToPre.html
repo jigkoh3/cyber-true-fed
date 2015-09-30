@@ -31,14 +31,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group imp">
                                         <label>หมายเลขบัตรประชาชน / พาสปอร์ต </label>
-                                        <input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" disabled placeholder="" class="form-control numberic" maxlength="13">
+                                        <input ng-numeric-input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" ng-disabled="!getSIMDataFailed" class="form-control" maxlength="13">
                                         
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>ประเภทของบัตร <span style="color:red;">*</span></label>
-                                        <select class="form-control" disabled>
+                                        <select class="form-control" ng-disabled="!getSIMDataFailed">
                                             <option value="0">บัตรประชาชน</option>
                                         </select>
                                     </div>
@@ -50,7 +50,7 @@
                                     <div class="form-group">
                                         <label>คำนำหน้า <span style="color:red;">*</span></label>
                                         <div id="placeholders">
-                                            <select class="form-control" disabled ng-model="data.customerProfile['title']">
+                                            <select class="form-control" ng-model="data.customerProfile['title']" ng-disabled="!getSIMDataFailed">
                                                 <option value="Mr">นาย</option>
                                                 <option value="Mrs">นาย</option>
                                                 <option value="Miss">นางสาว</option>
@@ -61,13 +61,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>ชื่อ <span style="color:red;">*</span></label>
-                                        <input type="text" id="firstNameTH3" ng-model="data.customerProfile['firstname']" class="form-control" disabled>
+                                        <input type="text" id="firstNameTH3" ng-model="data.customerProfile['firstname']" class="form-control" ng-disabled="!getSIMDataFailed">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>นามสกุล <span style="color:red;">*</span></label>
-                                        <input type="text" id="lastNameTH3" ng-model="data.customerProfile['lastname']" class="form-control" disabled>
+                                        <input type="text" id="lastNameTH3" ng-model="data.customerProfile['lastname']" class="form-control" ng-disabled="!getSIMDataFailed">
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                     <div class="form-group">
                                         <label>เพศ <span style="color:red;">*</span></label>
                                         <div id="placeholders">
-                                            <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" disabled>
+                                            <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" ng-disabled="!getSIMDataFailed">
                                                 <option value="M">ชาย</option>
                                                 <option value="F">หญิง</option>
                                             </select>
@@ -86,14 +86,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>วัน/เดือน/ปีเกิด <span style="color:red;">*</span></label>
-                                        <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" disabled>
+                                        <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" ng-disabled="!getSIMDataFailed">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control date-picker" ng-model="data.customerProfile['id-expire-date']" ng-disabled="disableIdCardExpire(data.customerProfile['id-expire-date'])" id="expireDate">
+                                        <input id="expireDate" type="text" class="form-control date-picker" ng-model="data.customerProfile['id-expire-date']" ng-disabled="isIdCardExpired(data.customerProfile['id-expire-date'])">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
