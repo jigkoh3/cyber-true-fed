@@ -525,8 +525,8 @@
             'message': msg,
             'message-code': '',
             'message-type': 'WARNING',
-            'en-message': '',
-            'th-message': '',
+            'en-message': msg,
+            'th-message': msg,
             'technical-message': ''
         });
     };

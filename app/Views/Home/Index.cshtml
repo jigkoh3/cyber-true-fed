@@ -41,13 +41,14 @@
                     ShowData(str);
                 }
                 catch (err) {
-                    $('.idBtnReadCard').prop('disabled', false);
+                     $('.idBtnReadCard').prop('disabled', false);
                     var loading = $('#loadingReadCard');
                     if ($('#ReadAuthorize').val() == 'true') {
                         loading = $('#loadingReadCard2');
                     }
                     else if ($('#ReadAuthorize').val() == 'readNewOwnerReadCard') {
                         loading = $('#loadingReadCard3');
+
                     }
                     else {
                         loading = $('#loadingReadCard');
