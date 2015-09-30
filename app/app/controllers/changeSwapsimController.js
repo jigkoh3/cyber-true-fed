@@ -168,7 +168,7 @@
                 setTimeout(function() {
                     var srcPDF = url;
                     document.getElementById('iframePDF').src = url + '?clearData=N';
-                    if ($scope.shopType == "1") {
+                    if ($scope.shopType == "1" && $scope.isSecondAuthen == "false") {
                         setTimeout(function() {
                             document.getElementById('iframePDF').src = 'javascript:window.print();'
                         }, 2000);
