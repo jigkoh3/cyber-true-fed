@@ -4,12 +4,23 @@
     <div class="content m_content">
         <div class="col-md-1"></div>
         <div class="col-md-11">
-            <div ng-include="template.header"></div>
+
+            <div ng-include="template.header" ng-hide="SubNo === 'null'"></div>
+            <div class="profile" style="width:50%;" ng-hide="SubNo !== 'null'">
+                <br />
+                <div class="row">
+                    <div class="col-xs-5 text-right" style="padding-top:9px;"><b>หมายเลขที่ขอใช้บริการ</b> <span style="color:red;">*</span></div>
+                    <div class="col-xs-5 text-right">
+                        <input id="swapSubNo" ng-numeric-input type="text" class="form-control" ng-model="subNoInput" ng-change="onInputSubNo()" maxlength="{{ subNoLength }}" />
+                    </div>
+                </div>
+                <br />
+            </div>
 
             <div class="clearfix"></div>
             <h1 class="content-title">เปลี่ยนจากรายเดือนเป็นเติมเงิน</h1>
                 <div class="content-body">
-                    <div ng-include="template.customerprofile" scope="" onload=""></div>
+                    <div ng-include="template.customerprofile" onload="onCustomerProfileTemplateLoaded()"></div>
                     <h4>ผู้จดทะเบียนเติมเงิน</h4>
                   
                         <div class="well" style="background-color:#ffffff;">
@@ -20,7 +31,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group imp">
                                         <label>หมายเลขบัตรประชาชน / พาสปอร์ต </label>
-                                        <input type="text" id="citizenID3" value="3389225969739" disabled placeholder="" class="form-control numberic" maxlength="13">
+                                        <input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" disabled placeholder="" class="form-control numberic" maxlength="13">
                                         
                                     </div>
                                 </div>
@@ -28,8 +39,7 @@
                                     <div class="form-group">
                                         <label>ประเภทของบัตร <span style="color:red;">*</span></label>
                                         <select class="form-control" disabled>
-                                            <option>บัตรประชาชน</option>
-                                            <!--<option ng-repeat="(key , value) in cardTypeOptions" value="{{key}}">{{value}}</option>-->
+                                            <option value="0">บัตรประชาชน</option>
                                         </select>
                                     </div>
                                 </div>
@@ -40,32 +50,24 @@
                                     <div class="form-group">
                                         <label>คำนำหน้า <span style="color:red;">*</span></label>
                                         <div id="placeholders">
-                                            <select class="form-control" disabled>
-                                                <option>
-                                                    นางสาว
-                                                </option>
+                                            <select class="form-control" disabled ng-model="data.customerProfile['title']">
+                                                <option value="Mr">นาย</option>
+                                                <option value="Mrs">นาย</option>
+                                                <option value="Miss">นางสาว</option>
                                             </select>
                                         </div>
                                     </div>
-                                </div>                                
-                                <div class="col-md-2">
-                                    <label><p></p></label>
-                                    <select class="form-control"
-                                            ng-show="newOwner.prefixTH=='OTHER'"
-                                            ng-model="titleOther"
-                                            ng-options="key as value for (key , value) in titleOtherOptions"
-                                            style="width:100px;"></select>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>ชื่อ <span style="color:red;">*</span></label>
-                                        <input type="text" id="firstNameTH3" value="Nate" disabled name="ชื่อ" class="form-control">
+                                        <input type="text" id="firstNameTH3" ng-model="data.customerProfile['firstname']" class="form-control" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>นามสกุล <span style="color:red;">*</span></label>
-                                        <input type="text" id="lastNameTH3" value="Phutthicha" disabled name="นามสกุล" class="form-control">
+                                        <input type="text" id="lastNameTH3" ng-model="data.customerProfile['lastname']" class="form-control" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -74,9 +76,9 @@
                                     <div class="form-group">
                                         <label>เพศ <span style="color:red;">*</span></label>
                                         <div id="placeholders">
-                                            <select class="form-control" disabled style="width:100px;">
-                                                
-                                                <option>หญิง</option>
+                                            <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" disabled>
+                                                <option value="M">ชาย</option>
+                                                <option value="F">หญิง</option>
                                             </select>
                                         </div>
                                     </div>
@@ -84,14 +86,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>วัน/เดือน/ปีเกิด <span style="color:red;">*</span></label>
-                                        <input type="text" value="26/10/2552" disabled class="form-control date-picker" id="birthDay">
+                                        <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" disabled>
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                        <input type="text" value="25/10/60" disabled placeholder="" class="form-control date-picker" id="expireDay">
+                                        <input type="text" class="form-control date-picker" ng-model="data.customerProfile['id-expire-date']" ng-disabled="disableIdCardExpire(data.customerProfile['id-expire-date'])" id="expireDate">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -133,7 +135,7 @@
                                         <input type="text" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control">
                                     </div>
                                     <div class="col-md-1">
-                                        <button ng-click="selectedPricePlan3()"                                                
+                                        <button ng-click="selectedPricePlan()"
                                                 href="#modalPriceplanOwnership"
                                                 id="modalnewpriceplan"
                                                 class="btn"
@@ -184,7 +186,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group imp">
                                                 <label>รหัสไปรษณีย์ </label>
-                                                <input type="text" value="17000" name="postcodes" ng-model="postcodes" class="form-control numberic" required>
+                                                <input type="text" ng-model="data.customerAddress['zip']" class="form-control numberic" required>
                                                 <span class="error" style="color:red;" ng-show="customerspre.postcodes.$error.required">
                                                     Required!
                                                 </span>
@@ -193,7 +195,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group imp">
                                                 <label>จังหวัด </label>
-                                                <input type="text" value="ชัยนาท" name="provinces" ng-model="provinces" class="form-control" required>
+                                                <input type="text" ng-model="data.customerAddress['province']" class="form-control" required>
                                                 <span class="error" style="color:red;" ng-show="customerspre.provinces.$error.required">
                                                     Required!
                                                 </span>
@@ -202,7 +204,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group imp">
                                                 <label>เขต / อำเภอ </label>
-                                                <input type="text" value="เมือง" name="aumpers" ng-model="aumpers" class="form-control" required>
+                                                <input type="text" ng-model="data.customerAddress['district']" class="form-control" required>
                                                 <span class="error" style="color:red;" ng-show="customerspre.aumpers.$error.required">
                                                     Required!
                                                 </span>
@@ -211,7 +213,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group imp">
                                                 <label>แขวง / ตำบล </label>
-                                                <input type="text" value="ในเมือง" name="tumbols" ng-model="tumbols" class="form-control" required>
+                                                <input type="text" ng-model="data.customerAddress['sub-district']" class="form-control" required>
                                                 <span class="error" style="color:red;" ng-show="customerspre.tumbols.$error.required">
                                                     Required!
                                                 </span>
@@ -223,10 +225,10 @@
                                             <div class="form-group">
                                                 <div class="checkbox checkbox-circle2 checkbox-inline">
                                                     <span>บ้านเลขที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
-                                                    <input type="checkbox" ng-model="bantypeMail" ng-change="bantypeMail?mailAddress.homeNumber='-':mailAddress.homeNumber=''" class="styled">
+                                                    <input type="checkbox" ng-model="noHomeNumber" class="styled">
                                                     <label>ไม่มีบ้านเลขที่ </label>
                                                 </div>
-                                                <input type="text" ng-model="mailAddress.homeNumber" ng-disabled="bantypeMail" name="homenos" class="form-control numberic" required>
+                                                <input type="text" ng-model="data.customerAddress['number']" ng-disabled="noHomeNumber" name="homenos" class="form-control numberic" required>
                                                 <span class="error" style="color:red;" ng-show="customerspre.homenos.$error.required">
                                                     Required!
                                                 </span>
@@ -236,10 +238,10 @@
                                             <div class="form-group">
                                                 <div class="checkbox checkbox-circle2 checkbox-inline">
                                                     <span>หมู่ที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
-                                                    <input type="checkbox" ng-model="mootypeMail" ng-change="mootypeMail?mailAddress.moo='-':mailAddress.moo=''" class="styled">
+                                                    <input type="checkbox" ng-model="noHomeMoo" class="styled">
                                                     <label>ไม่มีหมู่ที่ </label>
                                                 </div>
-                                                <input type="text" ng-model="mailAddress.moo" ng-disabled="mootypeMail" name="homemoos" class="form-control" required>
+                                                <input type="text" ng-model="data.customerAddress['moo']" ng-disabled="noHomeMoo" class="form-control" required>
                                                 <span class="error" style="color:red;" ng-show="customerspre.homemoos.$error.required">
                                                     Required!
                                                 </span>
@@ -248,13 +250,13 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>หมู่บ้าน</label>
-                                                <input type="text" name="หมู่บ้าน" value="บ้านกล้วย" class="form-control numberic">
+                                                <input type="text" class="form-control numberic" ng-model="data.customerAddress['village']">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>อาคาร</label>
-                                                <input type="text" value="-" name="อาคาร" class="form-control">
+                                                <input type="text" class="form-control" ng-model="data.customerAddress['building-name']">
                                             </div>
                                         </div>
                                     </div>
@@ -262,25 +264,25 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>ชั้น</label>
-                                                <input type="text" name="ชั้น" value="-" class="form-control">
+                                                <input type="text" class="form-control" ng-model="data.customerAddress['building-floor']">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>เลขห้อง</label>
-                                                <input type="text" name="เลขห้อง" value="-" class="form-control">
+                                                <input type="text" class="form-control" ng-model="data.customerAddress['building-room']">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>ซอย</label>
-                                                <input type="text" value="อารีย์" name="ซอย" class="form-control">
+                                                <input type="text" class="form-control" ng-model="data.customerAddress['soi']">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group imp">
                                                 <label>ถนน</label>
-                                                <input type="text" value="พหลโยธิน" name="roadcode" ng-model="roadcode" class="form-control" required>
+                                                <input type="text" class="form-control" ng-model="data.customerAddress['street']" required>
                                                 <span class="error" style="color:red;" ng-show="customerspre.roadcode.$error.required">
                                                     Required!
                                                 </span>

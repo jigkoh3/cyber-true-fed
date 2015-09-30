@@ -10,7 +10,7 @@
 
     // Prepare page states
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
-    $scope.shopType = '0';
+    
 
 
     // Initialize variables
@@ -168,7 +168,7 @@
                 setTimeout(function() {
                     var srcPDF = url;
                     document.getElementById('iframePDF').src = url + '?clearData=N';
-                    if ($scope.shopType == "1") {
+                    if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
                         setTimeout(function() {
                             document.getElementById('iframePDF').src = 'javascript:window.print();'
                         }, 2000);
@@ -388,7 +388,7 @@
     var authenticate = function() {
         AuthenService.getAuthen(function(authResult) {
             $scope.getAuthen = authResult;
-
+            $scope.shopType = authResult.shopType;
             //console.log(authResult);
 
 

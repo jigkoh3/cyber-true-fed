@@ -1,7 +1,7 @@
 smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
 	var demo = SystemService.demo;
 
-	this.getSIMData = function(msisdn, fnCallback) {
+	this.getData = function(msisdn, fnCallback) {
 		var that = this;
 
 		if (utils.isEmpty(msisdn)) {
@@ -9,7 +9,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
 		}
 
 		var cb = function (result) {
-			result.data = that.decorateSIMData(result.data);
+			result.data = that.decorateData(result.data);
 
 			fnCallback(result);
 		};
@@ -143,7 +143,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
 		}
 	};
 
-	this.decorateSIMData = function(data) {
+	this.decorateData = function(data) {
 		var customerProfile = angular.copy(utils.getObject(data, 'response-data.customer'));
 		var productDetails = utils.getObject(customerProfile, 'installed-products.0');
 
@@ -184,7 +184,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
 		return response;
 	};
 
-	this.submitSwapSIMOrder = function(payload, fnCallback) {
+	this.submitOrder = function(payload, fnCallback) {
 		var request = {
 			'order': {
 				'order-id': payload.orderData.orderId,
