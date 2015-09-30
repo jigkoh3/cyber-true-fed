@@ -535,7 +535,12 @@
         $scope.cardInfo = eval(result);
 
         $('#CitizenID').val($scope.cardInfo.CitizenID);
+
         $scope.onInputId();
+
+        setTimeout(function () {
+           $('#idBindDataAgain').click();
+        }, 1000);
     };
 
     //start----------- camera ----------------
