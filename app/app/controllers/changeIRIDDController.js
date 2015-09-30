@@ -711,7 +711,7 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
                 //if (!$scope.data.orderRequest['order']['order-items'][0]['primary-order-data']['OFFER-GROUP-IR']) {
                 //    alert('require. OFFER-GROUP-IR');
                 //}
-                $scope.irChecked();
+               // $scope.irChecked();
                 $scope.data.orderRequest['order']['order-items'][0]['primary-order-data']['OFFER-GROUP-IR'] = $scope.offerGroup;
             }
 
