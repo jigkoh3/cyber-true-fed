@@ -223,7 +223,7 @@ smartApp.controller('changeOwnershipController', function (
         setTimeout(function(){
             $('#idBindDataAgain').click();
         }, 1000);
-         $.fancybox.close();
+        $.fancybox.close();
     };
 
     $scope.changeType = function (customerType) {
