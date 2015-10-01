@@ -1143,6 +1143,7 @@ smartApp.controller('ChangePricePlanController', function (
         return bool;
     };
 
+
       $scope.isNumberVolume = false;
     $scope.onInputVolume = function (charCode) {
         //console.log(charCode);
@@ -1166,7 +1167,7 @@ smartApp.controller('ChangePricePlanController', function (
         $scope.isNumberOccurrence = !bool;
         return bool;
     };
-    
+
     $scope.isNumberDuration = false;
     $scope.onInputDuration = function (charCode) {
         //console.log(charCode);

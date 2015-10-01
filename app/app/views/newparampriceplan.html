@@ -26,6 +26,7 @@
                             <input type="text" id="txtVolume"
                                    ng-show="parameter.Volume>=1 || parameter.Volume == ''"
                                    ng-model="saveParamData.Volume"
+                                   ng-keyup="onInputVolume($event.keyCode)"
                                    placeholder=""
                                    maxlength="10"
                                    class="form-control numberic" style="width:110px;"
@@ -58,7 +59,7 @@
                                     ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2'"></select>
 
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -82,6 +83,7 @@
                             <input type="text" id="txtMonetary"
                                    ng-show="parameter.Monetary>=1 || parameter.Monetary==''"
                                    ng-model="saveParamData.Monetary"
+                                   ng-keyup="onInputMonetary($event.keyCode)"
                                    placeholder=""
                                    maxlength="10"
                                    class="form-control numberic" style="width:110px;"
@@ -108,7 +110,7 @@
                         <div class="col-md-3">
                             <input type="text" class="form-control" readonly="readonly" value="Baht" />
                         </div>
-                        
+
                     </div>
                 </div>
                 &nbsp;
@@ -131,6 +133,7 @@
                             <input type="text" id="txtOccurrence"
                                    ng-show="parameter.Occurrence>=1 || parameter.Occurrence == ''"
                                    ng-model="saveParamData.Occurrence"
+                                   ng-keyup="onInputOccurrence($event.keyCode)"
                                    placeholder=""
                                    maxlength="10"
                                    class="form-control numberic" style="width:110px;"
@@ -157,7 +160,7 @@
                         <div class="col-md-3">
                             <input type="text" class="form-control" readonly="readonly" value="Occurrence" />
                         </div>
-                        
+
                     </div>
                 </div>
                 &nbsp;
@@ -180,6 +183,7 @@
                             <input type="text" id="txtDuration"
                                    ng-show="parameter.Duration>=1 || parameter.Duration == ''"
                                    ng-model="saveParamData.Duration"
+                                   ng-keyup="onInputDuration($event.keyCode)"
                                    placeholder=""
                                    maxlength="10"
                                    class="form-control numberic" style="width:110px;"
@@ -208,7 +212,7 @@
                                     ng-model="capMaxParameterList['duration-capmax-uom']"
                                     ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'"></select>
                         </div>
-                        
+
                     </div>
                 </div>
                 &nbsp;
@@ -230,7 +234,7 @@
 
                     <div class="col-md-1 right">
                         <span class="input-group right" style="background-color: #37B624;">
-                            <!--<a href="#modalCUG" 
+                            <!--<a href="#s" 
                                class="btn" 
                                onclick="return false;" 
                                data-toggle="modal">

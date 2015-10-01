@@ -125,7 +125,7 @@
                 'firstname': $scope.data.customerProfile['firstname'],
                 'lastname': $scope.data.customerProfile['lastname'],
                 'customerType': customerType,
-                'authorizeFullName': '',
+                'authorizeFullName': $('#authorizeFullName').val(),
                 'id-number': $scope.data.customerProfile['id-number'],
                 'product-id-number': $scope.SubNo,
                 'ouId': $scope.data.simData['ouId'],
@@ -414,7 +414,7 @@
             var dealerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
 
             SystemService.getOrderId($scope.getAuthen.channel, dealerCode, function(order) {
-                SystemService.hideLoading();
+                //SystemService.hideLoading();
 
                 orderData = order;
 
@@ -495,7 +495,7 @@
                     } else {
                         setTimeout(function() {
                             SystemService.showAlert(displayMsg);
-                        }, 1000);
+                        }, 1200);
                     }
                 });
             });
@@ -530,7 +530,21 @@
             'technical-message': ''
         });
     };
+$scope.SetCardValue2 = function (result) {
+        $('#loadingReadCard2').hide();
 
+        $scope.cardInfo2 = eval(result);
+        console.log($scope.cardInfo2);
+
+        $('#CitizenID2').val($scope.cardInfo2.CitizenID);
+        $('#authorizeFullName').val($scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + " " + $scope.cardInfo2.LastNameTH);
+
+        $scope.varCardInfo2.firstName = $scope.cardInfo2.FirstNameTH;
+        $scope.varCardInfo2.lastName = $scope.cardInfo2.LastNameTH;
+
+        //$scope.CitizenID2 = $scope.cardInfo2.CitizenID;
+        //$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
+    }
     $scope.SetCardValue = function(result) {
         $scope.cardInfo = eval(result);
 
