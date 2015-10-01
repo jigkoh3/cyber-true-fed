@@ -414,7 +414,7 @@
             var dealerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
 
             SystemService.getOrderId($scope.getAuthen.channel, dealerCode, function(order) {
-                SystemService.hideLoading();
+                //SystemService.hideLoading();
 
                 orderData = order;
 
@@ -495,7 +495,7 @@
                     } else {
                         setTimeout(function() {
                             SystemService.showAlert(displayMsg);
-                        }, 1000);
+                        }, 1200);
                     }
                 });
             });
