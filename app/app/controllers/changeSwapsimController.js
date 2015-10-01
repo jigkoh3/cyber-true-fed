@@ -530,7 +530,21 @@
             'technical-message': ''
         });
     };
+$scope.SetCardValue2 = function (result) {
+        $('#loadingReadCard2').hide();
 
+        $scope.cardInfo2 = eval(result);
+        console.log($scope.cardInfo2);
+
+        $('#CitizenID2').val($scope.cardInfo2.CitizenID);
+        $('#authorizeFullName').val($scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + " " + $scope.cardInfo2.LastNameTH);
+
+        $scope.varCardInfo2.firstName = $scope.cardInfo2.FirstNameTH;
+        $scope.varCardInfo2.lastName = $scope.cardInfo2.LastNameTH;
+
+        //$scope.CitizenID2 = $scope.cardInfo2.CitizenID;
+        //$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
+    }
     $scope.SetCardValue = function(result) {
         $scope.cardInfo = eval(result);
 
