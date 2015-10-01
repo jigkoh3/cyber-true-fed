@@ -216,11 +216,11 @@
                             <div class="col-md-4">
                                 <div class="form-group" ng-form="personnalid">
                                     <label>หมายเลขบัตรประชาชน / พาสปอร์ต <span style="color:red;">*</span></label>
-                                    <div class="input-group">
+                                    <div class="input-group" ng-submit="onInputIdLastest3()">
                                         <input type="text"
                                                id="citizenID3"
                                                ng-disabled="!isLastestUser && (shopType=='1' && getAuthen['isSecondAuthen'] == true)"
-                                               ng-change="onInputCitizenID3()"
+                                               ng-keyup="($event.keyCode==13 && onInputIdLastest3()); onInputIdLastestKeyUp3();"
                                                ng-blur="onCheckInputForVerify()"
                                                ng-model="customer['id-number']"
                                                placeholder=""

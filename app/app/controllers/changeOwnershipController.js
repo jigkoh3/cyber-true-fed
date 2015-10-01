@@ -892,6 +892,32 @@ smartApp.controller('changeOwnershipController', function (
             $scope.onInputCitizenID3();
         }
     };
+    $scope.onInputIdLastest3 = function () {
+        console.log($('#citizenID3').val().length);
+        var cid = $('#citizenID3').val();
+
+        if (cid.length >= 9) {
+            //setTimeout(function () {
+            //    //$.fancybox.close();
+            //}, 1000);
+            
+            $scope.customer['id-number'] = cid;
+            $scope.onInputCitizenID3();
+        }
+    };
+    $scope.onInputIdLastestKeyUp3 = function () {
+        console.log($('#citizenID3').val().length);
+        var cid = $('#citizenID3').val();
+
+        if (cid.length == 13) {
+            //setTimeout(function () {
+            //    //$.fancybox.close();
+            //}, 1000);
+            
+            $scope.customer['id-number'] = cid;
+            $scope.onInputCitizenID3();
+        }
+    };
     $scope.secondAuthenDataLastest = {};
     $scope.openSSOLastest = function () {
         var openDialog = function (uri, name, options, closeCallback) {
