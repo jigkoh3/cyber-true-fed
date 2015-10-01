@@ -28,9 +28,26 @@
                                    ng-model="saveParamData.Volume"
                                    placeholder=""
                                    maxlength="10"
-                                   class="form-control numberic" style="width:110px;">
+                                   class="form-control numberic" style="width:110px;"
+                                   ng-keyup="onInputVolume($event.keyCode)">
 
                         </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        
+                        <div class="col-md-3 hidden-sm">
+                            
+                        </div>
+                        <div class="col-md-5 hidden-sm" >
+                            
+                        </div>
+                         <div class="col-md-4">
+                        <span ng-show="isNumberVolume" style="color:red;">
+                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                        </span>
+                    </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Volume cap max UOM <span style="color:red;">*</span> </label>
@@ -41,7 +58,9 @@
                                     ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2'"></select>
 
                         </div>
+                        
                     </div>
+
                 </div>
                 &nbsp;
                 <div ng-show="parameter.Monetary != 'hide'">
@@ -65,15 +84,31 @@
                                    ng-model="saveParamData.Monetary"
                                    placeholder=""
                                    maxlength="10"
-                                   class="form-control numberic" style="width:110px;">
+                                   class="form-control numberic" style="width:110px;"
+                                   ng-keyup="onInputMonetary($event.keyCode)">
 
                         </div>
+                    </div>
+                    <div class="form-group">
+                        
+                        <div class="col-md-3 hidden-sm">
+                            
+                        </div>
+                        <div class="col-md-5 hidden-sm" >
+                            
+                        </div>
+                         <div class="col-md-4">
+                        <span ng-show="isNumberMonetary" style="color:red;">
+                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                        </span>
+                    </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Monetary cap max UOM <span style="color:red;">*</span> </label>
                         <div class="col-md-3">
                             <input type="text" class="form-control" readonly="readonly" value="Baht" />
                         </div>
+                        
                     </div>
                 </div>
                 &nbsp;
@@ -98,15 +133,31 @@
                                    ng-model="saveParamData.Occurrence"
                                    placeholder=""
                                    maxlength="10"
-                                   class="form-control numberic" style="width:110px;">
+                                   class="form-control numberic" style="width:110px;"
+                                   ng-keyup="onInputOccurrence($event.keyCode)">
 
                         </div>
+                    </div>
+                    <div class="form-group">
+                        
+                        <div class="col-md-3 hidden-sm">
+                            
+                        </div>
+                        <div class="col-md-5 hidden-sm" >
+                            
+                        </div>
+                         <div class="col-md-4">
+                        <span ng-show="isNumberOccurrence" style="color:red;">
+                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                        </span>
+                    </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Occurrence cap max UOM <span style="color:red;">*</span> </label>
                         <div class="col-md-3">
                             <input type="text" class="form-control" readonly="readonly" value="Occurrence" />
                         </div>
+                        
                     </div>
                 </div>
                 &nbsp;
@@ -131,8 +182,23 @@
                                    ng-model="saveParamData.Duration"
                                    placeholder=""
                                    maxlength="10"
-                                   class="form-control numberic" style="width:110px;">
+                                   class="form-control numberic" style="width:110px;"
+                                   ng-keyup="onInputDuration($event.keyCode)">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        
+                        <div class="col-md-3 hidden-sm">
+                            
+                        </div>
+                        <div class="col-md-5 hidden-sm" >
+                            
+                        </div>
+                         <div class="col-md-4">
+                        <span ng-show="isNumberDuration" style="color:red;">
+                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                        </span>
+                    </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Duration cap max UOM <span style="color:red;">*</span> </label>
@@ -142,6 +208,7 @@
                                     ng-model="capMaxParameterList['duration-capmax-uom']"
                                     ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'"></select>
                         </div>
+                        
                     </div>
                 </div>
                 &nbsp;

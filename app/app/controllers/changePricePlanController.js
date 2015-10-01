@@ -1143,6 +1143,39 @@ smartApp.controller('ChangePricePlanController', function (
         return bool;
     };
 
+      $scope.isNumberVolume = false;
+    $scope.onInputVolume = function (charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberVolume = !bool;
+        return bool;
+    };
+
+    $scope.isNumberMonetary = false;
+    $scope.onInputMonetary = function (charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberMonetary = !bool;
+        return bool;
+    };
+
+    $scope.isNumberOccurrence = false;
+    $scope.onInputOccurrence = function (charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberOccurrence = !bool;
+        return bool;
+    };
+    
+    $scope.isNumberDuration = false;
+    $scope.onInputDuration = function (charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberDuration = !bool;
+        return bool;
+    };
+
+
     $scope.saveOrder = function () {
         if ($('.dateManual').val()) {
             $scope.saveData['EFFECTIVE-DATE'] = $('.dateManual').val();

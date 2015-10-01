@@ -270,7 +270,13 @@
                     <i class="fa fa-spin fa-spinner"></i>
                     กำลังอ่านข้อมูล...
                 </div>
-                <span id="unMatch" style="color:red;">*หมายเลขบัตร/พาสปอร์ต/เลขที่นิติบุคคลไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง</span>
+
+                <div id="unMatch" style="color:red;">
+                <span ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true">*ระบุหมายเลขบัตรประชาชน/พาสปอร์ต/เลขจดทะเบียนนิติบุคคลไม่ตรงกับข้อมูลในระบบที่ลงทะเบียนไว้<br>กรุณาตรวจสอบข้อมูลอีกครั้ง </span>
+
+                <span ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == false">*ระบุหมายเลขบัตรประชาชน/พาสปอร์ต/เลขจดทะเบียนนิติบุคคลไม่ตรงกับข้อมูลในระบบที่ลงทะเบียนไว้<br>กรุณาติดต่อ True Shopเพื่อแก้ไขข้อมูลให้ถูกต้อง </span>
+                </div>
+                
                 <span id="readCardTimeOut" style="color:red;display:none;"><!--*ไม่พบเครื่องอ่านบัตร--></span>
             </div>
         </div>
