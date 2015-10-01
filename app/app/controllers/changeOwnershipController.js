@@ -879,6 +879,19 @@ smartApp.controller('changeOwnershipController', function (
             $scope.onInputCitizenID3();
         }
     };
+    $scope.onInputIdLastestKeyUp = function () {
+        console.log($('#CitizenIDLastest').val().length);
+        var cid = $('#CitizenIDLastest').val();
+
+        if (cid.length == 13) {
+            //setTimeout(function () {
+            //    //$.fancybox.close();
+            //}, 1000);
+            
+            $scope.customer['id-number'] = cid;
+            $scope.onInputCitizenID3();
+        }
+    };
     $scope.secondAuthenDataLastest = {};
     $scope.openSSOLastest = function () {
         var openDialog = function (uri, name, options, closeCallback) {
