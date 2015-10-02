@@ -36,7 +36,11 @@
                           "product-status": "",
                           "number-status": "A",
                           "account-category": "C",
+<<<<<<< HEAD
                           "account-sub-type": "POSTPAIB",
+=======
+                          "account-sub-type": "POSTPAID",
+>>>>>>> 83dce6edd6ebc46af9d56bb0d8fe7ca7a097b5c9
                           "product-id": "NPSMAP08",
                           "product-name": "NPSMAP08",
                           "product-description": "4G iSmart 499, Voice150m, Net1.5GB, WiFi UNLTD",

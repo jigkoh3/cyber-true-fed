@@ -731,6 +731,7 @@ smartApp.controller('changeOwnershipController', function(
 
                                     if (lastestCustomer.data['display-messages'].length > 0) {
                                         SystemService.showAlert({
+
                                             "message": lastestCustomer.data["display-messages"][0]["message"],
                                             "message-code": lastestCustomer.data["display-messages"][0]["message-code"],
                                             "message-type": "WARNING",
