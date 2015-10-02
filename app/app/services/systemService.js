@@ -1,16 +1,16 @@
-﻿smartApp.service('SystemService', function ($ngBootbox, $filter, $http, ModalService, ValidateMsgService) {
+﻿smartApp.service('SystemService', function($ngBootbox, $filter, $http, ModalService, ValidateMsgService) {
     console.log('SystemService');
     var that = this;
     this.demo = true;
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
-    this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//UAT
+    this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
 
 
     this.pricePlans = [];
     var runTime = new Date().getTime();
 
-    this.checkObj = function (obj, arr) {
+    this.checkObj = function(obj, arr) {
         try {
             var o1 = obj;
             var count = 0;
@@ -25,16 +25,16 @@
             return false;
         }
     };
-    this.validateEmail = function (email) {
+    this.validateEmail = function(email) {
         var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         return re.test(email);
     };
-    this.setValidateEmail = function (email) {
+    this.setValidateEmail = function(email) {
         if (!that.validateEmail(email)) {
             that.showAlert(ValidateMsgService.data.errFormatEmail);
         }
     };
-    this.validatePID = function (pid) {
+    this.validatePID = function(pid) {
         function checkPID() {
             pid = pid.toString().replace(/\D/g, '');
             if (pid.length == 13) {
@@ -61,8 +61,10 @@
         }
     }
 
-    this.callServiceGetByPass = function (target, headers, fnCallback) {
-        var requestData = { target: target };
+    this.callServiceGetByPass = function(target, headers, fnCallback) {
+        var requestData = {
+            target: target
+        };
         var httpRequest = {
             method: "POST",
             //url: '/webui/services/gateway/get.service',
@@ -79,7 +81,7 @@
                 'E2E_REFID': localStorage.getItem('orderId')
             };
         }
-        $http(httpRequest).success(function (data) {
+        $http(httpRequest).success(function(data) {
             console.log('success ::: callServiceGetByPass');
             console.log(requestData.target);
             console.log(data);
@@ -99,7 +101,7 @@
                     msgErr: ""
                 });
             }
-        }).error(function (data, status, errorJSON) {
+        }).error(function(data, status, errorJSON) {
             console.log('error ::: callServiceGet');
             console.log(requestData.target);
             console.log("ERROR");
@@ -110,7 +112,7 @@
                 error: status,
                 msgErr: status == 0 ? "Can not connect!" : ""
             });
-            setTimeout(function () {
+            setTimeout(function() {
                 that.showAlert({
                     "message": "Can not connect!",
                     "message-code": "",
@@ -122,8 +124,10 @@
             }, 1000);
         });
     };
-    this.callServiceGet = function (target, headers, fnCallback) {
-        var requestData = { target: target };
+    this.callServiceGet = function(target, headers, fnCallback) {
+        var requestData = {
+            target: target
+        };
         var httpRequest = {
             method: "POST",
             //url: '/webui/services/gateway/get.service',
@@ -141,7 +145,7 @@
             };
         }
         //console.log(httpRequest);
-        $http(httpRequest).success(function (data) {
+        $http(httpRequest).success(function(data) {
             console.log('success ::: callServiceGet');
             console.log(requestData.target);
             console.log(data);
@@ -160,7 +164,7 @@
                     error: "ERROR",
                     msgErr: ""
                 });
-                setTimeout(function () {
+                setTimeout(function() {
                     that.showAlert({
                         "message": data["display-messages"][0]["message"],
                         "message-code": data["display-messages"][0]["message-code"],
@@ -171,7 +175,7 @@
                     });
                 }, 1000);
             }
-        }).error(function (data, status, errorJSON) {
+        }).error(function(data, status, errorJSON) {
             console.log('error ::: callServiceGet');
             console.log(requestData.target);
             console.log("ERROR");
@@ -192,7 +196,7 @@
             });
         });
     };
-    this.callServicePost = function (data, headers, fnCallback) {
+    this.callServicePost = function(data, headers, fnCallback) {
         console.log(data);
         var httpRequest = {
             method: "POST",
@@ -211,7 +215,7 @@
                 'E2E_REFID': localStorage.getItem('orderId')
             };
         }
-        $http(httpRequest).success(function (data) {
+        $http(httpRequest).success(function(data) {
             console.log(data);
             if (data.status == "SUCCESSFUL") {
                 fnCallback({
@@ -227,7 +231,7 @@
                     error: "ERROR",
                     msgErr: ""
                 });
-                setTimeout(function () {
+                setTimeout(function() {
                     that.showAlert({
                         "message": data["display-messages"][0]["message"],
                         "message-code": data["display-messages"][0]["message-code"],
@@ -238,7 +242,7 @@
                     });
                 }, 1000);
             }
-        }).error(function (dataErr, status) {
+        }).error(function(dataErr, status) {
             console.log("ERROR");
             console.log(status, dataErr);
             fnCallback({
@@ -247,7 +251,7 @@
                 error: status,
                 msgErr: status == 0 ? "Can not connect!" : ""
             });
-            setTimeout(function () {
+            setTimeout(function() {
                 that.showAlert({
                     "message": "Can not connect!",
                     "message-code": "",
@@ -260,7 +264,7 @@
 
         });
     };
-    this.callServicePostByPass = function (data, headers, fnCallback) {
+    this.callServicePostByPass = function(data, headers, fnCallback) {
         console.log(data);
         var httpRequest = {
             method: "POST",
@@ -278,7 +282,7 @@
                 'E2E_REFID': localStorage.getItem('orderId')
             };
         }
-        $http(httpRequest).success(function (data) {
+        $http(httpRequest).success(function(data) {
             console.log(data);
             if (data.status == "SUCCESSFUL") {
                 fnCallback({
@@ -295,7 +299,7 @@
                     msgErr: ""
                 });
             }
-        }).error(function (dataErr, status) {
+        }).error(function(dataErr, status) {
             console.log("ERROR");
             console.log(status, dataErr);
             fnCallback({
@@ -304,7 +308,7 @@
                 error: status,
                 msgErr: status == 0 ? "Can not connect!" : ""
             });
-            setTimeout(function () {
+            setTimeout(function() {
                 that.showAlert({
                     "message": "Can not connect!",
                     "message-code": "",
@@ -319,14 +323,14 @@
     };
 
 
-    this.generateOrderId = function (parameter, fnCallback) {
+    this.generateOrderId = function(parameter, fnCallback) {
         //var target = 'aftersales/order/generate-id?channel=WEBUI&dealer=80000011';
         var target = 'aftersales/order/generate-id' + parameter;
         var headers = {
             'WEB_METHOD_CHANNEL': 'WEBUI'
         };
         if (!that.demo) {
-            that.callServiceGet(target, headers, function (result) {
+            that.callServiceGet(target, headers, function(result) {
                 fnCallback(result.data);
             });
         } else {
@@ -339,13 +343,13 @@
         }
 
     };
-    this.second_authen = function (trx_id, fnCallback) {
+    this.second_authen = function(trx_id, fnCallback) {
         var target = 'security/identity/second_authen?trx_id=' + trx_id + '&app_id=WEBUI';
         var headers = {
             'WEB_METHOD_CHANNEL': 'WEBUI'
         };
         if (!that.demo) {
-            that.callServiceGetByPass(target, headers, function (result) {
+            that.callServiceGetByPass(target, headers, function(result) {
                 fnCallback(result.data);
             });
         } else {
@@ -405,7 +409,7 @@
         }
 
     };
-    this.generatePDF = function (data, fnCallback) {
+    this.generatePDF = function(data, fnCallback) {
         var url = '';
 
 
@@ -416,7 +420,7 @@
                 data: data,
                 timeout: 30000
             };
-            $http(httpRequest).success(function (response) {
+            $http(httpRequest).success(function(response) {
                 url = getURL('report/view/pdf/') + response.reportId + '.action';
                 fnCallback(url);
             });
@@ -427,19 +431,25 @@
     };
 
 
-    this.customerProfile = function (subscriberno, fnCallback) {
-        var requestData = { target: 'profiles/customer/tmv/customerProfile/' + subscriberno };
+    this.customerProfile = function(subscriberno, fnCallback) {
+        var requestData = {
+            target: 'profiles/customer/tmv/customerProfile/' + subscriberno
+        };
         $http({
             method: "POST",
             url: getURL('services/gateway/get.service'),
             data: requestData,
             timeout: 30000,
             //contentType: "application/JSON"
-        }).success(function (data) {
+        }).success(function(data) {
             console.log(data);
             if (data["status-code"] != "2") {
-                var priceplan = $filter('filter')(data.customer["installed-products"], { "product-type": "PRICEPLAN" })[0];
-                var offer = $filter('filter')(data.customer["installed-products"], { "product-type": "!PRICEPLAN" });
+                var priceplan = $filter('filter')(data.customer["installed-products"], {
+                    "product-type": "PRICEPLAN"
+                })[0];
+                var offer = $filter('filter')(data.customer["installed-products"], {
+                    "product-type": "!PRICEPLAN"
+                });
 
                 var mobileServiceType = "ทรูมูฟเอช เติมเงิน";
                 if (priceplan["mobile-servicetype"] == "POSTPAID")
@@ -477,7 +487,7 @@
                     msgErr: ""
                 });
             }
-        }).error(function (data, status) {
+        }).error(function(data, status) {
             console.log("ERROR");
             console.log(data, status);
             fnCallback({
@@ -489,7 +499,7 @@
         });
 
     }
-    this.get = function (subscriberno, fnCallback) {
+    this.get = function(subscriberno, fnCallback) {
         var data = {
             'status': 'SUCCESSFUL',
             'customer': {
@@ -585,8 +595,12 @@
             'status-code': '0'
         };
         if (data["status-code"] != "2") {
-            var priceplan = $filter('filter')(data.customer["installed-products"], { "product-type": "PRICEPLAN" })[0];
-            var offer = $filter('filter')(data.customer["installed-products"], { "product-type": "!PRICEPLAN" });
+            var priceplan = $filter('filter')(data.customer["installed-products"], {
+                "product-type": "PRICEPLAN"
+            })[0];
+            var offer = $filter('filter')(data.customer["installed-products"], {
+                "product-type": "!PRICEPLAN"
+            });
 
             var mobileServiceType = "ทรูมูฟเอช เติมเงิน";
             if (priceplan["mobile-servicetype"] == "POSTPAID")
@@ -629,7 +643,7 @@
 
     }
 
-    this.getReasons = function (activityCode, fnCallback) {
+    this.getReasons = function(activityCode, fnCallback) {
         var data = {
             'status': 'SUCCESSFUL',
             'trx-id': '5NH31QALNK0N',
@@ -769,18 +783,18 @@
 
     };
 
-    this.getNextBillDate = function () {
+    this.getNextBillDate = function() {
         var date = new Date();
         date.setDate(date.getDate() + 1);
 
         return $filter('date')(date, 'dd/MM/yyyy');
     };
 
-    this.genDatePicker = function () {
+    this.genDatePicker = function() {
         var date = new Date();
         date.setDate(date.getDate() + 1);
 
-        setTimeout(function () {
+        setTimeout(function() {
             var picker = new Pikaday({
                 field: document.getElementsByClassName('fec-date-picker')[0],
                 format: "DD/MM/YYYY",
@@ -802,18 +816,19 @@
                         'กันยายน',
                         'ตุลาคม',
                         'พฤศจิกายน',
-                        'ธันวาคม'],
+                        'ธันวาคม'
+                    ],
                     weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
                     weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
                 },
-                onSelect: function () {
+                onSelect: function() {
 
                 }
 
             });
         }, 500);
 
-        setTimeout(function () {
+        setTimeout(function() {
             var picker = new Pikaday({
                 field: document.getElementsByClassName('fec-date-picker-birthDay')[0],
                 format: "DD/MM/YYYY",
@@ -834,17 +849,18 @@
                         'กันยายน',
                         'ตุลาคม',
                         'พฤศจิกายน',
-                        'ธันวาคม'],
+                        'ธันวาคม'
+                    ],
                     weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
                     weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
                 },
-                onSelect: function () {
+                onSelect: function() {
 
                 }
 
             });
         }, 500);
-        setTimeout(function () {
+        setTimeout(function() {
             var picker = new Pikaday({
                 field: document.getElementsByClassName('fec-date-picker-expireDay')[0],
                 format: "DD/MM/YYYY",
@@ -865,11 +881,12 @@
                         'กันยายน',
                         'ตุลาคม',
                         'พฤศจิกายน',
-                        'ธันวาคม'],
+                        'ธันวาคม'
+                    ],
                     weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
                     weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
                 },
-                onSelect: function () {
+                onSelect: function() {
 
                 }
 
@@ -889,14 +906,14 @@
         "th-message": "",
         "technical-message": ""
     };
-    this.showAlert = function (msgModel) {
+    this.showAlert = function(msgModel) {
         //ModalService.showAlert(msgModel);
 
         that.ngDialogData = msgModel;
 
         $ngBootbox.customDialog({
             templateUrl: 'app/views/ngBootbox-template.html?v=' + runTime,
-            onEscape: function () {
+            onEscape: function() {
                 return false;
             },
             show: true,
@@ -904,16 +921,16 @@
             closeButton: false,
             animate: true
         });
-        setTimeout(function () {
+        setTimeout(function() {
             $("#btn_ngbOK").focus();
         }, 800);
 
     };
-    this.showLoading = function () {
+    this.showLoading = function() {
         //ModalService.showLoading();
         $ngBootbox.customDialog({
             templateUrl: 'app/views/ngBootbox-loading.html?v=' + runTime,
-            onEscape: function () {
+            onEscape: function() {
                 return false;
             },
             show: true,
@@ -923,22 +940,22 @@
         });
 
     };
-    this.hideLoading = function () {
+    this.hideLoading = function() {
         //ModalService.hideLoading();
         //alert('hideLoading');
-        setTimeout(function () {
+        setTimeout(function() {
             $ngBootbox.hideAll();
         }, 1000);
     };
-    this.showConfirm = function () {
+    this.showConfirm = function() {
         return ModalService.showConfirm();
     };
-    this.showBeforeClose = function (msgModel, approveFunction, cancelFunction) {
+    this.showBeforeClose = function(msgModel, approveFunction, cancelFunction) {
         //$ngBootbox.hideAll();
         that.ngDialogData = msgModel;
         $ngBootbox.customDialog({
             templateUrl: 'app/views/ngBootbox-showBeforeClose.html?v=' + runTime,
-            onEscape: function () {
+            onEscape: function() {
                 return false;
             },
             show: true,
@@ -951,7 +968,7 @@
     };
 
     //change onwnership
-    this.getAddressByType = function (type, fnCallback) {
+    this.getAddressByType = function(type, fnCallback) {
         var rusult = {};
 
         if (type == "0") {
@@ -979,8 +996,7 @@
                 photoID: '40040108011454',
                 photo: ''
             }
-        }
-        else if (type == "1") {
+        } else if (type == "1") {
             rusult = {
                 citizenID: '3400400489300',
                 prefixTH: 'นาย',
@@ -1005,8 +1021,7 @@
                 photoID: '40040108011454',
                 photo: ''
             }
-        }
-        else {
+        } else {
             rusult = {
                 citizenID: '3400400489300',
                 prefixTH: 'นาย',
@@ -1042,7 +1057,7 @@
     };
 
     //masterData ------//for demo-----
-    this.getMasterGender = function () {
+    this.getMasterGender = function() {
         return {
             "status": "SUCCESSFUL",
             "trx-id": "4819LRXVSQHUM",
@@ -1067,7 +1082,7 @@
             }
         };
     };
-    this.getMasterTitleType = function () {
+    this.getMasterTitleType = function() {
         return {
             "status": "SUCCESSFUL",
             "trx-id": "4CN1Y7BQSIJR",
@@ -1110,7 +1125,7 @@
             }
         };
     };
-    this.getMasterTitleOtherType = function () {
+    this.getMasterTitleOtherType = function() {
         return {
             "status": "SUCCESSFUL",
             "trx-id": "4CN1Y7BQSIJR",
@@ -1135,7 +1150,7 @@
             }
         };
     };
-    this.getMasterIdTypeB = function () {
+    this.getMasterIdTypeB = function() {
         return {
             "status": "SUCCESSFUL",
             "trx-id": "4CN2228VJ5XJ",
@@ -1188,7 +1203,7 @@
             }
         };
     };
-    this.getMasterIdTypeC = function () {
+    this.getMasterIdTypeC = function() {
         return {
             "status": "SUCCESSFUL",
             "trx-id": "4CN1ZTT9NERJ",
@@ -1241,7 +1256,7 @@
             }
         };
     };
-    this.getMasterIdTypeI = function () {
+    this.getMasterIdTypeI = function() {
         return {
             "status": "SUCCESSFUL",
             "trx-id": "4CN22BAIHEDJ",
@@ -1298,7 +1313,7 @@
             }
         };
     };
-    this.getMasterIdTypeP = function () {
+    this.getMasterIdTypeP = function() {
         return {
             "status": "SUCCESSFUL",
             "trx-id": "4CN1Z6WKVSSF",
@@ -1356,28 +1371,22 @@
         };
     };
     //masterData ------//for demo-----
-    this.getMasterData = function (target, headers, fnCallback) {
+    this.getMasterData = function(target, headers, fnCallback) {
         var result = {};
         var status = true;
         if (target == 'aftersales/configuration/master/CUST-GENDER') {
             result = that.getMasterGender();
-        }
-        else if (target == 'aftersales/configuration/master/CUST-TITLE-TYPE') {
+        } else if (target == 'aftersales/configuration/master/CUST-TITLE-TYPE') {
             result = that.getMasterTitleType();
-        }
-        else if (target == 'aftersales/configuration/master/CUST-TITLE-OTHER-TYPE') {
+        } else if (target == 'aftersales/configuration/master/CUST-TITLE-OTHER-TYPE') {
             result = that.getMasterTitleOtherType();
-        }
-        else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-B') {
+        } else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-B') {
             result = that.getMasterIdTypeB();
-        }
-        else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-C') {
+        } else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-C') {
             result = that.getMasterIdTypeC();
-        }
-        else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-I') {
+        } else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-I') {
             result = that.getMasterIdTypeI();
-        }
-        else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-P') {
+        } else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-P') {
             result = that.getMasterIdTypeP();
         } else {
             status = false;
@@ -1391,7 +1400,7 @@
 
     };
 
-    this.calendarDatePicker = function () {
+    this.calendarDatePicker = function() {
         var date = new Date();
         date.setDate(date.getDate() + 1);
 
@@ -1410,21 +1419,21 @@
 
     };
     //masterData //for deploy
-    this.getMaster = function (target, fnCallback) {
+    this.getMaster = function(target, fnCallback) {
         var masterUrl = "aftersales/configuration/master/";
         if (that.demo) {
-            data = that.getMasterData(masterUrl + target, null, function (result) {
+            data = that.getMasterData(masterUrl + target, null, function(result) {
                 fnCallback(result);
             });
         } else {
-            that.callServiceGet(masterUrl + target, null, function (result) {
+            that.callServiceGet(masterUrl + target, null, function(result) {
                 fnCallback(result);
             });
         }
     };
-    this.getMaster_list = function (target, fnCallback) {
+    this.getMaster_list = function(target, fnCallback) {
         var listArray = [];
-        that.getMaster(target, function (result) {
+        that.getMaster(target, function(result) {
             console.log(result);
             if (result.status) {
                 //listArray = $filter('filter')(result.data["response-data"]["configuration-items"]);
@@ -1443,22 +1452,34 @@
             }
         });
     };
-    this.getTimestamp = function () {
+    this.getTimestamp = function() {
         var d = new Date();
         var n = d.getTime();
         return n;
     };
-    this.setTimestamp = function (time) {
+    this.setTimestamp = function(time) {
         return new Date(time);
     };
-    this.checkInputTel = function (charCode) {
+    this.checkInputTel = function(charCode) {
         if (charCode > 31 && (charCode < 48 || charCode > 57)) {
             return false;
         } else {
             return true;
         }
     };
-    this.validateNummeric = function () {
+    this.checkInputTelZero = function(charCode) {
+        
+          //  var charCode = (evt.which) ? evt.which : event.keyCode;
+
+             
+            if (charCode != 48) {
+                
+                return false;
+            } else {
+               
+            }
+    };
+    this.validateNummeric = function() {
         //$(".numberic").keypress(function (evt) {
         //    var charCode = (evt.which) ? evt.which : evt.keyCode
         //    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode == 190)
@@ -1466,7 +1487,7 @@
 
         //    return true;
         //});
-        $(".numberic").keypress(function (e) {
+        $(".numberic").keypress(function(e) {
             var charCode = (e.which) ? e.which : e.keyCode;
             if (this.value.indexOf(".") >= 0) {
                 if (charCode == 46) {
@@ -1477,12 +1498,35 @@
                 return false;
         });
 
-        $(".telephone").keypress(function (evt) {
+        $(".telephone").keypress(function(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))
                 return false;
 
             return true;
+        });
+
+        $(".telephoneZero").keypress(function(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+
+            console.log($(this).val());
+
+            var subNo = $(this).val();
+            var index = subNo.indexOf('0');
+            console.log(subNo.length);
+            if(charCode == 48) 
+                console.log('is charcode = 0');
+            if (subNo.length == 0 && charCode != 48) {
+                $(this).val('');
+                return false;
+            } else {
+                
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+            }
+
         });
         //// disable right click
         //$('.telephone').mousedown(function (event) {
@@ -1493,7 +1537,7 @@
         //});
     };
 
-    this.getDateDDMMYYYY = function (lang) {
+    this.getDateDDMMYYYY = function(lang) {
         var ln = lang == 'TH' ? 543 : 0;
         var today = new Date();
         var dd = today.getDate();
@@ -1510,7 +1554,7 @@
         return today;
     };
 
-    this.getDateDDMMYYYY_nextBill = function (nextDay, lang) {
+    this.getDateDDMMYYYY_nextBill = function(nextDay, lang) {
 
         var date = new Date();
         date.setDate(date.getDate() + nextDay);
@@ -1530,13 +1574,13 @@
         var today = dd + '/' + mm + '/' + yyyy;
         return today;
     };
-    this.convertDateTo = function (ddMMyyyy, lang) {
+    this.convertDateTo = function(ddMMyyyy, lang) {
         var ssc = "-";
         var ln = lang == 'TH' ? 543 : -543;
         var arr = ddMMyyyy.split("/");
         return "" + (Number(arr[2]) + ln) + ssc + arr[1] + ssc + arr[0];
     };
-    this.convertDateToEng = function (ddMMyyyy, lang) {
+    this.convertDateToEng = function(ddMMyyyy, lang) {
         if (ddMMyyyy) {
             var ssc = "/";
             var ln = lang == 'TH' ? 543 : -543;
@@ -1546,7 +1590,7 @@
             return ddMMyyyy;
         }
     };
-    this.convertDateToTH = function (ddMMyyyy, lang) {
+    this.convertDateToTH = function(ddMMyyyy, lang) {
         if (ddMMyyyy) {
             var ssc = "/";
             var ln = lang == 'TH' ? 543 : -543;
@@ -1556,7 +1600,7 @@
             return ddMMyyyy;
         }
     };
-    this.convertDataThToLongDate = function (dateTH) {
+    this.convertDataThToLongDate = function(dateTH) {
         //dateTH : "28/08/2558"
         //return : "2015-07-20T00:00:00+0700"
         if (dateTH) {
@@ -1567,7 +1611,7 @@
             return "";
         }
     };
-    this.getContactNo = function (contactNo, returnField) {
+    this.getContactNo = function(contactNo, returnField) {
         //contactNO : "02994848#123
         //returnField : "number" || "continued"
         var result = "";
@@ -1588,16 +1632,16 @@
         }
         return result;
     };
-    this.guid = function () {
+    this.guid = function() {
         function s4() {
             return Math.floor((1 + Math.random()) * 0x10000)
-              .toString(16)
-              .substring(1);
+                .toString(16)
+                .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-          s4() + '-' + s4() + s4() + s4();
+            s4() + '-' + s4() + s4() + s4();
     };
-    this.convertArray = function (arr, oparator) {
+    this.convertArray = function(arr, oparator) {
         var resultArr = [];
         console.log(arr);
         if (arr) {
@@ -1611,9 +1655,11 @@
         }
         return resultArr;
     };
-    this.searchIdArray = function (arr, select) {
+    this.searchIdArray = function(arr, select) {
         console.log(arr, select);
-        var result = $filter('filter')(arr, { value: select });
+        var result = $filter('filter')(arr, {
+            value: select
+        });
         var id = "";
         console.log(result);
         if (result.length) {
@@ -1622,7 +1668,7 @@
         return id;
     };
 
-    this.setupFancyBox = function (id) {
+    this.setupFancyBox = function(id) {
         $("#" + id).fancybox({
             showCloseButton: false
         });
@@ -1632,7 +1678,7 @@
 
     //----------------end fancyBox -------------------
 
-    this.getOrderId = function (channel, shopcodes, fnCallback) {
+    this.getOrderId = function(channel, shopcodes, fnCallback) {
         var generateOrder_target = "?channel=" + (channel ? channel : "") + "&dealer=" + (shopcodes ? shopcodes : "");
         //generateOrder_target = "";
 
@@ -1650,7 +1696,7 @@
         }
         //alert(generateOrder_target);
         //call generate-order-id
-        that.generateOrderId(generateOrder_target, function (data) {
+        that.generateOrderId(generateOrder_target, function(data) {
             fnCallback({
                 TrxID: data["trx-id"],
                 orderId: data["response-data"]
@@ -1658,7 +1704,7 @@
         });
     };
 
-    this.getAddressMaster = function (target, fnCallback) {
+    this.getAddressMaster = function(target, fnCallback) {
         if (that.demo) {
             var data = {
                 "status": "SUCCESSFUL",
@@ -2154,8 +2200,7 @@
                     "district": "พระประแดง",
                     "province": "สมุทรปราการ",
                     "zipcode": "10130"
-                },
-                {
+                }, {
                     "subdistrict": "สันปูเลย",
                     "district": "ดอยสะเก็ด",
                     "province": "เชียงใหม่",
@@ -2218,9 +2263,9 @@
                     msgErr: ""
                 });
             }
-            
+
         } else {
-            that.callServiceGetByPass(target, null, function (result) {
+            that.callServiceGetByPass(target, null, function(result) {
                 fnCallback(result);
             });
         }
