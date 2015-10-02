@@ -431,7 +431,7 @@
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" class="form-control date-picker" id="expireDay">
+                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" class="form-control date-picker-expiredate " id="expireDay">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <div ng-show="!showEnableNewOwnerExpireDay" class="form-group has-feedback">
@@ -1366,7 +1366,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>ต่อ</label>
-                                <input type="text" class="form-control" ng-model="contactNo.continued">
+                                <input type="text" class="form-control telephone " ng-model="contactNo.continued">
                             </div>
                         </div>
                         <div class="col-md-3">

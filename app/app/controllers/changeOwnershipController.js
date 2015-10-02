@@ -1,5 +1,5 @@
 // ---------------------- ChangeOwnershipController.js ----------------------
-smartApp.controller('changeOwnershipController', function (
+smartApp.controller('changeOwnershipController', function(
     $ngBootbox,
     $scope,
     AuthenService,
@@ -26,7 +26,7 @@ smartApp.controller('changeOwnershipController', function (
     $scope.isReadCardSuccess = false;
     $scope.isAuthorize = false;
     $scope.isMatch = true;
-    $scope.isVerify = false;//for demo ============ true
+    $scope.isVerify = false; //for demo ============ true
     $scope.isSelectedPricePlan2 = false;
 
     $scope.demo = SystemService.demo;
@@ -69,12 +69,12 @@ smartApp.controller('changeOwnershipController', function (
         value: "I"
     };
 
-    setTimeout(function () {
+    setTimeout(function() {
         SystemService.validateNummeric();
     }, 1000);
     //SystemService.genDatePicker();
     SystemService.calendarDatePicker();
-    $scope.SetCardValue2 = function (result) {
+    $scope.SetCardValue2 = function(result) {
         $('#loadingReadCard2').hide();
 
         $scope.cardInfo2 = eval(result);
@@ -90,7 +90,7 @@ smartApp.controller('changeOwnershipController', function (
         //$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
     }
 
-    $scope.readCardError = function (msg) {
+    $scope.readCardError = function(msg) {
         $.fancybox.close();
         SystemService.showAlert({
             "message": msg,
@@ -103,15 +103,15 @@ smartApp.controller('changeOwnershipController', function (
     };
 
 
-    $scope.initModalReadCard = function () {
+    $scope.initModalReadCard = function() {
         if ($scope.shopType == "1") {
-            setTimeout(function () {
+            setTimeout(function() {
                 $('#loadingReadCard').hide();
                 $('#unMatch').hide();
                 $('#CitizenID').val('');
                 if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
                     $('#CitizenID').prop('disabled', false);
-                    setTimeout(function () {
+                    setTimeout(function() {
                         $('#CitizenID').focus();
                         $('#btnSSO').hide();
                     }, 100);
@@ -123,7 +123,7 @@ smartApp.controller('changeOwnershipController', function (
 
         }
 
-        setTimeout(function () {
+        setTimeout(function() {
             $('#loadingReadCard2').hide();
             $('#unMatch2').hide();
         }, 1000);
@@ -131,7 +131,7 @@ smartApp.controller('changeOwnershipController', function (
 
     };
 
-    $scope.SetCardValue = function (result) {
+    $scope.SetCardValue = function(result) {
         $('#loadingReadCard').hide();
         $scope.isReadCardSuccess = false;
 
@@ -147,7 +147,7 @@ smartApp.controller('changeOwnershipController', function (
             $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
             $.fancybox.close();
-            setTimeout(function () {
+            setTimeout(function() {
                 $('#idBindDataAgain').click();
             }, 500);
             $('.isCustomerProfile').prop('disabled', false);
@@ -161,22 +161,22 @@ smartApp.controller('changeOwnershipController', function (
 
     };
 
-    $scope.SetCardValue3 = function (result) {
+    $scope.SetCardValue3 = function(result) {
         $('#loadingReadCard3').hide();
         $scope.showEnableNewOwnerBirthday = false;
-         $scope.showEnableNewOwnerExpireDay = false;
+        $scope.showEnableNewOwnerExpireDay = false;
         $scope.cardInfo3 = eval(result);
         console.log($scope.cardInfo3);
         var prefix = "T2";
-        if($scope.cardInfo3.PrefixEN == "Mr."){
+        if ($scope.cardInfo3.PrefixEN == "Mr.") {
             prefix = "T1";
-        }   
-        if($scope.cardInfo3.PrefixEN == "Miss"){
+        }
+        if ($scope.cardInfo3.PrefixEN == "Miss") {
             prefix = "T3";
         }
 
         var sex = "MALE";
-        if($scope.cardInfo3.Sex == "2"){
+        if ($scope.cardInfo3.Sex == "2") {
             sex = "FEMALE";
         }
 
@@ -192,7 +192,7 @@ smartApp.controller('changeOwnershipController', function (
 
         $('#birthDay').removeClass('date-picker');
 
-        $scope.cardType.value= "I";
+        $scope.cardType.value = "I";
         $('#cardType').val('I');
 
         //binding Tax Id
@@ -220,14 +220,14 @@ smartApp.controller('changeOwnershipController', function (
         // };
         //$scope.onselectPrefix();    
         //console.log($scope.newOwner);
-        setTimeout(function(){
+        setTimeout(function() {
             $('#idBindDataAgain').click();
         }, 1000);
-        
+
         $.fancybox.close();
     };
 
-    $scope.changeType = function (customerType) {
+    $scope.changeType = function(customerType) {
         $scope.customerType = customerType;
         $scope.isVerify = false;
         $scope.promotion = "";
@@ -254,7 +254,7 @@ smartApp.controller('changeOwnershipController', function (
         "branch-code": "00000"
     };
     $scope.isInputSubNo = false;
-    $scope.onInputSubNo = function () {
+    $scope.onInputSubNo = function() {
         console.log($('#dataSubNo').val().length, $scope.isInputSubNo);
         var dataSubNo = $('#dataSubNo').val();
         if (dataSubNo.length == 10) {
@@ -267,12 +267,12 @@ smartApp.controller('changeOwnershipController', function (
             $scope.isInputSubNo = false;
         }
     };
-    $scope.onInputSubNo_reset = function () {
+    $scope.onInputSubNo_reset = function() {
         $scope.isInputSubNo = false;
         $scope.onInputSubNo();
     };
     $scope.isNumberSubNo = false;
-    $scope.onKeyUpSubNo = function (charCode) {
+    $scope.onKeyUpSubNo = function(charCode) {
         //console.log(charCode);
         var bool = SystemService.checkInputTel(charCode);
         $scope.isNumberSubNo = !bool;
@@ -285,9 +285,9 @@ smartApp.controller('changeOwnershipController', function (
     }
 
     $scope.SubNo = $routeParams.subno == '' ? 'null' : $routeParams.subno;
-    $scope.onLoad = function () {
+    $scope.onLoad = function() {
         $('#loadingReadCard3').hide();
-        AuthenService.getAuthen(function (result) {
+        AuthenService.getAuthen(function(result) {
             $scope.getAuthen = result;
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
@@ -295,7 +295,7 @@ smartApp.controller('changeOwnershipController', function (
 
             //call generate-order-id
             SystemService.showLoading();
-            SystemService.getOrderId(result.channel, result.shopcode, function (resultData) {
+            SystemService.getOrderId(result.channel, result.shopcode, function(resultData) {
                 localStorage.setItem('orderId', resultData.orderId);
                 $scope.TrxID = resultData.TrxID;
                 $scope.orderId = resultData.orderId;
@@ -303,35 +303,35 @@ smartApp.controller('changeOwnershipController', function (
 
 
                 //คำนำหน้า
-                SystemService.getMaster_list("CUST-TITLE-TYPE", function (result) {
+                SystemService.getMaster_list("CUST-TITLE-TYPE", function(result) {
                     $scope.titleTypeListx = result;
                     console.log($scope.titleTypeListx);
                 });
                 //คำนำหน้า อื่นๆ
-                SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function (result) {
+                SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function(result) {
                     $scope.titleOtherTypeList = result;
                     console.log($scope.titleOtherTypeList);
                 });
                 //ประเภทของบัตร
-                SystemService.getMaster_list("CUST-ID-TYPE-I", function (result) {
+                SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
                     $scope.cardTypeOptions = result;
                     console.log($scope.cardTypeOptions);
                 });
 
                 //reason
-                ReasonService.list("119", function (result) {
+                ReasonService.list("119", function(result) {
                     $scope.reasons = result;
                     $scope.reason = $scope.reasons[39];
                     $scope.selectReason = $scope.reasons[39];
                 });
 
                 //เพศ
-                SystemService.getMaster_list("CUST-GENDER", function (result) {
+                SystemService.getMaster_list("CUST-GENDER", function(result) {
                     $scope.genderTypeList = result;
                     console.log($scope.genderTypeList);
                 });
                 //call getCUGId
-                ChangePricePlanService.getCUGList(function (result) {
+                ChangePricePlanService.getCUGList(function(result) {
                     $scope.cugList = result.data["cug-list"];
                     //alert($scope.cugList.length);
                 });
@@ -341,7 +341,7 @@ smartApp.controller('changeOwnershipController', function (
                 $scope.id = $routeParams.id;
 
                 if ($scope.SubNo != 'null') {
-                    changeOwnershipService.validateChangeOwnershipCallback($scope.SubNo, function (result) {
+                    changeOwnershipService.validateChangeOwnershipCallback($scope.SubNo, function(result) {
                         if (result.status) {
                             $scope.data = result;
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
@@ -407,7 +407,7 @@ smartApp.controller('changeOwnershipController', function (
                                 });
 
 
-                                setTimeout(function () {
+                                setTimeout(function() {
                                     $("#btn-fancy-ReadCard").fancybox().trigger('click');
                                 }, 1000);
                                 $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
@@ -441,25 +441,25 @@ smartApp.controller('changeOwnershipController', function (
         });
     };
 
-    $scope.onChangeCardTypes = function(){
+    $scope.onChangeCardTypes = function() {
         console.log($scope.cardType.value);
-        if($scope.cardType.value == "I"){
+        if ($scope.cardType.value == "I") {
 
             $scope.customer['tax-id'] = $scope.customer['id-number'];
-            console.log($scope.customer['tax-id'],$scope.customer['id-number']);
+            console.log($scope.customer['tax-id'], $scope.customer['id-number']);
         } else {
             $scope.customer['tax-id'] = "0000000000000";
         }
     }
-    $scope.onInputShopCode = function () {
+    $scope.onInputShopCode = function() {
         if ($scope.partnerCode && $scope.partnerCode.length == 8) {
             $scope.onCheckShopCode();
         }
     };
-    $scope.onCheckShopCode = function () {
+    $scope.onCheckShopCode = function() {
         SystemService.showLoading();
         var target = "profiles/partner/validatepartner?function-type=CHANGE_OWNERSHIP&partner-code=" + $scope.partnerCode;
-        changeOwnershipService.validatePartnerCallback(target, function (result) {
+        changeOwnershipService.validatePartnerCallback(target, function(result) {
             SystemService.hideLoading();
             if (result.data["display-messages"].length == 0) {
                 if ($scope.isLastestUser == true) {
@@ -471,7 +471,7 @@ smartApp.controller('changeOwnershipController', function (
                 //error ?
                 idFocus = "txtPartnerCode";
                 $scope.partnerCode = "";
-                setTimeout(function () {
+                setTimeout(function() {
                     SystemService.showAlert({
                         "message": result.data["display-messages"][0]["message"],
                         "message-code": result.data["display-messages"][0]["message-code"],
@@ -495,7 +495,7 @@ smartApp.controller('changeOwnershipController', function (
         saveName: ""
     };
     $scope.isEnterPP = false;
-    $scope.openPricePlanDialog = function () {
+    $scope.openPricePlanDialog = function() {
         $scope.isEnterPP = false;
         //var runTime = new Date().getTime();
         //$ngBootbox.customDialog({
@@ -530,7 +530,7 @@ smartApp.controller('changeOwnershipController', function (
     };
 
     //proposition
-    $scope.callPropositionList = function () {
+    $scope.callPropositionList = function() {
         if ($scope.partnerCode) {
             var propParam = {
                 'company-code': $scope.data.installedProducts["company-code"],
@@ -539,10 +539,10 @@ smartApp.controller('changeOwnershipController', function (
                 'mobile-servicetype': $scope.data.installedProducts["mobile-servicetype"],
                 'partner-code': $scope.partnerCode,
                 'privilege': false
-                //,'proposition': ''
+                    //,'proposition': ''
 
             };
-            changeOwnershipService.propositionCallback(propParam, function (resultProp) {
+            changeOwnershipService.propositionCallback(propParam, function(resultProp) {
                 if (resultProp.status) {
                     $scope.propositions = resultProp.data['response-data'];
                 }
@@ -551,7 +551,7 @@ smartApp.controller('changeOwnershipController', function (
     };
     //salepriceplan
     $scope.isLoadPricePlan = false;
-    $scope.callSalePricePlanList = function () {
+    $scope.callSalePricePlanList = function() {
         if ($scope.isVerify) {
             SystemService.showLoading();
             var target = "sales/catalog/product/tmv/priceplan/search?" +
@@ -564,12 +564,12 @@ smartApp.controller('changeOwnershipController', function (
                 "&privilege=false";
 
 
-            changeOwnershipService.salePriceplanCallback(target, function (resultGetPriceplan) {
+            changeOwnershipService.salePriceplanCallback(target, function(resultGetPriceplan) {
                 if (resultGetPriceplan.status) {
                     console.log(target);
                     $scope.propositionList = [];
                     valPricePlans = [];
-                    var makeDataPriceplan = function (arr, proName, proCode) {
+                    var makeDataPriceplan = function(arr, proName, proCode) {
                         if (arr && arr != undefined && arr != null) {
                             for (var i = 0; i < arr.length; i++) {
                                 var item = {
@@ -585,7 +585,9 @@ smartApp.controller('changeOwnershipController', function (
                             }
                         }
                     };
-                    var listProp = $filter('filter')($scope.propositions, { 'proposition-code': $scope.promotion });
+                    var listProp = $filter('filter')($scope.propositions, {
+                        'proposition-code': $scope.promotion
+                    });
 
                     makeDataPriceplan(resultGetPriceplan.data["response-data"], listProp[0]['name'], $scope.promotion);
 
@@ -600,7 +602,7 @@ smartApp.controller('changeOwnershipController', function (
 
                     SystemService.hideLoading();
                     //error
-                    setTimeout(function () {
+                    setTimeout(function() {
                         SystemService.showAlert({
                             "message": resultGetPriceplan.data["display-messages"][0]["message"],
                             "message-code": resultGetPriceplan.data["display-messages"][0]["message-code"],
@@ -615,13 +617,13 @@ smartApp.controller('changeOwnershipController', function (
             });
         }
     };
-    $scope.focusPricePlanFilter = function () {
+    $scope.focusPricePlanFilter = function() {
         if (!$scope.isLoadPricePlan) {
             //call Priceplan
             $scope.callSalePricePlanList();
         }
     };
-    $scope.setAddress = function (address) {
+    $scope.setAddress = function(address) {
         $scope.mailAddress.homeNumber = address['number'];
         $scope.mailAddress.moo = address['moo'];
         $scope.mailAddress.village = address['village'];
@@ -640,8 +642,8 @@ smartApp.controller('changeOwnershipController', function (
     //start check input 
     $scope.subCompanyType = "PRI";
     $scope.isAddressList = {};
-    $scope.onInputCitizenID3 = function () {
-            
+    $scope.onInputCitizenID3 = function() {
+
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;
         $scope.newOwner.firstNameTH = "";
@@ -668,8 +670,8 @@ smartApp.controller('changeOwnershipController', function (
         var cid = $('#citizenID3').val();
         if (cid.length >= 9) {
             SystemService.showLoading();
-            if (1==1) {
-                changeOwnershipService.validateGradingCallback(cid, function (resultData) {
+            if (1 == 1) {
+                changeOwnershipService.validateGradingCallback(cid, function(resultData) {
                     console.log(resultData);
                     console.log(resultData.data["display-messages"]);
                     if (resultData.data["display-messages"].length == 0) {
@@ -682,7 +684,7 @@ smartApp.controller('changeOwnershipController', function (
                             'service-type': $scope.data.installedProducts["mobile-servicetype"],
                             'grade': grade
                         };
-                        changeOwnershipService.getAccountSubTypeCallback(param, function (resultST) {
+                        changeOwnershipService.getAccountSubTypeCallback(param, function(resultST) {
                             $scope.data.accountSubtypeList = resultST.data["response-data"];
                             $scope.subCompanyType = resultST.data["response-data"][0]['name'];
                         });
@@ -693,10 +695,11 @@ smartApp.controller('changeOwnershipController', function (
                         $scope.callPropositionList();
                         $scope.isLastestUser = false;
 
-                        changeOwnershipService.lastestCustomerCallback(cid, "I", function (lastestCustomer) {
+                        changeOwnershipService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
                             $scope.isLastestUser = true;
                             $.fancybox.close();
-                            if (lastestCustomer.data['display-messages'].length > 0) {
+                            SystemService.hideLoading();
+                            if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
                                 //ผู้จดทะเบียนใหม่
                                 //$scope.customer = customer;
                                 $scope.newOwner.firstNameTH = "";
@@ -720,19 +723,21 @@ smartApp.controller('changeOwnershipController', function (
 
                                 $scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
 
-                                setTimeout(function () {
+                                setTimeout(function() {
                                     $scope.isLastestAdress = false;
                                     $scope.changecusStatusN('N');
                                     $('#idBindDataAgain').click();
 
-                                    SystemService.showAlert({
-                                        "message": lastestCustomer.data["display-messages"][0]["message"],
-                                        "message-code": lastestCustomer.data["display-messages"][0]["message-code"],
-                                        "message-type": "WARNING",
-                                        "en-message": lastestCustomer.data["display-messages"][0]["en-message"],
-                                        "th-message": lastestCustomer.data["display-messages"][0]["th-message"],
-                                        "technical-message": lastestCustomer.data["display-messages"][0]["technical-message"]
-                                    });
+                                    if (lastestCustomer.data['display-messages'].length > 0) {
+                                        SystemService.showAlert({
+                                            "message": resultData.data["display-messages"][0]["message"],
+                                            "message-code": resultData.data["display-messages"][0]["message-code"],
+                                            "message-type": "WARNING",
+                                            "en-message": resultData.data["display-messages"][0]["en-message"],
+                                            "th-message": resultData.data["display-messages"][0]["th-message"],
+                                            "technical-message": resultData.data["display-messages"][0]["technical-message"]
+                                        });
+                                    }
                                 }, 1000);
                                 $scope.isAddressList = {};
                             } else {
@@ -783,7 +788,7 @@ smartApp.controller('changeOwnershipController', function (
                     } else {
                         $scope.onselectPrefix();
                         SystemService.hideLoading();
-                        setTimeout(function () {
+                        setTimeout(function() {
                             SystemService.showAlert({
                                 "message": resultData.data["display-messages"][0]["message"],
                                 "message-code": resultData.data["display-messages"][0]["message-code"],
@@ -806,26 +811,16 @@ smartApp.controller('changeOwnershipController', function (
     //start check input for verify
     $scope.partnerCode = "";
     $scope.isCheckInputForVerify = false;
-    $scope.onCheckInputForVerify = function () {
-        setTimeout(function () {
+    $scope.onCheckInputForVerify = function() {
+        setTimeout(function() {
             $scope.isCheckInputForVerify = false;
             $scope.newOwner.birthDay = $('#birthDay').val();
             $scope.newOwner.expireDay = $('#expireDay').val();
 
-            console.log($scope.partnerCode.length == 8
-                    , $scope.customer['id-number']
-                    , $scope.cardType.value
-                    , $scope.newOwner.birthDay
-                    , $scope.newOwner.expireDay
-                    , $scope.promotion);
+            console.log($scope.partnerCode.length == 8, $scope.customer['id-number'], $scope.cardType.value, $scope.newOwner.birthDay, $scope.newOwner.expireDay, $scope.promotion);
 
 
-            if ($scope.partnerCode.length == 8
-                && $scope.customer['id-number']
-                && $scope.cardType.value
-                && $scope.newOwner.birthDay
-                && $scope.newOwner.expireDay
-                && $scope.promotion) {
+            if ($scope.partnerCode.length == 8 && $scope.customer['id-number'] && $scope.cardType.value && $scope.newOwner.birthDay && $scope.newOwner.expireDay && $scope.promotion) {
                 $scope.isCheckInputForVerify = true;
             } else {
                 $scope.isCheckInputForVerify = false;
@@ -838,12 +833,12 @@ smartApp.controller('changeOwnershipController', function (
         }, 500);
     };
     //end check input for verify
-    $scope.setBirthDateOwner2 = function () {
+    $scope.setBirthDateOwner2 = function() {
         $scope.newOwner2.birthDay = $scope.newOwner.birthDay;
     };
 
 
-    $scope.onInputId = function () {
+    $scope.onInputId = function() {
         console.log($('#CitizenID').val().length);
         var cid = $('#CitizenID').val();
 
@@ -866,7 +861,7 @@ smartApp.controller('changeOwnershipController', function (
         }
     };
     //--------------------onInputIdLastest
-    $scope.onInputIdLastest = function () {
+    $scope.onInputIdLastest = function() {
         console.log($('#CitizenIDLastest').val().length);
         var cid = $('#CitizenIDLastest').val();
 
@@ -874,12 +869,12 @@ smartApp.controller('changeOwnershipController', function (
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
-            
+
             $scope.customer['id-number'] = cid;
             $scope.onInputCitizenID3();
         }
     };
-    $scope.onInputIdLastestKeyUp = function () {
+    $scope.onInputIdLastestKeyUp = function() {
         console.log($('#CitizenIDLastest').val().length);
         var cid = $('#CitizenIDLastest').val();
 
@@ -887,12 +882,12 @@ smartApp.controller('changeOwnershipController', function (
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
-            
+
             $scope.customer['id-number'] = cid;
             $scope.onInputCitizenID3();
         }
     };
-    $scope.onInputIdLastest3 = function () {
+    $scope.onInputIdLastest3 = function() {
         console.log($('#citizenID3').val().length);
         var cid = $('#citizenID3').val();
 
@@ -900,12 +895,12 @@ smartApp.controller('changeOwnershipController', function (
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
-            
+
             $scope.customer['id-number'] = cid;
             $scope.onInputCitizenID3();
         }
     };
-    $scope.onInputIdLastestKeyUp3 = function () {
+    $scope.onInputIdLastestKeyUp3 = function() {
         console.log($('#citizenID3').val().length);
         var cid = $('#citizenID3').val();
 
@@ -913,47 +908,45 @@ smartApp.controller('changeOwnershipController', function (
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
-            
+
             $scope.customer['id-number'] = cid;
             $scope.onInputCitizenID3();
         }
     };
     $scope.secondAuthenDataLastest = {};
-    $scope.openSSOLastest = function () {
-        var openDialog = function (uri, name, options, closeCallback) {
+    $scope.openSSOLastest = function() {
+        var openDialog = function(uri, name, options, closeCallback) {
             var win = window.open(uri, name, options);
-            var interval = window.setInterval(function () {
+            var interval = window.setInterval(function() {
                 try {
                     if (win == null || win.closed) {
                         window.clearInterval(interval);
                         closeCallback(win);
                     }
-                }
-                catch (e) {
-                }
+                } catch (e) {}
             }, 1000);
             return win;
         };
         var url = SystemService.secondAuthenURL + "SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
         if ($scope.getAuthen["isSecondAuthen"]) {
-            openDialog(url, "MsgWindow", "width=800, height=600", function (w) {
+            openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
                 //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
                 SystemService.showLoading();
-                SystemService.second_authen($scope.TrxID, function (result) {
+                SystemService.second_authen($scope.TrxID, function(result) {
                     //alert(result["status"]);
                     SystemService.hideLoading();
                     console.log(result);
                     $scope.secondAuthenDataLastest = result;
                     if (result["status"] == "SUCCESSFUL") {
                         $('#CitizenIDLastest').prop('disabled', false);
-                        
+
                         //$scope.approver = result['response-data'][0]['loginName'];
                         //$scope.manualInputReadCard();
                     } else {
                         $.fancybox.close();
                         //unsuccessul
 
-                        setTimeout(function () {
+                        setTimeout(function() {
                             SystemService.showAlert({
                                 "message": result["display-messages"][0]["message"],
                                 "message-code": result["display-messages"][0]["message-code"],
@@ -972,27 +965,25 @@ smartApp.controller('changeOwnershipController', function (
             //$scope.manualInputReadCard();
         }
     };
-    $scope.openSSO = function () {
-        var openDialog = function (uri, name, options, closeCallback) {
+    $scope.openSSO = function() {
+        var openDialog = function(uri, name, options, closeCallback) {
             var win = window.open(uri, name, options);
-            var interval = window.setInterval(function () {
+            var interval = window.setInterval(function() {
                 try {
                     if (win == null || win.closed) {
                         window.clearInterval(interval);
                         closeCallback(win);
                     }
-                }
-                catch (e) {
-                }
+                } catch (e) {}
             }, 1000);
             return win;
         };
         var url = SystemService.secondAuthenURL + "SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
         if ($scope.getAuthen["isSecondAuthen"]) {
-            openDialog(url, "MsgWindow", "width=800, height=600", function (w) {
+            openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
                 //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
                 SystemService.showLoading();
-                SystemService.second_authen($scope.TrxID, function (result) {
+                SystemService.second_authen($scope.TrxID, function(result) {
                     //alert(result["status"]);
                     SystemService.hideLoading();
                     console.log(result);
@@ -1004,7 +995,7 @@ smartApp.controller('changeOwnershipController', function (
                         $.fancybox.close();
                         //unsuccessul
 
-                        setTimeout(function () {
+                        setTimeout(function() {
                             SystemService.showAlert({
                                 "message": result["display-messages"][0]["message"],
                                 "message-code": result["display-messages"][0]["message-code"],
@@ -1047,7 +1038,7 @@ smartApp.controller('changeOwnershipController', function (
         smss: "",
         accountLang: "TH"
     };
-    $scope.onCheckEmail = function () {
+    $scope.onCheckEmail = function() {
         //SystemService.setValidateEmail($scope.billPayment.email);
         if ($scope.billPayment.email) {
             if (!SystemService.validateEmail($scope.billPayment.email)) {
@@ -1057,7 +1048,7 @@ smartApp.controller('changeOwnershipController', function (
             }
         }
     };
-    $scope.onBlurContactEmail = function () {
+    $scope.onBlurContactEmail = function() {
         if ($scope.customer['contact-email']) {
             if (!SystemService.validateEmail($scope.customer['contact-email'])) {
                 idFocus = "txtCustomerContactEmail";
@@ -1091,7 +1082,7 @@ smartApp.controller('changeOwnershipController', function (
 
     $scope.titleOther = "";
     $scope.titleOtherTypeList = [];
-    $scope.onselectPrefix = function () {
+    $scope.onselectPrefix = function() {
         console.log($scope.newOwner.prefixTH);
         $scope.newOwner2.prefixTH = $scope.newOwner.prefixTH;
         if ($scope.newOwner.prefixTH == 'MR.' || $scope.newOwner.prefixTH == 'T1') {
@@ -1102,7 +1093,7 @@ smartApp.controller('changeOwnershipController', function (
             $scope.newOwner2.sex = "FEMALE";
         }
     };
-    $scope.onselectPrefix2 = function () {
+    $scope.onselectPrefix2 = function() {
         console.log($scope.newOwner2.prefixTH);
         if ($scope.newOwner2.prefixTH == 'MR.' || $scope.newOwner2.prefixTH == 'T1') {
             $scope.newOwner2.sex = "MALE";
@@ -1110,7 +1101,7 @@ smartApp.controller('changeOwnershipController', function (
             $scope.newOwner2.sex = "FEMALE";
         }
     };
-    $scope.onChangeTitleOther = function () {
+    $scope.onChangeTitleOther = function() {
         console.log($scope.titleOther);
         $scope.titleOther2 = $scope.titleOther;
     };
@@ -1152,7 +1143,7 @@ smartApp.controller('changeOwnershipController', function (
     };
 
     $scope.isSelectedPricePlan = "";
-    $scope.selectedPricePlan = function (pp) {
+    $scope.selectedPricePlan = function(pp) {
         $scope.isSelectedPricePlan2 = true;
         $scope.pricePlanFilter = {};
         $scope.pricePlan2 = {
@@ -1167,7 +1158,7 @@ smartApp.controller('changeOwnershipController', function (
         console.log(pp);
     };
 
-    $scope.selectedPricePlan2 = function () {
+    $scope.selectedPricePlan2 = function() {
 
         $('#ppfilter').val("");
         $('#ppfilter2').val("");
@@ -1195,18 +1186,17 @@ smartApp.controller('changeOwnershipController', function (
 
     };
 
-    $scope.selectedPricePlan3 = function () {
+    $scope.selectedPricePlan3 = function() {
         $scope.isSelectedPricePlan2 = false;
         if (!$scope.isLoadPricePlan) {
             //call Priceplan
             $scope.callSalePricePlanList();
-        } else {
-        }
+        } else {}
         $scope.isSelectedPricePlan = false;
         $('.radioPriceplan').prop('checked', false);
     };
 
-    $scope.onClearPricePlan = function () {
+    $scope.onClearPricePlan = function() {
         paginationService.setCurrentPage('PPList', 1);
         //$('#ppfilter').val('');
         //$scope.pricePlanFilter.value = "";
@@ -1225,7 +1215,7 @@ smartApp.controller('changeOwnershipController', function (
         //$scope.onCancelPOOLED();
         $scope.saveParamData = {};
     };
-    $scope.onCancelPricePlan = function () {
+    $scope.onCancelPricePlan = function() {
         //$('#ppfilter').val("");
         //$('#ppfilter2').val("");
         $scope.pricePlanFilter.value = "";
@@ -1262,13 +1252,13 @@ smartApp.controller('changeOwnershipController', function (
     };
     //end newparampriceplan
     //for newparampriceplan : function
-    $scope.onModalCUG = function () {
+    $scope.onModalCUG = function() {
         //$scope.onCancelCUG();
         $scope.isSelectCUGList = false;
         $('.radioCUG').prop('checked', false);
     }
 
-    $scope.onSetValueCUG = function () {
+    $scope.onSetValueCUG = function() {
         var s = $scope.selectCUG;
         $scope.saveSelectCUG = s;
         console.log($scope.saveSelectCUG);
@@ -1277,24 +1267,28 @@ smartApp.controller('changeOwnershipController', function (
             id: $scope.saveSelectCUG['group-id']
         };
     };
-    $scope.onSelectCUG = function (item) {
+    $scope.onSelectCUG = function(item) {
         $scope.isSelectCUGList = true;
         console.log(item);
         $scope.selectCUG = item;
     };
-    $scope.onCancelCUG = function () {
+    $scope.onCancelCUG = function() {
         $scope.isSelectCUGList = false;
         $scope.saveDataCUG.filter = "";
         $scope.saveDataCUG = {};
         $scope.selectCUG = {};
         $('.radioCUG').prop('checked', false);
     };
-    $scope.onFilterCUGId = function () {
+    $scope.onFilterCUGId = function() {
         $scope.isSelectCUGList = false;
         if ($scope.saveDataCUG.filter) {
             //$scope.onSearchCUG()
-            var list = $filter('filter')($scope.cugList, { 'group-id': $scope.saveDataCUG.filter });
-            var list2 = $filter('filter')($scope.cugList, { 'group-name': $scope.saveDataCUG.filter });
+            var list = $filter('filter')($scope.cugList, {
+                'group-id': $scope.saveDataCUG.filter
+            });
+            var list2 = $filter('filter')($scope.cugList, {
+                'group-name': $scope.saveDataCUG.filter
+            });
             var l = list.length + list2.length;
             //alert(list.length);
             if (l == 1) {
@@ -1314,7 +1308,7 @@ smartApp.controller('changeOwnershipController', function (
 
         }
     };
-    $scope.onCheckFF = function () {
+    $scope.onCheckFF = function() {
         for (var i = 1; i <= $scope.ffData.max; i++) {
             if ($scope.saveParamData["ff" + i]) {
                 if ($scope.saveParamData["ff" + i].length < 3) {
@@ -1325,7 +1319,7 @@ smartApp.controller('changeOwnershipController', function (
         }
     };
     $scope.isNumberFF = false;
-    $scope.onInputFF = function (charCode) {
+    $scope.onInputFF = function(charCode) {
         //console.log(charCode);
         if (charCode > 31 && (charCode < 48 || charCode > 57)) {
             $scope.isNumberFF = true;
@@ -1335,7 +1329,7 @@ smartApp.controller('changeOwnershipController', function (
         }
     };
 
-    $scope.clearSP = function () {
+    $scope.clearSP = function() {
         $scope.specialOfferType = {
             CUG: false,
             FF: false,
@@ -1350,8 +1344,8 @@ smartApp.controller('changeOwnershipController', function (
         //$scope.onCancelPOOLED();
         $scope.saveParamData = {};
     };
-    $scope.getCapmaxParameter = function (soc) {
-        var checkValue = function (capmax) {
+    $scope.getCapmaxParameter = function(soc) {
+        var checkValue = function(capmax) {
             var value = "";
             if (capmax == "0") {
                 //value = "0";
@@ -1366,7 +1360,7 @@ smartApp.controller('changeOwnershipController', function (
             }
             return value;
         };
-        var checkValueCapmax = function (capmax) {
+        var checkValueCapmax = function(capmax) {
             var value = "";
             if (capmax == "0") {
                 //value = "0";
@@ -1381,7 +1375,7 @@ smartApp.controller('changeOwnershipController', function (
             }
             return value;
         };
-        ChangePricePlanService.getCapmaxParameter(soc, function (result) {
+        ChangePricePlanService.getCapmaxParameter(soc, function(result) {
             console.log(result.data);
             $scope.capMaxParameterList = result.data['cap-max-parameter'];
 
@@ -1406,7 +1400,7 @@ smartApp.controller('changeOwnershipController', function (
     };
 
     $scope.promotion = "";
-    $scope.selectedPromotion = function () {
+    $scope.selectedPromotion = function() {
         $scope.pricePlan = {};
         $scope.onCheckInputForVerify();
         $scope.isValidate = false;
@@ -1422,12 +1416,12 @@ smartApp.controller('changeOwnershipController', function (
 
         $scope.callSalePricePlanList();
     };
-    $scope.getOfferDetail = function (soc) {
+    $scope.getOfferDetail = function(soc) {
         $scope.clearSP()
         SystemService.showLoading();
         console.log(soc);
         //call offerDetail route 1
-        ChangePricePlanService.getOfferDetail(soc, function (resultOfferDetail) {
+        ChangePricePlanService.getOfferDetail(soc, function(resultOfferDetail) {
 
             if (resultOfferDetail.status) {
                 SystemService.hideLoading();
@@ -1450,13 +1444,15 @@ smartApp.controller('changeOwnershipController', function (
                     }
                     if (sp == 'FriendAndFamily') {
                         $scope.specialOfferType.FF = true;
-                        var crodList = $filter('filter')($scope.offerDetail["csm-offer-details"]["csm-related-offer-details"], { "special-offer-type": sp });
+                        var crodList = $filter('filter')($scope.offerDetail["csm-offer-details"]["csm-related-offer-details"], {
+                            "special-offer-type": sp
+                        });
                         console.log('crodList :::: ');
                         console.log(crodList);
                         var code = crodList[0]["code"];
 
                         //call offerDetail route 2
-                        ChangePricePlanService.getOfferDetail(code, function (resultOfferDetail2) {
+                        ChangePricePlanService.getOfferDetail(code, function(resultOfferDetail2) {
                             console.log("resultOfferDetail2 :::: ");
                             console.log(resultOfferDetail2);
                             $scope.offerDetailRoute2 = resultOfferDetail2.data;
@@ -1497,34 +1493,33 @@ smartApp.controller('changeOwnershipController', function (
     };
 
 
-    $scope.useAddressAsCard = function (type) {
+    $scope.useAddressAsCard = function(type) {
         if (type == 'H')
             $scope.mailAddress = $scope.tempCardAddress;
         else
             $scope.billAddress = $scope.tempCardAddress;
     };
 
-    $scope.unUseAddressAsCard = function (type) {
+    $scope.unUseAddressAsCard = function(type) {
         if (type == 'H') {
             $scope.mailAddress = {};
             $('#ulAddressList').hide();
             $scope.addressList = [];
-        }
-        else {
+        } else {
             $scope.billAddress = {};
         }
 
     };
 
 
-    $scope.manualInputReadCard = function () {
+    $scope.manualInputReadCard = function() {
         $('#loadingReadCard').hide();
         $('#loadingReadCard2').hide();
         $('#unMatch').hide();
         $('#unMatch2').hide();
         //document.getElementById("CitizenID").disabled = false;
         $('#CitizenID').prop('disabled', false);
-        setTimeout(function () {
+        setTimeout(function() {
             $('#CitizenID').val('');
             $('#CitizenID').select();
         }, 1100);
@@ -1699,7 +1694,7 @@ smartApp.controller('changeOwnershipController', function (
     //    }
     //});
 
-    $scope.onChangeSub = function () {
+    $scope.onChangeSub = function() {
         console.log($scope.subCompanyType);
     };
 
@@ -1709,7 +1704,7 @@ smartApp.controller('changeOwnershipController', function (
     };
     $scope.grade = {};
 
-    $scope.saveOrder = function () {
+    $scope.saveOrder = function() {
         var data = {
             "target": "aftersales/order/submit",
             "order": {
@@ -1736,8 +1731,9 @@ smartApp.controller('changeOwnershipController', function (
                     "customer-id": $scope.customerStatusN == 'O' ? $scope.data.customerProfile['customer-id'] : "",
                     "customer-sublevel_id": $scope.grade["grade-id"],
                     "customer-sublevel": $scope.grade["grade-sub-name"]
-                    ///check lastest or billadress
-                    , "address-list": {
+                        ///check lastest or billadress
+                        ,
+                    "address-list": {
                         "CUSTOMER_ADDRESS": {
                             //        "number": "61/268",
                             //        "moo": "8",
@@ -1791,81 +1787,81 @@ smartApp.controller('changeOwnershipController', function (
                 //    "partner-type": ""
                 //},
                 "order-items": [{
-                    "name": "CHANGE_OWNERSHIP",
-                    "product-name": $scope.pricePlan.saveName,
-                    "product-id-number": $scope.data.installedProducts["product-id-number"],
-                    "product-id-name": $scope.data.installedProducts["product-id-name"],
-                    "product-category": $scope.data.installedProducts["product-category"],
-                    "product-type": "PRICEPLAN",
-                    "order-type": "CHANGE",
-                    "reason-code": $scope.selectReason.id,
-                    "user-memo": $scope.saveData.memo ? $scope.saveData.memo : "",
-                    "address-list": {
-                        "BILLING_ADDRESS": {
-                            "number": $scope.mailAddress.homeNumber,
-                            "moo": $scope.mailAddress.moo,
-                            "village": $scope.mailAddress.village,
-                            "street": $scope.mailAddress.road,
-                            "soi": $scope.mailAddress.soi,
-                            "district": $scope.mailAddress.amphur,
-                            "province": $scope.mailAddress.province,
-                            "building-name": $scope.mailAddress.buildingName,
-                            "building-room": $scope.mailAddress.buildingRoom,
-                            "building-floor": $scope.mailAddress.buildingFloor,
-                            "sub-district": $scope.mailAddress.district,
-                            "zip": $scope.mailAddress.postcode,
-                            "household": ""
+                        "name": "CHANGE_OWNERSHIP",
+                        "product-name": $scope.pricePlan.saveName,
+                        "product-id-number": $scope.data.installedProducts["product-id-number"],
+                        "product-id-name": $scope.data.installedProducts["product-id-name"],
+                        "product-category": $scope.data.installedProducts["product-category"],
+                        "product-type": "PRICEPLAN",
+                        "order-type": "CHANGE",
+                        "reason-code": $scope.selectReason.id,
+                        "user-memo": $scope.saveData.memo ? $scope.saveData.memo : "",
+                        "address-list": {
+                            "BILLING_ADDRESS": {
+                                "number": $scope.mailAddress.homeNumber,
+                                "moo": $scope.mailAddress.moo,
+                                "village": $scope.mailAddress.village,
+                                "street": $scope.mailAddress.road,
+                                "soi": $scope.mailAddress.soi,
+                                "district": $scope.mailAddress.amphur,
+                                "province": $scope.mailAddress.province,
+                                "building-name": $scope.mailAddress.buildingName,
+                                "building-room": $scope.mailAddress.buildingRoom,
+                                "building-floor": $scope.mailAddress.buildingFloor,
+                                "sub-district": $scope.mailAddress.district,
+                                "zip": $scope.mailAddress.postcode,
+                                "household": ""
+                            }
+                            //,"TAX_ADDRESS": {
+                            //    "number": "61/268",
+                            //    "moo": "8",
+                            //    "village": "moo ban",
+                            //    "street": "ratchada",
+                            //    "soi": "8",
+                            //    "district": "dindaeng",
+                            //    "province": "Pathumthani",
+                            //    "building-name": "Pakin",
+                            //    "building-room": "22",
+                            //    "building-floor": "13",
+                            //    "sub-district": "Dindaeng",
+                            //    "zip": "22222",
+                            //    "household": "18"
+                            //}
+                        },
+                        "order-data": {
+                            //"IMSI": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "MAXALLOW-APPROVE-CODE": $scope.approveCode,
+                            //"MOBILE-SERVICETYPE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "SUBSCRIBER-TITLE-CODE": $scope.newOwner2.prefixTH,
+                            "SUBSCRIBER-TITLE": $scope.titleOther2,
+                            "SUBSCRIBER-FIRSTNAME": $scope.newOwner2.firstNameTH,
+                            "SUBSCRIBER-LASTNAME": $scope.newOwner2.lastNameTH,
+                            "SUBSCRIBER-BIRTHDATE": SystemService.convertDateToEng($('#birthDayRegisterd').val(), "ENG"),
+                            "SUBSCRIBER-GENDER": $scope.newOwner2.sex,
+                            "SUBSCRIBER-SMS-LANG": $scope.newOwner2.smsLanguage,
+                            "ACCOUNT-BILL-FORMAT": $scope.blah,
+                            "ACCOUNT-EMAIL": $scope.billPayment.email,
+                            "ACCOUNT-SMS-NUMBER": $scope.billPayment.smss,
+                            "ACCOUNT-PAYMENT-METHOD": "CA",
+                            "ACCOUNT-LANG": $scope.billPayment.accountLang,
+                            //"ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "ORIGINAL-OWNER-FIRSTNAME": $scope.data.customerProfile['firstname'],
+                            "ORIGINAL-OWNER-LASTNAME": $scope.data.customerProfile['lastname'],
+                            "CHANGE-OPTION": $scope.isLastestAdress ? "EXISTING" : "NEW"
+                        },
+                        "primary-order-data": {
+                            //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "OU-ID": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "",
+                            "BAN": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "",
+                            "ACCOUNT-CATEGORY": $scope.cardType.value,
+                            "ACCOUNT-SUB-TYPE": $scope.subCompanyType,
+                            "COMPANY-CODE": $scope.data.installedProducts["company-code"],
+                            "NAS-PROPOSITION": $scope.selectProposition,
+                            "CCBS-PROPOSITION": $scope.pricePlan.promotion,
+                            //"SIM": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
                         }
-                        //,"TAX_ADDRESS": {
-                        //    "number": "61/268",
-                        //    "moo": "8",
-                        //    "village": "moo ban",
-                        //    "street": "ratchada",
-                        //    "soi": "8",
-                        //    "district": "dindaeng",
-                        //    "province": "Pathumthani",
-                        //    "building-name": "Pakin",
-                        //    "building-room": "22",
-                        //    "building-floor": "13",
-                        //    "sub-district": "Dindaeng",
-                        //    "zip": "22222",
-                        //    "household": "18"
-                        //}
-                    },
-                    "order-data": {
-                        //"IMSI": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                        "MAXALLOW-APPROVE-CODE": $scope.approveCode,
-                        //"MOBILE-SERVICETYPE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                        "SUBSCRIBER-TITLE-CODE": $scope.newOwner2.prefixTH,
-                        "SUBSCRIBER-TITLE": $scope.titleOther2,
-                        "SUBSCRIBER-FIRSTNAME": $scope.newOwner2.firstNameTH,
-                        "SUBSCRIBER-LASTNAME": $scope.newOwner2.lastNameTH,
-                        "SUBSCRIBER-BIRTHDATE": SystemService.convertDateToEng($('#birthDayRegisterd').val(), "ENG"),
-                        "SUBSCRIBER-GENDER": $scope.newOwner2.sex,
-                        "SUBSCRIBER-SMS-LANG": $scope.newOwner2.smsLanguage,
-                        "ACCOUNT-BILL-FORMAT": $scope.blah,
-                        "ACCOUNT-EMAIL": $scope.billPayment.email,
-                        "ACCOUNT-SMS-NUMBER": $scope.billPayment.smss,
-                        "ACCOUNT-PAYMENT-METHOD": "CA",
-                        "ACCOUNT-LANG": $scope.billPayment.accountLang,
-                        //"ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                        "ORIGINAL-OWNER-FIRSTNAME": $scope.data.customerProfile['firstname'],
-                        "ORIGINAL-OWNER-LASTNAME": $scope.data.customerProfile['lastname'],
-                        "CHANGE-OPTION": $scope.isLastestAdress ? "EXISTING" : "NEW"
-                    },
-                    "primary-order-data": {
-                        //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                        "OU-ID": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "",
-                        "BAN": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "",
-                        "ACCOUNT-CATEGORY": $scope.cardType.value,
-                        "ACCOUNT-SUB-TYPE": $scope.subCompanyType,
-                        "COMPANY-CODE": $scope.data.installedProducts["company-code"],
-                        "NAS-PROPOSITION": $scope.selectProposition,
-                        "CCBS-PROPOSITION": $scope.pricePlan.promotion,
-                        //"SIM": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                    }
-                }]
-                //,"last-modify-date": ""
+                    }]
+                    //,"last-modify-date": ""
             },
             "ref-id": "xxxxxxxxxxxxxxxxxxxADD",
             "user-id": "xxxxxxxxxxxxxxxxxxxADD",
@@ -2015,7 +2011,7 @@ smartApp.controller('changeOwnershipController', function (
                 "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
             });
         } else {
-            SystemService.callServicePost(data, headers, function (result) {
+            SystemService.callServicePost(data, headers, function(result) {
                 console.log(result);
                 if (result.status) {
                     SystemService.showBeforeClose({
@@ -2041,7 +2037,7 @@ smartApp.controller('changeOwnershipController', function (
 
     $scope.varPhoto = "";
     $scope.varPhotoLastest = "";
-    $scope.printOrder = function () {
+    $scope.printOrder = function() {
 
         $scope.attModalVal = "modal";
         var cardValueData = {
@@ -2067,7 +2063,7 @@ smartApp.controller('changeOwnershipController', function (
             "district": "",
             "amphur": "",
             "province": ""
-            //NEW---
+                //NEW---
         };
         if ($scope.isCardValueData) {
             cardValueData.photoType = "SC";
@@ -2095,7 +2091,7 @@ smartApp.controller('changeOwnershipController', function (
                 "district": $scope.cardInfo.District,
                 "amphur": $scope.cardInfo.Amphur,
                 "province": $scope.cardInfo.Province
-                //NEW---
+                    //NEW---
             };
 
         }
@@ -2103,7 +2099,9 @@ smartApp.controller('changeOwnershipController', function (
         if ($scope.data.priceplan['account-category'] == "B" || $scope.data.priceplan['account-category'] == "C") {
             customerType = "Y";
         }
-        var newTitle = $filter('filter')($scope.titleTypeListx, { 'value': $scope.newOwner.prefixTH });
+        var newTitle = $filter('filter')($scope.titleTypeListx, {
+            'value': $scope.newOwner.prefixTH
+        });
         if (newTitle.length > 0) {
             newTitle = newTitle[0]['th-description'];
         } else {
@@ -2148,7 +2146,7 @@ smartApp.controller('changeOwnershipController', function (
                 "district": cardValueData["district"],
                 "amphur": cardValueData["amphur"],
                 "province": cardValueData["province"]
-                //NEW---
+                    //NEW---
 
 
             },
@@ -2170,14 +2168,18 @@ smartApp.controller('changeOwnershipController', function (
         console.log(data);
         //api generatePDF
         var srcPDF = "";
-        SystemService.generatePDF(data, function (result) {
+        SystemService.generatePDF(data, function(result) {
             var url = result;
-            setTimeout(function () {
+            setTimeout(function() {
                 var srcPDF = url;
                 document.getElementById('iframePDF').src = url + '?clearData=N';
                 if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                    setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000);
-                    setTimeout(function () { document.getElementById('iframePDF').src = srcPDF }, 2500);
+                    setTimeout(function() {
+                        document.getElementById('iframePDF').src = 'javascript:window.print();'
+                    }, 2000);
+                    setTimeout(function() {
+                        document.getElementById('iframePDF').src = srcPDF
+                    }, 2500);
                 }
             }, 500);
 
@@ -2202,11 +2204,11 @@ smartApp.controller('changeOwnershipController', function (
 
 
     $scope.selectedCompany = '1';
-    $scope.selectCompany = function (company) {
+    $scope.selectCompany = function(company) {
         $scope.selectedCompany = company;
     };
 
-    $scope.changecusStatusN = function (customerStatus) {
+    $scope.changecusStatusN = function(customerStatus) {
         if (customerStatus == 'N') {
             $scope.changOpenserviceN = false;
             $scope.mailAddress = {};
@@ -2216,7 +2218,7 @@ smartApp.controller('changeOwnershipController', function (
         }
         $scope.customerStatusN = customerStatus;
     };
-    $scope.changecusStatusBC = function (customerStatus) {
+    $scope.changecusStatusBC = function(customerStatus) {
         if (customerStatus == 'N') {
             $scope.changOpenserviceBC = false;
 
@@ -2224,34 +2226,31 @@ smartApp.controller('changeOwnershipController', function (
         $scope.customerStatusBC = customerStatus;
     };
 
-    $scope.checkOldAddress = function () {
+    $scope.checkOldAddress = function() {
         if ($scope.changOpenserviceN == true)
             if ($scope.rowNoSelected == '1') {
                 $scope.mailAddress = $scope.tempOldAddress;
-            }
-            else {
+            } else {
                 $scope.mailAddress = $scope.tempOtherAddress;
             }
 
     };
 
-    $scope.changeOldAddress = function (status) {
+    $scope.changeOldAddress = function(status) {
         if (status) {
             $scope.changOpenserviceN == true;
             $scope.mailAddress = $scope.tempOldAddress;
-        }
-        else {
+        } else {
             $scope.rowNoSelected = '1';
             $scope.changOpenserviceN == false;
             $scope.mailAddress = {};
         }
     };
 
-    $scope.changeOldAddressBC = function (status) {
+    $scope.changeOldAddressBC = function(status) {
         if (status) {
             $scope.changOpenserviceBC = true;
-        }
-        else {
+        } else {
             $scope.changOpenserviceBC = false;
             $scope.mailAddress = {};
             $scope.billAddress = {};
@@ -2259,19 +2258,18 @@ smartApp.controller('changeOwnershipController', function (
     };
 
     $scope.rowNoSelected = '1';
-    $scope.updateMailAddress = function (rowNo) {
+    $scope.updateMailAddress = function(rowNo) {
         $scope.rowNoSelected = rowNo;
         if (rowNo == '1') {
             $scope.mailAddress = $scope.tempOldAddress;
-        }
-        else {
+        } else {
             $scope.mailAddress = $scope.tempOtherAddress;
         }
     };
 
-    $scope.onVerify = function () {
+    $scope.onVerify = function() {
         SystemService.showLoading();
-        var checkMaxAllow = function (result) {
+        var checkMaxAllow = function(result) {
             SystemService.hideLoading();
             console.log(result);
             if (result.data['display-messages'].length > 0 && result.data['display-messages'][0]['message-type'] == 'ERROR') {
@@ -2280,7 +2278,7 @@ smartApp.controller('changeOwnershipController', function (
                     $scope.showApprovCode = true;
                     $scope.isVerify = false;
                 } else {
-                    setTimeout(function () {
+                    setTimeout(function() {
                         SystemService.showAlert({
                             "message": result.data["display-messages"][0]["message"],
                             "message-code": result.data["display-messages"][0]["message-code"],
@@ -2316,8 +2314,8 @@ smartApp.controller('changeOwnershipController', function (
             // O/M
             //"approveCode": $scope.approveCode,
             "birthDate": SystemService.convertDateToEng($scope.newOwner.birthDay, "ENG"),
-            "channel": "WEBUI",//$scope.getAuthen["channel"],
-            "companyCode": "AL",//$scope.data.installedProducts["company-code"],
+            "channel": "WEBUI", //$scope.getAuthen["channel"],
+            "companyCode": "AL", //$scope.data.installedProducts["company-code"],
             "dealerCode": $scope.partnerCode,
             //"functionType": null,
             "idNumber": $scope.customer['id-number'],
@@ -2345,16 +2343,14 @@ smartApp.controller('changeOwnershipController', function (
                     "message": " VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.].  VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.]",
                     "detailed-message": "ApplicationServiceException TMV-PREVERIFY-11009 VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.]. "
                 },
-                "display-messages": [
-                  {
-                      "message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
-                      "message-code": "TMV-PREVERIFY-11010x",
-                      "message-type": "ERROR",
-                      "en-message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
-                      "th-message": "ไม่สามารถเปิดบริการได้ กรุณาแนะนำเจ้าหน้าที่โทรติดต่อ 02-699-6222 (วันจันทร์-เสาร์ เวลา 9.00-18.00)",
-                      "technical-message": "null( Message variable: ] ) "
-                  }
-                ],
+                "display-messages": [{
+                    "message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
+                    "message-code": "TMV-PREVERIFY-11010x",
+                    "message-type": "ERROR",
+                    "en-message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
+                    "th-message": "ไม่สามารถเปิดบริการได้ กรุณาแนะนำเจ้าหน้าที่โทรติดต่อ 02-699-6222 (วันจันทร์-เสาร์ เวลา 9.00-18.00)",
+                    "technical-message": "null( Message variable: ] ) "
+                }],
                 "trx-id": "3I1BDOSDXWJN8",
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)"
             };
@@ -2364,11 +2360,9 @@ smartApp.controller('changeOwnershipController', function (
                 "trx-id": null,
                 "process-instance": null,
                 "display-messages": [],
-                "response-data": [
-                  {
-                      "verifyCode": null
-                  }
-                ]
+                "response-data": [{
+                    "verifyCode": null
+                }]
             };
             if ($scope.approveCode) {
                 result = data2;
@@ -2382,7 +2376,7 @@ smartApp.controller('changeOwnershipController', function (
                 msgErr: ""
             });
         } else {
-            SystemService.callServicePostByPass(data, headers, function (result) {
+            SystemService.callServicePostByPass(data, headers, function(result) {
                 checkMaxAllow(result);
             });
         }
@@ -2394,7 +2388,7 @@ smartApp.controller('changeOwnershipController', function (
     $scope.selectedAddress = "";
     $scope.pauseAddress = false;
     $scope.isLoadAddress = false;
-    var checkNull = function (org, txt) {
+    var checkNull = function(org, txt) {
         if (txt) {
             if (org) {
                 return " " + txt;
@@ -2406,7 +2400,7 @@ smartApp.controller('changeOwnershipController', function (
             return "";
         }
     }
-    $scope.onEnterAddress = function () {
+    $scope.onEnterAddress = function() {
         if ($scope.addressList.length == 1) {
             $scope.setSearchAddress($scope.addressList[0]);
         }
@@ -2414,15 +2408,15 @@ smartApp.controller('changeOwnershipController', function (
             $scope.onInputAddress();
         }
     };
-    $scope.onFocusAddress = function () {
+    $scope.onFocusAddress = function() {
         if ($scope.addressList.length > 0) {
             $('#ulAddressList').show();
         }
     };
-    $scope.onBlurAddress = function () {
+    $scope.onBlurAddress = function() {
         $('#ulAddressList').hide();
     };
-    var filterAddressList = function (txtSearch) {
+    var filterAddressList = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {
             var txtList = txtSearch.split(' ');
             var arr = tempAddressList;
@@ -2438,7 +2432,7 @@ smartApp.controller('changeOwnershipController', function (
 
 
         console.log($scope.addressList.length, txtSearch);
-        setTimeout(function () {
+        setTimeout(function() {
             if ($scope.addressList.length == 0) {
                 $('#ulAddressList').hide();
             } else {
@@ -2447,7 +2441,7 @@ smartApp.controller('changeOwnershipController', function (
         }, 0);
     };
     $scope.txtSearchAddress = "";
-    $scope.onInputAddress = function () {
+    $scope.onInputAddress = function() {
         $scope.txtSearchAddress = "";
         $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.postcode);
         $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.province);
@@ -2459,7 +2453,7 @@ smartApp.controller('changeOwnershipController', function (
             if (!$scope.isLoadAddress) {
                 //SystemService.showLoading();
                 if (!$scope.pauseAddress) {
-                    SystemService.getAddressMaster(target, function (result) {
+                    SystemService.getAddressMaster(target, function(result) {
                         //SystemService.hideLoading();
                         if (result.status) {
                             $scope.isLoadAddress = true;
@@ -2485,10 +2479,10 @@ smartApp.controller('changeOwnershipController', function (
             $scope.addressList = [];
         }
     };
-    $scope.onChangeBillPaymentAccountLang = function () {
+    $scope.onChangeBillPaymentAccountLang = function() {
         $scope.onInputAddress();
     };
-    $scope.setSearchAddress = function (address) {
+    $scope.setSearchAddress = function(address) {
         console.log(address);
         $scope.mailAddress.province = address['province'];
         $scope.mailAddress.amphur = address['district'];
@@ -2496,10 +2490,10 @@ smartApp.controller('changeOwnershipController', function (
         $scope.mailAddress.postcode = address['zipcode'];
         $('#ulAddressList').hide();
     };
-    $scope.onSelectedAddress = function (e) {
+    $scope.onSelectedAddress = function(e) {
 
         $scope.setSearchAddress($scope.addressList[e]);
-        setTimeout(function () {
+        setTimeout(function() {
             $('#idBindDataAgain').click();
         }, 0);
     };
@@ -2510,38 +2504,38 @@ smartApp.controller('changeOwnershipController', function (
     $scope.reason = "";
     $scope.selectReason = {};
 
-    $scope.onReasonChange = function () {
+    $scope.onReasonChange = function() {
         $scope.selectReason = $scope.reasons[$('#selectReasonId').val()];
         console.log($('#selectReasonId').val(), $scope.selectReason);
     };
     //end reson
-    $scope.cancelChanged = function () {
+    $scope.cancelChanged = function() {
         closeWP();
         //$window.closed();
     };
 
 
-    $scope.onChangCheckno = function () {
+    $scope.onChangCheckno = function() {
         //alert($scope.changCheckno);
     };
 
-    $scope.openService = function () {
+    $scope.openService = function() {
         $scope.changOpenserviceN = true;
     };
-    $scope.changCheck = function () {
+    $scope.changCheck = function() {
         $scope.changCheckno = true;
     };
 
-    $scope.slipchangeType = function (Type) {
+    $scope.slipchangeType = function(Type) {
         $scope.slipType = Type;
     };
 
 
     $scope.isCameraLastest = false;
     //start----------- camera ----------------
-    $scope.initWebCam = function () {
+    $scope.initWebCam = function() {
 
-        setTimeout(function () {
+        setTimeout(function() {
             $('#btnSavePhoto').hide();
             var html = webcam.get_html(320, 240);
             $("#dataCamera").html(html);
@@ -2561,7 +2555,7 @@ smartApp.controller('changeOwnershipController', function (
         } else {
             $scope.varPhoto = msg;
         }
-        
+
         var ie_preview_image = $("#ie_preview_image")[0];
         ie_preview_image.src = "data:image/png;base64," + msg;
 
@@ -2569,11 +2563,11 @@ smartApp.controller('changeOwnershipController', function (
         $('#btnSavePhoto').show();
     }
 
-    $scope.webcamSnap = function () {
-        webcam.snap();
-    }
-    //end----------- camera ----------------
-    $scope.initWebCamLastest = function () {
+    $scope.webcamSnap = function() {
+            webcam.snap();
+        }
+        //end----------- camera ----------------
+    $scope.initWebCamLastest = function() {
         $scope.initWebCam();
     }
 
@@ -2583,26 +2577,26 @@ smartApp.controller('changeOwnershipController', function (
     //    $scope.isAuthorize = true;
     //};
     ////init();
-    setTimeout(function () {
-        $('#authorize').click(function () {
+    setTimeout(function() {
+        $('#authorize').click(function() {
             $scope.isAuthorize = $(this).prop('checked');
             console.log($(this).prop('checked'));
         });
     }, 3000);
 
-    $scope.checkValidateSave = function () {
+    $scope.checkValidateSave = function() {
         console.log($scope.isAuthorize);
         if ($scope.isAuthorize) {
 
         }
     };
-    
 
 
 
 
-    $scope.validateUI = function () {
-        var isNull = function (txt) {
+
+    $scope.validateUI = function() {
+        var isNull = function(txt) {
             if (txt) {
                 return false;
             } else {
@@ -2635,11 +2629,11 @@ smartApp.controller('changeOwnershipController', function (
         }
         var errorAuthorizeID = false;
         var errorAuthorizeName = false;
-        if ($('#authorize').prop('checked')) {//กดมอบอำนาจ:
+        if ($('#authorize').prop('checked')) { //กดมอบอำนาจ:
             errorAuthorizeID = isNull($('#CitizenID2').val());
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
-        var showValidate = function (id, msg) {
+        var showValidate = function(id, msg) {
             if (isFocus) {
                 $('#' + id).focus();
                 isFocus = false;
@@ -2648,7 +2642,7 @@ smartApp.controller('changeOwnershipController', function (
                 SystemService.showAlert(msg);
             }
         };
-        var checkCapmaxNull = function (val) {
+        var checkCapmaxNull = function(val) {
             if (val == '' || val == 'null') {
                 return true;
             } else {
@@ -2742,11 +2736,11 @@ smartApp.controller('changeOwnershipController', function (
 
         }
     };
-    $scope.noneShopPrint = function () {
+    $scope.noneShopPrint = function() {
         $scope.isClickPrint = true;
         $scope.validateUI();
     };
-    $scope.afterCloseWarning = function () {
+    $scope.afterCloseWarning = function() {
         $scope.isClickPrint = false;
         isFocus = true;
         $scope.initModalReadCard();
