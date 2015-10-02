@@ -1408,6 +1408,7 @@
 
         var expiredate = new Date();
         expiredate.setDate(expiredate.getDate() - 1);
+        
         $('.date-picker').datepicker({
             autoclose: true,
             todayHighlight: true,
@@ -1426,7 +1427,7 @@
             autoclose: true,
             todayHighlight: true,
             language: 'th-th',
-            endDate: expiredate
+            startDate: date
         });
 
     };
