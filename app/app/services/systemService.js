@@ -1395,14 +1395,9 @@
         var date = new Date();
         date.setDate(date.getDate() + 1);
 
-<<<<<<< HEAD
-        var exptiredate = new Date();
-        exptiredate.setDate(exptiredate.getDate() - 1);
-=======
+
         var expiredate = new Date();
         expiredate.setDate(expiredate.getDate() - 1);
->>>>>>> 83dce6edd6ebc46af9d56bb0d8fe7ca7a097b5c9
-
         $('.date-picker').datepicker({
             autoclose: true,
             todayHighlight: true,
@@ -1416,14 +1411,7 @@
             startDate: date
         });
 
-<<<<<<< HEAD
-        $('.date-picker-exptiredate').datepicker({
-            autoclose: true,
-            todayHighlight: true,
-            language: 'th-th',
-            endDate: exptiredate
-        });
-=======
+
         $('.date-picker-expiredate').datepicker({
             autoclose: true,
             todayHighlight: true,
@@ -1431,7 +1419,6 @@
             endDate: expiredate
         });
 
->>>>>>> 83dce6edd6ebc46af9d56bb0d8fe7ca7a097b5c9
     };
 
     //masterData //for deploy
