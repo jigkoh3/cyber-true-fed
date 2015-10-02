@@ -1400,10 +1400,14 @@
 
     };
 
-    this.calendarDatePicker = function() {
+
+   this.calendarDatePicker = function () {
         var date = new Date();
         date.setDate(date.getDate() + 1);
 
+
+        var expiredate = new Date();
+        expiredate.setDate(expiredate.getDate() - 1);
         $('.date-picker').datepicker({
             autoclose: true,
             todayHighlight: true,
@@ -1417,7 +1421,16 @@
             startDate: date
         });
 
+
+        $('.date-picker-expiredate').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            language: 'th-th',
+            endDate: expiredate
+        });
+
     };
+
     //masterData //for deploy
     this.getMaster = function(target, fnCallback) {
         var masterUrl = "aftersales/configuration/master/";

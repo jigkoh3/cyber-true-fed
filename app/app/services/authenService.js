@@ -16,7 +16,7 @@
             "saleCode": "00",
             "thaiName": "THAINAME",
             "engName": "ENGNAME",
-            "shopcodes": ["12345678"],
+            "shopcodes": ["12345678","11111111"],
             "logInName": "DEMO"
         };
         

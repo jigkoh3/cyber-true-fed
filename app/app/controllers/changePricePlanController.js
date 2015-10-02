@@ -1294,16 +1294,18 @@ smartApp.controller('ChangePricePlanController', function (
                 spAll = spAll + (spAll ? "|" : "") + sp;
                 spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
                 if ($scope.capMaxParameterList['monetary-capmax']) {
-                    spArray[sp].push("Monetary cap max|" + $scope.saveParamData.Monetary + "|");
+                    spArray[sp].push("Monetary cap max|" + $scope.saveParamData.Monetary);
                 }
                 if ($scope.capMaxParameterList['occurrence-capmax']) {
-                    spArray[sp].push("Occurrence cap max|" + $scope.saveParamData.Occurrence + "|");
+                    spArray[sp].push("Occurrence cap max|" + $scope.saveParamData.Occurrence);
                 }
                 if ($scope.capMaxParameterList['duration-capmax']) {
-                    spArray[sp].push("Duration cap max|" + $scope.saveParamData.Duration + "|" + $scope.capMaxParameterList['durationCapMaxUOM']);
+                    spArray[sp].push("Duration cap max|" + $scope.saveParamData.Duration);
+                    spArray[sp].push("Duration cap max UOM|" + $scope.capMaxParameterList['durationCapMaxUOM']);
                 }
                 if ($scope.capMaxParameterList['volume-capmax']) {
-                    spArray[sp].push("Volume cap max|" + $scope.saveParamData.Volume + "|" + $scope.capMaxParameterList['volumeCapMaxUOM']);
+                    spArray[sp].push("Volume cap max|" + $scope.saveParamData.Volume);
+                    spArray[sp].push("Volume cap max UOM|" + $scope.capMaxParameterList['volume-capmax-uom']);
                 }
             }
             if (sp == 'FriendAndFamily') {

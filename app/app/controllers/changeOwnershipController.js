@@ -724,6 +724,7 @@ smartApp.controller('changeOwnershipController', function(
                         changeOwnershipService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
                             $scope.isLastestUser = true;
                             $.fancybox.close();
+
                             SystemService.hideLoading();
                             if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
                                 //ผู้จดทะเบียนใหม่
@@ -756,12 +757,14 @@ smartApp.controller('changeOwnershipController', function(
 
                                     if (lastestCustomer.data['display-messages'].length > 0) {
                                         SystemService.showAlert({
+
                                             "message": lastestCustomer.data["display-messages"][0]["message"],
                                             "message-code": lastestCustomer.data["display-messages"][0]["message-code"],
                                             "message-type": "WARNING",
                                             "en-message": lastestCustomer.data["display-messages"][0]["en-message"],
                                             "th-message": lastestCustomer.data["display-messages"][0]["th-message"],
                                             "technical-message": lastestCustomer.data["display-messages"][0]["technical-message"]
+
                                         });
                                     }
                                 }, 1000);
