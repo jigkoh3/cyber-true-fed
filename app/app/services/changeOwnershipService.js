@@ -503,14 +503,7 @@
 
             var data2 = {
                 "status": "SUCCESSFUL",
-                "display-messages": [{
-                    "message": "Data not found.",
-                    "message-code": "2",
-                    "message-type": "ERROR",
-                    "en-message": "ACAHblG10001",
-                    "th-message": "Data not found.",
-                    "technical-message": "CCB_INT Method : searchCustomerInfoTM, URL : http://172.19.192.45:8180/SearchCustomerInfoWS/SearchCustomerInfoSI"
-                }],
+                "display-messages": [],
                 "trx-id": "3ERTIDCS16PT",
                 "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {}
