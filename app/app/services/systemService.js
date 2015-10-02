@@ -1525,10 +1525,6 @@
             console.log($(this).val());
 
             var subNo = $(this).val();
-            var index = subNo.indexOf('0');
-            console.log(subNo.length);
-            if(charCode == 48) 
-                console.log('is charcode = 0');
             if (subNo.length == 0 && charCode != 48) {
                 $(this).val('');
                 return false;

@@ -262,6 +262,13 @@ smartApp.controller('changeOwnershipController', function(
 
         return bool;
     };
+    $scope.onInputTel2 = function(charCode) {
+        console.log($scope.customer['contact-mobile-number']);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberTel = !bool;
+
+        return bool;
+    };
 
     $scope.isNumberTelZero = false;
     $scope.onInputTelZero = function(charCode) {
@@ -271,7 +278,22 @@ smartApp.controller('changeOwnershipController', function(
         }
         if ($scope.contactNo.number.length == 0 && charCode != 48) {
             $scope.isNumberTelZero = true;
-            $scope.contactNo.number = "";
+            //$scope.contactNo.number = "";
+        } else {
+            $scope.isNumberTelZero = false;
+
+        }
+    };
+
+     $scope.isNumberTelZero = false;
+    $scope.onInputTelZero2 = function(charCode) {
+        if (!$scope.customer['contact-mobile-number']) {
+
+            $scope.customer['contact-mobile-number'] = "";
+        }
+        if ($scope.customer['contact-mobile-number'].length == 0 && charCode != 48) {
+            $scope.isNumberTelZero = true;
+            //$scope.contactNo.number = "";
         } else {
             $scope.isNumberTelZero = false;
 
@@ -279,6 +301,34 @@ smartApp.controller('changeOwnershipController', function(
     };
 
 
+    $scope.isNumberTelLength = false;
+    $scope.onBlurTel = function(){
+        $scope.isNumberTel=false; 
+        $scope.isNumberTelZero=false;
+        if($scope.contactNo.number){
+            if($scope.contactNo.number.length ==9 ||$scope.contactNo.number.length ==10){
+                $scope.isNumberTelLength = false;
+            }else{
+                $scope.isNumberTelLength = true;
+            }
+            console.log($scope.contactNo.number.length);
+        }
+    }
+
+
+    $scope.isNumberTelLength = false;
+    $scope.onBlurTel2 = function(){
+        $scope.isNumberTel=false; 
+        $scope.isNumberTelZero=false;
+        if($scope.customer['contact-mobile-number']){
+            if($scope.customer['contact-mobile-number'].length ==9 ||$scope.customer['contact-mobile-number'].length ==10){
+                $scope.isNumberTelLength = false;
+            }else{
+                $scope.isNumberTelLength = true;
+            }
+            console.log($scope.customer['contact-mobile-number'].length);
+        }
+    }
     $scope.isInputSubNo = false;
     $scope.onInputSubNo = function() {
         console.log($('#dataSubNo').val().length, $scope.isInputSubNo);
