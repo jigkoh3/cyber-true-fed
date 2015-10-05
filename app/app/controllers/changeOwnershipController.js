@@ -191,6 +191,11 @@ smartApp.controller('changeOwnershipController', function(
         $('#sex3').val(sex);
 
         $('#birthDay').removeClass('date-picker');
+        $scope.newOwner.firstNameTH = $scope.cardInfo3.FirstNameTH;
+        $scope.newOwner.lastNameTH = $scope.cardInfo3.LastNameTH;
+        $scope.newOwner2.firstNameTH = $scope.cardInfo3.FirstNameTH;
+        $scope.newOwner2.lastNameTH = $scope.cardInfo3.LastNameTH;
+        console.log($scope.newOwner.firstNameTH);
 
         $scope.cardType.value = "I";
         $('#cardType').val('I');
@@ -731,24 +736,26 @@ smartApp.controller('changeOwnershipController', function(
 
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;
-        $scope.newOwner.firstNameTH = "";
-        $scope.newOwner.lastNameTH = "";
-        $scope.newOwner.prefixTH = "T2";
-        //ระบุผู้ใช้หมายเลข
-        $scope.newOwner2.firstNameTH = "";
-        $scope.newOwner2.lastNameTH = "";
-        $scope.newOwner2.prefixTH = "T2";
+        if (!$scope.cardInfo3) {
+            $scope.newOwner.firstNameTH = "";
+            $scope.newOwner.lastNameTH = "";
+            $scope.newOwner.prefixTH = "T2";
+            //ระบุผู้ใช้หมายเลข
+            $scope.newOwner2.firstNameTH = "";
+            $scope.newOwner2.lastNameTH = "";
+            $scope.newOwner2.prefixTH = "T2";
 
-        $scope.customer['tax-id'] = "";
+            $scope.customer['tax-id'] = "";
 
-        $scope.customer['contact-mobile-number'] = "";
-        $scope.customer['contact-email'] = "";
+            $scope.customer['contact-mobile-number'] = "";
+            $scope.customer['contact-email'] = "";
 
 
-        $scope.contactNo.number = "";
-        $scope.contactNo.continued = "";
+            $scope.contactNo.number = "";
+            $scope.contactNo.continued = "";
 
-        $scope.onselectPrefix();
+            $scope.onselectPrefix();
+        }
 
         //$scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
 
@@ -789,24 +796,26 @@ smartApp.controller('changeOwnershipController', function(
                             if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
                                 //ผู้จดทะเบียนใหม่
                                 //$scope.customer = customer;
-                                $scope.newOwner.firstNameTH = "";
-                                $scope.newOwner.lastNameTH = "";
-                                $scope.newOwner.prefixTH = "T2";
-                                //ระบุผู้ใช้หมายเลข
-                                $scope.newOwner2.firstNameTH = "";
-                                $scope.newOwner2.lastNameTH = "";
-                                $scope.newOwner2.prefixTH = "T2";
+                                if (!$scope.cardInfo3) {
+                                    $scope.newOwner.firstNameTH = "";
+                                    $scope.newOwner.lastNameTH = "";
+                                    $scope.newOwner.prefixTH = "T2";
+                                    //ระบุผู้ใช้หมายเลข
+                                    $scope.newOwner2.firstNameTH = "";
+                                    $scope.newOwner2.lastNameTH = "";
+                                    $scope.newOwner2.prefixTH = "T2";
 
-                                $scope.customer['tax-id'] = cid;
+                                    $scope.customer['tax-id'] = "";
 
-                                $scope.customer['contact-mobile-number'] = "";
-                                $scope.customer['contact-email'] = "";
+                                    $scope.customer['contact-mobile-number'] = "";
+                                    $scope.customer['contact-email'] = "";
 
 
-                                $scope.contactNo.number = "";
-                                $scope.contactNo.continued = "";
+                                    $scope.contactNo.number = "";
+                                    $scope.contactNo.continued = "";
 
-                                $scope.onselectPrefix();
+                                    $scope.onselectPrefix();
+                                }
 
                                 $scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
 
@@ -2157,6 +2166,31 @@ smartApp.controller('changeOwnershipController', function(
             "province": ""
                 //NEW---
         };
+        var cardValueDataNew = {
+            //NEW---
+            "photoIdCard": "",
+
+            //SC=Scan
+            //SN=Snap
+            "photoType": "SN",
+            "titleEn": "",
+            "firstnameEn": "",
+            "lastnameEn": "",
+            "expireDay": "",
+            "birthDay": "",
+            "issueDay": "",
+
+            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+            "homeNumber": "",
+            "moo": "",
+            "trok": "",
+            "soi": "",
+            "road": "",
+            "district": "",
+            "amphur": "",
+            "province": ""
+                //NEW---
+        };
         if ($scope.isCardValueData) {
             cardValueData.photoType = "SC";
             cardValueData.photoIdCard = $scope.cardInfo.CitizenID;
@@ -2183,6 +2217,36 @@ smartApp.controller('changeOwnershipController', function(
                 "district": $scope.cardInfo.District,
                 "amphur": $scope.cardInfo.Amphur,
                 "province": $scope.cardInfo.Province
+                    //NEW---
+            };
+
+        }
+        if ($scope.cardInfo3.CitizenID) {
+            cardValueDataNew.photoType = "SC";
+            cardValueDataNew.photoIdCard = $scope.cardInfo3.CitizenID;
+            cardValueDataNew = {
+                //NEW---
+                "photoIdCard": $scope.cardInfo3.Photo,
+
+                //SC=Scan
+                //SN=Snap
+                "photoType": "SC",
+                "titleEn": $scope.cardInfo3.PrefixEN,
+                "firstnameEn": $scope.cardInfo3.FirstNameEN,
+                "lastnameEn": $scope.cardInfo3.LastNameEN,
+                "expireDay": $scope.cardInfo3.ExpireDay,
+                "birthDay": $scope.cardInfo3.BirthDay,
+                "issueDay": $scope.cardInfo3.IssueDay,
+
+                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                "homeNumber": $scope.cardInfo3.HomeNumber,
+                "moo": $scope.cardInfo3.Moo,
+                "trok": $scope.cardInfo3.Trok,
+                "soi": $scope.cardInfo3.Soi,
+                "road": $scope.cardInfo3.Road,
+                "district": $scope.cardInfo3.District,
+                "amphur": $scope.cardInfo3.Amphur,
+                "province": $scope.cardInfo3.Province
                     //NEW---
             };
 
@@ -2252,7 +2316,31 @@ smartApp.controller('changeOwnershipController', function(
                     "title": newTitle,
                     "firstname": $scope.newOwner.firstNameTH,
                     "lastname": $scope.newOwner.lastNameTH,
-                    "photo": $scope.varPhotoLastest
+                    "photo": $scope.varPhotoLastest,
+                    "id-number": $scope.customer['id-number'],
+                    //NEW---
+                    "photoIdCard": cardValueDataNew["photoIdCard"],
+
+                    //SC=Scan
+                    //SN=Snap
+                    "photoType": cardValueDataNew["photoType"],
+                    "titleEn": cardValueDataNew["titleEn"],
+                    "firstnameEn": cardValueDataNew["firstnameEn"],
+                    "lastnameEn": cardValueDataNew["lastnameEn"],
+                    "expireDay": cardValueDataNew["expireDay"],
+                    "birthDay": cardValueDataNew["birthDay"],
+                    "issueDay": cardValueDataNew["issueDay"],
+
+                    //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                    "homeNumber": cardValueDataNew["homeNumber"],
+                    "moo": cardValueDataNew["moo"],
+                    "trok": cardValueDataNew["trok"],
+                    "soi": cardValueDataNew["soi"],
+                    "road": cardValueDataNew["road"],
+                    "district": cardValueDataNew["district"],
+                    "amphur": cardValueDataNew["amphur"],
+                    "province": cardValueDataNew["province"]
+                        //NEW---
                 }
             }
         };
@@ -2767,7 +2855,7 @@ smartApp.controller('changeOwnershipController', function(
             }
         }
         ///end validate capmax
-
+        console.log($scope.newOwner.firstNameTH);
 
         if (errorAuthorizeID) {
             showValidate("CitizenID2", ValidateMsgService.data.authorizeIdMsg);
