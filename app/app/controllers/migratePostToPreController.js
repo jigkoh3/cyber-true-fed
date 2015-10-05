@@ -11,8 +11,8 @@
 
 
     // Prepare page parameters
-    $scope.shopType = '0';
-    $scope.SubNo = $routeParams.SubNo;
+    // $scope.shopType = '0';
+    $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
 
 
     // Initialize variables
@@ -98,7 +98,7 @@
 
                             afterClose: function() {
                                 if (!$scope.onInputId()) {
-                                    window.close();
+                                    //window.close();
                                 }
                             }
                         };
