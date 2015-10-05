@@ -262,6 +262,14 @@ smartApp.controller('changeOwnershipController', function(
 
         return bool;
     };
+    $scope.isNumberTelTo = false;
+    $scope.onNumberTelTo = function(charCode) {
+        console.log($scope.contactNo.number);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberTelTo = !bool;
+
+        return bool;
+    };
     $scope.onInputTel2 = function(charCode) {
         console.log($scope.customer['contact-mobile-number']);
         var bool = SystemService.checkInputTel(charCode);
