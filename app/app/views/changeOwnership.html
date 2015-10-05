@@ -1376,7 +1376,9 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>ต่อ</label>
-                                <input type="text" class="form-control telephone" ng-model="contactNo.continued">
+                                <input type="text" class="form-control telephone" ng-model="contactNo.continued"
+                                 ng-keyup="onNumberTelTo($event.keyCode)"
+                                 ng-blur="onNumberTelTo()">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -1401,7 +1403,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                         <span ng-show="isNumberTel" style="color:red;">
                             กรุณากรอกเฉพาะตัวเลขเท่านั้น
                         </span>
@@ -1409,10 +1411,15 @@
                             กรุณากรอกหมายเลข9-10ตัว
                         </span>
                     </div>
-                        <div class="col-md-3 hidden-sm">
+                        <div class="col-md-3">
                             
+                        <span ng-show="isNumberTelTo" style="color:red;">
+                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                        </span>
+                        
+                   
                         </div>
-                        <div class="col-md-2 hidden-sm" >
+                        <div class="col-md-3 hidden-sm" >
                             
                         </div>
                           <div class="col-md-3 hidden-sm" >
