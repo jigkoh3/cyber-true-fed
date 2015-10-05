@@ -145,11 +145,13 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
 
 	this.decorateSIMData = function(data) {
 		var customerProfile = angular.copy(utils.getObject(data, 'response-data.customer'));
+		var customerAddress = utils.getObject(customerProfile, 'address-list.CUSTOMER_ADDRESS');
 		var productDetails = utils.getObject(customerProfile, 'installed-products.0');
 
 		if (!customerProfile || !productDetails) return null;
 
 		delete customerProfile['installed-products'];
+		delete customerProfile['address-list'];
 
 		// Prepare product type
 		var productType = '';
@@ -178,6 +180,8 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
 
 			},
 			'customerProfile': customerProfile,
+			'customerAddressOriginal': customerAddress,
+			'customerAddress': angular.copy(customerAddress),
 			'simData': productDetails
 		};
 
@@ -227,6 +231,166 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
  	 	 	 		    'service-level': null,	 	
  	 	 	 		    'proposition-code': '0019123'
  	 	 	 	 	}
+                ]
+            };
+
+            $timeout(function () {
+                cb({
+                    status: true,
+                    data: data,
+                    error: '',
+                    msgErr: ''
+                });
+            }, 1000);
+        }
+    };
+
+    this.getPricePlan = function(payload, fnCallback) {
+        var params = utils.createParamGet(payload, [
+			'company-code',
+			'customer-type',
+			'customer-subtype',
+			'service-level',
+			'keyword',
+			'proposition',
+			'partner-code',
+			'privilege'
+        ]);
+
+        var cb = function (result) {
+            fnCallback(result);
+        };
+
+        if (!demo) {
+            var target = '/sales/catalog/product/tmv/priceplan/search?' + params;
+
+            SystemService.callServiceGetByPass(target, null, function(result) {
+                cb(result);
+            });
+        }
+        else {
+            var data = {
+                'status': 'SUCCESSFUL',
+                'trx-id': '3BYUAFJC01W8',
+                'process-instance': 'tmsapnpr1 (instance: SFF_node1)',
+                'response-data': [
+                	{
+                		'name': 'BCUGFP03',
+						'description': 'Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
+						'soc': '936258',
+						'properties': {
+							'TR_SPECIAL_OFFER_IND': 'CSH',
+							'PRICEPLAN_TYPE': 'SH'
+						},
+						'sale-period': {
+							'start': '2012-05-21',
+							'end': '2016-01-30'
+						},
+						'rc': 600.0,
+						'service-level': 'G',
+						'priceplan-type': 'SH'
+					},
+					{
+						'name': 'BGAINP12',
+						'description': 'BizShare37700bt,All-net1.10bt/min',
+						'soc': '843368',
+						'properties': {
+							'TR_SPECIAL_OFFER_IND': 'CSH',
+							'PRICEPLAN_TYPE': 'SH'
+						},
+						'sale-period': {
+							'start': '2014-04-13',
+							'end': '2016-01-30'
+						},
+						'rc': 37700.0,
+						'service-level': 'G',
+						'priceplan-type': 'SH'
+					},
+					{
+						'name': 'W2S02P04',
+						'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+						'soc': '937378',
+						'properties': {
+							'TR_SPECIAL_OFFER_IND': 'CSH',
+							'PRICEPLAN_TYPE': 'SH'
+						},
+						'sale-period': {
+							'start': '2005-06-27',
+							'end': '2016-01-30'
+						},
+						'rc': 16000.0,
+						'service-level': 'G',
+						'priceplan-type': 'SH'
+					}
+                ]
+            };
+
+            $timeout(function () {
+                cb({
+                    status: true,
+                    data: data,
+                    error: '',
+                    msgErr: ''
+                });
+            }, 1000);
+        }
+    };
+
+    this.searchAddress = function(payload, fnCallback) {
+    	if (!payload.lang) payload.lang = 'TH';
+
+        var params = utils.createParamGet(payload, [
+			'keyword',
+			'lang'
+        ]);
+
+        var cb = function (result) {
+            fnCallback(result);
+        };
+
+        if (!demo) {
+            var target = '/profiles/master/address/search?' + params;
+
+            SystemService.callServiceGetByPass(target, null, function(result) {
+                cb(result);
+            });
+        }
+        else {
+            var data = {
+                'status': 'SUCCESSFUL',
+                'trx-id': '3BYUAFJC01W8',
+                'process-instance': 'tmsapnpr1 (instance: SFF_node1)',
+                'response-data': [
+                	{
+						'subdistrict': 'ดินแดง',
+						'district': 'ดินแดง',
+						'province': 'กรุงเทพมหานคร',
+						'zipcode': '10400'
+					},
+					{
+						'subdistrict': 'ดินแดง',
+						'district': 'ดินแดง',
+						'province': 'กรุงเทพมหานคร',
+						'zipcode': '10325'
+					},
+					{
+						'subdistrict': 'ดินแดง',
+						'district': 'ดินแดง',
+						'province': 'กรุงเทพมหานคร',
+						'zipcode': '10326'
+					},
+					{
+						'subdistrict': 'ดินแดง',
+						'district': 'ดินแดง',
+						'province': 'กรุงเทพมหานคร',
+						'zipcode': '10400'
+					},
+					{
+						'subdistrict': 'ดินแดง',
+						'district': 'ดินแดง',
+						'province': 'กรุงเทพมหานคร',
+						'zipcode': '10407'
+					}
                 ]
             };
 

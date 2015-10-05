@@ -11,13 +11,14 @@
 
 
     // Prepare page parameters
-    $scope.shopType = '0';
-    $scope.SubNo = $routeParams.SubNo;
+    // $scope.shopType = '0';
+    $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
 
 
     // Initialize variables
     $scope.divID = 'migratePostToPreContent';
     $scope.subNoLength = 10;
+    $scope.zipLength = 5;
 
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the page
@@ -97,7 +98,7 @@
 
                             afterClose: function() {
                                 if (!$scope.onInputId()) {
-                                    window.close();
+                                    //window.close();
                                 }
                             }
                         };
@@ -192,8 +193,8 @@
             'message': msg,
             'message-code': '',
             'message-type': 'WARNING',
-            'en-message': msg,
-            'th-message': msg,
+            'en-message': '',
+            'th-message': '',
             'technical-message': ''
         });
     };
@@ -254,7 +255,7 @@
     // (End) Validation ----------------------
 
 
-    // (Start) Number information ----------------------
+    // (Start) Number Information ----------------------
     var getProPosition = function(partnerCode) {
         var proPositionPayload = {
             'company-code': $scope.data.simData['company-code'],
@@ -269,9 +270,77 @@
     };
 
     var onGetProPosition = function(result) {
-console.log(result);
+        $scope.proPositionList = result.data['response-data'];
+
+        if ($scope.proPositionList && $scope.proPositionList.length) {
+            $scope.selectedProPosition = $scope.proPositionList[0]['proposition-code'];
+        }
     };
-    // (End) Number information ----------------------
+
+    var onGetPricePlan = function(result) {
+        $scope.pricePlanList = utils.getObject(result, 'data.response-data');
+
+        $scope.pricePlan = $scope.pricePlanList[0];
+        $scope.pricePlanName = $scope.pricePlan.name;
+    };
+
+    $scope.changePricePlan = function(pp) {
+        $scope.pricePlan = pp;
+        $scope.pricePlanName = $scope.pricePlan.name;
+    };
+
+    $scope.$watch('selectedProPosition', function(val) {
+        if (!val) return;
+
+        var proposition = _.find($scope.proPositionList, function(item) {
+            return item['proposition-code'] === val;
+        });
+
+        var payload = {
+            'company-code': $scope.data.simData['company-code'],
+            'customer-type': $scope.data.simData['account-category'],
+            'customer-subtype': $scope.data.simData['account-sub-type'],
+            'service-level': proposition['service-level'],
+            'proposition': val,
+            'partner-code': utils.getObject($scope.getAuthen, 'partnerCodes.0'),
+            'privilege': false
+        };
+
+        MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
+    });
+    // (End) Number Information ----------------------
+
+
+    // (Start) Registration Address ----------------------
+    var onSearchAddress = function(result) {
+        var address = utils.getObject(result, 'data.response-data.0');
+
+        if ($scope.data.customerAddress.zip === address.zipcode) {
+            $scope.data.customerAddress['sub-district'] = address.subdistrict;
+            $scope.data.customerAddress['district'] = address.district;
+            $scope.data.customerAddress['province'] = address.province;
+        }
+    };
+
+    $scope.useSameAddressAsCard = function() {
+        $scope.data.customerAddress = angular.copy($scope.data.customerAddressOriginal);
+    };
+
+    $scope.clearAddress = function() {
+        $scope.data.customerAddress = {};
+    };
+
+    $scope.$watch('data.customerAddress.zip', function(val) {
+        if (val && val.length === $scope.zipLength) {
+            var payload = {
+                keyword: val
+            };
+
+            MigratePostToPreService.searchAddress(payload, onSearchAddress);
+        }
+    });
+    // (End) Registration Address ----------------------
+
 
 
 
@@ -306,19 +375,7 @@ console.log(result);
 
     
 
-    
-
-
-
-    $scope.pricePlans = [
-        { pricePlan: "EDATAP68: Biz &amp; Ent xxx,Data UNLxGB/xxx,WiFi", promotion: "RMV0000000002720", rc: "399" },
-        { pricePlan: "ADATAP99: Biz &amp; Ent xxx,Data UNLxGB/xxx,WiFi", promotion: "RMV0000000002721", rc: "499" },
-        { pricePlan: "YDATAP55: Biz &amp; Ent xxx,Data UNLxGB/xxx,WiFi", promotion: "RMV0000000002722", rc: "799" },
-        { pricePlan: "EDATAP69: Biz &amp; Ent xxx,Data UNLxGB/xxx,WiFi", promotion: "RMV0000000002723", rc: "399" },
-        { pricePlan: "YDATAP56: Biz &amp; Ent xxx,Data UNLxGB/xxx,WiFi", promotion: "RMV0000000002724", rc: "799" },
-        { pricePlan: "EDATAP44: Biz &amp; Ent xxx,Data UNLxGB/xxx,WiFi", promotion: "RMV0000000002725", rc: "999" }
-    ];
-
+   
 
     
     // Reasons control
@@ -427,16 +484,6 @@ console.log(result);
         //    //cancel
 
         //});
-    };
-
-    $scope.selectedPricePlan = function (pp) {
-        $scope.isSelectedPricePlan = pp.pricePlan;
-        console.log(pp);
-        $scope.pricePlan = {
-            name: pp.pricePlan,
-            promotion: pp.promotion,
-            rc: pp.rc
-        };
     };
 
     

@@ -111,9 +111,9 @@
                                     </div>
                                     <div class="col-md-7">
                                         <p></p>
-                                        <select ng-change="selectedPromotion()" class="form-control" ng-model="promotion">
-                                            <option ng-repeat="item in data.offer" value="{{item['product-name']}}">
-                                                {{item["product-name"]}} : {{item["product-description"]}}
+                                        <select class="form-control" ng-model="selectedProPosition">
+                                            <option ng-repeat="item in proPositionList" value="{{ item['proposition-code'] }}">
+                                                {{ item.name }} : {{ item.description }}
                                             </option>
                                         </select>
                                     </div>
@@ -129,14 +129,14 @@
                                         <label>Price Plan <span style="color:red;">*</span></label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" ng-model="pricePlan.name" readonly class="form-control">
+                                        <input type="text" ng-model="pricePlan.description" readonly class="form-control">
                                     </div>
                                     <div class="col-md-3">
                                         <input type="text" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control">
                                     </div>
                                     <div class="col-md-1">
                                         <button ng-click="selectedPricePlan()"
-                                                href="#modalPriceplanOwnership"
+                                                href="#pricePlanModal"
                                                 id="modalnewpriceplan"
                                                 class="btn"
                                                 onclick="return false;"
@@ -170,12 +170,12 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <span>
-                                                <button type="button" ng-click="useAddressAsCard('B')" class="btn btn-default btn_address">
+                                                <button type="button" ng-click="useSameAddressAsCard()" class="btn btn-default btn_address">
                                                     ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร
                                                 </button>
                                             </span>
                                             &nbsp;
-                                            <a href="" ng-click="unUseAddressAsCard('B')">
+                                            <a href="" ng-click="clearAddress()">
                                                 <span>
                                                     <i class="fa fa-trash-o fa-2x"></i>
                                                 </span>
@@ -186,7 +186,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group imp">
                                                 <label>รหัสไปรษณีย์ </label>
-                                                <input type="text" ng-model="data.customerAddress['zip']" class="form-control numberic" required>
+                                                <input type="text" ng-numeric-input ng-model="data.customerAddress['zip']" class="form-control" maxlength="{{ zipLength }}" required>
                                                 <span class="error" style="color:red;" ng-show="customerspre.postcodes.$error.required">
                                                     Required!
                                                 </span>
@@ -436,7 +436,7 @@
 </div>
 
 
-<div id="modalPriceplanOwnership" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+<div id="pricePlanModal" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -452,14 +452,14 @@
                     <table class="table">
                         <tr class="row">
                             <th class="col-md-1"></th>
-                            <th class="col-md-7"><span style="color:green;"> Price Plan</span></th>
-                            <th class="col-md-2"><span style="color:green;"> รายการส่งเสริมการขาย</span></th>
+                            <th class="col-md-2"><span style="color:green;"> Price Plan</span></th>
+                            <th class="col-md-7"><span style="color:green;"> รายการส่งเสริมการขาย</span></th>
                             <th class="col-md-2" style="text-align: center;"><span style="color:green;"> RC</span></th>
                         </tr>
-                        <tr class="row" ng-repeat="pp in pricePlans | filter:pricePlanFilter">
-                            <th class="col-md-1"><input name="pricels" type="radio" ng-change="selectedPricePlan(pp)" ng-model="pricePlan.name" ng-value="pp.pricePlan" /></th>
-                            <th class="col-md-7">{{pp.pricePlan}}</th>
-                            <th class="col-md-2">{{pp.promotion}}</th>
+                        <tr class="row" ng-repeat="pp in pricePlanList | filter:pricePlanFilter">
+                            <th class="col-md-1"><input name="pricels" type="radio" ng-change="changePricePlan(pp)" ng-model="pricePlanName" ng-value="pp.name" /></th>
+                            <th class="col-md-2">{{pp.name}}</th>
+                            <th class="col-md-7">{{pp.description}}</th>
                             <th class="col-md-2" style="text-align:center;">{{pp.rc}}</th>
                         </tr>
                     </table>

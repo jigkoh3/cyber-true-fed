@@ -179,7 +179,7 @@ smartApp.controller('changeOwnershipController', function(
         if ($scope.cardInfo3.Sex == "2") {
             sex = "FEMALE";
         }
-
+        $scope.customer['id-number'] = $scope.cardInfo3.CitizenID;
         $('#citizenID3').val($scope.cardInfo3.CitizenID);
         $('#prefixTH3').val(prefix);
         $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
@@ -220,6 +220,7 @@ smartApp.controller('changeOwnershipController', function(
         // };
         //$scope.onselectPrefix();    
         //console.log($scope.newOwner);
+        $scope.onInputCitizenID3();
         setTimeout(function() {
             $('#idBindDataAgain').click();
         }, 1000);
@@ -844,11 +845,12 @@ smartApp.controller('changeOwnershipController', function(
                         $('#cardType').val($scope.cardType.value);
 
                         $scope.callPropositionList();
-                        $scope.isLastestUser = false;
+                        $scope.isLastestUser = false; // jigkoh3 mockup
 
                         changeOwnershipService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
                             $scope.isLastestUser = true;
                             $.fancybox.close();
+
 
                             SystemService.hideLoading();
                             if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
@@ -878,7 +880,7 @@ smartApp.controller('changeOwnershipController', function(
                                 setTimeout(function() {
                                     $scope.isLastestAdress = false;
                                     $scope.changecusStatusN('N');
-                                    $('#idBindDataAgain').click();
+
 
                                     if (lastestCustomer.data['display-messages'].length > 0) {
                                         SystemService.showAlert({
@@ -982,9 +984,12 @@ smartApp.controller('changeOwnershipController', function(
                 $scope.onClearPricePlan();
             }
             $scope.setBirthDateOwner2();
+            console.log($scope.isCheckInputForVerify);
             $('#idBindDataAgain').click();
 
+
         }, 500);
+
     };
     //end check input for verify
     $scope.setBirthDateOwner2 = function() {
