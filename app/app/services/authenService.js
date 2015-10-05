@@ -6,9 +6,10 @@
     };
     this.getAuthen = function (fnCallback) {
         var result = {
-            "shopType": "1",
+
+            "shopType": "0",
             "isSecondAuthen": true,
-            "isCorporate": true,
+            "isCorporate": false,
             "channel": "XX",
             "partnerCodes": [],
             "partnerName": "xxxx",

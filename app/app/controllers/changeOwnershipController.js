@@ -328,8 +328,6 @@ smartApp.controller('changeOwnershipController', function(
             console.log($scope.contactNo.number.length);
         }
     }
-
-
     $scope.isNumberTelLength = false;
     $scope.onBlurTel2 = function() {
         $scope.isNumberTel = false;
@@ -343,6 +341,42 @@ smartApp.controller('changeOwnershipController', function(
             console.log($scope.customer['contact-mobile-number'].length);
         }
     }
+
+    $scope.isNumberTelLengthFF = false;
+    $scope.onBlurTelFF = function(i) {
+        $scope.isNumberFF = false;
+        $scope.isNumberTelZeroFF = false;
+        //for (var i = 1; i <= 10; i++) {
+            if ($scope.saveParamData['ff' + i]) {
+                if ($scope.saveParamData['ff' + i].length == 9 || $scope.saveParamData['ff' + i].length == 10) {
+                    $scope.isNumberTelLengthFF = false;
+                } else {
+                    $scope.isNumberTelLengthFF = true;
+                    //break;
+                }
+                console.log($scope.saveParamData['ff' + i].length);
+            } else {
+                $scope.isNumberTelLengthFF = false;
+                //break;
+            }
+        //}
+
+    }
+    $scope.isNumberTelZeroFF = false;
+    $scope.onInputTelZeroFF = function(charCode, i) {
+        if (!$scope.saveParamData['ff' + i]) {
+
+            $scope.saveParamData['ff' + i] = "";
+        }
+        if ($scope.saveParamData['ff' + i].length == 0 && charCode != 48) {
+            $scope.isNumberTelZeroFF = true;
+            //$scope.contactNo.number = "";
+        } else {
+            $scope.isNumberTelZeroFF = false;
+
+        }
+    };
+
     $scope.isInputSubNo = false;
     $scope.onInputSubNo = function() {
         console.log($('#dataSubNo').val().length, $scope.isInputSubNo);
@@ -545,6 +579,39 @@ smartApp.controller('changeOwnershipController', function(
         if ($scope.partnerCode && $scope.partnerCode.length == 8) {
             $scope.onCheckShopCode();
         }
+    };
+
+
+    $scope.isNumberVolume = false;
+    $scope.onInputVolume = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberVolume = !bool;
+        return bool;
+    };
+
+    $scope.isNumberMonetary = false;
+    $scope.onInputMonetary = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberMonetary = !bool;
+        return bool;
+    };
+
+    $scope.isNumberOccurrence = false;
+    $scope.onInputOccurrence = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberOccurrence = !bool;
+        return bool;
+    };
+
+    $scope.isNumberDuration = false;
+    $scope.onInputDuration = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberDuration = !bool;
+        return bool;
     };
     $scope.onCheckShopCode = function() {
         SystemService.showLoading();
