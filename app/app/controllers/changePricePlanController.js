@@ -1,4 +1,4 @@
-﻿// ---------------------- ChangePricePlanController.js ----------------------
+// ---------------------- ChangePricePlanController.js ----------------------
 smartApp.controller('ChangePricePlanController', function (
     $ngBootbox,
     $scope,
