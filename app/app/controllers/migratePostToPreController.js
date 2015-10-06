@@ -263,7 +263,7 @@
             'propo-type': 'NEW',
             'mobile-servicetype': $scope.data.simData['mobile-servicetype'],
             'partner-code': partnerCode,
-            'privilege': false
+            'privilege': 'false'
         };
 
         MigratePostToPreService.getProPosition(proPositionPayload, onGetProPosition);
@@ -272,16 +272,18 @@
     var onGetProPosition = function(result) {
         $scope.proPositionList = result.data['response-data'];
 
+        
         if ($scope.proPositionList && $scope.proPositionList.length) {
-            $scope.selectedProPosition = $scope.proPositionList[0]['proposition-code'];
+            //jigkoh comment becuase not fix at row 0
+            //$scope.selectedProPosition = $scope.proPositionList[0]['proposition-code'];
         }
     };
 
     var onGetPricePlan = function(result) {
         $scope.pricePlanList = utils.getObject(result, 'data.response-data');
 
-        $scope.pricePlan = $scope.pricePlanList[0];
-        $scope.pricePlanName = $scope.pricePlan.name;
+        //$scope.pricePlan = $scope.pricePlanList[0];
+        //$scope.pricePlanName = $scope.pricePlan.name;
     };
 
     $scope.changePricePlan = function(pp) {
@@ -305,6 +307,8 @@
             'partner-code': utils.getObject($scope.getAuthen, 'partnerCodes.0'),
             'privilege': false
         };
+        //fill data to propositionSelected (jigkoh)
+        $scope.propositionSelected = proposition;
 
         MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
     });
