@@ -268,6 +268,14 @@ smartApp.controller('changeOwnershipController', function(
 
         return bool;
     };
+     $scope.isNumberTel2 = false;
+    $scope.onInputTel2 = function(charCode) {
+        console.log($scope.contactNo.number);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberTel2 = !bool;
+
+        return bool;
+    };
     $scope.isNumberTelTo = false;
     $scope.onNumberTelTo = function(charCode) {
         console.log($scope.contactNo.number);
@@ -276,13 +284,13 @@ smartApp.controller('changeOwnershipController', function(
 
         return bool;
     };
-    $scope.onInputTel2 = function(charCode) {
-        console.log($scope.customer['contact-mobile-number']);
-        var bool = SystemService.checkInputTel(charCode);
-        $scope.isNumberTel = !bool;
+    // $scope.onInputTel2 = function(charCode) {
+    //     console.log($scope.customer['contact-mobile-number']);
+    //     var bool = SystemService.checkInputTel(charCode);
+    //     $scope.isNumberTel = !bool;
 
-        return bool;
-    };
+    //     return bool;
+    // };
 
     $scope.isNumberTelZero = false;
     $scope.onInputTelZero = function(charCode) {
@@ -299,17 +307,17 @@ smartApp.controller('changeOwnershipController', function(
         }
     };
 
-    $scope.isNumberTelZero = false;
+    $scope.isNumberTelZero2 = false;
     $scope.onInputTelZero2 = function(charCode) {
         if (!$scope.customer['contact-mobile-number']) {
 
             $scope.customer['contact-mobile-number'] = "";
         }
         if ($scope.customer['contact-mobile-number'].length == 0 && charCode != 48) {
-            $scope.isNumberTelZero = true;
+            $scope.isNumberTelZero2= true;
             //$scope.contactNo.number = "";
         } else {
-            $scope.isNumberTelZero = false;
+            $scope.isNumberTelZero2 = false;
 
         }
     };
@@ -328,20 +336,19 @@ smartApp.controller('changeOwnershipController', function(
             console.log($scope.contactNo.number.length);
         }
     }
-    $scope.isNumberTelLength = false;
+    $scope.isNumberTelLength2 = false;
     $scope.onBlurTel2 = function() {
-        $scope.isNumberTel = false;
-        $scope.isNumberTelZero = false;
+        $scope.isNumberTel2 = false;
+        $scope.isNumberTelZero2 = false;
         if ($scope.customer['contact-mobile-number']) {
-            if ($scope.customer['contact-mobile-number'].length == 9 || $scope.customer['contact-mobile-number'].length == 10) {
-                $scope.isNumberTelLength = false;
+            if ($scope.customer['contact-mobile-number'].length == 10) {
+                $scope.isNumberTelLength2 = false;
             } else {
-                $scope.isNumberTelLength = true;
+                $scope.isNumberTelLength2 = true;
             }
             console.log($scope.customer['contact-mobile-number'].length);
         }
     }
-
     $scope.isNumberTelLengthFF = false;
     $scope.onBlurTelFF = function(i) {
         $scope.isNumberFF = false;

@@ -1405,34 +1405,36 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                        <span ng-show="isNumberTel" style="color:red;">
-                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                        <span ng-show="isNumberTel || isNumberTelLength || isNumberTelZero" style="color:red;">
+                            ต้องเป็นตัวเลข 9-10หลัก และขึ้นต้นด้วย 0
                         </span>
-                        <span ng-show="isNumberTelLength" style="color:red;">
+                        <!-- <span ng-show="isNumberTelLength" style="color:red;">
                             กรุณากรอกหมายเลข9-10ตัว
-                        </span>
+                        </span> -->
                     </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             
                         <span ng-show="isNumberTelTo" style="color:red;">
-                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                            กรอกเฉพาะตัวเลขเท่านั้น
                         </span>
                         
                    
                         </div>
-                        <div class="col-md-3 hidden-sm" >
-                            
+                        <div class="col-md-5 " >
+                            <span ng-show="isNumberTel2 || isNumberTelLength2 || isNumberTelZero2" style="color:red;">
+                            ต้องเป็นตัวเลข 10หลัก และขึ้นต้นด้วย 0
+                        </span>
                         </div>
-                          <div class="col-md-3 hidden-sm" >
+                          <div class="col-md-2 hidden-sm" >
                             
                         </div>
                     
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                        <span ng-show="isNumberTelZero" style="color:red;">
+                        <!-- <span ng-show="isNumberTelZero" style="color:red;">
                             กรุณากรอก 0 เป็นตัวแรก
-                        </span>
+                        </span> -->
                     </div>
                         <div class="col-md-3 hidden-sm">
                             
