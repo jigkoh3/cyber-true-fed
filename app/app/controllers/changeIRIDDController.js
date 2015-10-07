@@ -495,10 +495,10 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.irChecked = function() {
         if ($scope.changIR == true) {
             if ($scope.requestType != "ADD_IRIDD") {
+
                 if ($scope.offerGroup == 0) {
                     $scope.offerGroup = "PROROAM2S";
                 };
-                
 
             } else {
                 $scope.changIDD = true;
@@ -518,6 +518,10 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     $scope.offerGroup = $scope.data.offerGroupList[0]["soc-name"];
                 }
                 $scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = "";
+
+                if ($scope.offerGroup == 0) {
+                    //$scope.offerGroup = "PROROAM2S";
+                };
             }
         } else {
             if ($scope.requestType != "ADD_IRIDD") {
