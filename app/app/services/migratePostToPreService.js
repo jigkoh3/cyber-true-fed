@@ -456,7 +456,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
         };
 
         if (!demo) {
-            var target = '/aftersales/order/submit';
+            request['target'] = '/aftersales/order/submit';
 
             SystemService.callServicePost(request, null, function(result) {
 
