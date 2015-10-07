@@ -5,20 +5,23 @@
     $scope.template = {
         header: 'app/views/header.html?' + runTime,
         customerprofile: 'app/views/customerprofile.html?' + runTime,
-        effectivepriceplan: 'app/views/effectivepriceplan.html?' + runTime,
         reasonmemo: 'app/views/reasonmemo.html?' + runTime
     };
 
 
     // Prepare page parameters
-    // $scope.shopType = '0';
-    $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
+    //$scope.shopType = '0';
+    $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null'; //$routeParams.SubNo;
 
 
     // Initialize variables
     $scope.divID = 'migratePostToPreContent';
     $scope.subNoLength = 10;
     $scope.zipLength = 5;
+
+    $scope.dirty = {
+        selectedPricePlan: {}
+    };
 
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the page
@@ -38,7 +41,7 @@
 
     var onGetSIMData = function(result) {
         $scope.data = result.data;
-
+        $scope.getSIMDataFailed = true;
         if (!$scope.data) {
             $scope.getSIMDataFailed = true;
             SystemService.hideLoading();
@@ -54,6 +57,29 @@
 
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
+        //ประเภทของบัตร
+        SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
+            $scope.cardTypeOptions = result;
+            console.log($scope.cardTypeOptions);
+        });
+
+        //คำนำหน้า
+        SystemService.getMaster_list("CUST-TITLE-TYPE", function(result) {
+            $scope.titleTypeListx = result;
+            console.log($scope.titleTypeListx);
+        });
+
+        //คำนำหน้า อื่นๆ
+        SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function(result) {
+            $scope.titleOtherTypeList = result;
+            console.log($scope.titleOtherTypeList);
+        });
+
+        //เพศ
+        SystemService.getMaster_list("CUST-GENDER", function(result) {
+            $scope.genderTypeList = result;
+            console.log($scope.genderTypeList);
+        });
         MigratePostToPreService.getSIMData($scope.SubNo, onGetSIMData);
     }
     // (End) Get current SIM data ----------------------
@@ -98,7 +124,7 @@
 
                             afterClose: function() {
                                 if (!$scope.onInputId()) {
-                                    //window.close();
+                                    window.close();
                                 }
                             }
                         };
@@ -110,7 +136,7 @@
         });
     };
 
-    $scope.openSSO = function () {
+    $scope.openSSO = function() {
         var getReadyCitizenInput = function() {
             $('#CitizenID').prop('disabled', false);
             $('#CitizenID').focus();
@@ -126,8 +152,7 @@
                             window.clearInterval(interval);
                             closeCallback(win);
                         }
-                    }
-                    catch (ex) {}
+                    } catch (ex) {}
                 }, 1000);
 
                 return win;
@@ -146,21 +171,19 @@
                         setTimeout(function() {
                             getReadyCitizenInput();
                         }, 1000);
-                    }
-                    else {
+                    } else {
                         setTimeout(function() {
                             SystemService.showAlert(displayMsg);
                         }, 1000);
                     }
                 });
             });
-        }
-        else {
+        } else {
             getReadyCitizenInput();
         }
     };
 
-    $scope.onInputId = function () {
+    $scope.onInputId = function() {
         var value = $('#CitizenID').val();
 
         if (value.length === 13) {
@@ -171,14 +194,13 @@
                 $('.fancybox-close').click();
 
                 return true;
-            }
-            else {
+            } else {
                 $('#unMatch').show();
             }
         }
     };
 
-    $scope.onInputId2 = function () {
+    $scope.onInputId2 = function() {
         var value = $('#CitizenID2').val();
 
         if (value.length === 13) {
@@ -199,7 +221,7 @@
         });
     };
 
-    $scope.SetCardValue = function (result) {
+    $scope.SetCardValue = function(result) {
         $scope.cardInfo = eval(result);
 
         $('#CitizenID').val($scope.cardInfo.CitizenID);
@@ -236,7 +258,7 @@
         $('#btnSavePhoto').show();
     }
 
-    $scope.webcamSnap = function () {
+    $scope.webcamSnap = function() {
         webcam.snap();
     };
     // (End) Camera ----------------------
@@ -263,7 +285,7 @@
             'propo-type': 'NEW',
             'mobile-servicetype': $scope.data.simData['mobile-servicetype'],
             'partner-code': partnerCode,
-            'privilege': 'false'
+            'privilege': false
         };
 
         MigratePostToPreService.getProPosition(proPositionPayload, onGetProPosition);
@@ -272,23 +294,14 @@
     var onGetProPosition = function(result) {
         $scope.proPositionList = result.data['response-data'];
 
-        
         if ($scope.proPositionList && $scope.proPositionList.length) {
-            //jigkoh comment becuase not fix at row 0
             //$scope.selectedProPosition = $scope.proPositionList[0]['proposition-code'];
         }
     };
 
     var onGetPricePlan = function(result) {
         $scope.pricePlanList = utils.getObject(result, 'data.response-data');
-
-        //$scope.pricePlan = $scope.pricePlanList[0];
-        //$scope.pricePlanName = $scope.pricePlan.name;
-    };
-
-    $scope.changePricePlan = function(pp) {
-        $scope.pricePlan = pp;
-        $scope.pricePlanName = $scope.pricePlan.name;
+        //$scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
     };
 
     $scope.$watch('selectedProPosition', function(val) {
@@ -297,6 +310,8 @@
         var proposition = _.find($scope.proPositionList, function(item) {
             return item['proposition-code'] === val;
         });
+
+        $scope.selectedProPositionIn = proposition;
 
         var payload = {
             'company-code': $scope.data.simData['company-code'],
@@ -307,8 +322,6 @@
             'partner-code': utils.getObject($scope.getAuthen, 'partnerCodes.0'),
             'privilege': false
         };
-        //fill data to propositionSelected (jigkoh)
-        $scope.propositionSelected = proposition;
 
         MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
     });
@@ -346,152 +359,137 @@
     // (End) Registration Address ----------------------
 
 
-
-
-
-
-
-
-
-    $scope.showReadcard = "1";
-    $scope.isMatch = true;
-
-
-
-    $scope.isReadCardSuccess = false;
-
-    $scope.isManualReadCard = true;
-    $scope.isAuthorize = false;
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-   
-
-    
-    // Reasons control
+    // (Start) Reason Control ----------------------
     $scope.reasons = [];
-    $scope.reason = "";
-    $scope.selectReason = {};
+    $scope.selectedReason = {};
 
-    ReasonService.list("119", function (result) {
+    ReasonService.list('119', function(result) {
         $scope.reasons = result;
-        $scope.reason = $scope.reasons[86];
-        $scope.selectReason = $scope.reasons[86];
+        $scope.selectedReason = $scope.reasons[86];
     });
+    // (End) Reason Control ----------------------
 
-    $scope.onReasonChange = function () {
-        $scope.selectReason = $scope.reasons[$('#selectReasonId').val()];
-        console.log($scope.selectReason);
+
+    // (Start) Submit Form ----------------------
+    var isDataComplete = function() {
+        return true;
     };
 
-    
-
-
-
-    $scope.manualInputReadCard = function () {
-        $('#loadingReadCard').hide();
-        $('#loadingReadCard2').hide();
-        $('#unMatch').hide();
-        $('#unMatch2').hide();
-        //document.getElementById("CitizenID").disabled = false;
-
-        setTimeout(function () {
-            $('#CitizenID').val('');
-        }, 0);
-        $scope.isManualReadCard = false;
+    var generateOrderRequest = function() {
+        $scope.data.customerProfile['language'] = "TH";
+        return {
+            customerProfile: $scope.data.customerProfile,
+            customerAddress: $scope.data.customerAddress,
+            productDetails: $scope.data.simData,
+            orderData: orderData,
+            saleAgent: $scope.getAuthen,
+            propositionSelected: $scope.selectedProPositionIn,
+            priceplanSelected: $scope.selectedPricePlan,
+            reason: $scope.selectedReason,
+            memo: $scope.memo
+        };
     };
+    $scope.submit = function() {
+        $scope.hasSubmitted = true;
 
-    
+        var data = generateOrderRequest();
 
-    $scope.SetCardValue2 = function (result) {
-        $('#loadingReadCard2').hide();
-
-        $scope.cardInfo2 = eval(result);
-        console.log($scope.cardInfo2);
-
-        $('#CitizenID2').val($scope.cardInfo2.CitizenID);
-        $('#authorizeFullName').val($scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH);
-        //$scope.CitizenID2 = $scope.cardInfo2.CitizenID;
-        //$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
-    };
-
-    $scope.SetCardValue3 = function (result) {
-        $('#loadingReadCard3').hide();
-
-        $scope.cardInfo3 = eval(result);
-        console.log($scope.cardInfo3);
-
-        $('#citizenID3').val($scope.cardInfo3.CitizenID);
-        $('#prefixTH3').val($scope.cardInfo3.PrefixTH);
-        $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
-        $('#lastNameTH3').val($scope.cardInfo3.LastNameTH);
-        $('#birthDay').val($scope.cardInfo3.BirthDay);
-        $('#expireDay').val($scope.cardInfo3.ExpireDay);
-        $('#sex3').val($scope.cardInfo3.Sex);
-
-        //$scope.cardType = "6";
-        $('#cardType').val('6');
-
-        //binding Tax Id
-        $('#taxId3').val($scope.cardInfo3.CitizenID);
-
-        //binding user registerd - ระบุผู้ใช้หมายเลข
-        $('#titleRegisterd').val($scope.cardInfo3.PrefixTH);
-        $('#firstNameRegisterd').val($scope.cardInfo3.FirstNameTH);
-        $('#lastNameRegisterd').val($scope.cardInfo3.LastNameTH);
-        $('#birthDayRegisterd').val($scope.cardInfo3.BirthDay);
-
-
-        //$scope.newOwner = {
-        //    citizenID: $scope.cardInfo3.CitizenID,
-        //    prefixTH: 'นาย',
-        //    firstNameTH: $scope.cardInfo3.FirstNameTH,
-        //    lastNameTH: $scope.cardInfo3.LastNameTH,
-        //    prefixEN: $scope.cardInfo3.PrefixEN,
-        //    firstNameEN: $scope.cardInfo3.FirstNameEN,
-        //    lastNameEN: $scope.cardInfo3.LastNameEN,
-        //    sex: $scope.cardInfo3.Sex,
-        //    birthDay: $scope.cardInfo3.BirthDay,
-        //    issueDay: $scope.cardInfo3.IssueDay,
-        //    expireDay: $scope.cardInfo3.ExpireDay,
-        //};
-        //console.log($scope.newOwner);
-    };
-
-    
-
-    
-
-    $scope.confirmPrint = function () {
-        //confirm
-        SystemService.showBeforeClose({
-            "message": "รายการคำขอเลขที่ OR30935 ",
-            "message2": "ได้รับข้อมูลเรียบร้อยแล้ว",
+        SystemService.showLoading();
+        console.log(data);
+        MigratePostToPreService.submitOrder(data, function(result) {
+            SystemService.hideLoading();
+            console.log(result);
+            setTimeout(function() {
+                var displayMsg = utils.getObject(result.data, 'display-messages.0');
+                console.log(displayMsg);
+                if (!displayMsg || !displayMsg['message-type']) {
+                    SystemService.showBeforeClose({
+                        "message": "DEMO > " + result.data["display-messages"][0]["th-message"],
+                        "message2": ""
+                    });
+                } else {
+                    SystemService.showBeforeClose({
+                        "message": result.data["display-messages"][0]["th-message"],
+                        "message2": ""
+                    });
+                }
+            }, 1000);
         });
-        //SystemService.showConfirm().then(function (value) {
-
-        //}, function (reason) {
-        //    //cancel
-
-        //});
     };
+    $scope.openPDFDialog = function() {
 
-    
+        if (!isDataComplete()) {
+            alert('กรุณากรอกข้อมูลให้ครบถ้วนก่อน');
+            return;
+        }
 
-    
+        SystemService.showLoading();
+
+        var customerType = 'N';
+        if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
+            customerType = 'Y';
+        }
+
+        var data = {
+            'func': 'MIGRATEPOSTTOPRE',
+            'header': {
+                'title-code': $scope.data.customerProfile['title-code'],
+                'title': $scope.data.customerProfile['title'],
+                'firstname': $scope.data.customerProfile['firstname'],
+                'lastname': $scope.data.customerProfile['lastname'],
+                'customerType': customerType,
+                'authorizeFullName': '',
+                'id-number': $scope.data.customerProfile['id-number'],
+                'product-id-number': $scope.SubNo,
+                'ouId': $scope.data.simData['ouId'],
+                'orderId': orderData.orderId,
+                'photo': $scope.varPhoto,
+
+                'photoIdCard': '',
+                'photoType': 'SN',
+                'titleEn': '',
+                'firstnameEn': '',
+                'lastnameEn': '',
+                'expireDay': $scope.data.customerProfile['id-expire-date'],
+                'birthDay': $scope.data.customerProfile['birthdate'],
+                'issueDay': '',
+
+                'homeNumber': '',
+                'moo': '',
+                'trok': '',
+                'soi': '',
+                'road': '',
+                'district': '',
+                'amphur': '',
+                'province': ''
+            },
+            'body': generateOrderRequest()
+        };
+
+        console.log(data);
+        SystemService.generatePDF(data, function(url) {
+            SystemService.hideLoading();
+
+            setTimeout(function() {
+                $('#modalPDFOpener').click();
+
+                setTimeout(function() {
+                    var srcPDF = url;
+                    document.getElementById('iframePDF').src = url + '?clearData=N';
+                    if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                        setTimeout(function() {
+                            document.getElementById('iframePDF').src = 'javascript:window.print();'
+                        }, 2000);
+                        setTimeout(function() {
+                            document.getElementById('iframePDF').src = srcPDF
+                        }, 2500);
+                    }
+                }, 500);
+
+
+            }, 1000);
+        });
+    };
+    // (End) Submit Form ----------------------
 
 });

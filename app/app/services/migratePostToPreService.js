@@ -143,7 +143,6 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
         delete customerProfile['installed-products'];
         delete customerProfile['address-list'];
 
-
         // Prepare product type
         var productType = '';
         var serviceType = productDetails['mobile-servicetype'];
@@ -153,10 +152,10 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
             productType = 'ทรูมูฟเอช รายเดือน';
         }
 
-        //Fix value becuase migrate post to pre support personal only (jigkoh update)
+        //Fix value becuase migrate post to pre support personal only
         productDetails['account-category'] = "P";
         productDetails['account-sub-type'] = "PRE";
-        
+
         // Prepare current price plan
         var currentPricePlan = [];
         if (productDetails['product-name']) {
@@ -264,7 +263,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
                 'process-instance': 'tmsapnpr1 (instance: SFF_node1)',
                 'response-data': [{
                     'name': 'BCUGFP03',
-                    'description': 'Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
+                    'description': payload.proposition + ' Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
                     'soc': '936258',
                     'properties': {
                         'TR_SPECIAL_OFFER_IND': 'CSH',
@@ -383,16 +382,16 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
         }
     };
 
+    
+
     this.submitOrder = function(payload, fnCallback) {
-        
         var request = {
             "order": {
                 "order-id": payload.orderData.orderId,
                 "creator": payload.saleAgent.logInName,
-                //"create-date": "",
                 "customer": {
                     'title-code': payload.customerProfile['title-code'],
-                    'title': payload.customerProfile['title'],
+                    //'title': payload.customerProfile['title'],
                     'firstname': payload.customerProfile['firstname'],
                     'lastname': payload.customerProfile['lastname'],
                     'gender': payload.customerProfile['gender'],
@@ -407,7 +406,6 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
                     "address-list": {
                         "CUSTOMER_ADDRESS": payload.customerAddress
                     },
-
                 },
                 "sale-agent": {
                     'name': payload.saleAgent['engName'],
@@ -415,7 +413,6 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
                     'partner-code': (payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : null),
                     'partner-name': payload.saleAgent['partnerName'],
                     'sale-code': payload.saleAgent['saleCode'],
-                    //'sale-assist-code': "",
                     'partner-type': payload.saleAgent['partnerType']
                 },
                 "order-items": [{
@@ -427,7 +424,6 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
                     "product-type": payload.productDetails['product-type'],
                     "order-type": "CHANGE",
                     "reason-code": "AA02",
-                    //"user-memo": "Customer want to request .",
                     "address-list": {
                         "BILLING_ADDRESS": payload.customerAddress,
                         "TAX_ADDRESS": payload.customerAddress
@@ -452,26 +448,29 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
             'user-id': payload.saleAgent.logInName,
             'approver': ""
         };
+
         console.log(request);
 
         var cb = function(result) {
-            fnCallback(result);
+        	fnCallback(result);
         };
 
         if (!demo) {
             var target = '/aftersales/order/submit';
 
             SystemService.callServicePost(request, null, function(result) {
+
                 cb(result);
             });
         } else {
+            
             var data = {
                 'status': 'SUCCESSFUL',
                 'display-messages': [{
                     'message': 'Order ' + payload.orderData.orderId + ' successful saved.',
-                    'message-type': 'INFORMATION',
+                    'message-type': 'ERROR',
                     'en-message': 'Order ' + payload.orderData.orderId + ' successful saved.',
-                    'th-message': 'บันทึกข้อมูลเรียบร้อย'
+                    'th-message': 'บันทึกข้อมูลเรียบร้อย Order ' + payload.orderData.orderId + ' successful saved.'
                 }],
                 'trx-id': '03J5HVSFXH8R',
                 'process-instance': 'tpx61.true.th (instance: sale)'
