@@ -492,12 +492,13 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         $scope.checkShowOffer();
 
     };
+    $scope.offerGroupIR = "";
     $scope.irChecked = function() {
         if ($scope.changIR == true) {
             if ($scope.requestType != "ADD_IRIDD") {
 
                 if ($scope.offerGroup == 0) {
-                    $scope.offerGroup = "PROROAM2S";
+                    $scope.offerGroup = $scope.offerGroupIR;
                 };
 
             } else {
@@ -519,9 +520,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 }
                 $scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = "";
 
-                if ($scope.offerGroup == 0) {
-                    //$scope.offerGroup = "PROROAM2S";
-                };
+
             }
         } else {
             if ($scope.requestType != "ADD_IRIDD") {
@@ -1047,6 +1046,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                                         //$('#chkChangIDD').click();
                                     }
                                     if (insPro[i]['offer-group'] == 'IR') {
+                                        $scope.offerGroupIR = insPro[i]['product-name'];
                                         $scope.changereqType("ADD_IRIDD");
                                         $scope.changIR = true;
                                         $scope.requestTypeDB = "IRIDD";
@@ -1080,12 +1080,12 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                                     $('#CitizenID').focus();
                                     $('#btnSSO').hide();
                                 }
-
-
+                                $scope.changereqType("ADD_IRIDD");
+                                $('#idBindDataAgain').click();
+                                $('#labelAdd').click();
 
                             }, 1000);
-                            $('#idBindDataAgain').click();
-                            //$('#labelAdd').click();
+
 
 
                             if ($scope.shopType == "1") {
