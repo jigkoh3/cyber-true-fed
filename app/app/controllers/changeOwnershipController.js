@@ -2822,6 +2822,7 @@ smartApp.controller('changeOwnershipController', function(
         }
         //end----------- camera ----------------
     $scope.initWebCamLastest = function() {
+        initWebCamLastest = true;
         $scope.initWebCam();
     }
 

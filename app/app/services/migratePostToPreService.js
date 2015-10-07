@@ -240,7 +240,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
             'customer-type',
             'customer-subtype',
             'service-level',
-            'keyword',
+            //'keyword',
             'proposition',
             'partner-code',
             'privilege'
