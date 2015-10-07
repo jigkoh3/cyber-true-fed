@@ -431,7 +431,7 @@
         }
 
         var data = {
-            'func': 'MIGRATEPOSTTOPRE',
+            'func': 'POP',
             'header': {
                 'title-code': $scope.data.customerProfile['title-code'],
                 'title': $scope.data.customerProfile['title'],
