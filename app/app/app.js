@@ -124,11 +124,14 @@ smartApp.config(function ($routeProvider, $httpProvider) {
 	}).when('/allProduct', {
 	    templateUrl: 'app/views/allProduct.html?v=' + runTime,
 	    controller: 'AllproductController'
-	}).when('/migratePreToPost/:ID/:SubNo/:shopType', {
+	}).when('/migratePreToPost/:id/:subno/:shopType', {
 	    templateUrl: 'app/views/migratePreToPost.html?v=' + runTime,
 	    controller: 'MigratePreToPostController'
-
+	}).when('/migratePreToPost', {
+	    templateUrl: 'app/views/migratePreToPost.html?v=' + runTime,
+	    controller: 'MigratePreToPostController'
 	});
+	
     $routeProvider.otherwise({
         redirectTo: '/home'
     });

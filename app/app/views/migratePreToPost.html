@@ -1,236 +1,228 @@
-﻿<div class="container" id="migratePreToPostContent">
+﻿<div class="container" id="migratePostToPreContent">
     <div class="content-top">
     </div>
     <div class="content m_content">
         <div class="col-md-1"></div>
         <div class="col-md-11">
-
-
-
-            <div ng-include="template.header"></div>
+            <div ng-include="template.header" ng-hide="SubNo === 'null'"></div>
+            <div class="profile" style="width:50%;" ng-hide="SubNo !== 'null'">
+                <br />
+                <div class="row">
+                    <div class="col-xs-5 text-right" style="padding-top:9px;"><b>หมายเลขที่ขอใช้บริการ</b> <span style="color:red;">*</span></div>
+                    <div class="col-xs-5 text-right">
+                        <input id="swapSubNo" ng-numeric-input type="text" class="form-control" ng-model="subNoInput" ng-change="onInputSubNo()" maxlength="{{ subNoLength }}" />
+                    </div>
+                </div>
+                <br />
+            </div>
             <div class="clearfix"></div>
-            <h1 class="content-title">เปลี่ยนจากเติมเงินเป็นรายเดือน</h1>
+            <h1 class="content-title">เปลี่ยนจากเเติมเงินเป็นรายเดือน</h1>
             <div class="content-body">
-                <div ng-include="template.customerprofile" scope="" onload=""></div>
-
+                <div ng-include="template.customerprofile" onload="onCustomerProfileTemplateLoaded()"></div>
                 <h4>ผู้จดทะเบียนรายเดือน</h4>
-                <form ng-disabled="checkReadcard =='false'"  class="well" style="background-color:#ffffff;">
+                <div class="well" style="background-color:#ffffff;">
+                    <!--Update-->
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>ประเภทลูกค้า</label>
-                                <div data-toggle="buttons" class="btn-group btn-group-justified">
+                                <label>ประเภทลูกค้า<span style="color:red;">*</span></label>
+                                <div data-toggle="buttons" style="width: 120px;" class="btn-group btn-group-justified">
                                     <label class="btn btn-default active" ng-click="changeType('N')">
-                                        <input type="radio" name="type" ng-model="customerType" value="N" > บุคคลธรรมดา
+                                        <input type="radio" name="type" ng-model="customerType" value="N"> บุคคลธรรมดา
                                     </label>
-
-                                </div>
-                                <div class="form-group imp">
-                                    <label>ประเภทลูกค้าย่อย</label>
-                                    <select  ng-model="subCompanyType" ng-options="key as value for (key , value) in subCompanyTypeOptions" class="form-control " disabled>
-                                        <!--<option>เลือก</option>-->
-                                    </select>
+                                    <!--<label class="btn btn-default disabled" ng-click="changeType('B')">
+                                        <input type="radio" name="type" ng-model="customerType" value="B"> นิติบุคคล (B)
+                                    </label>
+                                    <label class="btn btn-default disabled" ng-click="changeType('C')">
+                                        <input type="radio" name="type" ng-model="customerType" value="C"> นิติบุคคล (C)
+                                    </label>-->
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-8 right">
+                                <!--<div class="camera-s">
+                                    <a class="btn btn-camera">
+                                        <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
+                                    </a>
+                                </div>-->
+                            <button type="button"
+                                    href="#modal-ReadCamera"
+                                    ng-show="isCustomerProfile && shopType=='1' && getAuthen['isSecondAuthen'] == true"
+                                    ng-click="initWebCamLastest()"
+                                    onclick="return false"
+                                    data-toggle="modal"
+                                    class="btn btn-camera">
+                                <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
+                            </button>
+                            
                         </div>
                     </div>
-
-                    <!-- Show customer person form -->
-                    <div ng-show="customerType=='N'">
-                        <div ng-show="shopType=='0'" class="camera-s" style="top:265px;"><a class="btn btn-camera"><i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร </a></div>
-                        <!--Update-->
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>หมายเลขบัตรประชาชน / พาสปอร์ต <span style="color:red;">*</span></label>
-                                    <input type="text" id="citizenID3" value="3389225969739" placeholder="" class="form-control numberic " maxlength="13" disabled>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>ประเภทของบัตร <span style="color:red;">*</span></label>
-                                    <select   id="cardType" ng-options="key as value for (key , value) in cardTypeOptions" class="form-control " disabled>
-                                        <option>บัตรประชาชน</option>
-                                        <!--<option ng-repeat="(key , value) in cardTypeOptions" value="{{key}}">{{value}}</option>-->
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>เลขที่ประจำตัวผู้เสียภาษี <span style="color:red;">*</span></label>
-                                    <input type="text" value="3389225969739" id="taxId3" placeholder="" class="form-control numberic " disabled>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>สาขาที่ <span style="color:red;">*</span></label>
-                                    <input  type="number" value="00000" placeholder="00000" maxlength="5" class="form-control " disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>คำนำหน้า <span style="color:red;">*</span></label>
-                                    <div id="placeholders">
-                                        <select class="form-control " disabled>
-                                            <option>นางสาว</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <label><p></p></label>
-                                <select class="form-control "
-                                        ng-show="newOwner.prefixTH=='OTHER'"
-                                        ng-model="titleOther"
-                                        ng-options="key as value for (key , value) in titleOtherOptions"
-                                        style="width:100px;"></select>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>ชื่อ <span style="color:red;">*</span></label>
-                                    <input type="text" id="firstNameTH3" name="ชื่อ" value="Nate" class="form-control" disabled>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>นามสกุล <span style="color:red;">*</span></label>
-                                    <input type="text" id="lastNameTH3" value="Phutthicha" name="นามสกุล" class="form-control " disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>เพศ <span style="color:red;">*</span></label>
-                                    <div  id="placeholders">
-                                        <select class="form-control " id="sex3"  style="width:100px;" disabled>
-                                            <option>หญิง</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div  class="form-group has-feedback">
-                                    <label>วัน/เดือน/ปีเกิด <span style="color:red;">*</span></label>
-                                    <input type="text" value="26/10/2552" disabled class="form-control date-picker" id="birthDay">
-                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div  class="form-group has-feedback">
-                                    <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                    <input type="text" value="25/10/2560" disabled placeholder="" class="form-control date-picker" id="expireDay">
-                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <h4>ข้อมูลหมายเลข</h4>
-                <div class="well">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-3" style=" text-align: right; top: 5px;">
-                                <p></p>
-                                <label>Shop Code / Dealer Code</label>
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>หมายเลขบัตรประชาชน / พาสปอร์ต </label>
+                                <input ng-numeric-input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" ng-disabled="!getSIMDataFailed" class="form-control" maxlength="13">
                             </div>
-                            <div class="col-md-4">
-                                <p></p>
-                                <select class="form-control" >
-                                    <option value="Please Select">
-                                        Please Select
-                                    </option>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <!-- id-type -->
+                                <label>ประเภทของบัตร <span style="color:red;">*</span></label>
+                                <select class="form-control" ng-model="data.customerProfile['id-type']" ng-disabled="!getSIMDataFailed">
+                                    <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                 </select>
                             </div>
                         </div>
-                            <div class="col-md-12">
-
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>คำนำหน้า <span style="color:red;">*</span></label>
+                                <div id="placeholders">
+                                    <select class="form-control" ng-model="data.customerProfile['title-code']" ng-disabled="!getSIMDataFailed">
+                                        <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>ชื่อ <span style="color:red;">*</span></label>
+                                <input type="text" id="firstNameTH3" ng-model="data.customerProfile['firstname']" class="form-control" ng-disabled="!getSIMDataFailed">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>นามสกุล <span style="color:red;">*</span></label>
+                                <input type="text" id="lastNameTH3" ng-model="data.customerProfile['lastname']" class="form-control" ng-disabled="!getSIMDataFailed">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>เพศ <span style="color:red;">*</span></label>
+                                <div id="placeholders">
+                                    <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" ng-disabled="!getSIMDataFailed">
+                                        <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback">
+                                <label>วัน/เดือน/ปีเกิด <span style="color:red;">*</span></label>
+                                <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" ng-disabled="!getSIMDataFailed">
+                                <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback">
+                                <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
+                                <input id="expireDate" type="text" class="form-control date-picker" ng-model="data.customerProfile['id-expire-date']" ng-disabled="isIdCardExpired(data.customerProfile['id-expire-date'])">
+                                <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4>ข้อมูลหมายเลข</h4>
+                <div class="well">
+                    <!-- <div class="row">
+                        <div class="col-md-12" ng-hide="shopType=='1' && getAuthen['isSecondAuthen'] == true && getAuthen.shopcodes.length == 1">
+                            <div class="col-md-3" style=" text-align: right; top: 5px;">
+                                <p></p>
+                                <label>
+                                Shop Code/Dealer Code 
+                                <span style="color:red;">*</span></label>
+                            </div>
+                            <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
+                                <p></p>
+                                <select class="form-control"
+                                        ng-model="partnerCode"
+                                        ng-blur="onCheckInputForVerify()"
+                                        ng-disabled="!isLastestUser">
+                                    <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
+                                        {{item}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
+                                <p></p>
+                                <input type="text"
+                                       id="txtPartnerCode"
+                                       name="partnerCode"
+                                       ng-model="partnerCode"
+                                       ng-keyup="onInputShopCode()"
+                                       class="form-control"
+                                       ng-disabled="(getAuthen.shopcodes.length==1) || !isLastestUser"
+                                       maxlength="8" required>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
                                 <div class="col-md-3" style=" text-align: right; top: 5px;">
                                     <p></p>
                                     <label>รายการส่งเสริมการขาย</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-7">
                                     <p></p>
-                                    <select ng-change="selectedPromotion()" class="form-control" ng-model="promotion">
-                                        <option ng-repeat="item in data.offer" value="{{item['product-name']}}">
-                                            {{item["product-name"]}} : {{item["product-description"]}}
+                                    <select class="form-control" ng-model="selectedProPosition">
+                                        <option ng-repeat="item in proPositionList" value="{{ item['proposition-code'] }}">
+                                            {{ item.name }} : {{ item.description }}
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-md-2">
-                                    <label><input type="submit" ng-click="onVerify()" value="Verify" class="btn btn-success"></label>
-                                </div>
-                                <div class="col-md-3">
-                                    <span style="color:red;">* Approve code by referral*</span>
-                                </div>
-                                <div class="col-md-2" ng-form="approvecode">
-                                    <input type="text" name="approvecodes" ng-model="approvecodes" class="form-control" style="width:150px;" required>
-                                    <span class="error" style="color:red;" ng-show="approvecode.approvecodes.$error.required">
-                                        Required!
-                                    </span>
-                                </div>
                             </div>
                         </div>
-
-                    <!--<div ng-show="isVerify" class="row">
-                        <div class="col-md-12">
-                            <div ng-include="template.modalPricePlan"></div>
-                        </div>
-
-                    </div>-->
-
-                    <div ng-show="isVerify" class="row" style="margin-bottom:6px;">
+                    </div>
+                    <p></p>
+                    <div class="row" ng-submit="funcEvent()">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="col-md-3" style=" text-align: right; top: 5px;">
                                     <label>Price Plan <span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" ng-model="pricePlan.name" readonly class="form-control">
+                                    <input type="text" ng-model="selectedPricePlan.description" readonly class="form-control">
                                 </div>
-                                <div class="col-md-2">
-                                    <input type="text" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control">
+                                <div class="col-md-3">
+                                    <input type="text" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control">
                                 </div>
-                                
-                                <div class="col-md-1 right" >                                    
-                                    <span class="input-group right" style="background-color: #37B624;">
-                                        <a href="#modalPriceplanOwnership" id="modalPricePlan" class="btn" onclick="return false;" data-toggle="modal"><span style="color:white;">...</span></a>
-                                    </span>
+                                <div class="col-md-1">
+                                    <button href="#pricePlanModal" id="modalnewpriceplan" class="btn" onclick="return false;" data-toggle="modal" style="background-color: #5cb85c; border-color: #4cae4c; ">
+                                        <span style="color:white;">...</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div ng-show="isVerify" class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="col-md-3" style=" text-align: right; top: 5px;">
-                                        <label>ค่าบริการรายเดือนก่อนหักส่วนลด </label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" readonly ng-model="pricePlan.rc" class="form-control">
-                                    </div>
+                    <p></p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-3" style=" text-align: right; top: 5px;">
+                                    <label>ค่าบริการรายเดือนก่อนหักส่วนลด </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" readonly ng-model="selectedPricePlan.rc" class="form-control">
                                 </div>
                             </div>
-                     </div>
-
+                        </div>
+                    </div>
                     <p></p>
+
                     <div ng-show="isVerify" class="row">
                         <div class="col-md-12">
                             <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                <input type="checkbox" id="changCheck" ng-click="onChangCheckno()" class="styled" ng-model="changCheckno">
+                                <input type="checkbox" id="changCheck" ng-click="customerUsageNo = !customerUsageNo" class="styled">
                                 <label for="changCheck"><b>ระบุผู้ใช้หมายเลข </b></label>
                             </div>
                         </div>
                     </div>
                     <br />
-                    <div ng-hide="changCheckno==false">
-
+                    <div ng-hide="!customerUsageNo">
                         <div ng-show="(customerType=='B') || (customerType=='C')">
                             <div class="row">
                                 <div class="col-md-4">
@@ -265,65 +257,55 @@
                             </div>
                         </div>
 
-                        <div ng-show="(customerType=='N') || (businessType=='P')" ng-form="fixnumber">
+                        <div ng-show="(customerType=='N') || (businessType=='P')">
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label>คำนำหน้า <span style="color:red;">*</span></label>
                                         <div id="placeholders">
-                                            <select name="prefixs" class="form-control"
-                                                    id="titleRegisterd"
-                                                    ng-options="t.key as t.description for t in titleOptions"
-                                                    ng-model="newOwner.prefixTH"
-                                                    style="width:100px;" required></select>
-                                            <span class="error" style="color:red;" ng-show="fixnumber.prefixs.$error.required">
-                                                Required!
-                                            </span>
+                                            <select class="form-control" ng-model="data.customerProfile['title-code']" ng-disabled="!getSIMDataFailed">
+                                                <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <label><p></p></label>
-                                    <select class="form-control"
-                                            id="titleOtherRegisterd"
-                                            ng-show="newOwner.prefixTH=='OTHER'"
-                                            ng-model="titleOther"
-                                            ng-options="key as value for (key , value) in titleOtherOptions"
-                                            style="width:100px;"></select>
-                                </div>
                                 <div class="col-md-4">
-                                    <div class="form-group imp">
-                                        <label>ชื่อ </label>
-                                        <input type="text" ng-model="newOwner.firstNameTH" id="firstNameRegisterd" name="namesth" class="form-control" required>
-                                        <span class="error" style="color:red;" ng-show="fixnumber.namesth.$error.required">
-                                            Required!
-                                        </span>
+                                    <div class="form-group">
+                                        <label>ชื่อ <span style="color:red;">*</span></label>
+                                        <input type="text" id="firstNameTH3" ng-model="data.customerProfile['firstname']" class="form-control" ng-disabled="!getSIMDataFailed">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group imp">
-                                        <label>นามสกุล </label>
-                                        <input type="text" ng-model="newOwner.lastNameTH" id="lastNameRegisterd" name="lastnamesth" class="form-control" required>
-                                        <span class="error" style="color:red;" ng-show="fixnumber.lastnamesth.$error.required">
-                                            Required!
-                                        </span>
+                                    <div class="form-group">
+                                        <label>นามสกุล <span style="color:red;">*</span></label>
+                                        <input type="text" id="lastNameTH3" ng-model="data.customerProfile['lastname']" class="form-control" ng-disabled="!getSIMDataFailed">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>เพศ <span style="color:red;">*</span></label>
+                                        <div id="placeholders">
+                                            <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" ng-disabled="!getSIMDataFailed">
+                                                <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>วัน/เดือน/ปีเกิด <span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="newOwner.birthDay" id="birthDayRegisterd" readonly class=" form-control date-picker">
+                                        <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" ng-disabled="!getSIMDataFailed">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
-                                        <label>SMS Language <span style="color:red">*</span></label>
-                                        <select ng-model="userRegisterd.smsLanguage" id="smsLanguageRegisterd" class="form-control">
-                                            <option value="Th">ไทย</option>
-                                            <option value="En">อังกฤษ</option>
+                                        <label>SMS Language<span style="color:red;">*</span></label>
+                                        <select ng-model="data.customerProfile['sms-language']" id="smsLanguageRegisterd" class="form-control">
+                                            <option value="TH" selected>ไทย</option>
+                                            <option value="EN">อังกฤษ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -331,697 +313,341 @@
                         </div>
                     </div>
                 </div>
-                <h4></h4>
 
-                <div class="well" ng-show="isVerify" style="background-color:#ffffff;">
-                    <div class="row">
-                        <div class="form-group">
-                            <label class="col-md-3">
-                                <h4>สร้างข้อมูลลูกค้าไปที่ <span style="color:red;">*</span></h4>
-                            </label>
-
-                            <!-- บุคคลธรรมดา -->
-                            <div ng-hide="customerType != 'N'">
-                                <div class="col-md-5">
-                                    <p></p>
-                                    <div class="col-md-4">
-                                        <input type="radio" name="custom" ng-change="changecusStatusN('O')" value="O" ng-model="customerStatusN"> ลูกค้าล่าสุด
-                                    </div>
-                                    <div class="col-md-8" ng-hide="customerStatusN =='N'">
-                                        <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                            <input type="checkbox" class="styled" id="openService" ng-model="changOpenserviceN" ng-change="changeOldAddress(changOpenserviceN)">
-                                            <label>แสดงข้อมูลล่าสุด</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <p></p>
-                                    <div class="col-md-4">
-                                        <input type="radio" name="custom" ng-change="changecusStatusN('N')" value="N" ng-model="customerStatusN"> ลูกค้าใหม่
-                                    </div>
-                                    <div class="col-md-8"></div>
-                                </div>
-                            </div>
-
-                            <!-- นิติบุคคล -->
-                            <div ng-hide="customerType=='N'">
-                                <div class="col-md-5">
-                                    <p></p>
-                                    <div class="col-md-4">
-                                        <input type="radio" name="custom2" ng-change="changecusStatusBC('O')" value="O" ng-model="customerStatusBC"> ลูกค้าเก่า
-                                    </div>
-                                    <div class="col-md-8" ng-hide="customerStatusBC=='N'">
-                                        <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                            <input type="checkbox" class="styled" id="openService2" ng-model="changOpenserviceBC" ng-change="changeOldAddressBC(changOpenserviceBC)">
-                                            <label>ระบุลูกค้าในการเปิดบริการ</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <p></p>
-                                    <div class="col-md-4">
-                                        <input type="radio" name="custom2" ng-change="changecusStatusBC('N')" value="N" ng-model="customerStatusBC"> ลูกค้าใหม่
-                                    </div>
-                                    <div class="col-md-8"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" ng-show="(customerType=='N' && changOpenserviceN==true)">
-                        <div class="form-group">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tr>
-                                        <th></th>
-                                        <th><span style="color:green;"> เลขที่ลูกค้า</span></th>
-                                        <th><span style="color:green;"> คำนำหน้า</span></th>
-                                        <th><span style="color:green;"> ชื่อ</span></th>
-                                        <th><span style="color:green;"> นามสกุล</span></th>
-                                        <th><span style="color:green;"> วันที่สร้างข้อมูลลูกค้า</span></th>
-                                        <th><span style="color:green;"> รอบบิล</span></th>
-
-                                    </tr>
-                                    <tr>
-                                        <th><input type="radio" name="owner" ng-change="updateMailAddress('1')" value="1" ng-model="rowNoSelected" checked="checked" /></th>
-                                        <th>10448763</th>
-                                        <th>นาง</th>
-                                        <th>มีสุข</th>
-                                        <th>ใจดี</th>
-                                        <th>20/12/2014</th>
-                                        <th>13/12</th>
-                                    </tr>
-                                    
-
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" ng-show="((customerType=='B' || customerType=='C') && changOpenserviceBC == true)">
-                        <div class="form-group">
-                            <div class="table-responsive">
-                                <table class="table">
-
-                                    <tr class="row">
-                                        <th class="col-md-1"></th>
-                                        <th class="col-md-2"><span style="color:green;"> เลขที่ลูกค้า</span></th>
-                                        <th class="col-md-3"><span style="color:green;"> ชื่อบริษัท</span></th>
-                                        <th class="col-md-2"><span style="color:green;"> วันที่สร้างข้อมูลลูกค้า</span></th>
-                                        <th class="col-md-2"><span style="color:green;"> รอบบิล</span></th>
-
-                                    </tr>
-                                    <tr class="row">
-                                        <th class="col-md-1"><input type="radio" ng-change="selectCompany('1')" value="1" name="rdoCompany" ng-model="selectedCompany" checked="checked" /></th>
-                                        <th class="col-md-2">10448763</th>
-                                        <th class="col-md-3">
-                                            บริษัท aa จำกัด
-                                            <div ng-show="selectedCompany=='1'" class="col-md-12">
-                                                <input type="text" placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
-                                            </div>
-                                        </th>
-                                        <th class="col-md-2">20/12/2014</th>
-                                        <th class="col-md-2">12</th>
-                                    </tr>
-                                    <tr class="row">
-                                        <th class="col-md-1"><input type="radio" ng-change="selectCompany('2')" value="2" name="rdoCompany" ng-model="selectedCompany" /></th>
-                                        <th class="col-md-2">10448763</th>
-                                        <th class="col-md-3">
-                                            บริษัท aa จำกัด
-                                            <div ng-show="selectedCompany=='2'" class="col-md-12">
-                                                <input type="text" placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
-                                            </div>
-                                        </th>
-                                        <th class="col-md-2">20/12/2014</th>
-                                        <th class="col-md-2">12</th>
-                                    </tr>
-
-                                </table>
-                            </div>
-                        </div>
-                        <hr />
-                    </div>
-                </div>
-                <h4></h4>
-                <div ng-show="isVerify" class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-
-                            <div data-toggle="buttons" class="btn-group btn-group-justified">
-                                <label class="btn btn-default active" ng-click="slipchangeType('H')">
-                                    <input type="radio" name="type" ng-model="slipType" value="H"> ที่อยู่จัดส่งเอกสาร
-                                </label>
-                                <label ng-hide="customerType=='N'" class="btn btn-default" ng-click="slipchangeType('B')">
-                                    <input type="radio" name="type" ng-model="slipType" value="B"> ที่อยู่ออกใบกำกับภาษี
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="well" ng-show="isVerify" style="background-color:#ffffff;" ng-form="billtaxs">
-                    <div class="row" ng-show="slipType == 'H'">
+                <h4>ที่อยู่จดทะเบียน</h4>
+                <div class="well" style="background-color:#ffffff;" ng-form="customerspre">
+                    <div class="row" style="margin-bottom:10px;">
                         <div class="col-md-12">
-                            <div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <span><button type="button" ng-click="useAddressAsCard('H')" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button></span>&nbsp; <a href="" ng-click="unUseAddressAsCard('H')"><span><i class="fa fa-trash-o fa-2x"></i></span></a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group imp">
-                                            <label>รหัสไปรษณีย์ </label>
-                                            <input type="text" value="17000" name="postno" ng-model="postcode" class="form-control" required>
-                                            <span class="error" style="color:red;" ng-show="billtaxs.postno.$error.required">
-                                                Required!
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group imp">
-                                            <label>จังหวัด </label>
-                                            <input type="text" value="ชัยนาท" name="province" ng-model="provinces" class="form-control" required>
-                                            <span class="error" style="color:red;" ng-show="billtaxs.province.$error.required">
-                                                Required!
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group imp">
-                                            <label>เขต / อำเภอ </label>
-                                            <input type="text" value="เมือง" name="aumpers" ng-model="aumper" class="form-control" required>
-                                            <span class="error" style="color:red;" ng-show="billtaxs.aumpers.$error.required">
-                                                Required!
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group imp">
-                                            <label>แขวง / ตำบล </label>
-                                            <input type="text" value="เสือโฮก" name="tumbols" ng-model="tumbols" class="form-control" required>
-                                            <span class="error" style="color:red;" ng-show="billtaxs.tumbols.$error.required">
-                                                Required!
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <div class="checkbox checkbox-circle2 checkbox-inline">
-                                                <span>บ้านเลขที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
-                                                <input type="checkbox" ng-model="bantypeMail" ng-change="bantypeMail?mailAddress.homeNumber='-':mailAddress.homeNumber=''" class="styled">
-                                                <label>ไม่มีบ้านเลขที่ </label>
-                                            </div>
-                                            <input type="text" ng-model="mailAddress.homeNumber" ng-disabled="bantypeMail" name="homenos" class="form-control" required>
-                                            <span class="error" style="color:red;" ng-show="billtaxs.homenos.$error.required">
-                                                Required!
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <div class="checkbox checkbox-circle2 checkbox-inline">
-                                                <span>หมู่ที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
-                                                <input type="checkbox" ng-model="mootypeMail" ng-change="mootypeMail?mailAddress.moo='-':mailAddress.moo=''" class="styled">
-                                                <label>ไม่มีหมู่ที่ </label>
-                                            </div>
-                                            <input type="text" ng-model="mailAddress.moo" ng-disabled="mootypeMail" name="moocode" class="form-control" required>
-                                            <span class="error" style="color:red;" ng-show="billtaxs.moocode.$error.required">
-                                                Required!
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>หมู่บ้าน</label>
-                                            <input type="text" name="หมู่บ้าน" value="เสือโฮก" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>อาคาร</label>
-                                            <input type="text" name="อาคาร" value="-" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>ชั้น</label>
-                                            <input type="text" name="ชั้น" value="-" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>เลขห้อง</label>
-                                            <input type="text" name="เลขห้อง" value="-" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>ซอย</label>
-                                            <input type="text"  name="ซอย" value="บ้านกล้วย" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group imp">
-                                            <label>ถนน</label>
-                                            <input type="text"  value="พหลโยธิน" name="roadname" class="form-control" ng-model="roadname" required>
-                                            <span class="error" style="color:red;" ng-show="billtaxs.roadname.$error.required">
-                                                Required!
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" ng-show="slipType == 'B'">
-                        <div class="col-md-12">
-                            <div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <span>
-                                            <button type="button" ng-click="useAddressAsCard('B')" class="btn btn-default btn_address">
-                                                ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร
-                                            </button>
+                            <div class="form-group">
+                                <span>
+                                        <button type="button" ng-click="useSameAddressAsCard()" class="btn btn-danger btn_address">
+                                            ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร
+                                        </button>
+                                    </span>
+                                <a href="" ng-click="clearAddress()" style="position:relative;top:5px;margin-left:10px;">
+                                    <span>
+                                            <i class="fa fa-trash-o fa-2x"></i>
                                         </span>
-                                        &nbsp;
-                                        <a href="" ng-click="unUseAddressAsCard('B')">
-                                            <span>
-                                                <i class="fa fa-trash-o fa-2x"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group imp">
-                                            <label>รหัสไปรษณีย์ </label>
-                                            <input type="text" ng-model="billAddress.postcode" name="รหัสไปรษณีย์" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group imp">
-                                            <label>จังหวัด </label>
-                                            <input type="text" ng-model="billAddress.province" name="จังหวัด" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group imp">
-                                            <label>เขต / อำเภอ </label>
-                                            <input type="text" ng-model="billAddress.amphur" name="เขต / อำเภอ" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group imp">
-                                            <label>แขวง / ตำบล </label>
-                                            <input type="text" ng-model="billAddress.district" name="แขวง / ตำบล" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <div class="checkbox checkbox-circle2 checkbox-inline">
-                                                <span>บ้านเลขที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
-                                                <input type="checkbox" ng-model="bantypeBill" class="styled">
-                                                <label>ไม่มีบ้านเลขที่ </label>
-                                            </div>
-                                            <input type="text" ng-model="billAddress.homeNumber" ng-disabled="bantypeBill" name="บ้านเลขที่" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <div class="checkbox checkbox-circle2 checkbox-inline">
-                                                <span>หมู่ที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
-                                                <input type="checkbox" ng-model="mootypeBill" class="styled">
-                                                <label>ไม่มีหมู่ที่ </label>
-                                            </div>
-                                            <input type="text" ng-model="billAddress.moo" ng-disabled="mootypeBill" name="หมู่ที่" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>หมู่บ้าน</label>
-                                            <input type="text" name="หมู่บ้าน" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>อาคาร / ชั้น / เลขห้อง</label>
-                                            <input type="text" name="อาคาร / ชั้น / เลขห้อง" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>ซอย</label>
-                                            <input type="text" ng-model="billAddress.soi" name="ซอย" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group imp">
-                                            <label>ถนน</label>
-                                            <input type="text" ng-model="billAddress.road" name="ถนน" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group imp">
+                                <label>รหัสไปรษณีย์ </label>
+                                <input type="text" ng-numeric-input ng-model="data.customerAddress['zip']" class="form-control" maxlength="{{ zipLength }}" required>
+                                <!-- <span class="error" style="color:red;" ng-show="customerspre.postcodes.$error.required">
+                                        Required!
+                                    </span> -->
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group imp">
+                                <label>จังหวัด </label>
+                                <input type="text" ng-model="data.customerAddress['province']" class="form-control" required>
+                                <!-- <span class="error" style="color:red;" ng-show="customerspre.provinces.$error.required">
+                                        Required!
+                                    </span> -->
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group imp">
+                                <label>เขต / อำเภอ </label>
+                                <input type="text" ng-model="data.customerAddress['district']" class="form-control" required>
+                                <!-- <span class="error" style="color:red;" ng-show="customerspre.aumpers.$error.required">
+                                        Required!
+                                    </span> -->
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group imp">
+                                <label>แขวง / ตำบล </label>
+                                <input type="text" ng-model="data.customerAddress['sub-district']" class="form-control" required>
+                                <!-- <span class="error" style="color:red;" ng-show="customerspre.tumbols.$error.required">
+                                        Required!
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <span>บ้านเลขที่ <!-- <span style="color:red;">*</span> --></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!-- <div class="checkbox checkbox-circle2 checkbox-inline">
+                                        <input type="checkbox" ng-model="noHomeNumber" class="styled">
+                                        <label><span style="position:relative;top:3px;left:-10px;">ไม่มีบ้านเลขที่</span></label>
+                                    </div> -->
+                                <input type="text" ng-model="data.customerAddress['number']" ng-disabled="noHomeNumber" name="homenos" class="form-control numberic" required>
+                                <!-- <span class="error" style="color:red;" ng-show="customerspre.homenos.$error.required">
+                                        Required!
+                                    </span> -->
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <span>หมู่ที่ <!-- <span style="color:red;">*</span> --></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!-- <div class="checkbox checkbox-circle2 checkbox-inline">
+                                        <input type="checkbox" ng-model="noHomeMoo" class="styled">
+                                        <label><span style="position:relative;top:3px;left:-10px;">ไม่มีหมู่ที่</span></label>
+                                    </div> -->
+                                <input type="text" ng-model="data.customerAddress['moo']" ng-disabled="noHomeMoo" class="form-control" required>
+                                <!-- <span class="error" style="color:red;" ng-show="customerspre.homemoos.$error.required">
+                                        Required!
+                                    </span> -->
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>หมู่บ้าน</label>
+                                <input type="text" class="form-control numberic" ng-model="data.customerAddress['village']">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>อาคาร</label>
+                                <input type="text" class="form-control" ng-model="data.customerAddress['building-name']">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>ชั้น</label>
+                                <input type="text" class="form-control" ng-model="data.customerAddress['building-floor']">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>เลขห้อง</label>
+                                <input type="text" class="form-control" ng-model="data.customerAddress['building-room']">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>ซอย</label>
+                                <input type="text" class="form-control" ng-model="data.customerAddress['soi']">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group imp">
+                                <label>ถนน</label>
+                                <input type="text" class="form-control" ng-model="data.customerAddress['street']" required>
+                                <span class="error" style="color:red;" ng-show="customerspre.roadcode.$error.required">
+                                        Required!
+                                    </span>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <h4></h4>
+                <!-- end authorize -->
+                <div ng-include="template.currentpriceplan" scope="" onload=""></div>
+            </div>
+            
                 <h4 ng-show="isVerify">ใบแจ้งค่าบริการและประเภทการรับชำระ</h4>
-                <div ng-show="isVerify" class="well" ng-form="billingservice">
+                <div ng-show="isVerify" class="well">
                     <div class="form-horizontal">
-                        <div class="form-group imp">
-                            <label class="col-md-4 control-label">การส่งใบแจ้งค่าบริการ </label>
-                            <div class="col-md-4">
-                                <select class="form-control" name="slipname" ng-model="blah" ng-options="key as value for (key , value) in dataSlip" required></select>
-                                <span class="error" style="color:red;" ng-show="billingservice.slipname.$error.required">
-                                    Required!
-                                </span>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">การส่งใบแจ้งค่าบริการ<span style="color:red;">*</span></label>
+                            <div class="col-md-4" ng-form="billservice">
+                                <select class="form-control"
+                                        name="billservices"
+                                        ng-model="blah"
+                                        ng-options="key as value for (key , value) in dataSlip" required></select>
+                                <!--<span class="error" style="color:red;" ng-show="billservice.billservices.$error.required">
+                                    Required.
+                                </span>-->
                             </div>
                         </div>
-                        <div class="form-group imp" ng-hide="blah=='2'||blah=='3'">
-                            <label class="col-md-5 control-label">E-mail </label>
+                        <div class="form-group" ng-hide="blah=='S'||blah=='P'" ng-form="email">
+                            <label class="col-md-5 control-label">E-mail <span style="color:red;">*</span></label>
                             <div class="col-md-3">
-                                <input type="text" name="emails" ng-model="billPayment.email" ng-blur="onCheckEmail()" class="form-control" required>
-                                <span class="error" style="color:red;" ng-show="billingservice.emails.$error.required">
-                                    Required!
-                                </span>
+                                <input type="text"
+                                       id="idBillPaymentEmail"
+                                       name="emails"
+                                       ng-model="billPayment.email"
+                                       ng-blur="onCheckEmail()"
+                                       class="form-control" required>
+                                <!--<span class="error" style="color:red;" ng-show="email.emails.$error.required">
+                                    Required.
+                                </span>-->
                             </div>
                         </div>
-                        <div class="form-group imp" ng-hide="blah=='1'||blah=='3'">
-                            <label class="col-md-5 control-label">SMS </label>
+                        <div class="form-group" ng-hide="blah=='E'||blah=='P'" ng-form="ngsmss">
+                            <label class="col-md-5 control-label">SMS <span style="color:red;">*</span></label>
                             <div class="col-md-3">
-                                <input type="text" name="sms" ng-model="sms" class="form-control" required>
-                                <span class="error" style="color:red;" ng-show="billingservice.sms.$error.required">
-                                    Required!
-                                </span>
+                                <input type="text" 
+                                       id="txtBillPaymentSmss"
+                                       name="smss" 
+                                       ng-model="billPayment.smss" 
+                                       class="form-control" required>
+                                <!--<span class="error" style="color:red;" ng-show="ngsmss.smss.$error.required">
+                                    Required.
+                                </span>-->
                             </div>
                         </div>
-                        <div class="form-group imp">
-                            <label class="col-md-4 control-label">ประเภทการชำระเงิน </label>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ประเภทการชำระเงิน <span style="color:red;">*</span></label>
                             <div class="col-md-4">
                                 <select class="form-control">
                                     <option>เงินสด</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group imp">
-                            <label class="col-md-4 control-label">ภาษาในการส่งบิล </label>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
                             <div class="col-md-4">
-                                <select class="form-control">
-                                    <option value="Th">ไทย</option>
-                                    <option value="En">อังกฤษ</option>
+                                <select class="form-control" ng-model="billPayment.accountLang">
+                                    <option value="TH">ไทย</option>
+                                    <option value="EN">อังกฤษ</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group imp" ng-show="(customerType=='B' || customerType=='C')">
+                        <div class="form-group" ng-show="(customerType=='B' || customerType=='C') && shopType=='0'">
                             <div ng-show="shopType=='0'">
-                                <label class="col-md-4 control-label">รอบบิล </label>
+                                <label class="col-md-4 control-label">รอบบิล <span style="color:red;">*</span></label>
                                 <div class="col-md-4">
                                     <select class="form-control">
                                         <option>ระบุ </option>
                                     </select>
-                                    
                                 </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
-                <h4 ng-show="isVerify">ข้อมูลติดต่อลูกค้า</h4>
-                <div ng-show="isVerify" class="well" style="background-color:#ffffff;">
-                    <div class="row">
+            <!--<div ng-include="template.reasonmemo" scope="" onload=""></div>-->
+            <h4>Reason & Memo</h4>
+            <div class="well">
+                <div class="form-horizontal">
+                    <div class="form-group" ng-show="shopType=='0'">
+                        <label class="col-md-4 control-label">Reason Code<span style="color:red;"> *</span></label>
                         <div class="col-md-4">
-                            <div class="form-group imp" ng-form="tellno">
-                                <label>เบอร์อื่นที่สามารถติดด่อได้</label>
-                                <input type="text" ng-model="phonenumbers" name="phonenumbers" class="form-control" required>
-                                <span class="error" style="color:red;" ng-show="tellno.phonenumbers.$error.required">
-                                    Required!
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label>ต่อ</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group ">
-                                <label>เบอร์มือถือ</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="form-group ">
-                                <label>Email</label>
-                                <input type="text" class="form-control">
-                            </div>
+                            <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-model="selectedReason" class="form-control"></select>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Memo</label>
                         <div class="col-md-4">
-                            <div class="form-group ">
-                                <label>ภาษาที่ใช้ติดต่อ</label>
-                                <select class="form-control">
-                                    <option value="Th">ไทย</option>
-                                    <option value="En">อังกฤษ</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-4">
-
-                        </div> -->
-                    </div>
-                </div>
-                <!--<div ng-include="template.reasonmemo" scope="" onload=""></div>-->
-                <h4 ng-show="isVerify">Reason & Memo</h4>
-                <div ng-show="isVerify" class="well">
-                    <div class="form-horizontal">
-                        <div class="form-group" ng-show="shopType=='0'">
-                            <label class="col-md-4 control-label">Reason Code<span style="color:red;"> *</span></label>
-                            <div class="col-md-4">
-                                <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-change="onReasonChange()" ng-model="reason" class=" form-control"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Memo</label>
-                            <div class="col-md-4">
-                                <textarea class="form-control" name="message" style="width:100%;height:70px;"></textarea>
-                            </div>
+                            <textarea class="form-control" ng-model="memo" name="message" style="width:100%;height:70px;"></textarea>
                         </div>
                     </div>
                 </div>
-                <div id="modal-pdf" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog" style="width:70%;">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4>
+            </div>
+            <!--<div ng-include="template.effectivepriceplan" scope="" onload=""></div>-->
+            <div id="modal-pdf" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog" style="width:70%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>
                                     PDF
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </h4>
-                            </div>
-                            <div class="modal-body">
-
-                                <iframe id="iframePDF" src="" style="width: 100%; height: 400px;" frameborder="0" scrolling="no">
-                                    <p>It appears your web browser doesn't support iframes.</p>
-                                </iframe>
-                            </div>
-
-                            <div class="modal-footer">
-                                <span ng-show="shopType=='0'"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000); setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 2500);" ng-click="confirmPrint()" class="btn btn-success"></span>
-                                <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-toggle="modal" ng-click="confirmPrint()" class="btn btn-success"></span>
-
-                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <iframe id="iframePDF" src="" style="width: 100%; height: 400px;" frameborder="0" scrolling="no">
+                                <p>It appears your web browser doesn't support iframes.</p>
+                            </iframe>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <span ng-show="(shopType === '1' && getAuthen['isSecondAuthen'] === false) || shopType === '0'">
+                                <input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000); setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 2500);" ng-click="submit()" class="btn btn-success" />
+                            </span>
+                            <span>
+                                <input type="button" href="#modal-pdf" value="ยืนยัน" data-toggle="modal" ng-click="submit()" class="btn btn-success" />
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 form-buttons">
-                    <div class="form-group">
-                        <input ng-show="shopType=='0'" type="submit" href="#modal-pdf" value="พิมพ์" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 500); " data-toggle="modal" class="btn btn-success">
-                        <input ng-show="shopType=='1'" type="submit" href="#modal-pdf" value="พิมพ์" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 500); setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000); setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 2500);" data-toggle="modal" class="btn btn-success">
-                        <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="parent.jQuery.fancybox.close()">
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- modal search priceplan -->>
-<div id="modal-priceplan1" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
-                <h5>Price Plan</h5>
-                <div class="col-md-12">
-                    <input type="text" placeholder="ค้นหา" ng-model="searchPriceplan" class="form-control">
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <tr class="row">
-                            <th class="col-md-1"></th>
-                            <th class="col-md-5"><span style="color:green;"> Price Plan</span></th>
-                            <th class="col-md-5"><span style="color:green;"> ค่าบริการรายเดือนก่อนหักส่วนลด</span></th>
-
-                        </tr>
-                        <tr class="row">
-                            <th class="col-md-1"><input name="priceList" type="radio" ng-change="priceFunc('A')" ng-model="priceListmodal" value="A" /></th>
-                            <th class="col-md-5">PLSMAP09 : 4G 699</th>
-                            <th class="col-md-5">699</th>
-                        </tr>
-                        <tr class="row">
-                            <th class="col-md-1"><input name="priceList" type="radio" ng-change="priceFunc('B')" ng-model="priceListmodal" value="B" /></th>
-                            <th class="col-md-5">PLSMAP09 : 4G 899</th>
-                            <th class="col-md-5">899</th>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-success" data-dismiss="modal">เลือก</button>
-                <button class="btn btn-cancel" data-dismiss="modal">ยกเลิก</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--modal search ou-->
-<div id="modal-ou" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="blue bigger">
-                    List OU
-                </h4>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <tr class="row">
-                            <th class="col-md-1"></th>
-                            <th class="col-md-2"><span style="color:green;"> Customer ID</span></th>
-                            <th class="col-md-3"><span style="color:green;"> ชื่อบริษัท</span></th>
-                            <th class="col-md-3"><span style="color:green;"> วันที่สร้าง Customer</span></th>
-                            <th class="col-md-2"><span style="color:green;"> รอบบิล</span></th>
-                        </tr>
-                        <tr class="row">
-                            <th class="col-md-1"><input type="radio" /></th>
-                            <th class="col-md-2">10448763</th>
-                            <th class="col-md-3">บริษัท aa จำกัด</th>
-                            <th class="col-md-3">20/12/2014</th>
-                            <th class="col-md-2">12</th>
-                        </tr>
-                    </table>
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-
-            </div>
-        </div>
-    </div>
-</div>
-<!--modal Secound Authen-->
-<div id="modal-SecoundAuthen" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" id="btnSecoundAuthenClose" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="blue bigger">
-                    <i class="ace-icon fa fa-lock grey"></i>
-                    Secound Authen
-                </h4>
-            </div>
-            <div class="modal-body">
-
-                <div class="row">
-                    <div class="col-xs-4">
-                        Username :
-                        <input type="text" placeholder="Username" class="form-control">
-                    </div>
-                    <div class="col-xs-4">
-                        Password :
-                        <input type="text" placeholder="Password" class="form-control">
-                    </div>
-                    <div class="col-xs-4 ">
-                        <a href="#modal-ReadCard3" onclick="return false;" data-dismiss="modal" data-toggle="modal" class="btn btn-success">Ok</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="modal-ReadCard3" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" id="btnReadCard3Close" class="close" onclick="" data-dismiss="modal">&times;</button>
-                <h4 class="blue bigger">
-                    <i class="ace-icon fa fa-user  grey"></i>
-                    ผู้จดทะเบียนใหม่
-                </h4>
-                <hr />
-            </div>
-
-
-
-
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xs-3">ระบุ Card / Passport : </div>
-                    <div class="col-xs-5"><input type="text" id="CitizenID33" placeholder="" ng-model="CitizenID3" class="form-control"></div>
-                    <div class="col-xs-4">
-                        <!--<input type="submit" value="อ่านบัตร" class="btn btn-danger" ng-click="ReadCardMockUp('3389225969739')">-->
-                        <input type="submit" value="อ่านบัตร" class="btn btn-danger" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard'); ReadCard('ReadP');">
-                        <input type="submit" value="ใส่ข้อมูล" class="btn btn-danger" onclick="setTimeout(function () { $('#CitizenID33').select(); }, 100);" ng-click="manualInputReadCard()">
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-3"></div>
-                    <div class="col-xs-5">
-                        <!--<div id="loadingReadCard">
-                            <i class="fa fa-spin fa-spinner"></i>
-                            กำลังอ่านข้อมูล...
+            <div id="modal-SecoundAuthen" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" id="btnSecoundAuthenClose" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="blue bigger">
+                                    <i class="ace-icon fa fa-lock grey"></i>
+                                    Secound Authen
+                                </h4>
                         </div>
-                        <span id="unMatch" style="color:red;">*ไม่พบหมายเลขบัตรนี้ในฐานข้อมูล</span>
-                        <span id="readCardTimeOut" style="color:red;display:none;">*ไม่พบเครื่องอ่านบัตร</span>-->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    Username :
+                                    <input type="text" placeholder="Username" class="form-control">
+                                </div>
+                                <div class="col-xs-4">
+                                    Password :
+                                    <input type="text" placeholder="Password" class="form-control">
+                                </div>
+                                <div class="col-xs-4 ">
+                                    <a href="#modal-ReadCard3" onclick="return false;" data-dismiss="modal" data-toggle="modal" class="btn btn-success">Ok</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
                     </div>
-                    <div class="col-xs-4"></div>
                 </div>
-
             </div>
-
-            <div class="modal-footer">
-
+            <div id="modal-ReadCard3" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" id="btnReadCard3Close" class="close" onclick="" data-dismiss="modal">&times;</button>
+                            <h4 class="blue bigger">
+                                    <i class="ace-icon fa fa-user  grey"></i>
+                                    ผู้จดทะเบียนเติมเงิน
+                                </h4>
+                            <hr />
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-3">ระบุ Card / Passport : </div>
+                                <div class="col-xs-5">
+                                    <input type="text" id="CitizenID33" placeholder="" ng-model="CitizenID3" class="form-control">
+                                </div>
+                                <div class="col-xs-4">
+                                    <!--<input type="submit" value="อ่านบัตร" class="btn btn-danger" ng-click="ReadCardMockUp('3389225969739')">-->
+                                    <input type="submit" value="อ่านบัตร" class="btn btn-danger" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard'); ReadCard('ReadP');">
+                                    <input type="submit" value="ใส่ข้อมูล" class="btn btn-danger" onclick="setTimeout(function () { $('#CitizenID33').select(); }, 100);" ng-click="manualInputReadCard()">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-5">
+                                    <!--<div id="loadingReadCard">
+                                            <i class="fa fa-spin fa-spinner"></i>
+                                            กำลังอ่านข้อมูล...
+                                        </div>
+                                        <span id="unMatch" style="color:red;">*ไม่พบหมายเลขบัตรนี้ในฐานข้อมูล</span>
+                                        <span id="readCardTimeOut" style="color:red;display:none;">*ไม่พบเครื่องอ่านบัตร</span>-->
+                                </div>
+                                <div class="col-xs-4"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 form-buttons">
+                <div class="form-group">
+                    <input ng-if="shopType === '0'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()"  />
+                    <input ng-if="shopType === '1'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()"  />
+                    <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
+                    <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()" />
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-<div id="modalPriceplanOwnership" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+<div id="pricePlanModal" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
                 <h5>Price Plan</h5>
                 <div class="col-md-12">
                     <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter" class="form-control">
@@ -1033,27 +659,25 @@
                     <table class="table">
                         <tr class="row">
                             <th class="col-md-1"></th>
-                            <th class="col-md-7"><span style="color:green;"> Price Plan</span></th>
-                            <th class="col-md-2"><span style="color:green;"> รายการส่งเสริมการขาย</span></th>
-                            <th class="col-md-2" style="text-align: center;"><span style="color:green;"> RC</span></th>
+                            <th class="col-md-2"><span style="color:green;"> Price Plan</span></th>
+                            <th class="col-md-7"><span style="color:green;"> รายการส่งเสริมการขาย</span></th>
+                            <th class="col-md-2 text-right"><span style="color:green;"> RC</span></th>
                         </tr>
-                        <tr class="row" ng-repeat="pp in pricePlans | filter:pricePlanFilter">
-                            <th class="col-md-1"><input name="pricels" type="radio" ng-change="selectedPricePlan(pp)" ng-model="pricePlan.name" ng-value="pp.pricePlan" /></th>
-                            <th class="col-md-7">{{pp.pricePlan}}</th>
-                            <th class="col-md-2">{{pp.promotion}}</th>
-                            <th class="col-md-2" style="text-align:center;">{{pp.rc}}</th>
+                        <tr class="row" ng-repeat="pp in pricePlanList">
+                            <th class="col-md-1">
+                                <input name="pricels" type="radio" ng-model="dirty.selectedPricePlan" ng-value="pp" />
+                            </th>
+                            <th class="col-md-2">{{pp.name}}</th>
+                            <th class="col-md-7">{{pp.description}}</th>
+                            <th class="col-md-2 text-right">{{pp.rc | number:2}}</th>
                         </tr>
                     </table>
                 </div>
-
-
-
                 <div id="div_event"></div>
             </div>
             <div class="modal-footer">
-
-                <button class="btn btn-success" data-dismiss="modal">เลือก</button>
-                <button class="btn btn-cancel" data-dismiss="modal">ยกเลิก</button>
+                <button class="btn btn-success" data-dismiss="modal" ng-click="selectedPricePlan = dirty.selectedPricePlan">เลือก</button>
+                <button class="btn btn-cancel" data-dismiss="modal" ng-click="dirty.selectedPricePlan = selectedPricePlan">ยกเลิก</button>
             </div>
         </div>
     </div>
