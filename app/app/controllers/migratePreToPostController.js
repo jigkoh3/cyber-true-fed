@@ -25,6 +25,20 @@
         selectedPricePlan: {}
     };
 
+    $scope.isVerify = true;
+
+    $scope.customerType = "N";
+    $scope.customerUsageNo = false;
+
+    $scope.changeType = function(customerType) {
+        $scope.customerType = customerType;
+        $scope.isVerify = false;
+        $scope.promotion = "";
+
+        if (customerType == 'B' || customerType == 'C') {
+            $scope.blah = "P";
+        }
+    };
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the page
     $scope.onCustomerProfileTemplateLoaded = function() {
@@ -53,6 +67,8 @@
 
         $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
         $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
+
+        $scope.data.customerProfile['sms-language'] = "TH";
 
         authenticate();
     };

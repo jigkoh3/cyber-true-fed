@@ -78,19 +78,19 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 				'response-data': {
 					'customer': {
 						'title': 'Miss',
-						'title-code': null,
+						'title-code': 'T2',
 						'firstname': 'Nate',
 						'lastname': 'Phutthicha',
 						'birthdate': '2015-07-20T00:00:00+0700',
 						'contact-number': null,
 						'id-number': '1189900130607',
-						'id-type': null,
+						'id-type': 'I',
 						'id-expire-date': '2017-07-20T00:00:00+0700',
 						'customer-id': null,
 						'customer-level': null,
 						'customer_sublevel_id': null,
 						'customer_sublevel': null,
-						'gender': 'F',
+						'gender': 'FEMALE',
 						'installed-products': [{
 							'ouId': '5010',
 							'ban': '20009628',
@@ -209,19 +209,19 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 				'response-data': {
 					'customer': {
 						'title': 'Miss',
-						'title-code': null,
+						'title-code': 'T2',
 						'firstname': 'Nate',
 						'lastname': 'Phutthicha',
 						'birthdate': '2015-07-20T00:00:00+0700',
 						'contact-number': null,
 						'id-number': '1189900130607',
-						'id-type': null,
+						'id-type': 'I',
 						'id-expire-date': '2017-07-20T00:00:00+0700',
 						'customer-id': null,
 						'customer-level': null,
 						'customer_sublevel_id': null,
 						'customer_sublevel': null,
-						'gender': 'F',
+						'gender': 'FEMALE',
 						'installed-products': [
 							{
 								"ouId" : "5010",
