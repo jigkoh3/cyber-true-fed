@@ -2790,8 +2790,7 @@ smartApp.controller('changeOwnershipController', function(
 
     $scope.isCameraLastest = false;
     //start----------- camera ----------------
-    $scope.initWebCam = function() {
-
+    $scope.initWebCamNext = function() {
         setTimeout(function() {
             $('#btnSavePhoto').hide();
             var html = webcam.get_html(320, 240);
@@ -2803,6 +2802,13 @@ smartApp.controller('changeOwnershipController', function(
             webcam.set_hook('onComplete', onCompleteSnap);
 
         }, 500);
+        
+    }
+    $scope.initWebCam = function() {
+        $scope.isCameraLastest = false;
+        $scope.initWebCamNext();
+
+        
 
     }
 
@@ -2825,9 +2831,10 @@ smartApp.controller('changeOwnershipController', function(
         }
         //end----------- camera ----------------
     $scope.initWebCamLastest = function() {
-        initWebCamLastest = true;
-        $scope.initWebCam();
+        $scope.isCameraLastest = true;
+        $scope.initWebCamNext();
     }
+    
 
 
 
