@@ -813,7 +813,7 @@ smartApp.controller('changeOwnershipController', function(
 
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;
-        if (!isCardValueDataLastest) {
+        if (!$scope.isCardValueDataLastest) {
             $scope.newOwner.firstNameTH = "";
             $scope.newOwner.lastNameTH = "";
             $scope.newOwner.prefixTH = "T2";
