@@ -1071,6 +1071,8 @@ smartApp.controller('ChangeIRIDDController', function ($scope,
                                     $('#btnSSO').hide();
                                 }
 
+                                $('#idBindDataAgain').click();
+
                             }, 1000);
 
 
