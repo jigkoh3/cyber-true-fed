@@ -35,6 +35,8 @@ smartApp.controller('changeOwnershipController', function(
     $scope.isCustomerProfile = false;
     $scope.showPricePlanRC = true;
 
+    $scope.isCardValueDataLastest = false;
+
     $scope.isClickPrint = true;
 
     $scope.CitizenID = "";
@@ -163,6 +165,7 @@ smartApp.controller('changeOwnershipController', function(
 
     $scope.SetCardValue3 = function(result) {
         $('#loadingReadCard3').hide();
+        $scope.isCardValueDataLastest = true;
         $scope.showEnableNewOwnerBirthday = false;
         $scope.showEnableNewOwnerExpireDay = false;
         $scope.cardInfo3 = eval(result);
@@ -810,7 +813,7 @@ smartApp.controller('changeOwnershipController', function(
 
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;
-        if (!$scope.cardInfo3) {
+        if (!isCardValueDataLastest) {
             $scope.newOwner.firstNameTH = "";
             $scope.newOwner.lastNameTH = "";
             $scope.newOwner.prefixTH = "T2";
@@ -870,7 +873,7 @@ smartApp.controller('changeOwnershipController', function(
                             if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
                                 //ผู้จดทะเบียนใหม่
                                 //$scope.customer = customer;
-                                if (!$scope.cardInfo3) {
+                                if (!$scope.isCardValueDataLastest) {
                                     $scope.newOwner.firstNameTH = "";
                                     $scope.newOwner.lastNameTH = "";
                                     $scope.newOwner.prefixTH = "T2";
@@ -2295,7 +2298,7 @@ smartApp.controller('changeOwnershipController', function(
             };
 
         }
-        if ($scope.cardInfo3.CitizenID) {
+        if ($scope.isCardValueDataLastest) {
             cardValueDataNew.photoType = "SC";
             cardValueDataNew.photoIdCard = $scope.cardInfo3.CitizenID;
             cardValueDataNew = {
