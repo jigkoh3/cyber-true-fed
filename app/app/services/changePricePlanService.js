@@ -1,15 +1,27 @@
-﻿smartApp.service('ChangePricePlanService', function ($filter, SystemService) {
+﻿smartApp.service('ChangePricePlanService', function ($filter, SystemService, $routeParams) {
     var demo = SystemService.demo;
     var that = this;
     this.validateChangePricePlan = function (msisdn, ouID, fnCallback) {
         if (!demo) {
+            var target = 'aftersales/tmv/changepriceplan/validatechangepriceplan?';
             if (msisdn == "null") {
                 msisdn = "";
             }
             if (ouID == "null") {
                 ouID = "";
             }
-            var target = 'aftersales/tmv/changepriceplan/validatechangepriceplan?msisdn=' + msisdn + '&ou-id=' + ouID;
+            if($routeParams.oulevel){
+                if($routeParams.oulevel == 'Sub'){
+                    //
+                    target = target +'msisdn=' + msisdn;
+                }else{
+                    //
+                    target = target +'ou-id=' + ouID;
+                }
+            }else{
+                target = target +'msisdn=' + msisdn;
+            }
+            
             SystemService.callServiceGet(target, null, function (result) {
                 fnCallback(result);
             });

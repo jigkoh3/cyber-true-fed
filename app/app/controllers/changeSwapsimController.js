@@ -10,7 +10,7 @@
 
     // Prepare page states
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
-    
+
 
 
     // Initialize variables
@@ -18,6 +18,8 @@
     $scope.subNoLength = 10;
     $scope.dealerCodeLength = 8;
     $scope.simSerialLength = 18;
+
+    $scope.isCardValueData = false;
 
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the SwapSIM page
@@ -116,7 +118,36 @@
             "province": ""
                 //NEW---
         };
+        if ($scope.isCardValueData) {
+            cardValueData.photoType = "SC";
+            cardValueData.photoIdCard = $scope.cardInfo.CitizenID;
+            cardValueData = {
+                //NEW---
+                "photoIdCard": $scope.cardInfo.Photo,
 
+                //SC=Scan
+                //SN=Snap
+                "photoType": "SC",
+                "titleEn": $scope.cardInfo.PrefixEN,
+                "firstnameEn": $scope.cardInfo.FirstNameEN,
+                "lastnameEn": $scope.cardInfo.LastNameEN,
+                "expireDay": $scope.cardInfo.ExpireDay,
+                "birthDay": $scope.cardInfo.BirthDay,
+                "issueDay": $scope.cardInfo.IssueDay,
+
+                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                "homeNumber": $scope.cardInfo.HomeNumber,
+                "moo": $scope.cardInfo.Moo,
+                "trok": $scope.cardInfo.Trok,
+                "soi": $scope.cardInfo.Soi,
+                "road": $scope.cardInfo.Road,
+                "district": $scope.cardInfo.District,
+                "amphur": $scope.cardInfo.Amphur,
+                "province": $scope.cardInfo.Province
+                    //NEW---
+            };
+
+        }
         var data = {
             'func': 'SWS',
             'header': {
@@ -530,7 +561,7 @@
             'technical-message': ''
         });
     };
-$scope.SetCardValue2 = function (result) {
+    $scope.SetCardValue2 = function(result) {
         $('#loadingReadCard2').hide();
 
         $scope.cardInfo2 = eval(result);
@@ -547,13 +578,13 @@ $scope.SetCardValue2 = function (result) {
     }
     $scope.SetCardValue = function(result) {
         $scope.cardInfo = eval(result);
-
+        $scope.isCardValueData = true;
         $('#CitizenID').val($scope.cardInfo.CitizenID);
 
         $scope.onInputId();
 
-        setTimeout(function () {
-           $('#idBindDataAgain').click();
+        setTimeout(function() {
+            $('#idBindDataAgain').click();
         }, 1000);
     };
 
