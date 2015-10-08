@@ -879,7 +879,7 @@ smartApp.controller('changeOwnershipController', function(
                                     $scope.newOwner2.lastNameTH = "";
                                     $scope.newOwner2.prefixTH = "T2";
 
-                                    $scope.customer['tax-id'] = "";
+                                    $scope.customer['tax-id'] = $scope.customer['id-number'];
 
                                     $scope.customer['contact-mobile-number'] = "";
                                     $scope.customer['contact-email'] = "";
