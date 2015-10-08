@@ -25,10 +25,24 @@
         selectedPricePlan: {}
     };
 
+    $scope.blah = "E";
+    $scope.dataSlip = {
+        "E": "E-Bill-Email",
+        "S": "E-Bill-SMS",
+        "P": "Bill-Paper",
+    };
+    $scope.billPayment = {
+        email: "",
+        smss: "",
+        accountLang: "TH"
+    };
+
     $scope.isVerify = true;
 
-    $scope.customerType = "N";
+    $scope.customerType = "O";
     $scope.customerUsageNo = false;
+
+    $scope.rowNoSelected = 0;
 
     $scope.changeType = function(customerType) {
         $scope.customerType = customerType;
@@ -37,6 +51,151 @@
 
         if (customerType == 'B' || customerType == 'C') {
             $scope.blah = "P";
+        }
+    };
+
+    $scope.changeOldAddress = function(status) {
+        if (status) {
+            $scope.changeOpenservice == true;
+            $scope.mailAddress = $scope.tempOldAddress;
+        } else {
+            $scope.rowNoSelected = '1';
+            $scope.changeOpenservice == false;
+            $scope.mailAddress = {};
+        }
+    };
+
+    $scope.onCheckEmail = function() {
+        if ($scope.billPayment.email) {
+            if (!SystemService.validateEmail($scope.billPayment.email)) {
+                idFocus = "idBillPaymentEmail";
+                $scope.billPayment.email = "";
+                SystemService.showAlert(ValidateMsgService.data.errFormatEmail);
+            }
+        }
+    };
+
+    $scope.isNumberTel = false;
+    $scope.onInputTel = function(charCode) {
+        console.log($scope.contactNo.number);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberTel = !bool;
+
+        return bool;
+    };
+     $scope.isNumberTel2 = false;
+    $scope.onInputTel2 = function(charCode) {
+        console.log($scope.contactNo.number);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberTel2 = !bool;
+
+        return bool;
+    };
+    $scope.isNumberTelTo = false;
+    $scope.onNumberTelTo = function(charCode) {
+        console.log($scope.contactNo.number);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberTelTo = !bool;
+
+        return bool;
+    };
+    // $scope.onInputTel2 = function(charCode) {
+    //     console.log($scope.customer['contact-mobile-number']);
+    //     var bool = SystemService.checkInputTel(charCode);
+    //     $scope.isNumberTel = !bool;
+
+    //     return bool;
+    // };
+
+    $scope.isNumberTelZero = false;
+    $scope.onInputTelZero = function(charCode) {
+        if (!$scope.contactNo.number) {
+
+            $scope.contactNo.number = "";
+        }
+        if ($scope.contactNo.number.length == 0 && charCode != 48) {
+            $scope.isNumberTelZero = true;
+            //$scope.contactNo.number = "";
+        } else {
+            $scope.isNumberTelZero = false;
+
+        }
+    };
+
+    $scope.isNumberTelZero2 = false;
+    $scope.onInputTelZero2 = function(charCode) {
+        if (!$scope.customer['contact-mobile-number']) {
+
+            $scope.customer['contact-mobile-number'] = "";
+        }
+        if ($scope.customer['contact-mobile-number'].length == 0 && charCode != 48) {
+            $scope.isNumberTelZero2= true;
+            //$scope.contactNo.number = "";
+        } else {
+            $scope.isNumberTelZero2 = false;
+
+        }
+    };
+
+
+    $scope.isNumberTelLength = false;
+    $scope.onBlurTel = function() {
+        $scope.isNumberTel = false;
+        $scope.isNumberTelZero = false;
+        if ($scope.contactNo.number) {
+            if ($scope.contactNo.number.length == 9 || $scope.contactNo.number.length == 10) {
+                $scope.isNumberTelLength = false;
+            } else {
+                $scope.isNumberTelLength = true;
+            }
+            console.log($scope.contactNo.number.length);
+        }
+    }
+    $scope.isNumberTelLength2 = false;
+    $scope.onBlurTel2 = function() {
+        $scope.isNumberTel2 = false;
+        $scope.isNumberTelZero2 = false;
+        if ($scope.customer['contact-mobile-number']) {
+            if ($scope.customer['contact-mobile-number'].length == 10) {
+                $scope.isNumberTelLength2 = false;
+            } else {
+                $scope.isNumberTelLength2 = true;
+            }
+            console.log($scope.customer['contact-mobile-number'].length);
+        }
+    }
+    $scope.isNumberTelLengthFF = false;
+    $scope.onBlurTelFF = function(i) {
+        $scope.isNumberFF = false;
+        $scope.isNumberTelZeroFF = false;
+        //for (var i = 1; i <= 10; i++) {
+            if ($scope.saveParamData['ff' + i]) {
+                if ($scope.saveParamData['ff' + i].length == 9 || $scope.saveParamData['ff' + i].length == 10) {
+                    $scope.isNumberTelLengthFF = false;
+                } else {
+                    $scope.isNumberTelLengthFF = true;
+                    //break;
+                }
+                console.log($scope.saveParamData['ff' + i].length);
+            } else {
+                $scope.isNumberTelLengthFF = false;
+                //break;
+            }
+        //}
+
+    }
+    $scope.isNumberTelZeroFF = false;
+    $scope.onInputTelZeroFF = function(charCode, i) {
+        if (!$scope.saveParamData['ff' + i]) {
+
+            $scope.saveParamData['ff' + i] = "";
+        }
+        if ($scope.saveParamData['ff' + i].length == 0 && charCode != 48) {
+            $scope.isNumberTelZeroFF = true;
+            //$scope.contactNo.number = "";
+        } else {
+            $scope.isNumberTelZeroFF = false;
+
         }
     };
 
@@ -68,7 +227,11 @@
         $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
         $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
 
-        $scope.data.customerProfile['sms-language'] = "TH";
+        // $scope.data.customerProfile['sms-language'] = "TH";
+
+        $scope.contactNo = {};
+		$scope.contactNo.number = SystemService.getContactNo($scope.data.customerProfile["contact-number"], "number");
+		$scope.contactNo.continued = SystemService.getContactNo($scope.data.customerProfile["contact-number"], "continued");
 
         authenticate();
     };
@@ -98,6 +261,7 @@
             $scope.genderTypeList = result;
             console.log($scope.genderTypeList);
         });
+
         MigratePreToPostService.getSIMData($scope.SubNo, onGetSIMData);
     }
     // (End) Get current SIM data ----------------------
@@ -142,7 +306,7 @@
 
                             afterClose: function() {
                                 if (!$scope.onInputId()) {
-                                    // window.close();
+                                    window.close();
                                 }
                             }
                         };
@@ -150,6 +314,9 @@
                         $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
                     }, 1000);
                 }
+
+		        validateGrade();
+        		lastestCustomer();
             });
         });
     };
@@ -377,6 +544,61 @@
     // (End) Registration Address ----------------------
 
 
+    // (Start) Validate Grading ----------------------
+    var validateGrade = function() {
+    	var validateGradePayload = {
+            'company-code': $scope.data.customerProfile['id-number']
+        };
+
+        MigratePreToPostService.validateGrading(validateGradePayload, onValidateGrading);
+    };
+
+    var onValidateGrading = function(result) {
+        $scope.gradingData = result.data['response-data'];
+
+        if ($scope.gradingData) {
+			accountSubType();
+        }
+    };
+    // (End) Validate Grading ----------------------
+
+
+    // (Start) Account sub type ----------------------
+    var accountSubType = function() {
+    	var accountSubTypePayload = {
+            'cust-type': $scope.data.simData["account-category"],
+            'company': $scope.data.simData["company-code"],
+            'service-type': $scope.data.simData["mobile-servicetype"],
+            'grade': $scope.gradingData['company-grade']['grade-id']
+        };
+
+        MigratePreToPostService.accountSubType(accountSubTypePayload, onAccountSubType);
+    };
+
+    var onAccountSubType = function(result) {
+    	$scope.accountSubtypeList = result.data["response-data"];
+        $scope.subCompanyType = result.data["response-data"][0]['name'];
+    };
+    // (End) Account sub type ----------------------
+
+
+    // (Start) Lastest customer ----------------------
+    var lastestCustomer = function() {
+    	var lastestCustomerPayload = {
+            'certificateid': $scope.data.customerProfile['id-number'],
+            'customer-type': $scope.data.simData["account-category"]
+        };
+
+        MigratePreToPostService.lastestCustomer(lastestCustomerPayload, onLastestCustomer);
+    };
+
+    var onLastestCustomer = function(result) {
+    	$scope.lastestData = result.data;
+    	$scope.isLastestAdress = true;
+    };
+    // (End) Lastest customer ----------------------
+
+
     // (Start) Reason Control ----------------------
     $scope.reasons = [];
     $scope.selectedReason = {};
@@ -443,7 +665,7 @@
 
         SystemService.showLoading();
 
-        var customerType = 'N';
+        var customerType = 'O';
         if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
             customerType = 'Y';
         }
