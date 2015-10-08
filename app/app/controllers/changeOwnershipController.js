@@ -418,7 +418,7 @@ smartApp.controller('changeOwnershipController', function(
         return bool;
     }
 
-    $scope.SubNo = $routeParams.subno == '' ? 'null' : $routeParams.subno;
+    $scope.SubNo = $routeParams.subno ? $routeParams.subno :'null' ;
     $scope.onLoad = function() {
         $('#loadingReadCard3').hide();
         AuthenService.getAuthen(function(result) {
