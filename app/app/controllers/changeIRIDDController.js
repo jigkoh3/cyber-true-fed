@@ -435,6 +435,15 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 $scope.isSubIRNo = true;
                 $scope.changIR = false;
             }
+
+            if ($scope.data.installedProduct["account-sub-type"].indexOf('HY') === 0) {
+                //ไม่ให้กด IDD
+                $scope.isSubIDDNo = true;
+                $scope.changIDD = false;
+                // //ไม่ให้กด IR
+                // $scope.isSubIRNo = true;
+                // $scope.changIR = false;
+            }
         } else { //สมัคร บริการ
             if ($scope.requestTypeDB == "IDD") { //สมัคร IDD ไว้แล้ว
                 //เปิดให้กด IDD
@@ -1006,6 +1015,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                             }
 
 
+
+
                             setTimeout(function() {
                                 //if ($scope.data.installedProduct['offer-group'] && $scope.data.installedProduct['offer-group'].indexOf('|') >= 0) {
                                 //    var ogList = $scope.data.installedProduct['offer-group'].split('|');
@@ -1060,6 +1071,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                                         break;
                                     }
                                 }
+
+
 
                                 if (all) {
                                     $scope.requestTypeDB = "IRIDD";

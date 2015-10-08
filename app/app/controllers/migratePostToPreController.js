@@ -97,7 +97,7 @@
                 $scope.isCustomerProfile = true;
             }
 
-            var partnerCode = utils.getObject($scope.getAuthen, 'partnerCodes.0');
+            var partnerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
 
             getProPosition(partnerCode);
 
@@ -319,7 +319,7 @@
             'customer-subtype': $scope.data.simData['account-sub-type'],
             'service-level': proposition['service-level'],
             'proposition': val,
-            'partner-code': utils.getObject($scope.getAuthen, 'partnerCodes.0'),
+            'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
             'privilege': false
         };
 
