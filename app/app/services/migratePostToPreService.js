@@ -1,4 +1,4 @@
-smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
+smartApp.service('MigratePostToPreService', function($timeout, SystemService, $routeParams) {
     var demo = SystemService.demo;
 
     this.getSIMData = function(msisdn, fnCallback) {
@@ -22,104 +22,77 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
             });
         } else {
             var data = {
-                'status': 'SUCCESSFUL',
-                'trx-id': '3BDPN2HLK4TZ',
-                'process-instance': 'psaapdv1 (instance: SFF_node1)',
-                'status-code': '0',
-                'response-data': {
-                    'customer': {
-                        'title': 'Miss',
-                        'title-code': null,
-                        'firstname': 'Nate',
-                        'lastname': 'Phutthicha',
-                        'birthdate': '2015-07-20T00:00:00+0700',
-                        'contact-number': null,
-                        'id-number': '1189900130607',
-                        'id-type': null,
-                        'id-expire-date': '2017-07-20T00:00:00+0700',
-                        'customer-id': null,
-                        'customer-level': null,
-                        'customer_sublevel_id': null,
-                        'customer_sublevel': null,
-                        'gender': 'F',
-                        'installed-products': [{
-                            'ouId': '5010',
-                            'ban': '20009628',
-                            'product-type': 'PRICEPLAN',
-                            'product-id': 'EDATAP69',
-                            'product-name': 'EDATAP69',
-                            'product-description': 'Biz &amp; Ent 900,Data UNL5GB/128,WiFi',
-                            'product-soc-code': '1234567',
-                            'account-category': 'P',
-                            'account-sub-type': 'PRE',
-                            'company-code': 'RF',
-                            'product-category': 'TMV',
-                            'product-status': 'ACTIVE',
-                            'product-id-name': 'MSISDN',
-                            'product-id-number': msisdn,
-                            'mobile-servicetype': 'POSTPAID',
-                            'ou-hierarchytype': 'CHILD',
-                            'parent-ouId': '1234',
-                            'has-splitcharge': false,
-                            'is-childsim': false,
-                            'is-softsuspend': false
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "491T8UKQ6DIDO",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": {
+                    "customer": {
+                        "gender": "FEMALE",
+                        "title": "นาง",
+                        "title-code": "T2",
+                        "firstname": "ประยูรกาฬวรรณ",
+                        "lastname": "จันทรรัศมี",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "",
+                        "id-number": "2015010311166",
+                        "customer-id": "2768",
+                        "installed-products": [{
+                            "ouId": "1078",
+                            "ban": "10000622",
+                            "product-category": "TMV",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "R",
+                            "number-status": "A",
+                            "account-category": "I",
+                            "account-sub-type": "FIN",
+                            "product-id": "RFSMTP01",
+                            "product-name": "RFSMTP01",
+                            "product-description": "(4G) Smart 999 voice 500mins net7GB",
+                            "bill-cycle": "10",
+                            "company-code": "RF",
+                            "service-level": "C",
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0939860548",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false
                         }],
-                        'address-list': {
-                            'CUSTOMER_ADDRESS': {
-                                'number': '61/238',
-                                'moo': '8',
-                                'village': 'moo ban',
-                                'street': 'ratchada',
-                                'soi': '81',
-                                'district': 'dindaeng',
-                                'province': 'Bangkok',
-                                'building-name': 'Pakin',
-                                'building-room': '22',
-                                'building-floor': '13',
-                                'sub-district': 'Dindaeng',
-                                'zip': '10400',
-                                'household': '18'
+                        "address-list": {
+                            "CUSTOMER_ADDRESS": {
+                                "number": "523",
+                                "moo": "",
+                                "street": "32000",
+                                "soi": "",
+                                "district": "เขวาสินรินทร์",
+                                "province": "สุรินทร์",
+                                "building-name": "",
+                                "building-room": "",
+                                "building-floor": "",
+                                "sub-district": "ตากูก",
+                                "zip": "32000",
+                                "household": ""
                             }
                         }
                     }
-                },
-                'display-messages': [{
-                    'message': '',
-                    'message-type': 'ERROR',
-                    'en-message': 'VIP',
-                    'th-message': '',
-                    'technical-message': ''
-                }, {
-                    'message': '',
-                    'message-type': 'WARNING',
-                    'en-message': 'DISCOUNT',
-                    'th-message': '',
-                    'technical-message': ''
-                }, {
-                    'message': '',
-                    'message-type': 'ERROR',
-                    'en-message': 'SUBSCRIBER STATUS',
-                    'th-message': '',
-                    'technical-message': ''
-                }, {
-                    'message': '',
-                    'message-type': 'ERROR',
-                    'en-message': 'NICE NUMBER',
-                    'th-message': '',
-                    'technical-message': ''
-                }, {
-                    'message': '',
-                    'message-type': 'ERROR',
-                    'en-message': 'SHARED PLAN',
-                    'th-message': '',
-                    'technical-message': ''
-                }, {
-                    'message': '',
-                    'message-type': 'WARNING',
-                    'en-message': 'CONVERGENT',
-                    'th-message': '',
-                    'technical-message': ''
-                }]
+                }
+            };
+
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "Mobile Number is not found or cancel, Please check and try again.",
+                    "message-code": "TMV-MIGRATE-POST-TO-PRE-00000",
+                    "message-type": "ERROR",
+                    "en-message": "Mobile Number is not found or cancel, Please check and try again.",
+                    "th-message": "ขออภัยไม่พบหมายเลขโทรศัพท์นี้ในระบบ หรือหมายเลขถูกยกเลิก กรุณาตรวจสอบอีกครั้ง",
+                    "technical-message": "xxxxxxxxxxxxxxxx"
+                }],
+                "trx-id": "471T8KNUBJ5C4",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": {}
             };
 
             $timeout(function() {
@@ -134,6 +107,24 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
     };
 
     this.decorateSIMData = function(data) {
+        var msg = utils.getObject(data, 'display-messages');
+        if (msg.length > 0) {
+            setTimeout(function() {
+                if ($routeParams.subno) {
+                    SystemService.showAlert(msg[0]);
+                } else {
+                    SystemService.showAlert({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
+                }
+            }, 1000);
+        }
+
         var customerProfile = angular.copy(utils.getObject(data, 'response-data.customer'));
         var customerAddress = utils.getObject(customerProfile, 'address-list.CUSTOMER_ADDRESS');
         var productDetails = utils.getObject(customerProfile, 'installed-products.0');
@@ -153,7 +144,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
         }
 
         //Fix value becuase migrate post to pre support personal only
-        productDetails['account-category'] = "P";
+        productDetails['account-category'] = "I";
         productDetails['account-sub-type'] = "PRE";
 
         // Prepare current price plan
@@ -382,7 +373,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
         }
     };
 
-    
+
 
     this.submitOrder = function(payload, fnCallback) {
         var request = {
@@ -410,7 +401,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
                 "sale-agent": {
                     'name': payload.saleAgent['engName'],
                     'channel': payload.saleAgent['channel'],
-                    'partner-code': (payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : null),
+                    'partner-code': (payload.saleAgent["shopcodes"].length > 0 ? payload.saleAgent["shopcodes"][0] : null),
                     'partner-name': payload.saleAgent['partnerName'],
                     'sale-code': payload.saleAgent['saleCode'],
                     'partner-type': payload.saleAgent['partnerType']
@@ -452,7 +443,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
         console.log(request);
 
         var cb = function(result) {
-        	fnCallback(result);
+            fnCallback(result);
         };
 
         if (!demo) {
@@ -463,7 +454,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService) {
                 cb(result);
             });
         } else {
-            
+
             var data = {
                 'status': 'SUCCESSFUL',
                 'display-messages': [{

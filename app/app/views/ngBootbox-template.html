@@ -13,11 +13,11 @@
         </p>
         <p ng-show="ngDialogData['technical-message']">
             <input type="checkbox" class="hidden" ng-model="technicalmessage" />
-            <a href="#" onclick="return false;" ng-click="technicalmessage=technicalmessage?false:true" style="color:black;">
+            <div  ng-click="technicalmessage=technicalmessage?false:true" style="color:black;cursor: pointer;">
                 <i class="ace-icon fa fa-plus-square danger" ng-hide="technicalmessage" style="color:red;"></i>
                 <i class="ace-icon fa fa-minus-square danger" ng-show="technicalmessage" style="color:red;"></i>
                 Technical Error
-            </a>
+            </div>
 
         </p>
         <p ng-show="technicalmessage" style="overflow-wrap: break-word;">

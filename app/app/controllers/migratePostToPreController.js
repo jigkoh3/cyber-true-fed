@@ -49,6 +49,14 @@
             return;
         }
 
+        var idType = $scope.data.simData['account-category'];
+alert(idType);
+        setTimeout(function() {
+            $('#selectCustomerIdType').val(idType);
+        }, 1000);
+
+        $scope.data.customerProfile['id-type'] = idType;
+
         $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
         $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
 
@@ -112,7 +120,7 @@
                         var fancyboxOptions = {
                             helpers: {
                                 overlay: {
-                                    closeClick: false
+                                    //closeClick: false
                                 }
                             },
 
@@ -124,7 +132,7 @@
 
                             afterClose: function() {
                                 if (!$scope.onInputId()) {
-                                    window.close();
+                                    //window.close();
                                 }
                             }
                         };
@@ -377,6 +385,8 @@
 
     var generateOrderRequest = function() {
         $scope.data.customerProfile['language'] = "TH";
+
+
         return {
             customerProfile: $scope.data.customerProfile,
             customerAddress: $scope.data.customerAddress,
@@ -391,6 +401,9 @@
     };
     $scope.submit = function() {
         $scope.hasSubmitted = true;
+
+        $scope.data.customerProfile['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
+        $scope.data.customerProfile['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
 
         var data = generateOrderRequest();
 

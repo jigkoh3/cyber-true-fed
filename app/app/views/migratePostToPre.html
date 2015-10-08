@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <!-- id-type -->
                                 <label>ประเภทของบัตร <span style="color:red;">*</span></label>
-                                <select class="form-control" ng-model="data.customerProfile['id-type']" ng-disabled="!getSIMDataFailed">
+                                <select class="form-control" id="selectCustomerIdType" ng-model="data.customerProfile['id-type']" ng-disabled="!getSIMDataFailed">
                                     <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                 </select>
                             </div>

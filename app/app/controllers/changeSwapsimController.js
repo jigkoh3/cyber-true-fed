@@ -20,6 +20,7 @@
     $scope.simSerialLength = 18;
 
     $scope.isCardValueData = false;
+    $scope.isReadCardSuccess = false;
 
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the SwapSIM page
@@ -550,6 +551,21 @@
             }
         }
     };
+    $scope.onInputIdReadCard = function() {
+        var value = $('#CitizenID').val();
+
+        if (value.length === 13) {
+            if (value === $scope.data.customerProfile['id-number']) {
+                $scope.isCustomerProfile = true;
+                $('#unMatch').hide();
+                $('.fancybox-close').click();
+
+                return true;
+            } else {
+                $('#unMatch').show();
+            }
+        }
+    };
 
     $scope.readCardError = function(msg) {
         SystemService.showAlert({
@@ -581,7 +597,9 @@
         $scope.isCardValueData = true;
         $('#CitizenID').val($scope.cardInfo.CitizenID);
 
-        $scope.onInputId();
+        $scope.isReadCardSuccess = true;
+
+        $scope.onInputIdReadCard();
 
         setTimeout(function() {
             $('#idBindDataAgain').click();
