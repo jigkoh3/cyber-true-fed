@@ -21,9 +21,9 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 			productType = 'ทรูมูฟเอช รายเดือน';
 		}
 
-		//Fix value becuase migrate post to pre support personal only
-		productDetails['account-category'] = "P";
-		productDetails['account-sub-type'] = "PRE";
+		//Fix value becuase migrate pre to post support personal only
+		productDetails['account-category'] = "I";
+		productDetails['account-sub-type'] = "FIN";
 
 		// Prepare current price plan
 		var currentPricePlan = [];
@@ -50,7 +50,27 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 		return response;
 	};
 
-	this.getSIMData = function(msisdn, fnCallback) {
+	this.decorateLastestCustomer = function(data) {
+		var customerProfile = angular.copy(utils.getObject(data, 'response-data.customer'));
+		var customerAddress = utils.getObject(customerProfile, 'address-list.CUSTOMER_ADDRESS');
+		var productDetails = utils.getObject(customerProfile, 'installed-products');
+
+		if (!customerProfile || !productDetails) return null;
+
+		delete customerProfile['installed-products'];
+		delete customerProfile['address-list'];
+
+		var response = {
+			'customerProfile': customerProfile,
+			'customerAddressOriginal': customerAddress,
+			'customerAddress': angular.copy(customerAddress),
+			'installedProducts': productDetails
+		};
+
+		return response;
+	};
+
+	this.getSIMData = function(msisdn, callback) {
 		var that = this;
 
 		if (utils.isEmpty(msisdn)) {
@@ -60,11 +80,11 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 		var cb = function(result) {
 			result.data = that.decorateSIMData(result.data);
 
-			fnCallback(result);
+			callback(result);
 		};
 
 		if (!demo) {
-			var target = '/aftersales/tmv/migrateposttopre/validatemigrateposttopre?msisdn=' + msisdn;
+			var target = '/aftersales/tmv/migratepretopost/validatemigratepretopost?msisdn=' + msisdn;
 
 			SystemService.callServiceGet(target, null, function(result) {
 				cb(result);
@@ -72,7 +92,7 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 		} else {
 			var data = {
 				'status': 'SUCCESSFUL',
-				'trx-id': '3BDPN2HLK4TZ',
+				"trx-id" : "3BDPN2HLK4TZ",
 				'process-instance': 'psaapdv1 (instance: SFF_node1)',
 				'status-code': '0',
 				'response-data': {
@@ -82,37 +102,47 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 						'firstname': 'Nate',
 						'lastname': 'Phutthicha',
 						'birthdate': '2015-07-20T00:00:00+0700',
-						'contact-number': null,
+						'contact-number': '029448849#123',
+						'contact-mobile-number': '444444444',
+						'contact-email': 'abc@abc.com',
+						'language': 'TH',
 						'id-number': '1189900130607',
 						'id-type': 'I',
 						'id-expire-date': '2017-07-20T00:00:00+0700',
+						"branch-code" : '00000',
+						"tax-id" : '1189900130607',
 						'customer-id': null,
 						'customer-level': null,
 						'customer_sublevel_id': null,
 						'customer_sublevel': null,
 						'gender': 'FEMALE',
-						'installed-products': [{
-							'ouId': '5010',
-							'ban': '20009628',
-							'product-type': 'PRICEPLAN',
-							'product-id': 'EDATAP69',
-							'product-name': 'EDATAP69',
-							'product-description': 'Biz &amp; Ent 900,Data UNL5GB/128,WiFi',
-							'product-soc-code': '1234567',
-							'account-category': 'P',
-							'account-sub-type': 'PRE',
-							'company-code': 'RF',
-							'product-category': 'TMV',
-							'product-status': 'ACTIVE',
-							'product-id-name': 'MSISDN',
-							'product-id-number': msisdn,
-							'mobile-servicetype': 'POSTPAID',
-							'ou-hierarchytype': 'CHILD',
-							'parent-ouId': '1234',
-							'has-splitcharge': false,
-							'is-childsim': false,
-							'is-softsuspend': false
-						}],
+						'installed-products': [
+							{
+								"ouId" : "5010",
+								"ban" : "20009628",
+								"product-id" : "EDATAP69",
+								"product-name" : "EDATAP69",
+								"product-description" : "Biz &amp; Ent 900,Data UNL5GB/128,WiFi",
+								"account-category" : "I",
+								"account-sub-type" : "FIN",
+								"customer-level" : "NON-TOP",
+								"company-code" : "RF",
+								"product-category" : "TMV",
+								"product-status" : "ACTIVE",
+								"product-id-name" : "MSISDN",
+								"product-id-number" : "0XXXXXXXXX",
+								"mobile-servicetype" : "POSTPAID",
+								"ou-hierarchytype" : "CHILD",
+								"parent-ouId" : "1234",
+								"has-splitcharge" : false,
+								"is-childsim" : false,
+								"is-softsuspend" : false,
+								"product-properties" : {
+									"SIM  " : null,
+									"IMSI" : null
+								}
+							}
+						],
 						'address-list': {
 							'CUSTOMER_ADDRESS': {
 								'number': '61/238',
@@ -539,7 +569,7 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 		var that = this;
 
 		var cb = function(result) {
-			result.data = that.decorateSIMData(result.data);
+			result.data = that.decorateLastestCustomer(result.data);
 			callback(result);
 		};
 
@@ -581,6 +611,46 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 							"product-id": "0880500207",
 							"bill-cycle": "10",
 							"bill-cycle-date": "10/10",
+							"company-code": "RF",
+							"service-level": "C",
+							"product-id-name": "MSISDN",
+							"product-id-number": "0880500207",
+							"has-splitcharge": false,
+							"is-childsim": false,
+							"is-softsuspend": false,
+							"ou-hierarchytype": "CHILD",
+							"parent-ouId": "1234"
+						},{
+							"ouId": "6954",
+							"ban": "10007237",
+							"product-category": "TMV",
+							"product-type": "PRICEPLAN",
+							"product-sub-type": "R",
+							"account-category": "I",
+							"account-sub-type": "FIN",
+							"product-id": "0880500207",
+							"bill-cycle": "10",
+							"bill-cycle-date": "9/11",
+							"company-code": "RF",
+							"service-level": "C",
+							"product-id-name": "MSISDN",
+							"product-id-number": "0880500207",
+							"has-splitcharge": false,
+							"is-childsim": false,
+							"is-softsuspend": false,
+							"ou-hierarchytype": "CHILD",
+							"parent-ouId": "1234"
+						},{
+							"ouId": "6955",
+							"ban": "10007237",
+							"product-category": "TMV",
+							"product-type": "PRICEPLAN",
+							"product-sub-type": "R",
+							"account-category": "I",
+							"account-sub-type": "FIN",
+							"product-id": "0880500207",
+							"bill-cycle": "10",
+							"bill-cycle-date": "5/12",
 							"company-code": "RF",
 							"service-level": "C",
 							"product-id-name": "MSISDN",
@@ -825,7 +895,7 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 		address = utils.isEmpty(address) ? '' : address;
 
 		var cb = function (result) {
-			fnCallback(result);
+			callback(result);
 		};
 
 		if (!demo) {
