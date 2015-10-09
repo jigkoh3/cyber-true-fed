@@ -92,6 +92,19 @@ smartApp.controller('changeOwnershipController', function(
         //$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
     }
 
+
+    $scope.ClearTxt = function(){
+        $scope.newOwner.firstNameTH = "";
+        $scope.newOwner.lastNameTH = "";
+        $scope.customer['tax-id'] = "";
+        $scope.newOwner.prefixTH = "T4";
+        $scope.newOwner.sex = "FEMALE" ;
+        $scope.newOwner.birthdate = "";
+        $scope.newOwner.expireDay = "";
+
+    }
+
+
     $scope.readCardError = function(msg) {
         $.fancybox.close();
         SystemService.showAlert({
