@@ -99,13 +99,6 @@
 
         return bool;
     };
-    // $scope.onInputTel2 = function(charCode) {
-    //     console.log($scope.customer['contact-mobile-number']);
-    //     var bool = SystemService.checkInputTel(charCode);
-    //     $scope.isNumberTel = !bool;
-
-    //     return bool;
-    // };
 
     $scope.isNumberTelZero = false;
     $scope.onInputTelZero = function(charCode) {
@@ -199,6 +192,14 @@
         }
     };
 
+    $scope.$watch('partnerCode', function(cur) {
+    	if (!cur || !cur.length || cur.length < 8)
+    		return;
+
+    	SystemService.showLoading();
+        validatePartner();
+    });
+
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the page
     $scope.onCustomerProfileTemplateLoaded = function() {
         $('#unMatch2').hide();
@@ -280,8 +281,6 @@
             }
 
             var partnerCode = utils.getObject($scope.getAuthen, 'partnerCodes.0');
-
-            getProPosition(partnerCode);
 
             SystemService.getOrderId($scope.getAuthen.channel, partnerCode, function(order) {
                 SystemService.hideLoading();
@@ -504,7 +503,7 @@
             'customer-subtype': $scope.data.simData['account-sub-type'],
             'service-level': proposition['service-level'],
             'proposition': val,
-            'partner-code': utils.getObject($scope.getAuthen, 'partnerCodes.0'),
+            'partner-code': $scope.partnerCode,
             'privilege': false
         };
 
@@ -595,9 +594,44 @@
     var onLastestCustomer = function(result) {
     	$scope.lastestData = result.data;
     	$scope.isLastestAdress = true;
+    	$scope.isLastestUser = true;
     };
     // (End) Lastest customer ----------------------
 
+    var validatePartner = function() {
+    	var validatePartnerPayload = {
+            'partner-code': $scope.partnerCode,
+            'function-type': 'MIGRATE_PRETOPOST'
+        };
+
+    	MigratePreToPostService.validatePartner(validatePartnerPayload, onValidatePartner);
+    };
+
+    var onValidatePartner = function(result) {
+    	SystemService.hideLoading();
+        if (result.data["display-messages"].length == 0) {
+            if ($scope.isLastestUser == true) {
+            	getProPosition($scope.partnerCode);
+            }
+            
+            //$scope.getAuthen.shopcodes = ["" + $scope.partnerCode + ""];
+        } else {
+            //error ?
+            idFocus = "txtPartnerCode";
+            $scope.partnerCode = "";
+            setTimeout(function() {
+                SystemService.showAlert({
+                    "message": result.data["display-messages"][0]["message"],
+                    "message-code": result.data["display-messages"][0]["message-code"],
+                    "message-type": "WARNING",
+                    "en-message": result.data["display-messages"][0]["en-message"],
+                    "th-message": result.data["display-messages"][0]["th-message"],
+                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                });
+                //$ngBootbox.customDialog($scope.customDialogOptions);
+            }, 1000);
+        }
+    };
 
     // (Start) Reason Control ----------------------
     $scope.reasons = [];

@@ -412,7 +412,6 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 		var that = this;
 
 		var cb = function(result) {
-			result.data = that.decorateSIMData(result.data);
 			callback(result);
 		};
 
