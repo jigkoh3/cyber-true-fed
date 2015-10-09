@@ -184,6 +184,40 @@
                             </div>
                         </div>
                     </div> -->
+
+                    <div class="row">
+                        <div class="col-md-12" ng-hide="shopType=='1' && getAuthen['isSecondAuthen'] == true && getAuthen.shopcodes.length == 1">
+                            <div class="col-md-3" style=" text-align: right; top: 5px;">
+                                <p></p>
+                                <label>
+                                Shop Code/Dealer Code 
+                                <span style="color:red;">*</span></label>
+                            </div>
+                            <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
+                                <p></p>
+                                <select class="form-control"
+                                        ng-model="partnerCode"
+                                        ng-disabled="!isLastestUser">
+
+                                    <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
+                                        {{item}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
+                                <p></p>
+                                <input type="text"
+                                       id="txtPartnerCode"
+                                       name="partnerCode"
+                                       ng-model="partnerCode"
+                                       class="form-control"
+                                       ng-disabled="(getAuthen.shopcodes.length==1) || !isLastestUser"
+                                       maxlength="8" required>
+                            </div>
+
+
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
