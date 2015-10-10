@@ -316,7 +316,7 @@
                             </div>
                         </div>
 
-                        <div ng-show="(customerType=='N') || (businessType=='P')">
+                        <div>
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
@@ -362,7 +362,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>SMS Language<span style="color:red;">*</span></label>
-                                        <select ng-model="data.customerProfile['sms-language']" id="smsLanguageRegisterd" class="form-control">
+                                        <select ng-model="data.customerProfile['language']" id="smsLanguageRegisterd" class="form-control">
                                             <option value="TH" selected>ไทย</option>
                                             <option value="EN">อังกฤษ</option>
                                         </select>
