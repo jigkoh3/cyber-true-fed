@@ -50,7 +50,7 @@
         }
 
         var idType = $scope.data.simData['account-category'];
-alert(idType);
+
         setTimeout(function() {
             $('#selectCustomerIdType').val(idType);
         }, 1000);
@@ -303,17 +303,20 @@ alert(idType);
         $scope.proPositionList = result.data['response-data'];
 
         if ($scope.proPositionList && $scope.proPositionList.length) {
-            //$scope.selectedProPosition = $scope.proPositionList[0]['proposition-code'];
+            // $scope.selectedProPosition = $scope.proPositionList[0]['proposition-code'];
         }
     };
 
     var onGetPricePlan = function(result) {
         $scope.pricePlanList = utils.getObject(result, 'data.response-data');
-        //$scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
+        $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
     };
 
     $scope.$watch('selectedProPosition', function(val) {
-        if (!val) return;
+        if (!val) {
+            $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = {};
+            return;
+        }
 
         var proposition = _.find($scope.proPositionList, function(item) {
             return item['proposition-code'] === val;
@@ -380,6 +383,37 @@ alert(idType);
 
     // (Start) Submit Form ----------------------
     var isDataComplete = function() {
+        if (
+            $('#authorize').prop('checked') &&
+            (!$('#CitizenID2').val() || !$('#authorizeFullName').val())
+        ) {
+            alert('กรุณากรอกข้อมูลผู้มอบอำนาจ');
+            return false;
+        }
+
+        if (
+            !$scope.data.customerProfile['id-number'] || !$scope.data.customerProfile['id-type'] ||
+            !$scope.data.customerProfile['title-code'] || !$scope.data.customerProfile['firstname'] ||
+            !$scope.data.customerProfile['lastname'] || !$scope.data.customerProfile['gender'] ||
+            !$scope.data.customerProfile['birthdate'] || !$scope.data.customerProfile['id-expire-date']
+        ) {
+            alert('กรุณากรอกข้อมูลผู้จดทะเบียนเติมเงินให้ครบถ้วน');
+            return false;
+        }
+
+        if (!$scope.selectedPricePlan || !Object.keys($scope.selectedPricePlan).length) {
+            alert('กรุณาเลือกรายการส่งเสริมการขาย');
+            return false;
+        }
+
+        if (
+            !$scope.data.customerAddress['zip'] || !$scope.data.customerAddress['province'] ||
+            !$scope.data.customerAddress['district'] || !$scope.data.customerAddress['sub-district']
+        ) {
+            alert('กรุณากรอกที่อยู่จดทะเบียนให้ครบถ้วน');
+            return false;
+        }
+
         return true;
     };
 
@@ -430,9 +464,10 @@ alert(idType);
         });
     };
     $scope.openPDFDialog = function() {
+        $scope.data.customerProfile['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
+        $scope.data.customerProfile['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
 
         if (!isDataComplete()) {
-            alert('กรุณากรอกข้อมูลให้ครบถ้วนก่อน');
             return;
         }
 
@@ -451,7 +486,7 @@ alert(idType);
                 'firstname': $scope.data.customerProfile['firstname'],
                 'lastname': $scope.data.customerProfile['lastname'],
                 'customerType': customerType,
-                'authorizeFullName': '',
+                'authorizeFullName': $('#authorizeFullName').val(),
                 'id-number': $scope.data.customerProfile['id-number'],
                 'product-id-number': $scope.SubNo,
                 'ouId': $scope.data.simData['ouId'],
