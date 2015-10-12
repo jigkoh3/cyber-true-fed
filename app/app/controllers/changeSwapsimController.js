@@ -108,6 +108,11 @@
             "titleEn": "",
             "firstnameEn": "",
             "lastnameEn": "",
+
+            "titleTh": "",
+            "firstnameTh": "",
+            "lastnameTh": "",
+
             "expireDay": "",
             "birthDay": "",
             "issueDay": "",
@@ -136,9 +141,17 @@
                 "titleEn": $scope.cardInfo.PrefixEN,
                 "firstnameEn": $scope.cardInfo.FirstNameEN,
                 "lastnameEn": $scope.cardInfo.LastNameEN,
+
+                "titleTh": $scope.cardInfo.PrefixTH,
+                "firstnameTh": $scope.cardInfo.FirstNameTH,
+                "lastnameTh": $scope.cardInfo.LastNameTH,
+
+
                 "expireDay": $scope.cardInfo.ExpireDay,
                 "birthDay": $scope.cardInfo.BirthDay,
                 "issueDay": $scope.cardInfo.IssueDay,
+
+
 
                 //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
                 "homeNumber": $scope.cardInfo.HomeNumber,
@@ -177,6 +190,11 @@
                 "titleEn": cardValueData["titleEn"],
                 "firstnameEn": cardValueData["firstnameEn"],
                 "lastnameEn": cardValueData["lastnameEn"],
+
+                "titleTh": cardValueData["titleTh"],
+                "firstnameTh": cardValueData["firstnameTh"],
+                "lastnameTh": cardValueData["lastnameTh"],
+
                 "expireDay": cardValueData["expireDay"],
                 "birthDay": cardValueData["birthDay"],
                 "issueDay": cardValueData["issueDay"],

@@ -1007,6 +1007,11 @@ smartApp.controller('ChangePricePlanController', function (
                 "titleEn": cardValueData["titleEn"],
                 "firstnameEn": cardValueData["firstnameEn"],
                 "lastnameEn": cardValueData["lastnameEn"],
+
+                "titleTh": cardValueData["titleTh"],
+                "firstnameTh": cardValueData["firstnameTh"],
+                "lastnameTh": cardValueData["lastnameTh"],
+
                 "expireDay": cardValueData["expireDay"],
                 "birthDay": cardValueData["birthDay"],
                 "issueDay": cardValueData["issueDay"],
