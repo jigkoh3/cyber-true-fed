@@ -2241,6 +2241,11 @@ smartApp.controller('changeOwnershipController', function(
             "titleEn": "",
             "firstnameEn": "",
             "lastnameEn": "",
+
+            "titleTh": "",
+            "firstnameTh": "",
+            "lastnameTh": "",
+
             "expireDay": "",
             "birthDay": "",
             "issueDay": "",
@@ -2266,6 +2271,11 @@ smartApp.controller('changeOwnershipController', function(
             "titleEn": "",
             "firstnameEn": "",
             "lastnameEn": "",
+
+            "titleTh": "",
+            "firstnameTh": "",
+            "lastnameTh": "",
+
             "expireDay": "",
             "birthDay": "",
             "issueDay": "",
@@ -2294,6 +2304,11 @@ smartApp.controller('changeOwnershipController', function(
                 "titleEn": $scope.cardInfo.PrefixEN,
                 "firstnameEn": $scope.cardInfo.FirstNameEN,
                 "lastnameEn": $scope.cardInfo.LastNameEN,
+
+                "titleTH": $scope.cardInfo.PrefixTH,
+                "firstnameTH": $scope.cardInfo.FirstNameTH,
+                "lastnameTH": $scope.cardInfo.LastNameTH,
+
                 "expireDay": $scope.cardInfo.ExpireDay,
                 "birthDay": $scope.cardInfo.BirthDay,
                 "issueDay": $scope.cardInfo.IssueDay,
@@ -2324,6 +2339,11 @@ smartApp.controller('changeOwnershipController', function(
                 "titleEn": $scope.cardInfo3.PrefixEN,
                 "firstnameEn": $scope.cardInfo3.FirstNameEN,
                 "lastnameEn": $scope.cardInfo3.LastNameEN,
+
+                "titleTH": $scope.cardInfo3.PrefixTH,
+                "firstnameTH": $scope.cardInfo3.FirstNameTH,
+                "lastnameTH": $scope.cardInfo3.LastNameTH,
+
                 "expireDay": $scope.cardInfo3.ExpireDay,
                 "birthDay": $scope.cardInfo3.BirthDay,
                 "issueDay": $scope.cardInfo3.IssueDay,
@@ -2599,7 +2619,7 @@ smartApp.controller('changeOwnershipController', function(
             "userLogin": $scope.getAuthen["logInName"]
         };
         if ($scope.approveCode) {
-            data["accountType"] = $scope.approveCode;
+            data["approveCode"] = $scope.approveCode;
         }
         console.log(data);
         //demo
@@ -2609,7 +2629,7 @@ smartApp.controller('changeOwnershipController', function(
                 "status": "SUCCESSFUL",
                 "fault": {
                     "name": "th.co.truecorp.ads.api.ApplicationServiceException",
-                    "code": "TMV-PREVERIFY-11009",
+                    "code": "TMV-PREVERIFY-11010",
                     "message": " VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.].  VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.]",
                     "detailed-message": "ApplicationServiceException TMV-PREVERIFY-11009 VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.]. "
                 },
