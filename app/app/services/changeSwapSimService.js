@@ -75,22 +75,34 @@
                 'process-instance': 'psaapdv1 (instance: SFF_node1)',
                 'status-code': '0',
                 'display-messages': [{
-                    'message': '',
-                    'message-type': 'ERROR',
-                    'en-message': 'ERR',
-                    'th-message': '',
-                    'technical-message': ''
+                    "message": "External service [CCB_INT] response error. ACAHblG10001-Data not found.",
+                    "message-code": "WSC-00001",
+                    "message-type": "WARNING",
+                    "en-message": "External service [CCB_INT] response error. ACAHblG10001-Data not found.",
+                    "technical-message": "CCB_INT response ACAHblG10001: Data not found. on service url http://172.19.194.63:8280/SearchCustomerInfoWS/SearchCustomerInfoSI."
                 }]
             };
 
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
+            if (msisdn == "0957730500") {
+
+                $timeout(function() {
+                    cb({
+                        status: true,
+                        data: data,
+                        error: '',
+                        msgErr: ''
+                    });
+                }, 1000);
+            } else {
+                $timeout(function() {
+                    cb({
+                        status: true,
+                        data: data2,
+                        error: '',
+                        msgErr: ''
+                    });
+                }, 1000);
+            }
         }
     };
 
@@ -108,7 +120,7 @@
             //return null;
 
         }
-
+        
         delete customerProfile['installed-products'];
 
         // Prepare product type
