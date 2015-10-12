@@ -646,6 +646,53 @@
 
     // (Start) Submit Form ----------------------
     var isDataComplete = function() {
+        if (
+            $('#authorize').prop('checked') &&
+            (!$('#CitizenID2').val() || !$('#authorizeFullName').val())
+        ) {
+            alert('กรุณากรอกข้อมูลผู้มอบอำนาจ');
+            return false;
+        }
+
+        if (
+            !$scope.data.customerProfile['id-number'] || !$scope.data.customerProfile['id-type'] ||
+            !$scope.data.customerProfile['tax-id'] || !$scope.data.customerProfile['branch-code'] ||
+            !$scope.data.customerProfile['title-code'] || !$scope.data.customerProfile['firstname'] ||
+            !$scope.data.customerProfile['lastname'] || !$scope.data.customerProfile['gender'] ||
+            !$scope.data.customerProfile['birthdate'] || !$scope.data.customerProfile['id-expire-date']
+        ) {
+            alert('กรุณากรอกข้อมูลผู้จดทะเบียนรายเดือนให้ครบถ้วน');
+            return false;
+        }
+
+        if (!$scope.partnerCode) {
+            alert('กรุณาระบุ Shop Code/Dealer Code');
+            return false;
+        }
+
+        if (!$scope.selectedPricePlan || !Object.keys($scope.selectedPricePlan).length) {
+            alert('กรุณาเลือกรายการส่งเสริมการขาย');
+            return false;
+        }
+
+        if (
+            !$scope.data.customerAddress['zip'] || !$scope.data.customerAddress['province'] ||
+            !$scope.data.customerAddress['district'] || !$scope.data.customerAddress['sub-district']
+        ) {
+            alert('กรุณากรอกที่อยู่จดทะเบียนให้ครบถ้วน');
+            return false;
+        }
+
+        if (!$scope.blah || !$scope.billPayment.email || !$scope.billPayment.accountLang) {
+            alert('กรุณากรอกใบแจ้งค่าบริการและประเภทการรับชำระ');
+            return false;
+        }
+
+        if (!$scope.contactNo.number) {
+            alert('กรุณากรอกข้อมูลติดต่อลูกค้า');
+            return false;
+        }
+
         return true;
     };
 
@@ -693,10 +740,12 @@
     $scope.openPDFDialog = function() {
 
         if (!isDataComplete()) {
-            alert('กรุณากรอกข้อมูลให้ครบถ้วนก่อน');
             return;
         }
 
+        $scope.data.customerProfile['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
+        $scope.data.customerProfile['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
+        
         SystemService.showLoading();
 
         var customerType = 'O';
