@@ -161,7 +161,7 @@
         };
 
         if (!demo) {
-            var target = '/aftersales/order/tmv/validateswapsim?' + params;
+            var target = '/aftersales/order/tmv/validatesim?' + params;
 
             SystemService.callServiceGetByPass(target, null, function(result) {
                 cb(result);
