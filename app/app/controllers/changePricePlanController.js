@@ -928,6 +928,10 @@ smartApp.controller('ChangePricePlanController', function (
             "birthDay": "",
             "issueDay": "",
 
+            "titleTh": "",
+            "firstnameTh": "",
+            "lastnameTh": "",
+
             //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
             "homeNumber": "",
             "moo": "",
@@ -955,6 +959,10 @@ smartApp.controller('ChangePricePlanController', function (
                 "expireDay": $scope.cardInfo.ExpireDay,
                 "birthDay": $scope.cardInfo.BirthDay,
                 "issueDay": $scope.cardInfo.IssueDay,
+
+                "titleTh": $scope.cardInfo.PrefixTH,
+                "firstnameTh": $scope.cardInfo.FirstNameTH,
+                "lastnameTh": $scope.cardInfo.LastNameTH,
 
                 //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
                 "homeNumber": $scope.cardInfo.HomeNumber,

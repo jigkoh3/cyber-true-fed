@@ -2305,9 +2305,9 @@ smartApp.controller('changeOwnershipController', function(
                 "firstnameEn": $scope.cardInfo.FirstNameEN,
                 "lastnameEn": $scope.cardInfo.LastNameEN,
 
-                "titleTH": $scope.cardInfo.PrefixTH,
-                "firstnameTH": $scope.cardInfo.FirstNameTH,
-                "lastnameTH": $scope.cardInfo.LastNameTH,
+                "titleTh": $scope.cardInfo.PrefixTH,
+                "firstnameTh": $scope.cardInfo.FirstNameTH,
+                "lastnameTh": $scope.cardInfo.LastNameTH,
 
                 "expireDay": $scope.cardInfo.ExpireDay,
                 "birthDay": $scope.cardInfo.BirthDay,
@@ -2340,9 +2340,9 @@ smartApp.controller('changeOwnershipController', function(
                 "firstnameEn": $scope.cardInfo3.FirstNameEN,
                 "lastnameEn": $scope.cardInfo3.LastNameEN,
 
-                "titleTH": $scope.cardInfo3.PrefixTH,
-                "firstnameTH": $scope.cardInfo3.FirstNameTH,
-                "lastnameTH": $scope.cardInfo3.LastNameTH,
+                "titleTh": $scope.cardInfo3.PrefixTH,
+                "firstnameTh": $scope.cardInfo3.FirstNameTH,
+                "lastnameTh": $scope.cardInfo3.LastNameTH,
 
                 "expireDay": $scope.cardInfo3.ExpireDay,
                 "birthDay": $scope.cardInfo3.BirthDay,
