@@ -342,7 +342,7 @@
             },
             'ref-id': payload.orderData.TrxID,
             'user-id': payload.saleAgent['logInName'],
-            'approver': "",
+            'approver': payload.orderData.approver,
             'target': '/aftersales/order/submit'
         };
         console.log(request);

@@ -25,6 +25,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
     $scope.isCustomerProfile = false;
     $scope.offerGroup = 0;
+    $scope.approver = "";
 
     //$scope.lspromoType = {
     //    "0": "เลือก",
@@ -142,6 +143,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     SystemService.hideLoading();
                     //console.log(result);
                     if (result["status"] == "SUCCESSFUL") {
+                        $scope.approver = result['response-data'][0]['loginName'];
                         $scope.manualInputReadCard();
 
                         //$("#btn-fancy-ReadCard").fancybox().trigger('click');
@@ -698,6 +700,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         $scope.printOrder();
     };
     $scope.printOrder = function() {
+        $scope.data.orderRequest['approver'] = $scope.approver;
+
         if ($scope.validateUI()) {
             if ($('.dateManual').val()) {
                 $scope.data.orderRequest['order']['order-items'][0]['primary-order-data']['EFFECTIVE-DATE'] = SystemService.convertDateToEng($('.dateManual').val(), 'ENG');

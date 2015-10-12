@@ -21,6 +21,7 @@
 
     $scope.isCardValueData = false;
     $scope.isReadCardSuccess = false;
+    $scope.approver = "";
 
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the SwapSIM page
@@ -56,6 +57,7 @@
 
     $scope.submit = function() {
         $scope.hasSubmitted = true;
+        orderData.approver = $scope.approver;
 
         var data = generateOrderRequest();
 
@@ -89,6 +91,8 @@
         }
 
         SystemService.showLoading();
+
+
 
         var customerType = 'N';
         if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
@@ -519,8 +523,10 @@
                 SystemService.second_authen(orderData.TrxID, function(result) {
                     SystemService.hideLoading();
 
+
                     var displayMsg = utils.getObject(result, 'display-messages.0');
                     if (!displayMsg || !displayMsg['message-type']) {
+                        $scope.approver = result['response-data'][0]['loginName'];
                         setTimeout(function() {
                             getReadyCitizenInput();
                         }, 1000);
