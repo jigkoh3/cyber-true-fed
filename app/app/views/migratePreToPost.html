@@ -198,7 +198,7 @@
                                 <select class="form-control"
                                         ng-model="partnerCode"
                                         ng-disabled="!isLastestUser">
-
+                                    <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}
                                     </option>
@@ -228,6 +228,7 @@
                                 <div class="col-md-7">
                                     <p></p>
                                     <select class="form-control" ng-model="selectedProPosition">
+                                        <option value="">-- กรุณาเลือก --</option>
                                         <option ng-repeat="item in proPositionList" value="{{ item['proposition-code'] }}">
                                             {{ item.name }} : {{ item.description }}
                                         </option>

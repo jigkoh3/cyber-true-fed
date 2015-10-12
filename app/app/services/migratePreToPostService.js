@@ -994,9 +994,8 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 
 	};
 
-	this.submit = function(payload) {
+	this.submit = function(payload, callback) {
 
-		var target = "/aftersales/order/submit";
 		var request = {
 			"order": {
 				"order-id": payload.orderData.orderId,
@@ -1066,7 +1065,7 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 							"COMPANY-CODE": payload.productDetails['company-code'],
 							"NAS-PROPOSITION": payload.propositionSelected['proposition-code'],
 							"CCBS-PROPOSITION": payload.propositionSelected['name'],
-							"SIM": "11111111111111111"
+							"SIM": ""
 						}
 					}
 				],
@@ -1076,6 +1075,44 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 			'user-id': payload.saleAgent.logInName,
 			'approver': ""
 		};
+
+
+        console.log(request);
+
+        var cb = function(result) {
+            callback(result);
+        };
+
+        if (!demo) {
+            request['target'] = '/aftersales/order/submit';
+
+            SystemService.callServicePost(request, null, function(result) {
+
+                cb(result);
+            });
+        } else {
+
+            var data = {
+                'status': 'SUCCESSFUL',
+                'display-messages': [{
+                    'message': 'Order ' + payload.orderData.orderId + ' successful saved.',
+                    'message-type': 'ERROR',
+                    'en-message': 'Order ' + payload.orderData.orderId + ' successful saved.',
+                    'th-message': 'บันทึกข้อมูลเรียบร้อย Order ' + payload.orderData.orderId + ' successful saved.'
+                }],
+                'trx-id': '03J5HVSFXH8R',
+                'process-instance': 'tpx61.true.th (instance: sale)'
+            };
+
+            $timeout(function() {
+                cb({
+                    status: true,
+                    data: data,
+                    error: '',
+                    msgErr: ''
+                });
+            }, 1000);
+        }
 	};
 
 });
