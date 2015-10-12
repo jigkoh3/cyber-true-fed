@@ -930,12 +930,16 @@
                                     </tr>
                                     <tr>
                                         <th><input type="radio" name="owner" ng-change="updateMailAddress('1')" value="1" ng-model="rowNoSelected" checked="checked" /></th>
-                                        <th>{{lastestCustomer['customer-id']}}</th>
+                                        <th>{{lastestCustomer['installed-products'][0]['ban']}}</th>
                                         <th>{{lastestCustomer['title']}}</th>
                                         <th>{{lastestCustomer['firstname']}}</th>
                                         <th>{{lastestCustomer['lastname']}}</th>
                                         <th>&nbsp;</th>
-                                        <th>{{lastestCustomer['installed-products'][0]['bill-cycle-date']}}</th>
+                                        <th>
+                                            {{lastestCustomer['installed-products'][0]['bill-cycle']}}
+                                            /
+                                            {{lastestCustomer['installed-products'][0]['bill-cycle']-1}}
+                                        </th>
                                     </tr>
                                 </table>
                             </div>
