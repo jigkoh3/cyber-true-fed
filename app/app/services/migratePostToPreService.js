@@ -143,10 +143,6 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             productType = 'ทรูมูฟเอช รายเดือน';
         }
 
-        //Fix value becuase migrate post to pre support personal only
-        productDetails['account-category'] = "I";
-        productDetails['account-sub-type'] = "PRE";
-
         // Prepare current price plan
         var currentPricePlan = [];
         if (productDetails['product-name']) {
@@ -166,7 +162,10 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             'customerProfile': customerProfile,
             'customerAddressOriginal': customerAddress,
             'customerAddress': angular.copy(customerAddress),
-            'simData': productDetails
+            'simData': productDetails,
+            'priceplan': {
+                'account-category': productDetails['account-category']
+            }
         };
 
         return response;
