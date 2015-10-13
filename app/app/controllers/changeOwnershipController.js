@@ -861,7 +861,8 @@ smartApp.controller('changeOwnershipController', function(
                         var grade = resultData.data["response-data"]["company-grade"]["grade-id"];
                         $scope.grade = resultData.data["response-data"]["company-grade"];
                         var param = {
-                            'cust-type': $scope.data.installedProducts["account-category"],
+                            //'cust-type': $scope.data.installedProducts["account-category"],
+                            'cust-type': 'I',
                             'company': $scope.data.installedProducts["company-code"],
                             'service-type': $scope.data.installedProducts["mobile-servicetype"],
                             'grade': grade
