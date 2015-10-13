@@ -19,6 +19,8 @@
     $scope.subNoLength = 10;
     $scope.zipLength = 5;
 
+    $scope.isReadCardSuccess = false;
+
     $scope.dirty = {
         selectedPricePlan: {}
     };
@@ -227,6 +229,8 @@
             'th-message': '',
             'technical-message': ''
         });
+
+        $scope.isReadCardSuccess = false;
     };
 
     $scope.SetCardValue = function(result) {
