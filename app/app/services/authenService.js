@@ -7,8 +7,8 @@
     this.getAuthen = function (fnCallback) {
         var result = {
 
-            "shopType": "0",
-            "isSecondAuthen": false,
+            "shopType": "1",
+            "isSecondAuthen": true,
             "isCorporate": false,
             "channel": "XX",
             "partnerCodes": [],

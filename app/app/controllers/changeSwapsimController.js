@@ -629,7 +629,13 @@
     }
     $scope.SetCardValue = function(result) {
         $scope.cardInfo = eval(result);
-        $scope.isCardValueData = true;
+        if ($scope.data.customerProfile["id-number"] == $scope.cardInfo.CitizenID) {
+            $scope.isCardValueData = true;
+        } else {
+            $scope.isCardValueData = false;
+        }
+
+
         $('#CitizenID').val($scope.cardInfo.CitizenID);
 
         $scope.isReadCardSuccess = true;
