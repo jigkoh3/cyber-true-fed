@@ -9,9 +9,15 @@
         }
 
         var cb = function(result) {
-            result.data = that.decorateSIMData(result.data);
+            if (that.decorateSIMData(result.data) == false) {
+                fnCallback(false);
+                console.log(that.decorateSIMData(result.data));
+            } else {
+                result.data = that.decorateSIMData(result.data);
 
-            fnCallback(result);
+                fnCallback(result);
+            }
+
         };
 
         if (!demo) {
@@ -19,6 +25,7 @@
 
             SystemService.callServiceGetByPass(target, null, function(result) {
                 cb(result);
+
             });
         } else {
             var data = {
@@ -105,6 +112,7 @@
             }
         }
     };
+    
 
     this.decorateSIMData = function(data) {
         SystemService.hideLoading();
@@ -112,15 +120,20 @@
         var productDetails = utils.getObject(customerProfile, 'installed-products.0');
 
         var displayMsg = utils.getObject(data, 'display-messages.0');
+        console.log(displayMsg);
+        if(displayMsg['message-code']=="WSC-00001"){
+        return false;
+       }
         if (!customerProfile || !productDetails || (displayMsg && displayMsg['message-type'])) {
             setTimeout(function() {
                 SystemService.showAlert(displayMsg);
+
             }, 1200);
 
             //return null;
 
         }
-        
+
         delete customerProfile['installed-products'];
 
         // Prepare product type
@@ -254,8 +267,9 @@
                 "trx-id": "4Q15KDZCTBQYP",
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": {}
-            };
 
+            };
+         
             $timeout(function() {
                 cb({
                     status: true,
@@ -264,7 +278,9 @@
                     msgErr: ''
                 });
             }, 1000);
+
         }
+
     };
 
     this.submitSwapSIMOrder = function(payload, fnCallback) {

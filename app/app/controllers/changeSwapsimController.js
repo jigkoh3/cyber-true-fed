@@ -272,17 +272,25 @@
 
     // Get current SIM data
     var onGetSIMData = function(result) {
-        $scope.data = result.data;
-        $scope.SubNo = result.data.header.subscriberno;
 
-        if (!$scope.data) return;
+        if (result == false) {
+            console.log(result);
+            $scope.SubNo = 'null';
+            return;
+        } else {
+            $scope.data = result.data;
+            $scope.SubNo = result.data.header.subscriberno;
 
-        authenticate();
+            if (!$scope.data) return;
 
-        var companyCode = utils.getObject(result.data, 'simData.company-code');
-        if (!utils.isEmpty(companyCode)) {
-            DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
+            authenticate();
+
+            var companyCode = utils.getObject(result.data, 'simData.company-code');
+            if (!utils.isEmpty(companyCode)) {
+                DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
+            }
         }
+
     };
 
     $scope.onload = function() {
@@ -309,14 +317,17 @@
         return bool;
     }
     $scope.onInputSubNo = function() {
+
         console.log($('#dataSubNo').val().length);
         var dataSubNo = $('#dataSubNo').val();
         if (dataSubNo.length == 10) {
             $scope.SubNo = $('#dataSubNo').val();
             $('#swapSubNo').prop('disabled', true);
+
             SystemService.showLoading();
 
             ChangeSwapSimService.getSIMData(dataSubNo, function(result) {
+
                 $('#swapSubNo').prop('disabled', false);
 
                 onGetSIMData(result);
