@@ -1,10 +1,10 @@
-﻿smartApp.service('changeIRIDDService', function ($filter, SystemService, $routeParams) {
+﻿smartApp.service('changeIRIDDService', function($filter, SystemService, $routeParams) {
     var demo = SystemService.demo;
-    var validateIRIDDAPI = function (msisdn, fnCallback) {
+    var validateIRIDDAPI = function(msisdn, fnCallback) {
 
         if (!demo) {
             var target = '/aftersales/tmv/changeiridd/validateiridd?msisdn=' + msisdn;
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -33,7 +33,7 @@
                             "product-type": "ADDITIONAL-OFFER",
                             "product-sub-type": "R",
                             "account-category": "C",
-                            "account-sub-type": "HYBRID",
+                            "account-sub-type": "FIN",
                             "product-name": "PROROAM2S",
                             "product-description": "Postpaid Roaming Limited Data Coverage",
                             "company-code": "RM",
@@ -53,12 +53,15 @@
                             "product-type": "PRICEPLAN",
                             "product-sub-type": "R",
                             "account-category": "C",
-                            "account-sub-type": "HYBRID",
+                            "account-sub-type": "FIN",
                             "product-name": "NPSMAP08",
                             "product-description": "4G iSmart 499, Voice150m, Net1.5GB, WiFi UNLTD",
                             "company-code": "RM",
                             "service-level": "",
                             "product-soc-code": "10655411",
+                            "product-properties": {
+                                "OFFER-INSTANCE-ID": "349249"
+                            },
                             "product-id-name": "MSISDN",
                             "product-id-number": "0870100002",
                             "mobile-servicetype": "POSTPAID",
@@ -73,7 +76,7 @@
                             "product-type": "ADDITIONAL-OFFER",
                             "product-sub-type": "R",
                             "account-category": "C",
-                            "account-sub-type": "HYBRID",
+                            "account-sub-type": "FIN",
                             "product-name": "EB CREDITLIMIT",
                             "product-description": "Credit Limit offer",
                             "company-code": "RM",
@@ -93,7 +96,7 @@
                             "product-type": "ADDITIONAL-OFFER",
                             "product-sub-type": "R",
                             "account-category": "C",
-                            "account-sub-type": "HYBRID",
+                            "account-sub-type": "FIN",
                             "product-name": "PROINTL1",
                             "product-description": "International Call Enabling",
                             "company-code": "RM",
@@ -147,10 +150,10 @@
 
         }
     };
-    var generateOrderIdAPI = function (channel, dealer, fnCallback) {
+    var generateOrderIdAPI = function(channel, dealer, fnCallback) {
         if (!demo) {
             var target = '/aftersales/order/generate-id?channel=' + channel + '&dealer=' + dealer;
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -168,10 +171,10 @@
             });
         }
     };
-    var getOfferGroupAPI = function (companyCode, custTypt, acntSubType, serviceLevel, offerGroup, productSubType, fnCallback) {
+    var getOfferGroupAPI = function(companyCode, custTypt, acntSubType, serviceLevel, offerGroup, productSubType, fnCallback) {
         if (!demo) {
             var target = '/sales/catalog/product/tmv/aftersales/offer/get-offer-group?company-code=' + companyCode + '&customer-type=' + custTypt + '&account-sub-type=' + acntSubType + '&service-level=' + serviceLevel + '&offer-group=' + offerGroup + '&product-subtype=' + productSubType;
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -225,8 +228,7 @@
                         "soc-type": "U",
                         "sale-expiration-date": "08/08/2250",
                         "sale-effective-date": "13/12/2001"
-                    },
-                    {
+                    }, {
                         "description": "Provision - Mix Pay Roaming + OPEN INT'l SMS-MO",
                         "offer-group": "IR",
                         "excl-name": "",
@@ -248,12 +250,12 @@
             });
         }
     };
-    var ValidateApproveCodeAPI = function (company_code, customer_type, id_number, customer_level, request_type, approve_code, fnCallback) {
+    var ValidateApproveCodeAPI = function(company_code, customer_type, id_number, customer_level, request_type, approve_code, fnCallback) {
         var target = '/aftersales/order/validateapprovecode?company-code=' + company_code + '&customer-type=' + customer_type + '&id-number=' + id_number + '&customer-level=' + customer_level + '&request-type=' + request_type + '&approve-code=' + approve_code;
         console.log(target);
         if (!demo) {
 
-            SystemService.callServiceGetByPass(target, null, function (result) {
+            SystemService.callServiceGetByPass(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -298,8 +300,8 @@
     };
 
     return {
-        validateIRIDDCallback: function (msisdn, fnCallback) {
-            validateIRIDDAPI(msisdn, function (result) {
+        validateIRIDDCallback: function(msisdn, fnCallback) {
+            validateIRIDDAPI(msisdn, function(result) {
                 console.log(result);
                 //SystemService.hideLoading();
                 if (result.status) {
@@ -307,7 +309,7 @@
 
                     try {
                         var check = result.data["display-messages"][0]['message-type'];
-                        
+
                         if ($routeParams.subno) {
                             SystemService.showAlert({
                                 "message": result.data["display-messages"][0]["message"],
@@ -337,7 +339,9 @@
 
                         var mobileServiceType = "ทรูมูฟเอช รายเดือน";
                         //var priceplan = data["customer"]["installed-products"][0];
-                        var priceplan = $filter('filter')(data["customer"]["installed-products"], { "product-type": "PRICEPLAN" })[0];
+                        var priceplan = $filter('filter')(data["customer"]["installed-products"], {
+                            "product-type": "PRICEPLAN"
+                        })[0];
                         var _header = {
                             "producttype": mobileServiceType,
                             "subscriberno": msisdn,
@@ -405,44 +409,44 @@
                                 },
                                 "sale-agent": {
                                     "name": "xxxxxxxxxxxxxxxxxxxxxOK",
-                                    "channel": "xxxxxxxxxxxxxxxxxxxxxOK"
-                                    , "partner-code": "xxxxxxxxxxxxxxxxxxxxxOK",
+                                    "channel": "xxxxxxxxxxxxxxxxxxxxxOK",
+                                    "partner-code": "xxxxxxxxxxxxxxxxxxxxxOK",
                                     "partner-name": "xxxxxxxxxxxxxxxxxxxxxOK",
                                     "sale-code": "xxxxxxxxxxxxxxxxxxxxxOK",
                                     "sale-assist-code": "xxxxxxxxxxxxxxxxxxxxxOK",
                                     "partner-type": "xxxxxxxxxxxxxxxxxxxxxOK"
                                 },
                                 "order-items": [{
-                                    "name": "xxxxxxxxxxxxxxxxxxxxxOK",
-                                    "product-name": priceplan["product-name"],
-                                    "product-id-number": priceplan["product-id-number"],
-                                    "product-id-name": priceplan["product-id-name"],
-                                    "reason-code": "xxxxxxxxxxxxxxxxxxxxxOK",
-                                    "user-memo": "",
-                                    "order-data": {
-                                        "CUSTOMER-ID": data["customer"]["id-number"],
-                                        "MOBILE-SERVICETYPE": priceplan["mobile-servicetype"],
-                                        "SERVICE-LEVEL": priceplan["service-level"],
-                                        //"IR-APPROVE-CODE": "",
-                                        "CVSS-PROCESS-REQUEST": data["customer"]["cvss-process-request"]
-                                    },
-                                    "primary-order-data": {
-                                        "OU-ID": priceplan["ouId"],
-                                        "BAN": priceplan["ban"],
-                                        "ACCOUNT-CATEGORY": priceplan["account-category"],
-                                        "ACCOUNT-SUB-TYPE": priceplan["account-sub-type"],
-                                        "COMPANY-CODE": priceplan["company-code"],
-                                        //"OFFER-GROUP-IDD": "xxxxxxxxxxxxxxxxxxxxxOK",
-                                        //"OFFER-GROUP-IR": "xxxxxxxxxxxxxxxxxxxxxOK",
-                                        "EFFECTIVE-OPTION": "IMMEDIATE",
-                                        "EFFECTIVE-DATE": SystemService.getDateDDMMYYYY("ENG")
-                                        //,"EXPIRE-DATE": null
-                                    },
-                                    "product-category": priceplan["product-category"] ? priceplan["product-category"] : "TMV",
-                                    "product-type": priceplan["product-type"] ? priceplan["product-type"] : "ADDITIONAL-OFFER",
-                                    "order-type": "CHANGE"
-                                }]
-                                //,"last-modify-date": null
+                                        "name": "xxxxxxxxxxxxxxxxxxxxxOK",
+                                        "product-name": priceplan["product-name"],
+                                        "product-id-number": priceplan["product-id-number"],
+                                        "product-id-name": priceplan["product-id-name"],
+                                        "reason-code": "xxxxxxxxxxxxxxxxxxxxxOK",
+                                        "user-memo": "",
+                                        "order-data": {
+                                            "CUSTOMER-ID": data["customer"]["id-number"],
+                                            "MOBILE-SERVICETYPE": priceplan["mobile-servicetype"],
+                                            "SERVICE-LEVEL": priceplan["service-level"],
+                                            //"IR-APPROVE-CODE": "",
+                                            "CVSS-PROCESS-REQUEST": data["customer"]["cvss-process-request"]
+                                        },
+                                        "primary-order-data": {
+                                            "OU-ID": priceplan["ouId"],
+                                            "BAN": priceplan["ban"],
+                                            "ACCOUNT-CATEGORY": priceplan["account-category"],
+                                            "ACCOUNT-SUB-TYPE": priceplan["account-sub-type"],
+                                            "COMPANY-CODE": priceplan["company-code"],
+                                            //"OFFER-GROUP-IDD": "xxxxxxxxxxxxxxxxxxxxxOK",
+                                            //"OFFER-GROUP-IR": "xxxxxxxxxxxxxxxxxxxxxOK",
+                                            "EFFECTIVE-OPTION": "IMMEDIATE",
+                                            "EFFECTIVE-DATE": SystemService.getDateDDMMYYYY("ENG")
+                                                //,"EXPIRE-DATE": null
+                                        },
+                                        "product-category": priceplan["product-category"] ? priceplan["product-category"] : "TMV",
+                                        "product-type": priceplan["product-type"] ? priceplan["product-type"] : "ADDITIONAL-OFFER",
+                                        "order-type": "CHANGE"
+                                    }]
+                                    //,"last-modify-date": null
                             },
                             "ref-id": "xxxxxxxxxxxxxxxxxxxxxOK",
                             "user-id": "xxxxxxxxxxxxxxxxxxxxxOK",
@@ -467,7 +471,7 @@
 
                         //Get Offer Group
                         var _offerGroupList = [];
-                        getOfferGroupAPI(priceplan["company-code"], priceplan["account-category"], priceplan["account-sub-type"], "C", "IDD|IR", priceplan["product-sub-type"], function (offer) {
+                        getOfferGroupAPI(priceplan["company-code"], priceplan["account-category"], priceplan["account-sub-type"], "C", "IDD|IR", priceplan["product-sub-type"], function(offer) {
                             if (offer.data["response-data"]) {
                                 if (offer.data["response-data"]["offer-details"]) {
                                     _offerGroupList = offer.data["response-data"]["offer-details"];
@@ -483,8 +487,7 @@
                                         installedProductList: data["customer"]["installed-products"]
                                     });
                                 }
-                            }
-                            else {
+                            } else {
                                 //console.log("getOfferGroupAPI data not found");
                             }
                             SystemService.hideLoading();
@@ -501,8 +504,8 @@
             });
 
         },
-        ValidateApproveCodeCallback: function (company_code, customer_type, id_number, customer_level, request_type, approve_code, fnCallback) {
-            ValidateApproveCodeAPI(company_code, customer_type, id_number, customer_level, request_type, approve_code, function (resultData) {
+        ValidateApproveCodeCallback: function(company_code, customer_type, id_number, customer_level, request_type, approve_code, fnCallback) {
+            ValidateApproveCodeAPI(company_code, customer_type, id_number, customer_level, request_type, approve_code, function(resultData) {
                 fnCallback(resultData);
             });
         }

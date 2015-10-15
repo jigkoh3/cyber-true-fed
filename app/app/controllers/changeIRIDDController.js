@@ -701,6 +701,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     };
     $scope.printOrder = function() {
         $scope.data.orderRequest['approver'] = $scope.approver;
+        $scope.data.orderRequest['order']['order-items'][0]['primary-order-data']['OFFER-INSTANCE-ID'] = $scope.hybridInstanceID;
+
 
         if ($scope.validateUI()) {
             if ($('.dateManual').val()) {
@@ -991,7 +993,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     setTimeout(function() {
         SystemService.validateNummeric();
     }, 1000);
+    $scope.hybridInstanceID = "";
     $scope.onLoad = function() {
+
         SystemService.showLoading();
         $scope.isAuthorize = false;
         AuthenService.getAuthen(function(result) {
@@ -1007,11 +1011,24 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 localStorage.setItem('orderId', resultOrder.orderId);
                 $scope.orderId = resultOrder.orderId;
                 $scope.TrxID = resultOrder.TrxID;
+                setTimeout(function() {
 
+                    if ($scope.SubNo == 'null') {
+
+                        $('#dataSubNo').focus();
+
+                    }
+
+                }, 1200);
                 if ($scope.SubNo != 'null') {
 
                     changeIRIDDService.validateIRIDDCallback($scope.SubNo, function(resultData) {
                         $scope.data = resultData;
+
+
+                        console.log(resultData.priceplan['product-properties']['OFFER-INSTANCE-ID']);
+                        $scope.hybridInstanceID = resultData.priceplan['product-properties']['OFFER-INSTANCE-ID'];
+
                         $scope.data2 = resultData;
                         if ($scope.data.status) {
                             //$scope.data.orderRequest['order']['sale-agent']
