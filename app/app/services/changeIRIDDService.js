@@ -11,7 +11,14 @@
 
             var data = {
                 "status": "SUCCESSFUL",
-                "display-messages": [],
+                "display-messages": [{
+                    "message": "",
+                    "message-code": "2",
+                    "message-type": "ERROR",
+                    "en-message": "ไม่สามารถเปืดบริการ IDD/IR สำหรับเบอร์เติมเงิน",
+                    "th-message": "ไม่สามารถเปืดบริการ IDD/IR สำหรับเบอร์เติมเงิน",
+                    "technical-message": ""
+                }],
                 "trx-id": "8D14IWLZS0PFB",
                 "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {
@@ -311,23 +318,27 @@
                         var check = result.data["display-messages"][0]['message-type'];
 
                         if ($routeParams.subno) {
-                            SystemService.showAlert({
-                                "message": result.data["display-messages"][0]["message"],
-                                "message-code": result.data["display-messages"][0]["message-code"],
-                                "message-type": result.data["display-messages"][0]["message-type"],
-                                "en-message": result.data["display-messages"][0]["en-message"],
-                                "th-message": result.data["display-messages"][0]["th-message"],
-                                "technical-message": result.data["display-messages"][0]["technical-message"]
-                            });
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": result.data["display-messages"][0]["message"],
+                                    "message-code": result.data["display-messages"][0]["message-code"],
+                                    "message-type": result.data["display-messages"][0]["message-type"],
+                                    "en-message": result.data["display-messages"][0]["en-message"],
+                                    "th-message": result.data["display-messages"][0]["th-message"],
+                                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                                });
+                            }, 1200);
                         } else {
-                            SystemService.showAlert({
-                                "message": result.data["display-messages"][0]["message"],
-                                "message-code": result.data["display-messages"][0]["message-code"],
-                                "message-type": "WARNING",
-                                "en-message": result.data["display-messages"][0]["en-message"],
-                                "th-message": result.data["display-messages"][0]["th-message"],
-                                "technical-message": result.data["display-messages"][0]["technical-message"]
-                            });
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": result.data["display-messages"][0]["message"],
+                                    "message-code": result.data["display-messages"][0]["message-code"],
+                                    "message-type": "WARNING",
+                                    "en-message": result.data["display-messages"][0]["en-message"],
+                                    "th-message": result.data["display-messages"][0]["th-message"],
+                                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                                });
+                            }, 1200);
                         }
                         fnCallback({
                             data: {

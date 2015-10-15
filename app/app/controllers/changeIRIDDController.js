@@ -27,6 +27,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.offerGroup = 0;
     $scope.approver = "";
 
+    $scope.isNullSubNo = $routeParams.subno ? false : true;
+
     //$scope.lspromoType = {
     //    "0": "เลือก",
     //    "1": "PROECT1",
@@ -1305,7 +1307,13 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             $scope.printOrder();
         }
 
-
+        if ($scope.isNullSubNo && !$scope.data.data.status) {
+            $scope.SubNo = 'null';
+            $('#dataSubNo').val('');
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+            }, 1000);
+        }
 
         //เปิด modal
         if ($scope.shopType == "1" && !$scope.isCustomerProfile) {

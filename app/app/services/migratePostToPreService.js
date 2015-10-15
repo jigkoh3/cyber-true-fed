@@ -94,15 +94,26 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": {}
             };
+            if (msisdn == "0689100006") {
+                $timeout(function() {
+                    cb({
+                        status: true,
+                        data: data,
+                        error: '',
+                        msgErr: ''
+                    });
+                }, 1000);
+            } else {
+                $timeout(function() {
+                    cb({
+                        status: true,
+                        data: data2,
+                        error: '',
+                        msgErr: ''
+                    });
+                }, 1000);
+            }
 
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
         }
     };
 
