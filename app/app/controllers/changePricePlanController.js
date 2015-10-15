@@ -225,6 +225,11 @@ smartApp.controller('ChangePricePlanController', function (
             if ($scope.SubNo != 'null') {
                 $scope.onloadNext();
             }
+            setTimeout(function () {
+                if ($scope.SubNo == 'null'){
+                    $('#dataSubNo').focus();
+            }
+        }, 20);
 
         });
     }
