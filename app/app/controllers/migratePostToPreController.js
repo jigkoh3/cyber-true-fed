@@ -42,6 +42,18 @@
     };
 
     var onGetSIMData = function(result) {
+
+        if (result == false) {
+            console.log(result);
+            $scope.SubNo = 'null';
+            $('#dataSubNo').val("");
+            setTimeout(function(){
+             $('#dataSubNo').focus();
+                
+            },1200);
+            return;
+
+        } else{
         $scope.data = result.data;
         $scope.getSIMDataFailed = true;
         if (!$scope.data) {
@@ -63,6 +75,7 @@
         $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
 
         authenticate();
+    }
     };
 
     $scope.isInputSubNo = false;
@@ -311,7 +324,17 @@
     };
     // (End) Camera ----------------------
 
+    $scope.afterCloseWarning = function() {
 
+        if ($scope.SubNo = 'null') {
+            $('#dataSubNo').val('');
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+            }, 500);
+        }
+
+
+    };
     // (Start) Validation ----------------------
     $scope.isIdCardExpired = function(expireDate) {
         if (expireDate) {

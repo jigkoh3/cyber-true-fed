@@ -1,4 +1,4 @@
-﻿smartApp.service('ChangeSwapSimService', function($timeout, SystemService) {
+﻿smartApp.service('ChangeSwapSimService', function($timeout, SystemService,$routeParams) {
     var demo = SystemService.demo;
 
     this.getSIMData = function(msisdn, fnCallback) {
@@ -112,7 +112,7 @@
             }
         }
     };
-    
+
 
     this.decorateSIMData = function(data) {
         SystemService.hideLoading();
@@ -121,15 +121,25 @@
 
         var displayMsg = utils.getObject(data, 'display-messages.0');
         console.log(displayMsg);
-        if(displayMsg['message-code']=="WSC-00001"){
-        return false;
-       }
+
         if (!customerProfile || !productDetails || (displayMsg && displayMsg['message-type'])) {
             setTimeout(function() {
-                SystemService.showAlert(displayMsg);
-
+                if ($routeParams.subno) {
+                    SystemService.showAlert(displayMsg);
+                } else {
+                    SystemService.showAlert({
+                        "message": displayMsg["message"],
+                        "message-code": displayMsg["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": displayMsg["en-message"],
+                        "th-message": displayMsg["th-message"],
+                        "technical-message": displayMsg["technical-message"]
+                    });
+                }
             }, 1200);
-
+            if (displayMsg['message-code'] == "WSC-00001") {
+                return false;
+            }
             //return null;
 
         }
@@ -269,7 +279,7 @@
                 "response-data": {}
 
             };
-         
+
             $timeout(function() {
                 cb({
                     status: true,

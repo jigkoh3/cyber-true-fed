@@ -9,11 +9,16 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
         }
 
         var cb = function(result) {
-            result.data = that.decorateSIMData(result.data);
+            if (that.decorateSIMData(result.data) == false) {
+                fnCallback(false);
+                console.log(that.decorateSIMData(result.data));
+            } else {
+                result.data = that.decorateSIMData(result.data);
 
-            fnCallback(result);
+                fnCallback(result);
+            }
+
         };
-
         if (!demo) {
             var target = '/aftersales/tmv/migrateposttopre/validatemigrateposttopre?msisdn=' + msisdn;
 
@@ -119,6 +124,8 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
 
     this.decorateSIMData = function(data) {
         var msg = utils.getObject(data, 'display-messages');
+        console.log(msg);
+
         if (msg.length > 0) {
             setTimeout(function() {
                 if ($routeParams.subno) {
@@ -134,6 +141,9 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     });
                 }
             }, 1000);
+            if (msg[0]['message-type'] == "ERROR") {
+                return false;
+            }
         }
 
         var customerProfile = angular.copy(utils.getObject(data, 'response-data.customer'));

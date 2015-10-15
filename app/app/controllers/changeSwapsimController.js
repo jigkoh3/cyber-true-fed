@@ -276,6 +276,11 @@
         if (result == false) {
             console.log(result);
             $scope.SubNo = 'null';
+            $('#dataSubNo').val("");
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+
+            }, 1200);
             return;
         } else {
             $scope.data = result.data;
@@ -683,7 +688,17 @@
             webcam.snap();
         }
         //end----------- camera ----------------
+    $scope.afterCloseWarning = function() {
 
+        if ($scope.SubNo = 'null') {
+            $('#dataSubNo').val('');
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+            }, 500);
+        }
+
+
+    };
 });
 
 // TODO: Each function in sharedServices should be moved to another file
