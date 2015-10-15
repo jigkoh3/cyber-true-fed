@@ -165,7 +165,7 @@ smartApp.controller('ChangePricePlanController', function (
     $scope.Level = $routeParams.oulevel;
     $scope.OUID = $routeParams.ouid ? $routeParams.ouid : 'null';
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
-    $scope.isNullSubNo = $routeParams.subno ? true : false;
+    $scope.isNullSubNo = $routeParams.subno ? false : true;
     $scope.Action = $routeParams.action;
 
     /*
