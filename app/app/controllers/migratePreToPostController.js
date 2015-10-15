@@ -7,7 +7,8 @@
     $scope.template = {
         header: 'app/views/header.html?' + runTime,
         customerprofile: 'app/views/customerprofile.html?' + runTime,
-        reasonmemo: 'app/views/reasonmemo.html?' + runTime
+        reasonmemo: 'app/views/reasonmemo.html?' + runTime,
+        newparampriceplan: "app/views/newparampriceplan.html?" + runTime
     };
 
 
@@ -15,6 +16,7 @@
     //$scope.shopType = '0';
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null'; //$routeParams.SubNo;
 
+    $scope.subNoInput = '';
 
     // Initialize variables
     $scope.divID = 'migratePreToPostContent';
@@ -44,10 +46,252 @@
 
     $scope.rowNoSelected = 0;
 
+    $scope.showApprovCode = false;
+    $scope.approveCode = '';
+
+    $scope.pageSize = 10;
+    $scope.currentPage = 1;
+    $scope.currentPage_cug = 1;
+    $scope.pageSize_cug = 10;
+    $scope.totalCUG = 10;
+
+    //for newparampriceplan : valiable
+    $scope.cugList = [];
+    $scope.selectCMP = {
+        duration: "",
+        volume: "",
+        occurrence: "",
+        monetary: ""
+    };
+    $scope.saveParamData = {};
+    $scope.saveDataCUG = {};
+    $scope.ffData = {
+        min: 0,
+        max: 10
+    };
+    $scope.parameter = {};
+    $scope.saveParamData = {};
+    $scope.specialOfferType = {
+        CUG: false,
+        FF: false,
+        SA: false,
+        POOL: false,
+        POOLING: false,
+        CAPMAX: false
+    };
+    //for newparampriceplan : valiable
+
+    //for newparampriceplan : function
+    $scope.onModalCUG = function() {
+        //$scope.onCancelCUG();
+        $scope.isSelectCUGList = false;
+        $('.radioCUG').prop('checked', false);
+    }
+
+    $scope.onSetValueCUG = function() {
+        var s = $scope.selectCUG;
+        $scope.saveSelectCUG = s;
+        console.log($scope.saveSelectCUG);
+        $scope.saveDataCUG = {
+            name: $scope.saveSelectCUG['group-name'],
+            id: $scope.saveSelectCUG['group-id']
+        };
+    };
+    $scope.onSelectCUG = function(item) {
+        $scope.isSelectCUGList = true;
+        console.log(item);
+        $scope.selectCUG = item;
+    };
+    $scope.onCancelCUG = function() {
+        $scope.isSelectCUGList = false;
+        $scope.saveDataCUG.filter = "";
+        $scope.saveDataCUG = {};
+        $scope.selectCUG = {};
+        $('.radioCUG').prop('checked', false);
+    };
+    $scope.onFilterCUGId = function() {
+        $scope.isSelectCUGList = false;
+        if ($scope.saveDataCUG.filter) {
+            //$scope.onSearchCUG()
+            var list = $filter('filter')($scope.cugList, {
+                'group-id': $scope.saveDataCUG.filter
+            });
+            var list2 = $filter('filter')($scope.cugList, {
+                'group-name': $scope.saveDataCUG.filter
+            });
+            var l = list.length + list2.length;
+            //alert(list.length);
+            if (l == 1) {
+                if (list.length == 1) {
+                    $scope.selectCUG = list[0];
+                }
+                if (list2.length == 1) {
+                    $scope.selectCUG = list2[0];
+                }
+
+                $scope.onSetValueCUG();
+            } else if (l > 1) {
+                $('#idModalCUG').click();
+            } else {
+                SystemService.showAlert(ValidateMsgService.data.cugNotFound);
+            }
+
+        }
+    };
+    $scope.onCheckFF = function() {
+        for (var i = 1; i <= $scope.ffData.max; i++) {
+            if ($scope.saveParamData["ff" + i]) {
+                if ($scope.saveParamData["ff" + i].length < 3) {
+                    SystemService.showAlert(ValidateMsgService.data.isDigitSubNo);
+                    $scope.saveParamData["ff" + i] = "";
+                }
+            }
+        }
+    };
+    $scope.isNumberFF = false;
+    $scope.onInputFF = function(charCode) {
+        //console.log(charCode);
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            $scope.isNumberFF = true;
+            return false;
+        } else {
+            $scope.isNumberFF = false;
+        }
+    };
+
+    $scope.$watch('selectedPricePlan', function(cur) {
+        if (!cur || !cur.soc)
+            return;
+
+        $scope.clearSP();
+
+        ChangePricePlanService.getOfferDetail(cur.soc, function(result) {
+
+            if (result.status) {
+                SystemService.hideLoading();
+                $scope.offerDetail = result.data;
+                console.log($scope.offerDetail);
+
+                var spList = $scope.offerDetail["csm-offer-details"]["csm-related-offer-details"];
+                for (var i = 0; i < spList.length; i++) {
+                    var sp = spList[i]["special-offer-type"];
+
+                    //SHARE_ALLOWANCE, FriendAndFamily, CUG, POOLED
+                    if (sp == 'SHARE_ALLOWANCE' || sp == 'POOLED' || sp == 'POOLING' || sp == 'CAPMAX') {
+                        $scope.getCapmaxParameter(spList[i]['code']);
+                        $scope.specialOfferType.SA = true;
+                        $scope.specialOfferType.POOL = true;
+                        $scope.specialOfferType.POOLING = true;
+                        $scope.specialOfferType.CAPMAX = true;
+                    }
+                    if (sp == 'FriendAndFamily') {
+                        $scope.specialOfferType.FF = true;
+                        var crodList = $filter('filter')($scope.offerDetail["csm-offer-details"]["csm-related-offer-details"], {
+                            "special-offer-type": sp
+                        });
+
+                        console.log(crodList);
+
+                        var code = crodList[0]["code"];
+
+                        //call offerDetail route 2
+                        ChangePricePlanService.getOfferDetail(code, function(resultOfferDetail2) {
+                            console.log("resultOfferDetail2 :::: ");
+                            console.log(resultOfferDetail2);
+                            $scope.offerDetailRoute2 = resultOfferDetail2.data;
+
+                            $scope.ffData = {
+                                min: Number(resultOfferDetail2.data['csm-offer-details']['min-ff-number']),
+                                max: Number(resultOfferDetail2.data['csm-offer-details']['max-ff-number'])
+                            };
+                        });
+
+                    }
+                    if (sp == 'CUG') {
+                        $scope.specialOfferType.CUG = true;
+                    }
+                }
+            } else {
+                //error
+            }
+        });
+    });
+
+    $scope.clearSP = function() {
+        $scope.specialOfferType = {
+            CUG: false,
+            FF: false,
+            SA: false,
+            POOL: false,
+            POOLING: false,
+            CAPMAX: false
+        };
+
+        $scope.onCancelCUG();
+        //$scope.onCancelFF();
+        //$scope.onCancelPOOLED();
+        $scope.saveParamData = {};
+    };
+    
+    $scope.getCapmaxParameter = function(soc) {
+        var checkValue = function(capmax) {
+            var value = "";
+            if (capmax == "0") {
+                //value = "0";
+                value = "null";
+            } else if (capmax == "-2") {
+                //value = "-2";
+                value = "null";
+            } else if (capmax == "") {
+                value = "hide";
+            } else {
+                value = "null";
+            }
+            return value;
+        };
+        var checkValueCapmax = function(capmax) {
+            var value = "";
+            if (capmax == "0") {
+                //value = "0";
+                value = "";
+            } else if (capmax == "-2") {
+                //value = "-2";
+                value = "";
+            } else if (capmax == "") {
+                value = "hide";
+            } else {
+                value = "";
+            }
+            return value;
+        };
+        ChangePricePlanService.getCapmaxParameter(soc, function(result) {
+            console.log(result.data);
+            $scope.capMaxParameterList = result.data['cap-max-parameter'];
+
+            $scope.parameter = {
+                Monetary: checkValue($scope.capMaxParameterList['monetary-capmax']),
+                Occurrence: checkValue($scope.capMaxParameterList['occurrence-capmax']),
+                Duration: checkValue($scope.capMaxParameterList['duration-capmax']),
+                Volume: checkValue($scope.capMaxParameterList['volume-capmax'])
+            };
+            $scope.saveParamData.Monetary = checkValueCapmax($scope.capMaxParameterList['monetary-capmax']);
+            $scope.saveParamData.Occurrence = checkValueCapmax($scope.capMaxParameterList['occurrence-capmax']);
+            $scope.saveParamData.Duration = checkValueCapmax($scope.capMaxParameterList['duration-capmax']);
+            $scope.saveParamData.Volume = checkValueCapmax($scope.capMaxParameterList['volume-capmax']);
+
+            $scope.capMaxParameterList['durationCapMaxUOMCombo'] = SystemService.convertArray($scope.capMaxParameterList['duration-capmax-uom-combo'], "=");
+            $scope.capMaxParameterList['volumeCapMaxUOMCombo'] = SystemService.convertArray($scope.capMaxParameterList['volume-capmax-uom-combo'], "=");
+
+            $scope.capMaxParameterList['durationCapMaxUOM'] = SystemService.searchIdArray($scope.capMaxParameterList['durationCapMaxUOMCombo'], $scope.capMaxParameterList['duration-capmax-uom']);
+            $scope.capMaxParameterList['volumeCapMaxUOM'] = SystemService.searchIdArray($scope.capMaxParameterList['volumeCapMaxUOMCombo'], $scope.capMaxParameterList['volume-capmax-uom']);
+
+        });
+    };
+
     $scope.changeType = function(customerType) {
         $scope.customerType = customerType;
         $scope.isVerify = false;
-        $scope.promotion = "";
+        $scope.selectedProPositionIn = "";
 
         if (customerType == 'B' || customerType == 'C') {
             $scope.blah = "P";
@@ -73,6 +317,71 @@
                 SystemService.showAlert(ValidateMsgService.data.errFormatEmail);
             }
         }
+    };
+
+    $scope.onVerify = function() {
+
+        SystemService.showLoading();
+
+        var headers = {
+            'WEB_METHOD_CHANNEL': 'WEBUI',
+            'E2E_REFID': orderData.orderId
+        };
+
+        var data = {
+            target: "profiles/customer/preverify",
+            "transactionId": orderData.TrxID,
+            //"username": null,
+            //"password": null,
+            "accountCat": "I",
+            "accountType": $scope.subCompanyType,
+            // O/M
+            //"approveCode": $scope.approveCode,
+            "birthDate": SystemService.convertDateToEng($scope.data.customerProfile['birthdate'], "ENG"),
+            "channel": "WEBUI", //$scope.getAuthen["channel"],
+            "companyCode": "AL", //$scope.data.installedProducts["company-code"],
+            "dealerCode": $scope.partnerCode,
+            //"functionType": null,
+            "idNumber": $scope.data.customerProfile['id-number'],
+            "idType": $scope.data.customerProfile['id-type'],
+            //"isTrueMobile": null,
+            //"language": null,
+            "propositionId": $scope.selectedProPositionIn,
+            //"requestMsisdn": null,
+            "requestSubscriber": "1",
+            //"reserveMsisdnInfo": null,
+            "userLogin": $scope.getAuthen["logInName"]
+        };
+        if ($scope.approveCode) {
+            data["approveCode"] = $scope.approveCode;
+        }
+
+        MigratePreToPostService.preverify(header, requestData, function(result) {
+            SystemService.hideLoading();
+            console.log(result);
+            if (result.data['display-messages'].length > 0 && result.data['display-messages'][0]['message-type'] == 'ERROR') {
+                //check maxallow
+                if (result.data["display-messages"][0]["message-code"] == 'TMV-PREVERIFY-11010') {
+                    $scope.showApprovCode = true;
+                    $scope.isVerify = false;
+                } else {
+                    setTimeout(function() {
+                        SystemService.showAlert({
+                            "message": result.data["display-messages"][0]["message"],
+                            "message-code": result.data["display-messages"][0]["message-code"],
+                            "message-type": "WARNING",
+                            "en-message": result.data["display-messages"][0]["en-message"],
+                            "th-message": result.data["display-messages"][0]["th-message"],
+                            "technical-message": result.data["display-messages"][0]["technical-message"]
+                        });
+                    }, 1000);
+                }
+
+            } else {
+                $scope.isVerify = true;
+                $scope.showApprovCode = false;
+            }
+        });
     };
 
     $scope.isNumberTel = false;
@@ -237,6 +546,36 @@
         authenticate();
     };
 
+    $scope.onInputSubNo = function() {
+        if ($scope.subNoInput && $scope.subNoInput.length === 10) {
+            SystemService.showLoading();
+            //ประเภทของบัตร
+            SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
+                $scope.cardTypeOptions = result;
+                console.log($scope.cardTypeOptions);
+            });
+
+            //คำนำหน้า
+            SystemService.getMaster_list("CUST-TITLE-TYPE", function(result) {
+                $scope.titleTypeListx = result;
+                console.log($scope.titleTypeListx);
+            });
+
+            //คำนำหน้า อื่นๆ
+            SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function(result) {
+                $scope.titleOtherTypeList = result;
+                console.log($scope.titleOtherTypeList);
+            });
+
+            //เพศ
+            SystemService.getMaster_list("CUST-GENDER", function(result) {
+                $scope.genderTypeList = result;
+                console.log($scope.genderTypeList);
+            });
+            MigratePreToPostService.getSIMData($scope.subNoInput, onGetSIMData);
+        }
+    };
+
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         //ประเภทของบัตร
@@ -281,6 +620,12 @@
             }
 
             var partnerCode = utils.getObject($scope.getAuthen, 'partnerCodes.0');
+
+            //call getCUGId
+            ChangePricePlanService.getCUGList(function(result) {
+                $scope.cugList = result.data["cug-list"];
+                //alert($scope.cugList.length);
+            });
 
             SystemService.getOrderId($scope.getAuthen.channel, partnerCode, function(order) {
                 SystemService.hideLoading();

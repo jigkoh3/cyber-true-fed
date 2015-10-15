@@ -460,7 +460,7 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 		}
 	};
 
-	this.preverify = function(payload, callback) {
+	this.preverify = function(header, dataRequest, callback) {
 
 		var that = this;
 
@@ -469,34 +469,55 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 		};
 
 		if (!demo) {
-			var target = 
-				'/profiles/customer/preverify?' +
-				'target=' + 'profiles/customer/preverify' + // Hard code
-				'&transactionId=' + payload['transactionId'] +
-				'&accountCat=' + 'I' + // Hard code
-				'&accountType=' + payload['accountType'] +
-				'&birthDate=' + payload['birthDate'] +
-				'&channel=' + 'WEBUI' + // Hard code
-				'&companyCode=' + 'AL' + // Hard code
-				'&dealerCode=' + payload['dealerCode'] +
-				'&idNumber=' + payload['idNumber'] +
-				'&idType=' + 'I' + // Hard code
-				'&propositionId=' + payload['propositionId'] +
-				'&requestSubscriber=' + '1' + // Hard code
-				'&userLogin=' + 'anonymous'; // Hard code
 
-			SystemService.callServiceGetByPass(target, null, function(result) {
-				cb(result);
-			});
+			SystemService.callServicePostByPass(dataRequest, header, function(result) {
+                cb(result);
+            });
 		}
 		else {
 
-			// Not sample response data yet. 
+			var data = {
+                "status": "SUCCESSFUL",
+                "fault": {
+                    "name": "th.co.truecorp.ads.api.ApplicationServiceException",
+                    "code": "TMV-PREVERIFY-11010",
+                    "message": " VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.].  VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.]",
+                    "detailed-message": "ApplicationServiceException TMV-PREVERIFY-11009 VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.]. "
+                },
+                "display-messages": [{
+                    "message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
+                    "message-code": "TMV-PREVERIFY-11010x",
+                    "message-type": "ERROR",
+                    "en-message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
+                    "th-message": "ไม่สามารถเปิดบริการได้ กรุณาแนะนำเจ้าหน้าที่โทรติดต่อ 02-699-6222 (วันจันทร์-เสาร์ เวลา 9.00-18.00)",
+                    "technical-message": "null( Message variable: ] ) "
+                }],
+                "trx-id": "3I1BDOSDXWJN8",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)"
+            };
+
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "trx-id": null,
+                "process-instance": null,
+                "display-messages": [],
+                "response-data": [{
+                    "verifyCode": null
+                }]
+            };
+
+            var result = {};
+            
+            if ($scope.approveCode) {
+                result = data2;
+            } else {
+                result = data2;
+            }
 
 			$timeout(function() {
 				cb({
 					status: true,
-					data: {},
+					data: result,
 					error: '',
 					msgErr: ''
 				});
@@ -823,60 +844,71 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 		}
 		else {
 			var data = {
-				'status': 'SUCCESSFUL',
-				'trx-id': '3BYUAFJC01W8',
-				'process-instance': 'tmsapnpr1 (instance: SFF_node1)',
-				'response-data': [
-					{
-						'name': 'BCUGFP03',
-						'description': payload.proposition + ' Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
-						'soc': '936258',
-						'properties': {
-							'TR_SPECIAL_OFFER_IND': 'CSH',
-							'PRICEPLAN_TYPE': 'SH'
-						},
-						'sale-period': {
-							'start': '2012-05-21',
-							'end': '2016-01-30'
-						},
-						'rc': 600.0,
-						'service-level': 'G',
-						'priceplan-type': 'SH'
-					},
-					{
-						'name': 'BGAINP12',
-						'description': 'BizShare37700bt,All-net1.10bt/min',
-						'soc': '843368',
-						'properties': {
-							'TR_SPECIAL_OFFER_IND': 'CSH',
-							'PRICEPLAN_TYPE': 'SH'
-						},
-						'sale-period': {
-							'start': '2014-04-13',
-							'end': '2016-01-30'
-						},
-						'rc': 37700.0,
-						'service-level': 'G',
-						'priceplan-type': 'SH'
-					},
-					{
-						'name': 'W2S02P04',
-						'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
-						'soc': '937378',
-						'properties': {
-							'TR_SPECIAL_OFFER_IND': 'CSH',
-							'PRICEPLAN_TYPE': 'SH'
-						},
-						'sale-period': {
-							'start': '2005-06-27',
-							'end': '2016-01-30'
-						},
-						'rc': 16000.0,
-						'service-level': 'G',
-						'priceplan-type': 'SH'
-					}
-				]
-			};
+                "status": "SUCCESSFUL",
+                "trx-id": "3F18U42TWR9R6",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": [{
+                    "name": "NETSVP89",
+                    "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
+                    "soc": "107385",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2013-09-03",
+                        "end": "2020-04-04"
+                    },
+                    "rc": 899.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "PLNTAP06",
+                    "description": "4GiNet699,4GNetUNLT 6GB,TVS1GB,WiFiUNLT, Free3GB6m",
+                    "soc": "10648811",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2015-01-16",
+                        "end": "2016-06-30"
+                    },
+                    "rc": 699.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "RFSMTP01",
+                    "description": "(4G) Smart 999 voice 500mins net7GB",
+                    "soc": "94363",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2013-03-26",
+                        "end": "2020-08-04"
+                    },
+                    "rc": 999.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "RMIP1P09",
+                    "description": "TMH-iPad 759 Data and wifi unlimited",
+                    "soc": "76832",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2012-03-15",
+                        "end": "2016-06-04"
+                    },
+                    "rc": 759.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }]
+            };
 
 			$timeout(function () {
 				cb({
@@ -970,8 +1002,89 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 
 	};
 
-	this.getOfferDetail = function() {
+	this.getOfferDetail = function(soc, callback) {
 
+		var cb = function (result) {
+			callback(result);
+		};
+
+		if (!demo) {
+			var target = '/aftersales/tmv/priceplan/details?offer-code=' + soc;
+
+			SystemService.callServiceGet(target, null, function(result) {
+				cb(result);
+			});
+		}
+		else {
+			var data = {
+				"status" : "SUCCESSFUL",
+				"display-messages" : [ ],
+				"trx-id" : "3BYU2Z95RW3I",
+				"process-instance" : "tmsapnpr1 (instance: SFF_node1)",
+				"status-code" : "0",
+				"csm-offer-details" : {
+					"currency" : "THB",
+					"name" : "CF01AP01",
+					"deployFromGroupIndicator" : "Y",
+					"description" : "P_Corporate 50 free F&amp;F 1 No.",
+					"duration" : "",
+					"product-type" : "RR",
+					"soc-properties" : "TR_DEFAULT_CONTRACT_FEE=0;TR_CUSTOMER_TYPE=B,C;businessEntityID=0;Should be deployed=Y;TR_CONTRACT_TERM=0;Activation date to charge=Y;type=Price plan;Maximum offer duplicates allowed=0;Limit_Subs=99999;TR_SPECIAL_OFFER_IND=Null;id=263998;saleContext=Stand alone;level=Subscriber;description=P_Corporate 50 free F&amp;F 1 No.;name=CF01AP01;CUG_IND=Null;primaryServiceItem=MSISDN;cappingOffer=N;ApplyInOverlappingMove=false;currencyCode=THB;FF_Number=Null;itemization_offer_ind=N;saleExpirationDate=2016-01-30;Product type=RR;TR_ACCOUNT_SUB_TYPE=Null;english_offer_description=Corporate 50 free F&amp;F 1 No.;thai_offer_description=Corporate 50 free F&amp;F 1 No.;saleEffectiveDate=2009-09-15;TR_CUSTOMER_SUB_TYPE=Null;TR_NEXT_PP=null;TR_DURATION_MONTH=0;Deactivation date to charge=Y;TR_GENERATE_CHARGE_YES_NO=N;TR_PRODUCT_SUB_TYPE=R;Agreement distribute level=0;",
+					"sale-expiration-date" : "30/01/2016 00:00:00",
+					"max-instances-allowed" : "Duplication is Forbidden",
+					"offer-type" : "P",
+					"sale-effective-date" : "15/09/2009 00:00:00",
+					"sale-context" : "S",
+					"rc-indicator" : "",
+					"primary-resource" : "MSISDN",
+					"special-offer-type" : "",
+					"min-ff-number" : "1",
+					"product-sub-type" : "PostPay",
+					"csm-related-offer-details" :
+					[
+						{
+							"code" : "265738",
+							"name" : "FTALKS31",
+							"description" : "Talk: 1F&amp;F True FL",
+							"service-level" : "C",
+							"sale-expiration-date" : "08/08/2250 00:00:00",
+							"offer-type" : "U",
+							"sale-effective-date" : "28/02/2008 00:00:00",
+							"special-offer-type" : "FriendAndFamily"
+						},
+						{
+							"code" : "40941",
+							"name" : "PROSTDA1",
+							"description" : "Standard Provisioning Services for Post Pay # 1",
+							"service-level" : "C",
+							"sale-expiration-date" : "08/08/2250 00:00:00",
+							"offer-type" : "U",
+							"sale-effective-date" : "04/08/2010 00:00:00",
+							"special-offer-type" : ""
+						},
+						{
+							"code" : "41861",
+							"name" : "FCVBAR",
+							"description" : "First Call Verification, Barring",
+							"service-level" : "C",
+							"sale-expiration-date" : "08/08/2250 00:00:00",
+							"offer-type" : "U",
+							"sale-effective-date" : "08/01/2008 00:00:00",
+							"special-offer-type" : ""
+						}
+					]
+				}
+			};
+
+			$timeout(function () {
+				cb({
+					status: true,
+					data: data,
+					error: '',
+					msgErr: ''
+				});
+			}, 1000);
+		}
 	};
 
 	this.getCUGId = function() {
