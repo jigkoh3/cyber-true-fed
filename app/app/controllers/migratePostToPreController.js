@@ -42,6 +42,7 @@
     };
 
     var onGetSIMData = function(result) {
+        SystemService.showLoading();
         $scope.data = result.data;
         $scope.getSIMDataFailed = true;
         if (!$scope.data) {
@@ -100,7 +101,7 @@
     }, 1000);
 
     if ($scope.SubNo !== 'null') {
-        SystemService.showLoading();
+        
         //ประเภทของบัตร
         SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
             $scope.cardTypeOptions = result;
