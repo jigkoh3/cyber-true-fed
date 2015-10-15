@@ -225,14 +225,38 @@
                                     <p></p>
                                     <label>รายการส่งเสริมการขาย</label>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-4">
                                     <p></p>
                                     <select class="form-control" ng-model="selectedProPosition">
                                         <option value="">-- กรุณาเลือก --</option>
                                         <option ng-repeat="item in proPositionList" value="{{ item['proposition-code'] }}">
-                                            {{ item.name }} : {{ item.description }}
+                                            {{ item['proposition-code'] }} : {{ item.description }}
                                         </option>
                                     </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>
+                                        <input type="button"
+                                               ng-hide="isVerify"
+                                               ng-disabled="!isCheckInputForVerify"
+                                               ng-click="onVerify()"
+                                               value="Verify"
+                                               class="btn btn-success">
+                                    </label>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <span style="color:red;" ng-show="showApprovCode">* Approve code by referral*</span>
+                                </div>
+                                <div class="col-md-2" ng-form="onVerify()">
+                                    <input type="text"
+                                           name="approvecode"
+                                           ng-model="approveCode"
+                                           ng-show="showApprovCode"
+                                           ng-keyup="$event.keyCode==13 && onVerify()"
+                                           class="form-control"
+                                           maxlength="10"
+                                           style="width:150px" required>
                                 </div>
                             </div>
                         </div>
@@ -251,7 +275,7 @@
                                     <input type="text" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control">
                                 </div>
                                 <div class="col-md-1">
-                                    <button href="#pricePlanModal" id="modalnewpriceplan" class="btn" onclick="return false;" data-toggle="modal" style="background-color: #5cb85c; border-color: #4cae4c; ">
+                                    <button href="#modalPricePlan" id="modalnewpriceplan" class="btn" onclick="return false;" data-toggle="modal" style="background-color: #5cb85c; border-color: #4cae4c; ">
                                         <span style="color:white;">...</span>
                                     </button>
                                 </div>
@@ -272,6 +296,8 @@
                         </div>
                     </div>
                     <p></p>
+
+                    <div ng-include="template.newparampriceplan" scope="" onload=""></div>
 
                     <div ng-show="isVerify" class="row">
                         <div class="col-md-12">
@@ -845,6 +871,71 @@
                     <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
                     <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()" />
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalPricePlan" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter" id="ppfilter2" class="form-control pricePlanFilter">
+                </div>
+                &nbsp;
+                <div class="table-responsive">
+                    <table class="table" style="margin-bottom: 0px;">
+                        <tr>
+                            <th colspan="5">
+                                <label class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-1">&nbsp;</div>
+                                        <div class="col-xs-9"><span style="color:green;"><h6>Price Plan</h6></span></div>
+                                        <div class="col-xs-2"><span style="color:green;text-align:center;"><h6>RC</h6></span></div>
+                                        <!--<div class="col-xs-3"><span style="color:green;"><h6>รายการส่งเสริมการขาย</h6></span></div>-->
+                                    </div>
+                                </label>
+                            </th>
+                        </tr>
+
+                        <tr dir-paginate="pp in pricePlanList | filter:pricePlanFilter | orderBy:'name'| itemsPerPage: pageSize"
+                            pagination-id="PPList"
+                            current-page="currentPage">
+                            <th colspan="5" style="padding: 5px; padding-bottom: 0px;">
+                                <label class="col-xs-12" style="cursor:pointer;">
+                                    <div class="row">
+                                        <div class="col-xs-1">
+                                            <input name="pricelsx"
+                                                   type="radio"
+                                                   ng-value="pp"
+                                                   ng-model="dirty.selectedPricePlan" class="radioPriceplan" />
+                                        </div>
+                                        <div class="col-xs-9">{{pp.name}}: {{pp.description}}</div>
+                                        <div class="col-xs-2 text-center">{{pp.rc | number}}</div>
+                                        <!--<div class="col-xs-3" style="text-align:center;">{{pp.promotion}}</div>-->
+                                    </div>
+                                </label>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td id="divPage" colspan="5" class="text-center" style="margin-bottom: 0px;">
+                                <style>
+                                    .pagination {
+                                        margin: 0;
+                                    }
+                                </style>
+                                <div dir-pagination-controls pagination-id="PPList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="div_event"></div>
+            </div>
+            <div class="modal-footer" style=" padding-top: 0;">
+                <button class="btn btn-success" data-dismiss="modal" ng-click="selectedPricePlan = dirty.selectedPricePlan">เลือก</button>
+                <button class="btn btn-cancel" data-dismiss="modal" ng-click="dirty.selectedPricePlan = selectedPricePlan">ยกเลิก</button>
             </div>
         </div>
     </div>
