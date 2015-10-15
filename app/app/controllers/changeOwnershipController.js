@@ -444,7 +444,7 @@ smartApp.controller('changeOwnershipController', function(
                 if ($scope.SubNo == 'null') {
                     $('#dataSubNo').focus();
                 }
-            }, 100);
+            }, 1100);
 
             //call generate-order-id
             SystemService.showLoading();
