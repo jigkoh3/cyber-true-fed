@@ -65,6 +65,40 @@
         authenticate();
     };
 
+    $scope.isInputSubNo = false;
+    $scope.onInputSubNo = function() {
+        console.log($('#dataSubNo').val().length, $scope.isInputSubNo);
+        var dataSubNo = $('#dataSubNo').val();
+        if (dataSubNo.length == 10) {
+            if ($scope.isInputSubNo == false) {
+                $scope.SubNo = $('#dataSubNo').val();
+                $scope.isInputSubNo = true;
+                MigratePostToPreService.getSIMData($scope.SubNo, onGetSIMData);
+            }
+        } else {
+            $scope.isInputSubNo = false;
+        }
+    };
+    $scope.onInputSubNo_reset = function() {
+        $scope.isInputSubNo = false;
+        $scope.onInputSubNo();
+    };
+    $scope.isNumberSubNo = false;
+    $scope.onKeyUpSubNo = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberSubNo = !bool;
+        //setTimeout(function () {
+        //    $scope.isNumberSubNo = false;
+        //    $('#idBindDataAgain').click();
+        //}, 3000);
+        $scope.autoHideNumberSubNo = false;
+        return bool;
+    }
+    setTimeout(function() {
+        SystemService.validateNummeric();
+    }, 1000);
+
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         //ประเภทของบัตร
