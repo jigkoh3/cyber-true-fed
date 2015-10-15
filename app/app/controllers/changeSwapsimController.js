@@ -300,6 +300,11 @@
         }
     }
 
+    setTimeout(function() {
+        if ($scope.SubNo == 'null') {
+            $('#dataSubNo').focus();
+        }
+    }, 100);
 
     setTimeout(function() {
         SystemService.validateNummeric();

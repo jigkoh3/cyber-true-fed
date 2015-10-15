@@ -165,7 +165,7 @@ smartApp.controller('ChangePricePlanController', function (
     $scope.Level = $routeParams.oulevel;
     $scope.OUID = $routeParams.ouid ? $routeParams.ouid : 'null';
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
-    $scope.isNullSubNo = $routeParams.subno == '' ? true : false;
+    $scope.isNullSubNo = $routeParams.subno ? true : false;
     $scope.Action = $routeParams.action;
 
     /*
@@ -225,6 +225,11 @@ smartApp.controller('ChangePricePlanController', function (
             if ($scope.SubNo != 'null') {
                 $scope.onloadNext();
             }
+            setTimeout(function () {
+                if ($scope.SubNo == 'null'){
+                    $('#dataSubNo').focus();
+            }
+        }, 20);
 
         });
     }

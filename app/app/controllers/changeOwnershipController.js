@@ -93,12 +93,12 @@ smartApp.controller('changeOwnershipController', function(
     }
 
 
-    $scope.ClearTxt = function(){
+    $scope.ClearTxt = function() {
         $scope.newOwner.firstNameTH = "";
         $scope.newOwner.lastNameTH = "";
         $scope.customer['tax-id'] = "";
         $scope.newOwner.prefixTH = "T4";
-        $scope.newOwner.sex = "FEMALE" ;
+        $scope.newOwner.sex = "FEMALE";
         $scope.newOwner.birthdate = "";
         $scope.newOwner.expireDay = "";
 
@@ -284,7 +284,7 @@ smartApp.controller('changeOwnershipController', function(
 
         return bool;
     };
-     $scope.isNumberTel2 = false;
+    $scope.isNumberTel2 = false;
     $scope.onInputTel2 = function(charCode) {
         console.log($scope.contactNo.number);
         var bool = SystemService.checkInputTel(charCode);
@@ -330,7 +330,7 @@ smartApp.controller('changeOwnershipController', function(
             $scope.customer['contact-mobile-number'] = "";
         }
         if ($scope.customer['contact-mobile-number'].length == 0 && charCode != 48) {
-            $scope.isNumberTelZero2= true;
+            $scope.isNumberTelZero2 = true;
             //$scope.contactNo.number = "";
         } else {
             $scope.isNumberTelZero2 = false;
@@ -370,18 +370,18 @@ smartApp.controller('changeOwnershipController', function(
         $scope.isNumberFF = false;
         $scope.isNumberTelZeroFF = false;
         //for (var i = 1; i <= 10; i++) {
-            if ($scope.saveParamData['ff' + i]) {
-                if ($scope.saveParamData['ff' + i].length == 9 || $scope.saveParamData['ff' + i].length == 10) {
-                    $scope.isNumberTelLengthFF = false;
-                } else {
-                    $scope.isNumberTelLengthFF = true;
-                    //break;
-                }
-                console.log($scope.saveParamData['ff' + i].length);
-            } else {
+        if ($scope.saveParamData['ff' + i]) {
+            if ($scope.saveParamData['ff' + i].length == 9 || $scope.saveParamData['ff' + i].length == 10) {
                 $scope.isNumberTelLengthFF = false;
+            } else {
+                $scope.isNumberTelLengthFF = true;
                 //break;
             }
+            console.log($scope.saveParamData['ff' + i].length);
+        } else {
+            $scope.isNumberTelLengthFF = false;
+            //break;
+        }
         //}
 
     }
@@ -431,7 +431,7 @@ smartApp.controller('changeOwnershipController', function(
         return bool;
     }
 
-    $scope.SubNo = $routeParams.subno ? $routeParams.subno :'null' ;
+    $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.onLoad = function() {
         $('#loadingReadCard3').hide();
         AuthenService.getAuthen(function(result) {
@@ -439,6 +439,12 @@ smartApp.controller('changeOwnershipController', function(
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
             }
+
+            setTimeout(function() {
+                if ($scope.SubNo == 'null') {
+                    $('#dataSubNo').focus();
+                }
+            }, 1100);
 
             //call generate-order-id
             SystemService.showLoading();
@@ -2836,13 +2842,13 @@ smartApp.controller('changeOwnershipController', function(
             webcam.set_hook('onComplete', onCompleteSnap);
 
         }, 500);
-        
+
     }
     $scope.initWebCam = function() {
         $scope.isCameraLastest = false;
         $scope.initWebCamNext();
 
-        
+
 
     }
 
@@ -2868,7 +2874,7 @@ smartApp.controller('changeOwnershipController', function(
         $scope.isCameraLastest = true;
         $scope.initWebCamNext();
     }
-    
+
 
 
 
