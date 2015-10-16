@@ -18,15 +18,15 @@
                         <div class="col-md-4">
                             <div class="form-group imp">
                                 <label>หมายเลขบัตรประชาชน / พาสปอร์ต </label>
-                                <input ng-numeric-input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" ng-disabled="!getSIMDataFailed" class="form-control" maxlength="13">
-                                
+                                <input ng-numeric-input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" ng-disabled="!getSIMDataFailed ||!isLastestUser" class="form-control" maxlength="13">
+
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <!-- id-type -->
                                 <label>ประเภทของบัตร <span style="color:red;">*</span></label>
-                                <select class="form-control" id="selectCustomerIdType" ng-model="data.customerProfile['id-type']" ng-disabled="!getSIMDataFailed">
+                                <select class="form-control" id="selectCustomerIdType" ng-model="data.customerProfile['id-type']" ng-disabled="!getSIMDataFailed||!isLastestUser">
                                     <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                 </select>
                             </div>
