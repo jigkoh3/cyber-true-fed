@@ -11,14 +11,7 @@
 
             var data = {
                 "status": "SUCCESSFUL",
-                "display-messages": [{
-                    "message": "",
-                    "message-code": "2",
-                    "message-type": "ERROR",
-                    "en-message": "ไม่สามารถเปืดบริการ IDD/IR สำหรับเบอร์เติมเงิน",
-                    "th-message": "ไม่สามารถเปืดบริการ IDD/IR สำหรับเบอร์เติมเงิน",
-                    "technical-message": ""
-                }],
+                "display-messages": [],
                 "trx-id": "8D14IWLZS0PFB",
                 "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {
@@ -95,7 +88,7 @@
                             "has-splitcharge": false,
                             "is-childsim": false,
                             "is-softsuspend": false,
-                            "offer-group": "IDD",
+                            "offer-group": "",
                             "effective-date": "02/09/2015 00:00:00"
                         }, {
                             "ouId": "16058",
@@ -115,7 +108,7 @@
                             "has-splitcharge": false,
                             "is-childsim": false,
                             "is-softsuspend": false,
-                            "offer-group": "IR",
+                            "offer-group": "",
                             "effective-date": "02/09/2015 00:00:00"
                         }]
                     }
