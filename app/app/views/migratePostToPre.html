@@ -19,6 +19,7 @@
                             <div class="form-group imp">
                                 <label>หมายเลขบัตรประชาชน / พาสปอร์ต </label>
                                 <input ng-numeric-input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" ng-disabled="!getSIMDataFailed" class="form-control" maxlength="13">
+                                
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -36,7 +37,7 @@
                             <div class="form-group">
                                 <label>คำนำหน้า <span style="color:red;">*</span></label>
                                 <div id="placeholders">
-                                    <select class="form-control" ng-model="data.customerProfile['title-code']" ng-disabled="!getSIMDataFailed">
+                                    <select class="form-control" ng-model="data.customerProfile['title-code']" ng-disabled="!getSIMDataFailed||!isLastestUser">
                                         <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
@@ -45,13 +46,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>ชื่อ <span style="color:red;">*</span></label>
-                                <input type="text" id="firstNameTH3" ng-model="data.customerProfile['firstname']" class="form-control" ng-disabled="!getSIMDataFailed">
+                                <input type="text" id="firstNameTH3" ng-model="data.customerProfile['firstname']" class="form-control" ng-disabled="!getSIMDataFailed ||!isLastestUser">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>นามสกุล <span style="color:red;">*</span></label>
-                                <input type="text" id="lastNameTH3" ng-model="data.customerProfile['lastname']" class="form-control" ng-disabled="!getSIMDataFailed">
+                                <input type="text" id="lastNameTH3" ng-model="data.customerProfile['lastname']" class="form-control" ng-disabled="!getSIMDataFailed ||!isLastestUser">
                             </div>
                         </div>
                     </div>
@@ -60,7 +61,7 @@
                             <div class="form-group">
                                 <label>เพศ <span style="color:red;">*</span></label>
                                 <div id="placeholders">
-                                    <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" ng-disabled="!getSIMDataFailed">
+                                    <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" ng-disabled="!getSIMDataFailed ||!isLastestUser">
                                         <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
@@ -69,14 +70,14 @@
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
                                 <label>วัน/เดือน/ปีเกิด <span style="color:red;">*</span></label>
-                                <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" ng-disabled="!getSIMDataFailed">
+                                <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" ng-disabled="!getSIMDataFailed ||!isLastestUser">
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
                                 <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                <input id="expireDate" type="text" class="form-control date-picker" ng-model="data.customerProfile['id-expire-date']" ng-disabled="isIdCardExpired(data.customerProfile['id-expire-date'])">
+                                <input id="expireDate" type="text" class="form-control date-picker" ng-model="data.customerProfile['id-expire-date']" ng-disabled="isIdCardExpired(data.customerProfile['id-expire-date']) ||!isLastestUser">
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>

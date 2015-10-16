@@ -18,6 +18,7 @@
     $scope.divID = 'migratePostToPreContent';
     $scope.subNoLength = 10;
     $scope.zipLength = 5;
+    $scope.isLastestUser = true;
 
     $scope.isReadCardSuccess = false;
 
@@ -70,12 +71,17 @@
         }, 1000);
 
         $scope.data.customerProfile['id-type'] = idType;
-
+        console.log(idType);
+        if(idType=="I"){
+            $scope.isLastestUser = false;
+        }
+        
         $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
         $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
 
         authenticate();
     }
+
     };
 
     $scope.isInputSubNo = false;
@@ -245,7 +251,7 @@
     $scope.onInputId = function() {
         var value = $('#CitizenID').val();
 
-        if (value.length === 13) {
+        if (value.length >= 3) {
             if (value === $scope.data.customerProfile['id-number']) {
                 $scope.isCustomerProfile = true;
 
