@@ -18,9 +18,10 @@
     $scope.divID = 'migratePostToPreContent';
     $scope.subNoLength = 10;
     $scope.zipLength = 5;
+    
     $scope.isLastestUser = true;
-
     $scope.isReadCardSuccess = false;
+    $scope.isSecondAuhenFailed = true;
 
     $scope.dirty = {
         selectedPricePlan: {}
@@ -56,7 +57,7 @@
 
         } else{
         $scope.data = result.data;
-        $scope.getSIMDataFailed = true;
+        $scope.getSIMDataFailed = false;
         if (!$scope.data) {
             $scope.getSIMDataFailed = true;
             SystemService.hideLoading();
@@ -254,6 +255,7 @@
         if (value.length >= 3) {
             if (value === $scope.data.customerProfile['id-number']) {
                 $scope.isCustomerProfile = true;
+                $scope.isSecondAuhenFailed = false;
 
                 $('#unMatch').hide();
                 $('.fancybox-close').click();
@@ -359,7 +361,7 @@
             return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
         }
 
-        return false;
+        return true;
     };
 
     SystemService.calendarDatePicker();
