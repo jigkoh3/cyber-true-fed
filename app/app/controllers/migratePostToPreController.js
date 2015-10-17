@@ -280,9 +280,9 @@
             'message': msg,
             'message-code': '',
             'message-type': 'WARNING',
-            'en-message': '',
-            'th-message': '',
-            'technical-message': ''
+            'en-message': msg,
+            'th-message': msg,
+            'technical-message': msg
         });
 
         $scope.isReadCardSuccess = false;
@@ -293,6 +293,18 @@
 
         $('#CitizenID').val($scope.cardInfo.CitizenID);
         $scope.onInputId();
+    };
+
+    $scope.SetCardValue2 = function(result) {
+        var cardInfo = eval(result);
+
+        $('#CitizenID2').val(cardInfo.CitizenID);
+    };
+
+    $scope.SetCardValue3 = function(result) {
+        var cardInfo = eval(result);
+
+        $('#CitizenID3').val(cardInfo.CitizenID);
     };
     // (End) Authentication ----------------------
 
@@ -332,7 +344,7 @@
 
     $scope.afterCloseWarning = function() {
 
-        if ($scope.SubNo = 'null') {
+        if ($scope.SubNo === 'null') {
             $('#dataSubNo').val('');
             setTimeout(function() {
                 $('#dataSubNo').focus();
