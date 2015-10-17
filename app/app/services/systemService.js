@@ -908,6 +908,26 @@
         "th-message": "",
         "technical-message": ""
     };
+    this.validateErrorAlert = function(msgModel) {
+        //ModalService.showAlert(msgModel);
+
+        that.ngDialogData = msgModel;
+
+        $ngBootbox.customDialog({
+            templateUrl: 'app/views/ngBootbox-validate-template.html?v=' + runTime,
+            onEscape: function() {
+                return false;
+            },
+            show: true,
+            backdrop: true,
+            closeButton: false,
+            animate: true
+        });
+        setTimeout(function() {
+            $("#btn_ngbOK").focus();
+        }, 800);
+
+    };
     this.showAlert = function(msgModel) {
         //ModalService.showAlert(msgModel);
 
