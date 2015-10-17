@@ -409,15 +409,15 @@
 
 
     // (Start) Registration Address ----------------------
-    var onSearchAddress = function(result) {
-        var address = utils.getObject(result, 'data.response-data.0');
+    // var onSearchAddress = function(result) {
+    //     var address = utils.getObject(result, 'data.response-data.0');
 
-        if ($scope.data.customerAddress.zip === address.zipcode) {
-            $scope.data.customerAddress['sub-district'] = address.subdistrict;
-            $scope.data.customerAddress['district'] = address.district;
-            $scope.data.customerAddress['province'] = address.province;
-        }
-    };
+    //     if ($scope.data.customerAddress.zip === address.zipcode) {
+    //         $scope.data.customerAddress['sub-district'] = address.subdistrict;
+    //         $scope.data.customerAddress['district'] = address.district;
+    //         $scope.data.customerAddress['province'] = address.province;
+    //     }
+    // };
 
     $scope.useSameAddressAsCard = function() {
         $scope.data.customerAddress = angular.copy($scope.data.customerAddressOriginal);
@@ -427,15 +427,15 @@
         $scope.data.customerAddress = {};
     };
 
-    $scope.$watch('data.customerAddress.zip', function(val) {
-        if (val && val.length === $scope.zipLength) {
-            var payload = {
-                keyword: val
-            };
+    // $scope.$watch('data.customerAddress.zip', function(val) {
+    //     if (val && val.length === $scope.zipLength) {
+    //         var payload = {
+    //             keyword: val
+    //         };
 
-            MigratePostToPreService.searchAddress(payload, onSearchAddress);
-        }
-    });
+    //         MigratePostToPreService.searchAddress(payload, onSearchAddress);
+    //     }
+    // });
     // (End) Registration Address ----------------------
 
 
