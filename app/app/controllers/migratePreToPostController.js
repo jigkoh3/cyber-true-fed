@@ -525,25 +525,37 @@
     };
 
     var onGetSIMData = function(result) {
+
+        if (result.data == false) {
+            console.log(result);
+            $scope.SubNo = 'null';
+            $('#dataSubNo').val("");
+
+            setTimeout(function(){
+                $('#dataSubNo').focus();
+            },1200);
+        }
+
         $scope.data = result.data;
-        $scope.getSIMDataFailed = true;
+
         if (!$scope.data) {
             $scope.getSIMDataFailed = true;
             SystemService.hideLoading();
+        }
+        else {
+            $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
+            $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
 
-            return;
+            // $scope.data.customerProfile['sms-language'] = "TH";
+
+            $scope.contactNo = {};
+            $scope.contactNo.number = SystemService.getContactNo($scope.data.customerProfile["contact-number"], "number");
+            $scope.contactNo.continued = SystemService.getContactNo($scope.data.customerProfile["contact-number"], "continued");
+
+            authenticate();
         }
 
-        $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
-        $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
-
-        // $scope.data.customerProfile['sms-language'] = "TH";
-
-        $scope.contactNo = {};
-		$scope.contactNo.number = SystemService.getContactNo($scope.data.customerProfile["contact-number"], "number");
-		$scope.contactNo.continued = SystemService.getContactNo($scope.data.customerProfile["contact-number"], "continued");
-
-        authenticate();
+       
     };
 
     $scope.onInputSubNo = function() {
@@ -959,7 +971,7 @@
             	getProPosition($scope.partnerCode);
             }
             
-            //$scope.getAuthen.shopcodes = ["" + $scope.partnerCode + ""];
+            // $scope.getAuthen.shopcodes = ["" + $scope.partnerCode + ""];
         } else {
             //error ?
             idFocus = "txtPartnerCode";
@@ -988,6 +1000,28 @@
     });
     // (End) Reason Control ----------------------
 
+    var checkCapmaxNull = function(val) {
+        if (val == '' || val == 'null') {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    var isNull = function(txt) {
+        if (txt) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    var showValidate = function(id, msg) {
+        
+        SystemService.showAlert(msg);
+
+        $('#' + id).focus();
+    };
 
     // (Start) Submit Form ----------------------
     var isDataComplete = function() {
@@ -1035,6 +1069,68 @@
 
         if (!$scope.contactNo.number) {
             alert('กรุณากรอกข้อมูลติดต่อลูกค้า');
+            return false;
+        }
+
+        var errorCUG = false;
+        if ($scope.specialOfferType.CUG == true) {
+            errorCUG = isNull($scope.saveDataCUG.name);
+        }
+
+        ///start validate capmax
+        var errorCapmax = "";
+        var errorCapmaxId = "";
+        var errorCapmaxMsg = "";
+        if ($scope.specialOfferType.POOL == true) {
+            if ($scope.parameter.Volume != 'hide' && checkCapmaxNull($scope.saveParamData.Volume)) {
+                errorCapmax = "Volume";
+                errorCapmaxId = $scope.parameter.Volume == 'null' ? "selectVolume" : "txtVolume";
+                errorCapmaxMsg = ValidateMsgService.data.volumeMsg;
+            } else if ($scope.parameter.Monetary != 'hide' && checkCapmaxNull($scope.saveParamData.Monetary)) {
+                errorCapmax = "Monetary";
+                errorCapmaxId = $scope.parameter.Monetary == 'null' ? "selectMonetary" : "txtMonetary";
+                errorCapmaxMsg = ValidateMsgService.data.monetaryMsg;
+            } else if ($scope.parameter.Occurrence != 'hide' && checkCapmaxNull($scope.saveParamData.Occurrence)) {
+                errorCapmax = "Occurrence";
+                errorCapmaxId = $scope.parameter.Occurrence == 'null' ? "selectOccurrence" : "txtOccurrence";
+                errorCapmaxMsg = ValidateMsgService.data.occurrenceMsg;
+            } else if ($scope.parameter.Duration != 'hide' && checkCapmaxNull($scope.saveParamData.Duration)) {
+                errorCapmax = "Duration";
+                errorCapmaxId = $scope.parameter.Duration == 'null' ? "selectDuration" : "txtDuration";
+                errorCapmaxMsg = ValidateMsgService.data.durationMsg;
+            }
+        }
+
+        if (errorCapmax != "") {
+            showValidate(errorCapmaxId, errorCapmaxMsg);
+            return false;
+        }
+
+        if (errorCUG) {
+            showValidate("txtSearchCUG", ValidateMsgService.data.cugMsg);
+            return false;
+        }
+
+        var countFF = 0;
+        $scope.attModalVal = "";
+        for (var i = 1; i <= $scope.ffData.max; i++) {
+            if ($scope.saveParamData["ff" + i]) {
+                countFF++;
+            }
+        }
+
+        var idFF = "txtFF1";
+        for (var i = 1; i <= 10; i++) {
+            if ($('#txtFF' + i).val()) {
+
+            } else {
+                idFF = "txtFF" + i;
+                break;
+            }
+        }
+
+        if ($scope.specialOfferType.FF && countFF < $scope.ffData.min) {
+            showValidate(idFF, ValidateMsgService.data.ffMsg);
             return false;
         }
 

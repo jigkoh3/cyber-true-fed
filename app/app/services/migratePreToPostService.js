@@ -1,8 +1,31 @@
-smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
+smartApp.service('MigratePreToPostService', function($routeParams, $timeout, SystemService) {
 	
 	var demo = SystemService.demo;
 
 	this.decorateSIMData = function(data) {
+
+		var msg = utils.getObject(data, 'display-messages');
+
+        if (msg && msg.length > 0) {
+            setTimeout(function() {
+                if ($routeParams.subno) {
+                    SystemService.validateErrorAlert(msg[0]);
+                } else {
+                    SystemService.showAlert({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
+                }
+            }, 1000);
+            if (msg[0]['message-type'] == "ERROR") {
+                return false;
+            }
+        }
+
 		var customerProfile = angular.copy(utils.getObject(data, 'response-data.customer'));
 		var customerAddress = utils.getObject(customerProfile, 'address-list.CUSTOMER_ADDRESS');
 		var productDetails = utils.getObject(customerProfile, 'installed-products.0');
@@ -162,43 +185,43 @@ smartApp.service('MigratePreToPostService', function($timeout, SystemService) {
 						}
 					}
 				},
-				'display-messages': [{
-					'message': '',
-					'message-type': 'ERROR',
-					'en-message': 'VIP',
-					'th-message': '',
-					'technical-message': ''
-				}, {
-					'message': '',
-					'message-type': 'WARNING',
-					'en-message': 'DISCOUNT',
-					'th-message': '',
-					'technical-message': ''
-				}, {
-					'message': '',
-					'message-type': 'ERROR',
-					'en-message': 'SUBSCRIBER STATUS',
-					'th-message': '',
-					'technical-message': ''
-				}, {
-					'message': '',
-					'message-type': 'ERROR',
-					'en-message': 'NICE NUMBER',
-					'th-message': '',
-					'technical-message': ''
-				}, {
-					'message': '',
-					'message-type': 'ERROR',
-					'en-message': 'SHARED PLAN',
-					'th-message': '',
-					'technical-message': ''
-				}, {
-					'message': '',
-					'message-type': 'WARNING',
-					'en-message': 'CONVERGENT',
-					'th-message': '',
-					'technical-message': ''
-				}]
+				// 'display-messages': [{
+				// 	'message': '',
+				// 	'message-type': 'ERROR',
+				// 	'en-message': 'VIP',
+				// 	'th-message': '',
+				// 	'technical-message': ''
+				// }, {
+				// 	'message': '',
+				// 	'message-type': 'WARNING',
+				// 	'en-message': 'DISCOUNT',
+				// 	'th-message': '',
+				// 	'technical-message': ''
+				// }, {
+				// 	'message': '',
+				// 	'message-type': 'ERROR',
+				// 	'en-message': 'SUBSCRIBER STATUS',
+				// 	'th-message': '',
+				// 	'technical-message': ''
+				// }, {
+				// 	'message': '',
+				// 	'message-type': 'ERROR',
+				// 	'en-message': 'NICE NUMBER',
+				// 	'th-message': '',
+				// 	'technical-message': ''
+				// }, {
+				// 	'message': '',
+				// 	'message-type': 'ERROR',
+				// 	'en-message': 'SHARED PLAN',
+				// 	'th-message': '',
+				// 	'technical-message': ''
+				// }, {
+				// 	'message': '',
+				// 	'message-type': 'WARNING',
+				// 	'en-message': 'CONVERGENT',
+				// 	'th-message': '',
+				// 	'technical-message': ''
+				// }]
 			};
 
 			$timeout(function() {
