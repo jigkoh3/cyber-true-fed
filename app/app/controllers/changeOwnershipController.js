@@ -99,7 +99,7 @@ smartApp.controller('changeOwnershipController', function(
         $scope.customer['tax-id'] = "";
         $scope.newOwner.prefixTH = "T4";
         $scope.newOwner.sex = "FEMALE";
-        $scope.newOwner.birthdate = "";
+        $scope.newOwner.birthDay = "";
         $scope.newOwner.expireDay = "";
 
     }
