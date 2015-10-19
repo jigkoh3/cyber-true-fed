@@ -277,10 +277,6 @@
             console.log(result);
             $scope.SubNo = 'null';
             $('#dataSubNo').val("");
-            setTimeout(function() {
-                $('#dataSubNo').focus();
-
-            }, 1200);
             return;
         } else {
             $scope.data = result.data;
@@ -690,7 +686,7 @@
         //end----------- camera ----------------
     $scope.afterCloseWarning = function() {
 
-        if ($scope.SubNo = 'null') {
+        if ($scope.SubNo == 'null' ) {
             $('#dataSubNo').val('');
             setTimeout(function() {
                 $('#dataSubNo').focus();

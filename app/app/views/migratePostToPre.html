@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <p></p>
-                                    <select class="form-control" ng-model="selectedProPosition">
+                                    <select class="form-control" ng-model="selectedProPosition" ng-disabled="isSecondAuhenFailed">
                                         <option value="">-- กรุณาเลือก --</option>
                                         <option ng-repeat="item in proPositionList" value="{{ item['proposition-code'] }}">
                                             {{ item.name }} : {{ item.description }}
@@ -127,10 +127,10 @@
                                     <input type="text" ng-model="selectedPricePlan.description" readonly class="form-control">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control">
+                                    <input type="text" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control" ng-disabled="isSecondAuhenFailed">
                                 </div>
                                 <div class="col-md-1">
-                                    <button href="#pricePlanModal" id="modalnewpriceplan" class="btn" onclick="return false;" data-toggle="modal" style="background-color: #5cb85c; border-color: #4cae4c; ">
+                                    <button href="#pricePlanModal" id="modalnewpriceplan" class="btn" onclick="return false;" data-toggle="modal" style="background-color: #5cb85c; border-color: #4cae4c;" ng-disabled="isSecondAuhenFailed">
                                         <span style="color:white;">...</span>
                                     </button>
                                 </div>
@@ -173,7 +173,7 @@
                         <div class="col-md-3">
                             <div class="form-group imp">
                                 <label>รหัสไปรษณีย์ </label>
-                                <input type="text" ng-numeric-input ng-model="data.customerAddress['zip']" class="form-control" maxlength="{{ zipLength }}" required>
+                                <input type="text" ng-numeric-input ng-model="data.customerAddress['zip']" class="form-control" maxlength="{{ zipLength }}" required ng-disabled="isSecondAuhenFailed">
                                 <!-- <span class="error" style="color:red;" ng-show="customerspre.postcodes.$error.required">
                                         Required!
                                     </span> -->
@@ -182,7 +182,7 @@
                         <div class="col-md-3">
                             <div class="form-group imp">
                                 <label>จังหวัด </label>
-                                <input type="text" ng-model="data.customerAddress['province']" class="form-control" required>
+                                <input type="text" ng-model="data.customerAddress['province']" class="form-control" required ng-disabled="isSecondAuhenFailed">
                                 <!-- <span class="error" style="color:red;" ng-show="customerspre.provinces.$error.required">
                                         Required!
                                     </span> -->
@@ -191,7 +191,7 @@
                         <div class="col-md-3">
                             <div class="form-group imp">
                                 <label>เขต / อำเภอ </label>
-                                <input type="text" ng-model="data.customerAddress['district']" class="form-control" required>
+                                <input type="text" ng-model="data.customerAddress['district']" class="form-control" required ng-disabled="isSecondAuhenFailed">
                                 <!-- <span class="error" style="color:red;" ng-show="customerspre.aumpers.$error.required">
                                         Required!
                                     </span> -->
@@ -200,7 +200,7 @@
                         <div class="col-md-3">
                             <div class="form-group imp">
                                 <label>แขวง / ตำบล </label>
-                                <input type="text" ng-model="data.customerAddress['sub-district']" class="form-control" required>
+                                <input type="text" ng-model="data.customerAddress['sub-district']" class="form-control" required ng-disabled="isSecondAuhenFailed">
                                 <!-- <span class="error" style="color:red;" ng-show="customerspre.tumbols.$error.required">
                                         Required!
                                     </span> -->
@@ -215,7 +215,7 @@
                                         <input type="checkbox" ng-model="noHomeNumber" class="styled">
                                         <label><span style="position:relative;top:3px;left:-10px;">ไม่มีบ้านเลขที่</span></label>
                                     </div> -->
-                                <input type="text" ng-model="data.customerAddress['number']" ng-disabled="noHomeNumber" name="homenos" class="form-control numberic" required>
+                                <input type="text" ng-model="data.customerAddress['number']" ng-disabled="noHomeNumber || isSecondAuhenFailed" name="homenos" class="form-control numberic" required>
                                 <!-- <span class="error" style="color:red;" ng-show="customerspre.homenos.$error.required">
                                         Required!
                                     </span> -->
@@ -228,7 +228,7 @@
                                         <input type="checkbox" ng-model="noHomeMoo" class="styled">
                                         <label><span style="position:relative;top:3px;left:-10px;">ไม่มีหมู่ที่</span></label>
                                     </div> -->
-                                <input type="text" ng-model="data.customerAddress['moo']" ng-disabled="noHomeMoo" class="form-control" required>
+                                <input type="text" ng-model="data.customerAddress['moo']" ng-disabled="noHomeMoo || isSecondAuhenFailed" class="form-control" required>
                                 <!-- <span class="error" style="color:red;" ng-show="customerspre.homemoos.$error.required">
                                         Required!
                                     </span> -->
@@ -237,13 +237,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>หมู่บ้าน</label>
-                                <input type="text" class="form-control numberic" ng-model="data.customerAddress['village']">
+                                <input type="text" class="form-control numberic" ng-model="data.customerAddress['village']" ng-disabled="isSecondAuhenFailed">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>อาคาร</label>
-                                <input type="text" class="form-control" ng-model="data.customerAddress['building-name']">
+                                <input type="text" class="form-control" ng-model="data.customerAddress['building-name']" ng-disabled="isSecondAuhenFailed">
                             </div>
                         </div>
                     </div>
@@ -251,25 +251,25 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>ชั้น</label>
-                                <input type="text" class="form-control" ng-model="data.customerAddress['building-floor']">
+                                <input type="text" class="form-control" ng-model="data.customerAddress['building-floor']" ng-disabled="isSecondAuhenFailed">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>เลขห้อง</label>
-                                <input type="text" class="form-control" ng-model="data.customerAddress['building-room']">
+                                <input type="text" class="form-control" ng-model="data.customerAddress['building-room']" ng-disabled="isSecondAuhenFailed">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>ซอย</label>
-                                <input type="text" class="form-control" ng-model="data.customerAddress['soi']">
+                                <input type="text" class="form-control" ng-model="data.customerAddress['soi']" ng-disabled="isSecondAuhenFailed">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group imp">
                                 <label>ถนน</label>
-                                <input type="text" class="form-control" ng-model="data.customerAddress['street']" required>
+                                <input type="text" class="form-control" ng-model="data.customerAddress['street']" required ng-disabled="isSecondAuhenFailed">
                                 <span class="error" style="color:red;" ng-show="customerspre.roadcode.$error.required">
                                         Required!
                                     </span>
@@ -294,7 +294,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Memo</label>
                         <div class="col-md-4">
-                            <textarea class="form-control" ng-model="memo" name="message" style="width:100%;height:70px;"></textarea>
+                            <textarea class="form-control" ng-model="memo" name="message" style="width:100%;height:70px;" ng-disabled="isSecondAuhenFailed"></textarea>
                         </div>
                     </div>
                 </div>
@@ -399,8 +399,9 @@
             </div>
             <div class="col-md-12 form-buttons">
                 <div class="form-group">
-                    <input ng-if="shopType === '0'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()"  />
-                    <input ng-if="shopType === '1'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()"  />
+                    <input ng-if="shopType === '0'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()"/>
+                    <input ng-if="shopType === '1' && getAuthen.isSecondAuthen === false" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="isSecondAuhenFailed" />
+                    <input ng-if="shopType === '1' && getAuthen.isSecondAuthen === true" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="isSecondAuhenFailed" />
                     <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
                     <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()" />
                 </div>
@@ -414,7 +415,7 @@
             <div class="modal-header">
                 <h5>Price Plan</h5>
                 <div class="col-md-12">
-                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter" class="form-control">
+                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter" class="form-control" ng-disabled="isSecondAuhenFailed >
                 </div>
             </div>
             <div class="modal-body">
