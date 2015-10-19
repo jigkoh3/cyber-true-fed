@@ -22,6 +22,8 @@
     $scope.divID = 'migratePreToPostContent';
     $scope.subNoLength = 10;
     $scope.zipLength = 5;
+    $scope.isLastestUser = true;
+    $scope.isCustomerProfile = false;
 
     $scope.dirty = {
         selectedPricePlan: {}
@@ -545,6 +547,19 @@
             SystemService.hideLoading();
         }
         else {
+
+            var idType = $scope.data.simData['account-category'];
+
+            setTimeout(function() {
+                $('#selectCustomerIdType').val(idType);
+            }, 1000);
+
+            $scope.data.customerProfile['id-type'] = idType;
+
+            if(idType=="I"){
+                $scope.isLastestUser = false;
+            }
+
             $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
             $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
 
@@ -635,7 +650,7 @@
                 $scope.isCustomerProfile = true;
             }
 
-            var partnerCode = utils.getObject($scope.getAuthen, 'partnerCodes.0');
+            $scope.partnerCode = utils.getObject($scope.getAuthen, 'partnerCodes.0');
 
             //call getCUGId
             ChangePricePlanService.getCUGList(function(result) {
@@ -643,7 +658,19 @@
                 //alert($scope.cugList.length);
             });
 
-            SystemService.getOrderId($scope.getAuthen.channel, partnerCode, function(order) {
+            if ($scope.shopType === '1') {
+                validatePartner();
+            }
+
+            if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
+                $scope.isNonePartner = false;
+            }
+
+            if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length >= 1) {
+                $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
+            }
+
+            SystemService.getOrderId($scope.getAuthen.channel, $scope.partnerCode, function(order) {
                 SystemService.hideLoading();
 
                 orderData = order;
