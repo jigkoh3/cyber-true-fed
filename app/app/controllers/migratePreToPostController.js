@@ -538,6 +538,8 @@
 
         $scope.data = result.data;
 
+        $scope.getSIMDataFailed = false;
+
         if (!$scope.data) {
             $scope.getSIMDataFailed = true;
             SystemService.hideLoading();
@@ -932,6 +934,11 @@
         $scope.gradingData = result.data['response-data'];
 
         if ($scope.gradingData) {
+
+            $scope.data.customerProfile['customer-level'] = $scope.gradingData["grade-name"];
+            $scope.data.customerProfile['customer-sublevel-id'] = $scope.gradingData["grade-id"];
+            $scope.data.customerProfile['customer-sublevel'] = $scope.gradingData["grade-sub-name"]
+
 			accountSubType();
         }
     };
