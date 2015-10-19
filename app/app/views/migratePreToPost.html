@@ -52,14 +52,14 @@
                         <div class="col-md-4">
                             <div class="form-group imp">
                                 <label>หมายเลขบัตรประชาชน / พาสปอร์ต </label>
-                                <input ng-numeric-input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" ng-disabled="!getSIMDataFailed" class="form-control" maxlength="13">
+                                <input ng-numeric-input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" ng-disabled="!getSIMDataFailed && !isLastestUser" class="form-control" maxlength="13">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <!-- id-type -->
                                 <label>ประเภทของบัตร <span style="color:red;">*</span></label>
-                                <select class="form-control" ng-model="data.customerProfile['id-type']" ng-disabled="!getSIMDataFailed">
+                                <select class="form-control" ng-model="data.customerProfile['id-type']" ng-disabled="!getSIMDataFailed && !isLastestUser">
                                     <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                 </select>
                             </div>
@@ -71,7 +71,7 @@
                                 <label>เลขที่ประจำตัวผู้เสียภาษี<span style="color:red;">*</span> </label>
                                 <input name="taxIds"
                                        type="text"
-                                       ng-model="data.customerProfile['tax-id']" ng-disabled="!getSIMDataFailed"
+                                       ng-model="data.customerProfile['tax-id']" ng-disabled="!getSIMDataFailed && !isLastestUser"
                                        id="taxId3"
                                        placeholder=""
                                        class="form-control numberic" maxlength="13" required>
@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <label>คำนำหน้า <span style="color:red;">*</span></label>
                                 <div id="placeholders">
-                                    <select class="form-control" ng-model="data.customerProfile['title-code']" ng-disabled="!getSIMDataFailed">
+                                    <select class="form-control" ng-model="data.customerProfile['title-code']" ng-disabled="!getSIMDataFailed && !isLastestUser">
                                         <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
@@ -104,13 +104,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>ชื่อ <span style="color:red;">*</span></label>
-                                <input type="text" id="firstNameTH3" ng-model="data.customerProfile['firstname']" class="form-control" ng-disabled="!getSIMDataFailed">
+                                <input type="text" id="firstNameTH3" ng-model="data.customerProfile['firstname']" class="form-control" ng-disabled="!getSIMDataFailed && !isLastestUser">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>นามสกุล <span style="color:red;">*</span></label>
-                                <input type="text" id="lastNameTH3" ng-model="data.customerProfile['lastname']" class="form-control" ng-disabled="!getSIMDataFailed">
+                                <input type="text" id="lastNameTH3" ng-model="data.customerProfile['lastname']" class="form-control" ng-disabled="!getSIMDataFailed && !isLastestUser">
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                             <div class="form-group">
                                 <label>เพศ <span style="color:red;">*</span></label>
                                 <div id="placeholders">
-                                    <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" ng-disabled="!getSIMDataFailed">
+                                    <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" ng-disabled="!getSIMDataFailed && !isLastestUser">
                                         <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
@@ -128,7 +128,7 @@
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
                                 <label>วัน/เดือน/ปีเกิด <span style="color:red;">*</span></label>
-                                <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" ng-disabled="!getSIMDataFailed">
+                                <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" ng-disabled="!getSIMDataFailed && !isLastestUser">
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
@@ -176,6 +176,7 @@
                         </div>
                     </div> -->
 
+                    {{partnerCode}}
                     <div class="row">
                         <div class="col-md-12" ng-hide="shopType=='1' && getAuthen['isSecondAuthen'] == true && getAuthen.shopcodes.length == 1">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
@@ -394,7 +395,7 @@
                     <div class="row">
                         <div class="form-group">
                             <label class="col-md-3">
-                                <h4>โอนเปลียนเจ้าของไปที่ <span style="color:red;">*</span></h4>
+                                <h4>สร้างข้อมูลลูกค้าไปที่ <span style="color:red;">*</span></h4>
                             </label>
 
                             <div class="col-md-5">
