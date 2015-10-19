@@ -559,7 +559,9 @@
     };
 
     $scope.onInputSubNo = function() {
+    $scope.subNoInput = $('#dataSubNo').val();
         if ($scope.subNoInput && $scope.subNoInput.length === 10) {
+            $scope.SubNo = $('#dataSubNo').val(); 
             SystemService.showLoading();
             //ประเภทของบัตร
             SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
@@ -650,7 +652,7 @@
                         var fancyboxOptions = {
                             helpers: {
                                 overlay: {
-                                    closeClick: false
+                                    // closeClick: false
                                 }
                             },
 
@@ -662,7 +664,7 @@
 
                             afterClose: function() {
                                 if (!$scope.onInputId()) {
-                                    window.close();
+                                    // window.close();
                                 }
                             }
                         };
@@ -908,6 +910,23 @@
 
         MigratePreToPostService.validateGrading(validateGradePayload, onValidateGrading);
     };
+
+    setTimeout(function() {
+        SystemService.validateNummeric();
+    }, 1000);
+
+    $scope.isNumberSubNo = false;
+    $scope.onKeyUpSubNo = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberSubNo = !bool;
+        //setTimeout(function () {
+        //    $scope.isNumberSubNo = false;
+        //    $('#idBindDataAgain').click();
+        //}, 3000);
+        $scope.autoHideNumberSubNo = false;
+        return bool;
+    }
 
     var onValidateGrading = function(result) {
         $scope.gradingData = result.data['response-data'];
