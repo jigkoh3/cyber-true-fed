@@ -388,6 +388,7 @@
             var target = 'profiles/customer/getlastestcustomer?certificateid=' + certificateid + '&customertype=' + customertype;
             SystemService.callServiceGet(target, null, function (result) {
                 fnCallback(result);
+                
             });
         } else {
 
@@ -405,7 +406,7 @@
                         "contact-number": "029448849#123",
                         "contact-mobile-number": "444444444",
                         "id-type": "",
-                        "id-number": "1984051311082",
+                        "id-number": "1189900130607",
                         "customer-id": "4811",
                         "customer-level": "NON-TOP",
                         "customer_sublevel_id": null,

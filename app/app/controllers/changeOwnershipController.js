@@ -1301,6 +1301,15 @@ smartApp.controller('changeOwnershipController', function(
     };
     $scope.onChangeTitleOther = function() {
         console.log($scope.titleOther);
+        var selectTitleOther =$filter('filter')($scope.titleOtherTypeList, {value:$scope.titleOther});
+        console.log(selectTitleOther[0]);
+        if(SystemService.checkObj(selectTitleOther[0],['attributes','GENDER'])){
+            $('#sex3').val(selectTitleOther[0]['attributes']['GENDER']);
+             console.log(selectTitleOther[0]['attributes']['GENDER']);
+        }else{    
+            $('#sex3').val('ALL');
+           console.log('ALL');
+        }
         $scope.titleOther2 = $scope.titleOther;
     };
 
