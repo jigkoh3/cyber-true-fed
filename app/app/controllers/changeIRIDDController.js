@@ -27,6 +27,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.offerGroup = 0;
     $scope.approver = "";
 
+    $scope.showDataDealer = false;
+
     $scope.isNullSubNo = $routeParams.subno ? false : true;
 
     //$scope.lspromoType = {
@@ -195,6 +197,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 $('#CitizenID').val('');
                 $('#CitizenID').focus();
                 if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                    $scope.showDataDealer = true;
                     $('#CitizenID').prop('disabled', false);
                     setTimeout(function() {
                         $('#btnSSO').hide();
@@ -289,6 +292,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
         if ($scope.cardInfo.CitizenID == $scope.data.responseData.customer["id-number"]) {
             $scope.isCardValueData = true;
+            $scope.showDataDealer = false;
 
             $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
@@ -341,7 +345,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
         if (cid.length >= 3) {
             if (cid == $scope.data2.customerProfile["id-number"]) {
-
+                $scope.showDataDealer = false;
                 //document.getElementById('btnReadCardClose2').click();
                 //$("#btnForm").fancybox().close();
                 $scope.isCustomerProfile = true;
