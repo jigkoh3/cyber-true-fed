@@ -455,7 +455,7 @@
 
     // Authentication
     var orderData = {};
-
+    $scope.showDataDealer = false;
     var authenticate = function() {
         AuthenService.getAuthen(function(authResult) {
             $scope.getAuthen = authResult;
@@ -470,6 +470,10 @@
 
             } else {
                 $scope.isCustomerProfile = true;
+            }
+
+            if ($scope.shopType == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
+                $scope.showDataDealer = true;
             }
 
             // Prepare dealer code list
@@ -583,6 +587,7 @@
         if (value.length === 13) {
             if (value === $scope.data.customerProfile['id-number']) {
                 $scope.isCustomerProfile = true;
+                $scope.showDataDealer = false;
                 $('#unMatch').hide();
                 $('.fancybox-close').click();
 
@@ -686,7 +691,7 @@
         //end----------- camera ----------------
     $scope.afterCloseWarning = function() {
 
-        if ($scope.SubNo == 'null' ) {
+        if ($scope.SubNo == 'null') {
             $('#dataSubNo').val('');
             setTimeout(function() {
                 $('#dataSubNo').focus();

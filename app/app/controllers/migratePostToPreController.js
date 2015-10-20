@@ -76,7 +76,7 @@
         if(idType=="I"){
             $scope.isLastestUser = false;
         }
-        if(idType!="I"){
+        if(idType!="I" && $scope.shopType == '0'){
             $scope.isSecondAuhenFailed = false;
         }
         $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
@@ -265,6 +265,7 @@
                 return true;
             } else {
                 $('#unMatch').show();
+                $('#loadingReadCard').hide();
             }
         }
     };

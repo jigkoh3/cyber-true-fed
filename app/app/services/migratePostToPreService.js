@@ -41,7 +41,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "contact-number": "",
                         "contact-mobile-number": "",
                         "id-type": "",
-                        "id-number": "2015010311166",
+                        "id-number": "1180200046320",
                         "customer-id": "2768",
                         "installed-products": [{
                             "ouId": "1078",
@@ -112,7 +112,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "contact-number": "",
                         "contact-mobile-number": "",
                         "id-type": "",
-                        "id-number": "1539900184053",
+                        "id-number": "1180200046320",
                         "customer-id": "7866",
                         "installed-products": [{
                             "ouId": "2423",
