@@ -102,6 +102,14 @@ smartApp.controller('changeOwnershipController', function(
         $scope.newOwner.birthDay = "";
         $scope.newOwner.expireDay = "";
 
+        $scope.newOwner2.firstNameTH = "";
+        $scope.newOwner2.lastNameTH = "";
+        $scope.newOwner2.prefixTH = "T4";
+        $scope.newOwner2.sex = "FEMALE";
+        $scope.newOwner2.birthDay = "";
+
+
+
     }
 
 
@@ -220,7 +228,7 @@ smartApp.controller('changeOwnershipController', function(
         $('#taxId3').val($scope.cardInfo3.CitizenID);
 
         //binding user registerd - ระบุผู้ใช้หมายเลข
-        $('#titleRegisterd').val($scope.cardInfo3.PrefixTH);
+        $('#titleRegisterd').val(sex);
         $('#firstNameRegisterd').val($scope.cardInfo3.FirstNameTH);
         $('#lastNameRegisterd').val($scope.cardInfo3.LastNameTH);
         $('#birthDayRegisterd').val($scope.cardInfo3.BirthDay);
@@ -458,17 +466,17 @@ smartApp.controller('changeOwnershipController', function(
                 //คำนำหน้า
                 SystemService.getMaster_list("CUST-TITLE-TYPE", function(result) {
                     $scope.titleTypeListx = result;
-                    console.log($scope.titleTypeListx);
+                    // console.log($scope.titleTypeListx);
                 });
                 //คำนำหน้า อื่นๆ
                 SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function(result) {
                     $scope.titleOtherTypeList = result;
-                    console.log($scope.titleOtherTypeList);
+                    //console.log($scope.titleOtherTypeList);
                 });
                 //ประเภทของบัตร
                 SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
                     $scope.cardTypeOptions = result;
-                    console.log($scope.cardTypeOptions);
+                    //console.log($scope.cardTypeOptions);
                 });
 
                 //reason
@@ -481,7 +489,7 @@ smartApp.controller('changeOwnershipController', function(
                 //เพศ
                 SystemService.getMaster_list("CUST-GENDER", function(result) {
                     $scope.genderTypeList = result;
-                    console.log($scope.genderTypeList);
+                    //console.log($scope.genderTypeList);
                 });
                 //call getCUGId
                 ChangePricePlanService.getCUGList(function(result) {
@@ -501,7 +509,7 @@ smartApp.controller('changeOwnershipController', function(
 
                             $scope.data2 = result;
 
-                            console.log($scope.data);
+                            //console.log($scope.data);
 
                             if ($scope.shopType == '1') {
                                 $("#btn-fancy-ReadCard").fancybox({
@@ -833,9 +841,14 @@ smartApp.controller('changeOwnershipController', function(
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;
         if (!$scope.isCardValueDataLastest) {
+            $('#idBindDataAgain').click();
+
             $scope.newOwner.firstNameTH = "";
             $scope.newOwner.lastNameTH = "";
             $scope.newOwner.prefixTH = "T2";
+            $scope.newOwner.birthDay = "";
+            $scope.newOwner.expireDay = "";
+
             //ระบุผู้ใช้หมายเลข
             $scope.newOwner2.firstNameTH = "";
             $scope.newOwner2.lastNameTH = "";
@@ -851,10 +864,19 @@ smartApp.controller('changeOwnershipController', function(
             $scope.contactNo.continued = "";
 
             $scope.onselectPrefix();
+
+
+
+
         }
 
         //$scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
+        // (Start) Get current SIM data ----------------------
+        var formatDate = function(date) {
+            if (!date) return date;
 
+            return moment(date).format('DD/MM/YYYY');
+        };
         var cid = $('#citizenID3').val();
         if (cid.length >= 9) {
             SystemService.showLoading();
@@ -912,6 +934,7 @@ smartApp.controller('changeOwnershipController', function(
                                     $scope.contactNo.continued = "";
 
                                     $scope.onselectPrefix();
+
                                 }
 
                                 $scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
@@ -940,15 +963,25 @@ smartApp.controller('changeOwnershipController', function(
                                 var customer = lastestCustomer.data["response-data"]["customer"];
 
                                 $scope.lastestCustomer = customer;
-                                //ผู้จดทะเบียนใหม่
-                                //$scope.customer = customer;
-                                $scope.newOwner.firstNameTH = customer["firstname"];
-                                $scope.newOwner.lastNameTH = customer["lastname"];
-                                $scope.newOwner.prefixTH = customer["title-code"];
+                                if ($scope.isCardValueDataLastest == false) {
+                                    //ผู้จดทะเบียนใหม่
+                                    //$scope.customer = customer;
+                                    $scope.newOwner.firstNameTH = customer["firstname"];
+                                    $scope.newOwner.lastNameTH = customer["lastname"];
+
+                                    $scope.newOwner2.firstNameTH = customer["firstname"];
+                                    $scope.newOwner2.lastNameTH = customer["lastname"];
+
+                                    $scope.newOwner.prefixTH = customer["title-code"];
+                                    $scope.newOwner2.prefixTH = customer["title-code"];
+
+                                    $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
+                                    $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+                                }
+
                                 //ระบุผู้ใช้หมายเลข
-                                $scope.newOwner2.firstNameTH = customer["firstname"];
-                                $scope.newOwner2.lastNameTH = customer["lastname"];
-                                $scope.newOwner2.prefixTH = customer["title-code"];
+
+
 
                                 $scope.customer['tax-id'] = customer["id-number"];
 
@@ -962,6 +995,7 @@ smartApp.controller('changeOwnershipController', function(
                                 $scope.isAddressList = customer['address-list']['CUSTOMER_ADDRESS'];
 
                                 $scope.onselectPrefix();
+
 
                                 $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
 
@@ -1050,6 +1084,7 @@ smartApp.controller('changeOwnershipController', function(
                 $scope.isReadCardSuccess = false;
                 $scope.CitizenID = "";
 
+
                 $scope.data = $scope.data2;
             } else {
                 $('#unMatch').show();
@@ -1069,6 +1104,7 @@ smartApp.controller('changeOwnershipController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
+
             $scope.onInputCitizenID3();
         }
     };
@@ -1082,7 +1118,9 @@ smartApp.controller('changeOwnershipController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
+
             $scope.onInputCitizenID3();
+
         }
     };
     $scope.onInputIdLastest3 = function() {
@@ -1109,6 +1147,7 @@ smartApp.controller('changeOwnershipController', function(
 
             $scope.customer['id-number'] = cid;
             $scope.onInputCitizenID3();
+
         }
     };
     $scope.secondAuthenDataLastest = {};
@@ -1301,14 +1340,16 @@ smartApp.controller('changeOwnershipController', function(
     };
     $scope.onChangeTitleOther = function() {
         console.log($scope.titleOther);
-        var selectTitleOther =$filter('filter')($scope.titleOtherTypeList, {value:$scope.titleOther});
+        var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
+            value: $scope.titleOther
+        });
         console.log(selectTitleOther[0]);
-        if(SystemService.checkObj(selectTitleOther[0],['attributes','GENDER'])){
+        if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
             $('#sex3').val(selectTitleOther[0]['attributes']['GENDER']);
-             console.log(selectTitleOther[0]['attributes']['GENDER']);
-        }else{    
+            console.log(selectTitleOther[0]['attributes']['GENDER']);
+        } else {
             $('#sex3').val('ALL');
-           console.log('ALL');
+            console.log('ALL');
         }
         $scope.titleOther2 = $scope.titleOther;
     };
@@ -2583,6 +2624,16 @@ smartApp.controller('changeOwnershipController', function(
                 if (result.data["display-messages"][0]["message-code"] == 'TMV-PREVERIFY-11010') {
                     $scope.showApprovCode = true;
                     $scope.isVerify = false;
+                    setTimeout(function() {
+                        SystemService.showAlert({
+                            "message": result.data["display-messages"][0]["message"],
+                            "message-code": result.data["display-messages"][0]["message-code"],
+                            "message-type": "WARNING",
+                            "en-message": result.data["display-messages"][0]["en-message"],
+                            "th-message": result.data["display-messages"][0]["th-message"],
+                            "technical-message": result.data["display-messages"][0]["technical-message"]
+                        });
+                    }, 1000);
                 } else {
                     setTimeout(function() {
                         SystemService.showAlert({
@@ -2670,10 +2721,47 @@ smartApp.controller('changeOwnershipController', function(
                     "verifyCode": null
                 }]
             };
+            var data3 = {
+
+                "status": "SUCCESSFUL",
+
+                "fault": {
+
+                    "name": "th.co.truecorp.ads.api.ApplicationServiceException",
+
+                    "code": "TMV-PREVERIFY-11010",
+
+                    "message": " (-8.5-) request and reserve (8) is over max_allow (6).  (-8.5-) request and reserve (8) is over max_allow (6)",
+
+                    "detailed-message": "ApplicationServiceException TMV-PREVERIFY-11010 (-8.5-) request and reserve (8) is over max_allow (6). "
+
+                },
+
+                "display-messages": [{
+
+                    "message": "Your register over maximum 6 numbers. Please call 9700 press 3",
+
+                    "message-code": "TMV-PREVERIFY-11010",
+
+                    "message-type": "ERROR",
+
+                    "en-message": "Your register over maximum 6 numbers. Please call 9700 press 3",
+
+                    "th-message": "ลูกค้าได้ทำการจองเบอร์ และ/หรือมีการเปิดบริการไปครบตามจำนวนที่กำหนดตามประเภทลูกค้าแล้ว         \r\nกรณีที่ลูกค้าต้องการเปิดบริการเพิ่มจะต้องแนบเอกสารเพิ่มเติมด้านล่างมาด้วยอย่างน้อย 1 อย่าง            \r\nประเภทบุคคลธรรมดา (รวมถึงกิจการเจ้าของคนเดียว) : ต้องการจดทะเบียนมากกว่า 3 เครื่อง            \r\n- สำเนาบัญชีเงินฝากออมทรัพย์/ประจำ/กระแสรายวัน ย้อนหลัง 3 เดือนล่าสุด (พร้อมหน้าแรกของสมุดบัญชี)        \r\n- สำเนาใบแจ้งหนี้บัตรเครดิตย้อนหลัง 2 เดือนล่าสุด         \r\n- ใบแจ้งรายได้ประจำเดือนดิต (เดือนล่าสุด)        \r\nทั้งนี้ผลการพิจารณาอนุมัติขึ้นอยู่กับเอกสารเพิ่มเติมดังกล่าวด้วย            \r\nประเภทลูกค้าธุรกิจ: กรณีบริษัทจัดตั้งน้อยกว่า 2 และซื้อเกิน 15 เครื่อง             \r\n        \r\nประเภทลูกค้าธุรกิจ : กรณีซื้อเกิน 25 เครื่อง            \r\n- ให้ติดต่อฝ่ายขายตรงบริษัท ทรู มูฟ จำกัด        \r\nหมายเหตุ:            \r\n1 สำเนาเอกสารทุกฉบับต้องเซ็นรับรองสำเนาถูกต้อง พร้อมประทับตรา (ถ้ามี)        \r\n2 ให้ดีลเลอร์ และทรูมูฟ ช้อป เท่านั้น โทรและแฟกซ์เอกสารเพิ่มเติมมาที่ Referral (ฝ่ายเครดิต) เพื่อขอ \"รหัสอนุมัติ \"(Approved code) ก่อนรับจอง        \r\nเลขหมาย (โทร 0-2647-9700 กด 6, เบอร์โทรสาร 0-2647-9802) หากไม่มี  \"รหัสอนุมัติ \" (Approved code) จะไม่สามารถจดทะเบียนให้ลูกค้าได้            \r\nบริษัทอาจอนุมัติหรือไม่อนุมัติการจองให้กับลูกค้าทั้งนี้ขึ้นอยู่กับการพิจารณาเอกสารดังกล่าวข้างต้น",
+
+                    "technical-message": "null( Message variable: [MAX_ALLOW:6] ) "
+
+                }],
+
+                "trx-id": "3S449PKCJPH8",
+
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)"
+
+            }
             if ($scope.approveCode) {
                 result = data2;
             } else {
-                result = data2;
+                result = data3;
             }
             checkMaxAllow({
                 status: true,
@@ -2823,6 +2911,11 @@ smartApp.controller('changeOwnershipController', function(
 
     $scope.onChangCheckno = function() {
         //alert($scope.changCheckno);
+        $('#titleRegisterd').val($('#prefixTH3').val());
+        $('#sex32').val($('#sex3').val());
+        //$('#sex32').val($scope.newOwner2.sex);
+        $scope.onselectPrefix2();
+
     };
 
     $scope.openService = function() {
