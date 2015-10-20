@@ -18,7 +18,7 @@
     $scope.divID = 'migratePostToPreContent';
     $scope.subNoLength = 10;
     $scope.zipLength = 5;
-    
+
     $scope.isLastestUser = true;
     $scope.isReadCardSuccess = false;
     $scope.isSecondAuhenFailed = true;
@@ -49,41 +49,39 @@
             console.log(result);
             $scope.SubNo = 'null';
             $('#dataSubNo').val("");
-            setTimeout(function(){
-             $('#dataSubNo').focus();
-                
-            },1200);
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+
+            }, 1200);
             return;
 
-        } else{
-        $scope.data = result.data;
-        $scope.getSIMDataFailed = false;
-        if (!$scope.data) {
-            $scope.getSIMDataFailed = true;
-            SystemService.hideLoading();
+        } else {
+            $scope.data = result.data;
+            $scope.getSIMDataFailed = false;
+            if (!$scope.data) {
+                $scope.getSIMDataFailed = true;
+                SystemService.hideLoading();
 
-            return;
+                return;
+            }
+
+            var idType = $scope.data.simData['account-category'];
+
+            setTimeout(function() {
+                $('#selectCustomerIdType').val(idType);
+            }, 1000);
+
+            $scope.data.customerProfile['id-type'] = idType;
+            console.log(idType);
+            if (idType == "I") {
+                $scope.isLastestUser = false;
+            }
+
+            $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
+            $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
+
+            authenticate();
         }
-
-        var idType = $scope.data.simData['account-category'];
-
-        setTimeout(function() {
-            $('#selectCustomerIdType').val(idType);
-        }, 1000);
-
-        $scope.data.customerProfile['id-type'] = idType;
-        console.log(idType);
-        if(idType=="I"){
-            $scope.isLastestUser = false;
-        }
-        if(idType!="I" && $scope.shopType == '0'){
-            $scope.isSecondAuhenFailed = false;
-        }
-        $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
-        $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
-
-        authenticate();
-    }
 
     };
 
@@ -163,6 +161,9 @@
             $scope.shopType = $scope.getAuthen['shopType'];
             if ($scope.shopType === '0') {
                 $scope.isCustomerProfile = true;
+            }
+            if ($scope.data.simData['account-category'] != "I" && $scope.shopType == '0') {
+                $scope.isSecondAuhenFailed = false;
             }
 
             var partnerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
@@ -477,8 +478,7 @@
             return false;
         }
 
-        if (
-            !$scope.data.customerProfile['id-number'] || !$scope.data.customerProfile['id-type'] ||
+        if (!$scope.data.customerProfile['id-number'] || !$scope.data.customerProfile['id-type'] ||
             !$scope.data.customerProfile['title-code'] || !$scope.data.customerProfile['firstname'] ||
             !$scope.data.customerProfile['lastname'] || !$scope.data.customerProfile['gender'] ||
             !$scope.data.customerProfile['birthdate'] || !$scope.data.customerProfile['id-expire-date']
@@ -492,8 +492,7 @@
             return false;
         }
 
-        if (
-            !$scope.data.customerAddress['zip'] || !$scope.data.customerAddress['province'] ||
+        if (!$scope.data.customerAddress['zip'] || !$scope.data.customerAddress['province'] ||
             !$scope.data.customerAddress['district'] || !$scope.data.customerAddress['sub-district']
         ) {
             alert('กรุณากรอกที่อยู่จดทะเบียนให้ครบถ้วน');
