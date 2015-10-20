@@ -2624,6 +2624,16 @@ smartApp.controller('changeOwnershipController', function(
                 if (result.data["display-messages"][0]["message-code"] == 'TMV-PREVERIFY-11010') {
                     $scope.showApprovCode = true;
                     $scope.isVerify = false;
+                    setTimeout(function() {
+                        SystemService.showAlert({
+                            "message": result.data["display-messages"][0]["message"],
+                            "message-code": result.data["display-messages"][0]["message-code"],
+                            "message-type": "WARNING",
+                            "en-message": result.data["display-messages"][0]["en-message"],
+                            "th-message": result.data["display-messages"][0]["th-message"],
+                            "technical-message": result.data["display-messages"][0]["technical-message"]
+                        });
+                    }, 1000);
                 } else {
                     setTimeout(function() {
                         SystemService.showAlert({
@@ -2711,10 +2721,47 @@ smartApp.controller('changeOwnershipController', function(
                     "verifyCode": null
                 }]
             };
+            var data3 = {
+
+                "status": "SUCCESSFUL",
+
+                "fault": {
+
+                    "name": "th.co.truecorp.ads.api.ApplicationServiceException",
+
+                    "code": "TMV-PREVERIFY-11010",
+
+                    "message": " (-8.5-) request and reserve (8) is over max_allow (6).  (-8.5-) request and reserve (8) is over max_allow (6)",
+
+                    "detailed-message": "ApplicationServiceException TMV-PREVERIFY-11010 (-8.5-) request and reserve (8) is over max_allow (6). "
+
+                },
+
+                "display-messages": [{
+
+                    "message": "Your register over maximum 6 numbers. Please call 9700 press 3",
+
+                    "message-code": "TMV-PREVERIFY-11010",
+
+                    "message-type": "ERROR",
+
+                    "en-message": "Your register over maximum 6 numbers. Please call 9700 press 3",
+
+                    "th-message": "ลูกค้าได้ทำการจองเบอร์ และ/หรือมีการเปิดบริการไปครบตามจำนวนที่กำหนดตามประเภทลูกค้าแล้ว         \r\nกรณีที่ลูกค้าต้องการเปิดบริการเพิ่มจะต้องแนบเอกสารเพิ่มเติมด้านล่างมาด้วยอย่างน้อย 1 อย่าง            \r\nประเภทบุคคลธรรมดา (รวมถึงกิจการเจ้าของคนเดียว) : ต้องการจดทะเบียนมากกว่า 3 เครื่อง            \r\n- สำเนาบัญชีเงินฝากออมทรัพย์/ประจำ/กระแสรายวัน ย้อนหลัง 3 เดือนล่าสุด (พร้อมหน้าแรกของสมุดบัญชี)        \r\n- สำเนาใบแจ้งหนี้บัตรเครดิตย้อนหลัง 2 เดือนล่าสุด         \r\n- ใบแจ้งรายได้ประจำเดือนดิต (เดือนล่าสุด)        \r\nทั้งนี้ผลการพิจารณาอนุมัติขึ้นอยู่กับเอกสารเพิ่มเติมดังกล่าวด้วย            \r\nประเภทลูกค้าธุรกิจ: กรณีบริษัทจัดตั้งน้อยกว่า 2 และซื้อเกิน 15 เครื่อง             \r\n        \r\nประเภทลูกค้าธุรกิจ : กรณีซื้อเกิน 25 เครื่อง            \r\n- ให้ติดต่อฝ่ายขายตรงบริษัท ทรู มูฟ จำกัด        \r\nหมายเหตุ:            \r\n1 สำเนาเอกสารทุกฉบับต้องเซ็นรับรองสำเนาถูกต้อง พร้อมประทับตรา (ถ้ามี)        \r\n2 ให้ดีลเลอร์ และทรูมูฟ ช้อป เท่านั้น โทรและแฟกซ์เอกสารเพิ่มเติมมาที่ Referral (ฝ่ายเครดิต) เพื่อขอ \"รหัสอนุมัติ \"(Approved code) ก่อนรับจอง        \r\nเลขหมาย (โทร 0-2647-9700 กด 6, เบอร์โทรสาร 0-2647-9802) หากไม่มี  \"รหัสอนุมัติ \" (Approved code) จะไม่สามารถจดทะเบียนให้ลูกค้าได้            \r\nบริษัทอาจอนุมัติหรือไม่อนุมัติการจองให้กับลูกค้าทั้งนี้ขึ้นอยู่กับการพิจารณาเอกสารดังกล่าวข้างต้น",
+
+                    "technical-message": "null( Message variable: [MAX_ALLOW:6] ) "
+
+                }],
+
+                "trx-id": "3S449PKCJPH8",
+
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)"
+
+            }
             if ($scope.approveCode) {
                 result = data2;
             } else {
-                result = data2;
+                result = data3;
             }
             checkMaxAllow({
                 status: true,
