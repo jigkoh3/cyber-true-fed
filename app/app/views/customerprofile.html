@@ -16,7 +16,10 @@
                         <small></small>
                         <small ng-show="data.priceplan['account-category'] != 'B' && data.priceplan['account-category'] != 'C'">หมายเลขบัตรประชาชน/พาสปอร์ต</small>
                         <small ng-show="data.priceplan['account-category'] == 'B' || data.priceplan['account-category'] == 'C'">เลขจดทะเบียนนิติบุคคล</small>
-                        {{data.customerProfile["id-number"]}}
+                        <span ng-hide="showDataDealer">
+                            {{data.customerProfile["id-number"]}}
+                        </span>
+                        
                     </h4>
                     <span class="input-group-btn" style=" top: 8px;" ng-hide="shopType == '0' ">
                         <!--<button title="อ่านจากการ์ด" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard');ReadCard('ReadP');" style="height:30px;" type="button" data-toggle="tooltip" class="btn credit_ie8">
@@ -49,7 +52,10 @@
                 <h4>
                     <small ng-show="data.priceplan['account-category'] != 'B' && data.priceplan['account-category'] != 'C'">ชื่อ - นามสกุล</small>
                     <small ng-show="data.priceplan['account-category'] == 'B' || data.priceplan['account-category'] == 'C'">ชื่อนิติบุคคล</small>
-                    {{data.customerProfile["title"]}} {{data.customerProfile["firstname"]}}  {{data.customerProfile["lastname"]}}
+                    <span ng-hide="showDataDealer">
+                            {{data.customerProfile["title"]}} {{data.customerProfile["firstname"]}}  {{data.customerProfile["lastname"]}}
+                        </span>
+                    
                 </h4>
             </div>
         </div>

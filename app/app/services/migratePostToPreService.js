@@ -41,7 +41,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "contact-number": "",
                         "contact-mobile-number": "",
                         "id-type": "",
-                        "id-number": "2015010311166",
+                        "id-number": "1180200046320",
                         "customer-id": "2768",
                         "installed-products": [{
                             "ouId": "1078",
@@ -99,11 +99,78 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": {}
             };
+            var data3 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "463Z1K1XLIKW",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": {
+                    "customer": {
+                        "title": "",
+                        "firstname": "Nico di Angelo",
+                        "lastname": "",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "",
+                        "id-number": "1180200046320",
+                        "customer-id": "7866",
+                        "installed-products": [{
+                            "ouId": "2423",
+                            "ban": "10002498",
+                            "product-category": "TMV",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "H",
+                            "product-status": "Active",
+                            "number-status": "A",
+                            "account-category": "C",
+                            "account-sub-type": "HYE",
+                            "product-id": "R13EIHP15",
+                            "product-name": "R13EIHP15",
+                            "product-description": "Hybrid_iphone_1355.14V550S50UnWEG2g128_HS_1.25bt",
+                            "bill-cycle": "2",
+                            "company-code": "RM",
+                            "service-level": "C",
+                            "subscriber-id": "8852",
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0957570070",
+                            "mobile-servicetype": "HYBRID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false
+                        }],
+                        "address-list": {
+                            "CUSTOMER_ADDRESS": {
+                                "number": "1/10",
+                                "moo": "",
+                                "street": "หลานหลวง",
+                                "soi": "",
+                                "district": "ป้อมปราบศัตรูพ่าย",
+                                "province": "กรุงเทพมหานคร",
+                                "building-name": "",
+                                "building-room": "",
+                                "building-floor": "",
+                                "sub-district": "คลองมหานาค",
+                                "zip": "10100",
+                                "household": ""
+                            }
+                        }
+                    }
+                }
+            }
             if (msisdn == "0689100006") {
                 $timeout(function() {
                     cb({
                         status: true,
                         data: data,
+                        error: '',
+                        msgErr: ''
+                    });
+                }, 1000);
+            }else if (msisdn == "0957570070") {
+                $timeout(function() {
+                    cb({
+                        status: true,
+                        data: data3,
                         error: '',
                         msgErr: ''
                     });
