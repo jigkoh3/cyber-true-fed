@@ -309,6 +309,11 @@
 
         $('#CitizenID').val($scope.cardInfo.CitizenID);
         $scope.onInputId();
+        setTimeout(function(){
+            $('#idBindDataAgain').click();
+
+        }, 1000);
+        
     };
 
     $scope.SetCardValue2 = function(result) {
