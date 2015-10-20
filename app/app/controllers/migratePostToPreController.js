@@ -164,6 +164,16 @@
             }
             if ($scope.data.simData['account-category'] != "I" && $scope.shopType == '0') {
                 $scope.isSecondAuhenFailed = false;
+            }else if($scope.shopType == '0'){
+                $scope.isSecondAuhenFailed = false;
+            }
+
+            if($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false){
+                    setTimeout(function() {
+                        $('#CitizenID').prop('disabled', false);
+                        $('#CitizenID').focus();
+                        $('#btnSSO').hide();
+                    }, 1100);
             }
 
             var partnerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
@@ -376,9 +386,10 @@
     var getProPosition = function(partnerCode) {
         var proPositionPayload = {
             'company-code': $scope.data.simData['company-code'],
-            'customer-type': $scope.data.simData['account-category'],
+            'customer-type': "P",
             'propo-type': 'NEW',
-            'mobile-servicetype': $scope.data.simData['mobile-servicetype'],
+            //'mobile-servicetype': $scope.data.simData['mobile-servicetype'],
+            'mobile-servicetype': "PREPAID",
             'partner-code': partnerCode,
             'privilege': false
         };
@@ -413,8 +424,8 @@
 
         var payload = {
             'company-code': $scope.data.simData['company-code'],
-            'customer-type': $scope.data.simData['account-category'],
-            'customer-subtype': $scope.data.simData['account-sub-type'],
+            'customer-type': "P",
+            'customer-subtype': "PRE",
             'service-level': proposition['service-level'],
             'proposition': val,
             'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
