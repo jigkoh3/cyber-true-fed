@@ -76,7 +76,9 @@
         if(idType=="I"){
             $scope.isLastestUser = false;
         }
-        
+        if(idType!="I"){
+            $scope.isSecondAuhenFailed = false;
+        }
         $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
         $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
 
