@@ -102,6 +102,14 @@ smartApp.controller('changeOwnershipController', function(
         $scope.newOwner.birthDay = "";
         $scope.newOwner.expireDay = "";
 
+        $scope.newOwner2.firstNameTH = "";
+        $scope.newOwner2.lastNameTH = "";
+        $scope.newOwner2.prefixTH = "T4";
+        $scope.newOwner2.sex = "FEMALE";
+        $scope.newOwner2.birthDay = "";
+
+
+
     }
 
 
@@ -220,7 +228,7 @@ smartApp.controller('changeOwnershipController', function(
         $('#taxId3').val($scope.cardInfo3.CitizenID);
 
         //binding user registerd - ระบุผู้ใช้หมายเลข
-        $('#titleRegisterd').val($scope.cardInfo3.PrefixTH);
+        $('#titleRegisterd').val(sex);
         $('#firstNameRegisterd').val($scope.cardInfo3.FirstNameTH);
         $('#lastNameRegisterd').val($scope.cardInfo3.LastNameTH);
         $('#birthDayRegisterd').val($scope.cardInfo3.BirthDay);
@@ -458,17 +466,17 @@ smartApp.controller('changeOwnershipController', function(
                 //คำนำหน้า
                 SystemService.getMaster_list("CUST-TITLE-TYPE", function(result) {
                     $scope.titleTypeListx = result;
-                    console.log($scope.titleTypeListx);
+                    // console.log($scope.titleTypeListx);
                 });
                 //คำนำหน้า อื่นๆ
                 SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function(result) {
                     $scope.titleOtherTypeList = result;
-                    console.log($scope.titleOtherTypeList);
+                    //console.log($scope.titleOtherTypeList);
                 });
                 //ประเภทของบัตร
                 SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
                     $scope.cardTypeOptions = result;
-                    console.log($scope.cardTypeOptions);
+                    //console.log($scope.cardTypeOptions);
                 });
 
                 //reason
@@ -481,7 +489,7 @@ smartApp.controller('changeOwnershipController', function(
                 //เพศ
                 SystemService.getMaster_list("CUST-GENDER", function(result) {
                     $scope.genderTypeList = result;
-                    console.log($scope.genderTypeList);
+                    //console.log($scope.genderTypeList);
                 });
                 //call getCUGId
                 ChangePricePlanService.getCUGList(function(result) {
@@ -501,7 +509,7 @@ smartApp.controller('changeOwnershipController', function(
 
                             $scope.data2 = result;
 
-                            console.log($scope.data);
+                            //console.log($scope.data);
 
                             if ($scope.shopType == '1') {
                                 $("#btn-fancy-ReadCard").fancybox({
@@ -833,9 +841,14 @@ smartApp.controller('changeOwnershipController', function(
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;
         if (!$scope.isCardValueDataLastest) {
+            $('#idBindDataAgain').click();
+
             $scope.newOwner.firstNameTH = "";
             $scope.newOwner.lastNameTH = "";
             $scope.newOwner.prefixTH = "T2";
+            $scope.newOwner.birthDay = "";
+            $scope.newOwner.expireDay = "";
+
             //ระบุผู้ใช้หมายเลข
             $scope.newOwner2.firstNameTH = "";
             $scope.newOwner2.lastNameTH = "";
@@ -851,10 +864,19 @@ smartApp.controller('changeOwnershipController', function(
             $scope.contactNo.continued = "";
 
             $scope.onselectPrefix();
+
+
+
+
         }
 
         //$scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
+        // (Start) Get current SIM data ----------------------
+        var formatDate = function(date) {
+            if (!date) return date;
 
+            return moment(date).format('DD/MM/YYYY');
+        };
         var cid = $('#citizenID3').val();
         if (cid.length >= 9) {
             SystemService.showLoading();
@@ -912,6 +934,7 @@ smartApp.controller('changeOwnershipController', function(
                                     $scope.contactNo.continued = "";
 
                                     $scope.onselectPrefix();
+
                                 }
 
                                 $scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
@@ -940,15 +963,25 @@ smartApp.controller('changeOwnershipController', function(
                                 var customer = lastestCustomer.data["response-data"]["customer"];
 
                                 $scope.lastestCustomer = customer;
-                                //ผู้จดทะเบียนใหม่
-                                //$scope.customer = customer;
-                                $scope.newOwner.firstNameTH = customer["firstname"];
-                                $scope.newOwner.lastNameTH = customer["lastname"];
-                                $scope.newOwner.prefixTH = customer["title-code"];
+                                if ($scope.isCardValueDataLastest == false) {
+                                    //ผู้จดทะเบียนใหม่
+                                    //$scope.customer = customer;
+                                    $scope.newOwner.firstNameTH = customer["firstname"];
+                                    $scope.newOwner.lastNameTH = customer["lastname"];
+
+                                    $scope.newOwner2.firstNameTH = customer["firstname"];
+                                    $scope.newOwner2.lastNameTH = customer["lastname"];
+
+                                    $scope.newOwner.prefixTH = customer["title-code"];
+                                    $scope.newOwner2.prefixTH = customer["title-code"];
+
+                                    $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
+                                    $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+                                }
+
                                 //ระบุผู้ใช้หมายเลข
-                                $scope.newOwner2.firstNameTH = customer["firstname"];
-                                $scope.newOwner2.lastNameTH = customer["lastname"];
-                                $scope.newOwner2.prefixTH = customer["title-code"];
+
+
 
                                 $scope.customer['tax-id'] = customer["id-number"];
 
@@ -962,6 +995,7 @@ smartApp.controller('changeOwnershipController', function(
                                 $scope.isAddressList = customer['address-list']['CUSTOMER_ADDRESS'];
 
                                 $scope.onselectPrefix();
+
 
                                 $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
 
@@ -1050,6 +1084,7 @@ smartApp.controller('changeOwnershipController', function(
                 $scope.isReadCardSuccess = false;
                 $scope.CitizenID = "";
 
+
                 $scope.data = $scope.data2;
             } else {
                 $('#unMatch').show();
@@ -1069,6 +1104,7 @@ smartApp.controller('changeOwnershipController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
+
             $scope.onInputCitizenID3();
         }
     };
@@ -1082,7 +1118,9 @@ smartApp.controller('changeOwnershipController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
+
             $scope.onInputCitizenID3();
+
         }
     };
     $scope.onInputIdLastest3 = function() {
@@ -1109,6 +1147,7 @@ smartApp.controller('changeOwnershipController', function(
 
             $scope.customer['id-number'] = cid;
             $scope.onInputCitizenID3();
+
         }
     };
     $scope.secondAuthenDataLastest = {};
@@ -1301,14 +1340,16 @@ smartApp.controller('changeOwnershipController', function(
     };
     $scope.onChangeTitleOther = function() {
         console.log($scope.titleOther);
-        var selectTitleOther =$filter('filter')($scope.titleOtherTypeList, {value:$scope.titleOther});
+        var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
+            value: $scope.titleOther
+        });
         console.log(selectTitleOther[0]);
-        if(SystemService.checkObj(selectTitleOther[0],['attributes','GENDER'])){
+        if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
             $('#sex3').val(selectTitleOther[0]['attributes']['GENDER']);
-             console.log(selectTitleOther[0]['attributes']['GENDER']);
-        }else{    
+            console.log(selectTitleOther[0]['attributes']['GENDER']);
+        } else {
             $('#sex3').val('ALL');
-           console.log('ALL');
+            console.log('ALL');
         }
         $scope.titleOther2 = $scope.titleOther;
     };
@@ -2823,6 +2864,11 @@ smartApp.controller('changeOwnershipController', function(
 
     $scope.onChangCheckno = function() {
         //alert($scope.changCheckno);
+        $('#titleRegisterd').val($('#prefixTH3').val());
+        $('#sex32').val($('#sex3').val());
+        //$('#sex32').val($scope.newOwner2.sex);
+        $scope.onselectPrefix2();
+
     };
 
     $scope.openService = function() {
