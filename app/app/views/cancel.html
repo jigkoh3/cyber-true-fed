@@ -7,19 +7,8 @@
 
                     
 
-            <div ng-include="template.header" ng-hide="SubNo=='null'"></div>
-            <div class="profile" style="width:50%;" ng-hide="SubNo!='null'">
-                <br />
-                <div class="row">
-                    <div class="col-xs-5 text-right" style="padding-top:9px;"><b>หมายเลขที่ขอใช้บริการ</b> <span style="color:red;">*</span></div>
-                    <div class="col-xs-5 text-right">
-                        <input id="swapSubNo" type="text" class="form-control numberic" ng-model="subNoInput" ng-change="onInputSubNo()" maxlength="{{ subNoLength }}" />
-                    </div>
-                </div>
-                <br />
-            </div>
-
-
+            <div ng-include="template.header"></div>
+            
             <div class="clearfix"></div>
             <h1 class="content-title">เปลี่ยนแปลงสถานะหมายเลข</h1>
             <div class="content-body">
