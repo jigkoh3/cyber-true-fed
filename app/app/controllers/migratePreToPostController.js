@@ -1,6 +1,6 @@
 ﻿smartApp.controller('MigratePreToPostController', function(
-	$filter, $ngBootbox, $routeParams, $scope, $window, AuthenService, ChangePricePlanService, MigratePreToPostService, paginationService, ReasonService, SystemService, ValidateMsgService) {
-	// Reorder injection parameter
+    $filter, $ngBootbox, $routeParams, $scope, $window, AuthenService, ChangePricePlanService, MigratePreToPostService, paginationService, ReasonService, SystemService, ValidateMsgService) {
+    // Reorder injection parameter
 
     // Templates
     var runTime = new Date().getTime();
@@ -234,7 +234,7 @@
         //$scope.onCancelPOOLED();
         $scope.saveParamData = {};
     };
-    
+
     $scope.getCapmaxParameter = function(soc) {
         var checkValue = function(capmax) {
             var value = "";
@@ -394,7 +394,7 @@
 
         return bool;
     };
-     $scope.isNumberTel2 = false;
+    $scope.isNumberTel2 = false;
     $scope.onInputTel2 = function(charCode) {
         console.log($scope.contactNo.number);
         var bool = SystemService.checkInputTel(charCode);
@@ -433,7 +433,7 @@
             $scope.customer['contact-mobile-number'] = "";
         }
         if ($scope.customer['contact-mobile-number'].length == 0 && charCode != 48) {
-            $scope.isNumberTelZero2= true;
+            $scope.isNumberTelZero2 = true;
             //$scope.contactNo.number = "";
         } else {
             $scope.isNumberTelZero2 = false;
@@ -473,18 +473,18 @@
         $scope.isNumberFF = false;
         $scope.isNumberTelZeroFF = false;
         //for (var i = 1; i <= 10; i++) {
-            if ($scope.saveParamData['ff' + i]) {
-                if ($scope.saveParamData['ff' + i].length == 9 || $scope.saveParamData['ff' + i].length == 10) {
-                    $scope.isNumberTelLengthFF = false;
-                } else {
-                    $scope.isNumberTelLengthFF = true;
-                    //break;
-                }
-                console.log($scope.saveParamData['ff' + i].length);
-            } else {
+        if ($scope.saveParamData['ff' + i]) {
+            if ($scope.saveParamData['ff' + i].length == 9 || $scope.saveParamData['ff' + i].length == 10) {
                 $scope.isNumberTelLengthFF = false;
+            } else {
+                $scope.isNumberTelLengthFF = true;
                 //break;
             }
+            console.log($scope.saveParamData['ff' + i].length);
+        } else {
+            $scope.isNumberTelLengthFF = false;
+            //break;
+        }
         //}
 
     }
@@ -504,10 +504,10 @@
     };
 
     $scope.$watch('partnerCode', function(cur) {
-    	if (!cur || !cur.length || cur.length < 8)
-    		return;
+        if (!cur || !cur.length || cur.length < 8)
+            return;
 
-    	SystemService.showLoading();
+        SystemService.showLoading();
         validatePartner();
     });
 
@@ -533,9 +533,9 @@
             $scope.SubNo = 'null';
             $('#dataSubNo').val("");
 
-            setTimeout(function(){
+            setTimeout(function() {
                 $('#dataSubNo').focus();
-            },1200);
+            }, 1200);
         }
 
         $scope.data = result.data;
@@ -545,8 +545,7 @@
         if (!$scope.data) {
             $scope.getSIMDataFailed = true;
             SystemService.hideLoading();
-        }
-        else {
+        } else {
 
             var idType = $scope.data.simData['account-category'];
 
@@ -556,7 +555,7 @@
 
             $scope.data.customerProfile['id-type'] = idType;
 
-            if(idType=="I"){
+            if (idType == "I") {
                 $scope.isLastestUser = false;
             }
 
@@ -572,13 +571,13 @@
             authenticate();
         }
 
-       
+
     };
 
     $scope.onInputSubNo = function() {
-    $scope.subNoInput = $('#dataSubNo').val();
+        $scope.subNoInput = $('#dataSubNo').val();
         if ($scope.subNoInput && $scope.subNoInput.length === 10) {
-            $scope.SubNo = $('#dataSubNo').val(); 
+            $scope.SubNo = $('#dataSubNo').val();
             SystemService.showLoading();
             //ประเภทของบัตร
             SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
@@ -702,8 +701,27 @@
                     }, 1000);
                 }
 
-		        validateGrade();
-        		lastestCustomer();
+                validateGrade();
+                lastestCustomer();
+
+
+
+                var payload = {
+                    'company-code': $scope.data.simData['company-code'],
+                    'customer-type': $scope.data.simData['account-category'],
+                    'customer-subtype': $scope.data.simData['account-sub-type'],
+                    'service-level': "C",
+                    'proposition': "",
+                    'partner-code': $scope.partnerCode,
+                    'privilege': false
+                };
+
+                MigratePreToPostService.pricePlan(payload, function(result) {
+                    $scope.pricePlanList = utils.getObject(result, 'data.response-data');
+                    //$scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
+                });
+
+
             });
         });
     };
@@ -933,7 +951,7 @@
 
     // (Start) Validate Grading ----------------------
     var validateGrade = function() {
-    	var validateGradePayload = {
+        var validateGradePayload = {
             'company-code': $scope.data.customerProfile['id-number']
         };
 
@@ -966,7 +984,7 @@
             $scope.data.customerProfile['customer-sublevel-id'] = $scope.gradingData["grade-id"];
             $scope.data.customerProfile['customer-sublevel'] = $scope.gradingData["grade-sub-name"]
 
-			accountSubType();
+            accountSubType();
         }
     };
     // (End) Validate Grading ----------------------
@@ -974,7 +992,7 @@
 
     // (Start) Account sub type ----------------------
     var accountSubType = function() {
-    	var accountSubTypePayload = {
+        var accountSubTypePayload = {
             'cust-type': $scope.data.simData["account-category"],
             'company': $scope.data.simData["company-code"],
             'service-type': $scope.data.simData["mobile-servicetype"],
@@ -985,7 +1003,7 @@
     };
 
     var onAccountSubType = function(result) {
-    	$scope.accountSubtypeList = result.data["response-data"];
+        $scope.accountSubtypeList = result.data["response-data"];
         $scope.subCompanyType = result.data["response-data"][0]['name'];
     };
     // (End) Account sub type ----------------------
@@ -993,7 +1011,7 @@
 
     // (Start) Lastest customer ----------------------
     var lastestCustomer = function() {
-    	var lastestCustomerPayload = {
+        var lastestCustomerPayload = {
             'certificateid': $scope.data.customerProfile['id-number'],
             'customer-type': $scope.data.simData["account-category"]
         };
@@ -1002,28 +1020,28 @@
     };
 
     var onLastestCustomer = function(result) {
-    	$scope.lastestData = result.data;
-    	$scope.isLastestAdress = true;
-    	$scope.isLastestUser = true;
+        $scope.lastestData = result.data;
+        $scope.isLastestAdress = true;
+        $scope.isLastestUser = true;
     };
     // (End) Lastest customer ----------------------
 
     var validatePartner = function() {
-    	var validatePartnerPayload = {
+        var validatePartnerPayload = {
             'partner-code': $scope.partnerCode,
             'function-type': 'MIGRATE_PRETOPOST'
         };
 
-    	MigratePreToPostService.validatePartner(validatePartnerPayload, onValidatePartner);
+        MigratePreToPostService.validatePartner(validatePartnerPayload, onValidatePartner);
     };
 
     var onValidatePartner = function(result) {
-    	SystemService.hideLoading();
+        SystemService.hideLoading();
         if (result.data["display-messages"].length == 0) {
             if ($scope.isLastestUser == true) {
-            	getProPosition($scope.partnerCode);
+                getProPosition($scope.partnerCode);
             }
-            
+
             // $scope.getAuthen.shopcodes = ["" + $scope.partnerCode + ""];
         } else {
             //error ?
@@ -1070,7 +1088,7 @@
     };
 
     var showValidate = function(id, msg) {
-        
+
         SystemService.showAlert(msg);
 
         $('#' + id).focus();
@@ -1086,8 +1104,7 @@
             return false;
         }
 
-        if (
-            !$scope.data.customerProfile['id-number'] || !$scope.data.customerProfile['id-type'] ||
+        if (!$scope.data.customerProfile['id-number'] || !$scope.data.customerProfile['id-type'] ||
             !$scope.data.customerProfile['tax-id'] || !$scope.data.customerProfile['branch-code'] ||
             !$scope.data.customerProfile['title-code'] || !$scope.data.customerProfile['firstname'] ||
             !$scope.data.customerProfile['lastname'] || !$scope.data.customerProfile['gender'] ||
@@ -1107,8 +1124,7 @@
             return false;
         }
 
-        if (
-            !$scope.data.customerAddress['zip'] || !$scope.data.customerAddress['province'] ||
+        if (!$scope.data.customerAddress['zip'] || !$scope.data.customerAddress['province'] ||
             !$scope.data.customerAddress['district'] || !$scope.data.customerAddress['sub-district']
         ) {
             alert('กรุณากรอกที่อยู่จดทะเบียนให้ครบถ้วน');
@@ -1239,7 +1255,7 @@
 
         $scope.data.customerProfile['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
         $scope.data.customerProfile['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
-        
+
         SystemService.showLoading();
 
         var customerType = 'O';

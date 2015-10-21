@@ -164,21 +164,43 @@
             }
             if ($scope.data.simData['account-category'] != "I" && $scope.shopType == '0') {
                 $scope.isSecondAuhenFailed = false;
-            }else if($scope.shopType == '0'){
+            } else if ($scope.shopType == '0') {
                 $scope.isSecondAuhenFailed = false;
             }
 
-            if($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false){
-                    setTimeout(function() {
-                        $('#CitizenID').prop('disabled', false);
-                        $('#CitizenID').focus();
-                        $('#btnSSO').hide();
-                    }, 1100);
+            if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
+                setTimeout(function() {
+                    $('#CitizenID').prop('disabled', false);
+                    $('#CitizenID').focus();
+                    $('#btnSSO').hide();
+                }, 1100);
             }
 
             var partnerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
 
             getProPosition(partnerCode);
+
+
+
+
+
+            var payload = {
+                'company-code': $scope.data.simData['company-code'],
+                'customer-type': "P",
+                'customer-subtype': "PRE",
+                'service-level': "C",
+                'proposition': "",
+                'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
+                'privilege': false
+            };
+
+            MigratePostToPreService.getPricePlan(payload, function(result) {
+                $scope.pricePlanList = utils.getObject(result, 'data.response-data');
+                $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
+            });
+
+
+
 
             SystemService.getOrderId($scope.getAuthen.channel, partnerCode, function(order) {
                 SystemService.hideLoading();
@@ -309,11 +331,11 @@
 
         $('#CitizenID').val($scope.cardInfo.CitizenID);
         $scope.onInputId();
-        setTimeout(function(){
+        setTimeout(function() {
             $('#idBindDataAgain').click();
 
         }, 1000);
-        
+
     };
 
     $scope.SetCardValue2 = function(result) {

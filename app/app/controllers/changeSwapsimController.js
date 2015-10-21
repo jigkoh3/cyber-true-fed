@@ -492,6 +492,7 @@
                 //SystemService.hideLoading();
 
                 orderData = order;
+                localStorage.setItem('orderId', order.orderId);
 
                 if ($scope.shopType === '1') {
                     // Auto-open the CardReader dialog
