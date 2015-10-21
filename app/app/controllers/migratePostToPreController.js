@@ -119,6 +119,8 @@
     }
     setTimeout(function() {
         SystemService.validateNummeric();
+
+        $('#loadingReadCard3').hide();
     }, 1000);
 
     if ($scope.SubNo !== 'null') {
@@ -343,11 +345,49 @@
 
         $('#CitizenID2').val(cardInfo.CitizenID);
     };
-
+    $scope.dataReadCard3 = {};
     $scope.SetCardValue3 = function(result) {
         var cardInfo = eval(result);
+        console.log(cardInfo);
+        $('#loadingReadCard3').hide();
 
         $('#CitizenID3').val(cardInfo.CitizenID);
+        $scope.dataReadCard3 = cardInfo;
+
+        $('#selectCustomerIdType').val('I');
+        $scope.data.customerProfile['id-type'] = 'I';
+
+        $('#firstNameTH3').val(cardInfo.FirstNameTH);
+        $scope.data.customerProfile['firstname'] = cardInfo.FirstNameTH;
+
+        $('#lastNameTH3').val(cardInfo.LastNameTH);
+        $scope.data.customerProfile['lastname'] = cardInfo.LastNameTH;
+
+        $('#birthDate').val(cardInfo.BirthDay);
+        $scope.data.customerProfile['birthdate'] = cardInfo.BirthDay;
+
+        $('#expireDate').val(cardInfo.ExpireDay);
+        $scope.data.customerProfile['id-expire-date'] = cardInfo.ExpireDay;
+
+        var prefix = "T2";
+        if (cardInfo.PrefixEN == "Mr.") {
+            prefix = "T1";
+        }
+        if (cardInfo.PrefixEN == "Miss") {
+            prefix = "T3";
+        }
+
+        var sex = "MALE";
+        if (cardInfo.Sex == "2") {
+            sex = "FEMALE";
+        }
+
+        $scope.data.customerProfile['gender'] = sex;
+        $scope.data.customerProfile['title-code'] = prefix;
+
+        setTimeout(function() {
+            $('#idBindDataAgain').click();
+        }, 500);
     };
     // (End) Authentication ----------------------
 
@@ -621,8 +661,8 @@
                 'titleEn': '',
                 'firstnameEn': '',
                 'lastnameEn': '',
-                'expireDay': $scope.data.customerProfile['id-expire-date'],
-                'birthDay': $scope.data.customerProfile['birthdate'],
+                'expireDay': '', //$scope.data.customerProfile['id-expire-date'],
+                'birthDay': '', //$scope.data.customerProfile['birthdate'],
                 'issueDay': '',
 
                 'homeNumber': '',
