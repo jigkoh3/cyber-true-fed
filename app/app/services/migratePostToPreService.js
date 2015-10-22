@@ -529,7 +529,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             'approver': ""
         };
 
-        if(payload.propositionSelected['soc']){
+        if(SystemService.checkObj(payload.propositionSelected, ['soc'])){
             request["order"]["order-items"][0]["order-data"]["CCBS-PROPOSITION-SOC-CODE"] = payload.propositionSelected['soc'];
             request["order"]["order-items"][0]["primary-order-data"]["NAS-PROPOSITION"] = payload.propositionSelected['proposition-code'];
             request["order"]["order-items"][0]["primary-order-data"]["CCBS-PROPOSITION"] = payload.propositionSelected['name'];
