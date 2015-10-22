@@ -1796,6 +1796,25 @@ smartApp.controller('ChangePricePlanController', function (
         $scope.reasons = result;
         $scope.reason = $scope.reasons[86];
         $scope.selectReason = $scope.reasons[86];
+
+        // //solution for none fix index
+        // $scope.reasons = result;
+        // var myArray = result;
+        // var searchText = "CREQ",
+        //     index = -1;
+        // for (var i = 0, len = myArray.length; i < len; i++) {
+        //     if (myArray[i].id === searchText) {
+        //         index = i;
+        //         break;
+        //     }
+        // }
+
+        // console.log(index);
+
+        // $scope.reason = $scope.reasons[index];
+        // $scope.selectReason = $scope.reasons[index];
+        // //solution for none fix index
+        
     });
     $scope.onReasonChange = function () {
         $scope.selectReason = $scope.reasons[$('#selectReasonId').val()];
