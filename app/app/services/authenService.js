@@ -8,7 +8,7 @@
         var result = {
 
 
-            "shopType": "1",
+            "shopType": "0",
             "isSecondAuthen": true,
             "isCorporate": false,
             "channel": "XX",
