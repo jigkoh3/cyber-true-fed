@@ -43,6 +43,7 @@ smartApp.controller('ChangePricePlanController', function (
     };
     $scope.isEnterPP = false;
     $scope.openPricePlanDialog = function () {
+        $scope.focusPricePlanFilter();
         $scope.isEnterPP = false;
         //var runTime = new Date().getTime();
         //$ngBootbox.customDialog({
@@ -445,7 +446,7 @@ smartApp.controller('ChangePricePlanController', function (
 
     };
     $scope.getPriceplan = function () {
-        $scope.pricePlanFilter.value = "";
+        // $scope.pricePlanFilter.value = "";
 
         SystemService.showLoading();
         console.log($scope.data.priceplan);

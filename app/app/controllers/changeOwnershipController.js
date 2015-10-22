@@ -1976,7 +1976,7 @@ smartApp.controller('changeOwnershipController', function(
                     "branch-code": $scope.customer["branch-code"],
                     "tax-id": $scope.customer["tax-id"],
                     "customer-level": $scope.grade["grade-name"],
-                    "customer-id": $scope.customerStatusN == 'O' ? $scope.data.customerProfile['customer-id'] : "",
+                    //"customer-id": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['customer-id'] : "",
                     "customer-sublevel_id": $scope.grade["grade-id"],
                     "customer-sublevel": $scope.grade["grade-sub-name"]
                         ///check lastest or billadress
@@ -2243,6 +2243,10 @@ smartApp.controller('changeOwnershipController', function(
         }
 
         data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"] = data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
+        if($scope.customerStatusN == 'O'){
+            data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
+        }
+        
 
 
 
