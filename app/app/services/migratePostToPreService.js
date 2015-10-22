@@ -42,6 +42,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "contact-mobile-number": "",
                         "id-type": "",
                         "id-number": "1180200046320",
+                        "birthdate": "1983-10-10",
                         "customer-id": "2768",
                         "installed-products": [{
                             "ouId": "1078",
@@ -463,6 +464,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
 
 
     this.submitOrder = function(payload, fnCallback) {
+
         var request = {
             "order": {
                 "order-id": payload.orderData.orderId,
@@ -507,17 +509,17 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "TAX_ADDRESS": payload.customerAddress
                     },
                     "order-data": {
-                        "PRICEPLAN-SOC-CODE": payload.priceplanSelected["soc"],
-                        "CCBS-PROPOSITION-SOC-CODE": payload.propositionSelected['soc']
+                        "PRICEPLAN-SOC-CODE": payload.priceplanSelected["soc"]
+                        //,"CCBS-PROPOSITION-SOC-CODE": payload.propositionSelected['soc']
                     },
                     "primary-order-data": {
                         "OU-ID": payload.productDetails['ouId'],
                         "BAN": payload.productDetails['ban'],
                         "ACCOUNT-CATEGORY": payload.productDetails['account-category'],
                         "ACCOUNT-SUB-TYPE": payload.productDetails['account-sub-type'],
-                        "COMPANY-CODE": payload.productDetails['company-code'],
-                        "NAS-PROPOSITION": payload.propositionSelected['proposition-code'],
-                        "CCBS-PROPOSITION": payload.propositionSelected['name']
+                        "COMPANY-CODE": payload.productDetails['company-code']
+                        //,"NAS-PROPOSITION": payload.propositionSelected['proposition-code'],
+                        //"CCBS-PROPOSITION": payload.propositionSelected['name']
                     }
                 }],
                 "last-modify-date": ""
@@ -526,6 +528,12 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             'user-id': payload.saleAgent.logInName,
             'approver': ""
         };
+
+        if(payload.propositionSelected['soc']){
+            request["order"]["order-items"][0]["order-data"]["CCBS-PROPOSITION-SOC-CODE"] = payload.propositionSelected['soc'];
+            request["order"]["order-items"][0]["primary-order-data"]["NAS-PROPOSITION"] = payload.propositionSelected['proposition-code'];
+            request["order"]["order-items"][0]["primary-order-data"]["CCBS-PROPOSITION"] = payload.propositionSelected['name'];
+        }
 
         console.log(request);
 
