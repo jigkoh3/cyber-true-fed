@@ -2093,8 +2093,7 @@ smartApp.controller('changeOwnershipController', function(
                             "ACCOUNT-PAYMENT-METHOD": "CA",
                             "ACCOUNT-LANG": $scope.billPayment.accountLang,
                             //"ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                            "ORIGINAL-OWNER-FIRSTNAME": $scope.data.customerProfile['firstname'],
-                            "ORIGINAL-OWNER-LASTNAME": $scope.data.customerProfile['lastname'],
+                            
                             "CHANGE-OPTION": $scope.isLastestAdress ? "EXISTING" : "NEW"
                         },
                         "primary-order-data": {
@@ -2106,6 +2105,9 @@ smartApp.controller('changeOwnershipController', function(
                             "COMPANY-CODE": $scope.data.installedProducts["company-code"],
                             "NAS-PROPOSITION": $scope.selectProposition,
                             "CCBS-PROPOSITION": $scope.pricePlan.promotion,
+                            "ORIGINAL-OWNER-ID-NUMBER": $scope.data.customerProfile['id-number'],
+                            "ORIGINAL-OWNER-FIRSTNAME": $scope.data.customerProfile['firstname'],
+                            "ORIGINAL-OWNER-LASTNAME": $scope.data.customerProfile['lastname']
                             //"SIM": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
                         }
                     }]
