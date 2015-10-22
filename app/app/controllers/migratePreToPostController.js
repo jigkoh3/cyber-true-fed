@@ -510,7 +510,15 @@
         SystemService.showLoading();
         validatePartner();
     });
-
+    $scope.onselectPrefix = function() {
+        console.log($scope.data.customerProfile['title-code']);
+        //$scope.newOwner2.prefixTH = $scope.newOwner.prefixTH;
+        if ($scope.data.customerProfile['title-code'] == 'MR.' || $scope.data.customerProfile['title-code'] == 'T1') {
+            $scope.data.customerProfile['gender'] = "MALE";
+        } else {
+            $scope.data.customerProfile['gender'] = "FEMALE";
+        }
+    };
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the page
     $scope.onCustomerProfileTemplateLoaded = function() {
         $('#unMatch2').hide();
@@ -546,16 +554,24 @@
             $scope.getSIMDataFailed = true;
             SystemService.hideLoading();
         } else {
-
-            var idType = $scope.data.simData['account-category'];
+            if ($scope.data.customerProfile['title-code'] != "T1") {
+                $scope.data.customerProfile['gender'] = "FEMALE";
+            } else {
+                $scope.data.customerProfile['gender'] = "MALE";
+            }
+            var accountCategory = $scope.data.simData['account-category'];
 
             setTimeout(function() {
-                $('#selectCustomerIdType').val(idType);
+                $('#selectCustomerIdType').val(accountCategory);
             }, 1000);
 
-            $scope.data.customerProfile['id-type'] = idType;
+            //$scope.data.customerProfile['id-type'] = accountCategory;
 
-            if (idType == "I") {
+            if ($scope.data.customerProfile['id-type'] == "I") {
+                $scope.data.customerProfile['tax-id'] = $scope.data.customerProfile['id-number'];
+            }
+
+            if (accountCategory == "P") {
                 $scope.isLastestUser = false;
             }
 
@@ -776,7 +792,7 @@
     $scope.onInputId = function() {
         var value = $('#CitizenID').val();
 
-        if (value.length === 13) {
+        if (value.length >= 3) {
             if (value === $scope.data.customerProfile['id-number']) {
                 $scope.isCustomerProfile = true;
 
@@ -1022,7 +1038,7 @@
     var onLastestCustomer = function(result) {
         $scope.lastestData = result.data;
         $scope.isLastestAdress = true;
-        $scope.isLastestUser = true;
+        // $scope.isLastestUser = true;
     };
     // (End) Lastest customer ----------------------
 
