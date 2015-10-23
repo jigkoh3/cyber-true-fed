@@ -198,7 +198,7 @@
 
             MigratePostToPreService.getPricePlan(payload, function(result) {
                 $scope.pricePlanList = utils.getObject(result, 'data.response-data');
-                $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
+                // $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
             });
 
 
