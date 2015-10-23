@@ -18,6 +18,7 @@
     $scope.divID = 'migratePostToPreContent';
     $scope.subNoLength = 10;
     $scope.zipLength = 5;
+    $scope.currentPage = 1;
 
     $scope.isLastestUser = true;
     $scope.isReadCardSuccess = false;

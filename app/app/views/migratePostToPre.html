@@ -417,12 +417,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 style="margin-bottom:20px;">Price Plan</h5>
-                <div class="col-md-12">
-                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter" class="form-control" ng-disabled="isSecondAuhenFailed" >
-                </div>
             </div>
             <div class="modal-body">
-                &nbsp;
+                <div style="margin:-25px 25px 20px;">
+                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter" class="form-control" ng-disabled="isSecondAuhenFailed" >
+                </div>
+
                 <div class="table-responsive">
                     <table class="table" style="table-layout:fixed;">
                         <tr class="row">
@@ -431,7 +431,11 @@
                             <th class="col-md-2 text-right"><span style="color:green;">RC</span></th>
                             <th class="col-md-3 text-center"><span style="color:green;">รายการส่งเสริมการขาย</span></th>
                         </tr>
-                        <tr class="row" ng-repeat="pp in pricePlanList">
+                        <tr class="row"
+                            dir-paginate="pp in pricePlanList | filter:pricePlanFilter | orderBy:'name'| itemsPerPage: 10"
+                            pagination-id="PPList"
+                            current-page="currentPage">
+
                             <th class="col-md-1" style="width:25px;">
                                 <input name="pricels" type="radio" ng-model="dirty.selectedPricePlan" ng-value="pp" />
                             </th>
@@ -440,6 +444,15 @@
                             <th class="col-md-3 text-center">{{pp.proposition}}</th>
                         </tr>
                     </table>
+
+                    <div id="divPage" colspan="4" class="text-right" style="margin:-30px 25px 0;padding-top:20px;border-top:1px solid #ddd;">
+                        <style>
+                            .pagination {
+                                margin: 0;
+                            }
+                        </style>
+                        <div dir-pagination-controls pagination-id="PPList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
+                    </div>
                 </div>
                 <div id="div_event"></div>
             </div>
