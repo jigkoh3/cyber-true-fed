@@ -18,6 +18,7 @@
     $scope.divID = 'migratePostToPreContent';
     $scope.subNoLength = 10;
     $scope.zipLength = 5;
+    $scope.currentPage = 1;
 
     $scope.isLastestUser = true;
     $scope.isReadCardSuccess = false;
@@ -184,28 +185,6 @@
             var partnerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
 
             getProPosition(partnerCode);
-
-
-
-
-
-            var payload = {
-                'company-code': $scope.data.simData['company-code'],
-                'customer-type': "P",
-                'customer-subtype': "PRE",
-                'service-level': "C",
-                'proposition': "",
-                'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
-                'privilege': false
-            };
-
-            MigratePostToPreService.getPricePlan(payload, function(result) {
-                $scope.pricePlanList = utils.getObject(result, 'data.response-data');
-                // $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
-            });
-
-
-
 
             SystemService.getOrderId($scope.getAuthen.channel, partnerCode, function(order) {
                 SystemService.hideLoading();
@@ -477,38 +456,43 @@
         $scope.proPositionList = result.data['response-data'];
 
         if ($scope.proPositionList && $scope.proPositionList.length) {
-            // $scope.selectedProPosition = $scope.proPositionList[0]['proposition-code'];
+            for (var i = 0; i < $scope.proPositionList.length; i++) {
+                var pp = $scope.proPositionList[i];
+
+                var payload = {
+                    'company-code': $scope.data.simData['company-code'],
+                    'customer-type': "P",
+                    'customer-subtype': "PRE",
+                    'service-level': pp['service-level'],
+                    'proposition': pp['name'],
+                    'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
+                    'privilege': false
+                };
+
+                MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
+            }
         }
     };
 
     var onGetPricePlan = function(result) {
-        $scope.pricePlanList = utils.getObject(result, 'data.response-data');
-        $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
-    };
-
-    $scope.$watch('selectedProPosition', function(val) {
-        if (!val) {
-            $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = {};
-            return;
+        if (!$scope.pricePlanList) {
+            $scope.pricePlanList = [];
         }
 
-        var proposition = _.find($scope.proPositionList, function(item) {
-            return item['proposition-code'] === val;
-        });
+        var pricePlanList = utils.getObject(result, 'data.response-data');
+        if (pricePlanList && pricePlanList.length) {
+            $scope.pricePlanList = $scope.pricePlanList.concat(pricePlanList);
+        }
+    };
 
-        $scope.selectedProPositionIn = proposition;
-
-        var payload = {
-            'company-code': $scope.data.simData['company-code'],
-            'customer-type': "P",
-            'customer-subtype': "PRE",
-            'service-level': proposition['service-level'],
-            'proposition': val,
-            'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
-            'privilege': false
+    $('#propositionDropdown').change(function(evt) {
+        $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = {
+            proposition: $scope.selectedPricePlan ? $scope.selectedPricePlan.proposition : evt.target.value,
+            description: '',
+            rc: ''
         };
 
-        MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
+        $scope.$digest();
     });
     // (End) Number Information ----------------------
 
