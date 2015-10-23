@@ -483,32 +483,16 @@
         if (pricePlanList && pricePlanList.length) {
             $scope.pricePlanList = $scope.pricePlanList.concat(pricePlanList);
         }
-        // $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
     };
 
-    $scope.$watch('selectedProPosition', function(val) {
-        if (!val) {
-            $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = {};
-            return;
-        }
+    $('#propositionDropdown').change(function(evt) {
+        $scope.dirty.selectedPricePlan = $scope.selectedPricePlan = {
+            proposition: $scope.selectedPricePlan ? $scope.selectedPricePlan.proposition : evt.target.value,
+            description: '',
+            rc: ''
+        };
 
-        // var proposition = _.find($scope.proPositionList, function(item) {
-        //     return item['proposition-code'] === val;
-        // });
-
-        // $scope.selectedProPositionIn = proposition;
-
-        // var payload = {
-        //     'company-code': $scope.data.simData['company-code'],
-        //     'customer-type': "P",
-        //     'customer-subtype': "PRE",
-        //     'service-level': proposition['service-level'],
-        //     'proposition': val,
-        //     'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
-        //     'privilege': false
-        // };
-
-        // MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
+        $scope.$digest();
     });
     // (End) Number Information ----------------------
 
