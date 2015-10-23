@@ -40,7 +40,7 @@
     var formatDate = function(date) {
         if (!date) return date;
 
-        return moment(date).format('DD/MM/YYYY');
+        return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
     };
 
     var onGetSIMData = function(result) {
@@ -83,6 +83,9 @@
             authenticate();
         }
 
+        setTimeout(function() {
+            SystemService.calendarDatePicker();
+        }, 0);
     };
 
     $scope.isInputSubNo = false;
@@ -363,9 +366,11 @@
         $('#lastNameTH3').val(cardInfo.LastNameTH);
         $scope.data.customerProfile['lastname'] = cardInfo.LastNameTH;
 
+        cardInfo.BirthDay = formatDate(cardInfo.BirthDay);
         $('#birthDate').val(cardInfo.BirthDay);
         $scope.data.customerProfile['birthdate'] = cardInfo.BirthDay;
 
+        cardInfo.ExpireDay = formatDate(cardInfo.ExpireDay);
         $('#expireDate').val(cardInfo.ExpireDay);
         $scope.data.customerProfile['id-expire-date'] = cardInfo.ExpireDay;
 
@@ -388,6 +393,10 @@
         setTimeout(function() {
             $('#idBindDataAgain').click();
         }, 500);
+
+        setTimeout(function() {
+            SystemService.calendarDatePicker();
+        }, 0);
     };
     // (End) Authentication ----------------------
 
@@ -445,7 +454,7 @@
         return true;
     };
 
-    SystemService.calendarDatePicker();
+
     // (End) Validation ----------------------
 
 
