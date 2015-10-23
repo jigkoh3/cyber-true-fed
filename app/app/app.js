@@ -42,7 +42,13 @@ smartApp.config(function($routeProvider, $httpProvider) {
     }).when('/changeRestore/:ID/:SubNo/:shopType', {
         templateUrl: 'app/views/changeRestore.html?v=' + runTime,
         controller: 'ChangeRestoreController'
-    }).when('/cancel/:ID/:SubNo/:shopType', {
+    })
+
+    .when('/cancel', {
+        templateUrl: 'app/views/cancel.html?v=' + runTime,
+        controller: 'CancelController'
+    })
+    .when('/cancel/:id/:subno/:shopType', {
         templateUrl: 'app/views/cancel.html?v=' + runTime,
         controller: 'CancelController'
     })

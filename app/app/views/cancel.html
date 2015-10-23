@@ -7,19 +7,8 @@
 
                     
 
-            <div ng-include="template.header" ng-hide="SubNo=='null'"></div>
-            <div class="profile" style="width:50%;" ng-hide="SubNo!='null'">
-                <br />
-                <div class="row">
-                    <div class="col-xs-5 text-right" style="padding-top:9px;"><b>หมายเลขที่ขอใช้บริการ</b> <span style="color:red;">*</span></div>
-                    <div class="col-xs-5 text-right">
-                        <input id="swapSubNo" type="text" class="form-control numberic" ng-model="subNoInput" ng-change="onInputSubNo()" maxlength="{{ subNoLength }}" />
-                    </div>
-                </div>
-                <br />
-            </div>
-
-
+            <div ng-include="template.header"></div>
+            
             <div class="clearfix"></div>
             <h1 class="content-title">เปลี่ยนแปลงสถานะหมายเลข</h1>
             <div class="content-body">
@@ -37,11 +26,11 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label"><b>สถานะหมายเลขใหม่</b></label>
                         <div class="col-md-4">
-                            <select class="form-control">
-                                <option>เลือก</option>
-                                <option>Soft Suspend</option>
-                                <option>Full Suspend</option>
-                                <option>Cancel</option>
+                            <select class="form-control" ng-model="statusCancel">
+                                <option value="">เลือก</option>
+                                <option value="CANCEL-SOFT-SUSPEND">Soft Suspend</option>
+                                <option value="CANCEL-FULL-SUSPEND">Full Suspend</option>
+                                <option value="CANCEL-ACTIVE">Cancel</option>
                             </select>
                         </div>
                     </div>
@@ -56,14 +45,14 @@
                         <label class="col-md-4 control-label">Reason Code<span style="color:red;"> *</span></label>
                         <div class="col-md-4">
 
-                            <select ng-options="option.dec for option in reasons" ng-change="onReasonChange()" ng-model="reason" class=" form-control"></select>
+                            <select ng-options="option.dec for option in reasons" ng-model="statusReason" class=" form-control"></select>
 
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Memo</label>
                         <div class="col-md-4">
-                            <textarea class="form-control" name="message" style="width:100%;height:70px;"></textarea>
+                            <textarea class="form-control" name="message" ng-model="statusReasonMemo" style="width:100%;height:70px;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -103,9 +92,15 @@
             </div>
             <div class="col-md-12 form-buttons">
                 <div class="form-group">
-                    <input ng-show="shopType=='0'" type="submit" href="#modal-pdf" value="พิมพ์" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 500); " data-toggle="modal" class="btn btn-success">
-                    <input ng-show="shopType=='1'" type="submit" href="#modal-pdf" value="พิมพ์" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 500); setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000); setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 2500);" data-toggle="modal" class="btn btn-success">
+
+                    <!-- <input ng-click="logDataBeforeSubmit()" type="button" value="debug"/> -->
+
+                    <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()"  />
+
+                    <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
+
                     <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
+
                 </div>
             </div>
 
