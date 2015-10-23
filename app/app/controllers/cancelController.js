@@ -30,20 +30,21 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
 	$scope.data = {};
 	$scope.isReadCardSuccess = false;
 
+	$scope.statusCancel = '';
+	$scope.statusReason = '';
+	$scope.statusReasonMemo = '';
+
 	var orderData = {};
 
 	//Reasons
 	$scope.reasons = [];
-	$scope.reason = "";
+	$scope.statusReason = "";
 	
 	ReasonService.list("119", function (result) {
 		$scope.reasons = result;
-		$scope.reason = $scope.reasons[86];
+		$scope.statusReason = $scope.reasons[86];
 	});
 
-	$scope.onReasonChange = function () {
-		$scope.reasonx = $scope.reasons.indexOf($scope.reason);
-	};
 	//end reson
 	
 	// Submit form
@@ -65,6 +66,16 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
 				$('#modalPDFOpener').click();
 			}
 		});
+	};
+
+	$scope.logDataBeforeSubmit = function() {
+		console.log($scope.data);
+
+		console.log($scope.statusCancel);
+
+		console.log($scope.statusReason);
+
+		console.log($scope.statusReasonMemo);
 	};
 
 	// Get current SIM data
@@ -89,7 +100,6 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
             SystemService.hideLoading();
         }
         else {
-
             authenticate();
         }
 
@@ -108,6 +118,7 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
     	$scope.subNoInput = $('#dataSubNo').val();
 
         if ($scope.subNoInput && $scope.subNoInput.length === 10) {
+            SystemService.showLoading();
             $scope.SubNo = $('#dataSubNo').val();
             CancelService.getSIMData($scope.subNoInput, onGetSIMData);
         }
@@ -172,15 +183,133 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
 
 
 
+    var validateInput = function() {
+    	if (!$scope.statusCancel) {
+    		alert('กรุณาเลือกสถานะหมายเลขใหม่');
+    		return false;
+    	}
+
+    	if (!$scope.statusReason) {
+    		alert('กรุณาเลือกเหตุผล');
+    		return false;
+    	}
+
+		return true;
+    };
+
+    var generateOrderRequest = function() {
+        $scope.data.customerProfile['language'] = "TH";
+        return {
+            customerProfile: $scope.data.customerProfile,
+            customerAddress: $scope.data.customerAddress,
+            productDetails: $scope.data.simData,
+            orderData: orderData,
+            saleAgent: $scope.getAuthen,
+            reason: $scope.statusReason,
+            memo: $scope.statusReasonMemo
+        };
+    };
+
+    $scope.openPDFDialog = function() {
+
+        if (!validateInput()) {
+            return;
+        }
+
+        SystemService.showLoading();
+
+        var customerType = 'O';
+        if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
+            customerType = 'Y';
+        }
+
+        var data = {
+            'func': 'POP',
+            'header': {
+                'title-code': $scope.data.customerProfile['title-code'],
+                'title': $scope.data.customerProfile['title'],
+                'firstname': $scope.data.customerProfile['firstname'],
+                'lastname': $scope.data.customerProfile['lastname'],
+                'customerType': customerType,
+                'authorizeFullName': '',
+                'id-number': $scope.data.customerProfile['id-number'],
+                'product-id-number': $scope.SubNo,
+                'ouId': $scope.data.simData['ouId'],
+                'orderId': orderData.orderId,
+                'photo': $scope.varPhoto,
+
+                'photoIdCard': '',
+                'photoType': 'SN',
+                'titleEn': '',
+                'firstnameEn': '',
+                'lastnameEn': '',
+                'expireDay': $scope.data.customerProfile['id-expire-date'],
+                'birthDay': $scope.data.customerProfile['birthdate'],
+                'issueDay': '',
+
+                'homeNumber': '',
+                'moo': '',
+                'trok': '',
+                'soi': '',
+                'road': '',
+                'district': '',
+                'amphur': '',
+                'province': ''
+            },
+            'body': generateOrderRequest()
+        };
+
+        console.log(data);
+        SystemService.generatePDF(data, function(url) {
+            SystemService.hideLoading();
+
+            setTimeout(function() {
+                $('#modalPDFOpener').click();
+
+                setTimeout(function() {
+                    var srcPDF = url;
+                    document.getElementById('iframePDF').src = url + '?clearData=N';
+                    if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                        setTimeout(function() {
+                            document.getElementById('iframePDF').src = 'javascript:window.print();'
+                        }, 2000);
+                        setTimeout(function() {
+                            document.getElementById('iframePDF').src = srcPDF
+                        }, 2500);
+                    }
+                }, 500);
 
 
+            }, 1000);
+        });
+    };
 
 	$scope.confirmPrint = function () {
-		//confirm
-		SystemService.showBeforeClose({
-			"message": "รายการคำขอเลขที่ OR30935 ",
-			"message2": "ได้รับข้อมูลเรียบร้อยแล้ว",
+
+        var data = generateOrderRequest();
+
+		data['statusCancel'] = $scope.statusCancel;
+		data['statusReason'] = $scope.statusReason;
+		data['statusReasonMemo'] = $scope.statusReasonMemo;
+
+		CancelService.submitCancel($scope.data, function(result) {
+
 		});
+		// if (validateInput()) {
+			//confirm
+			SystemService.showBeforeClose({
+				"message": "รายการคำขอเลขที่ OR30935 ",
+				"message2": "ได้รับข้อมูลเรียบร้อยแล้ว",
+			});
+		// }
+
+
+
+
+
+
+
+
 		//SystemService.showConfirm().then(function (value) {
 
 		//}, function (reason) {

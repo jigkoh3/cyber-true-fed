@@ -98,72 +98,85 @@
 				"trx-id" : "3BDPN2HLK4TZ",
 				'process-instance': 'psaapdv1 (instance: SFF_node1)',
 				'status-code': '0',
-				'response-data': {
-					'customer': {
-						'title': 'Miss',
-						'title-code': 'T2',
-						'firstname': 'Nate',
-						'lastname': 'Phutthicha',
-						'birthdate': '2015-07-20T00:00:00+0700',
-						'contact-number': '029448849#123',
-						'contact-mobile-number': '444444444',
-						'contact-email': 'abc@abc.com',
-						'language': 'TH',
-						'id-number': '1189900130607',
-						'id-type': 'I',
-						'id-expire-date': '2017-07-20T00:00:00+0700',
-						"branch-code" : '00000',
-						"tax-id" : '1189900130607',
-						'customer-id': null,
-						'customer-level': null,
-						'customer_sublevel_id': null,
-						'customer_sublevel': null,
-						'gender': 'FEMALE',
-						'installed-products': [
-							{
-								"ouId" : "5010",
-								"ban" : "20009628",
-								"product-id" : "EDATAP69",
-								"product-name" : "EDATAP69",
-								"product-description" : "Biz &amp; Ent 900,Data UNL5GB/128,WiFi",
-								"account-category" : "I",
-								"account-sub-type" : "FIN",
-								"customer-level" : "NON-TOP",
-								"company-code" : "RF",
-								"product-category" : "TMV",
-								"product-status" : "ACTIVE",
-								"product-id-name" : "MSISDN",
-								"product-id-number" : "0XXXXXXXXX",
-								"mobile-servicetype" : "POSTPAID",
-								"ou-hierarchytype" : "CHILD",
-								"parent-ouId" : "1234",
-								"has-splitcharge" : false,
-								"is-childsim" : false,
-								"is-softsuspend" : false,
-								"product-properties" : {
-									"SIM  " : null,
-									"IMSI" : null
-								}
-							}
-						],
-						'address-list': {
-							'CUSTOMER_ADDRESS': {
-								'number': '61/238',
-								'moo': '8',
-								'village': 'moo ban',
-								'street': 'ratchada',
-								'soi': '81',
-								'district': 'dindaeng',
-								'province': 'Bangkok',
-								'building-name': 'Pakin',
-								'building-room': '22',
-								'building-floor': '13',
-								'sub-district': 'Dindaeng',
-								'zip': '10400',
-								'household': '18'
-							}
-						}
-					}
+				  "response-data" : {
+				  "customer" : {
+				    "title": "",
+                    "title-code": "T3",
+                    "firstname": "พฤกษวดี",
+                    "lastname": "พฤกษวดีนงลักษณ์",
+                    "birthdate": "2531-09-01T00:00:00+0700",
+                    "contact-number": "",
+                    "id-type": "P",
+                    "id-number": "012369857789",
+                    "customer-id": "325",
+				    "installed-products" : [ {
+				      "ouId" : "5010",
+				      "ban" : "20009628",
+				      "product-id" : "EDATAP69",
+				      "product-name" : "EDATAP69",
+				      "product-description" : "Biz &amp; Ent 900,Data UNL5GB/128,WiFi",
+				      "product-soc-code" : "1234567",
+				      "account-category" : "I",
+				      "account-sub-type" : "FIN",
+				      "company-code" : "RF",
+				      "product-category" : "TMV",
+				      "product-status" : "ACTIVE",
+				      "product-id-name" : "MSISDN",
+				      "product-id-number" : "0XXXXXXXXX",
+				      "mobile-servicetype" : "POSTPAID",
+				      "ou-hierarchytype" : "CHILD",
+				      "parent-ouId" : "1234",
+				      "has-splitcharge" : false,
+				      "is-childsim" : false,
+				      "is-softsuspend" : false,
+				      "product-properties" : {
+				            "PRODUCT-STATUS-DATE" : null,
+				            "REASON-CODE" : null,
+				            "REASON-DESC" : null,
+				            "SUBSCRIBER-ID" : null,
+				            "PRODUCT-STATUS-CODE" : null, // CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND
+				            "PRODUCT-STATUS-DESC" : null // Active, Soft Suspend by Request, Full Suspend by Request
+				      }
+				    }]  
+				  },
+				    "display-messages" : [ {
+				      "message" : "",
+				      "message-type" : "ERROR",
+				      "en-message" : "VIP",
+				      "th-message" : "",
+				      "technical-message" : ""
+				    } ,{
+				      "message" : "",
+				      "message-type" : "ERROR",
+				      "en-message" : "DISCOUNT",
+				      "th-message" : "",
+				      "technical-message" : ""
+				    } ,{
+				      "message" : "",
+				      "message-type" : "ERROR",
+				      "en-message" : "SUBSCRIBER STATUS",
+				      "th-message" : "",
+				      "technical-message" : ""
+				    } ,{
+				      "message" : "",
+				      "message-type" : "ERROR",
+				      "en-message" : "NICE NUMBER",
+				      "th-message" : "",
+				      "technical-message" : ""
+				    } ,{
+				      "message" : "",
+				      "message-type" : "WARNING",
+				      "en-message" : "IR",
+				      "th-message" : "",
+				      "technical-message" : ""
+				    } ,{
+				      "message" : "",
+				      "message-type" : "WARNING",
+				      "en-message" : "CONVERGENT",
+				      "th-message" : "",
+				      "technical-message" : ""
+				    } ]
+
 				},
 				// 'display-messages': [{
 				// 	'message': '',
@@ -222,79 +235,72 @@
 				'creator': 'chitch2',
 				'create-date': moment().format('YYYY-MM-DDTHH:mm:ss+0700'),
 				'customer': {
-					'title-code': payload.customerProfile['title-code'],
-					'title': payload.customerProfile['title'],
-					'firstname': payload.customerProfile['firstname'],
-					'lastname': payload.customerProfile['lastname'],
-					'gender': null,
-					'id-type': payload.customerProfile['id-type'],
 					'id-number': payload.customerProfile['id-number'],
-					'birthdate': '2015-07-20T00:00:00+0700',
-					'id-expire-date': null,
-					'contact-number': payload.customerProfile['contact-number'],
-					'contact-mobile-number': null,
-					'contact-email': 'chitchai@cmail.com',
-					'customer-agents': {
-						'AUTH_1': {
-							'contact': '0868836665',
-							'id-number': '9988877688845',
-							'id-type': 'I',
-							'firstname': 'สมคิด',
-							'lastname': 'คิดมากไป',
-							'birthdate': '2015-07-20T00:00:00+0700'
-						},
-						'POA': {
-							'contact': '0868836664',
-							'id-number': '3257588733945',
-							'id-type': 'I',
-							'firstname': 'สมชาย',
-							'lastname': 'ปากสว่าง',
-							'birthdate': '2015-07-20T00:00:00+0700'
-						},
-						'AUTH_2': {
-							'contact': '0868836666',
-							'id-number': '9988877687723',
-							'id-type': 'I',
-							'firstname': 'สมฤดี',
-							'lastname': 'ดีเกินไป',
-							'birthdate': '2015-07-20T00:00:00+0700'
-						}
-					}
+					// 'customer-agents': {
+					// 	'AUTH_1': {
+					// 		'contact': '0868836665',
+					// 		'id-number': '9988877688845',
+					// 		'id-type': 'I',
+					// 		'firstname': 'สมคิด',
+					// 		'lastname': 'คิดมากไป',
+					// 		'birthdate': '2015-07-20T00:00:00+0700'
+					// 	},
+					// 	'POA': {
+					// 		'contact': '0868836664',
+					// 		'id-number': '3257588733945',
+					// 		'id-type': 'I',
+					// 		'firstname': 'สมชาย',
+					// 		'lastname': 'ปากสว่าง',
+					// 		'birthdate': '2015-07-20T00:00:00+0700'
+					// 	},
+					// 	'AUTH_2': {
+					// 		'contact': '0868836666',
+					// 		'id-number': '9988877687723',
+					// 		'id-type': 'I',
+					// 		'firstname': 'สมฤดี',
+					// 		'lastname': 'ดีเกินไป',
+					// 		'birthdate': '2015-07-20T00:00:00+0700'
+					// 	}
+					// }
 				},
-				'sale-agent': {
-					'name': 'Chitchai Changpradist',
-					'channel': 'CM',
-					'partner-code': '',
-					'partner-name': '',
-					'sale-code': '01019580',
-					'sale-assist-code': '',
-					'partner-type': ''
-				},
+				"sale-agent": {
+                    'name': payload.saleAgent['engName'],
+                    'channel': payload.saleAgent['channel'],
+                    'partner-code': (payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : null),
+                    'partner-name': payload.saleAgent['partnerName'],
+                    'sale-code': payload.saleAgent['saleCode'],
+                    'partner-type': payload.saleAgent['partnerType']
+                },
 				'order-items': [
 					{
-						'name': 'SWAP_SIM',
-						'product-name': payload.simData['product-id'],
-						'product-id-number': payload.simData['product-id-number'],
-						'product-id-name': payload.simData['product-id-name'],
-						'product-category': payload.simData['product-category'],
-						'product-type': 'PRICEPLAN',
-						'order-type': 'CHANGE',
-						'reason-code': 'AA02',
-						'user-memo': 'Customer want to request .',
+						'name': 'CANCEL',
+						'product-name': payload.productDetails['product-id'],
+						'product-id-number': payload.productDetails['product-id-number'],
+						'product-id-name': payload.productDetails['product-id-name'],
+						'product-category': payload.productDetails['product-category'],
+						'reason-code': payload.statusReason,
+						'user-memo': payload.statusReasonMemo,
 						'order-data': {
-							'OU-ID': payload.simData['ouId'],
-							'BAN': payload.simData['ban'],
-							'PREPAID-SUBSCRIBER-ID': payload.simData['prepaid-subscriber-id'],
-							'IMSI': payload.simData['product-id-number']
+							'OU-ID': payload.productDetails['ouId'],
+							'BAN': payload.productDetails['ban'],
+							'PREPAID-SUBSCRIBER-ID': payload.productDetails['prepaid-subscriber-id'],
+							'IMSI': payload.productDetails['product-id-number']
 						},
 						'primary-order-data': {
-							'MOBILE-SERVICETYPE': payload.simData['mobile-servicetype'],
-							'ACCOUNT-CATEGORY': payload.simData['account-category'],
-							'ACCOUNT-SUB-TYPE': payload.simData['account-sub-type'],
-							'COMPANY-CODE': payload.simData['company-code'],
-							'PRODUCT-CODE': payload.newSIMData['productCodes'],
-							'SIM': payload.newSIMData['simSerial']
-						}
+							'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
+							'ACCOUNT-CATEGORY': payload.productDetails['account-category'],
+							'ACCOUNT-SUB-TYPE': payload.productDetails['account-sub-type'],
+							'COMPANY-CODE': payload.productDetails['company-code'],
+							'PRODUCT-CODE': payload.productDetails['productCodes'],
+							'SIM': payload.productDetails['simSerial'],
+					        "EFFECTIVE-OPTION" : "IMMEDIATE",
+							// "EFFECTIVE-DATE" : "12/12/2015"
+
+						},
+						"product-category" : "TMV",
+						"product-type" : "PRICEPLAN",
+						"order-type" : "CHANGE"
+
 					}
 				],
 				'last-modify-date': ''
