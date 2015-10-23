@@ -813,6 +813,11 @@ smartApp.service('MigratePreToPostService', function($routeParams, $timeout, Sys
         ]);
 
         var cb = function(result) {
+            if (result.data && result.data['response-data'] && result.data['response-data'].length) {
+                for (var i = 0; i < result.data['response-data'].length; i++) {
+                    result.data['response-data'][i].proposition = payload.proposition;
+                }
+            }
             callback(result);
         };
 
@@ -824,69 +829,99 @@ smartApp.service('MigratePreToPostService', function($routeParams, $timeout, Sys
             });
         } else {
             var data = {
-                "status": "SUCCESSFUL",
-                "trx-id": "3F18U42TWR9R6",
-                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
-                "response-data": [{
-                    "name": "NETSVP89",
-                    "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
-                    "soc": "107385",
-                    "properties": {
-                        "TR_SPECIAL_OFFER_IND": "",
-                        "PRICEPLAN_TYPE": "N"
+                'status': 'SUCCESSFUL',
+                'trx-id': '3BYUAFJC01W8',
+                'process-instance': 'tmsapnpr1 (instance: SFF_node1)',
+                'response-data': [{
+                    'name': 'BCUGFP03',
+                    'description': payload.proposition + ' Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
+                    'soc': '936258',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
                     },
-                    "sale-period": {
-                        "start": "2013-09-03",
-                        "end": "2020-04-04"
+                    'sale-period': {
+                        'start': '2012-05-21',
+                        'end': '2016-01-30'
                     },
-                    "rc": 899.0,
-                    "service-level": "C",
-                    "priceplan-type": "N"
+                    'rc': 600.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
                 }, {
-                    "name": "PLNTAP06",
-                    "description": "4GiNet699,4GNetUNLT 6GB,TVS1GB,WiFiUNLT, Free3GB6m",
-                    "soc": "10648811",
-                    "properties": {
-                        "TR_SPECIAL_OFFER_IND": "",
-                        "PRICEPLAN_TYPE": "N"
+                    'name': 'BGAINP12',
+                    'description': 'BizShare37700bt,All-net1.10bt/min',
+                    'soc': '843368',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
                     },
-                    "sale-period": {
-                        "start": "2015-01-16",
-                        "end": "2016-06-30"
+                    'sale-period': {
+                        'start': '2014-04-13',
+                        'end': '2016-01-30'
                     },
-                    "rc": 699.0,
-                    "service-level": "C",
-                    "priceplan-type": "N"
+                    'rc': 37700.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
                 }, {
-                    "name": "RFSMTP01",
-                    "description": "(4G) Smart 999 voice 500mins net7GB",
-                    "soc": "94363",
-                    "properties": {
-                        "TR_SPECIAL_OFFER_IND": "",
-                        "PRICEPLAN_TYPE": "N"
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
                     },
-                    "sale-period": {
-                        "start": "2013-03-26",
-                        "end": "2020-08-04"
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
                     },
-                    "rc": 999.0,
-                    "service-level": "C",
-                    "priceplan-type": "N"
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
                 }, {
-                    "name": "RMIP1P09",
-                    "description": "TMH-iPad 759 Data and wifi unlimited",
-                    "soc": "76832",
-                    "properties": {
-                        "TR_SPECIAL_OFFER_IND": "",
-                        "PRICEPLAN_TYPE": "N"
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
                     },
-                    "sale-period": {
-                        "start": "2012-03-15",
-                        "end": "2016-06-04"
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
                     },
-                    "rc": 759.0,
-                    "service-level": "C",
-                    "priceplan-type": "N"
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
                 }]
             };
 

@@ -8,7 +8,8 @@
         header: 'app/views/header.html?' + runTime,
         customerprofile: 'app/views/customerprofile.html?' + runTime,
         reasonmemo: 'app/views/reasonmemo.html?' + runTime,
-        newparampriceplan: "app/views/newparampriceplan.html?" + runTime
+        newparampriceplan: "app/views/newparampriceplan.html?" + runTime,
+        modalPricePlan: "app/views/modalPricePlan.html?" + runTime
     };
 
 
@@ -81,6 +82,8 @@
         POOLING: false,
         CAPMAX: false
     };
+
+    $scope.isShowCustomerLatest = false;
     //for newparampriceplan : valiable
 
     //for newparampriceplan : function
@@ -503,13 +506,22 @@
         }
     };
 
+    $scope.isShowPricePlan = false;
+
     $scope.$watch('partnerCode', function(cur) {
-        if (!cur || !cur.length || cur.length < 8)
+        if (!cur || !cur.length || cur.length < 8) {
+            $scope.isShowPricePlan = false;
+            $scope.pricePlanList = [];
+            $scope.pricePlanListRaw = [];
             return;
+        }
 
         SystemService.showLoading();
         validatePartner();
+
+        $scope.isShowPricePlan = true;
     });
+
     $scope.onselectPrefix = function() {
         console.log($scope.data.customerProfile['title-code']);
         //$scope.newOwner2.prefixTH = $scope.newOwner.prefixTH;
@@ -534,6 +546,20 @@
         return moment(date).format('DD/MM/YYYY');
     };
 
+    $('#propositionDropdown').change(function(evt) {
+
+        if (!evt.target.value) {
+            $scope.pricePlanList = _.clone($scope.pricePlanListRaw);
+        }
+        else {
+            $scope.pricePlanList = _.filter($scope.pricePlanListRaw, function(data) {
+                return data.proposition === evt.target.value;
+            });
+        }
+
+        $scope.$digest();
+    });
+
     var onGetSIMData = function(result) {
 
         if (result.data == false) {
@@ -551,9 +577,10 @@
         $scope.getSIMDataFailed = false;
 
         if (!$scope.data) {
-            $scope.getSIMDataFailed = true;
+            $scope.getSIMDataFailed = false;
             SystemService.hideLoading();
         } else {
+            $scope.getSIMDataFailed = true;
             if ($scope.data.customerProfile['title-code'] != "T1") {
                 $scope.data.customerProfile['gender'] = "FEMALE";
             } else {
@@ -571,9 +598,9 @@
                 $scope.data.customerProfile['tax-id'] = $scope.data.customerProfile['id-number'];
             }
 
-            if (accountCategory == "P") {
-                $scope.isLastestUser = false;
-            }
+            // if (accountCategory == "P") {
+            //     $scope.isLastestUser = false;
+            // }
 
             $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
             $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
@@ -586,8 +613,21 @@
 
             authenticate();
         }
+    };
 
+    $scope.onInputIdNumber = function() {
 
+        var idNumber = $('#citizenID3').val();
+
+        if (idNumber && idNumber.length === 13) {
+            validateGrade();
+            lastestCustomer();
+
+            $scope.isShowCustomerLatest = true;
+        }
+        else {
+            $scope.isShowCustomerLatest = false;
+        }
     };
 
     $scope.onInputSubNo = function() {
@@ -717,27 +757,23 @@
                     }, 1000);
                 }
 
-                validateGrade();
-                lastestCustomer();
+                if ($scope.data.customerProfile['id-number']) {
+                    validateGrade();
+                    lastestCustomer();
+                    $scope.isShowCustomerLatest = true;
+                }
 
+                // var payload = {
+                //     'company-code': $scope.data.simData['company-code'],
+                //     'customer-type': $scope.data.simData['account-category'],
+                //     'customer-subtype': $scope.data.simData['account-sub-type'],
+                //     'service-level': "C",
+                //     'proposition': "",
+                //     'partner-code': $scope.partnerCode,
+                //     'privilege': false
+                // };
 
-
-                var payload = {
-                    'company-code': $scope.data.simData['company-code'],
-                    'customer-type': $scope.data.simData['account-category'],
-                    'customer-subtype': $scope.data.simData['account-sub-type'],
-                    'service-level': "C",
-                    'proposition': "",
-                    'partner-code': $scope.partnerCode,
-                    'privilege': false
-                };
-
-                MigratePreToPostService.pricePlan(payload, function(result) {
-                    $scope.pricePlanList = utils.getObject(result, 'data.response-data');
-                    //$scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
-                });
-
-
+                // MigratePreToPostService.pricePlan(payload, onGetPricePlan);
             });
         });
     };
@@ -897,40 +933,70 @@
         MigratePreToPostService.proposition(proPositionPayload, onGetProPosition);
     };
 
+    $scope.pricePlanListRaw = [];
+    $scope.pricePlanList = [];
+
     var onGetProPosition = function(result) {
         $scope.proPositionList = result.data['response-data'];
 
+        $scope.pricePlanListRaw = [];
+        $scope.pricePlanList = [];
+
         if ($scope.proPositionList && $scope.proPositionList.length) {
-            //$scope.selectedProPosition = $scope.proPositionList[0]['proposition-code'];
+            for (var i = 0; i < $scope.proPositionList.length; i++) {
+                var pp = $scope.proPositionList[i];
+
+                var payload = {
+                    'company-code': $scope.data.simData['company-code'],
+                    'customer-type': "P",
+                    'customer-subtype': "PRE",
+                    'service-level': pp['service-level'],
+                    'proposition': pp['name'],
+                    'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
+                    'privilege': false
+                };
+
+                MigratePreToPostService.pricePlan(payload, onGetPricePlan);
+            }
         }
     };
 
     var onGetPricePlan = function(result) {
-        $scope.pricePlanList = utils.getObject(result, 'data.response-data');
-        //$scope.dirty.selectedPricePlan = $scope.selectedPricePlan = $scope.pricePlanList[0];
+        if (!$scope.pricePlanListRaw) {
+            $scope.pricePlanListRaw = [];
+        }
+        if (!$scope.pricePlanList) {
+            $scope.pricePlanList = [];
+        }
+
+        var pricePlanList = utils.getObject(result, 'data.response-data');
+        if (pricePlanList && pricePlanList.length) {
+            $scope.pricePlanListRaw = $scope.pricePlanListRaw.concat(pricePlanList);
+            $scope.pricePlanList = $scope.pricePlanList.concat(pricePlanList);
+        }
     };
 
-    $scope.$watch('selectedProPosition', function(val) {
-        if (!val) return;
+    // $scope.$watch('selectedProPosition', function(val) {
+    //     if (!val) return;
 
-        var proposition = _.find($scope.proPositionList, function(item) {
-            return item['proposition-code'] === val;
-        });
+    //     var proposition = _.find($scope.proPositionList, function(item) {
+    //         return item['proposition-code'] === val;
+    //     });
 
-        $scope.selectedProPositionIn = proposition;
+    //     $scope.selectedProPositionIn = proposition;
 
-        var payload = {
-            'company-code': $scope.data.simData['company-code'],
-            'customer-type': $scope.data.simData['account-category'],
-            'customer-subtype': $scope.data.simData['account-sub-type'],
-            'service-level': proposition['service-level'],
-            'proposition': val,
-            'partner-code': $scope.partnerCode,
-            'privilege': false
-        };
+    //     var payload = {
+    //         'company-code': $scope.data.simData['company-code'],
+    //         'customer-type': $scope.data.simData['account-category'],
+    //         'customer-subtype': $scope.data.simData['account-sub-type'],
+    //         'service-level': proposition['service-level'],
+    //         'proposition': val,
+    //         'partner-code': $scope.partnerCode,
+    //         'privilege': false
+    //     };
 
-        MigratePreToPostService.pricePlan(payload, onGetPricePlan);
-    });
+    //     MigratePreToPostService.pricePlan(payload, onGetPricePlan);
+    // });
     // (End) Number Information ----------------------
 
 
