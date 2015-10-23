@@ -52,14 +52,14 @@
                         <div class="col-md-4">
                             <div class="form-group imp">
                                 <label>หมายเลขบัตรประชาชน / พาสปอร์ต </label>
-                                <input ng-numeric-input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" ng-disabled="!getSIMDataFailed && !isLastestUser && data.customerProfile['id-number']||!isCustomerProfile" class="form-control" maxlength="13">
+                                <input ng-numeric-input type="text" id="citizenID3" ng-model="data.customerProfile['id-number']" ng-disabled="!getSIMDataFailed" class="form-control" maxlength="13" ng-change="onInputIdNumber()">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <!-- id-type -->
                                 <label>ประเภทของบัตร <span style="color:red;">*</span></label>
-                                <select class="form-control" ng-model="data.customerProfile['id-type']" ng-disabled="!getSIMDataFailed && !isLastestUser && data.customerProfile['id-type']||!isCustomerProfile">
+                                <select class="form-control" ng-model="data.customerProfile['id-type']" ng-disabled="!getSIMDataFailed">
                                     <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                 </select>
                             </div>
@@ -71,7 +71,7 @@
                                 <label>เลขที่ประจำตัวผู้เสียภาษี<span style="color:red;">*</span> </label>
                                 <input name="taxIds"
                                        type="text"
-                                       ng-model="data.customerProfile['tax-id']" ng-disabled="!getSIMDataFailed && !isLastestUser && data.customerProfile['tax-id']||!isCustomerProfile"
+                                       ng-model="data.customerProfile['tax-id']" ng-disabled="!getSIMDataFailed"
                                        id="taxId3"
                                        placeholder=""
                                        class="form-control numberic" maxlength="13" required>
@@ -189,9 +189,9 @@
                                 <p></p>
                                 <select class="form-control"
                                         ng-model="partnerCode"
-                                        ng-disabled="!isLastestUser">
+                                        ng-disabled="!getSIMDataFailed">
                                     <option value="">-- กรุณาเลือก --</option>
-                                    <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
+                                    <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}" ng-selected="partnerCode === item">
                                         {{item}}
                                     </option>
                                 </select>
@@ -203,11 +203,9 @@
                                        name="partnerCode"
                                        ng-model="partnerCode"
                                        class="form-control"
-                                       ng-disabled="(getAuthen.shopcodes.length==1) || !isLastestUser"
+                                       ng-disabled="(getAuthen.shopcodes.length==1) || !getSIMDataFailed"
                                        maxlength="8" required>
                             </div>
-
-
                         </div>
                     </div>
                     <div class="row">
@@ -219,10 +217,10 @@
                                 </div>
                                 <div class="col-md-4">
                                     <p></p>
-                                    <select class="form-control" ng-model="selectedProPosition">
+                                    <select id="propositionDropdown" class="form-control" ng-model="selectedPricePlan.proposition">
                                         <option value="">-- กรุณาเลือก --</option>
-                                        <option ng-repeat="item in proPositionList" value="{{ item['proposition-code'] }}">
-                                            {{ item['proposition-code'] }} : {{ item.description }}
+                                        <option ng-repeat="item in proPositionList" value="{{item['name']}}">
+                                            {{item["proposition-code"]}} : {{item["description"]}}
                                         </option>
                                     </select>
                                 </div>
@@ -264,13 +262,16 @@
                                     <input type="text" ng-model="selectedPricePlan.description" readonly class="form-control">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control">
+                                    <input type="text" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control" ng-disable="!isShowPricePlan">
                                 </div>
                                 <div class="col-md-1">
-                                    <button href="#modalPricePlan" id="modalnewpriceplan" class="btn" onclick="return false;" data-toggle="modal" style="background-color: #5cb85c; border-color: #4cae4c; ">
+                                    <button href="#modalPricePlan" id="modalnewpriceplan" class="btn" onclick="return false;" data-toggle="modal" style="background-color: #5cb85c; border-color: #4cae4c;" ng-disable="!isShowPricePlan">
                                         <span style="color:white;">...</span>
                                     </button>
                                 </div>
+                                <!-- <div class="col-md-12">
+                                    <div ng-include="template.modalPricePlan"></div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -391,7 +392,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="well" style="background-color:#ffffff;">
+                <div class="well" style="background-color:#ffffff;" ng-show="isShowCustomerLatest">
                     <div class="row">
                         <div class="form-group">
                             <label class="col-md-3">
@@ -870,96 +871,44 @@
 <div id="modalPricePlan" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+            <div class="modal-header">
+                <h5 style="margin-bottom:20px;">Price Plan</h5>
+            </div>
             <div class="modal-body">
-                <div class="col-md-12">
-                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter" id="ppfilter2" class="form-control pricePlanFilter">
+                <div style="margin:-25px 25px 20px;">
+                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter" class="form-control" ng-disabled="isSecondAuhenFailed" >
                 </div>
-                &nbsp;
-                <div class="table-responsive">
-                    <table class="table" style="margin-bottom: 0px;">
-                        <tr>
-                            <th colspan="5">
-                                <label class="col-xs-12">
-                                    <div class="row">
-                                        <div class="col-xs-1">&nbsp;</div>
-                                        <div class="col-xs-9"><span style="color:green;"><h6>Price Plan</h6></span></div>
-                                        <div class="col-xs-2"><span style="color:green;text-align:center;"><h6>RC</h6></span></div>
-                                        <!--<div class="col-xs-3"><span style="color:green;"><h6>รายการส่งเสริมการขาย</h6></span></div>-->
-                                    </div>
-                                </label>
-                            </th>
-                        </tr>
 
-                        <tr dir-paginate="pp in pricePlanList | filter:pricePlanFilter | orderBy:'name'| itemsPerPage: pageSize"
+                <div class="table-responsive">
+                    <table class="table" style="table-layout:fixed;">
+                        <tr class="row">
+                            <th class="col-md-1" style="width:25px;"></th>
+                            <th class="col-md-6"><span style="color:green;">Price Plan</span></th>
+                            <th class="col-md-2 text-right"><span style="color:green;">RC</span></th>
+                            <th class="col-md-3 text-center"><span style="color:green;">รายการส่งเสริมการขาย</span></th>
+                        </tr>
+                        <tr class="row"
+                            dir-paginate="pp in pricePlanList | filter:pricePlanFilter | orderBy:'name'| itemsPerPage: 10"
                             pagination-id="PPList"
                             current-page="currentPage">
-                            <th colspan="5" style="padding: 5px; padding-bottom: 0px;">
-                                <label class="col-xs-12" style="cursor:pointer;">
-                                    <div class="row">
-                                        <div class="col-xs-1">
-                                            <input name="pricelsx"
-                                                   type="radio"
-                                                   ng-value="pp"
-                                                   ng-model="dirty.selectedPricePlan" class="radioPriceplan" />
-                                        </div>
-                                        <div class="col-xs-9">{{pp.name}}: {{pp.description}}</div>
-                                        <div class="col-xs-2 text-center">{{pp.rc | number}}</div>
-                                        <!--<div class="col-xs-3" style="text-align:center;">{{pp.promotion}}</div>-->
-                                    </div>
-                                </label>
-                            </th>
-                        </tr>
 
-                        <tr>
-                            <td id="divPage" colspan="5" class="text-center" style="margin-bottom: 0px;">
-                                <style>
-                                    .pagination {
-                                        margin: 0;
-                                    }
-                                </style>
-                                <div dir-pagination-controls pagination-id="PPList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div id="div_event"></div>
-            </div>
-            <div class="modal-footer" style=" padding-top: 0;">
-                <button class="btn btn-success" data-dismiss="modal" ng-click="selectedPricePlan = dirty.selectedPricePlan">เลือก</button>
-                <button class="btn btn-cancel" data-dismiss="modal" ng-click="dirty.selectedPricePlan = selectedPricePlan">ยกเลิก</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="pricePlanModal" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5>Price Plan</h5>
-                <div class="col-md-12">
-                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter" class="form-control">
-                </div>
-            </div>
-            <div class="modal-body">
-                &nbsp;
-                <div class="table-responsive">
-                    <table class="table">
-                        <tr class="row">
-                            <th class="col-md-1"></th>
-                            <th class="col-md-2"><span style="color:green;"> Price Plan</span></th>
-                            <th class="col-md-7"><span style="color:green;"> รายการส่งเสริมการขาย</span></th>
-                            <th class="col-md-2 text-right"><span style="color:green;"> RC</span></th>
-                        </tr>
-                        <tr class="row" ng-repeat="pp in pricePlanList">
-                            <th class="col-md-1">
+                            <th class="col-md-1" style="width:25px;">
                                 <input name="pricels" type="radio" ng-model="dirty.selectedPricePlan" ng-value="pp" />
                             </th>
-                            <th class="col-md-2">{{pp.name}}</th>
-                            <th class="col-md-7">{{pp.description}}</th>
+                            <th class="col-md-6">{{pp.name}} : {{pp.description}}</th>
                             <th class="col-md-2 text-right">{{pp.rc | number:2}}</th>
+                            <th class="col-md-3 text-center">{{pp.proposition}}</th>
                         </tr>
                     </table>
+
+                    <div id="divPage" colspan="4" class="text-right" style="margin:-30px 25px 0;padding-top:20px;border-top:1px solid #ddd;">
+                        <style>
+                            .pagination {
+                                margin: 0;
+                            }
+                        </style>
+                        <div dir-pagination-controls pagination-id="PPList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
+                    </div>
                 </div>
                 <div id="div_event"></div>
             </div>
