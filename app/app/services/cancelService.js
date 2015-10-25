@@ -130,7 +130,7 @@
 				      "is-childsim" : false,
 				      "is-softsuspend" : false,
 				      "product-properties" : {
-				            "PRODUCT-STATUS-DATE" : null,
+				            "PRODUCT-STATUS-DATE" : '2531-09-01T00:00:00+0700',
 				            "REASON-CODE" : null,
 				            "REASON-DESC" : null,
 				            "SUBSCRIBER-ID" : null,
@@ -294,7 +294,7 @@
 							'PRODUCT-CODE': payload.productDetails['productCodes'],
 							'SIM': payload.productDetails['simSerial'],
 					        "EFFECTIVE-OPTION" : "IMMEDIATE",
-							// "EFFECTIVE-DATE" : "12/12/2015"
+							"EFFECTIVE-DATE" : moment().format('YYYY-MM-DDTHH:mm:ss+0700')
 
 						},
 						"product-category" : "TMV",

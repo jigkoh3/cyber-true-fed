@@ -30,7 +30,7 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
 	$scope.data = {};
 	$scope.isReadCardSuccess = false;
 
-	$scope.statusCancel = '';
+	$scope.statusCancel = 'CANCEL-ACTIVE';
 	$scope.statusReason = '';
 	$scope.statusReasonMemo = '';
 
@@ -78,6 +78,23 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
 		console.log($scope.statusReasonMemo);
 	};
 
+	var checkIsCancelSim = function(data) {
+		var prop = utils.getObject(data, 'simData.product-properties.PRODUCT-STATUS-CODE');
+		var prodStatus = utils.getObject(data, 'simData.product-status');
+		if ('CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND'.indexOf(prop) > -1) {
+			alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์เป็น ' + prop);
+			return false;
+		}
+		else if (prodStatus.toUpperCase() !== 'ACTIVE') {
+			alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์ไม่ได้ ACTIVE');
+			return false;
+		}
+		else {
+			console.log(prop);
+			return true;
+		}
+	};
+
 	// Get current SIM data
 	var onGetSIMData = function (result) {
 		
@@ -93,6 +110,10 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
 
         $scope.data = result.data;
 
+        if (!checkIsCancelSim($scope.data)) {
+        	window.close();
+        }
+
         $scope.getSIMDataFailed = false;
 
         if (!$scope.data) {
@@ -102,6 +123,19 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
         else {
             authenticate();
         }
+
+		var activeDate = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DATE');
+		if (activeDate) {
+			var activeDateResult = moment(Date.parse(activeDate));
+			if (activeDateResult.isValid()) {
+				$scope.activeDate = activeDateResult.format('DD/MM/YYYY');
+			}
+		}
+
+		var reasonCode = utils.getObject($scope.data, 'simData.product-properties.REASON-DESC');
+		if (reasonCode) {
+			$scope.reasonCodeDisplay = '(' + reasonCode + ')';
+		}
 
 		var companyCode = utils.getObject(result.data, 'simData.company-code');
 		if (!utils.isEmpty(companyCode)) {
@@ -179,9 +213,6 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
             });
         });
     };
-
-
-
 
     var validateInput = function() {
     	if (!$scope.statusCancel) {
@@ -286,37 +317,35 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
 
 	$scope.confirmPrint = function () {
 
+		SystemService.showLoading();
+
         var data = generateOrderRequest();
 
 		data['statusCancel'] = $scope.statusCancel;
-		data['statusReason'] = $scope.statusReason;
+		data['statusReason'] = $scope.statusReason.id;
 		data['statusReasonMemo'] = $scope.statusReasonMemo;
 
-		CancelService.submitCancel($scope.data, function(result) {
-
+		CancelService.submitCancel(data, function(result) {
+			SystemService.hideLoading();
+            console.log(result);
+            setTimeout(function() {
+                var displayMsg = utils.getObject(result.data, 'display-messages.0');
+                console.log(displayMsg);
+                if (!displayMsg || !displayMsg['message-type']) {
+                    SystemService.showBeforeClose({
+                        "message": "DEMO > " + result.data["display-messages"][0]["th-message"],
+                        "message2": ""
+                    });
+                } else {
+                    SystemService.showBeforeClose({
+                        "message": result.data["display-messages"][0]["th-message"],
+                        "message2": ""
+                    });
+                }
+            }, 1000);
 		});
-		// if (validateInput()) {
-			//confirm
-			SystemService.showBeforeClose({
-				"message": "รายการคำขอเลขที่ OR30935 ",
-				"message2": "ได้รับข้อมูลเรียบร้อยแล้ว",
-			});
-		// }
-
-
-
-
-
-
-
-
-		//SystemService.showConfirm().then(function (value) {
-
-		//}, function (reason) {
-		//    //cancel
-
-		//});
 	};
+
 	$scope.openSSO = function () {
 
 		var openDialog = function (uri, name, options, closeCallback) {
