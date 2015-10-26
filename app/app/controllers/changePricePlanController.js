@@ -1793,27 +1793,27 @@ smartApp.controller('ChangePricePlanController', function (
     $scope.reason = "";
     $scope.selectReason = {};
     ReasonService.list("119", function (result) {
-        $scope.reasons = result;
-        $scope.reason = $scope.reasons[86];
-        $scope.selectReason = $scope.reasons[86];
-
-        // //solution for none fix index
         // $scope.reasons = result;
-        // var myArray = result;
-        // var searchText = "CREQ",
-        //     index = -1;
-        // for (var i = 0, len = myArray.length; i < len; i++) {
-        //     if (myArray[i].id === searchText) {
-        //         index = i;
-        //         break;
-        //     }
-        // }
+        // $scope.reason = $scope.reasons[86];
+        // $scope.selectReason = $scope.reasons[86];
 
-        // console.log(index);
+        //solution for none fix index
+        $scope.reasons = result;
+        var myArray = result;
+        var searchText = "CREQ",
+            index = -1;
+        for (var i = 0, len = myArray.length; i < len; i++) {
+            if (myArray[i].id === searchText) {
+                index = i;
+                break;
+            }
+        }
 
-        // $scope.reason = $scope.reasons[index];
-        // $scope.selectReason = $scope.reasons[index];
-        // //solution for none fix index
+        console.log(index);
+
+        $scope.reason = $scope.reasons[index];
+        $scope.selectReason = $scope.reasons[index];
+        //solution for none fix index
         
     });
     $scope.onReasonChange = function () {
