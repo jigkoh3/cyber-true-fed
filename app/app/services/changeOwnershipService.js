@@ -72,7 +72,7 @@
                 "display-messages": [{
                     "message": "",
                     "message-code": "2",
-                    "message-type": "ERROR",
+                    "message-type": "WARNING",
                     "en-message": "; nested exception is: \n\torg.xml.sax.SAXException: Invalid element in th.co.truecorp.ads.sff.ext.services.ccbint.resourcemanagement.NiceNumberInfoM - dealerCode",
                     "th-message": "; nested exception is: \n\torg.xml.sax.SAXException: Invalid element in th.co.truecorp.ads.sff.ext.services.ccbint.resourcemanagement.NiceNumberInfoM - dealerCode",
                     "technical-message": "CCB_INT Method : checkNiceNumber, URL : http://172.19.194.63:8280/SubscriberWS/ResourceManagement"
@@ -408,7 +408,7 @@
                         "contact-number": "029448849#123",
                         "contact-mobile-number": "444444444",
                         "id-type": "",
-                        "id-number": "1189900130607",
+                        "id-number": "1189900130608",
                         "customer-id": "4811",
                         "customer-level": "NON-TOP",
                         "customer_sublevel_id": null,
@@ -512,7 +512,7 @@
                 "response-data": {}
             };
 
-            if (certificateid == "1189900130607") {
+            if (certificateid == "1189900130608") {
                 fnCallback({
                     status: true,
                     data: data,

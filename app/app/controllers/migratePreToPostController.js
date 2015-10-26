@@ -550,8 +550,7 @@
 
         if (!evt.target.value) {
             $scope.pricePlanList = _.clone($scope.pricePlanListRaw);
-        }
-        else {
+        } else {
             $scope.pricePlanList = _.filter($scope.pricePlanListRaw, function(data) {
                 return data.proposition === evt.target.value;
             });
@@ -624,8 +623,7 @@
             lastestCustomer();
 
             $scope.isShowCustomerLatest = true;
-        }
-        else {
+        } else {
             $scope.isShowCustomerLatest = false;
         }
     };
@@ -921,6 +919,20 @@
 
     // (Start) Number Information ----------------------
     var getProPosition = function(partnerCode) {
+
+        //bypass call pricePlan
+        var payload = {
+            'company-code': $scope.data.simData['company-code'],
+            'customer-type': "I",
+            'customer-subtype': "PRE",
+            'service-level': "C",
+            'proposition': "",
+            'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
+            'privilege': false
+        };
+
+        MigratePreToPostService.pricePlan(payload, onGetPricePlan);
+        //end bypass
         var proPositionPayload = {
             'company-code': $scope.data.simData['company-code'],
             'customer-type': $scope.data.simData['account-category'],
@@ -948,7 +960,7 @@
 
                 var payload = {
                     'company-code': $scope.data.simData['company-code'],
-                    'customer-type': "P",
+                    'customer-type': "I",
                     'customer-subtype': "PRE",
                     'service-level': pp['service-level'],
                     'proposition': pp['name'],

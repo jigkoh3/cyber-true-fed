@@ -467,6 +467,20 @@
 
     // (Start) Number Information ----------------------
     var getProPosition = function(partnerCode) {
+        //bypass call pricePlan
+        var payload = {
+            'company-code': $scope.data.simData['company-code'],
+            'customer-type': "P",
+            'customer-subtype': "PRE",
+            'service-level': "C",
+            'proposition': "",
+            'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
+            'privilege': false
+        };
+
+        MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
+        //end bypass
+
         var proPositionPayload = {
             'company-code': $scope.data.simData['company-code'],
             'customer-type': "P",
@@ -497,7 +511,7 @@
                     'privilege': false
                 };
 
-                MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
+                //MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
             }
         }
     };
