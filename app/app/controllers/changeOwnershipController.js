@@ -481,9 +481,27 @@ smartApp.controller('changeOwnershipController', function(
 
                 //reason
                 ReasonService.list("119", function(result) {
+                    // $scope.reasons = result;
+                    // $scope.reason = $scope.reasons[39];
+                    // $scope.selectReason = $scope.reasons[39];
+
+                    //solution for none fix index
                     $scope.reasons = result;
-                    $scope.reason = $scope.reasons[39];
-                    $scope.selectReason = $scope.reasons[39];
+                    var myArray = result;
+                    var searchText = "COWN",
+                        index = -1;
+                    for (var i = 0, len = myArray.length; i < len; i++) {
+                        if (myArray[i].id === searchText) {
+                            index = i;
+                            break;
+                        }
+                    }
+
+                    console.log(index);
+
+                    $scope.reason = $scope.reasons[index];
+                    $scope.selectReason = $scope.reasons[index];
+                    //solution for none fix index
                 });
 
                 //เพศ
@@ -1953,6 +1971,9 @@ smartApp.controller('changeOwnershipController', function(
     $scope.grade = {};
 
     $scope.saveOrder = function() {
+        if ($scope.shopType == '1') {
+            $scope.selectReason.id = "COWN";
+        }
         var data = {
             "target": "aftersales/order/submit",
             "order": {
@@ -2093,7 +2114,7 @@ smartApp.controller('changeOwnershipController', function(
                             "ACCOUNT-PAYMENT-METHOD": "CA",
                             "ACCOUNT-LANG": $scope.billPayment.accountLang,
                             //"ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                            
+
                             "CHANGE-OPTION": $scope.isLastestAdress ? "EXISTING" : "NEW"
                         },
                         "primary-order-data": {
@@ -2108,7 +2129,7 @@ smartApp.controller('changeOwnershipController', function(
                             "ORIGINAL-OWNER-ID-NUMBER": $scope.data.customerProfile['id-number'],
                             "ORIGINAL-OWNER-FIRSTNAME": $scope.data.customerProfile['firstname'],
                             "ORIGINAL-OWNER-LASTNAME": $scope.data.customerProfile['lastname']
-                            //"SIM": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                                //"SIM": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
                         }
                     }]
                     //,"last-modify-date": ""
@@ -2245,10 +2266,10 @@ smartApp.controller('changeOwnershipController', function(
         }
 
         data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"] = data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
-        if($scope.customerStatusN == 'O'){
+        if ($scope.customerStatusN == 'O') {
             data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
         }
-        
+
 
 
 
