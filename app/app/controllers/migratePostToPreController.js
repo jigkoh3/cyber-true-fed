@@ -41,9 +41,22 @@
 
     // (Start) Get current SIM data ----------------------
     var formatDate = function(date) {
-        if (!date) return date;
+        if (date) {
+            if (date.indexOf("-") >= 0) {
+                var arr = date.split("T");
+                var arrDate = arr[0].split("-");
+                var strDate =  arrDate[2]+ "/" + arrDate[1] + "/" + (Number(arrDate[0]) + 543);
+                console.log(arrDate);
+                return strDate;
 
-        return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
+            } else {
+
+                return date;
+            }
+            /*if (!date) return date;
+
+            return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');*/
+        }
     };
 
     var onGetSIMData = function(result) {
@@ -431,15 +444,15 @@
     };
     // (Start) Validation ----------------------
     $scope.isIdCardExpired = function(expireDate) {
-       if (expireDate) {
-        var str = expireDate;
-        var res = str.split("/");
-        var a = moment([Number(moment().format('YYYY'))+543,moment().format('MM'),moment().format('DD')]);
-        var b = moment([res[2], res[1], res[0]]);
-        
-        
+        if (expireDate) {
+            var str = expireDate;
+            var res = str.split("/");
+            var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
+            var b = moment([res[2], res[1], res[0]]);
+
+
             //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
-            return (a.diff(b, 'days')>=0);
+            return (a.diff(b, 'days') >= 0);
             //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
 
         }
@@ -635,8 +648,8 @@
         });
     };
     $scope.openPDFDialog = function() {
-        $scope.data.customerProfile['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
-        $scope.data.customerProfile['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
+        //$scope.data.customerProfile['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
+        //$scope.data.customerProfile['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
 
         if (!isDataComplete()) {
             return;
@@ -676,7 +689,7 @@
             "district": "",
             "amphur": "",
             "province": ""
-            //NEW---
+                //NEW---
         };
 
         if ($scope.isCardValueData && $scope.isCustomerProfile) {
@@ -709,7 +722,7 @@
                 "district": $scope.cardInfo.District,
                 "amphur": $scope.cardInfo.Amphur,
                 "province": $scope.cardInfo.Province
-                //NEW---
+                    //NEW---
             };
 
         }
@@ -756,7 +769,7 @@
                 "district": cardValueData["district"],
                 "amphur": cardValueData["amphur"],
                 "province": cardValueData["province"]
-                //NEW---
+                    //NEW---
             },
             'body': generateOrderRequest()
         };
