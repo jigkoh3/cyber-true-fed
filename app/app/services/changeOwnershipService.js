@@ -72,7 +72,7 @@
                 "display-messages": [{
                     "message": "",
                     "message-code": "2",
-                    "message-type": "ERROR",
+                    "message-type": "WARNING",
                     "en-message": "; nested exception is: \n\torg.xml.sax.SAXException: Invalid element in th.co.truecorp.ads.sff.ext.services.ccbint.resourcemanagement.NiceNumberInfoM - dealerCode",
                     "th-message": "; nested exception is: \n\torg.xml.sax.SAXException: Invalid element in th.co.truecorp.ads.sff.ext.services.ccbint.resourcemanagement.NiceNumberInfoM - dealerCode",
                     "technical-message": "CCB_INT Method : checkNiceNumber, URL : http://172.19.194.63:8280/SubscriberWS/ResourceManagement"
