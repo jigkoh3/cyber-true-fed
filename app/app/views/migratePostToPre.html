@@ -92,7 +92,7 @@
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
                                 <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                <input id="expireDate" type="text" class="form-control date-picker" ng-model="data.customerProfile['id-expire-date']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isIdCardExpired(data.customerProfile['id-expire-date']) && !isLastestUser)">
+                                <input id="expireDate" type="text" class="form-control date-picker" ng-model="data.customerProfile['id-expire-date']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isIdCardExpired(data.customerProfile['id-expire-date']) && !isLastestUser) || !isIdCardExpired(data.customerProfile['id-expire-date'])">
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
