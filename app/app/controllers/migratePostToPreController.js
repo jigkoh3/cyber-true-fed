@@ -444,6 +444,20 @@
 
     // (Start) Number Information ----------------------
     var getProPosition = function(partnerCode) {
+        //bypass call pricePlan
+        var payload = {
+            'company-code': $scope.data.simData['company-code'],
+            'customer-type': "P",
+            'customer-subtype': "PRE",
+            'service-level': "C",
+            'proposition': "",
+            'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
+            'privilege': false
+        };
+
+        MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
+        //end bypass
+
         var proPositionPayload = {
             'company-code': $scope.data.simData['company-code'],
             'customer-type': "P",
@@ -474,7 +488,7 @@
                     'privilege': false
                 };
 
-                MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
+                //MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
             }
         }
     };
@@ -666,7 +680,7 @@
             "district": "",
             "amphur": "",
             "province": ""
-            //NEW---
+                //NEW---
         };
 
         if ($scope.isCardValueData && $scope.isCustomerProfile) {
@@ -699,7 +713,7 @@
                 "district": $scope.cardInfo.District,
                 "amphur": $scope.cardInfo.Amphur,
                 "province": $scope.cardInfo.Province
-                //NEW---
+                    //NEW---
             };
 
         }
@@ -746,7 +760,7 @@
                 "district": cardValueData["district"],
                 "amphur": cardValueData["amphur"],
                 "province": cardValueData["province"]
-                //NEW---
+                    //NEW---
             },
             'body': generateOrderRequest()
         };
