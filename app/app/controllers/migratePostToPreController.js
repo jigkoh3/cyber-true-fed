@@ -431,11 +431,21 @@
     };
     // (Start) Validation ----------------------
     $scope.isIdCardExpired = function(expireDate) {
-        if (expireDate) {
-            return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
+       if (expireDate) {
+        var str = expireDate;
+        var res = str.split("/");
+        var a = moment([Number(moment().format('YYYY'))+543,moment().format('MM'),moment().format('DD')]);
+        var b = moment([res[2], res[1], res[0]]);
+        
+        
+            //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
+            return (a.diff(b, 'days')>=0);
+            //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
+
         }
 
         return true;
+
     };
 
 
@@ -444,6 +454,20 @@
 
     // (Start) Number Information ----------------------
     var getProPosition = function(partnerCode) {
+        //bypass call pricePlan
+        var payload = {
+            'company-code': $scope.data.simData['company-code'],
+            'customer-type': "P",
+            'customer-subtype': "PRE",
+            'service-level': "C",
+            'proposition': "",
+            'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
+            'privilege': false
+        };
+
+        MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
+        //end bypass
+
         var proPositionPayload = {
             'company-code': $scope.data.simData['company-code'],
             'customer-type': "P",
@@ -474,7 +498,7 @@
                     'privilege': false
                 };
 
-                MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
+                //MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
             }
         }
     };
@@ -666,7 +690,7 @@
             "district": "",
             "amphur": "",
             "province": ""
-            //NEW---
+                //NEW---
         };
 
         if ($scope.isCardValueData && $scope.isCustomerProfile) {
@@ -699,7 +723,7 @@
                 "district": $scope.cardInfo.District,
                 "amphur": $scope.cardInfo.Amphur,
                 "province": $scope.cardInfo.Province
-                //NEW---
+                    //NEW---
             };
 
         }
@@ -746,7 +770,7 @@
                 "district": cardValueData["district"],
                 "amphur": cardValueData["amphur"],
                 "province": cardValueData["province"]
-                //NEW---
+                    //NEW---
             },
             'body': generateOrderRequest()
         };
