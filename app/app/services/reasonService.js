@@ -1,10 +1,10 @@
-﻿smartApp.service('ReasonService', function ($filter, SystemService) {
+﻿smartApp.service('ReasonService', function($filter, SystemService) {
     var demo = SystemService.demo;
     var that = this;
-    this.get = function (activityCode, fnCallback) {
+    this.get = function(activityCode, fnCallback) {
         if (!demo) {
             var target = 'aftersales/configuration/order/reason?activity-code=' + activityCode;
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -134,15 +134,15 @@
             });
         }
     };
-    this.list = function (activityCode, funCallback) {
-        that.get("119", function (result) {
+    this.list = function(activityCode, funCallback) {
+        that.get("119", function(result) {
             //console.log("ReasonService.get");
             //console.log(result);
             var listReason = [];
             if (result.status) {
                 if (SystemService.checkObj(result.data, ["response-data", "available-reasons"])) {
                     var availableReasons = $filter('filter')(result.data["response-data"]["available-reasons"]);
-                    angular.forEach(availableReasons, function (value, key) {
+                    angular.forEach(availableReasons, function(value, key) {
                         this.push({
                             id: key,
                             dec: key + ": " + value
@@ -152,13 +152,22 @@
                     funCallback(listReason);
 
                 } else {
-                    alert('object not found!');
+                    //alert('object not found!');
+                    // SystemService.showAlert({
+                    //     "message": "",
+                    //     "message-code": "",
+                    //     "message-type": "WARNING",
+                    //     "en-message": "Object response-data, available-reasons is not found!",
+                    //     "th-message": "",
+                    //     "technical-message": "webui-reasonService"
+                    // });
+                    alert('Object response-data, available-reasons is not found!');
                 }
             } else {
                 funCallback(listReason);
             }
         });
 
-        
+
     };
 });
