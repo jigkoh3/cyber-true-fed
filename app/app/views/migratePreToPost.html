@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <!-- id-type -->
                                 <label>ประเภทของบัตร <span style="color:red;">*</span></label>
-                                <select class="form-control" ng-model="data.customerProfile['id-type']" ng-disabled="!getSIMDataFailed">
+                                <select class="form-control" ng-model="data.customerProfile['id-type']" ng-change="onCheckInputForVerify()" ng-disabled="!getSIMDataFailed">
                                     <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                 </select>
                             </div>
@@ -74,6 +74,21 @@
                                 <!--<span class="error" style="color:red;" ng-show="newcustomers.branchid.$error.required">
                                     Required.
                                 </span>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>ประเภทลูกค้าย่อย<span style="color:red;">*</span></label>
+                                <select ng-model="subCompanyType"
+                                        ng-disabled="!isLastestUser"
+                                         ng-change="onCheckInputForVerify()"
+                                        id="subCompanyType"
+                                        class="form-control">
+                                    <!--<option>เลือก</option>-->
+                                    <option ng-repeat="option in accountSubtypeList" value="{{option.name}}">{{option.name}} : {{option.description}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -115,14 +130,14 @@
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
                                 <label>วัน/เดือน/ปีเกิด <span style="color:red;">*</span></label>
-                                <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" ng-disabled="!getSIMDataFailed && !isLastestUser && data.customerProfile['birthdate'] ||!isCustomerProfile">
+                                <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfile['birthdate']" ng-blur="onCheckInputForVerify()" readonly>
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
                                 <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                <input id="expireDate" type="text" class="form-control date-picker" ng-model="data.customerProfile['id-expire-date']" ng-disabled="isIdCardExpired(data.customerProfile['id-expire-date']) ||!isCustomerProfile">
+                                <input id="expireDate" type="text" class="form-control date-picker" ng-model="data.customerProfile['id-expire-date']" ng-blur="onCheckInputForVerify()" readonly>
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
@@ -172,7 +187,7 @@
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
                                 <p></p>
-                                <select class="form-control" ng-model="partnerCode" ng-disabled="!getSIMDataFailed">
+                                <select class="form-control" ng-model="partnerCode" ng-change="onCheckInputForVerify()" ng-disabled="!getSIMDataFailed">
                                     <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}" ng-selected="partnerCode === item">
                                         {{item}}
@@ -194,7 +209,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <p></p>
-                                    <select id="propositionDropdown" class="form-control" ng-model="selectedPricePlan.proposition">
+                                    <select id="propositionDropdown" class="form-control"
+                                        ng-change="onCheckInputForVerify(); selectedPromotion()" ng-model="selectedPricePlan.proposition">
                                         <option value="">-- กรุณาเลือก --</option>
                                         <option ng-repeat="item in proPositionList" value="{{item['name']}}">
                                             {{item["proposition-code"]}} : {{item["description"]}}
@@ -216,7 +232,7 @@
                         </div>
                     </div>
                     <p></p>
-                    <div class="row" ng-submit="funcEvent()">
+                    <div class="row" ng-submit="funcEvent()" ng-show="isVerify">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="col-md-3" style=" text-align: right; top: 5px;">
@@ -240,7 +256,7 @@
                         </div>
                     </div>
                     <p></p>
-                    <div class="row">
+                    <div class="row" ng-show="isVerify">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="col-md-3" style=" text-align: right; top: 5px;">
@@ -253,7 +269,7 @@
                         </div>
                     </div>
                     <p></p>
-                    <div ng-include="template.newparampriceplan" scope="" onload=""></div>
+                    <div ng-show="isVerify" ng-include="template.newparampriceplan" scope="" onload=""></div>
                     <div ng-show="isVerify" class="row">
                         <div class="col-md-12">
                             <div class="checkbox checkbox-circle2 checkbox-inline authorize">
@@ -263,7 +279,7 @@
                         </div>
                     </div>
                     <br />
-                    <div ng-hide="!customerUsageNo">
+                    <div ng-hide="!customerUsageNo || !isVerify">
                         <div ng-show="(customerType=='B') || (customerType=='C')">
                             <div class="row">
                                 <div class="col-md-4">
@@ -296,7 +312,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div ng-show="isVerify">
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
@@ -352,7 +368,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="well" style="background-color:#ffffff;" ng-show="isShowCustomerLatest">
+                <div class="well" style="background-color:#ffffff;" ng-show="isShowCustomerLatest && isVerify">
                     <div class="row">
                         <div class="form-group">
                             <label class="col-md-3">
@@ -415,8 +431,8 @@
                         </div>
                     </div>
                 </div>
-                <h4>ที่อยู่จดทะเบียน</h4>
-                <div class="well" style="background-color:#ffffff;" ng-form="customerspre">
+                <h4 ng-show="isVerify">ที่อยู่จดทะเบียน</h4>
+                <div ng-show="isVerify" class="well" style="background-color:#ffffff;" ng-form="customerspre">
                     <div class="row" style="margin-bottom:10px;">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -545,8 +561,8 @@
                 <!-- end authorize -->
                 <div ng-include="template.currentpriceplan" scope="" onload=""></div>
             </div>
-            <h4>ใบแจ้งค่าบริการและประเภทการรับชำระ</h4>
-            <div ng-show="isVerify" class="well">
+            <h4 ng-show="isVerify">ใบแจ้งค่าบริการและประเภทการรับชำระ</h4>
+            <div ng-show="isVerify && isVerify" class="well">
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label class="col-md-4 control-label">การส่งใบแจ้งค่าบริการ<span style="color:red;">*</span></label>
@@ -595,8 +611,8 @@
                     </div>
                 </div>
             </div>
-            <h4>ข้อมูลติดต่อลูกค้า</h4>
-            <div class="well" style="background-color:#ffffff;">
+            <h4 ng-show="isVerify">ข้อมูลติดต่อลูกค้า</h4>
+            <div ng-show="isVerify" class="well" style="background-color:#ffffff;">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group" ng-form="tellNos">
@@ -661,8 +677,8 @@
                 </div>
             </div>
             <!--<div ng-include="template.reasonmemo" scope="" onload=""></div>-->
-            <h4>Reason & Memo</h4>
-            <div class="well">
+            <h4 ng-show="isVerify">Reason & Memo</h4>
+            <div ng-show="isVerify" class="well">
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label class="col-md-4 control-label">Memo</label>
@@ -769,7 +785,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 form-buttons">
+            <div ng-show="isVerify" class="col-md-12 form-buttons">
                 <div class="form-group">
                     <input ng-if="shopType === '0'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" />
                     <input ng-if="shopType === '1'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" />
