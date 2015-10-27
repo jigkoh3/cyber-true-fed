@@ -477,7 +477,7 @@ smartApp.service('MigratePreToPostService', function($routeParams, $timeout, Sys
                 },
                 "display-messages": [{
                     "message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
-                    "message-code": "TMV-PREVERIFY-11010x",
+                    "message-code": "TMV-PREVERIFY-11010",
                     "message-type": "ERROR",
                     "en-message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
                     "th-message": "ไม่สามารถเปิดบริการได้ กรุณาแนะนำเจ้าหน้าที่โทรติดต่อ 02-699-6222 (วันจันทร์-เสาร์ เวลา 9.00-18.00)",
@@ -497,12 +497,10 @@ smartApp.service('MigratePreToPostService', function($routeParams, $timeout, Sys
                 }]
             };
 
-            var result = {};
-
-            if ($scope.approveCode) {
+            var result = data;
+            if (dataRequest.approveCode) {
                 result = data2;
-            } else {
-                result = data2;
+                console.log('data2');
             }
 
             $timeout(function() {
