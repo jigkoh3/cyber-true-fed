@@ -26,6 +26,15 @@
 
     $scope.isCardValueData = false;
 
+    //paging
+    $scope.currentPage = 1;
+    $scope.pageSize = 10;
+
+    $scope.currentPage_cug = 1;
+    $scope.pageSize_cug = 10;
+    $scope.totalCUG = 10;
+    //end paging
+    
     $scope.dirty = {
         selectedPricePlan: {}
     };
@@ -103,7 +112,27 @@
             SystemService.calendarDatePicker();
         }, 0);
     };
+$scope.isSelectedPricePlan = false;
+    $scope.selectedPricePlan = function (pp) {
 
+        $('#divPage').click(function () {
+            $scope.onBlurPricePlanItem();
+        });
+        //$('#ppfilter').val('');
+        //$scope.pricePlanFilter = "";
+        $scope.pricePlan2 = {
+            name: pp.pricePlan,
+            promotion: pp.promotion,
+            rc: pp.rc,
+            priceplans: pp.priceplans,
+            code: pp["proposition-code"],
+            saveName: pp.saveName,
+            pp: pp
+        };
+        $scope.isSelectedPricePlan = true;
+        $scope.isSelectedPricePlan2 = true;
+        console.log(pp);
+    };
     $scope.isInputSubNo = false;
     $scope.onInputSubNo = function() {
         console.log($('#dataSubNo').val().length, $scope.isInputSubNo);

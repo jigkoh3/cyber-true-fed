@@ -437,6 +437,186 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     'rc': 16000.0,
                     'service-level': 'G',
                     'priceplan-type': 'SH'
+                },{
+                    'name': 'BCUGFP03',
+                    'description': payload.proposition + ' Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
+                    'soc': '936258',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2012-05-21',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 600.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'BGAINP12',
+                    'description': 'BizShare37700bt,All-net1.10bt/min',
+                    'soc': '843368',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2014-04-13',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 37700.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                },{
+                    'name': 'BCUGFP03',
+                    'description': payload.proposition + ' Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
+                    'soc': '936258',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2012-05-21',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 600.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'BGAINP12',
+                    'description': 'BizShare37700bt,All-net1.10bt/min',
+                    'soc': '843368',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2014-04-13',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 37700.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
+                }, {
+                    'name': 'W2S02P04',
+                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
+                    'soc': '937378',
+                    'properties': {
+                        'TR_SPECIAL_OFFER_IND': 'CSH',
+                        'PRICEPLAN_TYPE': 'SH'
+                    },
+                    'sale-period': {
+                        'start': '2005-06-27',
+                        'end': '2016-01-30'
+                    },
+                    'rc': 16000.0,
+                    'service-level': 'G',
+                    'priceplan-type': 'SH'
                 }]
             };
 
