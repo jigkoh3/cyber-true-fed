@@ -619,6 +619,8 @@ $scope.isSelectedPricePlan = false;
             alert('กรุณากรอกข้อมูลผู้มอบอำนาจ');
             return false;
         }
+        $scope.data.customerProfile['birthdate'] = $('#birthDate').val();
+        $scope.data.customerProfile['id-expire-date'] = $('#expireDate').val();
 
         if (!$scope.data.customerProfile['id-number'] || !$scope.data.customerProfile['id-type'] ||
             !$scope.data.customerProfile['title-code'] || !$scope.data.customerProfile['firstname'] ||
