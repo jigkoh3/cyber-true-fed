@@ -129,7 +129,10 @@ smartApp.controller('changeOwnershipController', function(
     $scope.initModalReadCard = function() {
         if ($scope.shopType == "1") {
             setTimeout(function() {
-                $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                if($scope.isCustomerProfile == false){
+                    $("#btn-fancy-ReadCard").fancybox().trigger('click');    
+                }
+                
                 
                 $('#loadingReadCard').hide();
                 $('#unMatch').hide();
