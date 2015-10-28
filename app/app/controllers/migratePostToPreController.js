@@ -1,4 +1,4 @@
-﻿smartApp.controller('MigratePostToPreController', function($routeParams, $scope, AuthenService, MigratePostToPreService, ReasonService, SystemService) {
+﻿smartApp.controller('MigratePostToPreController', function($routeParams,$filter, $scope, AuthenService, MigratePostToPreService, ReasonService, SystemService) {
 
     // Templates
     var runTime = new Date().getTime();
@@ -38,6 +38,9 @@
     $scope.dirty = {
         selectedPricePlan: {}
     };
+    $scope.slipType = "H";
+    $scope.isVerify = true;
+
 
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the page
@@ -46,6 +49,134 @@
         $scope.isAuthorize = false;
         $scope.isCustomerProfile = false;
     };
+
+    $scope.billPayment = {
+        email: "",
+        smss: "",
+        accountLang: "TH"
+    };
+
+    //address AND PostCodes zipcode
+    $scope.addressList = [];
+    var tempAddressList = [];
+    $scope.selectedAddress = "";
+    $scope.pauseAddress = false;
+    $scope.isLoadAddress = false;
+    var checkNull = function(org, txt) {
+        if (txt) {
+            if (org) {
+                return " " + txt;
+            } else {
+                return txt;
+            }
+
+        } else {
+            return "";
+        }
+    }
+    $scope.onEnterAddress = function() {
+        if ($scope.addressList.length == 1) {
+            $scope.setSearchAddress($scope.addressList[0]);
+        }
+        if ($scope.addressList.length == 0 && $scope.txtSearchAddress) {
+            $scope.onInputAddress();
+        }
+    };
+    $scope.onFocusAddress = function() {
+        if ($scope.addressList.length > 0) {
+            $('#ulAddressList').show();
+        }
+    };
+    $scope.onBlurAddress = function() {
+        $('#ulAddressList').hide();
+    };
+    var filterAddressList = function(txtSearch) {
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = tempAddressList;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.addressList = arr;
+        } else {
+            $scope.addressList = $filter('filter')(tempAddressList, txtSearch);
+        }
+
+
+
+        console.log($scope.addressList.length, txtSearch);
+        setTimeout(function() {
+            if ($scope.addressList.length == 0) {
+                $('#ulAddressList').hide();
+            } else {
+                $('#ulAddressList').show();
+            }
+        }, 0);
+    };
+
+    $scope.mailAddress = {
+        newss: ''
+    };
+    
+    $scope.txtSearchAddress = "";
+    $scope.onInputAddress = function() {
+        $scope.txtSearchAddress = "";
+        $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.postcode);
+        $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.province);
+        $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.amphur);
+        $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.district);
+        var target = "profiles/master/address/search?keyword=" + $scope.txtSearchAddress + "&lang=" + $scope.billPayment.accountLang;
+        console.log($scope.txtSearchAddress.length, target);
+        if ($scope.txtSearchAddress.length >= 3) {
+            if (!$scope.isLoadAddress) {
+                //SystemService.showLoading();
+                if (!$scope.pauseAddress) {
+                    SystemService.getAddressMaster(target, function(result) {
+                        //SystemService.hideLoading();
+                        if (result.status) {
+                            $scope.isLoadAddress = true;
+                            $scope.addressList = result.data['response-data'];
+                            tempAddressList = result.data['response-data'];
+
+                            if ($scope.addressList.length == 1) {
+                                $scope.setSearchAddress($scope.addressList[0]);
+                            }
+
+                            filterAddressList($scope.txtSearchAddress);
+                        }
+                    });
+                }
+                $scope.pauseAddress = true;
+            } else {
+                filterAddressList($scope.txtSearchAddress);
+            }
+        } else {
+            $scope.pauseAddress = false;
+            $scope.isLoadAddress = false;
+            $('#ulAddressList').hide();
+            $scope.addressList = [];
+        }
+    };
+    $scope.onChangeBillPaymentAccountLang = function() {
+        $scope.onInputAddress();
+    };
+    $scope.setSearchAddress = function(address) {
+        console.log(address);
+        $scope.mailAddress.province = address['province'];
+        $scope.mailAddress.amphur = address['district'];
+        $scope.mailAddress.district = address['subdistrict'];
+        $scope.mailAddress.postcode = address['zipcode'];
+        $('#ulAddressList').hide();
+    };
+    $scope.onSelectedAddress = function(e) {
+
+        $scope.setSearchAddress($scope.addressList[e]);
+        setTimeout(function() {
+            $('#idBindDataAgain').click();
+        }, 0);
+    };
+    // End Addres
 
 
     // (Start) Get current SIM data ----------------------
@@ -648,6 +779,18 @@ $scope.isSelectedPricePlan = false;
 
     var generateOrderRequest = function() {
         $scope.data.customerProfile['language'] = "TH";
+        $scope.data.customerAddress['district'] = $scope.mailAddress.amphur;
+        $scope.data.customerAddress['sub-district'] = $scope.mailAddress.district;
+        $scope.data.customerAddress['zip'] = $scope.mailAddress.postcode;
+        $scope.data.customerAddress['province'] = $scope.mailAddress.province;
+        $scope.data.customerAddress['moo'] = $scope.mailAddress.moo;
+        $scope.data.customerAddress['number'] = $scope.mailAddress.homeNumber;
+        $scope.data.customerAddress['building-floor'] = $scope.mailAddress.buildingFloor;
+        $scope.data.customerAddress['building-name'] = $scope.mailAddress.buildingName;
+        $scope.data.customerAddress['building-room'] = $scope.mailAddress.buildingRoom;
+        $scope.data.customerAddress['soi'] = $scope.mailAddress.soi;
+        $scope.data.customerAddress['street'] = $scope.mailAddress.road;
+        $scope.data.customerAddress['village'] = $scope.mailAddress.village;
 
 
         return {

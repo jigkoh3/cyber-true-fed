@@ -129,11 +129,11 @@ smartApp.controller('changeOwnershipController', function(
     $scope.initModalReadCard = function() {
         if ($scope.shopType == "1") {
             setTimeout(function() {
-                if($scope.isCustomerProfile == false){
-                    $("#btn-fancy-ReadCard").fancybox().trigger('click');    
+                if ($scope.isCustomerProfile == false) {
+                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
                 }
-                
-                
+
+
                 $('#loadingReadCard').hide();
                 $('#unMatch').hide();
                 $('#CitizenID').val('');
@@ -526,6 +526,9 @@ smartApp.controller('changeOwnershipController', function(
 
                 if ($scope.SubNo != 'null') {
                     changeOwnershipService.validateChangeOwnershipCallback($scope.SubNo, function(result) {
+                        // setTimeout(function() {
+                        //     SystemService.hideLoading();
+                        // }, 2000);
                         if (result.status) {
                             $scope.data = result;
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
