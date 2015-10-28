@@ -561,6 +561,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 //$ngBootbox.customDialog($scope.customDialogOptions);
                                 $scope.onInputIdLastest3();
                             }, 1000);
+
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
 
                             $scope.data2 = result;
@@ -655,8 +656,8 @@ smartApp.controller('MigratePreToPostController', function(
 
 
 
-            $scope.callPropositionList();
 
+            $scope.callPropositionList();
 
         });
     };
@@ -911,27 +912,27 @@ smartApp.controller('MigratePreToPostController', function(
         if (!$scope.isCardValueDataLastest) {
             $('#idBindDataAgain').click();
 
-            $scope.newOwner.firstNameTH = "";
-            $scope.newOwner.lastNameTH = "";
-            $scope.newOwner.prefixTH = "T2";
-            $scope.newOwner.birthDay = "";
-            $scope.newOwner.expireDay = "";
+            // $scope.newOwner.firstNameTH = "";
+            // $scope.newOwner.lastNameTH = "";
+            // $scope.newOwner.prefixTH = "T2";
+            // $scope.newOwner.birthDay = "";
+            // $scope.newOwner.expireDay = "";
 
-            //ระบุผู้ใช้หมายเลข
-            $scope.newOwner2.firstNameTH = "";
-            $scope.newOwner2.lastNameTH = "";
-            $scope.newOwner2.prefixTH = "T2";
+            // //ระบุผู้ใช้หมายเลข
+            // $scope.newOwner2.firstNameTH = "";
+            // $scope.newOwner2.lastNameTH = "";
+            // $scope.newOwner2.prefixTH = "T2";
 
-            $scope.customer['tax-id'] = "";
+            // $scope.customer['tax-id'] = "";
 
-            $scope.customer['contact-mobile-number'] = "";
-            $scope.customer['contact-email'] = "";
+            // $scope.customer['contact-mobile-number'] = "";
+            // $scope.customer['contact-email'] = "";
 
 
-            $scope.contactNo.number = "";
-            $scope.contactNo.continued = "";
+            // $scope.contactNo.number = "";
+            // $scope.contactNo.continued = "";
 
-            $scope.onselectPrefix();
+            // $scope.onselectPrefix();
 
 
 
@@ -984,22 +985,31 @@ smartApp.controller('MigratePreToPostController', function(
                                 //ผู้จดทะเบียนใหม่
                                 //$scope.customer = customer;
                                 if (!$scope.isCardValueDataLastest) {
-                                    $scope.newOwner.firstNameTH = "";
-                                    $scope.newOwner.lastNameTH = "";
-                                    $scope.newOwner.prefixTH = "T2";
+                                    $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
+                                    $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
+                                    $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
+                                    $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
+                                    $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
+                                    $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
+                                    $scope.cardType.value = $scope.data.customerProfile['id-type'];
+
+                                    setTimeout(function() {
+                                        $('#divShowAuthorize').hide();
+                                        $('#cardType').val($scope.cardType.value);
+                                        $('#prefixTH3').val($scope.data.customerProfile['title-code']);
+                                        //$ngBootbox.customDialog($scope.customDialogOptions);
+                                        $scope.onInputIdLastest3();
+                                    }, 1000);
+
+                                    $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
+
                                     //ระบุผู้ใช้หมายเลข
-                                    $scope.newOwner2.firstNameTH = "";
-                                    $scope.newOwner2.lastNameTH = "";
-                                    $scope.newOwner2.prefixTH = "T2";
+                                    $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];;
+                                    $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
+                                    $scope.newOwner2.prefixTH = $scope.data.customerProfile['title-code'];
 
-                                    $scope.customer['tax-id'] = $scope.customer['id-number'];
+                                    $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
 
-                                    $scope.customer['contact-mobile-number'] = "";
-                                    $scope.customer['contact-email'] = "";
-
-
-                                    $scope.contactNo.number = "";
-                                    $scope.contactNo.continued = "";
 
                                     $scope.onselectPrefix();
 
@@ -1214,7 +1224,7 @@ smartApp.controller('MigratePreToPostController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
-            // $scope.onInputCitizenID3();
+            $scope.onInputCitizenID3();
 
         }
     };

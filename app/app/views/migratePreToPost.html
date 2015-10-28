@@ -203,7 +203,7 @@
                                 <div class="form-group" ng-form="personnalid">
                                     <label>หมายเลขบัตรประชาชน / พาสปอร์ต <span style="color:red;">*</span></label>
                                     <div class="input-group" ng-submit="onInputIdLastest3()">
-                                        <input type="text" id="citizenID3" ng-disabled="customer['id-number'] || !isCustomerProfile" ng-keyup="($event.keyCode==13 && onInputIdLastest3()); onInputIdLastestKeyUp3();" ng-blur="onCheckInputForVerify()" ng-model="customer['id-number']" placeholder="" class="form-control" maxlength="13" ng-change="ClearTxt()" name="personnalids" required>
+                                        <input type="text" id="citizenID3" ng-disabled="" ng-keyup="($event.keyCode==13 && onInputIdLastest3()); onInputIdLastestKeyUp3();" ng-blur="onCheckInputForVerify()" ng-model="customer['id-number']" placeholder="" class="form-control" maxlength="13" ng-change="ClearTxt()" name="personnalids" required>
                                         <span class="input-group-btn">
                                             <button ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true"
                                                     style="height:30px;"
@@ -384,7 +384,7 @@
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
                                 <p></p>
-                                <select class="form-control" ng-model="partnerCode" ng-blur="onCheckInputForVerify()" ng-disabled="false || !isCustomerProfile">
+                                <select class="form-control" ng-model="partnerCode" ng-blur="onCheckInputForVerify()" ng-disabled="false">
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}
                                     </option>
@@ -392,7 +392,7 @@
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
                                 <p></p>
-                                <input type="text" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="(getAuthen.shopcodes.length==1) || !isLastestUser" maxlength="8" required>
+                                <input type="text" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="false" maxlength="8" required>
                             </div>
                         </div>
                     </div>
