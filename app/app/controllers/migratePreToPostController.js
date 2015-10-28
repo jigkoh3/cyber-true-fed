@@ -961,7 +961,7 @@ smartApp.controller('MigratePreToPostController', function(
                             //'cust-type': $scope.data.installedProducts["account-category"],
                             'cust-type': 'I',
                             'company': $scope.data.installedProducts["company-code"],
-                            'service-type': $scope.data.installedProducts["mobile-servicetype"],
+                            'service-type': "POSTPAID",
                             'grade': grade
                         };
                         migratePreToPostService.getAccountSubTypeCallback(param, function(resultST) {
