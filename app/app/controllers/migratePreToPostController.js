@@ -143,7 +143,6 @@ smartApp.controller('MigratePreToPostController', function(
                 return date;
             }
             /*if (!date) return date;
-
             return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');*/
         }
     };
