@@ -653,7 +653,9 @@ smartApp.controller('MigratePreToPostController', function(
                 $('#cardType').val($scope.cardType.value);
                 $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                 //$ngBootbox.customDialog($scope.customDialogOptions);
+                $scope.onInputIdLastest3();
             }, 1000);
+            $scope.callPropositionList();
 
 
         });
@@ -1199,7 +1201,7 @@ smartApp.controller('MigratePreToPostController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
-            $scope.onInputCitizenID3();
+            // $scope.onInputCitizenID3();
         }
     };
     $scope.onInputIdLastestKeyUp3 = function() {
@@ -1212,7 +1214,7 @@ smartApp.controller('MigratePreToPostController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
-            $scope.onInputCitizenID3();
+            // $scope.onInputCitizenID3();
 
         }
     };

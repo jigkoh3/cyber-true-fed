@@ -219,7 +219,7 @@
                                     <div class="input-group" ng-submit="onInputIdLastest3()">
                                         <input type="text"
                                                id="citizenID3"
-                                               ng-disabled="!isLastestUser && (shopType=='1' && getAuthen['isSecondAuthen'] == true)"
+                                               ng-disabled="customer['id-number']"
                                                ng-keyup="($event.keyCode==13 && onInputIdLastest3()); onInputIdLastestKeyUp3();"
                                                ng-blur="onCheckInputForVerify()"
                                                ng-model="customer['id-number']"
@@ -338,7 +338,7 @@
                                                 ng-change="onselectPrefix()"
                                                 ng-blur="onselectPrefix()"
                                                 id="prefixTH3"
-                                                ng-disabled="false"
+                                                ng-disabled="newOwner.prefixTH"
                                                 ng-model="newOwner.prefixTH"
                                                 style="width:100px;" required>
                                             <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
@@ -364,7 +364,7 @@
                                 <div class="form-group">
                                     <label>ชื่อ<span style="color:red;">*</span> </label>
                                     <input type="text" 
-                                           ng-disabled="false" 
+                                           ng-disabled="newOwner.firstNameTH" 
                                            name="firstNameTH3" 
                                            id="firstNameTH3" 
                                            ng-change="newOwner2.firstNameTH=newOwner.firstNameTH" 
@@ -379,7 +379,7 @@
                                 <div class="form-group">
                                     <label>นามสกุล<span style="color:red;">*</span></label>
                                     <input type="text" 
-                                           ng-disabled="false" 
+                                           ng-disabled="newOwner.lastNameTH" 
                                            id="lastNameTH3" 
                                            ng-change="newOwner2.lastNameTH=newOwner.lastNameTH" 
                                            ng-model="newOwner.lastNameTH" 
@@ -399,7 +399,7 @@
                                     <div id="placeholders">
                                         <select name="sexs" class="form-control"
                                                 id="sex3"
-                                                ng-disabled="false"
+                                                ng-disabled= "newOwner.sex"
                                                 ng-model="newOwner.sex"
                                                 style="width:100px;" required>
                                             <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
@@ -413,7 +413,7 @@
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" readonly class="form-control date-picker" id="birthDay"  required>
+                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled= "newOwner.birthDay"readonly class="form-control date-picker" id="birthDay"  required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
@@ -421,7 +421,7 @@
                                 </div>
                                 <div ng-show="!showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                    <input id="disableNewOwnerBirthday" name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" readonly class="form-control "  required>
+                                    <input id="disableNewOwnerBirthday" name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled= "newOwner.birthDay" readonly class="form-control "  required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
@@ -433,12 +433,12 @@
                                 <div ng-show="showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
 
-                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" class="form-control date-picker-start " id="expireDay">
+                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled = "newOwner.expireDay" class="form-control date-picker-start " id="expireDay">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <div ng-show="!showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                    <input  id="disableNewOwnerExpireDay" type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" class="form-control">
+                                    <input  id="disableNewOwnerExpireDay" type="text" ng-model="newOwner.expireDay" ng-disabled = "newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" class="form-control">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             
