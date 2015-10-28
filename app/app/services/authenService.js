@@ -6,8 +6,6 @@
     };
     this.getAuthen = function (fnCallback) {
         var result = {
-
-
             "shopType": "0",
             "isSecondAuthen": true,
             "isCorporate": false,
