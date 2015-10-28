@@ -718,6 +718,18 @@ $scope.isSelectedPricePlan = false;
         $scope.data.customerAddress = {};
     };
 
+    $scope.unUseAddressAsCard = function(type) {
+        if (type == 'H') {
+            $scope.mailAddress = {};
+            $('#ulAddressList').hide();
+            $scope.addressList = [];
+        } else {
+            $scope.billAddress = {};
+        }
+
+    };
+
+
     // $scope.$watch('data.customerAddress.zip', function(val) {
     //     if (val && val.length === $scope.zipLength) {
     //         var payload = {
