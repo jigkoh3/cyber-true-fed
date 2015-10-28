@@ -553,7 +553,10 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                             $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                             $scope.cardType.value = $scope.data.customerProfile['id-type'];
-                            $scope.onInputIdLastest3();
+
+                            // $scope.onInputIdLastest3();
+                            $scope.onInputCitizenID3();
+                            
                             setTimeout(function() {
                                 $('#divShowAuthorize').hide();
                                 $('#cardType').val($scope.cardType.value);
@@ -992,13 +995,14 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                                     $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                                     $scope.cardType.value = $scope.data.customerProfile['id-type'];
+                                    // $scope.onInputCitizenID3();
 
                                     setTimeout(function() {
                                         $('#divShowAuthorize').hide();
                                         $('#cardType').val($scope.cardType.value);
                                         $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                         //$ngBootbox.customDialog($scope.customDialogOptions);
-                                        $scope.onInputIdLastest3();
+                                        
                                     }, 1000);
 
                                     $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
@@ -1098,7 +1102,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     $('#cardType').val($scope.cardType.value);
                                     $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                     //$ngBootbox.customDialog($scope.customDialogOptions);
-                                    $scope.onInputIdLastest3();
+                                    // $scope.onInputCitizenID3();
                                 }, 1000);
 
                                 $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
