@@ -553,13 +553,13 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                             $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                             $scope.cardType.value = $scope.data.customerProfile['id-type'];
-
+                            $scope.onInputIdLastest3();
                             setTimeout(function() {
                                 $('#divShowAuthorize').hide();
                                 $('#cardType').val($scope.cardType.value);
                                 $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                 //$ngBootbox.customDialog($scope.customDialogOptions);
-                                $scope.onInputIdLastest3();
+
                             }, 1000);
 
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
@@ -725,9 +725,9 @@ smartApp.controller('MigratePreToPostController', function(
         migratePreToPostService.validatePartnerCallback(target, function(result) {
             SystemService.hideLoading();
             if (result.data["display-messages"].length == 0) {
-                if ($scope.isLastestUser == true) {
+                // if ($scope.isLastestUser == true) {
                     $scope.callPropositionList();
-                }
+                // }
                 $scope.getAuthen.shopcodes = ["" + $scope.partnerCode + ""];
                 $scope.onCheckInputForVerify();
             } else {
@@ -797,9 +797,9 @@ smartApp.controller('MigratePreToPostController', function(
         if ($scope.partnerCode) {
             var propParam = {
                 'company-code': $scope.data.installedProducts["company-code"],
-                'customer-type': $scope.data.installedProducts["account-category"],
+                'customer-type': "I",
                 'propo-type': 'NEW',
-                'mobile-servicetype': $scope.data.installedProducts["mobile-servicetype"],
+                'mobile-servicetype': "POSTPAID",
                 'partner-code': $scope.partnerCode,
                 'privilege': false
                     //,'proposition': ''
@@ -1085,6 +1085,35 @@ smartApp.controller('MigratePreToPostController', function(
                                 $scope.isLastestAdress = true;
                                 $scope.changecusStatusN('O');
 
+                                $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
+                                $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
+                                $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
+                                $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
+                                $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
+                                $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
+                                $scope.cardType.value = $scope.data.customerProfile['id-type'];
+
+                                setTimeout(function() {
+                                    $('#divShowAuthorize').hide();
+                                    $('#cardType').val($scope.cardType.value);
+                                    $('#prefixTH3').val($scope.data.customerProfile['title-code']);
+                                    //$ngBootbox.customDialog($scope.customDialogOptions);
+                                    $scope.onInputIdLastest3();
+                                }, 1000);
+
+                                $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
+
+                                //ระบุผู้ใช้หมายเลข
+                                $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];;
+                                $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
+                                $scope.newOwner2.prefixTH = $scope.data.customerProfile['title-code'];
+
+                                $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
+
+
+                                $scope.onselectPrefix();
+
+
                                 console.log(customer);
                                 SystemService.hideLoading();
 
@@ -1211,7 +1240,7 @@ smartApp.controller('MigratePreToPostController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
-            // $scope.onInputCitizenID3();
+            $scope.onInputCitizenID3();
         }
     };
     $scope.onInputIdLastestKeyUp3 = function() {
