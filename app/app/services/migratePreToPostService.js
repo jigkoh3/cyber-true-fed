@@ -1,371 +1,331 @@
-smartApp.service('MigratePreToPostService', function($routeParams, $timeout, SystemService) {
-
+﻿smartApp.service('migratePreToPostService', function($filter, SystemService, $routeParams) {
     var demo = SystemService.demo;
-
-    this.decorateSIMData = function(data) {
-
-        var msg = utils.getObject(data, 'display-messages');
-
-        if (msg && msg.length > 0) {
-            setTimeout(function() {
-                if ($routeParams.subno) {
-                    SystemService.validateErrorAlert(msg[0]);
-                } else {
-                    SystemService.showAlert({
-                        "message": msg[0]["message"],
-                        "message-code": msg[0]["message-code"],
-                        "message-type": "WARNING",
-                        "en-message": msg[0]["en-message"],
-                        "th-message": msg[0]["th-message"],
-                        "technical-message": msg[0]["technical-message"]
-                    });
-                }
-            }, 1000);
-            if (msg[0]['message-type'] == "ERROR") {
-                return false;
-            }
-        }
-
-        var customerProfile = angular.copy(utils.getObject(data, 'response-data.customer'));
-        var customerAddress = utils.getObject(customerProfile, 'address-list.CUSTOMER_ADDRESS');
-        var productDetails = utils.getObject(customerProfile, 'installed-products.0');
-
-        if (!customerProfile || !productDetails) return null;
-
-        delete customerProfile['installed-products'];
-        delete customerProfile['address-list'];
-
-        // Prepare product type
-        var productType = '';
-        var serviceType = productDetails['mobile-servicetype'];
-        if (serviceType === 'PREPAID') {
-            productType = 'ทรูมูฟเอช เติมเงิน';
-        } else if (serviceType === 'POSTPAID') {
-            productType = 'ทรูมูฟเอช รายเดือน';
-        }
-
-        //Fix value becuase migrate pre to post support personal only
-        //productDetails['account-category'] = "I";
-        //productDetails['account-sub-type'] = "FIN";
-
-        // Prepare current price plan
-        var currentPricePlan = [];
-        if (productDetails['product-name']) {
-            currentPricePlan.push(productDetails['product-name']);
-        }
-        if (productDetails['product-description']) {
-            currentPricePlan.push(productDetails['product-description']);
-        }
-
-        var response = {
-            'header': {
-                'producttype': productType,
-                'subscriberno': productDetails['product-id-number'],
-                'currpriceplan': currentPricePlan.join(': ')
-
-            },
-            'customerProfile': customerProfile,
-            'customerAddressOriginal': customerAddress,
-            'customerAddress': angular.copy(customerAddress),
-            'simData': productDetails
-        };
-
-        return response;
-    };
-
-    this.decorateLastestCustomer = function(data) {
-        var customerProfile = angular.copy(utils.getObject(data, 'response-data.customer'));
-        var customerAddress = utils.getObject(customerProfile, 'address-list.CUSTOMER_ADDRESS');
-        var productDetails = utils.getObject(customerProfile, 'installed-products');
-
-        if (!customerProfile || !productDetails) return null;
-
-        delete customerProfile['installed-products'];
-        delete customerProfile['address-list'];
-
-        var response = {
-            'customerProfile': customerProfile,
-            'customerAddressOriginal': customerAddress,
-            'customerAddress': angular.copy(customerAddress),
-            'installedProducts': productDetails
-        };
-
-        return response;
-    };
-
-    this.getSIMData = function(msisdn, callback) {
-        var that = this;
-
-        if (utils.isEmpty(msisdn)) {
-            msisdn = '';
-        }
-
-        var cb = function(result) {
-            result.data = that.decorateSIMData(result.data);
-
-            callback(result);
-        };
+    var validateMigratePreToPostAPI = function(msisdn, fnCallback) {
 
         if (!demo) {
-            var target = '/aftersales/tmv/migratepretopost/validatemigratepretopost?msisdn=' + msisdn;
-
+            var target = 'aftersales/tmv/migratepretopost/validatemigratepretopost?msisdn=' + msisdn;
             SystemService.callServiceGet(target, null, function(result) {
-                cb(result);
+                fnCallback(result);
             });
         } else {
-            var data = {
 
+            var data = {
                 "status": "SUCCESSFUL",
-
                 "display-messages": [],
-
-                "trx-id": "3Q5RSB5WGKN4",
-
+                "trx-id": "4TA3KLOQ7L5Y",
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
-
                 "response-data": {
-
                     "customer": {
-
                         "title": "",
-
-                        "title-code": "T3",
-
+                        "title-code": "T1",
                         "firstname": "พฤกษวดี",
-
                         "lastname": "พฤกษวดีนงลักษณ์",
-
-                        "birthdate": "2531-09-01T00:00:00+0700",
-
+                        "birthdate": "1991-09-01T00:00:00+0700",
+                        "id-expire-date": "2020-09-01T00:00:00+0700",
                         "contact-number": "",
-
                         "id-type": "P",
-
                         "id-number": "012369857789",
-
                         "customer-id": "325",
-
-                        "installed-products": [
-
-                            {
-
-                                "ouId": "",
-
-                                "ban": "",
-
-                                "product-category": "TMV",
-
-                                "product-type": "PRICEPLAN",
-
-                                "product-sub-type": "P",
-
-                                "product-status": null,
-
-                                "account-category": "P",
-
-                                "account-sub-type": "PRE",
-
-                                "product-id": "R12RMMNP1",
-
-                                "product-name": "R12RMMNP1",
-
-                                "bill-cycle": "",
-
-                                "company-code": "RM",
-
-                                "service-level": "C",
-
-                                "product-properties": {
-
-                                    "IMSI": "520002081981781",
-
-                                    "SIM": "896600331500001222"
-
-                                },
-
-                                "product-id-name": "MSISDN",
-
-                                "product-id-number": "0957732665",
-
-                                "mobile-servicetype": "PREPAID",
-
-                                "has-splitcharge": false,
-
-                                "is-childsim": false,
-
-                                "is-softsuspend": false
-
-                            }
-
-                        ]
-
-                    }
-
-                }
-
-            }
-
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
-        }
-    };
-
-    this.validateMigratePreToPost = function(msisdn, callback) {
-
-        msisdn = utils.isEmpty(msisdn) ? '' : msisdn;
-
-        var that = this;
-
-        var cb = function(result) {
-            result.data = that.decorateSIMData(result.data);
-            callback(result);
-        };
-
-        if (!demo) {
-            var target = '/aftersales/tmv/migratepretopost/validatemigratepretopost?msisdn=' + msisdn;
-
-            SystemService.callServiceGet(target, null, function(result) {
-                cb(result);
-            });
-        } else {
-            var data = {
-                'status': 'SUCCESSFUL',
-                "trx-id": "3BDPN2HLK4TZ",
-                'process-instance': 'psaapdv1 (instance: SFF_node1)',
-                'status-code': '0',
-                'response-data': {
-                    'customer': {
-                        'title': 'Miss',
-                        'title-code': 'T2',
-                        'firstname': 'Nate',
-                        'lastname': 'Phutthicha',
-                        'birthdate': '2015-07-20T00:00:00+0700',
-                        'contact-number': null,
-                        'id-number': '1189900130607',
-                        'id-type': 'I',
-                        'id-expire-date': '2017-07-20T00:00:00+0700',
-                        'customer-id': null,
-                        'customer-level': null,
-                        'customer_sublevel_id': null,
-                        'customer_sublevel': null,
-                        'gender': 'FEMALE',
-                        'installed-products': [{
-                            "ouId": "5010",
-                            "ban": "20009628",
-                            "product-id": "EDATAP69",
-                            "product-name": "EDATAP69",
-                            "product-description": "Biz &amp; Ent 900,Data UNL5GB/128,WiFi",
-                            "account-category": "I",
-                            "account-sub-type": "FIN",
-                            "customer-level": "NON-TOP",
-                            "company-code": "RF",
+                        "installed-products": [{
+                            "ouId": "",
+                            "ban": "",
                             "product-category": "TMV",
-                            "product-status": "ACTIVE",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "P",
+                            "product-status": null,
+                            "account-category": "P",
+                            "account-sub-type": "PRE",
+                            "product-id": "R12RMMNP1",
+                            "product-name": "R12RMMNP1",
+                            "bill-cycle": "",
+                            "company-code": "RM",
+                            "service-level": "C",
+                            "product-properties": {
+                                "IMSI": "520002081981781",
+                                "SIM": "896600331500001222"
+                            },
                             "product-id-name": "MSISDN",
-                            "product-id-number": "0XXXXXXXXX",
-                            "mobile-servicetype": "POSTPAID",
-                            "ou-hierarchytype": "CHILD",
-                            "parent-ouId": "1234",
+                            "product-id-number": "0957732665",
+                            "mobile-servicetype": "PREPAID",
                             "has-splitcharge": false,
                             "is-childsim": false,
-                            "is-softsuspend": false,
-                            "product-properties": {
-                                "SIM  ": null,
-                                "IMSI": null
-                            }
-                        }],
-                        'address-list': {
-                            'CUSTOMER_ADDRESS': {
-                                'number': '61/238',
-                                'moo': '8',
-                                'village': 'moo ban',
-                                'street': 'ratchada',
-                                'soi': '81',
-                                'district': 'dindaeng',
-                                'province': 'Bangkok',
-                                'building-name': 'Pakin',
-                                'building-room': '22',
-                                'building-floor': '13',
-                                'sub-district': 'Dindaeng',
-                                'zip': '10400',
-                                'household': '18'
-                            }
-                        }
+                            "is-softsuspend": false
+                        }]
                     }
-                },
-                'display-messages': [{
-                    'message': '',
-                    'message-type': 'ERROR',
-                    'en-message': 'VIP',
-                    'th-message': '',
-                    'technical-message': ''
+                }
+            };
+
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "",
+                    "message-code": "1",
+                    "message-type": "ERROR",
+                    "en-message": "Data not found!",
+                    "th-message": "Data not found!",
+                    "technical-message": ""
+                }],
+                "trx-id": "7MXLAYX2KRS5",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {}
+            };
+
+            var data3 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "",
+                    "message-code": "2",
+                    "message-type": "WARNING",
+                    "en-message": "; nested exception is: \n\torg.xml.sax.SAXException: Invalid element in th.co.truecorp.ads.sff.ext.services.ccbint.resourcemanagement.NiceNumberInfoM - dealerCode",
+                    "th-message": "; nested exception is: \n\torg.xml.sax.SAXException: Invalid element in th.co.truecorp.ads.sff.ext.services.ccbint.resourcemanagement.NiceNumberInfoM - dealerCode",
+                    "technical-message": "CCB_INT Method : checkNiceNumber, URL : http://172.19.194.63:8280/SubscriberWS/ResourceManagement"
+                }],
+                "trx-id": "491045TMJELMZ",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": {
+                    "customer": {
+                        "title": "นางสาว",
+                        "title-code": "T3",
+                        "firstname": "ว",
+                        "lastname": "มาดู",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "",
+                        "id-number": "1189900130607",
+                        "customer-id": "2595",
+                        "installed-products": [{
+                            "ouId": "930",
+                            "ban": "10000546",
+                            "product-category": "TMV",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "R",
+                            "product-status": "A",
+                            "account-category": "I",
+                            "account-sub-type": "FIN",
+                            "product-id": "RFSMTP01",
+                            "product-name": "RFSMTP01",
+                            "product-description": "(4G) Smart 999 voice 500mins net7GB",
+                            "bill-cycle": "10",
+                            "company-code": "RF",
+                            "service-level": "C",
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0939861331",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false
+                        }]
+                    }
+                }
+            };
+
+            if (msisdn == "0870100002") {
+                fnCallback({
+                    status: true,
+                    data: data3,
+                    error: "",
+                    msgErr: ""
+                });
+            } else if (msisdn == "0939861331") {
+                fnCallback({
+                    status: true,
+                    data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: true,
+                    data: data2,
+                    error: "",
+                    msgErr: ""
+                });
+            }
+
+        }
+    };
+    var AccountSubtypeAPI = function(cust_type, company, service_type, fnCallback) {
+
+        if (!demo) {
+            var target = 'profiles/tmv/master/account-subtype?cust-type=' + cust_type + '&service-type=' + service_type + '&company=' + company;
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
+            });
+        } else {
+
+            var data = {
+                "status": "SUCCESSFUL",
+                "trx-id": "03V94EUARX80",
+                "process-instance": "tpx61.true.th (instance: sale)",
+                "response-data": [{
+                    "name": "PRI",
+                    "description": "บุคคลธรรมดา"
                 }, {
-                    'message': '',
-                    'message-type': 'WARNING',
-                    'en-message': 'DISCOUNT',
-                    'th-message': '',
-                    'technical-message': ''
-                }, {
-                    'message': '',
-                    'message-type': 'ERROR',
-                    'en-message': 'SUBSCRIBER STATUS',
-                    'th-message': '',
-                    'technical-message': ''
-                }, {
-                    'message': '',
-                    'message-type': 'ERROR',
-                    'en-message': 'NICE NUMBER',
-                    'th-message': '',
-                    'technical-message': ''
-                }, {
-                    'message': '',
-                    'message-type': 'ERROR',
-                    'en-message': 'SHARED PLAN',
-                    'th-message': '',
-                    'technical-message': ''
-                }, {
-                    'message': '',
-                    'message-type': 'WARNING',
-                    'en-message': 'CONVERGENT',
-                    'th-message': '',
-                    'technical-message': ''
+                    "name": "SOL",
+                    "description": "เจ้าของกิจการคนเดียว"
                 }]
             };
 
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
-        }
-    };
 
-    this.validateGrading = function(payload, callback) {
-
-        var params = utils.createParamGet(payload, [
-            'company-id'
-        ]);
-
-        var that = this;
-
-        var cb = function(result) {
-            callback(result);
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
         };
-
+    };
+    var masterListAPI = function(param, fnCallback) {
         if (!demo) {
-            var target = '/profiles/customer/company/grade?' + params;
-
+            var target = 'aftersales/configuration/master/' + param;
             SystemService.callServiceGet(target, null, function(result) {
-                cb(result);
+                fnCallback(result);
+            });
+        } else {
+            var data = {};
+            switch (param) {
+                case "CUST-GENDER":
+                    data = {
+                        "status": "SUCCESSFUL",
+                        "trx-id": "3AJLEDUHEIF3",
+                        "process-instance": "psaapdv1 (instance: SFF_node1)",
+                        "response-data": {
+                            "id": "CUST-GENDER",
+                            "name": "Customer genders",
+                            "description": "List of customer genders",
+                            "configuration-items": [{
+                                "key": "MAN",
+                                "value": "M",
+                                "description": "Gender type MAN",
+                                "en-description": "Man",
+                                "th-description": "ผู้ชาย"
+                            }, {
+                                "key": "WOMAN",
+                                "value": "W",
+                                "description": "Gender type WOMAN",
+                                "en-description": "Woman",
+                                "th-description": "ผู้หญิง"
+                            }]
+                        }
+                    };
+                    break;
+                case "CUST-TITLE-TYPE":
+                    data = {
+                        "status": "SUCCESSFUL",
+                        "trx-id": "3AJMUE93DMRZ",
+                        "process-instance": "psaapdv1 (instance: SFF_node1)",
+                        "response-data": {
+                            "id": "CUST-TITLE-TYPE",
+                            "name": "Customer title",
+                            "description": "List of standard customer title",
+                            "configuration-items": [{
+                                "key": "MRS.",
+                                "value": "T2",
+                                "description": "นาง",
+                                "en-description": "Mrs.",
+                                "th-description": "นาง"
+                            }, {
+                                "key": "MISS",
+                                "value": "T3",
+                                "description": "นางสาว",
+                                "en-description": "Miss",
+                                "th-description": "นางสาว"
+                            }, {
+                                "key": "DR.",
+                                "value": "T4",
+                                "description": "ดร.",
+                                "en-description": "Dr.",
+                                "th-description": "ดร."
+                            }, {
+                                "key": "OTHER",
+                                "value": "T5",
+                                "description": "อื่่น ๆ",
+                                "en-description": "Other",
+                                "th-description": "อื่น ๆ"
+                            }, {
+                                "key": "MR.",
+                                "value": "T1",
+                                "description": "นาย",
+                                "en-description": "Mr.",
+                                "th-description": "นาย"
+                            }]
+                        }
+                    };
+                    break;
+                case "CUST-ID-TYPE-I":
+                    data = {
+                        "status": "SUCCESSFUL",
+                        "trx-id": "3AJLDR21IJM7",
+                        "process-instance": "psaapdv1 (instance: SFF_node1)",
+                        "response-data": {
+                            "id": "CUST-ID-TYPE-I",
+                            "name": "Customer ID type for individual customer",
+                            "description": "List of id types for individual customer",
+                            "configuration-items": [{
+                                "key": "A",
+                                "value": "A",
+                                "description": "บัตรประจำตัวคนต่างด้าว"
+                            }, {
+                                "key": "D",
+                                "value": "D",
+                                "description": "บัตรประจำตัวพนักงานรัฐวิสาหกิจ"
+                            }, {
+                                "key": "E",
+                                "value": "E",
+                                "description": "ใบขับขี่"
+                            }, {
+                                "key": "F",
+                                "value": "F",
+                                "description": "บัตรนักเรียน"
+                            }, {
+                                "key": "G",
+                                "value": "G",
+                                "description": "บัตรประจำตัวข้าราชการ"
+                            }, {
+                                "key": "H",
+                                "value": "H",
+                                "description": "บัตรแสดงตนอื่นๆ"
+                            }, {
+                                "key": "I",
+                                "value": "I",
+                                "description": "บัตรประจำตัวประชาชน"
+                            }, {
+                                "key": "M",
+                                "value": "M",
+                                "description": "ใบสุทธิ"
+                            }, {
+                                "key": "O",
+                                "value": "O",
+                                "description": "ทะเบียนพาณิชย์"
+                            }, {
+                                "key": "P",
+                                "value": "P",
+                                "description": "หนังสือเดินทาง"
+                            }, {
+                                "key": "T",
+                                "value": "T",
+                                "description": "ทะเบียนวัด"
+                            }]
+                        }
+                    };
+                    break;
+            }
+
+
+
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
+        };
+    };
+    var validateGradingAPI = function(company_id, fnCallback) {
+        if (!demo) {
+            var target = 'profiles/customer/company/grade?company-id=' + company_id;
+            SystemService.callServiceGetByPass(target, null, function(result) {
+                fnCallback(result);
             });
         } else {
             var data = {
@@ -383,157 +343,24 @@ smartApp.service('MigratePreToPostService', function($routeParams, $timeout, Sys
                     }
                 }
             };
-
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
         }
     };
-
-    this.validatePartner = function(payload, callback) {
-
-        var params = utils.createParamGet(payload, [
-            'partner-code',
-            'function-type'
-        ]);
-
-        var that = this;
-
-        var cb = function(result) {
-            callback(result);
-        };
-
+    var getAccountSubTypeAPI = function(param, fnCallback) {
+        var target = 'profiles/tmv/master/account-subtype?' +
+            'cust-type=' + param['cust-type'] +
+            '&company=' + param['company'] +
+            '&service-type=' + param['service-type'] +
+            //'&roles' + param['roles'] +
+            '&grade=' + param['grade'];
         if (!demo) {
-            var target = '/profiles/partner/validatepartner?' + params;
-
             SystemService.callServiceGet(target, null, function(result) {
-                cb(result);
-            });
-        } else {
-            var data = {
-                "status": "SUCCESSFUL",
-                "display-messages": [],
-                "trx-id": "7K1EFF8LA2BTF",
-                "process-instance": "psaapdv1 (instance: SFF_node1)",
-                "response-data": {
-                    "partnerInfo": {
-                        "status-id": "1",
-                        "register_date": "2003-06-23 00:00:00.0",
-                        "status_name": "Active",
-                        "biz-reg-type-name": "นิติบุคคล",
-                        "dealer-code": "20999999",
-                        "emp-code": "",
-                        "tvs-code": "",
-                        "tmx-emp-code": "",
-                        "channel-alias": "OTHER",
-                        "channel-name": "Other",
-                        "partner-type-name": "Sub-Partner",
-                        "partner-sub-type-name": "",
-                        "partner-type-group-name": "OUTLET",
-                        "parent-code": "79000001",
-                        "partner-name-th": "TA Orange Co., Ltd."
-                    }
-                }
-            };
-
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
-        }
-    };
-
-    this.preverify = function(header, dataRequest, callback) {
-
-        var that = this;
-
-        var cb = function(result) {
-            callback(result);
-        };
-
-        if (!demo) {
-
-            SystemService.callServicePostByPass(dataRequest, header, function(result) {
-                cb(result);
-            });
-        } else {
-
-            var data = {
-                "status": "SUCCESSFUL",
-                "fault": {
-                    "name": "th.co.truecorp.ads.api.ApplicationServiceException",
-                    "code": "TMV-PREVERIFY-11010",
-                    "message": " VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.].  VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.]",
-                    "detailed-message": "ApplicationServiceException TMV-PREVERIFY-11009 VNSBKS4000005 (-6-) checkFruad invalid for 1984051311082, AL / [VNSBKS4000005] [APPLICATION_CODE] [Application name: ; nested exception is: \n\tjava.net.ConnectException: Connection refused occur error because {1}.]. "
-                },
-                "display-messages": [{
-                    "message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
-                    "message-code": "TMV-PREVERIFY-11010",
-                    "message-type": "ERROR",
-                    "en-message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
-                    "th-message": "ไม่สามารถเปิดบริการได้ กรุณาแนะนำเจ้าหน้าที่โทรติดต่อ 02-699-6222 (วันจันทร์-เสาร์ เวลา 9.00-18.00)",
-                    "technical-message": "null( Message variable: ] ) "
-                }],
-                "trx-id": "3I1BDOSDXWJN8",
-                "process-instance": "tmsapnpr1 (instance: SFF_node4)"
-            };
-
-            var data2 = {
-                "status": "SUCCESSFUL",
-                "trx-id": null,
-                "process-instance": null,
-                "display-messages": [],
-                "response-data": [{
-                    "verifyCode": null
-                }]
-            };
-
-            var result = data;
-            if (dataRequest.approveCode) {
-                result = data2;
-                console.log('data2');
-            }
-
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: result,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
-        }
-    };
-
-    this.accountSubType = function(payload, callback) {
-
-        var params = utils.createParamGet(payload, [
-            'company',
-            'customer-type',
-            'grade',
-            'service-type'
-        ]);
-
-        var that = this;
-
-        var cb = function(result) {
-            callback(result);
-        };
-
-        if (!demo) {
-            var target = '/profiles/tmv/master/account-subtype?' + params;
-
-            SystemService.callServiceGetByPass(target, null, function(result) {
-                cb(result);
+                fnCallback(result);
             });
         } else {
             var data = {
@@ -551,39 +378,23 @@ smartApp.service('MigratePreToPostService', function($routeParams, $timeout, Sys
                     "description": "RF-Individual"
                 }]
             };
-
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
         }
     };
-
-    this.lastestCustomer = function(payload, callback) {
-
-        var params = utils.createParamGet(payload, [
-            'certificateid',
-            'customer-type'
-        ]);
-
-        var that = this;
-
-        var cb = function(result) {
-            result.data = that.decorateLastestCustomer(result.data);
-            callback(result);
-        };
-
+    var lastestCustomerAPI = function(certificateid, customertype, fnCallback) {
         if (!demo) {
-            var target = '/profiles/customer/getlastestcustomer?' + params;
-
+            var target = 'profiles/customer/getlastestcustomer?certificateid=' + certificateid + '&customertype=' + customertype;
             SystemService.callServiceGet(target, null, function(result) {
-                cb(result);
+                fnCallback(result);
+
             });
         } else {
+
             var data = {
                 "status": "SUCCESSFUL",
                 "display-messages": [],
@@ -595,10 +406,12 @@ smartApp.service('MigratePreToPostService', function($routeParams, $timeout, Sys
                         "title-code": "T2",
                         "firstname": "กอไก่",
                         "lastname": "ขอไข่",
+                        'birthdate': '2015-07-20T00:00:00+0700',
+                        'id-expire-date': '2020-07-20T00:00:00+0700',
                         "contact-number": "029448849#123",
                         "contact-mobile-number": "444444444",
                         "id-type": "",
-                        "id-number": "1984051311082",
+                        "id-number": "1189900130608",
                         "customer-id": "4811",
                         "customer-level": "NON-TOP",
                         "customer_sublevel_id": null,
@@ -614,46 +427,6 @@ smartApp.service('MigratePreToPostService', function($routeParams, $timeout, Sys
                             "product-id": "0880500207",
                             "bill-cycle": "10",
                             "bill-cycle-date": "10/10",
-                            "company-code": "RF",
-                            "service-level": "C",
-                            "product-id-name": "MSISDN",
-                            "product-id-number": "0880500207",
-                            "has-splitcharge": false,
-                            "is-childsim": false,
-                            "is-softsuspend": false,
-                            "ou-hierarchytype": "CHILD",
-                            "parent-ouId": "1234"
-                        }, {
-                            "ouId": "6954",
-                            "ban": "10007237",
-                            "product-category": "TMV",
-                            "product-type": "PRICEPLAN",
-                            "product-sub-type": "R",
-                            "account-category": "I",
-                            "account-sub-type": "FIN",
-                            "product-id": "0880500207",
-                            "bill-cycle": "10",
-                            "bill-cycle-date": "9/11",
-                            "company-code": "RF",
-                            "service-level": "C",
-                            "product-id-name": "MSISDN",
-                            "product-id-number": "0880500207",
-                            "has-splitcharge": false,
-                            "is-childsim": false,
-                            "is-softsuspend": false,
-                            "ou-hierarchytype": "CHILD",
-                            "parent-ouId": "1234"
-                        }, {
-                            "ouId": "6955",
-                            "ban": "10007237",
-                            "product-category": "TMV",
-                            "product-type": "PRICEPLAN",
-                            "product-sub-type": "R",
-                            "account-category": "I",
-                            "account-sub-type": "FIN",
-                            "product-id": "0880500207",
-                            "bill-cycle": "10",
-                            "bill-cycle-date": "5/12",
                             "company-code": "RF",
                             "service-level": "C",
                             "product-id-name": "MSISDN",
@@ -734,496 +507,433 @@ smartApp.service('MigratePreToPostService', function($routeParams, $timeout, Sys
                 }
             };
 
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
-        }
-    };
-
-    this.proposition = function(payload, callback) {
-        var params = utils.createParamGet(payload, [
-            'company-code',
-            'customer-type',
-            'propo-type',
-            'mobile-servicetype',
-            'partner-code',
-            'privilege'
-        ]);
-
-        var cb = function(result) {
-            callback(result);
-        };
-
-        if (!demo) {
-            var target = '/sales/catalog/product/tmv/proposition/search?' + params;
-
-            SystemService.callServiceGetByPass(target, null, function(result) {
-                cb(result);
-            });
-        } else {
-            var data = {
-                'status': 'SUCCESSFUL',
-                'trx-id': '3BYUAFJC01W8',
-                'process-instance': 'tmsapnpr1 (instance: SFF_node1)',
-                'response-data': [{
-                    'name': 'P00000000000211',
-                    'description': 'SIM Koo Kan',
-                    'soc': null,
-                    'rc': 0.0,
-                    'service-level': null,
-                    'proposition-code': '0019087'
-                }, {
-                    'name': 'RMV000000000001',
-                    'description': 'New Sim Only',
-                    'soc': null,
-                    'rc': 0.0,
-                    'service-level': null,
-                    'proposition-code': '0019123'
-                }]
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "3ERTIDCS16PT",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {}
             };
 
-            $timeout(function() {
-                cb({
+            if (certificateid == "1189900130608") {
+                fnCallback({
                     status: true,
                     data: data,
-                    error: '',
-                    msgErr: ''
+                    error: "",
+                    msgErr: ""
                 });
-            }, 1000);
-        }
-    };
-
-    this.pricePlan = function(payload, callback) {
-        var params = utils.createParamGet(payload, [
-            'company-code',
-            'customer-type',
-            'customer-subtype',
-            'service-level',
-            'keyword',
-            'proposition',
-            'partner-code',
-            'privilege'
-        ]);
-
-        var cb = function(result) {
-            if (result.data && result.data['response-data'] && result.data['response-data'].length) {
-                for (var i = 0; i < result.data['response-data'].length; i++) {
-                    result.data['response-data'][i].proposition = payload.proposition;
-                }
+            } else {
+                fnCallback({
+                    status: true,
+                    data: data2,
+                    error: "",
+                    msgErr: ""
+                });
             }
-            callback(result);
+
+
         };
-
-        if (!demo) {
-            var target = '/sales/catalog/product/tmv/priceplan/search?' + params;
-
-            SystemService.callServiceGet(target, null, function(result) {
-                cb(result);
-            });
-        } else {
-            var data = {
-                'status': 'SUCCESSFUL',
-                'trx-id': '3BYUAFJC01W8',
-                'process-instance': 'tmsapnpr1 (instance: SFF_node1)',
-                'response-data': [{
-                    'name': 'BCUGFP03',
-                    'description': payload.proposition + ' Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
-                    'soc': '936258',
-                    'properties': {
-                        'TR_SPECIAL_OFFER_IND': 'CSH',
-                        'PRICEPLAN_TYPE': 'SH'
-                    },
-                    'sale-period': {
-                        'start': '2012-05-21',
-                        'end': '2016-01-30'
-                    },
-                    'rc': 600.0,
-                    'service-level': 'G',
-                    'priceplan-type': 'SH'
-                }, {
-                    'name': 'BGAINP12',
-                    'description': 'BizShare37700bt,All-net1.10bt/min',
-                    'soc': '843368',
-                    'properties': {
-                        'TR_SPECIAL_OFFER_IND': 'CSH',
-                        'PRICEPLAN_TYPE': 'SH'
-                    },
-                    'sale-period': {
-                        'start': '2014-04-13',
-                        'end': '2016-01-30'
-                    },
-                    'rc': 37700.0,
-                    'service-level': 'G',
-                    'priceplan-type': 'SH'
-                }, {
-                    'name': 'W2S02P04',
-                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
-                    'soc': '937378',
-                    'properties': {
-                        'TR_SPECIAL_OFFER_IND': 'CSH',
-                        'PRICEPLAN_TYPE': 'SH'
-                    },
-                    'sale-period': {
-                        'start': '2005-06-27',
-                        'end': '2016-01-30'
-                    },
-                    'rc': 16000.0,
-                    'service-level': 'G',
-                    'priceplan-type': 'SH'
-                }, {
-                    'name': 'W2S02P04',
-                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
-                    'soc': '937378',
-                    'properties': {
-                        'TR_SPECIAL_OFFER_IND': 'CSH',
-                        'PRICEPLAN_TYPE': 'SH'
-                    },
-                    'sale-period': {
-                        'start': '2005-06-27',
-                        'end': '2016-01-30'
-                    },
-                    'rc': 16000.0,
-                    'service-level': 'G',
-                    'priceplan-type': 'SH'
-                }, {
-                    'name': 'W2S02P04',
-                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
-                    'soc': '937378',
-                    'properties': {
-                        'TR_SPECIAL_OFFER_IND': 'CSH',
-                        'PRICEPLAN_TYPE': 'SH'
-                    },
-                    'sale-period': {
-                        'start': '2005-06-27',
-                        'end': '2016-01-30'
-                    },
-                    'rc': 16000.0,
-                    'service-level': 'G',
-                    'priceplan-type': 'SH'
-                }, {
-                    'name': 'W2S02P04',
-                    'description': 'Corporate WOW2 Sharing Package 800-Limit 20 subs',
-                    'soc': '937378',
-                    'properties': {
-                        'TR_SPECIAL_OFFER_IND': 'CSH',
-                        'PRICEPLAN_TYPE': 'SH'
-                    },
-                    'sale-period': {
-                        'start': '2005-06-27',
-                        'end': '2016-01-30'
-                    },
-                    'rc': 16000.0,
-                    'service-level': 'G',
-                    'priceplan-type': 'SH'
-                }]
-            };
-
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
-        }
     };
-
-    this.address = function(address, callback) {
-
-        address = utils.isEmpty(address) ? '' : address;
-
-        var cb = function(result) {
-            callback(result);
-        };
-
+    var salePriceplanAPI = function(target, fnCallback) {
         if (!demo) {
-            var target = '/profiles/master/address/search?keyword=' + address;
-
             SystemService.callServiceGet(target, null, function(result) {
-                cb(result);
+                fnCallback(result);
             });
         } else {
+
             var data = {
                 "status": "SUCCESSFUL",
-                "trx-id": "6910OUYKLNCOK",
-                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "trx-id": "3F18U42TWR9R6",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": [{
-                    "subdistrict": "ดินแดง",
-                    "district": "ดินแดง",
-                    "province": "กรุงเทพมหานคร",
-                    "zipcode": "10321"
+                    "name": "NETSVP89",
+                    "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
+                    "soc": "107385",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2013-09-03",
+                        "end": "2020-04-04"
+                    },
+                    "rc": 899.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
                 }, {
-                    "subdistrict": "ดินแดง",
-                    "district": "ดินแดง",
-                    "province": "กรุงเทพมหานคร",
-                    "zipcode": "10325"
+                    "name": "PLNTAP06",
+                    "description": "4GiNet699,4GNetUNLT 6GB,TVS1GB,WiFiUNLT, Free3GB6m",
+                    "soc": "10648811",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2015-01-16",
+                        "end": "2016-06-30"
+                    },
+                    "rc": 699.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
                 }, {
-                    "subdistrict": "ดินแดง",
-                    "district": "ดินแดง",
-                    "province": "กรุงเทพมหานคร",
-                    "zipcode": "10326"
+                    "name": "RFSMTP01",
+                    "description": "(4G) Smart 999 voice 500mins net7GB",
+                    "soc": "94363",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2013-03-26",
+                        "end": "2020-08-04"
+                    },
+                    "rc": 999.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
                 }, {
-                    "subdistrict": "ดินแดง",
-                    "district": "ดินแดง",
-                    "province": "กรุงเทพมหานคร",
-                    "zipcode": "10400"
-                }, {
-                    "subdistrict": "ดินแดง",
-                    "district": "ดินแดง",
-                    "province": "กรุงเทพมหานคร",
-                    "zipcode": "10407"
+                    "name": "RMIP1P09",
+                    "description": "TMH-iPad 759 Data and wifi unlimited",
+                    "soc": "76832",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2012-03-15",
+                        "end": "2016-06-04"
+                    },
+                    "rc": 759.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
                 }]
             };
-
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
         }
     };
-
-    this.reason = function() {
-
-    };
-
-    this.masterList = function() {
-
-    };
-
-    this.secondAuthen = function() {
-
-    };
-
-    this.generateOrderId = function() {
-
-    };
-
-    this.getOfferDetail = function(soc, callback) {
-
-        var cb = function(result) {
-            callback(result);
-        };
-
+    var validatePartnerAPI = function(target, fnCallback) {
         if (!demo) {
-            var target = '/aftersales/tmv/priceplan/details?offer-code=' + soc;
-
             SystemService.callServiceGet(target, null, function(result) {
-                cb(result);
+                fnCallback(result);
             });
         } else {
+
             var data = {
                 "status": "SUCCESSFUL",
                 "display-messages": [],
-                "trx-id": "3BYU2Z95RW3I",
-                "process-instance": "tmsapnpr1 (instance: SFF_node1)",
-                "status-code": "0",
-                "csm-offer-details": {
-                    "currency": "THB",
-                    "name": "CF01AP01",
-                    "deployFromGroupIndicator": "Y",
-                    "description": "P_Corporate 50 free F&amp;F 1 No.",
-                    "duration": "",
-                    "product-type": "RR",
-                    "soc-properties": "TR_DEFAULT_CONTRACT_FEE=0;TR_CUSTOMER_TYPE=B,C;businessEntityID=0;Should be deployed=Y;TR_CONTRACT_TERM=0;Activation date to charge=Y;type=Price plan;Maximum offer duplicates allowed=0;Limit_Subs=99999;TR_SPECIAL_OFFER_IND=Null;id=263998;saleContext=Stand alone;level=Subscriber;description=P_Corporate 50 free F&amp;F 1 No.;name=CF01AP01;CUG_IND=Null;primaryServiceItem=MSISDN;cappingOffer=N;ApplyInOverlappingMove=false;currencyCode=THB;FF_Number=Null;itemization_offer_ind=N;saleExpirationDate=2016-01-30;Product type=RR;TR_ACCOUNT_SUB_TYPE=Null;english_offer_description=Corporate 50 free F&amp;F 1 No.;thai_offer_description=Corporate 50 free F&amp;F 1 No.;saleEffectiveDate=2009-09-15;TR_CUSTOMER_SUB_TYPE=Null;TR_NEXT_PP=null;TR_DURATION_MONTH=0;Deactivation date to charge=Y;TR_GENERATE_CHARGE_YES_NO=N;TR_PRODUCT_SUB_TYPE=R;Agreement distribute level=0;",
-                    "sale-expiration-date": "30/01/2016 00:00:00",
-                    "max-instances-allowed": "Duplication is Forbidden",
-                    "offer-type": "P",
-                    "sale-effective-date": "15/09/2009 00:00:00",
-                    "sale-context": "S",
-                    "rc-indicator": "",
-                    "primary-resource": "MSISDN",
-                    "special-offer-type": "",
-                    "min-ff-number": "1",
-                    "product-sub-type": "PostPay",
-                    "csm-related-offer-details": [{
-                        "code": "265738",
-                        "name": "FTALKS31",
-                        "description": "Talk: 1F&amp;F True FL",
-                        "service-level": "C",
-                        "sale-expiration-date": "08/08/2250 00:00:00",
-                        "offer-type": "U",
-                        "sale-effective-date": "28/02/2008 00:00:00",
-                        "special-offer-type": "FriendAndFamily"
-                    }, {
-                        "code": "40941",
-                        "name": "PROSTDA1",
-                        "description": "Standard Provisioning Services for Post Pay # 1",
-                        "service-level": "C",
-                        "sale-expiration-date": "08/08/2250 00:00:00",
-                        "offer-type": "U",
-                        "sale-effective-date": "04/08/2010 00:00:00",
-                        "special-offer-type": ""
-                    }, {
-                        "code": "41861",
-                        "name": "FCVBAR",
-                        "description": "First Call Verification, Barring",
-                        "service-level": "C",
-                        "sale-expiration-date": "08/08/2250 00:00:00",
-                        "offer-type": "U",
-                        "sale-effective-date": "08/01/2008 00:00:00",
-                        "special-offer-type": ""
-                    }]
+                "trx-id": "43RTPW8S64H6",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "partnerInfo": {
+                        "status-id": "1",
+                        "register-date": "2004-06-30 00:00:00.0",
+                        "status-name": "Active",
+                        "biz-reg-type-name": "นิติบุคคล",
+                        "dealer-code": "79000001",
+                        "emp-code": "",
+                        "tvs-code": "",
+                        "tmx-emp-code": "",
+                        "channel-alias": "ENTP",
+                        "channel-name": "Enterprise Customer & International Services",
+                        "partner-type-name": "Corporate",
+                        "partner-sub-type-name": "",
+                        "partner-type-group-name": "L1",
+                        "parent-code": "",
+                        "partner-name-th": "บริษัท ทรู มูฟ จำกัด"
+                    }
                 }
             };
-
-            $timeout(function() {
-                cb({
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "",
+                    "message-code": "2",
+                    "message-type": "ERROR",
+                    "en-message": "Partner Code นี้ไม่มีในระบบ",
+                    "th-message": "Partner Code นี้ไม่มีในระบบ",
+                    "technical-message": ""
+                }],
+                "trx-id": "3ERTR5HRVF9L",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {}
+            };
+            if (target == "profiles/partner/validatepartner?function-type=CHANGE_OWNERSHIP&partner-code=88888888") {
+                fnCallback({
                     status: true,
                     data: data,
-                    error: '',
-                    msgErr: ''
+                    error: "",
+                    msgErr: ""
                 });
-            }, 1000);
+            } else {
+                fnCallback({
+                    status: true,
+                    data: data2,
+                    error: "",
+                    msgErr: ""
+                });
+            }
+
         }
     };
-
-    this.getCUGId = function() {
-
-    };
-
-    this.validateCUG = function() {
-
-    };
-
-    this.getCapmaxParameter = function() {
-
-    };
-
-    this.orderSave = function() {
-
-    };
-
-    this.orderValidate = function() {
-
-    };
-
-    this.submit = function(payload, callback) {
-
-        var request = {
-            "order": {
-                "order-id": payload.orderData.orderId,
-                "creator": payload.saleAgent.logInName,
-                "customer": {
-                    'title-code': payload.customerProfile['title-code'],
-                    'title': payload.customerProfile['title'],
-                    'firstname': payload.customerProfile['firstname'],
-                    'lastname': payload.customerProfile['lastname'],
-                    'gender': payload.customerProfile['gender'],
-                    'id-type': payload.customerProfile['id-type'],
-                    'id-number': payload.customerProfile['id-number'],
-                    'birthdate': payload.customerProfile['birthdate'],
-                    'id-expire-date': payload.customerProfile['id-expire-date'],
-                    'contact-number': payload.customerProfile['contact-number'],
-                    'contact-mobile-number': payload.customerProfile['contact-mobile-number'],
-                    "language": payload.customerProfile['language'],
-                    "customer-id": payload.customerProfile['customer-id'],
-                    "address-list": {
-                        "CUSTOMER_ADDRESS": payload.customerAddress
-                    }
-                },
-                "sale-agent": {
-                    'name': payload.saleAgent['engName'],
-                    'channel': payload.saleAgent['channel'],
-                    'partner-code': (payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : null),
-                    'partner-name': payload.saleAgent['partnerName'],
-                    'sale-code': payload.saleAgent['saleCode'],
-                    //'sale-assist-code': "",
-                    'partner-type': payload.saleAgent['partnerType']
-                },
-                "order-items": [{
-                    "name": "MIGRATE_PRE_TO_POST",
-                    "product-name": payload.priceplanSelected["name"],
-                    "product-id-number": payload.productDetails['product-id-number'],
-                    "product-id-name": payload.productDetails['product-id-name'],
-                    "product-category": payload.productDetails['product-category'],
-                    "product-type": payload.productDetails['product-type'],
-                    "order-type": "CHANGE",
-                    "reason-code": "AA02",
-                    //"user-memo": "Customer want to request .",
-                    "address-list": {
-                        "BILLING_ADDRESS": payload.customerAddress,
-                        "TAX_ADDRESS": payload.customerAddress
-                    },
-                    "order-data": {
-                        "SUBSCRIBER-TITLE-CODE": payload.customerProfile['title-code'],
-                        "SUBSCRIBER-TITLE": payload.customerProfile['title'],
-                        "SUBSCRIBER-FIRSTNAME": payload.customerProfile['firstname'],
-                        "SUBSCRIBER-LASTNAME": payload.customerProfile['lastname'],
-                        "SUBSCRIBER-BIRTHDATE": payload.customerProfile['birthdate'],
-                        "SUBSCRIBER-GENDER": payload.customerProfile['gender'],
-                        "SUBSCRIBER-SMS-LANG": "TH",
-                        "ACCOUNT-BILL-FORMAT": "P",
-                        "ACCOUNT-PAYMENT-METHOD": "CA",
-                        "ACCOUNT-LANG": "TH",
-                        "CHANGE-OPTION": "NEW",
-                        "PRICEPLAN-SOC-CODE": payload.priceplanSelected["soc"],
-                        "CCBS-PROPOSITION-SOC-CODE": payload.propositionSelected['soc']
-                    },
-                    "primary-order-data": {
-                        "OU-ID": payload.productDetails['ouId'],
-                        "BAN": payload.productDetails['ban'],
-                        "ACCOUNT-CATEGORY": payload.productDetails['account-category'],
-                        "ACCOUNT-SUB-TYPE": payload.productDetails['account-sub-type'],
-                        "COMPANY-CODE": payload.productDetails['company-code'],
-                        "NAS-PROPOSITION": payload.propositionSelected['proposition-code'],
-                        "CCBS-PROPOSITION": payload.propositionSelected['name'],
-                        "SIM": ""
-                    }
-                }],
-                "last-modify-date": ""
-            },
-            'ref-id': payload.orderData.TrxID,
-            'user-id': payload.saleAgent.logInName,
-            'approver': ""
-        };
-
-
-        console.log(request);
-
-        var cb = function(result) {
-            callback(result);
-        };
-
+    var propositionAPI = function(param, fnCallback) {
+        var target = "sales/catalog/product/tmv/proposition/search?" +
+            "company-code=" + param['company-code'] +
+            "&customer-type=" + param['customer-type'] +
+            "&propo-type=" + param['propo-type'] +
+            "&mobile-servicetype=" + param['mobile-servicetype'] +
+            "&partner-code=" + param['partner-code'] +
+            "&privilege=" + param['privilege'];
+        console.log(target);
         if (!demo) {
-            request['target'] = '/aftersales/order/submit';
-
-            SystemService.callServicePost(request, null, function(result) {
-
-                cb(result);
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
             });
         } else {
-
             var data = {
-                'status': 'SUCCESSFUL',
-                'display-messages': [{
-                    'message': 'Order ' + payload.orderData.orderId + ' successful saved.',
-                    'message-type': 'ERROR',
-                    'en-message': 'Order ' + payload.orderData.orderId + ' successful saved.',
-                    'th-message': 'บันทึกข้อมูลเรียบร้อย Order ' + payload.orderData.orderId + ' successful saved.'
-                }],
-                'trx-id': '03J5HVSFXH8R',
-                'process-instance': 'tpx61.true.th (instance: sale)'
+                "status": "SUCCESSFUL",
+                "trx-id": "3X18RYBCFS9L9",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": [{
+                    "name": "RMV000000000001",
+                    "description": "Proposition for TEST RF ",
+                    "soc": "45552",
+                    "rc": 0.0,
+                    "service-level": "C",
+                    "proposition-code": "0019537"
+                }]
             };
-
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
         }
     };
 
+
+    return {
+        validateGradingCallback: function(company_id, fnCallback) {
+            validateGradingAPI(company_id, function(resultData) {
+                fnCallback(resultData);
+            });
+        },
+        getAccountSubTypeCallback: function(sendData, fnCallback) {
+            getAccountSubTypeAPI(sendData, function(resultData) {
+                fnCallback(resultData);
+            });
+        },
+        lastestCustomerCallback: function(certificateid, customertype, fnCallback) {
+            lastestCustomerAPI(certificateid, customertype, function(resultData) {
+                fnCallback(resultData);
+            });
+        },
+        validateMigratePreToPostCallback: function(msisdn, fnCallback) {
+            var res = {};
+
+            validateMigratePreToPostAPI(msisdn, function(result) {
+                var data = result.data;
+                var normalFlow = function() { //SUCCESS
+                    SystemService.hideLoading();
+                    if (result.status) {
+                        var dataCustomer = data["response-data"]["customer"];
+                        var mobileServiceType = "ทรูมูฟเอช รายเดือน";
+                        //var priceplan = dataCustomer["installed-products"][0];
+                        var priceplan = $filter('filter')(dataCustomer["installed-products"], {
+                            "product-type": "PRICEPLAN"
+                        })[0];
+                        var _header = {
+                            "producttype": mobileServiceType,
+                            "subscriberno": msisdn,
+                            "currpriceplan": (priceplan["product-name"] ? priceplan["product-name"] + ": " : "") + (priceplan["product-description"] ? priceplan["product-description"] : ""),
+                        };
+                        var _customerProfile = dataCustomer;
+                        delete _customerProfile['installed-products'];
+
+                        var _accntSubtypeList = [];
+                        var _cardTypeList = [];
+                        var _genderTypeList = [];
+                        var _titleTypeList = [];
+                        if (priceplan["account-category"], priceplan["company-code"], priceplan["mobile-servicetype"]) {
+                            //ประเภทลูกค้าย่อย
+                            AccountSubtypeAPI(priceplan["account-category"], priceplan["company-code"], priceplan["mobile-servicetype"], function(subtype) {
+                                if (subtype.data["response-data"]) {
+                                    _accntSubtypeList = subtype.data["response-data"];
+                                } else {
+                                    console.debug("migratePreToPostService : account-sub-type not response data");
+                                }
+
+                            });
+                            ////คำนำหน้าชื่อ
+                            //masterListAPI("CUST-TITLE-TYPE", function (titleList) {
+                            //    if (titleList.data["response-data"] && titleList.data["response-data"]["configuration-items"]) {
+                            //        _titleTypeList = titleList.data["response-data"]["configuration-items"];
+                            //    }
+                            //    else {
+                            //        console.debug("migratePreToPostService : CUST-TITLE-TYPE not response data");
+                            //    }
+                            //});
+                            ////เพศ
+                            //masterListAPI("CUST-GENDER", function (titleList) {
+
+                            //    if (titleList.data["response-data"] && titleList.data["response-data"]["configuration-items"]) {
+                            //        _genderTypeList = titleList.data["response-data"]["configuration-items"];
+                            //    }
+                            //    else {
+                            //        console.debug("migratePreToPostService : CUST-GENDER not response data");
+                            //    }
+                            //});
+                            ////ประเภทบัตร
+                            //masterListAPI("CUST-ID-TYPE-I", function (titleList) {
+
+                            //    if (titleList.data["response-data"] && titleList.data["response-data"]["configuration-items"]) {
+                            //        _cardTypeList = titleList.data["response-data"]["configuration-items"];
+                            //    }
+                            //    else {
+                            //        console.debug("migratePreToPostService : CUST-ID-TYPE-I not response data");
+                            //    }
+                            //});
+                        } else {
+                            console.debug("migratePreToPostService : account-category,company-code,mobile-servicetype is undefine!");
+                        }
+
+
+                        fnCallback({
+                            header: _header,
+                            customerProfile: _customerProfile,
+                            accountSubtypeList: _accntSubtypeList,
+                            titleTypeList: _titleTypeList,
+                            genderTypeList: _genderTypeList,
+                            cardTypeList: _cardTypeList,
+                            status: true,
+                            installedProducts: priceplan,
+                            priceplan: priceplan
+                        });
+
+                        if (data["display-messages"].length > 0) {
+
+                            setTimeout(function() {
+                                $.fancybox.close();
+                                var errorText = {
+                                    "message": "",
+                                    "en-message": "",
+                                    "th-message": "",
+                                    "technical-message": ""
+                                };
+                                var errorList = data["display-messages"];
+                                for (var i = 0; i < errorList.length; i++) {
+                                    errorText["message"] += errorList[i]["message"] + "<br /> ";
+                                    errorText["en-message"] += errorList[i]["en-message"] + "<br /> ";
+                                    errorText["th-message"] += errorList[i]["th-message"] + "<br /> ";
+                                    errorText["technical-message"] += errorList[i]["technical-message"] + "<br /> ";
+                                }
+                                SystemService.showAlert({
+                                    "message": errorText["message"],
+                                    "message-code": "",
+                                    "message-type": "WARNING",
+                                    "en-message": errorText["en-message"],
+                                    "th-message": errorText["th-message"],
+                                    "technical-message": errorText["technical-message"]
+                                });
+                                //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ยังไม่ได้ทำให้ multi alert
+                                setTimeout(function() {
+                                    $('.ngdMessage').html(errorText["message"]);
+                                    $('.ngdEnMessage').html(errorText["en-message"]);
+                                    $('.ngdThMessage').html(errorText["th-message"]);
+                                    $('.ngdTechnicalMessage').html(errorText["technical-message"]);
+                                }, 200);
+
+                            }, 1000);
+
+                        }
+                    } else {
+                        setTimeout(function() {
+                            SystemService.showAlert({
+                                "message": "Can not connect!",
+                                "message-code": "",
+                                "message-type": "ERROR",
+                                "en-message": "",
+                                "th-message": "",
+                                "technical-message": "validateMigratePreToPostAPI"
+                            });
+                        }, 1000);
+                    }
+
+                };
+                try {
+                    var check = result.data["display-messages"][0]['message-type'];
+
+                    if ($routeParams.subno) {
+                        if (check == "WARNING") {
+                            normalFlow();
+                        } else {
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": result.data["display-messages"][0]["message"],
+                                    "message-code": result.data["display-messages"][0]["message-code"],
+                                    "message-type": result.data["display-messages"][0]["message-type"],
+                                    "en-message": result.data["display-messages"][0]["en-message"],
+                                    "th-message": result.data["display-messages"][0]["th-message"],
+                                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                                });
+                            }, 1000);
+                            fnCallback({
+                                data: {
+                                    status: false
+                                }
+                            });
+                        }
+
+                    } else {
+                        if (check == "WARNING") {
+                            normalFlow();
+                        } else {
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": result.data["display-messages"][0]["message"],
+                                    "message-code": result.data["display-messages"][0]["message-code"],
+                                    "message-type": "WARNING",
+                                    "en-message": result.data["display-messages"][0]["en-message"],
+                                    "th-message": result.data["display-messages"][0]["th-message"],
+                                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                                });
+                            }, 1000);
+                            fnCallback({
+                                data: {
+                                    status: false
+                                }
+                            });
+                        }
+                    }
+
+
+
+                } catch (e) {
+                    normalFlow();
+                }
+
+            });
+
+
+        },
+        salePriceplanCallback: function(target, fnCallback) {
+            salePriceplanAPI(target, function(result) {
+                fnCallback(result);
+            });
+        },
+        validatePartnerCallback: function(target, fnCallback) {
+            validatePartnerAPI(target, function(result) {
+                fnCallback(result);
+            });
+        },
+        propositionCallback: function(target, fnCallback) {
+            propositionAPI(target, function(result) {
+                fnCallback(result);
+            });
+        }
+    }
 });
