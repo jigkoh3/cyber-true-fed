@@ -546,6 +546,21 @@ smartApp.controller('MigratePreToPostController', function(
                     migratePreToPostService.validateMigratePreToPostCallback($scope.SubNo, function(result) {
                         if (result.status) {
                             $scope.data = result;
+                            $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
+                            $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
+                            $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
+                            $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
+                            $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
+                            $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
+                            $scope.cardType.value = $scope.data.customerProfile['id-type'];
+
+                            setTimeout(function() {
+                                $('#divShowAuthorize').hide();
+                                $('#cardType').val($scope.cardType.value);
+                                $('#prefixTH3').val($scope.data.customerProfile['title-code']);
+                                //$ngBootbox.customDialog($scope.customDialogOptions);
+                                $scope.onInputIdLastest3();
+                            }, 1000);
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
 
                             $scope.data2 = result;
@@ -639,21 +654,7 @@ smartApp.controller('MigratePreToPostController', function(
             });
 
 
-            $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
-            $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
-            $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
-            $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
-            $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
-            $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
-            $scope.cardType.value = $scope.data.customerProfile['id-type'];
 
-            setTimeout(function() {
-                $('#divShowAuthorize').hide();
-                $('#cardType').val($scope.cardType.value);
-                $('#prefixTH3').val($scope.data.customerProfile['title-code']);
-                //$ngBootbox.customDialog($scope.customDialogOptions);
-                $scope.onInputIdLastest3();
-            }, 1000);
             $scope.callPropositionList();
 
 
