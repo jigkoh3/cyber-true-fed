@@ -544,6 +544,9 @@ smartApp.controller('MigratePreToPostController', function(
 
                 if ($scope.SubNo != 'null') {
                     migratePreToPostService.validateMigratePreToPostCallback($scope.SubNo, function(result) {
+                        setTimeout(function() {
+                            SystemService.hideLoading();
+                        }, 2000);
                         if (result.status) {
                             $scope.data = result;
                             $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
@@ -667,7 +670,7 @@ smartApp.controller('MigratePreToPostController', function(
     };
 
     $scope.onChangeCardTypes = function() {
-        console.log($scope.cardType.value);
+        // console.log($scope.cardType.value);
         if ($scope.cardType.value == "I") {
 
             $scope.customer['tax-id'] = $scope.customer['id-number'];

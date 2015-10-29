@@ -60,7 +60,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ประเภทของบัตร<span style="color:red;">*</span></label>
-                                    <select name="cardTypes" ng-model="cardType" ng-options="key as value for (key , value) in cardTypeOptions" class="form-control" required>
+                                    <select name="cardTypes" ng-model="cardType" ng-disabled="true" ng-options="key as value for (key , value) in cardTypeOptions" class="form-control" required>
                                         <!--<option ng-repeat="(key , value) in cardTypeOptions" value="{{key}}">{{value}}</option>-->
                                     </select>
                                 </div>
@@ -203,7 +203,7 @@
                                 <div class="form-group" ng-form="personnalid">
                                     <label>หมายเลขบัตรประชาชน / พาสปอร์ต <span style="color:red;">*</span></label>
                                     <div class="input-group" ng-submit="onInputIdLastest3()">
-                                        <input type="text" id="citizenID3" ng-disabled="" ng-keyup="($event.keyCode==13 && onInputIdLastest3()); onInputIdLastestKeyUp3();" ng-blur="onCheckInputForVerify()" ng-model="customer['id-number']" placeholder="" class="form-control" maxlength="13" ng-change="ClearTxt()" name="personnalids" required>
+                                        <input type="text" id="citizenID3" ng-disabled="true" ng-keyup="($event.keyCode==13 && onInputIdLastest3()); onInputIdLastestKeyUp3();" ng-blur="onCheckInputForVerify()" ng-model="customer['id-number']" placeholder="" class="form-control" maxlength="13" ng-change="ClearTxt()" name="personnalids" required>
                                         <span class="input-group-btn">
                                             <button ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true"
                                                     style="height:30px;"
@@ -244,7 +244,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ประเภทของบัตร<span style="color:red;">*</span> </label>
-                                    <select name="cardTypes" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes()" id="cardType" ng-disabled="false || !isCustomerProfile" class="form-control" required>
+                                    <select name="cardTypes" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes()" id="cardType" ng-disabled="true || !isCustomerProfile" class="form-control" required>
                                         <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                     </select>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.cardTypes.$error.required">
@@ -289,7 +289,7 @@
                                 <div class="form-group">
                                     <label>คำนำหน้า<span style="color:red;">*</span></label>
                                     <div id="placeholders">
-                                        <select name="prefixTHs" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="newOwner.prefixTH || !isCustomerProfile" ng-model="newOwner.prefixTH" style="width:100px;" required>
+                                        <select name="prefixTHs" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="isCardValueData || !isCustomerProfile" ng-model="newOwner.prefixTH" style="width:100px;" required>
                                             <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -309,7 +309,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ชื่อ<span style="color:red;">*</span> </label>
-                                    <input type="text" ng-disabled="newOwner.firstNameTH || !isCustomerProfile" name="firstNameTH3" id="firstNameTH3" ng-change="newOwner2.firstNameTH=newOwner.firstNameTH" ng-model="newOwner.firstNameTH" class="form-control" required>
+                                    <input type="text" ng-disabled="isCardValueData || !isCustomerProfile " name="firstNameTH3" id="firstNameTH3" ng-change="newOwner2.firstNameTH=newOwner.firstNameTH" ng-model="newOwner.firstNameTH" class="form-control" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.firstNameTH3.$error.required">
                                         Required.
                                     </span>-->
@@ -318,7 +318,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>นามสกุล<span style="color:red;">*</span></label>
-                                    <input type="text" ng-disabled="newOwner.lastNameTH || !isCustomerProfile" id="lastNameTH3" ng-change="newOwner2.lastNameTH=newOwner.lastNameTH" ng-model="newOwner.lastNameTH" name="lastNameTH" class="form-control" required>
+                                    <input type="text" ng-disabled="isCardValueData || !isCustomerProfile" id="lastNameTH3" ng-change="newOwner2.lastNameTH=newOwner.lastNameTH" ng-model="newOwner.lastNameTH" name="lastNameTH" class="form-control" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.lastNameTH.$error.required">
                                         Required.
                                     </span>-->
@@ -330,7 +330,7 @@
                                 <div class="form-group">
                                     <label>เพศ<span style="color:red;">*</span></label>
                                     <div id="placeholders">
-                                        <select name="sexs" class="form-control" id="sex3" ng-disabled="newOwner.sex || !isCustomerProfile" ng-model="newOwner.sex" style="width:100px;" required>
+                                        <select name="sexs" class="form-control" id="sex3" ng-disabled="isCardValueData || !isCustomerProfile" ng-model="newOwner.sex" style="width:100px;" required>
                                             <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -342,7 +342,7 @@
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="newOwner.birthDay || !isCustomerProfile" readonly class="form-control date-picker" id="birthDay" required>
+                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="isCardValueData || !isCustomerProfile" readonly class="form-control date-picker" id="birthDay" required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
@@ -350,7 +350,7 @@
                                 </div>
                                 <div ng-show="!showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                    <input id="disableNewOwnerBirthday" name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="newOwner.birthDay || !isCustomerProfile" readonly class="form-control " required>
+                                    <input id="disableNewOwnerBirthday" name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="isCardValueData || !isCustomerProfile" readonly class="form-control " required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
@@ -360,7 +360,7 @@
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="newOwner.expireDay || !isCustomerProfile" class="form-control date-picker-start " id="expireDay">
+                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="isCardValueData || !isCustomerProfile" class="form-control date-picker-start " id="expireDay">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <div ng-show="!showEnableNewOwnerExpireDay" class="form-group has-feedback">
@@ -379,7 +379,7 @@
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
                                 <label>
-                                    Shop Code/Dealer Code
+                                    รหัสร้านค้า
                                     <span style="color:red;">*</span></label>
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
@@ -460,7 +460,7 @@
                     </style>
                     <div ng-show="isVerify">
                         <div class="form-group">
-                            <label class="col-md-3 control-label priceplaneText">Price Plan <span style="color:red;">*</span></label>
+                            <label class="col-md-3 control-label priceplaneText">โปรโมชั่น <span style="color:red;">*</span></label>
                             <div class="col-md-6" id="priceplan_sl">
                                 <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
                             </div>
@@ -507,8 +507,8 @@
                                                         <label class="col-xs-12">
                                                             <div class="row">
                                                                 <div class="col-xs-1">&nbsp;</div>
-                                                                <div class="col-xs-9"><span style="color:green;"><h6>Price Plan</h6></span></div>
-                                                                <div class="col-xs-2"><span style="color:green;text-align:center;"><h6>RC</h6></span></div>
+                                                                <div class="col-xs-8"><span style="color:green;"><h4>โปรโมชั่น</h4></span></div>
+                                                                <div class="col-xs-3"><span style="color:green;text-align:center;"><h4>ค่าบริการรายเดือน</h4></span></div>
                                                                 <!--<div class="col-xs-3"><span style="color:green;"><h6>รายการส่งเสริมการขาย</h6></span></div>-->
                                                             </div>
                                                         </label>
@@ -521,8 +521,8 @@
                                                                 <div class="col-xs-1">
                                                                     <input name="pricelsx" type="radio" ng-click="selectedPricePlan(pp)" ng-value="pp.pricePlan" class="radioPriceplan" />
                                                                 </div>
-                                                                <div class="col-xs-9">{{pp.pricePlan}}</div>
-                                                                <div class="col-xs-2 text-center">{{pp.rc | number}}</div>
+                                                                <div class="col-xs-8">{{pp.pricePlan}}</div>
+                                                                <div class="col-xs-3 text-center">{{pp.rc | number}}</div>
                                                                 <!--<div class="col-xs-3" style="text-align:center;">{{pp.promotion}}</div>-->
                                                             </div>
                                                         </label>
@@ -689,7 +689,7 @@
                     <div class="row">
                         <div class="form-group">
                             <label class="col-md-3">
-                                <h4>โอนเปลียนเจ้าของไปที่ <span style="color:red;">*</span></h4>
+                                <h4>สร้างข้อมูลลูกค้าไปที่ <span style="color:red;">*</span></h4>
                             </label>
                             <!-- บุคคลธรรมดา -->
                             <div ng-hide="customerType != 'N'">
@@ -697,7 +697,7 @@
                                     <p></p>
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="custom" ng-disabled="!isLastestAdress" ng-change="changecusStatusN('O')" value="O" ng-model="customerStatusN"> ลูกค้าเก่า
+                                            <input type="radio" style="cursor:pointer;" name="custom" ng-disabled="!isLastestAdress" ng-change="changecusStatusN('O')" value="O" ng-model="customerStatusN"> ลูกค้าล่าสุด
                                         </label>
                                     </div>
                                     <div class="col-md-8" ng-hide="customerStatusN =='N'">
@@ -838,7 +838,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="col-md-3">
-                                            <button type="button" ng-click="useAddressAsCard('H')" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button>
+                                            <button type="button" ng-click="useAddressAsCard('H')" ng-hide="!isCardValueData" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
@@ -1214,17 +1214,17 @@
                     </div>
                 </div>
                 <!--<div ng-include="template.reasonmemo" scope="" onload=""></div>-->
-                <h4 ng-show="isVerify">Reason & Memo</h4>
+                <h4 ng-show="isVerify">บันทึกและเหตุผล</h4>
                 <div ng-show="isVerify" class="well">
                     <div class="form-horizontal">
                         <div class="form-group" ng-show="shopType=='0'">
-                            <label class="col-md-4 control-label">Reason Code<span style="color:red;"> *</span></label>
+                            <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
                             <div class="col-md-4">
                                 <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-change="onReasonChange()" ng-model="reason" class=" form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Memo</label>
+                            <label class="col-md-4 control-label">บันทึก</label>
                             <div class="col-md-4">
                                 <textarea class="form-control" name="message" ng-model="saveData.memo" style="width:100%;height:70px;resize:none;"></textarea>
                             </div>
@@ -1288,7 +1288,7 @@
                     <table class="table">
                         <tr class="row">
                             <th class="col-md-1"></th>
-                            <th class="col-md-5"><span style="color:green;"> Price Plan</span></th>
+                            <th class="col-md-5"><span style="color:green;"> โปรโมชั่น</span></th>
                             <th class="col-md-5"><span style="color:green;"> ค่าบริการรายเดือนก่อนหักส่วนลด</span></th>
                         </tr>
                         <tr class="row">
@@ -1429,7 +1429,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
-                <h5>Price Plan</h5>
+                <h5>โปรโมชั่น</h5>
                 <div class="col-md-12">
                     <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter" class="form-control">
                 </div>
@@ -1440,9 +1440,9 @@
                     <table class="table">
                         <tr class="row">
                             <th class="col-md-1"></th>
-                            <th class="col-md-7"><span style="color:green;"> Price Plan</span></th>
+                            <th class="col-md-7"><span style="color:green;"> โปรโมชั่น</span></th>
                             <th class="col-md-2"><span style="color:green;"> รายการส่งเสริมการขาย</span></th>
-                            <th class="col-md-2" style="text-align: center;"><span style="color:green;"> RC</span></th>
+                            <th class="col-md-2" style="text-align: center;"><span style="color:green;"> ค่าบริการรายเดือน</span></th>
                         </tr>
                         <tr class="row" ng-repeat="pp in pricePlans | filter:pricePlanFilter">
                             <th class="col-md-1">

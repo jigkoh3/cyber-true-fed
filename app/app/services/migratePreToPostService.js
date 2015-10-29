@@ -24,7 +24,7 @@
                         "id-expire-date": "2020-09-01T00:00:00+0700",
                         "contact-number": "",
                         "id-type": "P",
-                        "id-number": "012369857789",
+                        "id-number": "1189900157645",
                         "customer-id": "325",
                         "installed-products": [{
                             "ouId": "",
@@ -921,7 +921,7 @@
                     SystemService.hideLoading();
                     if (result.status) {
                         var dataCustomer = data["response-data"]["customer"];
-                        var mobileServiceType = "ทรูมูฟเอช รายเดือน";
+                        var mobileServiceType = "ทรูมูฟเอช เติมเงิน";
                         //var priceplan = dataCustomer["installed-products"][0];
                         var priceplan = $filter('filter')(dataCustomer["installed-products"], {
                             "product-type": "PRICEPLAN"
