@@ -78,22 +78,22 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
 		console.log($scope.statusReasonMemo);
 	};
 
-	var checkIsCancelSim = function(data) {
-		var prop = utils.getObject(data, 'simData.product-properties.PRODUCT-STATUS-CODE');
-		var prodStatus = utils.getObject(data, 'simData.product-status');
-		if ('CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND'.indexOf(prop) > -1) {
-			alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์เป็น ' + prop);
-			return false;
-		}
-		else if (prodStatus.toUpperCase() !== 'ACTIVE') {
-			alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์ไม่ได้ ACTIVE');
-			return false;
-		}
-		else {
-			console.log(prop);
-			return true;
-		}
-	};
+	// var checkIsCancelSim = function(data) {
+	// 	var prop = utils.getObject(data, 'simData.product-properties.PRODUCT-STATUS-CODE');
+	// 	var prodStatus = utils.getObject(data, 'simData.product-status');
+	// 	if ('CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND'.indexOf(prop) > -1) {
+	// 		alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์เป็น ' + prop);
+	// 		return false;
+	// 	}
+	// 	else if (prodStatus.toUpperCase() !== 'ACTIVE') {
+	// 		alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์ไม่ได้ ACTIVE');
+	// 		return false;
+	// 	}
+	// 	else {
+	// 		console.log(prop);
+	// 		return true;
+	// 	}
+	// };
 
 	// Get current SIM data
 	var onGetSIMData = function (result) {
@@ -110,9 +110,9 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
 
         $scope.data = result.data;
 
-        if (!checkIsCancelSim($scope.data)) {
-        	window.close();
-        }
+        // if (!checkIsCancelSim($scope.data)) {
+        // 	window.close();
+        // }
 
         $scope.getSIMDataFailed = false;
 
