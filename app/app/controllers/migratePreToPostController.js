@@ -1507,7 +1507,7 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.isSelectedPricePlan = "";
     $scope.selectedPricePlan = function(pp) {
         $scope.isSelectedPricePlan2 = true;
-        $scope.pricePlanFilter = {};
+        // $scope.pricePlanFilter = {};
         $scope.pricePlan2 = {
             name: pp.pricePlan,
             promotion: pp.promotion,

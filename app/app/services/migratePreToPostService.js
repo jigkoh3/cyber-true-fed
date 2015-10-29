@@ -605,6 +605,186 @@
                     "rc": 759.0,
                     "service-level": "C",
                     "priceplan-type": "N"
+                },{
+                    "name": "NETSVP89",
+                    "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
+                    "soc": "107385",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2013-09-03",
+                        "end": "2020-04-04"
+                    },
+                    "rc": 899.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "PLNTAP06",
+                    "description": "4GiNet699,4GNetUNLT 6GB,TVS1GB,WiFiUNLT, Free3GB6m",
+                    "soc": "10648811",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2015-01-16",
+                        "end": "2016-06-30"
+                    },
+                    "rc": 699.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "RFSMTP01",
+                    "description": "(4G) Smart 999 voice 500mins net7GB",
+                    "soc": "94363",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2013-03-26",
+                        "end": "2020-08-04"
+                    },
+                    "rc": 999.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "RMIP1P09",
+                    "description": "TMH-iPad 759 Data and wifi unlimited",
+                    "soc": "76832",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2012-03-15",
+                        "end": "2016-06-04"
+                    },
+                    "rc": 759.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                },{
+                    "name": "NETSVP89",
+                    "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
+                    "soc": "107385",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2013-09-03",
+                        "end": "2020-04-04"
+                    },
+                    "rc": 899.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "PLNTAP06",
+                    "description": "4GiNet699,4GNetUNLT 6GB,TVS1GB,WiFiUNLT, Free3GB6m",
+                    "soc": "10648811",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2015-01-16",
+                        "end": "2016-06-30"
+                    },
+                    "rc": 699.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "RFSMTP01",
+                    "description": "(4G) Smart 999 voice 500mins net7GB",
+                    "soc": "94363",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2013-03-26",
+                        "end": "2020-08-04"
+                    },
+                    "rc": 999.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "RMIP1P09",
+                    "description": "TMH-iPad 759 Data and wifi unlimited",
+                    "soc": "76832",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2012-03-15",
+                        "end": "2016-06-04"
+                    },
+                    "rc": 759.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                },{
+                    "name": "NETSVP89",
+                    "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
+                    "soc": "107385",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2013-09-03",
+                        "end": "2020-04-04"
+                    },
+                    "rc": 899.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "PLNTAP06",
+                    "description": "4GiNet699,4GNetUNLT 6GB,TVS1GB,WiFiUNLT, Free3GB6m",
+                    "soc": "10648811",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2015-01-16",
+                        "end": "2016-06-30"
+                    },
+                    "rc": 699.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "RFSMTP01",
+                    "description": "(4G) Smart 999 voice 500mins net7GB",
+                    "soc": "94363",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2013-03-26",
+                        "end": "2020-08-04"
+                    },
+                    "rc": 999.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
+                }, {
+                    "name": "RMIP1P09",
+                    "description": "TMH-iPad 759 Data and wifi unlimited",
+                    "soc": "76832",
+                    "properties": {
+                        "TR_SPECIAL_OFFER_IND": "",
+                        "PRICEPLAN_TYPE": "N"
+                    },
+                    "sale-period": {
+                        "start": "2012-03-15",
+                        "end": "2016-06-04"
+                    },
+                    "rc": 759.0,
+                    "service-level": "C",
+                    "priceplan-type": "N"
                 }]
             };
             fnCallback({
