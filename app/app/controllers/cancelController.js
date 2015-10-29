@@ -1,111 +1,111 @@
 ﻿// ---------------------- ChangeOwnershipController.js ----------------------
-smartApp.controller('CancelController', function ($scope, $routeParams, AuthenService, CancelService, ChangePricePlanService, DeviceService, ReasonService, SystemService) {
+smartApp.controller('CancelController', function($scope, $routeParams, AuthenService, CancelService, ChangePricePlanService, DeviceService, ReasonService, SystemService) {
 
-	// Templates
-	var runTime = new Date().getTime();
-	$scope.template = {
-		header: 'app/views/header.html?' + runTime,
-		customerprofile: 'app/views/customerprofile.html?' + runTime,
-		reasonmemo: 'app/views/reasonmemo.html?' + runTime
-	};
+    // Templates
+    var runTime = new Date().getTime();
+    $scope.template = {
+        header: 'app/views/header.html?' + runTime,
+        customerprofile: 'app/views/customerprofile.html?' + runTime,
+        reasonmemo: 'app/views/reasonmemo.html?' + runTime
+    };
 
-	// Read route parameters
-	$scope.Id = $routeParams.ID;
-	$scope.shopType = $routeParams.shopType;
-	$scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null'; //$routeParams.SubNo;
+    // Read route parameters
+    $scope.Id = "";
+    $scope.shopType = '1';
+    $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null'; //$routeParams.SubNo;
 
 
-	// Initialize variables
-	$scope.divID = 'cancelContent';
-	$scope.subNoLength = 10;
-	$scope.simSerialLength = 18;
+    // Initialize variables
+    $scope.divID = 'cancelContent';
+    $scope.subNoLength = 10;
+    $scope.simSerialLength = 18;
 
-	$scope.dealerCodes = [];
-	$scope.dealerCode = '';
+    $scope.dealerCodes = [];
+    $scope.dealerCode = '';
 
-	$scope.isMatch = true;
+    $scope.isMatch = true;
 
-	$scope.CitizenID = "";
+    $scope.CitizenID = "";
 
-	$scope.data = {};
-	$scope.isReadCardSuccess = false;
+    $scope.data = {};
+    $scope.isReadCardSuccess = false;
 
-	$scope.statusCancel = 'CANCEL-ACTIVE';
-	$scope.statusReason = '';
-	$scope.statusReasonMemo = '';
+    $scope.statusCancel = 'CANCEL-ACTIVE';
+    $scope.statusReason = '';
+    $scope.statusReasonMemo = '';
 
-	var orderData = {};
+    var orderData = {};
 
-	//Reasons
-	$scope.reasons = [];
-	$scope.statusReason = "";
-	
-	ReasonService.list("119", function (result) {
-		$scope.reasons = result;
-		$scope.statusReason = $scope.reasons[86];
-	});
+    //Reasons
+    $scope.reasons = [];
+    $scope.statusReason = "";
 
-	//end reson
-	
-	// Submit form
-	$scope.submit = function () {
-		$scope.hasSubmitted = true;
+    ReasonService.list("119", function(result) {
+        $scope.reasons = result;
+        $scope.statusReason = $scope.reasons[86];
+    });
 
-		var data = {
-			customerProfile: $scope.data.customerProfile,
-			simData: $scope.data.simData,
-			newSIMData: {
-				productCodes: $scope.productCodes,
-				simSerial: $scope.simSerial
-			}
-		};
+    //end reson
 
-		CancelService.submitCancel(data, function (result) {
-			console.log(result);
-			if (result.status === true && result.data.status === 'SUCCESSFUL') {
-				$('#modalPDFOpener').click();
-			}
-		});
-	};
+    // Submit form
+    $scope.submit = function() {
+        $scope.hasSubmitted = true;
 
-	$scope.logDataBeforeSubmit = function() {
-		console.log($scope.data);
+        var data = {
+            customerProfile: $scope.data.customerProfile,
+            simData: $scope.data.simData,
+            newSIMData: {
+                productCodes: $scope.productCodes,
+                simSerial: $scope.simSerial
+            }
+        };
 
-		console.log($scope.statusCancel);
+        CancelService.submitCancel(data, function(result) {
+            console.log(result);
+            if (result.status === true && result.data.status === 'SUCCESSFUL') {
+                $('#modalPDFOpener').click();
+            }
+        });
+    };
 
-		console.log($scope.statusReason);
+    $scope.logDataBeforeSubmit = function() {
+        console.log($scope.data);
 
-		console.log($scope.statusReasonMemo);
-	};
+        console.log($scope.statusCancel);
 
-	// var checkIsCancelSim = function(data) {
-	// 	var prop = utils.getObject(data, 'simData.product-properties.PRODUCT-STATUS-CODE');
-	// 	var prodStatus = utils.getObject(data, 'simData.product-status');
-	// 	if ('CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND'.indexOf(prop) > -1) {
-	// 		alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์เป็น ' + prop);
-	// 		return false;
-	// 	}
-	// 	else if (prodStatus.toUpperCase() !== 'ACTIVE') {
-	// 		alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์ไม่ได้ ACTIVE');
-	// 		return false;
-	// 	}
-	// 	else {
-	// 		console.log(prop);
-	// 		return true;
-	// 	}
-	// };
+        console.log($scope.statusReason);
 
-	// Get current SIM data
-	var onGetSIMData = function (result) {
-		
+        console.log($scope.statusReasonMemo);
+    };
+
+    // var checkIsCancelSim = function(data) {
+    // 	var prop = utils.getObject(data, 'simData.product-properties.PRODUCT-STATUS-CODE');
+    // 	var prodStatus = utils.getObject(data, 'simData.product-status');
+    // 	if ('CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND'.indexOf(prop) > -1) {
+    // 		alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์เป็น ' + prop);
+    // 		return false;
+    // 	}
+    // 	else if (prodStatus.toUpperCase() !== 'ACTIVE') {
+    // 		alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์ไม่ได้ ACTIVE');
+    // 		return false;
+    // 	}
+    // 	else {
+    // 		console.log(prop);
+    // 		return true;
+    // 	}
+    // };
+
+    // Get current SIM data
+    var onGetSIMData = function(result) {
+
         if (result.data == false) {
             console.log(result);
             $scope.SubNo = 'null';
             $('#dataSubNo').val("");
 
-            setTimeout(function(){
+            setTimeout(function() {
                 $('#dataSubNo').focus();
-            },1200);
+            }, 1200);
         }
 
         $scope.data = result.data;
@@ -119,29 +119,28 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
         if (!$scope.data) {
             $scope.getSIMDataFailed = true;
             SystemService.hideLoading();
-        }
-        else {
+        } else {
             authenticate();
         }
 
-		var activeDate = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DATE');
-		if (activeDate) {
-			var activeDateResult = moment(Date.parse(activeDate));
-			if (activeDateResult.isValid()) {
-				$scope.activeDate = activeDateResult.format('DD/MM/YYYY');
-			}
-		}
+        var activeDate = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DATE');
+        if (activeDate) {
+            var activeDateResult = moment(Date.parse(activeDate));
+            if (activeDateResult.isValid()) {
+                $scope.activeDate = activeDateResult.format('DD/MM/YYYY');
+            }
+        }
 
-		var reasonCode = utils.getObject($scope.data, 'simData.product-properties.REASON-DESC');
-		if (reasonCode) {
-			$scope.reasonCodeDisplay = '(' + reasonCode + ')';
-		}
+        var reasonCode = utils.getObject($scope.data, 'simData.product-properties.REASON-DESC');
+        if (reasonCode) {
+            $scope.reasonCodeDisplay = '(' + reasonCode + ')';
+        }
 
-		var companyCode = utils.getObject(result.data, 'simData.company-code');
-		if (!utils.isEmpty(companyCode)) {
-			DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
-		}
-	};
+        var companyCode = utils.getObject(result.data, 'simData.company-code');
+        if (!utils.isEmpty(companyCode)) {
+            DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
+        }
+    };
 
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
@@ -149,7 +148,7 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
     }
 
     $scope.onInputSubNo = function() {
-    	$scope.subNoInput = $('#dataSubNo').val();
+        $scope.subNoInput = $('#dataSubNo').val();
 
         if ($scope.subNoInput && $scope.subNoInput.length === 10) {
             SystemService.showLoading();
@@ -214,18 +213,75 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
         });
     };
 
+    //----------- camera ----------------
+    $scope.initWebCam = function() {
+
+        setTimeout(function() {
+            $('#btnSavePhoto').hide();
+            var html = webcam.get_html(320, 240);
+            $("#dataCamera").html(html);
+
+            webcam.set_api_url(getURL('services/file/upload.service'));
+            webcam.set_quality(90); // JPEG quality (1 - 100)
+            webcam.set_shutter_sound(true); // play shutter click sound
+            webcam.set_hook('onComplete', onCompleteSnap);
+
+        }, 500);
+
+    }
+
+    function onCompleteSnap(msg) {
+        $scope.varPhoto = msg;
+        var ie_preview_image = $("#ie_preview_image")[0];
+        ie_preview_image.src = "data:image/png;base64," + msg;
+
+        webcam.reset();
+        $('#btnSavePhoto').show();
+    }
+
+    $scope.webcamSnap = function() {
+        webcam.snap();
+    }
+
+    $scope.isManualReadCard = true;
+    $scope.onInputId = function() {
+        //console.log($('#CitizenID').val().length);
+        var cid = $('#CitizenID').val();
+
+        // console.log(cid + ";" + $scope.data.customerProfile["id-number"]);
+        if (cid.length >= 3) {
+            if (cid == $scope.data.customerProfile["id-number"]) {
+                $scope.showDataDealer = false;
+                //document.getElementById('btnReadCardClose2').click();
+                //$("#btnForm").fancybox().close();
+                $scope.isCustomerProfile = true;
+                $.fancybox.close();
+                $scope.isReadCardSuccess = false;
+                // $scope.CitizenID = "";
+
+                // $scope.changereqType("ADD_IRIDD");
+
+                // $scope.data = $scope.data2;
+            } else {
+                $('#unMatch').show();
+                $scope.isMatch = false;
+            }
+
+        }
+    }
+
     var validateInput = function() {
-    	if (!$scope.statusCancel) {
-    		alert('กรุณาเลือกสถานะหมายเลขใหม่');
-    		return false;
-    	}
+        if (!$scope.statusCancel) {
+            alert('กรุณาเลือกสถานะหมายเลขใหม่');
+            return false;
+        }
 
-    	if (!$scope.statusReason) {
-    		alert('กรุณาเลือกเหตุผล');
-    		return false;
-    	}
+        if (!$scope.statusReason) {
+            alert('กรุณาเลือกเหตุผล');
+            return false;
+        }
 
-		return true;
+        return true;
     };
 
     var generateOrderRequest = function() {
@@ -315,18 +371,18 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
         });
     };
 
-	$scope.confirmPrint = function () {
+    $scope.confirmPrint = function() {
 
-		SystemService.showLoading();
+        SystemService.showLoading();
 
         var data = generateOrderRequest();
 
-		data['statusCancel'] = $scope.statusCancel;
-		data['statusReason'] = $scope.statusReason.id;
-		data['statusReasonMemo'] = $scope.statusReasonMemo;
+        data['statusCancel'] = $scope.statusCancel;
+        data['statusReason'] = $scope.statusReason.id;
+        data['statusReasonMemo'] = $scope.statusReasonMemo;
 
-		CancelService.submitCancel(data, function(result) {
-			SystemService.hideLoading();
+        CancelService.submitCancel(data, function(result) {
+            SystemService.hideLoading();
             console.log(result);
             setTimeout(function() {
                 var displayMsg = utils.getObject(result.data, 'display-messages.0');
@@ -343,171 +399,157 @@ smartApp.controller('CancelController', function ($scope, $routeParams, AuthenSe
                     });
                 }
             }, 1000);
-		});
-	};
+        });
+    };
 
-	$scope.openSSO = function () {
+    $scope.openSSO = function() {
 
-		var openDialog = function (uri, name, options, closeCallback) {
-			var win = window.open(uri, name, options);
-			var interval = window.setInterval(function () {
-				try {
-					if (win == null || win.closed) {
-						window.clearInterval(interval);
-						closeCallback(win);
-					}
-				}
-				catch (e) {
-				}
-			}, 1000);
-			return win;
-		};
+        var openDialog = function(uri, name, options, closeCallback) {
+            var win = window.open(uri, name, options);
+            var interval = window.setInterval(function() {
+                try {
+                    if (win == null || win.closed) {
+                        window.clearInterval(interval);
+                        closeCallback(win);
+                    }
+                } catch (e) {}
+            }, 1000);
+            return win;
+        };
 
 
-		var url = "https://sso-devt.true.th:11443/SSORESTFul/SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
-		//var url = "https://www.google.co.th";
+        var url = "https://sso-devt.true.th:11443/SSORESTFul/SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
+        //var url = "https://www.google.co.th";
 
-		openDialog(url, "MsgWindow", "width=800, height=600", function (w) {
-			//alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
-			SystemService.second_authen($scope.TrxID, function (result) {
-				$scope.manualInputReadCard();
-			});
+        openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
+            //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
+            SystemService.second_authen($scope.TrxID, function(result) {
+                $scope.manualInputReadCard();
+            });
 
-		});
-	};
-	//$scope.nextBillDate = SystemService.getNextBillDate();
-	$scope.readCardError = function (msg) {
-		SystemService.showAlert({
-			"message": msg,
-			"message-code": "",
-			"message-type": "WARNING",
-			"en-message": "",
-			"th-message": "",
-			"technical-message": ""
-		});
-	};
-	$scope.initModalReadCard = function () {
-		$("#btnReadCardClose").click(function () {
-			$('input[type=submit]').hide();
-			$('input[type=reset]').hide();
-		});
-		$('#loadingReadCard').hide();
-		$('#loadingReadCard2').hide();
-		$('#unMatch').hide();
-		$('#unMatch2').hide();
-		$('#CitizenID').val('');
-		document.getElementById("CitizenID").disabled = true;
-		$('input[type=submit]').show();
-		$('input[type=reset]').show();
-	}
-	$scope.manualInputReadCard = function () {
-		$('#loadingReadCard').hide();
-		$('#loadingReadCard2').hide();
-		$('#unMatch').hide();
-		$('#unMatch2').hide();
-		document.getElementById("CitizenID").disabled = false;
+        });
+    };
+    //$scope.nextBillDate = SystemService.getNextBillDate();
+    $scope.readCardError = function(msg) {
+        SystemService.showAlert({
+            "message": msg,
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "",
+            "th-message": "",
+            "technical-message": ""
+        });
+    };
+    $scope.initModalReadCard = function() {
+        $("#btnReadCardClose").click(function() {
+            $('input[type=submit]').hide();
+            $('input[type=reset]').hide();
+        });
+        $('#loadingReadCard').hide();
+        $('#loadingReadCard2').hide();
+        $('#unMatch').hide();
+        $('#unMatch2').hide();
+        $('#CitizenID').val('');
+        document.getElementById("CitizenID").disabled = true;
+        $('input[type=submit]').show();
+        $('input[type=reset]').show();
+    }
+    $scope.manualInputReadCard = function() {
+        $('#loadingReadCard').hide();
+        $('#loadingReadCard2').hide();
+        $('#unMatch').hide();
+        $('#unMatch2').hide();
+        document.getElementById("CitizenID").disabled = false;
 
-		setTimeout(function () {
-			$('#CitizenID').val('');
-		}, 0);
-		$scope.isManualReadCard = false;
-	}
+        setTimeout(function() {
+            $('#CitizenID').val('');
+        }, 0);
+        $scope.isManualReadCard = false;
+    }
 
-	// Get device list
-	var deviceByCode = {};
+    // Get device list
+    var deviceByCode = {};
 
-	var onGetDeviceTypeList = function (result) {
-		$scope.deviceTypeList = utils.getObject(result.data, 'response-data.device');
+    var onGetDeviceTypeList = function(result) {
+        $scope.deviceTypeList = utils.getObject(result.data, 'response-data.device');
 
-		if ($scope.deviceTypeList && $scope.deviceTypeList.length) {
-			deviceByCode = _.indexBy($scope.deviceTypeList, 'device-code');
-		}
-	};
+        if ($scope.deviceTypeList && $scope.deviceTypeList.length) {
+            deviceByCode = _.indexBy($scope.deviceTypeList, 'device-code');
+        }
+    };
 
-	$scope.$watch('deviceType', function (val) {
-		if (deviceByCode[val]) {
-			var sim = deviceByCode[val].sim[0];
+    $scope.$watch('deviceType', function(val) {
+        if (deviceByCode[val]) {
+            var sim = deviceByCode[val].sim[0];
 
-			var productCodes = _.pluck(sim['product-code'], 'code');
-			$scope.productCodes = productCodes.join('/');
+            var productCodes = _.pluck(sim['product-code'], 'code');
+            $scope.productCodes = productCodes.join('/');
 
-			$scope.simType = sim['sim-type'];
-		}
-		else {
-			$scope.productCodes = '';
-			$scope.simType = ''
-		}
-	});
+            $scope.simType = sim['sim-type'];
+        } else {
+            $scope.productCodes = '';
+            $scope.simType = ''
+        }
+    });
 
-	$scope.SetCardValue = function (result) {
-		$('#loadingReadCard').hide();
-		$scope.isReadCardSuccess = false;
+    $scope.SetCardValue = function(result) {
+        $('#loadingReadCard').hide();
+        $scope.isReadCardSuccess = false;
 
-		$scope.cardInfo = eval(result);
-		console.log($scope.cardInfo.CitizenID);
-		$scope.CitizenID = $scope.cardInfo.CitizenID;
-		$('#CitizenID').val('' + $scope.cardInfo.CitizenID);
+        $scope.cardInfo = eval(result);
+        console.log($scope.cardInfo.CitizenID);
+        $scope.CitizenID = $scope.cardInfo.CitizenID;
+        $('#CitizenID').val('' + $scope.cardInfo.CitizenID);
 
 
-		if ($scope.cardInfo.CitizenID == $routeParams.ID) {
-			that.getChangePricePlan("0689100006", "5555", function (result) {
-				document.getElementById('btnReadCardClose2').click();
+        $scope.onInputId();
+        ///$scope.ReadCardMockUp($scope.cardInfo.CitizenID);
+        //console.log(result);
+        //console.log(result.CitizenID);
+    };
 
-				$scope.data = result.data;
-				$scope.isReadCardSuccess = true;
-			});
+    $scope.onInputId2 = function() {
+        var cid = $('#CitizenID2').val();
+        if (cid.length == 13) {
+            if (SystemService.validatePID(cid)) {
 
-		} else {
-			$('#unMatch').show();
-			$scope.isMatch = false;
-		}
-		///$scope.ReadCardMockUp($scope.cardInfo.CitizenID);
-		//console.log(result);
-		//console.log(result.CitizenID);
-	};
+            } else {
+                $('#CitizenID2').val('');
+            }
+        }
+    };
 
-	$scope.onInputId2 = function () {
-		var cid = $('#CitizenID2').val();
-		if (cid.length == 13) {
-			if (SystemService.validatePID(cid)) {
+    $scope.SetCardValue2 = function(result) {
+        $('#loadingReadCard2').hide();
 
-			} else {
-				$('#CitizenID2').val('');
-			}
-		}
-	};
+        $scope.cardInfo2 = eval(result);
+        console.log($scope.cardInfo2);
 
-	$scope.SetCardValue2 = function (result) {
-		$('#loadingReadCard2').hide();
+        $('#CitizenID2').val($scope.cardInfo2.CitizenID);
+        $('#authorizeFullName').val($scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH);
+        //$scope.CitizenID2 = $scope.cardInfo2.CitizenID;
+        //$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
+    };
 
-		$scope.cardInfo2 = eval(result);
-		console.log($scope.cardInfo2);
+    // $scope.isManualReadCard = true;
+    // $scope.onInputId = function () {
+    // 	console.log($('#CitizenID').val().length);
+    // 	var cid = $('#CitizenID').val();
+    // 	if (cid.length == 13) {
+    // 		if (cid == $routeParams.ID) {
+    // 			document.getElementById('btnReadCardClose2').click();
+    // 			$scope.isReadCardSuccess = false;
+    // 		} else {
+    // 			$('#unMatch').show();
+    // 			$scope.isMatch = false;
+    // 		}
+    // 	}
+    // };
 
-		$('#CitizenID2').val($scope.cardInfo2.CitizenID);
-		$('#authorizeFullName').val($scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH);
-		//$scope.CitizenID2 = $scope.cardInfo2.CitizenID;
-		//$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
-	};
-
-	$scope.isManualReadCard = true;
-	$scope.onInputId = function () {
-		console.log($('#CitizenID').val().length);
-		var cid = $('#CitizenID').val();
-		if (cid.length == 13) {
-			if (cid == $routeParams.ID) {
-				document.getElementById('btnReadCardClose2').click();
-				$scope.isReadCardSuccess = false;
-			} else {
-				$('#unMatch').show();
-				$scope.isMatch = false;
-			}
-		}
-	};
-
-	$scope.customerType = "N";
-	$scope.isAuthorize = false;
-	$scope.authorize = function () {
-		$scope.isAuthorize = true;
-	};
-	//init();
+    $scope.customerType = "N";
+    $scope.isAuthorize = false;
+    $scope.authorize = function() {
+        $scope.isAuthorize = true;
+    };
+    //init();
 });
