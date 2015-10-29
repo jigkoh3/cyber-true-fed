@@ -747,8 +747,8 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     "primary-order-data": {
                         "OU-ID": payload.productDetails['ouId'],
                         "BAN": payload.productDetails['ban'],
-                        "ACCOUNT-CATEGORY": payload.productDetails['account-category'],
-                        "ACCOUNT-SUB-TYPE": payload.productDetails['account-sub-type'],
+                        "ACCOUNT-CATEGORY": "P",
+                        "ACCOUNT-SUB-TYPE": "PRE",
                         "COMPANY-CODE": payload.productDetails['company-code']
                         //,"NAS-PROPOSITION": payload.propositionSelected['proposition-code'],
                         //"CCBS-PROPOSITION": payload.propositionSelected['name']
