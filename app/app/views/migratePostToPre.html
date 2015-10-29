@@ -129,7 +129,7 @@
                                     <input type="text" ng-model="selectedPricePlan.description" readonly class="form-control">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control" ng-disabled="isSecondAuhenFailed">
+                                    <input type="text" id="txtPricePlanFilter" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control" ng-disabled="isSecondAuhenFailed">
                                 </div>
                                 <div class="col-md-1">
                                     <button href="#pricePlanModal" id="modalnewpriceplan" class="btn" onclick="return false;" data-toggle="modal" style="background-color: #5cb85c; border-color: #4cae4c;" ng-disabled="isSecondAuhenFailed">
