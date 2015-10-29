@@ -1,4 +1,4 @@
-﻿smartApp.controller('MigratePostToPreController', function($routeParams,$filter, $scope, AuthenService, MigratePostToPreService, ReasonService, SystemService) {
+﻿smartApp.controller('MigratePostToPreController', function($routeParams,ValidateMsgService,$filter, $scope, AuthenService, MigratePostToPreService, ReasonService, SystemService) {
 
     // Templates
     var runTime = new Date().getTime();
@@ -40,6 +40,9 @@
     };
     $scope.slipType = "H";
     $scope.isVerify = true;
+
+    var isFocus = false;
+    var idFocus = "";
 
 
 
@@ -598,6 +601,12 @@ $scope.isSelectedPricePlan = false;
             setTimeout(function() {
                 $('#dataSubNo').focus();
             }, 500);
+        } 
+        if (idFocus) {
+            $('#' + idFocus).focus();
+            idFocus = "";
+        } else {
+            // $scope.validateUI();
         }
 
 
@@ -755,6 +764,43 @@ $scope.isSelectedPricePlan = false;
 
     // (Start) Submit Form ----------------------
     var isDataComplete = function() {
+        var isNull = function(txt) {
+            if (txt) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+        var showValidate = function(id, msg) {
+            idFocus = id;
+            SystemService.showAlert(msg);
+                return;
+        };
+        if (isNull($scope.mailAddress.postcode)) {
+            showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
+            return;
+        } else if (isNull($scope.mailAddress.province)) {
+            showValidate("txtmailAddressprovince", ValidateMsgService.data.msgBillProvinceEmpty);
+            return;
+        } else if (isNull($scope.mailAddress.amphur)) {
+            showValidate("txtmailAddressamphur", ValidateMsgService.data.msgBillDistrictEmpty);
+            return;
+        } else if (isNull($scope.mailAddress.district)) {
+            showValidate("txtMaillAddressDistrict", ValidateMsgService.data.msgBillSubDistrictEmpty);
+            return;
+        } else if (isNull($scope.mailAddress.homeNumber)) {
+            showValidate("txtMailAdressHomeNumber", ValidateMsgService.data.msgBillHouseNoEmpty);
+            return;
+        } else if (isNull($scope.mailAddress.moo)) {
+            showValidate("txtMailAddressMoo", ValidateMsgService.data.msgBillVillageNoEmpty);
+            return;
+        } else if (isNull($scope.mailAddress.road)) {
+            showValidate("txtMailAddressRoad", ValidateMsgService.data.msgBillRoadEmpty);
+            return;
+        }else {
+            
+
+        }
         if (
             $('#authorize').prop('checked') &&
             (!$('#CitizenID2').val() || !$('#authorizeFullName').val())
@@ -775,7 +821,9 @@ $scope.isSelectedPricePlan = false;
         }
 
         if (!$scope.selectedPricePlan || !Object.keys($scope.selectedPricePlan).length) {
-            alert('กรุณาเลือกรายการส่งเสริมการขาย');
+            // alert('กรุณาเลือกรายการส่งเสริมการขาย');
+            SystemService.showAlert(ValidateMsgService.data.pleaseSelectPP);
+            idFocus = "txtPricePlanFilter";
             return false;
         }
 

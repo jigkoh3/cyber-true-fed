@@ -225,13 +225,13 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
         delete customerProfile['address-list'];
 
         // Prepare product type
-        var productType = '';
+        var productType = 'ทรูมูฟเอช รายเดือน';
         var serviceType = productDetails['mobile-servicetype'];
-        if (serviceType === 'PREPAID') {
-            productType = 'ทรูมูฟเอช เติมเงิน';
-        } else if (serviceType === 'POSTPAID') {
-            productType = 'ทรูมูฟเอช รายเดือน';
-        }
+        // if (serviceType === 'PREPAID') {
+        //     productType = 'ทรูมูฟเอช เติมเงิน';
+        // } else if (serviceType === 'POSTPAID') {
+        //     productType = 'ทรูมูฟเอช รายเดือน';
+        // }
 
         // Prepare current price plan
         var currentPricePlan = [];
@@ -722,7 +722,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                 "sale-agent": {
                     'name': payload.saleAgent['engName'],
                     'channel': payload.saleAgent['channel'],
-                    'partner-code': (payload.saleAgent["shopcodes"].length > 0 ? payload.saleAgent["shopcodes"][0] : null),
+                    'partner-code': payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : payload.saleAgent["ssoEmployeePrincipal"]['employeeId'],
                     'partner-name': payload.saleAgent['partnerName'],
                     'sale-code': payload.saleAgent['saleCode'],
                     'partner-type': payload.saleAgent['partnerType']

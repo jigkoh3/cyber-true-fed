@@ -132,7 +132,7 @@
 				      "product-properties" : {
 				            "PRODUCT-STATUS-DATE" : '2531-09-01T00:00:00+0700',
 				            "REASON-CODE" : null,
-				            "REASON-DESC" : null,
+				            "REASON-DESC" : 'test',
 				            "SUBSCRIBER-ID" : null,
 				            "PRODUCT-STATUS-CODE" : null, // CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND
 				            "PRODUCT-STATUS-DESC" : null // Active, Soft Suspend by Request, Full Suspend by Request
