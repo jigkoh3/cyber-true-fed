@@ -2975,6 +2975,7 @@ smartApp.controller('MigratePreToPostController', function(
         }, 0);
     };
     $scope.txtSearchAddress = "";
+    var accountLang = "TH";
     $scope.onInputAddress = function() {
         $scope.txtSearchAddress = "";
         $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.postcode);
@@ -2984,6 +2985,11 @@ smartApp.controller('MigratePreToPostController', function(
         var target = "profiles/master/address/search?keyword=" + $scope.txtSearchAddress + "&lang=" + $scope.billPayment.accountLang;
         console.log($scope.txtSearchAddress.length, target);
         if ($scope.txtSearchAddress.length >= 3) {
+            if (accountLang != $scope.billPayment.accountLang) {
+                $scope.pauseAddress = false;
+                $scope.isLoadAddress = false;
+                accountLang = $scope.billPayment.accountLang;
+            }
             if (!$scope.isLoadAddress) {
                 //SystemService.showLoading();
                 if (!$scope.pauseAddress) {
