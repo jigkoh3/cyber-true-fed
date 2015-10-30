@@ -1,4 +1,4 @@
-﻿smartApp.controller('MigratePostToPreController', function($routeParams,ValidateMsgService,$filter, $scope, AuthenService, MigratePostToPreService, ReasonService, SystemService) {
+﻿smartApp.controller('MigratePostToPreController', function($routeParams, ValidateMsgService, $filter, $scope, AuthenService, MigratePostToPreService, ReasonService, SystemService) {
 
     // Templates
     var runTime = new Date().getTime();
@@ -34,7 +34,7 @@
     $scope.pageSize_cug = 10;
     $scope.totalCUG = 10;
     //end paging
-    
+
     $scope.dirty = {
         selectedPricePlan: {}
     };
@@ -91,14 +91,14 @@
         }
     };
 
-    $scope.initModalReadCard = function(){
+    $scope.initModalReadCard = function() {
         if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
-                setTimeout(function() {
-                    $('#CitizenID').prop('disabled', false);
-                    $('#CitizenID').focus();
-                    $('#btnSSO').hide();
-                }, 500);
-            }
+            setTimeout(function() {
+                $('#CitizenID').prop('disabled', false);
+                $('#CitizenID').focus();
+                $('#btnSSO').hide();
+            }, 500);
+        }
     };
 
     $scope.onBlurAddress = function() {
@@ -132,7 +132,7 @@
     $scope.mailAddress = {
         newss: ''
     };
-    
+
     $scope.txtSearchAddress = "";
     $scope.onInputAddress = function() {
         $scope.txtSearchAddress = "";
@@ -199,7 +199,7 @@
             if (date.indexOf("-") >= 0) {
                 var arr = date.split("T");
                 var arrDate = arr[0].split("-");
-                var strDate =  arrDate[2]+ "/" + arrDate[1] + "/" + (Number(arrDate[0]) + 543);
+                var strDate = arrDate[2] + "/" + arrDate[1] + "/" + (Number(arrDate[0]) + 543);
                 console.log(arrDate);
                 return strDate;
 
@@ -257,10 +257,10 @@
             SystemService.calendarDatePicker();
         }, 0);
     };
-$scope.isSelectedPricePlan = false;
-    $scope.selectedPricePlan = function (pp) {
+    $scope.isSelectedPricePlan = false;
+    $scope.selectedPricePlan = function(pp) {
 
-        $('#divPage').click(function () {
+        $('#divPage').click(function() {
             $scope.onBlurPricePlanItem();
         });
         //$('#ppfilter').val('');
@@ -465,10 +465,10 @@ $scope.isSelectedPricePlan = false;
                 $scope.isCustomerProfile = true;
                 $scope.isSecondAuhenFailed = false;
 
-                if($scope.isCardValueData){
+                if ($scope.isCardValueData) {
                     //$('#snapshot').hide();
                     $scope.isReadCardSuccess = false;
-                }else{
+                } else {
                     //$('#snapshot').show();
                 }
 
@@ -524,11 +524,12 @@ $scope.isSelectedPricePlan = false;
         $('#CitizenID2').val(cardInfo.CitizenID);
     };
     $scope.dataReadCard3 = {};
+    $scope.isDataReadCard3 = false;
     $scope.SetCardValue3 = function(result) {
         var cardInfo = eval(result);
         console.log(cardInfo);
         $('#loadingReadCard3').hide();
-
+        $scope.isDataReadCard3 = true;
         $('#CitizenID3').val(cardInfo.CitizenID);
         $scope.dataReadCard3 = cardInfo;
 
@@ -616,7 +617,7 @@ $scope.isSelectedPricePlan = false;
             setTimeout(function() {
                 $('#dataSubNo').focus();
             }, 500);
-        } 
+        }
         if (idFocus) {
             $('#' + idFocus).focus();
             idFocus = "";
@@ -742,6 +743,23 @@ $scope.isSelectedPricePlan = false;
         $scope.data.customerAddress = {};
     };
 
+    $scope.useAddressAsCard = function(type) {
+        if (type == 'H') {
+            console.log($scope.dataReadCard3);
+            //$scope.mailAddress = $scope.tempCardAddress;
+            $scope.mailAddress.province = $scope.dataReadCard3.Province;
+            $scope.mailAddress.amphur = $scope.dataReadCard3.Amphur;
+            $scope.mailAddress.district = $scope.dataReadCard3.District;
+            $scope.mailAddress.homeNumber = $scope.dataReadCard3.HomeNumber;
+            $scope.mailAddress.moo = $scope.dataReadCard3.Moo;
+            $scope.mailAddress.road = $scope.dataReadCard3.Road;
+            $scope.mailAddress.soi = $scope.dataReadCard3.Soi;
+            $scope.mailAddress.trok = $scope.dataReadCard3.Trok;
+        } else {
+            $scope.billAddress = $scope.tempCardAddress;
+        }
+    };
+
     $scope.unUseAddressAsCard = function(type) {
         if (type == 'H') {
             $scope.mailAddress = {};
@@ -789,7 +807,7 @@ $scope.isSelectedPricePlan = false;
         var showValidate = function(id, msg) {
             idFocus = id;
             SystemService.showAlert(msg);
-                return;
+            return;
         };
         if (isNull($scope.mailAddress.postcode)) {
             showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
@@ -812,8 +830,8 @@ $scope.isSelectedPricePlan = false;
         } else if (isNull($scope.mailAddress.road)) {
             showValidate("txtMailAddressRoad", ValidateMsgService.data.msgBillRoadEmpty);
             return;
-        }else {
-            
+        } else {
+
 
         }
         if (
