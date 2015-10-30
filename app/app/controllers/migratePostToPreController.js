@@ -90,6 +90,17 @@
             $('#ulAddressList').show();
         }
     };
+
+    $scope.initModalReadCard = function(){
+        if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
+                setTimeout(function() {
+                    $('#CitizenID').prop('disabled', false);
+                    $('#CitizenID').focus();
+                    $('#btnSSO').hide();
+                }, 500);
+            }
+    };
+
     $scope.onBlurAddress = function() {
         $('#ulAddressList').hide();
     };
@@ -454,7 +465,9 @@ $scope.isSelectedPricePlan = false;
                 $scope.isCustomerProfile = true;
                 $scope.isSecondAuhenFailed = false;
 
-
+                if($scope.isCardValueData){
+                    
+                }
 
                 $('#unMatch').hide();
                 $('.fancybox-close').click();
