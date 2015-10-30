@@ -467,6 +467,7 @@ $scope.isSelectedPricePlan = false;
 
                 if($scope.isCardValueData){
                     $('#snapshot').hide();
+                    $scope.isCardValueData = false;
                 }else{
                     $('#snapshot').show();
                 }
