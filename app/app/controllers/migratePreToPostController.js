@@ -551,15 +551,17 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.data = result;
                             $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
                             $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
+                            $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];
+                            $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
                             $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
                             $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
                             $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                             $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                             $scope.cardType.value = $scope.data.customerProfile['id-type'];
-                            
+
                             // $scope.onInputIdLastest3();
                             $scope.onInputCitizenID3();
-                            
+
                             setTimeout(function() {
                                 $('#divShowAuthorize').hide();
                                 $('#cardType').val($scope.cardType.value);
@@ -733,7 +735,7 @@ smartApp.controller('MigratePreToPostController', function(
             SystemService.hideLoading();
             if (result.data["display-messages"].length == 0) {
                 // if ($scope.isLastestUser == true) {
-                    $scope.callPropositionList();
+                $scope.callPropositionList();
                 // }
                 $scope.getAuthen.shopcodes = ["" + $scope.partnerCode + ""];
                 $scope.onCheckInputForVerify();
@@ -1006,7 +1008,7 @@ smartApp.controller('MigratePreToPostController', function(
                                         $('#cardType').val($scope.cardType.value);
                                         $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                         //$ngBootbox.customDialog($scope.customDialogOptions);
-                                        
+
                                     }, 1000);
 
                                     $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
@@ -1859,7 +1861,7 @@ smartApp.controller('MigratePreToPostController', function(
 
 
     $scope.useAddressAsCard = function(type) {
-           if (type == 'H'){
+        if (type == 'H') {
             console.log($scope.cardInfo3);
             //$scope.mailAddress = $scope.tempCardAddress;
             $scope.mailAddress.province = $scope.cardInfo.Province;
@@ -1870,7 +1872,7 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.mailAddress.road = $scope.cardInfo.Road;
             $scope.mailAddress.soi = $scope.cardInfo.Soi;
             $scope.mailAddress.trok = $scope.cardInfo.Trok;
-        }else{
+        } else {
             $scope.billAddress = $scope.tempCardAddress;
         }
     };
@@ -2113,18 +2115,18 @@ smartApp.controller('MigratePreToPostController', function(
                         ,
                     "address-list": {
                         "CUSTOMER_ADDRESS": {
-                                   "number": "61/268",
-                                   "moo": "8",
+                            "number": "61/268",
+                            "moo": "8",
                             //        "village": "moo ban",
-                                   "street": "ratchada",
+                            "street": "ratchada",
                             //        "soi": "8",
-                                   "district": "dindaeng",
-                                   "province": "Pathumthani",
+                            "district": "dindaeng",
+                            "province": "Pathumthani",
                             //        "building-name": "Pakin",
                             //        "building-room": "22",
                             //        "building-floor": "13",
-                                   "sub-district": "Dindaeng",
-                                   "zip": "22222",
+                            "sub-district": "Dindaeng",
+                            "zip": "22222",
                             //        "household": "18"
                         }
                     }
@@ -2156,7 +2158,7 @@ smartApp.controller('MigratePreToPostController', function(
                     //}
                 },
                 // "sale-agent": {
-                   // "name": "Chitchai Changpradist",
+                // "name": "Chitchai Changpradist",
                 //    "channel": "CM",
                 //    "partner-code": "",
                 //    "partner-name": "",
@@ -2238,7 +2240,7 @@ smartApp.controller('MigratePreToPostController', function(
                             // "ORIGINAL-OWNER-ID-NUMBER": $scope.data.customerProfile['id-number'],
                             // "ORIGINAL-OWNER-FIRSTNAME": $scope.data.customerProfile['firstname'],
                             // "ORIGINAL-OWNER-LASTNAME": $scope.data.customerProfile['lastname']
-                                //"SIM": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "SIM": $scope.data.installedProducts["product-properties"]["SIM"], //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
                         }
                     }]
                     //,"last-modify-date": ""
