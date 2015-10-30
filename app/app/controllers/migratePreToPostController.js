@@ -1859,10 +1859,20 @@ smartApp.controller('MigratePreToPostController', function(
 
 
     $scope.useAddressAsCard = function(type) {
-        if (type == 'H')
-            $scope.mailAddress = $scope.tempCardAddress;
-        else
+           if (type == 'H'){
+            console.log($scope.cardInfo3);
+            //$scope.mailAddress = $scope.tempCardAddress;
+            $scope.mailAddress.province = $scope.cardInfo.Province;
+            $scope.mailAddress.amphur = $scope.cardInfo.Amphur;
+            $scope.mailAddress.district = $scope.cardInfo.District;
+            $scope.mailAddress.homeNumber = $scope.cardInfo.HomeNumber;
+            $scope.mailAddress.moo = $scope.cardInfo.Moo;
+            $scope.mailAddress.road = $scope.cardInfo.Road;
+            $scope.mailAddress.soi = $scope.cardInfo.Soi;
+            $scope.mailAddress.trok = $scope.cardInfo.Trok;
+        }else{
             $scope.billAddress = $scope.tempCardAddress;
+        }
     };
 
     $scope.unUseAddressAsCard = function(type) {
