@@ -92,6 +92,7 @@
     };
 
     $scope.initModalReadCard = function() {
+        $('#CitizenID').val("");
         if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
             setTimeout(function() {
                 $('#CitizenID').prop('disabled', false);
@@ -466,10 +467,12 @@
                 $scope.isSecondAuhenFailed = false;
 
                 if ($scope.isCardValueData) {
+                    //alert("");
                     //$('#snapshot').hide();
-                    $scope.isReadCardSuccess = false;
+                    $scope.isReadCardSuccess = true;
                 } else {
                     //$('#snapshot').show();
+                    $scope.isReadCardSuccess = false;
                 }
 
                 $('#unMatch').hide();
