@@ -135,6 +135,7 @@
     };
 
     $scope.txtSearchAddress = "";
+    var accountLang = "TH";
     $scope.onInputAddress = function() {
         $scope.txtSearchAddress = "";
         $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.postcode);
@@ -144,6 +145,11 @@
         var target = "profiles/master/address/search?keyword=" + $scope.txtSearchAddress + "&lang=" + $scope.billPayment.accountLang;
         console.log($scope.txtSearchAddress.length, target);
         if ($scope.txtSearchAddress.length >= 3) {
+            if (accountLang != $scope.billPayment.accountLang) {
+                $scope.pauseAddress = false;
+                $scope.isLoadAddress = false;
+                accountLang = $scope.billPayment.accountLang;
+            }
             if (!$scope.isLoadAddress) {
                 //SystemService.showLoading();
                 if (!$scope.pauseAddress) {
@@ -239,10 +245,30 @@
             var idType = $scope.data.simData['account-category'];
 
             setTimeout(function() {
-                $('#selectCustomerIdType').val(idType);
+                //alert($scope.data.customerProfile['id-type']);
+                //$('#selectCustomerIdType').val(idType);
+                console.log($scope.data);
+                $('#selectCustomerIdType').val($scope.data.customerProfile['id-type']);
+
+                $scope.mailAddress.province = $scope.data.customerAddress['province'];
+                $scope.mailAddress.amphur = $scope.data.customerAddress['sub-district'];
+                $scope.mailAddress.district = $scope.data.customerAddress['district'];
+                $scope.mailAddress.homeNumber = $scope.data.customerAddress['number'];
+                $scope.mailAddress.moo = $scope.data.customerAddress['moo'];
+                $scope.mailAddress.road = $scope.data.customerAddress['street'];
+                $scope.mailAddress.soi = $scope.data.customerAddress['soi'];
+                $scope.mailAddress.postcode = $scope.data.customerAddress['zip'];
+                $scope.mailAddress.village = $scope.data.customerAddress['household'];
+                $scope.mailAddress.buildingName = $scope.data.customerAddress['building-name'];
+                $scope.mailAddress.buildingRoom = $scope.data.customerAddress['building-room'];
+                $scope.mailAddress.buildingFloor = $scope.data.customerAddress['building-floor'];
+
+
+                //$scope.data.customerProfile['id-type'] = 'I';
             }, 1000);
 
-            $scope.data.customerProfile['id-type'] = idType;
+            //$scope.data.customerProfile['id-type'] = idType;
+
             console.log(idType);
             if (idType == "I") {
                 $scope.isLastestUser = false;
@@ -289,6 +315,29 @@
                 $scope.isInputSubNo = true;
 
                 SystemService.showLoading();
+                //ประเภทของบัตร
+                SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
+                    $scope.cardTypeOptions = result;
+                    console.log($scope.cardTypeOptions);
+                });
+
+                //คำนำหน้า
+                SystemService.getMaster_list("CUST-TITLE-TYPE", function(result) {
+                    $scope.titleTypeListx = result;
+                    console.log($scope.titleTypeListx);
+                });
+
+                //คำนำหน้า อื่นๆ
+                SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function(result) {
+                    $scope.titleOtherTypeList = result;
+                    console.log($scope.titleOtherTypeList);
+                });
+
+                //เพศ
+                SystemService.getMaster_list("CUST-GENDER", function(result) {
+                    $scope.genderTypeList = result;
+                    console.log($scope.genderTypeList);
+                });
                 MigratePostToPreService.getSIMData($scope.SubNo, onGetSIMData);
             }
         } else {
