@@ -867,7 +867,7 @@
                                     </div>
                                     <div class="col-md-8" ng-hide="customerStatusN =='N'">
                                         <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                            <input type="checkbox" class="styled" id="openService" ng-model="changOpenserviceN" ng-change="changeOldAddress(changOpenserviceN)">
+                                            <input type="checkbox" class="styled" id="openService" ng-model="changOpenserviceN">
                                             <label for="openService">ระบุลูกค้าในการเปิดบริการ</label>
                                         </div>
                                     </div>
@@ -1011,7 +1011,7 @@
                             <div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <div class="col-md-3"><button type="button" ng-click="useAddressAsCard('H')" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button></div>
+                                        <div class="col-md-3"><button ng-hide="!isCardValueDataLastest" type="button" ng-click="useAddressAsCard('H')" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button></div>
                                         <div class="col-md-1"></div>
                                         <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
                                         <div class="col-md-3">

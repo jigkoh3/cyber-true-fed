@@ -1768,10 +1768,20 @@ smartApp.controller('changeOwnershipController', function(
 
 
     $scope.useAddressAsCard = function(type) {
-        if (type == 'H')
-            $scope.mailAddress = $scope.tempCardAddress;
-        else
+        if (type == 'H'){
+            console.log($scope.cardInfo3);
+            //$scope.mailAddress = $scope.tempCardAddress;
+            $scope.mailAddress.province = $scope.cardInfo3.Province;
+            $scope.mailAddress.amphur = $scope.cardInfo3.Amphur;
+            $scope.mailAddress.district = $scope.cardInfo3.District;
+            $scope.mailAddress.homeNumber = $scope.cardInfo3.HomeNumber;
+            $scope.mailAddress.moo = $scope.cardInfo3.Moo;
+            $scope.mailAddress.road = $scope.cardInfo3.Road;
+            $scope.mailAddress.soi = $scope.cardInfo3.Soi;
+            $scope.mailAddress.trok = $scope.cardInfo3.Trok;
+        }else{
             $scope.billAddress = $scope.tempCardAddress;
+        }
     };
 
     $scope.unUseAddressAsCard = function(type) {
@@ -2870,6 +2880,7 @@ smartApp.controller('changeOwnershipController', function(
         }, 0);
     };
     $scope.txtSearchAddress = "";
+    var accountLang = "TH";
     $scope.onInputAddress = function() {
         $scope.txtSearchAddress = "";
         $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.postcode);
@@ -2879,11 +2890,18 @@ smartApp.controller('changeOwnershipController', function(
         var target = "profiles/master/address/search?keyword=" + $scope.txtSearchAddress + "&lang=" + $scope.billPayment.accountLang;
         console.log($scope.txtSearchAddress.length, target);
         if ($scope.txtSearchAddress.length >= 3) {
+            if(accountLang != $scope.billPayment.accountLang){
+                    $scope.pauseAddress = false;
+                    $scope.isLoadAddress = false;
+                    accountLang = $scope.billPayment.accountLang;
+                }
             if (!$scope.isLoadAddress) {
                 //SystemService.showLoading();
+                
                 if (!$scope.pauseAddress) {
                     SystemService.getAddressMaster(target, function(result) {
                         //SystemService.hideLoading();
+                        
                         if (result.status) {
                             $scope.isLoadAddress = true;
                             $scope.addressList = result.data['response-data'];
