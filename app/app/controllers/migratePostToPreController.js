@@ -466,12 +466,13 @@ $scope.isSelectedPricePlan = false;
                 $scope.isSecondAuhenFailed = false;
 
                 if($scope.isCardValueData){
-                    
+                    $('#snapshot').hide();
+                }else{
+                    $('#snapshot').show();
                 }
 
                 $('#unMatch').hide();
                 $('.fancybox-close').click();
-
                 return true;
             } else {
                 $('#unMatch').show();
