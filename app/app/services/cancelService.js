@@ -231,8 +231,8 @@
 	this.submitCancel = function (payload, fnCallback) {
 		var request = {
 			'order': {
-				'order-id': 'ORD150700000032',
-				'creator': 'chitch2',
+				"order-id": payload.orderData.orderId,
+                "creator": payload.saleAgent.logInName,
 				'create-date': moment().format('YYYY-MM-DDTHH:mm:ss+0700'),
 				'customer': {
 					'id-number': payload.customerProfile['id-number'],
@@ -305,9 +305,9 @@
 				],
 				'last-modify-date': ''
 			},
-			'ref-id': '999999999',
-			'user-id': 'chitch3',
-			'approver': null
+			'ref-id': payload.orderData.TrxID,
+            'user-id': payload.saleAgent.logInName,
+			'approver': payload.approver
 		};
 		console.log(request);
 		var cb = function (result) {
@@ -329,7 +329,7 @@
 						'message': 'Order ORD150700000032 successful saved.',
 						'message-type': 'INFORMATION',
 						'en-message': 'Order ORD150700000032 successful saved.',
-						'th-message': 'บันทึกข้อมูลเรียบร้อย'
+						'th-message': 'รายการคำขอเลขที่ ORD150700000032 ได้รับข้อมูลเรียบร้อยแล้ว'
 					}
 				],
 				'trx-id': '03J5HVSFXH8R',

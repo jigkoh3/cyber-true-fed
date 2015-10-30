@@ -22,7 +22,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
 
     $scope.dealerCodes = [];
     $scope.dealerCode = '';
-
+    $scope.approver = "";
     $scope.isMatch = true;
 
     $scope.CitizenID = "";
@@ -79,20 +79,20 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     };
 
     // var checkIsCancelSim = function(data) {
-    // 	var prop = utils.getObject(data, 'simData.product-properties.PRODUCT-STATUS-CODE');
-    // 	var prodStatus = utils.getObject(data, 'simData.product-status');
-    // 	if ('CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND'.indexOf(prop) > -1) {
-    // 		alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์เป็น ' + prop);
-    // 		return false;
-    // 	}
-    // 	else if (prodStatus.toUpperCase() !== 'ACTIVE') {
-    // 		alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์ไม่ได้ ACTIVE');
-    // 		return false;
-    // 	}
-    // 	else {
-    // 		console.log(prop);
-    // 		return true;
-    // 	}
+    //  var prop = utils.getObject(data, 'simData.product-properties.PRODUCT-STATUS-CODE');
+    //  var prodStatus = utils.getObject(data, 'simData.product-status');
+    //  if ('CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND'.indexOf(prop) > -1) {
+    //      alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์เป็น ' + prop);
+    //      return false;
+    //  }
+    //  else if (prodStatus.toUpperCase() !== 'ACTIVE') {
+    //      alert('ไม่สามารถทำรายการได้ เนื่องจากสถานะของเบอร์ไม่ได้ ACTIVE');
+    //      return false;
+    //  }
+    //  else {
+    //      console.log(prop);
+    //      return true;
+    //  }
     // };
 
     // Get current SIM data
@@ -111,7 +111,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         $scope.data = result.data;
 
         // if (!checkIsCancelSim($scope.data)) {
-        // 	window.close();
+        //  window.close();
         // }
 
         $scope.getSIMDataFailed = false;
@@ -157,7 +157,8 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         }
     };
     // (End) Get current SIM data ----------------------
-
+    $scope.TrxID = '';
+    $scope.orderId = '';
     var authenticate = function() {
         AuthenService.getAuthen(function(authResult) {
 
@@ -182,6 +183,8 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
 
                 SystemService.hideLoading();
                 orderData = order;
+                $scope.TrxID = order.TrxID;
+                $scope.orderId = order.orderId;
 
                 if ($scope.shopType === '1') {
                     // Auto-open the CardReader dialog
@@ -293,7 +296,8 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             orderData: orderData,
             saleAgent: $scope.getAuthen,
             reason: $scope.statusReason,
-            memo: $scope.statusReasonMemo
+            memo: $scope.statusReasonMemo,
+            approver: $scope.approver
         };
     };
 
@@ -311,7 +315,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         }
 
         var data = {
-            'func': 'POP',
+            'func': 'CAN',
             'header': {
                 'title-code': $scope.data.customerProfile['title-code'],
                 'title': $scope.data.customerProfile['title'],
@@ -389,7 +393,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
                 console.log(displayMsg);
                 if (!displayMsg || !displayMsg['message-type']) {
                     SystemService.showBeforeClose({
-                        "message": "DEMO > " + result.data["display-messages"][0]["th-message"],
+                        "message": "" + result.data["display-messages"][0]["th-message"],
                         "message2": ""
                     });
                 } else {
@@ -425,6 +429,10 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
             SystemService.second_authen($scope.TrxID, function(result) {
                 $scope.manualInputReadCard();
+                if (result.status == "SUCCESSFUL") {
+                    $scope.approver = result["response-data"][0]["loginName"];
+                    console.log(result);
+                }
             });
 
         });
@@ -533,17 +541,17 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
 
     // $scope.isManualReadCard = true;
     // $scope.onInputId = function () {
-    // 	console.log($('#CitizenID').val().length);
-    // 	var cid = $('#CitizenID').val();
-    // 	if (cid.length == 13) {
-    // 		if (cid == $routeParams.ID) {
-    // 			document.getElementById('btnReadCardClose2').click();
-    // 			$scope.isReadCardSuccess = false;
-    // 		} else {
-    // 			$('#unMatch').show();
-    // 			$scope.isMatch = false;
-    // 		}
-    // 	}
+    //  console.log($('#CitizenID').val().length);
+    //  var cid = $('#CitizenID').val();
+    //  if (cid.length == 13) {
+    //      if (cid == $routeParams.ID) {
+    //          document.getElementById('btnReadCardClose2').click();
+    //          $scope.isReadCardSuccess = false;
+    //      } else {
+    //          $('#unMatch').show();
+    //          $scope.isMatch = false;
+    //      }
+    //  }
     // };
 
     $scope.customerType = "N";
