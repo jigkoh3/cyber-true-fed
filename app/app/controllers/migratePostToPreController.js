@@ -466,10 +466,10 @@ $scope.isSelectedPricePlan = false;
                 $scope.isSecondAuhenFailed = false;
 
                 if($scope.isCardValueData){
-                    $('#snapshot').hide();
-                    $scope.isCardValueData = false;
+                    //$('#snapshot').hide();
+                    $scope.isReadCardSuccess = false;
                 }else{
-                    $('#snapshot').show();
+                    //$('#snapshot').show();
                 }
 
                 $('#unMatch').hide();
