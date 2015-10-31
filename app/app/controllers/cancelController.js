@@ -123,13 +123,15 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             authenticate();
         }
 
-        var activeDate = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DATE');
-        if (activeDate) {
-            var activeDateResult = moment(Date.parse(activeDate));
-            if (activeDateResult.isValid()) {
-                $scope.activeDate = activeDateResult.format('DD/MM/YYYY');
-            }
-        }
+        // var activeDate = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DATE');
+        // if (activeDate) {
+        //     var activeDateResult = moment(Date.parse(activeDate));
+        //     if (activeDateResult.isValid()) {
+        //         $scope.activeDate = activeDateResult.format('DD/MM/YYYY');
+        //     }
+        // }
+
+        $scope.activeDate = formatActiveDate(utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DATE'));
 
         var reasonCode = utils.getObject($scope.data, 'simData.product-properties.REASON-DESC');
         if (reasonCode) {
@@ -245,6 +247,24 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     $scope.webcamSnap = function() {
         webcam.snap();
     }
+
+    var formatActiveDate = function(date) {
+        if (date) {
+            if (date.indexOf("/") >= 0) {
+                var arrDate = date.split("/");
+                var strDate = arrDate[0] + "/" + arrDate[1] + "/" + (Number(arrDate[2]) + 543);
+                console.log(arrDate);
+                return strDate;
+
+            } else {
+
+                return date;
+            }
+            /*if (!date) return date;
+
+            return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');*/
+        }
+    };
 
     $scope.isManualReadCard = true;
     $scope.onInputId = function() {

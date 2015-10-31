@@ -130,7 +130,7 @@
                             "is-childsim": false,
                             "is-softsuspend": false,
                             "product-properties": {
-                                "PRODUCT-STATUS-DATE": '2531-09-01T00:00:00+0700',
+                                "PRODUCT-STATUS-DATE": '20/10/2016',
                                 "REASON-CODE": null,
                                 "REASON-DESC": 'test',
                                 "SUBSCRIBER-ID": null,
