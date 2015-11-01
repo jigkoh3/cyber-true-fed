@@ -109,6 +109,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         }
 
         $scope.data = result.data;
+        $('#unMatch2').hide();
 
         // if (!checkIsCancelSim($scope.data)) {
         //  window.close();
@@ -459,13 +460,14 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     };
     //$scope.nextBillDate = SystemService.getNextBillDate();
     $scope.readCardError = function(msg) {
+        $.fancybox.close();
         SystemService.showAlert({
             "message": msg,
             "message-code": "",
             "message-type": "WARNING",
-            "en-message": "",
-            "th-message": "",
-            "technical-message": ""
+            "en-message": msg,
+            "th-message": msg,
+            "technical-message": "cancelController"
         });
     };
     $scope.initModalReadCard = function() {

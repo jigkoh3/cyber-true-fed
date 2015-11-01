@@ -67,7 +67,10 @@
             'customerProfile': customerProfile,
             'customerAddressOriginal': customerAddress,
             'customerAddress': angular.copy(customerAddress),
-            'simData': productDetails
+            'simData': productDetails,
+            'priceplan': {
+                'account-category': productDetails['account-category']
+            }
         };
 
         return response;
@@ -230,6 +233,7 @@
 
     this.submitCancel = function(payload, fnCallback) {
         var request = {
+            "target": "aftersales/order/submit",
             'order': {
                 "order-id": payload.orderData.orderId,
                 "creator": payload.saleAgent.logInName,
@@ -307,7 +311,7 @@
                         "EFFECTIVE-DATE": moment().format('YYYY-MM-DDTHH:mm:ss+0700')
 
                     },
-                    'product-category': "TMV",
+                    'product-category': payload.productDetails['product-category'],
                     'product-type': "PRICEPLAN",
                     'order-type': "CHANGE"
 

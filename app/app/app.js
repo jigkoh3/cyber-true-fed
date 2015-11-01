@@ -36,22 +36,28 @@ smartApp.config(function($routeProvider, $httpProvider) {
         templateUrl: 'app/views/changeIRIDD.html?v=' + runTime,
         controller: 'ChangeIRIDDController'
 
-    }).when('/changeSuspend/:ID/:SubNo/:shopType', {
+    }).when('/suspend/:ID/:SubNo/:shopType', {
         templateUrl: 'app/views/changeSuspend.html?v=' + runTime,
         controller: 'ChangeSuspendController'
-    }).when('/changeRestore/:ID/:SubNo/:shopType', {
+    }).when('/suspend', {
+        templateUrl: 'app/views/changeSuspend.html?v=' + runTime,
+        controller: 'ChangeSuspendController'
+    }).when('/restore/:ID/:SubNo/:shopType', {
+        templateUrl: 'app/views/changeRestore.html?v=' + runTime,
+        controller: 'ChangeRestoreController'
+    }).when('/restore', {
         templateUrl: 'app/views/changeRestore.html?v=' + runTime,
         controller: 'ChangeRestoreController'
     })
 
     .when('/cancel', {
-        templateUrl: 'app/views/cancel.html?v=' + runTime,
-        controller: 'CancelController'
-    })
-    .when('/cancel/:id/:subno/:shopType', {
-        templateUrl: 'app/views/cancel.html?v=' + runTime,
-        controller: 'CancelController'
-    })
+            templateUrl: 'app/views/cancel.html?v=' + runTime,
+            controller: 'CancelController'
+        })
+        .when('/cancel/:id/:subno/:shopType', {
+            templateUrl: 'app/views/cancel.html?v=' + runTime,
+            controller: 'CancelController'
+        })
 
     .when('/changeSwapSim/:id/:subno', {
         templateUrl: 'app/views/changeSwapSim.html?v=' + runTime,
