@@ -546,9 +546,9 @@ smartApp.controller('MigratePreToPostController', function(
 
                 if ($scope.SubNo != 'null') {
                     migratePreToPostService.validateMigratePreToPostCallback($scope.SubNo, function(result) {
-                        setTimeout(function() {
-                            SystemService.hideLoading();
-                        }, 2000);
+                        // setTimeout(function() {
+                        //     SystemService.hideLoading();
+                        // }, 2000);
                         if (result.status) {
                             $scope.data = result;
                             $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
