@@ -135,7 +135,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="col-md-3" style=" text-align: right; top: 5px;">
-                                    <label>Price Plan <span style="color:red;">*</span></label>
+                                    <label> โปรโมชั่น<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-4">
                                     <input type="text" ng-model="selectedPricePlan.description" readonly class="form-control">
@@ -171,7 +171,7 @@
                         <div class="form-group">
                             <div data-toggle="buttons" class="btn-group btn-group-justified">
                                 <label class="btn btn-default active" ng-click="slipchangeType('H')">
-                                    <input type="radio" name="type" ng-model="slipType" value="H"> ที่อยู่จัดส่งเอกสาร
+                                    <input type="radio" name="type" ng-model="slipType" value="H"> ที่อยู่จดทะเบียน
                                 </label>
                                 <label ng-hide="true" class="btn btn-default" ng-click="slipchangeType('B')">
                                     <input type="radio" name="type" ng-model="slipType" value="B"> ที่อยู่ออกใบกำกับภาษี
@@ -190,12 +190,12 @@
                                             <button type="button" ng-click="useAddressAsCard('H')" class="btn btn-default btn_address" ng-show="isDataReadCard3">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button>
                                         </div>
                                         <div class="col-md-1"></div>
-                                        <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
+                                        <label class="col-md-2 control-label" style="top:5px;"><span style="color:red;"></span></label>
                                         <div class="col-md-3">
-                                            <select class="form-control" ng-change="onChangeBillPaymentAccountLang()" ng-model="billPayment.accountLang">
+                                            <!-- <select class="form-control" ng-change="onChangeBillPaymentAccountLang()" ng-model="billPayment.accountLang">
                                                 <option value="TH">ไทย</option>
                                                 <option value="EN">อังกฤษ</option>
-                                            </select>
+                                            </select> -->
                                         </div>
                                         <div class="col-md-2"></div>
                                         <a href="" ng-click="unUseAddressAsCard('H')"><span><i class="fa fa-trash-o fa-2x"></i></span></a>
@@ -426,17 +426,17 @@
                 <div ng-include="template.currentpriceplan" scope="" onload=""></div>
             </div>
             <!--<div ng-include="template.reasonmemo" scope="" onload=""></div>-->
-            <h4>Reason & Memo</h4>
+            <h4>บันทึกและเหตุผล</h4>
             <div class="well">
                 <div class="form-horizontal">
                     <div class="form-group" ng-show="shopType=='0'">
-                        <label class="col-md-4 control-label">Reason Code<span style="color:red;"> *</span></label>
+                        <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
                         <div class="col-md-4">
                             <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-model="selectedReason" class="form-control"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Memo</label>
+                        <label class="col-md-4 control-label">บันทึก</label>
                         <div class="col-md-4">
                             <textarea class="form-control" ng-model="memo" name="message" style="width:100%;height:70px;" ng-disabled="isSecondAuhenFailed"></textarea>
                         </div>
@@ -571,8 +571,8 @@
                                 <label class="col-xs-12">
                                     <div class="row">
                                         <div class="col-xs-1">&nbsp;</div>
-                                        <div class="col-xs-9"><span style="color:green;"><h6>Price Plan</h6></span></div>
-                                        <div class="col-xs-2"><span style="color:green;text-align:center;"><h6>RC</h6></span></div>
+                                        <div class="col-xs-8"><span style="color:green;"><h6>โปรโมชั่น</h6></span></div>
+                                        <div class="col-xs-3"><span style="color:green;text-align:center;"><h6>ค่าบริการรายเดือน</h6></span></div>
                                         <!--<div class="col-xs-3"><span style="color:green;"><h6>รายการส่งเสริมการขาย</h6></span></div>-->
                                     </div>
                                 </label>
@@ -585,8 +585,8 @@
                                         <div class="col-xs-1">
                                             <input name="pricels" type="radio" ng-model="dirty.selectedPricePlan" ng-value="pp" />
                                         </div>
-                                        <div class="col-xs-9">{{pp.name}} : {{pp.description}}</div>
-                                        <div class="col-xs-2 text-center">{{pp.rc | number:2}}</div>
+                                        <div class="col-xs-8">{{pp.name}} : {{pp.description}}</div>
+                                        <div class="col-xs-3 text-center">{{pp.rc | number:2}}</div>
                                         <!--<div class="col-xs-3" style="text-align:center;">{{pp.promotion}}</div>-->
                                     </div>
                                 </label>
