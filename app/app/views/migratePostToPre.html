@@ -138,7 +138,7 @@
                                     <label> โปรโมชั่น<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" ng-model="selectedPricePlan.description" readonly class="form-control">
+                                    <input type="text" value="{{selectedPricePlan.name}}{{selectedPricePlan.description?' : ':null}}{{selectedPricePlan.description}}" readonly class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <input type="text" id="txtPricePlanFilter" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control" ng-disabled="isSecondAuhenFailed">
@@ -578,7 +578,7 @@
                                 </label>
                             </th>
                         </tr>
-                        <tr dir-paginate="pp in pricePlanList | filter:pricePlanFilter | orderBy:'pricePlan'| itemsPerPage: pageSize" pagination-id="PPList" current-page="currentPage">
+                        <tr dir-paginate="pp in pricePlanList | filter:pricePlanFilter | orderBy:'name'| itemsPerPage: pageSize" pagination-id="PPList" current-page="currentPage">
                             <th colspan="5" style="padding: 5px; padding-bottom: 0px;">
                                 <label class="col-xs-12" style="cursor:pointer;">
                                     <div class="row">
