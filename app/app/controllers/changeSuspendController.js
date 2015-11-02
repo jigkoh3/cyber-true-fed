@@ -141,7 +141,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
 
         var companyCode = utils.getObject(result.data, 'simData.company-code');
         if (!utils.isEmpty(companyCode)) {
-            DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
+            // DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
         }
     };
 
