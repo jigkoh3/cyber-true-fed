@@ -209,7 +209,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "technical-message": msg[0]["technical-message"]
                     });
                 }
-            }, 1000);
+            }, 1200);
             if (msg[0]['message-type'] == "ERROR") {
                 return false;
             }
