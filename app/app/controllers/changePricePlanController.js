@@ -1698,7 +1698,7 @@ smartApp.controller('ChangePricePlanController', function (
         //$('#ppfilter2').val("");
         $scope.pricePlanFilter.value = "";
         console.log($scope.pricePlanFilter.value);
-        $scope.onClearPricePlan();
+        // $scope.onClearPricePlan();
     };
 
     $scope.getCapmaxParameter = function (soc) {
