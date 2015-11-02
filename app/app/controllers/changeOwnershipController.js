@@ -2004,7 +2004,7 @@ smartApp.controller('changeOwnershipController', function(
                     "firstname": $scope.newOwner.firstNameTH,
                     "lastname": $scope.newOwner.lastNameTH,
                     "gender": $scope.newOwner.sex,
-                    "id-type": "I",
+                    "id-type": $scope.cardType.value,
                     "id-number": $('#citizenID3').val(),
                     "birthdate": SystemService.convertDataThToLongDate($('#birthDay').val()),
                     "id-expire-date": SystemService.convertDataThToLongDate($('#expireDay').val()),
@@ -2139,7 +2139,7 @@ smartApp.controller('changeOwnershipController', function(
                             //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
                             "OU-ID": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "",
                             "BAN": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "",
-                            "ACCOUNT-CATEGORY": $scope.cardType.value,
+                            "ACCOUNT-CATEGORY": "I",
                             "ACCOUNT-SUB-TYPE": $scope.subCompanyType,
                             "COMPANY-CODE": $scope.data.installedProducts["company-code"],
                             "NAS-PROPOSITION": $scope.selectProposition,

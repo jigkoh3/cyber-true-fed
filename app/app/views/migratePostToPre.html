@@ -57,6 +57,17 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="col-md-2">
+                                <label><p></p></label>
+                                <select class="form-control"
+                                        ng-change="onChangeTitleOther()"
+                                        ng-show="data.customerProfile['title-code'] =='T5'"
+                                        ng-model="data.customerProfile['title']"
+                                        style="width:100px;">
+                                    <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                                </select>
+                            </div>
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>ชื่อ <span style="color:red;">*</span></label>
@@ -75,7 +86,8 @@
                             <div class="form-group">
                                 <label>เพศ <span style="color:red;">*</span></label>
                                 <div id="placeholders">
-                                    <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
+                                    <select class="form-control" style="width:100px;" ng-model="data.customerProfile['gender']" 
+                                        id="sex3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
                                         <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
