@@ -703,7 +703,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                 "creator": payload.saleAgent.logInName,
                 "customer": {
                     'title-code': payload.customerProfile['title-code'],
-                    //'title': payload.customerProfile['title'],
+                    'title': payload.customerProfile['title'],
                     'firstname': payload.customerProfile['firstname'],
                     'lastname': payload.customerProfile['lastname'],
                     'gender': payload.customerProfile['gender'],

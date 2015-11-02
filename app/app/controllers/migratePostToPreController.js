@@ -102,6 +102,22 @@
         }
     };
 
+    $scope.onChangeTitleOther = function() {
+        console.log($scope.data.customerProfile['title']);
+        var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
+            value: $scope.data.customerProfile['title']
+        });
+        console.log(selectTitleOther[0]);
+        if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
+            $('#sex3').val(selectTitleOther[0]['attributes']['GENDER']);
+            console.log(selectTitleOther[0]['attributes']['GENDER']);
+        } else {
+            $('#sex3').val('ALL');
+            console.log('ALL');
+        }
+        $scope.titleOther2 = $scope.data.customerProfile['title'];
+    };
+
     $scope.onBlurAddress = function() {
         $('#ulAddressList').hide();
     };
