@@ -11,6 +11,8 @@ smartApp.config(function($routeProvider, $httpProvider) {
     $routeProvider.when('/home', {
         templateUrl: 'app/views/home.html?v=' + runTime,
         controller: 'HomeController'
+    }).when('/changeStatus', {
+        templateUrl: 'app/views/changeStatus.html?v=' + runTime
     })
 
     .when('/product', {
