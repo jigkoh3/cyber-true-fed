@@ -1,5 +1,5 @@
 ﻿<div class="form-group">
-    <label class="col-md-3 control-label priceplaneText">Price Plan <span style="color:red;">*</span></label>
+    <label class="col-md-3 control-label priceplaneText">โปรโมชั่น <span style="color:red;">*</span></label>
     <div class="col-md-6" id="priceplan_sl">
         <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
     </div>
@@ -65,9 +65,9 @@
                                 <label class="col-xs-12">
                                     <div class="row">
                                         <div class="col-xs-1">&nbsp;</div>
-                                        <div class="col-xs-7"><span style="color:green;"><h6>Price Plan</h6></span></div>
-                                        <div class="col-xs-1"><span style="color:green;text-align:center;"><h6>RC</h6></span></div>
-                                        <div class="col-xs-3"><span style="color:green;"><h6>รายการส่งเสริมการขาย</h6></span></div>
+                                        <div class="col-xs-7"><span style="color:green;"><h6>โปรโมชั่น</h6></span></div>
+                                        <div class="col-xs-2"><span style="color:green;text-align:center;"><h6>ค่าบริการรายเดือน</h6></span></div>
+                                        <div class="col-xs-2"><span style="color:green;text-align:center;"><h6>รายการส่งเสริมการขาย</h6></span></div>
                                     </div>
                                 </label>
                             </th>
@@ -86,8 +86,8 @@
                                                    ng-value="pp.pricePlan" class="radioPriceplan" />
                                         </div>
                                         <div class="col-xs-7">{{pp.pricePlan}}</div>
-                                        <div class="col-xs-1 text-center">{{pp.rc | number}}</div>
-                                        <div class="col-xs-3" style="text-align:center;">{{pp.promotion}}</div>
+                                        <div class="col-xs-2 text-center">{{pp.rc | number}}</div>
+                                        <div class="col-xs-2" style="text-align:center;">{{pp.promotion}}</div>
                                     </div>
                                 </label>
                             </th>
