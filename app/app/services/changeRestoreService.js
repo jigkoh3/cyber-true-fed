@@ -276,7 +276,7 @@
                 "sale-agent": {
                     'name': payload.saleAgent['engName'],
                     'channel': payload.saleAgent['channel'],
-                    'partner-code': (payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : payload.saleAgent["ssoPartnerPrincipal"]['employeeId']),
+                    'partner-code': (payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : payload.saleAgent["ssoEmployeePrincipal"]["employeeId"]),
                     'partner-name': payload.saleAgent['partnerName'],
                     'sale-code': payload.saleAgent['saleCode'],
                     'partner-type': payload.saleAgent['partnerType']
