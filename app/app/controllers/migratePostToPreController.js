@@ -1041,7 +1041,8 @@
                 //NEW---
         };
 
-        if ($scope.isCardValueData && $scope.isCustomerProfile) {
+        if ($scope.isReadCardSuccess) {
+            
             cardValueData.photoType = "SC";
             cardValueData.photoIdCard = $scope.cardInfo.CitizenID;
             cardValueData = {
