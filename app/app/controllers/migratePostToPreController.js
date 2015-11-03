@@ -812,9 +812,23 @@
     };
 
     $scope.useAddressAsCard = function(type) {
+
         if (type == 'H') {
             console.log($scope.dataReadCard3);
             //$scope.mailAddress = $scope.tempCardAddress;
+            $scope.mailAddress.province = "";
+            $scope.mailAddress.amphur = "";
+            $scope.mailAddress.district = "";
+            $scope.mailAddress.homeNumber = "";
+            $scope.mailAddress.moo = "";
+            $scope.mailAddress.road = "";
+            $scope.mailAddress.soi = "";
+            $scope.mailAddress.trok = "";
+            $scope.mailAddress.postcode = "";
+
+
+
+
             $scope.mailAddress.province = $scope.dataReadCard3.Province;
             $scope.mailAddress.amphur = $scope.dataReadCard3.Amphur;
             $scope.mailAddress.district = $scope.dataReadCard3.District;
