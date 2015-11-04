@@ -115,6 +115,13 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         //  window.close();
         // }
 
+        var cusAccountCate = $scope.data.simData['account-category'];
+        console.log(cusAccountCate);
+            if (cusAccountCate == "P" || cusAccountCate == "I") {
+                // $scope.isLastestUser = false;
+                $('#divShowAuthorize').hide();
+            }
+
         $scope.getSIMDataFailed = false;
 
         if (!$scope.data) {

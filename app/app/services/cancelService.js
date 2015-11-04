@@ -45,8 +45,8 @@
         }
 
         //Fix value becuase migrate pre to post support personal only
-        productDetails['account-category'] = "I";
-        productDetails['account-sub-type'] = "FIN";
+        // productDetails['account-category'] = "I";
+        // productDetails['account-sub-type'] = "FIN";
 
         // Prepare current price plan
         var currentPricePlan = [];
@@ -119,7 +119,7 @@
                             "product-name": "EDATAP69",
                             "product-description": "Biz &amp; Ent 900,Data UNL5GB/128,WiFi",
                             "product-soc-code": "1234567",
-                            "account-category": "I",
+                            "account-category": "C",
                             "account-sub-type": "FIN",
                             "company-code": "RF",
                             "product-category": "TMV",
