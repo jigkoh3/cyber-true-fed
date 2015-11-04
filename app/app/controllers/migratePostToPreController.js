@@ -856,6 +856,10 @@
             $scope.mailAddress.soi = "";
             $scope.mailAddress.trok = "";
             $scope.mailAddress.postcode = "";
+            $scope.mailAddress.village = "";
+            $scope.mailAddress.buildingName = "";
+            $scope.mailAddress.buildingRoom = "";
+            $scope.mailAddress.buildingFloor = "";
 
 
 
