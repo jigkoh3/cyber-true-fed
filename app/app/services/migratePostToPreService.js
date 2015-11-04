@@ -43,7 +43,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "id-type": "I",
                         "id-number": "1180200046320",
                         "birthdate": "10/10/2526",
-                        "id-expire-date": "20/10/2558",
+                        "id-expire-date" : "20/10/2558",
                         "customer-id": "2768",
                         "installed-products": [{
                             "ouId": "1078",
@@ -168,7 +168,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         msgErr: ''
                     });
                 }, 1000);
-            } else if (msisdn == "0957570070") {
+            }else if (msisdn == "0957570070") {
                 $timeout(function() {
                     cb({
                         status: true,
@@ -437,7 +437,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     'rc': 16000.0,
                     'service-level': 'G',
                     'priceplan-type': 'SH'
-                }, {
+                },{
                     'name': 'BCUGFP03',
                     'description': payload.proposition + ' Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
                     'soc': '936258',
@@ -527,7 +527,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     'rc': 16000.0,
                     'service-level': 'G',
                     'priceplan-type': 'SH'
-                }, {
+                },{
                     'name': 'BCUGFP03',
                     'description': payload.proposition + ' Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
                     'soc': '936258',
@@ -618,68 +618,15 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     'service-level': 'G',
                     'priceplan-type': 'SH'
                 }]
-            };
-            var data2 = {
-
-                "status": "SUCCESSFUL",
-
-                "trx-id": "3WGRP1IJKSM4",
-
-                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
-
-                "response-data": [{
-
-                    "name": "R11RES251",
-
-                    "description": "TMH Ret - Short Call 25 St, All net, 24Hr",
-
-                    "soc": "970458",
-
-                    "properties": {
-
-                        "TR_SPECIAL_OFFER_IND": "",
-
-                        "PRICEPLAN_TYPE": "N"
-
-                    },
-
-                    "sale-period": {
-
-                        "start": "2011-12-22",
-
-                        "end": "2250-08-08"
-
-                    },
-
-                    "rc": 0.0,
-
-                    "service-level": "C",
-
-                    "priceplan-type": "N"
-
-                }]
-
             };
 
             $timeout(function() {
-
-                if (payload.proposition == "0019087") {
-                    cb({
-                        status: true,
-                        data: data2,
-                        error: '',
-                        msgErr: ''
-                    });
-                } else {
-
-                    cb({
-                        status: true,
-                        data: data,
-                        error: '',
-                        msgErr: ''
-                    });
-                }
-
+                cb({
+                    status: true,
+                    data: data,
+                    error: '',
+                    msgErr: ''
+                });
             }, 1000);
         }
     };
@@ -795,7 +742,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     },
                     "order-data": {
                         "PRICEPLAN-SOC-CODE": payload.priceplanSelected["soc"]
-                            //,"CCBS-PROPOSITION-SOC-CODE": payload.propositionSelected['soc']
+                        //,"CCBS-PROPOSITION-SOC-CODE": payload.propositionSelected['soc']
                     },
                     "primary-order-data": {
                         "OU-ID": payload.productDetails['ouId'],
@@ -803,8 +750,8 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "ACCOUNT-CATEGORY": "P",
                         "ACCOUNT-SUB-TYPE": "PRE",
                         "COMPANY-CODE": payload.productDetails['company-code']
-                            //,"NAS-PROPOSITION": payload.propositionSelected['proposition-code'],
-                            //"CCBS-PROPOSITION": payload.propositionSelected['name']
+                        //,"NAS-PROPOSITION": payload.propositionSelected['proposition-code'],
+                        //"CCBS-PROPOSITION": payload.propositionSelected['name']
                     }
                 }],
                 "last-modify-date": ""
@@ -814,7 +761,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             'approver': ""
         };
 
-        if (SystemService.checkObj(payload.propositionSelected, ['soc'])) {
+        if(SystemService.checkObj(payload.propositionSelected, ['soc'])){
             request["order"]["order-items"][0]["order-data"]["CCBS-PROPOSITION-SOC-CODE"] = payload.propositionSelected['soc'];
             request["order"]["order-items"][0]["primary-order-data"]["NAS-PROPOSITION"] = payload.propositionSelected['proposition-code'];
             request["order"]["order-items"][0]["primary-order-data"]["CCBS-PROPOSITION"] = payload.propositionSelected['name'];

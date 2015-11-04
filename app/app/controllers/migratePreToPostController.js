@@ -544,6 +544,7 @@ smartApp.controller('MigratePreToPostController', function(
                 $scope.shopType = result.shopType;
                 $scope.id = $routeParams.id;
 
+
                 if ($scope.SubNo != 'null') {
                     migratePreToPostService.validateMigratePreToPostCallback($scope.SubNo, function(result) {
                         // setTimeout(function() {
@@ -565,13 +566,21 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.onInputCitizenID3();
 
                             setTimeout(function() {
-                                $('#divShowAuthorize').hide();
+                                // $('#divShowAuthorize').hide();
+                                var cutomerType = $scope.data.priceplan['account-category'];
+                                console.log(cutomerType);
+                                if (cutomerType == "P") {
+
+                                    $('#divShowAuthorize').hide();
+                                }
                                 $('#cardType').val($scope.cardType.value);
                                 $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                 $scope.onselectPrefix();
                                 //$ngBootbox.customDialog($scope.customDialogOptions);
 
                             }, 1000);
+
+
 
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
 
@@ -664,7 +673,6 @@ smartApp.controller('MigratePreToPostController', function(
 
 
             });
-
 
 
 
@@ -1006,7 +1014,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     // $scope.onInputCitizenID3();
 
                                     setTimeout(function() {
-                                        $('#divShowAuthorize').hide();
+                                        // $('#divShowAuthorize').hide();
                                         $('#cardType').val($scope.cardType.value);
                                         $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                         //$ngBootbox.customDialog($scope.customDialogOptions);
@@ -1106,7 +1114,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 $scope.cardType.value = $scope.data.customerProfile['id-type'];
 
                                 setTimeout(function() {
-                                    $('#divShowAuthorize').hide();
+                                    // $('#divShowAuthorize').hide();
                                     $('#cardType').val($scope.cardType.value);
                                     $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                     //$ngBootbox.customDialog($scope.customDialogOptions);

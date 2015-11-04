@@ -33,7 +33,7 @@
                             "product-type": "PRICEPLAN",
                             "product-sub-type": "P",
                             "product-status": null,
-                            "account-category": "P",
+                            "account-category": "B",
                             "account-sub-type": "PRE",
                             "product-id": "R12RMMNP1",
                             "product-name": "R12RMMNP1",

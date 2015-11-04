@@ -291,6 +291,7 @@
             console.log(idType);
             if (idType == "I") {
                 $scope.isLastestUser = false;
+                $('#divShowAuthorize').hide();
             }
 
             $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
@@ -717,24 +718,7 @@
         return true;
 
     };
-     $scope.getProPo = function(){
 
-        //bypass call pricePlan
-        SystemService.showLoading();
-        var payload = {
-            'company-code': $scope.data.simData['company-code'],
-            'customer-type': "P",
-            'customer-subtype': "PRE",
-            'service-level': "C",
-            'proposition': $scope.selectedPricePlan.proposition,
-            'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
-            'privilege': false
-        };
-
-        console.log(payload);
-        MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
-        //end bypass
-    }
 
     // (End) Validation ----------------------
 
@@ -791,11 +775,10 @@
     };
 
     var onGetPricePlan = function(result) {
-        SystemService.hideLoading();
         if (!$scope.pricePlanList) {
-           
+            $scope.pricePlanList = [];
         }
-         $scope.pricePlanList = [];
+
         var pricePlanList = utils.getObject(result, 'data.response-data');
         if (pricePlanList && pricePlanList.length) {
             $scope.pricePlanList = $scope.pricePlanList.concat(pricePlanList);
@@ -1153,7 +1136,7 @@
         }
 
         if ($scope.isReadCardSuccess) {
-            
+
             cardValueData.photoType = "SC";
             cardValueData.photoIdCard = $scope.cardInfo.CitizenID;
             cardValueData = {
