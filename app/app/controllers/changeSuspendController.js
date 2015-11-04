@@ -112,8 +112,8 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
         var cusAccountCate = $scope.data.simData['account-category'];
         console.log(cusAccountCate);
         if (cusAccountCate == "I" || cusAccountCate == "P") {
-                $('#divShowAuthorize').hide();
-            }
+            $('#divShowAuthorize').hide();
+        }
         $('#unMatch2').hide();
 
         // if (!checkIsChangeSuspendSim($scope.data)) {
@@ -154,6 +154,10 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         ChangeSuspendService.getSIMData($scope.SubNo, onGetSIMData);
+    } else {
+        setTimeout(function() {
+            $('#divShowAuthorize').hide();
+        }, 250);
     }
 
     $scope.onInputSubNo = function() {

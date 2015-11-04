@@ -117,10 +117,10 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
 
         var cusAccountCate = $scope.data.simData['account-category'];
         console.log(cusAccountCate);
-            if (cusAccountCate == "P" || cusAccountCate == "I") {
-                // $scope.isLastestUser = false;
-                $('#divShowAuthorize').hide();
-            }
+        if (cusAccountCate == "P" || cusAccountCate == "I") {
+            // $scope.isLastestUser = false;
+            $('#divShowAuthorize').hide();
+        }
 
         $scope.getSIMDataFailed = false;
 
@@ -156,6 +156,10 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         CancelService.getSIMData($scope.SubNo, onGetSIMData);
+    } else {
+        setTimeout(function() {
+            $('#divShowAuthorize').hide();
+        }, 250);
     }
 
     $scope.onInputSubNo = function() {

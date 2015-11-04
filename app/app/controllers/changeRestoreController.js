@@ -154,6 +154,10 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         ChangeRestoreService.getSIMData($scope.SubNo, onGetSIMData);
+    }else {
+        setTimeout(function() {
+            $('#divShowAuthorize').hide();
+        }, 250);
     }
 
     $scope.onInputSubNo = function() {
