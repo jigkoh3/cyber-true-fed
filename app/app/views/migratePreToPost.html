@@ -202,36 +202,9 @@
                             <div class="col-md-4">
                                 <div class="form-group" ng-form="personnalid">
                                     <label>หมายเลขบัตรประชาชน / พาสปอร์ต <span style="color:red;">*</span></label>
-                                    <div class="input-group" ng-submit="onInputIdLastest3()">
+                                    <div class="form-group">
                                         <input type="text" id="citizenID3" ng-disabled="customer['id-number']" ng-keyup="($event.keyCode==13 && onInputIdLastest3()); onInputIdLastestKeyUp3();" ng-blur="onCheckInputForVerify()" ng-model="customer['id-number']" placeholder="" class="form-control" maxlength="13" ng-change="ClearTxt()" name="personnalids" required>
-                                        <span class="input-group-btn">
-                                            <button ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true && (data.priceplan['account-category'] == 'B' || data.priceplan['account-category'] == 'C')"
-                                                    style="height:30px;"
-                                                    onclick="$('#unMatchLastest').hide(); $('#loadingReadCardLastest').hide(); $('#CitizenIDLastest').val(''); $('#CitizenIDLastest').prop('disabled', true);"
-                                                    type="button"
-                                                    href="#fancy-ReadCardLastest"
-                                                    id="btn-fancy-ReadCardLastest"
-                                                    ng-disabled="!isCustomerProfile"
-                                                    data-toggle="tooltip"
-                                                    class="btn credit_ie8">
-                                                <i class="fa fa-credit-card"></i>
-                                            </button>
-                                            <button title="อ่านจากการ์ด"
-                                                    ng-show="(shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)) && (data.priceplan['account-category'] == 'B' || data.priceplan['account-category'] == 'C')"
-                                                    onclick="$('#ReadAuthorize').val('readNewOwnerReadCard');ReadCard('ReadP');"
-                                                    style="height:30px;"
-                                                    type="button"
-                                                    ng-disabled="!isCustomerProfile"
-                                                    data-toggle="tooltip"
-                                                    class="btn credit_ie8">
-                                                <i class="fa fa-credit-card"></i>
-                                            </button>
-                                            <!--<button href="#modal-ReadCard3" title="อ่านจากการ์ด" style="height:30px;" type="button" data-toggle="modal" class="btn credit_ie8">
-                                                <i class="fa fa-credit-card"></i>
-                                            </button>-->
-                                            <!--<a href="#modal-ReadCard3" onclick="return false;" data-dismiss="modal" data-toggle="modal" class="btn btn-success">Ok</a>-->
-                                            <!--<a href="#modal-SecoundAuthen" class="btn" onclick="return false;" data-toggle="modal"><i class="fa fa-credit-card"></i></a>-->
-                                        </span>
+                                        
                                     </div>
                                     <div id="loadingReadCard3">
                                         <i class="fa fa-spin fa-spinner"></i>
@@ -342,7 +315,7 @@
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="isCardValueData || !isCustomerProfile" readonly class="form-control date-picker" id="birthDay" required>
+                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="newOwner.birthDay || !isCustomerProfile" readonly class="form-control date-picker" id="birthDay" required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
@@ -360,7 +333,7 @@
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="isCardValueData || !isCustomerProfile" class="form-control date-picker-start " id="expireDay">
+                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="newOwner.expireDay || !isCustomerProfile" class="form-control date-picker-start " id="expireDay">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <div ng-show="!showEnableNewOwnerExpireDay" class="form-group has-feedback">
