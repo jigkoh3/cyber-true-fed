@@ -620,13 +620,67 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                 }]
             };
 
+            var data2 = {
+
+                "status": "SUCCESSFUL",
+
+                "trx-id": "3WGRP1IJKSM4",
+
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+
+                "response-data": [{
+
+                    "name": "R11RES251",
+
+                    "description": "TMH Ret - Short Call 25 St, All net, 24Hr",
+
+                    "soc": "970458",
+
+                    "properties": {
+
+                        "TR_SPECIAL_OFFER_IND": "",
+
+                        "PRICEPLAN_TYPE": "N"
+
+                    },
+
+                    "sale-period": {
+
+                        "start": "2011-12-22",
+
+                        "end": "2250-08-08"
+
+                    },
+
+                    "rc": 0.0,
+
+                    "service-level": "C",
+
+                    "priceplan-type": "N"
+
+                }]
+
+            };
+
             $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
+                
+                if (payload.proposition == "0019087") {
+                    cb({
+                        status: true,
+                        data: data2,
+                        error: '',
+                        msgErr: ''
+                    });
+                } else {
+
+                    cb({
+                        status: true,
+                        data: data,
+                        error: '',
+                        msgErr: ''
+                    });
+                }
+
             }, 1000);
         }
     };
