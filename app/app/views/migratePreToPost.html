@@ -76,7 +76,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>สาขาที่<span style="color:red;">*</span></label>
-                                    <input type="text" placeholder="00000" maxlength="5" ng-model="customer['branch-code']" class="form-control numberic">
+                                    <input type="text" placeholder="00000" maxlength="5" ng-model="customer['branch-code']" class="form-control numberic" >
                                 </div>
                             </div>
                         </div>
@@ -239,7 +239,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>สาขาที่<span style="color:red;">*</span> </label>
-                                    <input type="text" ng-disabled="false || !isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
+                                    <input type="text" ng-disabled="customer['branch-code'] || !isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.branchid.$error.required">
                                         Required.
                                     </span>-->
@@ -262,7 +262,7 @@
                                 <div class="form-group">
                                     <label>คำนำหน้า<span style="color:red;">*</span></label>
                                     <div id="placeholders">
-                                        <select name="prefixTHs" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="isCardValueData || !isCustomerProfile" ng-model="newOwner.prefixTH" style="width:100px;" required>
+                                        <select name="prefixTHs" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="isCardValueData || !isCustomerProfile || newOwner.prefixTH" ng-model="newOwner.prefixTH" style="width:100px;" required>
                                             <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -303,7 +303,7 @@
                                 <div class="form-group">
                                     <label>เพศ<span style="color:red;">*</span></label>
                                     <div id="placeholders">
-                                        <select name="sexs" class="form-control" id="sex3" ng-disabled="isCardValueData || !isCustomerProfile" ng-model="newOwner.sex" style="width:100px;" required>
+                                        <select name="sexs" class="form-control" id="sex3" ng-disabled="isCardValueData || !isCustomerProfile || newOwner.sex" ng-model="newOwner.sex" style="width:100px;" required>
                                             <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
