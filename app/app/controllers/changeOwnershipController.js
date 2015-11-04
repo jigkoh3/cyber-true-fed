@@ -863,6 +863,10 @@ smartApp.controller('changeOwnershipController', function(
     $scope.subCompanyType = "PRI";
     $scope.isAddressList = {};
     $scope.onInputCitizenID3 = function() {
+        if ($('#citizenID3').val() == $scope.data.customerProfile["id-number"]) {
+            SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
+            return;
+        }
 
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;

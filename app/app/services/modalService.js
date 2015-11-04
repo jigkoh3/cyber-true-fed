@@ -249,6 +249,14 @@
             "th-message": "กรุณาระบุ เบอร์ที่สามารถติดต่อได้",
             "technical-message": "FROM WEBUI"
         },
+        "msgDuplicateID":{
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Change ownership not allow with same customer id.",
+            "th-message": "ไม่อนุญาตให้ทำการโอนเปลี่ยนเจ้าของภายใต้เจ้าของเดิม",
+            "technical-message": "FROM WEBUI"
+        }
     };
 });
 smartApp.service('ModalService', function (ngDialog) {
