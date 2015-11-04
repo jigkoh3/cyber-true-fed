@@ -346,7 +346,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         var data = {
             'func': 'CAN',
             'header': {
-                'title-code': $scope.data.customerProfile['title-code'],
+                'title-code': customerType == 'Y' ? "" : $scope.data.customerProfile['title-code'],
                 'title': $scope.data.customerProfile['title'],
                 'firstname': $scope.data.customerProfile['firstname'],
                 'lastname': $scope.data.customerProfile['lastname'],
