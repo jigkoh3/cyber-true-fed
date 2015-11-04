@@ -120,9 +120,11 @@
                                 </div>
                                 <div class="col-md-7">
                                     <p></p>
-                                    <select id="propositionDropdown" class="form-control" ng-model="selectedPricePlan.proposition" ng-disabled="isSecondAuhenFailed">
+                                    <select id="propositionDropdown" class="form-control" ng-model="selectedPricePlan.proposition" ng-disabled="isSecondAuhenFailed"
+                                    ng-change="getProPo()">
                                         <option value="">-- กรุณาเลือก --</option>
-                                        <option ng-repeat="item in proPositionList" value="{{ item['name'] }}">
+                                        <option ng-repeat="item in proPositionList" 
+                                         value="{{ item['proposition-code']}}">
                                             {{ item['name'] }} : {{ item.description }}
                                         </option>
                                     </select>
