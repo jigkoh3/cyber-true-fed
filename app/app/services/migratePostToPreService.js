@@ -52,7 +52,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                             "product-type": "PRICEPLAN",
                             "product-sub-type": "R",
                             "number-status": "A",
-                            "account-category": "B",
+                            "account-category": "I",
                             "account-sub-type": "FIN",
                             "product-id": "RFSMTP01",
                             "product-name": "RFSMTP01",

@@ -32,7 +32,7 @@
                             "product-type": "PRICEPLAN",
                             "product-sub-type": "R",
                             "product-status": "A",
-                            "account-category": "I",
+                            "account-category": "C",
                             "account-sub-type": "FIN",
                             "product-id": "RFSMTP01",
                             "product-name": "RFSMTP01",
