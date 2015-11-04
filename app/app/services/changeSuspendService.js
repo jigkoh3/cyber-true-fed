@@ -138,7 +138,7 @@
                                 "REASON-DESC": 'test',
                                 "SUBSCRIBER-ID": null,
                                 "PRODUCT-STATUS-CODE": null, // CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND
-                                "PRODUCT-STATUS-DESC": null // Active, Soft Suspend by Request, Full Suspend by Request
+                                "PRODUCT-STATUS-DESC": 'Active' // Active, Soft Suspend by Request, Full Suspend by Request
                             }
                         }]
                     },
@@ -286,7 +286,7 @@
                     'product-name': payload.productDetails['product-id'],
                     'product-id-number': payload.productDetails['product-id-number'],
                     'product-id-name': payload.productDetails['product-id-name'],
-                    'product-category': payload.productDetails['product-category'],
+                    // 'product-category': payload.productDetails['product-category'],
                     'reason-code': payload.statusReason,
                     'user-memo': payload.statusReasonMemo,
                     'order-data': {

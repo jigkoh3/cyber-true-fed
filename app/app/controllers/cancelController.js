@@ -132,6 +132,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         //     }
         // }
 
+        $scope.productStatus = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DESC');
         $scope.activeDate = formatActiveDate(utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DATE'));
 
         var reasonCode = utils.getObject($scope.data, 'simData.product-properties.REASON-DESC');

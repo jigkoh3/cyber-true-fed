@@ -132,7 +132,7 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
         //     }
         // }
 
-        $scope.productStatus = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-CODE');
+        $scope.productStatus = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DESC');
         $scope.activeDate = formatActiveDate(utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DATE'));
 
         var reasonCode = utils.getObject($scope.data, 'simData.product-properties.REASON-DESC');
