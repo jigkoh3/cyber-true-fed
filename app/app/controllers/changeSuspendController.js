@@ -157,7 +157,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     } else {
         setTimeout(function() {
             $('#divShowAuthorize').hide();
-        }, 250);
+        }, 1000);
     }
 
     $scope.onInputSubNo = function() {

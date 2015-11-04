@@ -159,7 +159,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     } else {
         setTimeout(function() {
             $('#divShowAuthorize').hide();
-        }, 250);
+        }, 1000);
     }
 
     $scope.onInputSubNo = function() {

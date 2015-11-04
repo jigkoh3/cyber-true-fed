@@ -95,6 +95,7 @@
     };
 
     $scope.initModalReadCard = function() {
+        $scope.isCardValueData = false;
         $('#CitizenID').val("");
         if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
             setTimeout(function() {
@@ -414,7 +415,7 @@
     } else {
         setTimeout(function() {
             $('#divShowAuthorize').hide();
-        }, 500);
+        }, 1000);
     }
     // (End) Get current SIM data ----------------------
 
