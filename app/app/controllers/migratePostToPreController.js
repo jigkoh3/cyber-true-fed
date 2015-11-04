@@ -411,6 +411,10 @@
             console.log($scope.genderTypeList);
         });
         MigratePostToPreService.getSIMData($scope.SubNo, onGetSIMData);
+    } else {
+        setTimeout(function() {
+            $('#divShowAuthorize').hide();
+        }, 500);
     }
     // (End) Get current SIM data ----------------------
 
@@ -719,7 +723,7 @@
     };
 
 
-     $scope.getProPo = function(){
+    $scope.getProPo = function() {
 
         //bypass call pricePlan
         SystemService.showLoading();
@@ -794,10 +798,10 @@
     };
 
     var onGetPricePlan = function(result) {
-         SystemService.hideLoading();
+        SystemService.hideLoading();
 
         if (!$scope.pricePlanList) {
-            
+
         }
         $scope.pricePlanList = [];
         var pricePlanList = utils.getObject(result, 'data.response-data');
@@ -1004,7 +1008,7 @@
             priceplanSelected: $scope.selectedPricePlan,
             reason: $scope.selectedReason,
             memo: $scope.memo,
-            postToPreData:postToPreData
+            postToPreData: postToPreData
         };
     };
     $scope.submit = function() {
@@ -1051,7 +1055,7 @@
         if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
             customerType = 'Y';
         }
-         var newTitle = $filter('filter')($scope.titleTypeListx, {
+        var newTitle = $filter('filter')($scope.titleTypeListx, {
             'value': $scope.data.customerProfile['title-code']
         });
         if (newTitle.length > 0) {
@@ -1239,36 +1243,36 @@
                     //NEW---
             },
             'body': generateOrderRequest({
-                    "title": newTitle,
-                    "firstname": $scope.data.customerProfile['firstname'],
-                    "lastname": $scope.data.customerProfile['lastname'],
-                    "photo": $scope.varPhotoLastest,
-                    "id-number": $('#citizenID3').val(),
+                "title": newTitle,
+                "firstname": $scope.data.customerProfile['firstname'],
+                "lastname": $scope.data.customerProfile['lastname'],
+                "photo": $scope.varPhotoLastest,
+                "id-number": $('#citizenID3').val(),
+                //NEW---
+                "photoIdCard": cardValueDataNew["photoIdCard"],
+
+                //SC=Scan
+                //SN=Snap
+                "photoType": cardValueDataNew["photoType"],
+                "titleEn": cardValueDataNew["titleEn"],
+                "firstnameEn": cardValueDataNew["firstnameEn"],
+                "lastnameEn": cardValueDataNew["lastnameEn"],
+                "expireDay": cardValueDataNew["expireDay"],
+                "birthDay": cardValueDataNew["birthDay"],
+                "issueDay": cardValueDataNew["issueDay"],
+
+                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                "homeNumber": cardValueDataNew["homeNumber"],
+                "moo": cardValueDataNew["moo"],
+                "trok": cardValueDataNew["trok"],
+                "soi": cardValueDataNew["soi"],
+                "road": cardValueDataNew["road"],
+                "district": cardValueDataNew["district"],
+                "amphur": cardValueDataNew["amphur"],
+                "province": cardValueDataNew["province"]
                     //NEW---
-                    "photoIdCard": cardValueDataNew["photoIdCard"],
+            })
 
-                    //SC=Scan
-                    //SN=Snap
-                    "photoType": cardValueDataNew["photoType"],
-                    "titleEn": cardValueDataNew["titleEn"],
-                    "firstnameEn": cardValueDataNew["firstnameEn"],
-                    "lastnameEn": cardValueDataNew["lastnameEn"],
-                    "expireDay": cardValueDataNew["expireDay"],
-                    "birthDay": cardValueDataNew["birthDay"],
-                    "issueDay": cardValueDataNew["issueDay"],
-
-                    //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-                    "homeNumber": cardValueDataNew["homeNumber"],
-                    "moo": cardValueDataNew["moo"],
-                    "trok": cardValueDataNew["trok"],
-                    "soi": cardValueDataNew["soi"],
-                    "road": cardValueDataNew["road"],
-                    "district": cardValueDataNew["district"],
-                    "amphur": cardValueDataNew["amphur"],
-                    "province": cardValueDataNew["province"]
-                        //NEW---
-                })
-             
         };
 
         console.log(data);
