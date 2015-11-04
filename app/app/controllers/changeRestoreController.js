@@ -109,6 +109,11 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
         }
 
         $scope.data = result.data;
+        var cusAccountCate = $scope.data.simData['account-category'];
+        console.log(cusAccountCate);
+        if (cusAccountCate == "I" || cusAccountCate == "P") {
+                $('#divShowAuthorize').hide();
+            }
         $('#unMatch2').hide();
 
         // if (!checkIsChangeRestoreSim($scope.data)) {
