@@ -538,7 +538,11 @@ smartApp.controller('ChangePricePlanController', function (
 
                         SystemService.pricePlans = $scope.propositionList;
                         console.log($scope.propositionList);
+
+                        $scope.propositionList = $filter('filter')(valPricePlans, $scope.pricePlanFilter.value);
+                        console.log($scope.propositionList);
                     }
+
                 };
 
                 if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "mapped-propo-priceplans"])) {
@@ -563,6 +567,8 @@ smartApp.controller('ChangePricePlanController', function (
                 //$('#modalnewpriceplan').click();
                 $scope.isLoadPricePlan = true;
                 SystemService.hideLoading();
+
+                
 
             } else {
                 $scope.propositionList = [];
