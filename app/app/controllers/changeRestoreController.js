@@ -112,8 +112,8 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
         var cusAccountCate = $scope.data.simData['account-category'];
         console.log(cusAccountCate);
         if (cusAccountCate == "I" || cusAccountCate == "P") {
-                $('#divShowAuthorize').hide();
-            }
+            $('#divShowAuthorize').hide();
+        }
         $('#unMatch2').hide();
 
         // if (!checkIsChangeRestoreSim($scope.data)) {
@@ -154,10 +154,10 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         ChangeRestoreService.getSIMData($scope.SubNo, onGetSIMData);
-    }else {
+    } else {
         setTimeout(function() {
             $('#divShowAuthorize').hide();
-        }, 250);
+        }, 1000);
     }
 
     $scope.onInputSubNo = function() {

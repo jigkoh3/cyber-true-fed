@@ -666,7 +666,7 @@ smartApp.controller('MigratePreToPostController', function(
                     SystemService.hideLoading();
                     setTimeout(function() {
                     $('#divShowAuthorize').hide();
-                     }, 500);
+                     }, 1000);
                 }
                 if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length >= 1) {
                     $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
