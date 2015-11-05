@@ -219,11 +219,60 @@
                 //  'technical-message': ''
                 // }]
             };
-
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "4OHUDHRBFBBZ",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": {
+                    "customer": {
+                        "title": "นางสาว",
+                        "title-code": "T3",
+                        "firstname": "บุษบานงเยาว์",
+                        "lastname": "พิสุทธิอาภรณ์",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "",
+                        "id-number": "2015010111108",
+                        "customer-id": "2590",
+                        "installed-products": [{
+                            "ouId": "915",
+                            "ban": "10000541",
+                            "product-category": "TMV",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "R",
+                            "product-status": "Active",
+                            "account-category": "I",
+                            "account-sub-type": "RPI",
+                            "product-id": "SMRTPP87",
+                            "product-name": "SMRTPP87",
+                            "product-description": "iSmart 299, voice100mins net500MB UNLTD WiFi UNLTD",
+                            "bill-cycle": "10",
+                            "company-code": "RM",
+                            "service-level": "C",
+                            "subscriber-id": "3165",
+                            "product-properties": {
+                                "REASON-DESC": "Customer request",
+                                "PRODUCT-STATUS-DESC": "Soft Suspend by Request",
+                                "PRODUCT-STATUS-DATE": "06/09/2015",
+                                "REASON-CODE": "CREQ",
+                                "PRODUCT-STATUS-CODE": "RESTORE-SOFT-SUSPEND"
+                            },
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0957730540",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "sub-status": "Barring by request "
+                        }]
+                    }
+                }
+            };
             $timeout(function() {
                 cb({
                     status: true,
-                    data: data,
+                    data: data2,
                     error: '',
                     msgErr: ''
                 });
@@ -291,8 +340,10 @@
                     'user-memo': payload.statusReasonMemo,
                     'order-data': {
                         'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
-                        // 'SERVICE-LEVEL': "C",
-                        // 'CHANGE-OPTION': payload.statusChangeRestore
+                        "CHANGE-OPTION": 'RESTORE',
+                        "PRODUCT-STATUS-DESC": payload.productDetails['product-properties'] ['PRODUCT-STATUS-DESC'],
+                            // 'SERVICE-LEVEL': "C",
+                            // 'CHANGE-OPTION': payload.statusChangeRestore
                             // 'SUBSCRIBER-ID': payload.customerProfile['subscriber-id']
 
                         // 'OU-ID': payload.productDetails['ouId'],
