@@ -219,11 +219,61 @@
                 //  'technical-message': ''
                 // }]
             };
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "40HTCZKP4O57",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": {
+                    "customer": {
+                        "title": "นาง",
+                        "title-code": "T2",
+                        "firstname": "ชนจันทร์",
+                        "lastname": "จันทรานนท์",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "I",
+                        "id-number": "2015010611119",
+                        "customer-id": "6108",
+                        "installed-products": [{
+                            "ouId": "1553",
+                            "ban": "10000905",
+                            "product-category": "TMV",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "R",
+                            "product-status": "A",
+                            "account-category": "I",
+                            "account-sub-type": "RPI",
+                            "product-id": "SMRTPP87",
+                            "product-name": "SMRTPP87",
+                            "product-description": "iSmart 299, voice100mins net500MB UNLTD WiFi UNLTD",
+                            "bill-cycle": "13",
+                            "company-code": "RM",
+                            "service-level": "C",
+                            "subscriber-id": "4634",
+                            "product-properties": {
+                                "REASON-DESC": "Customer request",
+                                "PRODUCT-STATUS-DESC": "Active",
+                                "PRODUCT-STATUS-DATE": "23/09/2015",
+                                "REASON-CODE": "CREQ",
+                                "PRODUCT-STATUS-CODE": "SUSPEND-ACTIVE"
+                            },
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0957730659",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "sub-status": "Active"
+                        }]
+                    }
+                }
+            };
 
             $timeout(function() {
                 cb({
                     status: true,
-                    data: data,
+                    data: data2,
                     error: '',
                     msgErr: ''
                 });

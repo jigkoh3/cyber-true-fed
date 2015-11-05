@@ -172,6 +172,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     // (End) Get current SIM data ----------------------
     $scope.TrxID = '';
     $scope.orderId = '';
+    $scope.statusList = {};
     var authenticate = function() {
         AuthenService.getAuthen(function(authResult) {
 
@@ -192,12 +193,19 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
             }
 
+            //คำนำหน้า
+            SystemService.getMaster_list($scope.data.simData["product-properties"]["PRODUCT-STATUS-CODE"], function(result) {
+                $scope.statusList = result;
+                //console.log($scope.statusList);
+            });
+
             SystemService.getOrderId($scope.getAuthen.channel, $scope.partnerCode, function(order) {
 
                 SystemService.hideLoading();
                 orderData = order;
                 $scope.TrxID = order.TrxID;
                 $scope.orderId = order.orderId;
+                localStorage.setItem('orderId', order.orderId);
 
                 if ($scope.shopType === '1') {
                     // Auto-open the CardReader dialog
@@ -453,7 +461,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
         };
 
 
-        var url = "https://sso-devt.true.th:11443/SSORESTFul/SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
+        var url = SystemService.secondAuthenURL + "SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
         //var url = "https://www.google.co.th";
 
         openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
@@ -463,6 +471,20 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 if (result.status == "SUCCESSFUL") {
                     $scope.approver = result["response-data"][0]["loginName"];
                     console.log(result);
+                } else {
+                    $.fancybox.close();
+                    //unsuccessul
+
+                    setTimeout(function() {
+                        SystemService.showAlert({
+                            "message": result["display-messages"][0]["message"],
+                            "message-code": result["display-messages"][0]["message-code"],
+                            "message-type": "WARNING",
+                            "en-message": result["display-messages"][0]["en-message"],
+                            "th-message": result["display-messages"][0]["th-message"],
+                            "technical-message": result["display-messages"][0]["technical-message"]
+                        });
+                    }, 1000);
                 }
             });
 

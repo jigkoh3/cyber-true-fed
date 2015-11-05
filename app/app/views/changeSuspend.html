@@ -28,8 +28,7 @@
                         <div class="col-md-4">
                             <select class="form-control" ng-model="statusChangeSuspend">
                                 <option value="">เลือก</option>
-                                <option value="SOFT_SUSPEND">Soft Suspend</option>
-                                <option value="FULL_SUSPEND">Full Suspend</option>
+                                <option ng-repeat="item in statusList" value="{{item.key}}">{{item.description}}</option>
                                 <!-- <option value="CANCEL-ACTIVE">Cancel</option> -->
                             </select>
                         </div>

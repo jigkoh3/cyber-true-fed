@@ -403,7 +403,7 @@
                 }]
             };
             if (trx_id == "4EONTQNYU4VZ") {
-                fnCallback(data);
+                fnCallback(data2);
             } else {
                 fnCallback(data2);
             }
@@ -1410,6 +1410,32 @@
             }
         };
     };
+    this.getMasterSuspendActive = function() {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "40HTHECIJHTG",
+            "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+            "response-data": {
+                "id": "SUSPEND-ACTIVE",
+                "name": "List of change status suspend - active",
+                "description": "List of change status suspend - active",
+                "configuration-items": [{
+                    "key": "SOFT-SUSPEND",
+                    "value": "SOFT-SUSPEND",
+                    "description": "Soft suspend by Request",
+                    "en-description": "Soft suspend by Request",
+                    "th-description": "Soft suspend by Request"
+                }, {
+                    "key": "FULL-SUSPEND",
+                    "value": "FULL-SUSPEND",
+                    "description": "Full Suspend by Request",
+                    "en-description": "Full Suspend by Request",
+                    "th-description": "Full Suspend by Request"
+                }]
+            }
+        }
+        //
+    };
     //masterData ------//for demo-----
     this.getMasterData = function(target, headers, fnCallback) {
         var result = {};
@@ -1426,6 +1452,8 @@
             result = that.getMasterIdTypeC();
         } else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-I') {
             result = that.getMasterIdTypeI();
+        } else if (target == 'aftersales/configuration/master/SUSPEND-ACTIVE') {
+            result = that.getMasterSuspendActive();
         } else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-P') {
             result = that.getMasterIdTypeP();
         } else {
