@@ -865,7 +865,13 @@ smartApp.controller('changeOwnershipController', function(
     $scope.onInputCitizenID3 = function() {
         if ($('#citizenID3').val() == $scope.data.customerProfile["id-number"]) {
             SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
+
+            $scope.ClearTxt();
+            $scope.customer['id-number'] = "";
             return;
+
+
+            
         }
 
         //ผู้จดทะเบียนใหม่
@@ -1193,6 +1199,7 @@ smartApp.controller('changeOwnershipController', function(
                 } catch (e) {}
             }, 1000);
             return win;
+
         };
         var url = SystemService.secondAuthenURL + "SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
         if ($scope.getAuthen["isSecondAuthen"]) {
@@ -1772,7 +1779,7 @@ smartApp.controller('changeOwnershipController', function(
 
 
     $scope.useAddressAsCard = function(type) {
-        if (type == 'H'){
+        if (type == 'H') {
             console.log($scope.cardInfo3);
             //$scope.mailAddress = $scope.tempCardAddress;
             $scope.mailAddress.province = $scope.cardInfo3.Province;
@@ -1783,7 +1790,7 @@ smartApp.controller('changeOwnershipController', function(
             $scope.mailAddress.road = $scope.cardInfo3.Road;
             $scope.mailAddress.soi = $scope.cardInfo3.Soi;
             $scope.mailAddress.trok = $scope.cardInfo3.Trok;
-        }else{
+        } else {
             $scope.billAddress = $scope.tempCardAddress;
         }
     };
@@ -2894,18 +2901,18 @@ smartApp.controller('changeOwnershipController', function(
         var target = "profiles/master/address/search?keyword=" + $scope.txtSearchAddress + "&lang=" + $scope.billPayment.accountLang;
         console.log($scope.txtSearchAddress.length, target);
         if ($scope.txtSearchAddress.length >= 3) {
-            if(accountLang != $scope.billPayment.accountLang){
-                    $scope.pauseAddress = false;
-                    $scope.isLoadAddress = false;
-                    accountLang = $scope.billPayment.accountLang;
-                }
+            if (accountLang != $scope.billPayment.accountLang) {
+                $scope.pauseAddress = false;
+                $scope.isLoadAddress = false;
+                accountLang = $scope.billPayment.accountLang;
+            }
             if (!$scope.isLoadAddress) {
                 //SystemService.showLoading();
-                
+
                 if (!$scope.pauseAddress) {
                     SystemService.getAddressMaster(target, function(result) {
                         //SystemService.hideLoading();
-                        
+
                         if (result.status) {
                             $scope.isLoadAddress = true;
                             $scope.addressList = result.data['response-data'];

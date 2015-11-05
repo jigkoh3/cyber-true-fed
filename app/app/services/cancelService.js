@@ -182,48 +182,98 @@
 
                 },
                 // 'display-messages': [{
-                // 	'message': '',
-                // 	'message-type': 'ERROR',
-                // 	'en-message': 'VIP',
-                // 	'th-message': '',
-                // 	'technical-message': ''
+                //  'message': '',
+                //  'message-type': 'ERROR',
+                //  'en-message': 'VIP',
+                //  'th-message': '',
+                //  'technical-message': ''
                 // }, {
-                // 	'message': '',
-                // 	'message-type': 'WARNING',
-                // 	'en-message': 'DISCOUNT',
-                // 	'th-message': '',
-                // 	'technical-message': ''
+                //  'message': '',
+                //  'message-type': 'WARNING',
+                //  'en-message': 'DISCOUNT',
+                //  'th-message': '',
+                //  'technical-message': ''
                 // }, {
-                // 	'message': '',
-                // 	'message-type': 'ERROR',
-                // 	'en-message': 'SUBSCRIBER STATUS',
-                // 	'th-message': '',
-                // 	'technical-message': ''
+                //  'message': '',
+                //  'message-type': 'ERROR',
+                //  'en-message': 'SUBSCRIBER STATUS',
+                //  'th-message': '',
+                //  'technical-message': ''
                 // }, {
-                // 	'message': '',
-                // 	'message-type': 'ERROR',
-                // 	'en-message': 'NICE NUMBER',
-                // 	'th-message': '',
-                // 	'technical-message': ''
+                //  'message': '',
+                //  'message-type': 'ERROR',
+                //  'en-message': 'NICE NUMBER',
+                //  'th-message': '',
+                //  'technical-message': ''
                 // }, {
-                // 	'message': '',
-                // 	'message-type': 'ERROR',
-                // 	'en-message': 'SHARED PLAN',
-                // 	'th-message': '',
-                // 	'technical-message': ''
+                //  'message': '',
+                //  'message-type': 'ERROR',
+                //  'en-message': 'SHARED PLAN',
+                //  'th-message': '',
+                //  'technical-message': ''
                 // }, {
-                // 	'message': '',
-                // 	'message-type': 'WARNING',
-                // 	'en-message': 'CONVERGENT',
-                // 	'th-message': '',
-                // 	'technical-message': ''
+                //  'message': '',
+                //  'message-type': 'WARNING',
+                //  'en-message': 'CONVERGENT',
+                //  'th-message': '',
+                //  'technical-message': ''
                 // }]
+            };
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "4BHTUFAMBA7P",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": {
+                    "customer": {
+                        "title": "นาย",
+                        "title-code": "T1",
+                        "firstname": "พัฒนา",
+                        "lastname": "พิสุทธิอาภรณ์",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "",
+                        "id-number": "2015010111094",
+                        "customer-id": "2589",
+                        "installed-products": [{
+                            "ouId": "912",
+                            "ban": "10000540",
+                            "product-category": "TMV",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "R",
+                            "product-status": "A",
+                            "account-category": "I",
+                            "account-sub-type": "RPI",
+                            "product-id": "SMRTPP87",
+                            "product-name": "iSmart 299, voice100mins net500MB UNLTD WiFi UNLTD",
+                            "product-description": "iSmart 299, voice100mins net500MB UNLTD WiFi UNLTD",
+                            "bill-cycle": "10",
+                            "company-code": "RM",
+                            "service-level": "C",
+                            "subscriber-id": "3164",
+                            "product-properties": {
+                                "REASON-DESC": "Add Additional SOC for Migrate Customer from Ensemble to CCBS for Activate Subscriber by RD",
+                                "PRODUCT-STATUS-DESC": "Active",
+                                "PRODUCT-STATUS-DATE": "28/08/2015",
+                                "REASON-CODE": "RD03",
+                                "PRODUCT-STATUS-CODE": "CANCEL-ACTIVE"
+                            },
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0957730534",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "sub-status": "Active"
+                        }]
+                    }
+                }
             };
 
             $timeout(function() {
                 cb({
                     status: true,
-                    data: data,
+                    data: data2,
                     error: '',
                     msgErr: ''
                 });
@@ -248,30 +298,30 @@
                     'customer-id': payload.customerProfile['customer-id']
 
                     // 'customer-agents': {
-                    // 	'AUTH_1': {
-                    // 		'contact': '0868836665',
-                    // 		'id-number': '9988877688845',
-                    // 		'id-type': 'I',
-                    // 		'firstname': 'สมคิด',
-                    // 		'lastname': 'คิดมากไป',
-                    // 		'birthdate': '2015-07-20T00:00:00+0700'
-                    // 	},
-                    // 	'POA': {
-                    // 		'contact': '0868836664',
-                    // 		'id-number': '3257588733945',
-                    // 		'id-type': 'I',
-                    // 		'firstname': 'สมชาย',
-                    // 		'lastname': 'ปากสว่าง',
-                    // 		'birthdate': '2015-07-20T00:00:00+0700'
-                    // 	},
-                    // 	'AUTH_2': {
-                    // 		'contact': '0868836666',
-                    // 		'id-number': '9988877687723',
-                    // 		'id-type': 'I',
-                    // 		'firstname': 'สมฤดี',
-                    // 		'lastname': 'ดีเกินไป',
-                    // 		'birthdate': '2015-07-20T00:00:00+0700'
-                    // 	}
+                    //  'AUTH_1': {
+                    //      'contact': '0868836665',
+                    //      'id-number': '9988877688845',
+                    //      'id-type': 'I',
+                    //      'firstname': 'สมคิด',
+                    //      'lastname': 'คิดมากไป',
+                    //      'birthdate': '2015-07-20T00:00:00+0700'
+                    //  },
+                    //  'POA': {
+                    //      'contact': '0868836664',
+                    //      'id-number': '3257588733945',
+                    //      'id-type': 'I',
+                    //      'firstname': 'สมชาย',
+                    //      'lastname': 'ปากสว่าง',
+                    //      'birthdate': '2015-07-20T00:00:00+0700'
+                    //  },
+                    //  'AUTH_2': {
+                    //      'contact': '0868836666',
+                    //      'id-number': '9988877687723',
+                    //      'id-type': 'I',
+                    //      'firstname': 'สมฤดี',
+                    //      'lastname': 'ดีเกินไป',
+                    //      'birthdate': '2015-07-20T00:00:00+0700'
+                    //  }
                     // }
                 },
                 "sale-agent": {
@@ -293,7 +343,9 @@
                     'order-data': {
                         'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
                         'SERVICE-LEVEL': "C",
-                        'SUBSCRIBER-ID': payload.customerProfile['subscriber-id']
+                        'SUBSCRIBER-ID': payload.customerProfile['subscriber-id'],
+                        "CHANGE-OPTION": "CANCEL",
+                        "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-CODE'] 
 
                         // 'OU-ID': payload.productDetails['ouId'],
                         // 'BAN': payload.productDetails['ban'],
