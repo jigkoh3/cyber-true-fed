@@ -43,7 +43,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "id-type": "I",
                         "id-number": "1180200046320",
                         "birthdate": "10/10/2526",
-                        "id-expire-date" : "20/10/2558",
+                        "id-expire-date": "20/10/2558",
                         "customer-id": "2768",
                         "installed-products": [{
                             "ouId": "1078",
@@ -168,7 +168,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         msgErr: ''
                     });
                 }, 1000);
-            }else if (msisdn == "0957570070") {
+            } else if (msisdn == "0957570070") {
                 $timeout(function() {
                     cb({
                         status: true,
@@ -250,6 +250,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
 
             },
             'customerProfile': customerProfile,
+            'customerProfileNew': angular.copy(customerProfile),
             'customerAddressOriginal': customerAddress,
             'customerAddress': angular.copy(customerAddress),
             'simData': productDetails,
@@ -437,7 +438,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     'rc': 16000.0,
                     'service-level': 'G',
                     'priceplan-type': 'SH'
-                },{
+                }, {
                     'name': 'BCUGFP03',
                     'description': payload.proposition + ' Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
                     'soc': '936258',
@@ -527,7 +528,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     'rc': 16000.0,
                     'service-level': 'G',
                     'priceplan-type': 'SH'
-                },{
+                }, {
                     'name': 'BCUGFP03',
                     'description': payload.proposition + ' Biz_Buddy 600, get 600Bt,CUG,1F&F,Max2sim',
                     'soc': '936258',
@@ -663,7 +664,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             };
 
             $timeout(function() {
-                
+
                 if (payload.proposition == "0019087") {
                     cb({
                         status: true,
@@ -756,19 +757,19 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                 "order-id": payload.orderData.orderId,
                 "creator": payload.saleAgent.logInName,
                 "customer": {
-                    'title-code': payload.customerProfile['title-code'],
-                    'title': payload.customerProfile['title'],
-                    'firstname': payload.customerProfile['firstname'],
-                    'lastname': payload.customerProfile['lastname'],
-                    'gender': payload.customerProfile['gender'],
-                    'id-type': payload.customerProfile['id-type'],
-                    'id-number': payload.customerProfile['id-number'],
-                    'birthdate': payload.customerProfile['birthdate'],
-                    'id-expire-date': payload.customerProfile['id-expire-date'],
-                    'contact-number': payload.customerProfile['contact-number'],
-                    'contact-mobile-number': payload.customerProfile['contact-mobile-number'],
-                    "language": payload.customerProfile['language'],
-                    "customer-id": payload.customerProfile['customer-id'],
+                    'title-code': payload.customerProfileNew['title-code'],
+                    'title': payload.customerProfileNew['title'],
+                    'firstname': payload.customerProfileNew['firstname'],
+                    'lastname': payload.customerProfileNew['lastname'],
+                    'gender': payload.customerProfileNew['gender'],
+                    'id-type': payload.customerProfileNew['id-type'],
+                    'id-number': payload.customerProfileNew['id-number'],
+                    'birthdate': payload.customerProfileNew['birthdate'],
+                    'id-expire-date': payload.customerProfileNew['id-expire-date'],
+                    'contact-number': payload.customerProfileNew['contact-number'],
+                    'contact-mobile-number': payload.customerProfileNew['contact-mobile-number'],
+                    "language": payload.customerProfileNew['language'],
+                    "customer-id": payload.customerProfileNew['customer-id'],
                     "address-list": {
                         "CUSTOMER_ADDRESS": payload.customerAddress
                     },
@@ -789,13 +790,17 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     "product-category": payload.productDetails['product-category'],
                     "product-type": payload.productDetails['product-type'],
                     "order-type": "CHANGE",
-                    "reason-code": "AA02",
+                    "reason-code": payload.selectReason.id,
                     "address-list": {
                         "BILLING_ADDRESS": payload.customerAddress,
                         "TAX_ADDRESS": payload.customerAddress
                     },
                     "order-data": {
-                        "PRICEPLAN-SOC-CODE": payload.priceplanSelected["soc"]
+                        "PRICEPLAN-SOC-CODE": payload.priceplanSelected["soc"],
+                        "ORIGINAL-ID-NUMBER": payload.customerProfile['id-number'],
+                        "ORIGINAL-FIRSTNAME": payload.customerProfile['firstname'],
+                        "ORIGINAL-LASTNAME": payload.customerProfile['lastname']
+
                         //,"CCBS-PROPOSITION-SOC-CODE": payload.propositionSelected['soc']
                     },
                     "primary-order-data": {
@@ -804,18 +809,18 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "ACCOUNT-CATEGORY": "P",
                         "ACCOUNT-SUB-TYPE": "PRE",
                         "COMPANY-CODE": payload.productDetails['company-code']
-                        //,"NAS-PROPOSITION": payload.propositionSelected['proposition-code'],
-                        //"CCBS-PROPOSITION": payload.propositionSelected['name']
+                            //,"NAS-PROPOSITION": payload.propositionSelected['proposition-code'],
+                            //"CCBS-PROPOSITION": payload.propositionSelected['name']
                     }
                 }],
                 "last-modify-date": ""
             },
             'ref-id': payload.orderData.TrxID,
             'user-id': payload.saleAgent.logInName,
-            'approver': ""
+            'approver': payload.approver
         };
 
-        if(SystemService.checkObj(payload.propositionSelected, ['soc'])){
+        if (SystemService.checkObj(payload.propositionSelected, ['soc'])) {
             request["order"]["order-items"][0]["order-data"]["CCBS-PROPOSITION-SOC-CODE"] = payload.propositionSelected['soc'];
             request["order"]["order-items"][0]["primary-order-data"]["NAS-PROPOSITION"] = payload.propositionSelected['proposition-code'];
             request["order"]["order-items"][0]["primary-order-data"]["CCBS-PROPOSITION"] = payload.propositionSelected['name'];

@@ -26,7 +26,7 @@
     $scope.isLastestUser = true;
     $scope.isReadCardSuccess = false;
     $scope.isSecondAuhenFailed = true;
-
+    $scope.approver = "";
     $scope.isCardValueData = false;
 
     //paging
@@ -107,9 +107,9 @@
     };
 
     $scope.onChangeTitleOther = function() {
-        console.log($scope.data.customerProfile['title']);
+        console.log($scope.data.customerProfileNew['title']);
         var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
-            value: $scope.data.customerProfile['title']
+            value: $scope.data.customerProfileNew['title']
         });
         console.log(selectTitleOther[0]);
         if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
@@ -119,7 +119,7 @@
             $('#sex3').val('ALL');
             console.log('ALL');
         }
-        $scope.titleOther2 = $scope.data.customerProfile['title'];
+        $scope.titleOther2 = $scope.data.customerProfileNew['title'];
     };
 
     $scope.onBlurAddress = function() {
@@ -451,7 +451,7 @@
 
             SystemService.getOrderId($scope.getAuthen.channel, partnerCode, function(order) {
                 SystemService.hideLoading();
-
+                localStorage.setItem('orderId', order.orderId);
                 orderData = order;
 
                 if ($scope.shopType === '1') {
@@ -516,6 +516,7 @@
 
                     var displayMsg = utils.getObject(result, 'display-messages.0');
                     if (!displayMsg || !displayMsg['message-type']) {
+                        $scope.approver = result['response-data'][0]['loginName'];
                         setTimeout(function() {
                             getReadyCitizenInput();
                         }, 1000);
@@ -611,21 +612,24 @@
         $scope.dataReadCard3 = cardInfo;
         $scope.isCardValueDataLastest = true;
         $('#selectCustomerIdType').val('I');
-        $scope.data.customerProfile['id-type'] = 'I';
+        $scope.data.customerProfileNew['id-type'] = 'I';
+
+        $('#citizenID3').val(cardInfo.CitizenID);
+        $scope.data.customerProfileNew['id-number'] = cardInfo.CitizenID;
 
         $('#firstNameTH3').val(cardInfo.FirstNameTH);
-        $scope.data.customerProfile['firstname'] = cardInfo.FirstNameTH;
+        $scope.data.customerProfileNew['firstname'] = cardInfo.FirstNameTH;
 
         $('#lastNameTH3').val(cardInfo.LastNameTH);
-        $scope.data.customerProfile['lastname'] = cardInfo.LastNameTH;
+        $scope.data.customerProfileNew['lastname'] = cardInfo.LastNameTH;
 
         cardInfo.BirthDay = formatDate(cardInfo.BirthDay);
         $('#birthDate').val(cardInfo.BirthDay);
-        $scope.data.customerProfile['birthdate'] = cardInfo.BirthDay;
+        $scope.data.customerProfileNew['birthdate'] = cardInfo.BirthDay;
 
         cardInfo.ExpireDay = formatDate(cardInfo.ExpireDay);
         $('#expireDate').val(cardInfo.ExpireDay);
-        $scope.data.customerProfile['id-expire-date'] = cardInfo.ExpireDay;
+        $scope.data.customerProfileNew['id-expire-date'] = cardInfo.ExpireDay;
 
         var prefix = "T2";
         if (cardInfo.PrefixEN == "Mr.") {
@@ -640,8 +644,10 @@
             sex = "FEMALE";
         }
 
-        $scope.data.customerProfile['gender'] = sex;
-        $scope.data.customerProfile['title-code'] = prefix;
+        $('#sex3').val(sex);
+        $scope.data.customerProfileNew['gender'] = sex;
+        $('#prefix3').val(prefix); 
+        $scope.data.customerProfileNew['title-code'] = prefix;
 
         setTimeout(function() {
             $('#idBindDataAgain').click();
@@ -902,15 +908,42 @@
 
 
     // (Start) Reason Control ----------------------
+    // $scope.reasons = [];
+    // $scope.selectedReason = {};
+
+    //Reasons
     $scope.reasons = [];
-    $scope.selectedReason = {};
+    $scope.reason = "";
+    $scope.selectReason = {};
 
     ReasonService.list('119', function(result) {
+        // $scope.reasons = result;
+        // $scope.selectedReason = $scope.reasons[86];
+
+        //solution for none fix index
         $scope.reasons = result;
-        $scope.selectedReason = $scope.reasons[86];
+        var myArray = result;
+        var searchText = "CREQ",
+            index = -1;
+        for (var i = 0, len = myArray.length; i < len; i++) {
+            if (myArray[i].id === searchText) {
+                index = i;
+                break;
+            }
+        }
+
+        console.log(index);
+
+        $scope.reason = $scope.reasons[index];
+        $scope.selectReason = $scope.reasons[index];
+        //solution for none fix index
     });
     // (End) Reason Control ----------------------
 
+    $scope.onReasonChange = function() {
+        $scope.selectReason = $scope.reasons[$('#selectReasonId').val()];
+        console.log($('#selectReasonId').val(), $scope.selectReason);
+    };
 
     // (Start) Submit Form ----------------------
     var isDataComplete = function() {
@@ -958,13 +991,13 @@
             alert('กรุณากรอกข้อมูลผู้มอบอำนาจ');
             return false;
         }
-        $scope.data.customerProfile['birthdate'] = $('#birthDate').val();
-        $scope.data.customerProfile['id-expire-date'] = $('#expireDate').val();
+        $scope.data.customerProfileNew['birthdate'] = $('#birthDate').val();
+        $scope.data.customerProfileNew['id-expire-date'] = $('#expireDate').val();
 
-        if (!$scope.data.customerProfile['id-number'] || !$scope.data.customerProfile['id-type'] ||
-            !$scope.data.customerProfile['title-code'] || !$scope.data.customerProfile['firstname'] ||
-            !$scope.data.customerProfile['lastname'] || !$scope.data.customerProfile['gender'] ||
-            !$scope.data.customerProfile['birthdate'] || !$scope.data.customerProfile['id-expire-date']
+        if (!$scope.data.customerProfileNew['id-number'] || !$scope.data.customerProfileNew['id-type'] ||
+            !$scope.data.customerProfileNew['title-code'] || !$scope.data.customerProfileNew['firstname'] ||
+            !$scope.data.customerProfileNew['lastname'] || !$scope.data.customerProfileNew['gender'] ||
+            !$scope.data.customerProfileNew['birthdate'] || !$scope.data.customerProfileNew['id-expire-date']
         ) {
             alert('กรุณากรอกข้อมูลผู้จดทะเบียนเติมเงินให้ครบถ้วน');
             return false;
@@ -1013,14 +1046,19 @@
             priceplanSelected: $scope.selectedPricePlan,
             reason: $scope.selectedReason,
             memo: $scope.memo,
-            postToPreData: postToPreData
+            postToPreData: postToPreData,
+            approver: $scope.approver,
+            selectReason: $scope.selectReason
         };
     };
     $scope.submit = function() {
         $scope.hasSubmitted = true;
 
-        $scope.data.customerProfile['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
-        $scope.data.customerProfile['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
+        $scope.data.customerProfileNew['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
+        $scope.data.customerProfileNew['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
+        console.log($scope.selectedReason);
+        console.log($scope.reason);
+        
 
         var data = generateOrderRequest();
 
@@ -1061,7 +1099,7 @@
             customerType = 'Y';
         }
         var newTitle = $filter('filter')($scope.titleTypeListx, {
-            'value': $scope.data.customerProfile['title-code']
+            'value': $scope.data.customerProfileNew['title-code']
         });
         if (newTitle.length > 0) {
             newTitle = newTitle[0]['th-description'];
@@ -1249,8 +1287,8 @@
             },
             'body': generateOrderRequest({
                 "title": newTitle,
-                "firstname": $scope.data.customerProfile['firstname'],
-                "lastname": $scope.data.customerProfile['lastname'],
+                "firstname": $scope.data.customerProfileNew['firstname'],
+                "lastname": $scope.data.customerProfileNew['lastname'],
                 "photo": $scope.varPhotoLastest,
                 "id-number": $('#citizenID3').val(),
                 //NEW---

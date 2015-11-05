@@ -198,6 +198,7 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
                 orderData = order;
                 $scope.TrxID = order.TrxID;
                 $scope.orderId = order.orderId;
+                localStorage.setItem('orderId', order.orderId);
 
                 if ($scope.shopType === '1') {
                     // Auto-open the CardReader dialog
