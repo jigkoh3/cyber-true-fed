@@ -342,7 +342,8 @@
                     'order-data': {
                         'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
                         'SERVICE-LEVEL': "C",
-                        'CHANGE-OPTION': payload.statusChangeSuspend
+                        'CHANGE-OPTION': payload.statusChangeSuspend,
+                        'PRODUCT-STATUS-DESC': payload.productDetails['product-properties']['PRODUCT-STATUS-DESC']
                             // 'SUBSCRIBER-ID': payload.customerProfile['subscriber-id']
 
                         // 'OU-ID': payload.productDetails['ouId'],
