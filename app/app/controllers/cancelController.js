@@ -109,6 +109,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         }
 
         $scope.data = result.data;
+        console.log($scope.data);
         $('#unMatch2').hide();
 
         // if (!checkIsCancelSim($scope.data)) {
@@ -200,6 +201,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
                 orderData = order;
                 $scope.TrxID = order.TrxID;
                 $scope.orderId = order.orderId;
+                localStorage.setItem('orderId', order.orderId);
 
                 if ($scope.shopType === '1') {
                     // Auto-open the CardReader dialog
