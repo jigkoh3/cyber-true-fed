@@ -403,7 +403,7 @@
                 }]
             };
             if (trx_id == "4EONTQNYU4VZ") {
-                fnCallback(data2);
+                fnCallback(data);
             } else {
                 fnCallback(data2);
             }
