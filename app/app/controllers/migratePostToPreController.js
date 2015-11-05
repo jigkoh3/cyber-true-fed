@@ -294,8 +294,8 @@
                 $('#divShowAuthorize').hide();
             }
 
-            $scope.data.customerProfile['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
-            $scope.data.customerProfile['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
+            $scope.data.customerProfileNew['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
+            $scope.data.customerProfileNew['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
 
             authenticate();
         }
