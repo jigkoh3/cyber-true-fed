@@ -345,7 +345,7 @@
                         'SERVICE-LEVEL': "C",
                         'SUBSCRIBER-ID': payload.customerProfile['subscriber-id'],
                         "CHANGE-OPTION": "CANCEL",
-                        "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-CODE'] 
+                        "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-DESC'] 
 
                         // 'OU-ID': payload.productDetails['ouId'],
                         // 'BAN': payload.productDetails['ban'],

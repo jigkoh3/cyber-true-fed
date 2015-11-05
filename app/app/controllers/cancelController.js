@@ -457,7 +457,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         };
 
 
-        var url = "https://sso-devt.true.th:11443/SSORESTFul/SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
+        var url = SystemService.secondAuthenURL + "SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
         //var url = "https://www.google.co.th";
 
         openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
@@ -467,6 +467,20 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
                 if (result.status == "SUCCESSFUL") {
                     $scope.approver = result["response-data"][0]["loginName"];
                     console.log(result);
+                } else {
+                    $.fancybox.close();
+                    //unsuccessul
+
+                    setTimeout(function() {
+                        SystemService.showAlert({
+                            "message": result["display-messages"][0]["message"],
+                            "message-code": result["display-messages"][0]["message-code"],
+                            "message-type": "WARNING",
+                            "en-message": result["display-messages"][0]["en-message"],
+                            "th-message": result["display-messages"][0]["th-message"],
+                            "technical-message": result["display-messages"][0]["technical-message"]
+                        });
+                    }, 1000);
                 }
             });
 
