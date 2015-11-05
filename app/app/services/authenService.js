@@ -15,7 +15,7 @@
             "saleCode": "90900051",
             "thaiName": null,
             "engName": "CMTEST48 CMSUR48",
-            "shopcodes": [],
+            "shopcodes": ["12345678", "88888888"],
             "logInName": "CMTEST48",
             "isCorporate": false,
             "roleNonShopCorpDto": {
@@ -65,6 +65,7 @@
 
         if (SystemService.demo) {
             that.userProfile.shopType = result.shopType;
+            result['partnerCodes'] = result['shopcodes'];
             fnCallback(result);
 
         } else {
@@ -75,6 +76,7 @@
             };
             $http(httpRequest).success(function(result) {
                 that.userProfile.shopType = result.shopType;
+                result['partnerCodes'] = result['shopcodes'];
                 fnCallback(result);
             }).error(function(data, status) {
                 fnCallback("ERROR");
