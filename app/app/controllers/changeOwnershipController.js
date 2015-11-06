@@ -128,11 +128,10 @@ smartApp.controller('changeOwnershipController', function(
 
     $scope.initModalReadCard = function() {
         if ($scope.shopType == "1") {
+            if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+                $("#btn-fancy-ReadCard").fancybox().trigger('click');
+            }
             setTimeout(function() {
-                if ($scope.isCustomerProfile == false) {
-                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                }
-
 
                 $('#loadingReadCard').hide();
                 $('#unMatch').hide();
@@ -1215,7 +1214,7 @@ smartApp.controller('changeOwnershipController', function(
                     SystemService.hideLoading();
                     console.log(result);
                     $scope.secondAuthenDataLastest = result;
-                    if (result["status"] == "SUCCESSFUL") {
+                    if (result["display-messages"].length == 0) {
                         $('#CitizenIDLastest').prop('disabled', false);
 
                         //$scope.approver = result['response-data'][0]['loginName'];
@@ -1233,7 +1232,7 @@ smartApp.controller('changeOwnershipController', function(
                                 "th-message": result["display-messages"][0]["th-message"],
                                 "technical-message": result["display-messages"][0]["technical-message"]
                             });
-                        }, 1000);
+                        }, 1200);
                     }
                 });
 
@@ -1266,7 +1265,7 @@ smartApp.controller('changeOwnershipController', function(
                     SystemService.hideLoading();
                     console.log(result);
                     $scope.secondAuthenData = result;
-                    if (result["status"] == "SUCCESSFUL") {
+                    if (result["display-messages"].length == 0) {
                         $scope.approver = result['response-data'][0]['loginName'];
                         $scope.manualInputReadCard();
                     } else {

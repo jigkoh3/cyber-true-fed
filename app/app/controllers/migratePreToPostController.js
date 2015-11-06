@@ -150,10 +150,12 @@ smartApp.controller('MigratePreToPostController', function(
 
     $scope.initModalReadCard = function() {
         if ($scope.shopType == "1") {
+            if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+                $("#btn-fancy-ReadCard").fancybox().trigger('click');
+            }
+
             setTimeout(function() {
-                if ($scope.isCustomerProfile == false) {
-                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                }
+
 
                 $('#loadingReadCard').hide();
                 $('#unMatch').hide();
@@ -473,7 +475,7 @@ smartApp.controller('MigratePreToPostController', function(
                 $('#dataSubNo').focus();
             }, 1500);
         }
-        
+
         $('#loadingReadCard3').hide();
         AuthenService.getAuthen(function(result) {
             $scope.getAuthen = result;
@@ -688,10 +690,10 @@ smartApp.controller('MigratePreToPostController', function(
             });
 
 
-            if($scope.SubNo != "null"){
+            if ($scope.SubNo != "null") {
                 $scope.callPropositionList();
             }
-            
+
 
         });
     };
@@ -1367,7 +1369,7 @@ smartApp.controller('MigratePreToPostController', function(
                     SystemService.hideLoading();
                     console.log(result);
                     $scope.secondAuthenData = result;
-                    if (result["status"] == "SUCCESSFUL") {
+                    if (result["display-messages"].length == 0) {
                         $scope.approver = result['response-data'][0]['loginName'];
                         $scope.manualInputReadCard();
                     } else {
