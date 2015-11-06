@@ -688,8 +688,10 @@ smartApp.controller('MigratePreToPostController', function(
             });
 
 
-
-            $scope.callPropositionList();
+            if($scope.SubNo != "null"){
+                $scope.callPropositionList();
+            }
+            
 
         });
     };
