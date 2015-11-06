@@ -101,7 +101,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         if (result.data == false) {
             console.log(result);
             $scope.SubNo = 'null';
-            $('#dataSubNo').val("");
+            // $('#dataSubNo').val("");
 
             setTimeout(function() {
                 $('#dataSubNo').focus();
@@ -609,5 +609,27 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     $scope.authorize = function() {
         $scope.isAuthorize = true;
     };
+
+        $scope.afterCloseWarning = function() {
+       if ($scope.SubNo === 'null') {
+           // $('#dataSubNo').val('');
+           setTimeout(function() {
+               $('#dataSubNo').focus();
+           }, 500);
+       }
+       $scope.isClickPrint = false;
+       isFocus = true;
+       $scope.initModalReadCard();
+
+
+
+       if (idFocus) {
+           $('#' + idFocus).focus();
+           idFocus = "";
+       } else {
+           $scope.validateUI();
+       }
+   };
+
     //init();
 });

@@ -562,7 +562,7 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                             $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                             $scope.cardType.value = $scope.data.customerProfile['id-type'];
-                            
+
                             $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
                             // $scope.onInputIdLastest3();
@@ -668,8 +668,8 @@ smartApp.controller('MigratePreToPostController', function(
                 } else {
                     SystemService.hideLoading();
                     setTimeout(function() {
-                    $('#divShowAuthorize').hide();
-                     }, 1000);
+                        $('#divShowAuthorize').hide();
+                    }, 1000);
                 }
                 if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length >= 1) {
                     $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
@@ -3309,9 +3309,16 @@ smartApp.controller('MigratePreToPostController', function(
         $scope.validateUI();
     };
     $scope.afterCloseWarning = function() {
+        if ($scope.SubNo === 'null') {
+            // $('#dataSubNo').val('');
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+            }, 500);
+        }
         $scope.isClickPrint = false;
         isFocus = true;
         $scope.initModalReadCard();
+
 
 
         if (idFocus) {

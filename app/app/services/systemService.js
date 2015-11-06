@@ -1543,7 +1543,7 @@
         return new Date(time);
     };
     this.checkInputTel = function(charCode) {
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        if (charCode > 31 && (charCode < 48 || charCode > 57) && (charCode < 95 || charCode > 105)) {
             return false;
         } else {
             return true;
