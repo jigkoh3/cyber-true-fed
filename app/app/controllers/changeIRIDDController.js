@@ -1318,7 +1318,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
         if ($scope.isNullSubNo && !$scope.data.data.status) {
             $scope.SubNo = 'null';
-            $('#dataSubNo').val('');
+            // $('#dataSubNo').val('');
             setTimeout(function() {
                 $('#dataSubNo').focus();
             }, 1000);

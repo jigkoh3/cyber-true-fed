@@ -230,7 +230,7 @@ smartApp.controller('ChangePricePlanController', function (
                 if ($scope.SubNo == 'null'){
                     $('#dataSubNo').focus();
             }
-        }, 20);
+        }, 1000);
 
         });
     }
@@ -1938,13 +1938,34 @@ smartApp.controller('ChangePricePlanController', function (
         }
         return false;
     };
-    $scope.afterCloseWarning = function () {
+    // $scope.afterCloseWarning = function () {
+    //     $scope.isClickPrint = false;
+    //     isFocus = true;
+    //     $scope.initModalReadCard();
+    //     $scope.validateUI();
+
+
+    // };
+    $scope.afterCloseWarning = function() {
+        if ($scope.SubNo === 'null') {
+            // $('#dataSubNo').val('');
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+            }, 500);
+        }
         $scope.isClickPrint = false;
         isFocus = true;
         $scope.initModalReadCard();
         $scope.validateUI();
 
 
+
+        if (idFocus) {
+            $('#' + idFocus).focus();
+            idFocus = "";
+        } else {
+            $scope.validateUI();
+        }
     };
 
 });
