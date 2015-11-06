@@ -487,6 +487,7 @@
     $scope.openSSO = function() {
         var getReadyCitizenInput = function() {
             $('#CitizenID').prop('disabled', false);
+            $('#CitizenID').val("");
             $('#CitizenID').focus();
         };
 

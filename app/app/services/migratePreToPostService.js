@@ -90,7 +90,7 @@
                         "lastname": "มาดู",
                         "contact-number": "",
                         "contact-mobile-number": "",
-                        "id-type": "",
+                        "id-type": "P",
                         "id-number": "1189900130607",
                         "customer-id": "2595",
                         "installed-products": [{
@@ -108,6 +108,10 @@
                             "bill-cycle": "10",
                             "company-code": "RF",
                             "service-level": "C",
+                            "product-properties": {
+                                "IMSI": "520002081981781",
+                                "SIM": "896600331500001222"
+                            },
                             "product-id-name": "MSISDN",
                             "product-id-number": "0939861331",
                             "mobile-servicetype": "POSTPAID",
