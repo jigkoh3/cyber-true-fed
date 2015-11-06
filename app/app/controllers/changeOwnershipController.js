@@ -191,75 +191,79 @@ smartApp.controller('changeOwnershipController', function(
 
     $scope.SetCardValue3 = function(result) {
         $('#loadingReadCard3').hide();
-        $scope.isCardValueDataLastest = true;
-        $scope.showEnableNewOwnerBirthday = false;
-        $scope.showEnableNewOwnerExpireDay = false;
-        $scope.cardInfo3 = eval(result);
-        console.log($scope.cardInfo3);
-        var prefix = "T2";
-        if ($scope.cardInfo3.PrefixEN == "Mr.") {
-            prefix = "T1";
+        if (eval(result).CitizenID == $scope.data.customerProfile["id-number"]  || $('#CitizenIDLastest').val() == $scope.data.customerProfile["id-number"]) {
+            SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
+        } else {
+            $scope.isCardValueDataLastest = true;
+            $scope.showEnableNewOwnerBirthday = false;
+            $scope.showEnableNewOwnerExpireDay = false;
+            $scope.cardInfo3 = eval(result);
+            console.log($scope.cardInfo3);
+            var prefix = "T2";
+            if ($scope.cardInfo3.PrefixEN == "Mr.") {
+                prefix = "T1";
+            }
+            if ($scope.cardInfo3.PrefixEN == "Miss") {
+                prefix = "T3";
+            }
+
+            var sex = "MALE";
+            if ($scope.cardInfo3.Sex == "2") {
+                sex = "FEMALE";
+            }
+            $scope.customer['id-number'] = $scope.cardInfo3.CitizenID;
+            $('#citizenID3').val($scope.cardInfo3.CitizenID);
+            $('#prefixTH3').val(prefix);
+            $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
+            $('#lastNameTH3').val($scope.cardInfo3.LastNameTH);
+            $('#birthDay').val($scope.cardInfo3.BirthDay);
+            $('#disableNewOwnerBirthday').val($scope.cardInfo3.BirthDay);
+            $('#expireDay').val($scope.cardInfo3.ExpireDay);
+            $('#disableNewOwnerExpireDay').val($scope.cardInfo3.ExpireDay);
+            $('#sex3').val(sex);
+
+            $('#birthDay').removeClass('date-picker');
+            $scope.newOwner.firstNameTH = $scope.cardInfo3.FirstNameTH;
+            $scope.newOwner.lastNameTH = $scope.cardInfo3.LastNameTH;
+            $scope.newOwner2.firstNameTH = $scope.cardInfo3.FirstNameTH;
+            $scope.newOwner2.lastNameTH = $scope.cardInfo3.LastNameTH;
+            console.log($scope.newOwner.firstNameTH);
+
+            $scope.cardType.value = "I";
+            $('#cardType').val('I');
+
+            //binding Tax Id
+            $('#taxId3').val($scope.cardInfo3.CitizenID);
+
+            //binding user registerd - ระบุผู้ใช้หมายเลข
+            $('#titleRegisterd').val(sex);
+            $('#firstNameRegisterd').val($scope.cardInfo3.FirstNameTH);
+            $('#lastNameRegisterd').val($scope.cardInfo3.LastNameTH);
+            $('#birthDayRegisterd').val($scope.cardInfo3.BirthDay);
+
+
+            // $scope.newOwner = {
+            //    citizenID: $scope.cardInfo3.CitizenID,
+            //    prefixTH: 'นาย',
+            //    firstNameTH: $scope.cardInfo3.FirstNameTH,
+            //    lastNameTH: $scope.cardInfo3.LastNameTH,
+            //    prefixEN: $scope.cardInfo3.PrefixEN,
+            //    firstNameEN: $scope.cardInfo3.FirstNameEN,
+            //    lastNameEN: $scope.cardInfo3.LastNameEN,
+            //    sex: $scope.cardInfo3.Sex,
+            //    birthDay: $scope.cardInfo3.BirthDay,
+            //    issueDay: $scope.cardInfo3.IssueDay,
+            //    expireDay: $scope.cardInfo3.ExpireDay,
+            // };
+            //$scope.onselectPrefix();    
+            //console.log($scope.newOwner);
+            $scope.onInputCitizenID3();
+            setTimeout(function() {
+                $('#idBindDataAgain').click();
+            }, 1000);
+
+            $.fancybox.close();
         }
-        if ($scope.cardInfo3.PrefixEN == "Miss") {
-            prefix = "T3";
-        }
-
-        var sex = "MALE";
-        if ($scope.cardInfo3.Sex == "2") {
-            sex = "FEMALE";
-        }
-        $scope.customer['id-number'] = $scope.cardInfo3.CitizenID;
-        $('#citizenID3').val($scope.cardInfo3.CitizenID);
-        $('#prefixTH3').val(prefix);
-        $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
-        $('#lastNameTH3').val($scope.cardInfo3.LastNameTH);
-        $('#birthDay').val($scope.cardInfo3.BirthDay);
-        $('#disableNewOwnerBirthday').val($scope.cardInfo3.BirthDay);
-        $('#expireDay').val($scope.cardInfo3.ExpireDay);
-        $('#disableNewOwnerExpireDay').val($scope.cardInfo3.ExpireDay);
-        $('#sex3').val(sex);
-
-        $('#birthDay').removeClass('date-picker');
-        $scope.newOwner.firstNameTH = $scope.cardInfo3.FirstNameTH;
-        $scope.newOwner.lastNameTH = $scope.cardInfo3.LastNameTH;
-        $scope.newOwner2.firstNameTH = $scope.cardInfo3.FirstNameTH;
-        $scope.newOwner2.lastNameTH = $scope.cardInfo3.LastNameTH;
-        console.log($scope.newOwner.firstNameTH);
-
-        $scope.cardType.value = "I";
-        $('#cardType').val('I');
-
-        //binding Tax Id
-        $('#taxId3').val($scope.cardInfo3.CitizenID);
-
-        //binding user registerd - ระบุผู้ใช้หมายเลข
-        $('#titleRegisterd').val(sex);
-        $('#firstNameRegisterd').val($scope.cardInfo3.FirstNameTH);
-        $('#lastNameRegisterd').val($scope.cardInfo3.LastNameTH);
-        $('#birthDayRegisterd').val($scope.cardInfo3.BirthDay);
-
-
-        // $scope.newOwner = {
-        //    citizenID: $scope.cardInfo3.CitizenID,
-        //    prefixTH: 'นาย',
-        //    firstNameTH: $scope.cardInfo3.FirstNameTH,
-        //    lastNameTH: $scope.cardInfo3.LastNameTH,
-        //    prefixEN: $scope.cardInfo3.PrefixEN,
-        //    firstNameEN: $scope.cardInfo3.FirstNameEN,
-        //    lastNameEN: $scope.cardInfo3.LastNameEN,
-        //    sex: $scope.cardInfo3.Sex,
-        //    birthDay: $scope.cardInfo3.BirthDay,
-        //    issueDay: $scope.cardInfo3.IssueDay,
-        //    expireDay: $scope.cardInfo3.ExpireDay,
-        // };
-        //$scope.onselectPrefix();    
-        //console.log($scope.newOwner);
-        $scope.onInputCitizenID3();
-        setTimeout(function() {
-            $('#idBindDataAgain').click();
-        }, 1000);
-
-        $.fancybox.close();
     };
 
     $scope.changeType = function(customerType) {
@@ -863,15 +867,15 @@ smartApp.controller('changeOwnershipController', function(
     $scope.subCompanyType = "PRI";
     $scope.isAddressList = {};
     $scope.onInputCitizenID3 = function() {
-        if ($('#citizenID3').val() == $scope.data.customerProfile["id-number"]) {
-            SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
-
+        if ($('#citizenID3').val() == $scope.data.customerProfile["id-number"] || $('#CitizenIDLastest').val() == $scope.data.customerProfile["id-number"]) {
+                SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
+            
             $scope.ClearTxt();
             $scope.customer['id-number'] = "";
             return;
 
 
-            
+
         }
 
         //ผู้จดทะเบียนใหม่
