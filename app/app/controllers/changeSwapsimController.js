@@ -276,7 +276,7 @@
         if (result == false) {
             console.log(result);
             $scope.SubNo = 'null';
-            $('#dataSubNo').val("");
+            // $('#dataSubNo').val("");
             return;
         } else {
             $scope.data = result.data;
@@ -305,20 +305,15 @@
         if ($scope.SubNo == 'null') {
             $('#dataSubNo').focus();
         }
-    }, 100);
+    }, 1000);
 
     setTimeout(function() {
         SystemService.validateNummeric();
     }, 1000);
     $scope.isNumberSubNo = false;
     $scope.onKeyUpSubNo = function(charCode) {
-        //console.log(charCode);
         var bool = SystemService.checkInputTel(charCode);
         $scope.isNumberSubNo = !bool;
-        //setTimeout(function () {
-        //    $scope.isNumberSubNo = false;
-        //    $('#idBindDataAgain').click();
-        //}, 3000);
         $scope.autoHideNumberSubNo = false;
         return bool;
     }
@@ -691,15 +686,24 @@
         }
         //end----------- camera ----------------
     $scope.afterCloseWarning = function() {
-
-        if ($scope.SubNo == 'null') {
-            $('#dataSubNo').val('');
+        if ($scope.SubNo === 'null') {
+            // $('#dataSubNo').val('');
             setTimeout(function() {
                 $('#dataSubNo').focus();
             }, 500);
         }
+        $scope.isClickPrint = false;
+        isFocus = true;
+        $scope.initModalReadCard();
 
 
+
+        if (idFocus) {
+            $('#' + idFocus).focus();
+            idFocus = "";
+        } else {
+            $scope.validateUI();
+        }
     };
 });
 

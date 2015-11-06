@@ -467,6 +467,13 @@ smartApp.controller('MigratePreToPostController', function(
 
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.onLoad = function() {
+        if (!$routeParams.subno) {
+            // $('#dataSubNo').val('');
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+            }, 1500);
+        }
+        
         $('#loadingReadCard3').hide();
         AuthenService.getAuthen(function(result) {
             $scope.getAuthen = result;

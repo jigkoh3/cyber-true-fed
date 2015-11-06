@@ -698,10 +698,10 @@
     $scope.afterCloseWarning = function() {
 
         if ($scope.SubNo === 'null') {
-            $('#dataSubNo').val('');
+            // $('#dataSubNo').val('');
             setTimeout(function() {
                 $('#dataSubNo').focus();
-            }, 500);
+            }, 1000);
         }
         if (idFocus) {
             $('#' + idFocus).focus();
