@@ -51,6 +51,7 @@ smartApp.controller('MigratePreToPostController', function(
 
     $scope.attModalVal = "";
     // $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
+    $scope.lastestCustomer = {};
 
 
     //paging
@@ -561,6 +562,8 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                             $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                             $scope.cardType.value = $scope.data.customerProfile['id-type'];
+                            
+                            $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
                             // $scope.onInputIdLastest3();
                             $scope.onInputCitizenID3();
@@ -2095,6 +2098,7 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.grade = {};
 
     $scope.saveOrder = function() {
+        console.log($scope.lastestCustomer);
         if ($scope.shopType == '1') {
             $scope.selectReason.id = "CREQ";
         }
