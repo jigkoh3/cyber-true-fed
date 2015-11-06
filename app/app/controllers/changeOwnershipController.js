@@ -2483,7 +2483,7 @@ smartApp.controller('changeOwnershipController', function(
             customerType = "Y";
         }
         var newTitle = $filter('filter')($scope.titleTypeListx, {
-            'value': $scope.newOwner.prefixTH
+            'value': $('#prefixTH3').val()
         });
         if (newTitle.length > 0) {
             newTitle = newTitle[0]['th-description'];
