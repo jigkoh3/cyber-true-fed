@@ -1,4 +1,4 @@
-﻿smartApp.service('ValidateMsgService', function () {
+﻿smartApp.service('ValidateMsgService', function() {
     this.data = {
         "effectiveDateMsg": {
             "message": "",
@@ -129,6 +129,80 @@
             "th-message": "กรุณาระบุ หมายเลขบัตรประชาชน / พาสปอร์ต ของผู้จดทะเบียนใหม่",
             "technical-message": "FROM WEBUI"
         },
+        "msgNewPreCusIDnoEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Prepaid Customer’s ID Type",
+            "th-message": "กรุณาระบุประเภทของบัตร ผู้จดทะเบียนเติมเงิน",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgNewPreCusPrefixEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Prepaid Customer’s Prefix",
+            "th-message": "กรุณาระบุคำนำหน้าของผู้จดทะเบียนเติมเงิน",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgNewPreCusIDTypeEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Prepaid Customer’s ID number / Passport",
+            "th-message": "กรุณาระบุ หมายเลขบัตรประชาชน / พาสปอร์ต ของผู้จดทะเบียนเติมเงิน",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgNewPreCusFirstNameEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Prepaid Customer’s First Name",
+            "th-message": "กรุณาระบุชื่อ ของผู้จดทะเบียนเติมเงิน",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgNewPreCusLastNameEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Prepaid Customer’s Last Name",
+            "th-message": "กรุณาระบุนามสกุล ของผู้จดทะเบียนเติมเงิน",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgNewPreCusGenderEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Prepaid Customer’s Gender",
+            "th-message": "กรุณาระบุเพศ ของผู้จดทะเบียนเติมเงิน",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgNewPreCusBirthdateEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Prepaid Customer’s BirthDate",
+            "th-message": "กรุณาระบุวัน/เดือน/ปีเกิด ของผู้จดทะเบียนเติมเงิน",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgNewPreCusExpireDateEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Prepaid Customer’s ExpireDate",
+            "th-message": "กรุณาระบุวันหมดอายุ ของผู้จดทะเบียนเติมเงิน",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgNewPreCusPricePlanEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Prepaid Customer’s PricePlan",
+            "th-message": "กรุณาระบุโปรโมชั่น ของผู้จดทะเบียนเติมเงิน",
+            "technical-message": "FROM WEBUI"
+        },
+
+
         "msgNewCusFirstNameEmpty": {
             "message": "",
             "message-code": "",
@@ -145,7 +219,7 @@
             "th-message": "กรุณาระบุ นามสกุลผู้จดทะเบียนใหม่",
             "technical-message": "FROM WEBUI"
         },
-         "msgSubFirstNameEmpty": {
+        "msgSubFirstNameEmpty": {
             "message": "",
             "message-code": "",
             "message-type": "WARNING",
@@ -249,7 +323,7 @@
             "th-message": "กรุณาระบุ เบอร์ที่สามารถติดต่อได้",
             "technical-message": "FROM WEBUI"
         },
-        "msgDuplicateID":{
+        "msgDuplicateID": {
             "message": "",
             "message-code": "",
             "message-type": "WARNING",
@@ -259,40 +333,40 @@
         }
     };
 });
-smartApp.service('ModalService', function (ngDialog) {
+smartApp.service('ModalService', function(ngDialog) {
 
-    this.showAlert = function (msgModel) {
+    this.showAlert = function(msgModel) {
         ngDialog.open({
             template: 'alertDialog',
             controller: 'AlertController',
             showClose: false,
             data: msgModel,
-            preCloseCallback: function () {
-                setTimeout(function () {
+            preCloseCallback: function() {
+                setTimeout(function() {
                     ngDialog.close();
                 }, 100);
             }
         });
     }
-    this.showConfirm = function () {
+    this.showConfirm = function() {
         var fn = ngDialog.openConfirm({
             template: 'modalConfirm',
             showClose: false
         });
         return fn;
     }
-    this.showLoading = function () {
+    this.showLoading = function() {
         var fn = ngDialog.open({
             template: 'modalLoading',
             showClose: false
         });
     }
-    this.hideLoading = function () {
-        setTimeout(function () {
+    this.hideLoading = function() {
+        setTimeout(function() {
             ngDialog.close();
         }, 100);
     }
-    this.showBeforeClose = function (msgModel) {
+    this.showBeforeClose = function(msgModel) {
         ngDialog.open({
             template: 'showBeforeClose',
             controller: 'AlertController',
@@ -303,10 +377,10 @@ smartApp.service('ModalService', function (ngDialog) {
 
 });
 // จาก issue modal ที่ใช้กับ ie8 ไม่ได้  แก้เป็น
-smartApp.controller('ngAlertController', function ($scope, SystemService, $ngBootbox) {
+smartApp.controller('ngAlertController', function($scope, SystemService, $ngBootbox) {
     //$('#modalReadCard').click();
     $scope.ngDialogData = SystemService.ngDialogData;
-    $scope.ngBootBoxClose = function () {
+    $scope.ngBootBoxClose = function() {
         //$('#modalReadCard').click();
         //$('.modal-backdrop').removeClass('in');
         //$('.modal-backdrop').addClass('out');
@@ -314,22 +388,21 @@ smartApp.controller('ngAlertController', function ($scope, SystemService, $ngBoo
         bootbox.hideAll();
         try {
             angular.element(document.getElementById('' + $('#divID').val())).scope().afterCloseWarning();
-        } catch (e) {
-        }
+        } catch (e) {}
 
         //$("#btn-fancy-ReadCard").fancybox().trigger('click');
     };
 });
-smartApp.controller('ngBootboxPricePlanController', function ($scope, SystemService, $ngBootbox) {
+smartApp.controller('ngBootboxPricePlanController', function($scope, SystemService, $ngBootbox) {
     $scope.pricePlans = SystemService.pricePlans;
     console.log($scope.pricePlans);
-    $scope.ngBootBoxClose = function () {
+    $scope.ngBootBoxClose = function() {
         bootbox.hideAll();
     };
 });
-smartApp.controller('ngShowBeforeCloseController', function ($scope, SystemService, $ngBootbox) {
+smartApp.controller('ngShowBeforeCloseController', function($scope, SystemService, $ngBootbox) {
     $scope.ngDialogData = SystemService.ngDialogData;
-    $scope.ngBootBoxClose = function () {
+    $scope.ngBootBoxClose = function() {
         bootbox.hideAll();
     };
 });
@@ -340,9 +413,9 @@ smartApp.controller('ngShowBeforeCloseController', function ($scope, SystemServi
 
 
 //ไม่ได้ใช้ รอ ลบ
-smartApp.controller('AlertController', function ($scope, ngDialog, SystemService) {
+smartApp.controller('AlertController', function($scope, ngDialog, SystemService) {
     //document.getElementById('modalReadCard').click();
-    $scope.ngDialogClose = function () {
+    $scope.ngDialogClose = function() {
         ngDialog.close();
 
     };

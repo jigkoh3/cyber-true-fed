@@ -553,6 +553,7 @@
                 $('.fancybox-close').click();
                 return true;
             } else {
+                $scope.isCardValueData = false;
                 $('#unMatch').show();
                 $('#loadingReadCard').hide();
             }
@@ -646,7 +647,7 @@
 
         $('#sex3').val(sex);
         $scope.data.customerProfileNew['gender'] = sex;
-        $('#prefix3').val(prefix); 
+        $('#prefix3').val(prefix);
         $scope.data.customerProfileNew['title-code'] = prefix;
 
         setTimeout(function() {
@@ -959,389 +960,417 @@
             SystemService.showAlert(msg);
             return;
         };
-        if (isNull($scope.mailAddress.postcode)) {
-            showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
-            return;
-        } else if (isNull($scope.mailAddress.province)) {
-            showValidate("txtmailAddressprovince", ValidateMsgService.data.msgBillProvinceEmpty);
-            return;
-        } else if (isNull($scope.mailAddress.amphur)) {
-            showValidate("txtmailAddressamphur", ValidateMsgService.data.msgBillDistrictEmpty);
-            return;
-        } else if (isNull($scope.mailAddress.district)) {
-            showValidate("txtMaillAddressDistrict", ValidateMsgService.data.msgBillSubDistrictEmpty);
-            return;
-        } else if (isNull($scope.mailAddress.homeNumber)) {
-            showValidate("txtMailAdressHomeNumber", ValidateMsgService.data.msgBillHouseNoEmpty);
-            return;
-        } else if (isNull($scope.mailAddress.moo)) {
-            showValidate("txtMailAddressMoo", ValidateMsgService.data.msgBillVillageNoEmpty);
-            return;
-        } else if (isNull($scope.mailAddress.road)) {
-            showValidate("txtMailAddressRoad", ValidateMsgService.data.msgBillRoadEmpty);
-            return;
-        } else {
+    
+    if (isNull($scope.data.customerProfileNew['id-number'])) {
+        showValidate("citizenID3", ValidateMsgService.data.msgNewPreCusIDnoEmpty);
+        return;
+    } else if (isNull($scope.data.customerProfileNew['id-type'])) {
+        showValidate("selectCustomerIdType", ValidateMsgService.data.msgNewPreCusIDnoEmpty);
+        return;
+    } else if (isNull($scope.data.customerProfileNew['title-code'])) {
+        showValidate("prefix3", ValidateMsgService.data.msgNewPreCusPrefixEmpty);
+        return;
+    } else if (isNull($scope.data.customerProfileNew['firstname'])) {
+        showValidate("firstNameTH3", ValidateMsgService.data.msgNewPreCusFirstNameEmpty);
+        return;
+    } else if (isNull($scope.data.customerProfileNew['lastname'])) {
+        showValidate("lastNameTH3", ValidateMsgService.data.msgNewPreCusLastNameEmpty);
+        return;
+    } else if (isNull($scope.data.customerProfileNew['gender'])) {
+        showValidate("sex3", ValidateMsgService.data.msgNewPreCusGenderEmpty);
+        return;
+    } else if (isNull($('#birthDate').val())) {
+        showValidate("birthDate", ValidateMsgService.data.msgNewPreCusBirthdateEmpty);
+        return;
+    } else if (isNull($('#expireDate').val())) {
+        showValidate("expireDate", ValidateMsgService.data.msgNewPreCusExpireDateEmpty);
+        return;
+    } else if (isNull($('#preCusPricePlan').val())) {
+        showValidate("preCusPricePlan", ValidateMsgService.data.msgNewPreCusPricePlanEmpty);
+        return;
+
+    } else if (isNull($scope.mailAddress.postcode)) {
+        showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
+        return;
+    } else if (isNull($scope.mailAddress.province)) {
+        showValidate("txtmailAddressprovince", ValidateMsgService.data.msgBillProvinceEmpty);
+        return;
+    } else if (isNull($scope.mailAddress.amphur)) {
+        showValidate("txtmailAddressamphur", ValidateMsgService.data.msgBillDistrictEmpty);
+        return;
+    } else if (isNull($scope.mailAddress.district)) {
+        showValidate("txtMaillAddressDistrict", ValidateMsgService.data.msgBillSubDistrictEmpty);
+        return;
+    } else if (isNull($scope.mailAddress.homeNumber)) {
+        showValidate("txtMailAdressHomeNumber", ValidateMsgService.data.msgBillHouseNoEmpty);
+        return;
+    } else if (isNull($scope.mailAddress.moo)) {
+        showValidate("txtMailAddressMoo", ValidateMsgService.data.msgBillVillageNoEmpty);
+        return;
+    } else if (isNull($scope.mailAddress.road)) {
+        showValidate("txtMailAddressRoad", ValidateMsgService.data.msgBillRoadEmpty);
+        return;
+    } else {
 
 
-        }
-        if (
-            $('#authorize').prop('checked') &&
-            (!$('#CitizenID2').val() || !$('#authorizeFullName').val())
-        ) {
-            alert('กรุณากรอกข้อมูลผู้มอบอำนาจ');
-            return false;
-        }
-        $scope.data.customerProfileNew['birthdate'] = $('#birthDate').val();
-        $scope.data.customerProfileNew['id-expire-date'] = $('#expireDate').val();
+    }
+    // if (
+    //     $('#authorize').prop('checked') &&
+    //     (!$('#CitizenID2').val() || !$('#authorizeFullName').val())
+    // ) {
+    //     alert('กรุณากรอกข้อมูลผู้มอบอำนาจ');
+    //     return false;
+    // }
+    // $scope.data.customerProfileNew['birthdate'] = $('#birthDate').val();
+    // $scope.data.customerProfileNew['id-expire-date'] = $('#expireDate').val();
 
-        if (!$scope.data.customerProfileNew['id-number'] || !$scope.data.customerProfileNew['id-type'] ||
-            !$scope.data.customerProfileNew['title-code'] || !$scope.data.customerProfileNew['firstname'] ||
-            !$scope.data.customerProfileNew['lastname'] || !$scope.data.customerProfileNew['gender'] ||
-            !$scope.data.customerProfileNew['birthdate'] || !$scope.data.customerProfileNew['id-expire-date']
-        ) {
-            alert('กรุณากรอกข้อมูลผู้จดทะเบียนเติมเงินให้ครบถ้วน');
-            return false;
-        }
+    // if (!$scope.data.customerProfileNew['id-number'] || !$scope.data.customerProfileNew['id-type'] ||
+    //     !$scope.data.customerProfileNew['title-code'] || !$scope.data.customerProfileNew['firstname'] ||
+    //     !$scope.data.customerProfileNew['lastname'] || !$scope.data.customerProfileNew['gender'] ||
+    //     !$scope.data.customerProfileNew['birthdate'] || !$scope.data.customerProfileNew['id-expire-date']
+    // ) {
+    //     alert('กรุณากรอกข้อมูลผู้จดทะเบียนเติมเงินให้ครบถ้วน');
+    //     return false;
+    // }
 
-        if (!$scope.selectedPricePlan || !Object.keys($scope.selectedPricePlan).length) {
-            // alert('กรุณาเลือกรายการส่งเสริมการขาย');
-            SystemService.showAlert(ValidateMsgService.data.pleaseSelectPP);
-            idFocus = "txtPricePlanFilter";
-            return false;
-        }
+    // if (!$scope.selectedPricePlan || !Object.keys($scope.selectedPricePlan).length) {
+    //     // alert('กรุณาเลือกรายการส่งเสริมการขาย');
+    //     SystemService.showAlert(ValidateMsgService.data.pleaseSelectPP);
+    //     idFocus = "txtPricePlanFilter";
+    //     return false;
+    // }
 
-        if (!$scope.data.customerAddress['zip'] || !$scope.data.customerAddress['province'] ||
-            !$scope.data.customerAddress['district'] || !$scope.data.customerAddress['sub-district']
-        ) {
-            alert('กรุณากรอกที่อยู่จดทะเบียนให้ครบถ้วน');
-            return false;
-        }
+    // if (!$scope.data.customerAddress['zip'] || !$scope.data.customerAddress['province'] ||
+    //     !$scope.data.customerAddress['district'] || !$scope.data.customerAddress['sub-district']
+    // ) {
+    //     alert('กรุณากรอกที่อยู่จดทะเบียนให้ครบถ้วน');
+    //     return false;
+    // }
 
-        return true;
+    return true;
+};
+
+var generateOrderRequest = function(postToPreData) {
+    $scope.data.customerProfile['language'] = "TH";
+    $scope.data.customerAddress['district'] = $scope.mailAddress.amphur;
+    $scope.data.customerAddress['sub-district'] = $scope.mailAddress.district;
+    $scope.data.customerAddress['zip'] = $scope.mailAddress.postcode;
+    $scope.data.customerAddress['province'] = $scope.mailAddress.province;
+    $scope.data.customerAddress['moo'] = $scope.mailAddress.moo;
+    $scope.data.customerAddress['number'] = $scope.mailAddress.homeNumber;
+    $scope.data.customerAddress['building-floor'] = $scope.mailAddress.buildingFloor;
+    $scope.data.customerAddress['building-name'] = $scope.mailAddress.buildingName;
+    $scope.data.customerAddress['building-room'] = $scope.mailAddress.buildingRoom;
+    $scope.data.customerAddress['soi'] = $scope.mailAddress.soi;
+    $scope.data.customerAddress['street'] = $scope.mailAddress.road;
+    $scope.data.customerAddress['village'] = $scope.mailAddress.village;
+
+
+    return {
+        customerProfile: $scope.data.customerProfile,
+        customerProfileNew: $scope.data.customerProfileNew,
+        customerAddress: $scope.data.customerAddress,
+        productDetails: $scope.data.simData,
+        orderData: orderData,
+        saleAgent: $scope.getAuthen,
+        propositionSelected: $scope.selectedProPositionIn,
+        priceplanSelected: $scope.selectedPricePlan,
+        reason: $scope.selectedReason,
+        memo: $scope.memo,
+        postToPreData: postToPreData,
+        approver: $scope.approver,
+        selectReason: $scope.selectReason
+    };
+}; $scope.submit = function() {
+    $scope.hasSubmitted = true;
+
+    $scope.data.customerProfileNew['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
+    $scope.data.customerProfileNew['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
+    console.log($scope.selectedReason);
+    console.log($scope.reason);
+
+
+    var data = generateOrderRequest();
+
+    SystemService.showLoading();
+    console.log(data);
+    MigratePostToPreService.submitOrder(data, function(result) {
+        SystemService.hideLoading();
+        console.log(result);
+        setTimeout(function() {
+            var displayMsg = utils.getObject(result.data, 'display-messages.0');
+            console.log(displayMsg);
+            if (!displayMsg || !displayMsg['message-type']) {
+                SystemService.showBeforeClose({
+                    "message": "DEMO > " + result.data["display-messages"][0]["th-message"],
+                    "message2": ""
+                });
+            } else {
+                SystemService.showBeforeClose({
+                    "message": result.data["display-messages"][0]["th-message"],
+                    "message2": ""
+                });
+            }
+        }, 1000);
+    });
+}; $scope.openPDFDialog = function() {
+    //$scope.data.customerProfile['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
+    //$scope.data.customerProfile['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
+
+    if (!isDataComplete()) {
+        return;
+    }
+
+    SystemService.showLoading();
+
+    var customerType = 'N';
+    if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
+        customerType = 'Y';
+    }
+    var newTitle = $filter('filter')($scope.titleTypeListx, {
+        'value': $scope.data.customerProfileNew['title-code']
+    });
+    if (newTitle.length > 0) {
+        newTitle = newTitle[0]['th-description'];
+    } else {
+        newTitle = "";
+    }
+
+    var cardValueData = {
+        //NEW---
+        "photoIdCard": "",
+
+        //SC=Scan
+        //SN=Snap
+        "photoType": "SN",
+        "titleEn": "",
+        "firstnameEn": "",
+        "lastnameEn": "",
+        "expireDay": "",
+        "birthDay": "",
+        "issueDay": "",
+
+        "titleTh": "",
+        "firstnameTh": "",
+        "lastnameTh": "",
+
+        //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+        "homeNumber": "",
+        "moo": "",
+        "trok": "",
+        "soi": "",
+        "road": "",
+        "district": "",
+        "amphur": "",
+        "province": ""
+            //NEW---
+    };
+    var cardValueDataNew = {
+        //NEW---
+        "photoIdCard": "",
+
+        //SC=Scan
+        //SN=Snap
+        "photoType": "SN",
+        "titleEn": "",
+        "firstnameEn": "",
+        "lastnameEn": "",
+
+        "titleTh": "",
+        "firstnameTh": "",
+        "lastnameTh": "",
+
+        "expireDay": "",
+        "birthDay": "",
+        "issueDay": "",
+
+        //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+        "homeNumber": "",
+        "moo": "",
+        "trok": "",
+        "soi": "",
+        "road": "",
+        "district": "",
+        "amphur": "",
+        "province": ""
+            //NEW---
     };
 
-    var generateOrderRequest = function(postToPreData) {
-        $scope.data.customerProfile['language'] = "TH";
-        $scope.data.customerAddress['district'] = $scope.mailAddress.amphur;
-        $scope.data.customerAddress['sub-district'] = $scope.mailAddress.district;
-        $scope.data.customerAddress['zip'] = $scope.mailAddress.postcode;
-        $scope.data.customerAddress['province'] = $scope.mailAddress.province;
-        $scope.data.customerAddress['moo'] = $scope.mailAddress.moo;
-        $scope.data.customerAddress['number'] = $scope.mailAddress.homeNumber;
-        $scope.data.customerAddress['building-floor'] = $scope.mailAddress.buildingFloor;
-        $scope.data.customerAddress['building-name'] = $scope.mailAddress.buildingName;
-        $scope.data.customerAddress['building-room'] = $scope.mailAddress.buildingRoom;
-        $scope.data.customerAddress['soi'] = $scope.mailAddress.soi;
-        $scope.data.customerAddress['street'] = $scope.mailAddress.road;
-        $scope.data.customerAddress['village'] = $scope.mailAddress.village;
+    if ($scope.isCardValueDataLastest) {
+        cardValueDataNew.photoType = "SC";
+        cardValueDataNew.photoIdCard = $scope.dataReadCard3.CitizenID;
+        cardValueDataNew = {
+            //NEW---
+            "photoIdCard": $scope.dataReadCard3.Photo,
 
+            //SC=Scan
+            //SN=Snap
+            "photoType": "SC",
+            "titleEn": $scope.dataReadCard3.PrefixEN,
+            "firstnameEn": $scope.dataReadCard3.FirstNameEN,
+            "lastnameEn": $scope.dataReadCard3.LastNameEN,
 
-        return {
-            customerProfile: $scope.data.customerProfile,
-            customerAddress: $scope.data.customerAddress,
-            productDetails: $scope.data.simData,
-            orderData: orderData,
-            saleAgent: $scope.getAuthen,
-            propositionSelected: $scope.selectedProPositionIn,
-            priceplanSelected: $scope.selectedPricePlan,
-            reason: $scope.selectedReason,
-            memo: $scope.memo,
-            postToPreData: postToPreData,
-            approver: $scope.approver,
-            selectReason: $scope.selectReason
+            "titleTh": $scope.dataReadCard3.PrefixTH,
+            "firstnameTh": $scope.dataReadCard3.FirstNameTH,
+            "lastnameTh": $scope.dataReadCard3.LastNameTH,
+
+            "expireDay": $scope.dataReadCard3.ExpireDay,
+            "birthDay": $scope.dataReadCard3.BirthDay,
+            "issueDay": $scope.dataReadCard3.IssueDay,
+
+            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+            "homeNumber": $scope.dataReadCard3.HomeNumber,
+            "moo": $scope.dataReadCard3.Moo,
+            "trok": $scope.dataReadCard3.Trok,
+            "soi": $scope.dataReadCard3.Soi,
+            "road": $scope.dataReadCard3.Road,
+            "district": $scope.dataReadCard3.District,
+            "amphur": $scope.dataReadCard3.Amphur,
+            "province": $scope.dataReadCard3.Province
+                //NEW---
         };
+
+    }
+
+    if ($scope.isReadCardSuccess) {
+
+        cardValueData.photoType = "SC";
+        cardValueData.photoIdCard = $scope.cardInfo.CitizenID;
+        cardValueData = {
+            //NEW---
+            "photoIdCard": $scope.cardInfo.Photo,
+
+            //SC=Scan
+            //SN=Snap
+            "photoType": "SC",
+            "titleEn": $scope.cardInfo.PrefixEN,
+            "firstnameEn": $scope.cardInfo.FirstNameEN,
+            "lastnameEn": $scope.cardInfo.LastNameEN,
+            "expireDay": $scope.cardInfo.ExpireDay,
+            "birthDay": $scope.cardInfo.BirthDay,
+            "issueDay": $scope.cardInfo.IssueDay,
+
+            "titleTh": $scope.cardInfo.PrefixTH,
+            "firstnameTh": $scope.cardInfo.FirstNameTH,
+            "lastnameTh": $scope.cardInfo.LastNameTH,
+
+            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+            "homeNumber": $scope.cardInfo.HomeNumber,
+            "moo": $scope.cardInfo.Moo,
+            "trok": $scope.cardInfo.Trok,
+            "soi": $scope.cardInfo.Soi,
+            "road": $scope.cardInfo.Road,
+            "district": $scope.cardInfo.District,
+            "amphur": $scope.cardInfo.Amphur,
+            "province": $scope.cardInfo.Province
+                //NEW---
+        };
+
+    }
+
+
+
+    var data = {
+        'func': 'POP',
+        'header': {
+            'title-code': customerType == 'Y' ? "" : $scope.data.customerProfile['title-code'],
+            'title': $scope.data.customerProfile['title'],
+            'firstname': $scope.data.customerProfile['firstname'],
+            'lastname': $scope.data.customerProfile['lastname'],
+            'customerType': customerType,
+            'authorizeFullName': $('#authorizeFullName').val(),
+            'id-number': $scope.data.customerProfile['id-number'],
+            'product-id-number': $scope.SubNo,
+            'ouId': $scope.data.simData['ouId'],
+            'orderId': orderData.orderId,
+            'photo': $scope.varPhoto,
+
+            //NEW---
+            "photoIdCard": cardValueData["photoIdCard"],
+
+            //SC=Scan
+            //SN=Snap
+            "photoType": cardValueData["photoType"],
+            "titleEn": cardValueData["titleEn"],
+            "firstnameEn": cardValueData["firstnameEn"],
+            "lastnameEn": cardValueData["lastnameEn"],
+
+            "titleTh": cardValueData["titleTh"],
+            "firstnameTh": cardValueData["firstnameTh"],
+            "lastnameTh": cardValueData["lastnameTh"],
+
+            "expireDay": cardValueData["expireDay"],
+            "birthDay": cardValueData["birthDay"],
+            "issueDay": cardValueData["issueDay"],
+
+            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+            "homeNumber": cardValueData["homeNumber"],
+            "moo": cardValueData["moo"],
+            "trok": cardValueData["trok"],
+            "soi": cardValueData["soi"],
+            "road": cardValueData["road"],
+            "district": cardValueData["district"],
+            "amphur": cardValueData["amphur"],
+            "province": cardValueData["province"]
+                //NEW---
+        },
+        'body': generateOrderRequest({
+            "title": newTitle,
+            "firstname": $scope.data.customerProfileNew['firstname'],
+            "lastname": $scope.data.customerProfileNew['lastname'],
+            "photo": $scope.varPhotoLastest,
+            "id-number": $('#citizenID3').val(),
+            //NEW---
+            "photoIdCard": cardValueDataNew["photoIdCard"],
+
+            //SC=Scan
+            //SN=Snap
+            "photoType": cardValueDataNew["photoType"],
+            "titleEn": cardValueDataNew["titleEn"],
+            "firstnameEn": cardValueDataNew["firstnameEn"],
+            "lastnameEn": cardValueDataNew["lastnameEn"],
+            "expireDay": cardValueDataNew["expireDay"],
+            "birthDay": cardValueDataNew["birthDay"],
+            "issueDay": cardValueDataNew["issueDay"],
+
+            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+            "homeNumber": cardValueDataNew["homeNumber"],
+            "moo": cardValueDataNew["moo"],
+            "trok": cardValueDataNew["trok"],
+            "soi": cardValueDataNew["soi"],
+            "road": cardValueDataNew["road"],
+            "district": cardValueDataNew["district"],
+            "amphur": cardValueDataNew["amphur"],
+            "province": cardValueDataNew["province"]
+                //NEW---
+        })
+
     };
-    $scope.submit = function() {
-        $scope.hasSubmitted = true;
 
-        $scope.data.customerProfileNew['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
-        $scope.data.customerProfileNew['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
-        console.log($scope.selectedReason);
-        console.log($scope.reason);
-        
+    console.log(data);
+    SystemService.generatePDF(data, function(url) {
+        SystemService.hideLoading();
 
-        var data = generateOrderRequest();
+        setTimeout(function() {
+            $('#modalPDFOpener').click();
 
-        SystemService.showLoading();
-        console.log(data);
-        MigratePostToPreService.submitOrder(data, function(result) {
-            SystemService.hideLoading();
-            console.log(result);
             setTimeout(function() {
-                var displayMsg = utils.getObject(result.data, 'display-messages.0');
-                console.log(displayMsg);
-                if (!displayMsg || !displayMsg['message-type']) {
-                    SystemService.showBeforeClose({
-                        "message": "DEMO > " + result.data["display-messages"][0]["th-message"],
-                        "message2": ""
-                    });
-                } else {
-                    SystemService.showBeforeClose({
-                        "message": result.data["display-messages"][0]["th-message"],
-                        "message2": ""
-                    });
+                var srcPDF = url;
+                document.getElementById('iframePDF').src = url + '?clearData=N';
+                if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                    setTimeout(function() {
+                        document.getElementById('iframePDF').src = 'javascript:window.print();'
+                    }, 2000);
+                    setTimeout(function() {
+                        document.getElementById('iframePDF').src = srcPDF
+                    }, 2500);
                 }
-            }, 1000);
-        });
-    };
-    $scope.openPDFDialog = function() {
-        //$scope.data.customerProfile['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
-        //$scope.data.customerProfile['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
-
-        if (!isDataComplete()) {
-            return;
-        }
-
-        SystemService.showLoading();
-
-        var customerType = 'N';
-        if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
-            customerType = 'Y';
-        }
-        var newTitle = $filter('filter')($scope.titleTypeListx, {
-            'value': $scope.data.customerProfileNew['title-code']
-        });
-        if (newTitle.length > 0) {
-            newTitle = newTitle[0]['th-description'];
-        } else {
-            newTitle = "";
-        }
-
-        var cardValueData = {
-            //NEW---
-            "photoIdCard": "",
-
-            //SC=Scan
-            //SN=Snap
-            "photoType": "SN",
-            "titleEn": "",
-            "firstnameEn": "",
-            "lastnameEn": "",
-            "expireDay": "",
-            "birthDay": "",
-            "issueDay": "",
-
-            "titleTh": "",
-            "firstnameTh": "",
-            "lastnameTh": "",
-
-            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-            "homeNumber": "",
-            "moo": "",
-            "trok": "",
-            "soi": "",
-            "road": "",
-            "district": "",
-            "amphur": "",
-            "province": ""
-                //NEW---
-        };
-        var cardValueDataNew = {
-            //NEW---
-            "photoIdCard": "",
-
-            //SC=Scan
-            //SN=Snap
-            "photoType": "SN",
-            "titleEn": "",
-            "firstnameEn": "",
-            "lastnameEn": "",
-
-            "titleTh": "",
-            "firstnameTh": "",
-            "lastnameTh": "",
-
-            "expireDay": "",
-            "birthDay": "",
-            "issueDay": "",
-
-            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-            "homeNumber": "",
-            "moo": "",
-            "trok": "",
-            "soi": "",
-            "road": "",
-            "district": "",
-            "amphur": "",
-            "province": ""
-                //NEW---
-        };
-
-        if ($scope.isCardValueDataLastest) {
-            cardValueDataNew.photoType = "SC";
-            cardValueDataNew.photoIdCard = $scope.dataReadCard3.CitizenID;
-            cardValueDataNew = {
-                //NEW---
-                "photoIdCard": $scope.dataReadCard3.Photo,
-
-                //SC=Scan
-                //SN=Snap
-                "photoType": "SC",
-                "titleEn": $scope.dataReadCard3.PrefixEN,
-                "firstnameEn": $scope.dataReadCard3.FirstNameEN,
-                "lastnameEn": $scope.dataReadCard3.LastNameEN,
-
-                "titleTh": $scope.dataReadCard3.PrefixTH,
-                "firstnameTh": $scope.dataReadCard3.FirstNameTH,
-                "lastnameTh": $scope.dataReadCard3.LastNameTH,
-
-                "expireDay": $scope.dataReadCard3.ExpireDay,
-                "birthDay": $scope.dataReadCard3.BirthDay,
-                "issueDay": $scope.dataReadCard3.IssueDay,
-
-                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-                "homeNumber": $scope.dataReadCard3.HomeNumber,
-                "moo": $scope.dataReadCard3.Moo,
-                "trok": $scope.dataReadCard3.Trok,
-                "soi": $scope.dataReadCard3.Soi,
-                "road": $scope.dataReadCard3.Road,
-                "district": $scope.dataReadCard3.District,
-                "amphur": $scope.dataReadCard3.Amphur,
-                "province": $scope.dataReadCard3.Province
-                    //NEW---
-            };
-
-        }
-
-        if ($scope.isReadCardSuccess) {
-
-            cardValueData.photoType = "SC";
-            cardValueData.photoIdCard = $scope.cardInfo.CitizenID;
-            cardValueData = {
-                //NEW---
-                "photoIdCard": $scope.cardInfo.Photo,
-
-                //SC=Scan
-                //SN=Snap
-                "photoType": "SC",
-                "titleEn": $scope.cardInfo.PrefixEN,
-                "firstnameEn": $scope.cardInfo.FirstNameEN,
-                "lastnameEn": $scope.cardInfo.LastNameEN,
-                "expireDay": $scope.cardInfo.ExpireDay,
-                "birthDay": $scope.cardInfo.BirthDay,
-                "issueDay": $scope.cardInfo.IssueDay,
-
-                "titleTh": $scope.cardInfo.PrefixTH,
-                "firstnameTh": $scope.cardInfo.FirstNameTH,
-                "lastnameTh": $scope.cardInfo.LastNameTH,
-
-                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-                "homeNumber": $scope.cardInfo.HomeNumber,
-                "moo": $scope.cardInfo.Moo,
-                "trok": $scope.cardInfo.Trok,
-                "soi": $scope.cardInfo.Soi,
-                "road": $scope.cardInfo.Road,
-                "district": $scope.cardInfo.District,
-                "amphur": $scope.cardInfo.Amphur,
-                "province": $scope.cardInfo.Province
-                    //NEW---
-            };
-
-        }
+            }, 500);
 
 
-
-        var data = {
-            'func': 'POP',
-            'header': {
-                'title-code': customerType == 'Y' ? "" : $scope.data.customerProfile['title-code'],
-                'title': $scope.data.customerProfile['title'],
-                'firstname': $scope.data.customerProfile['firstname'],
-                'lastname': $scope.data.customerProfile['lastname'],
-                'customerType': customerType,
-                'authorizeFullName': $('#authorizeFullName').val(),
-                'id-number': $scope.data.customerProfile['id-number'],
-                'product-id-number': $scope.SubNo,
-                'ouId': $scope.data.simData['ouId'],
-                'orderId': orderData.orderId,
-                'photo': $scope.varPhoto,
-
-                //NEW---
-                "photoIdCard": cardValueData["photoIdCard"],
-
-                //SC=Scan
-                //SN=Snap
-                "photoType": cardValueData["photoType"],
-                "titleEn": cardValueData["titleEn"],
-                "firstnameEn": cardValueData["firstnameEn"],
-                "lastnameEn": cardValueData["lastnameEn"],
-
-                "titleTh": cardValueData["titleTh"],
-                "firstnameTh": cardValueData["firstnameTh"],
-                "lastnameTh": cardValueData["lastnameTh"],
-
-                "expireDay": cardValueData["expireDay"],
-                "birthDay": cardValueData["birthDay"],
-                "issueDay": cardValueData["issueDay"],
-
-                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-                "homeNumber": cardValueData["homeNumber"],
-                "moo": cardValueData["moo"],
-                "trok": cardValueData["trok"],
-                "soi": cardValueData["soi"],
-                "road": cardValueData["road"],
-                "district": cardValueData["district"],
-                "amphur": cardValueData["amphur"],
-                "province": cardValueData["province"]
-                    //NEW---
-            },
-            'body': generateOrderRequest({
-                "title": newTitle,
-                "firstname": $scope.data.customerProfileNew['firstname'],
-                "lastname": $scope.data.customerProfileNew['lastname'],
-                "photo": $scope.varPhotoLastest,
-                "id-number": $('#citizenID3').val(),
-                //NEW---
-                "photoIdCard": cardValueDataNew["photoIdCard"],
-
-                //SC=Scan
-                //SN=Snap
-                "photoType": cardValueDataNew["photoType"],
-                "titleEn": cardValueDataNew["titleEn"],
-                "firstnameEn": cardValueDataNew["firstnameEn"],
-                "lastnameEn": cardValueDataNew["lastnameEn"],
-                "expireDay": cardValueDataNew["expireDay"],
-                "birthDay": cardValueDataNew["birthDay"],
-                "issueDay": cardValueDataNew["issueDay"],
-
-                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-                "homeNumber": cardValueDataNew["homeNumber"],
-                "moo": cardValueDataNew["moo"],
-                "trok": cardValueDataNew["trok"],
-                "soi": cardValueDataNew["soi"],
-                "road": cardValueDataNew["road"],
-                "district": cardValueDataNew["district"],
-                "amphur": cardValueDataNew["amphur"],
-                "province": cardValueDataNew["province"]
-                    //NEW---
-            })
-
-        };
-
-        console.log(data);
-        SystemService.generatePDF(data, function(url) {
-            SystemService.hideLoading();
-
-            setTimeout(function() {
-                $('#modalPDFOpener').click();
-
-                setTimeout(function() {
-                    var srcPDF = url;
-                    document.getElementById('iframePDF').src = url + '?clearData=N';
-                    if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                        setTimeout(function() {
-                            document.getElementById('iframePDF').src = 'javascript:window.print();'
-                        }, 2000);
-                        setTimeout(function() {
-                            document.getElementById('iframePDF').src = srcPDF
-                        }, 2500);
-                    }
-                }, 500);
-
-
-            }, 1000);
-        });
-    };
-    // (End) Submit Form ----------------------
+        }, 1000);
+    });
+};
+// (End) Submit Form ----------------------
 
 });

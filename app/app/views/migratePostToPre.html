@@ -137,10 +137,10 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="col-md-3" style=" text-align: right; top: 5px;">
-                                    <label> โปรโมชั่น<span style="color:red;">*</span></label>
+                                    <label > โปรโมชั่น<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" value="{{selectedPricePlan.name}}{{selectedPricePlan.description?' : ':null}}{{selectedPricePlan.description}}" readonly class="form-control">
+                                    <input type="text" id="preCusPricePlan" mg-model="preCusPricePlan" value="{{selectedPricePlan.name}}{{selectedPricePlan.description?' : ':null}}{{selectedPricePlan.description}}" readonly class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <input type="text" id="txtPricePlanFilter" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control" ng-disabled="isSecondAuhenFailed">
