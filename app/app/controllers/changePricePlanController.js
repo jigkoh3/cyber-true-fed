@@ -1,5 +1,5 @@
 // ---------------------- ChangePricePlanController.js ----------------------
-smartApp.controller('ChangePricePlanController', function (
+smartApp.controller('ChangePricePlanController', function(
     $ngBootbox,
     $scope,
     AuthenService,
@@ -37,12 +37,12 @@ smartApp.controller('ChangePricePlanController', function (
         "th-message": "",
         "technical-message": ""
     };
-    $scope.alertTest = function () {
+    $scope.alertTest = function() {
         //$ngBootbox.alert('xxxxxxxxxxx');
         //$ngBootbox.customDialog($scope.customDialogOptions);
     };
     $scope.isEnterPP = false;
-    $scope.openPricePlanDialog = function () {
+    $scope.openPricePlanDialog = function() {
         $scope.focusPricePlanFilter();
         $scope.isEnterPP = false;
         //var runTime = new Date().getTime();
@@ -131,7 +131,7 @@ smartApp.controller('ChangePricePlanController', function (
         'EFFECTIVE-OPTION': "IMMEDIATE",
         'memo': ""
     };
-    $scope.onEffectiveDate = function (method) {
+    $scope.onEffectiveDate = function(method) {
         if (method == 'IMMEDIATE') {
             $scope.saveData['EFFECTIVE-DATE'] = $scope.saveData.nowBillDate;
             $scope.saveData['EFFECTIVE-OPTION'] = method;
@@ -184,12 +184,12 @@ smartApp.controller('ChangePricePlanController', function (
     $scope.serviceM = "0";
     $scope.currentPricePlan = "";
 
-    $scope.clickEffective = function () {
+    $scope.clickEffective = function() {
         //alert("vvvvv");
         $scope.dateSpecify = "";
     };
-    $scope.checkHybridStatus = function (status) {
-        setTimeout(function () {
+    $scope.checkHybridStatus = function(status) {
+        setTimeout(function() {
             var x = status.indexOf('HY');
             if (status && status.indexOf('HY') === 0) {
                 $scope.onEffectiveDate('NEXTBILL');
@@ -205,8 +205,8 @@ smartApp.controller('ChangePricePlanController', function (
         }, 1000);
     };
 
-    $scope.checkEffectivePrepaid = function (mobileServiceType, accountSubType) {
-        setTimeout(function () {
+    $scope.checkEffectivePrepaid = function(mobileServiceType, accountSubType) {
+        setTimeout(function() {
             if (mobileServiceType && mobileServiceType == "PREPAID") {
                 $('#divEffer').width(250);
                 $('#efferNow').removeClass('hidden');
@@ -216,8 +216,8 @@ smartApp.controller('ChangePricePlanController', function (
             }
         }, 1000);
     };
-    $scope.onload = function () {
-        AuthenService.getAuthen(function (result) {
+    $scope.onload = function() {
+        AuthenService.getAuthen(function(result) {
             $scope.getAuthen = result;
             $scope.shopType = result.shopType;
             if (!$scope.getAuthen["isSecondAuthen"]) {
@@ -226,21 +226,21 @@ smartApp.controller('ChangePricePlanController', function (
             if ($scope.SubNo != 'null') {
                 $scope.onloadNext();
             }
-            setTimeout(function () {
-                if ($scope.SubNo == 'null'){
+            setTimeout(function() {
+                if ($scope.SubNo == 'null') {
                     $('#dataSubNo').focus();
-            }
-        }, 1000);
+                }
+            }, 1000);
 
         });
     }
-    
-    $scope.onInputSubNo_reset = function () {
+
+    $scope.onInputSubNo_reset = function() {
         $scope.isInputSubNo = false;
         $scope.onInputSubNo();
     };
     $scope.isInputSubNo = false;
-    $scope.onInputSubNo = function () {
+    $scope.onInputSubNo = function() {
         console.log($('#dataSubNo').val().length, $scope.isInputSubNo);
         var dataSubNo = $('#dataSubNo').val();
         if (dataSubNo.length == 10) {
@@ -254,22 +254,22 @@ smartApp.controller('ChangePricePlanController', function (
         }
     };
     $scope.isNumberSubNo = false;
-    $scope.onKeyUpSubNo = function (charCode) {
+    $scope.onKeyUpSubNo = function(charCode) {
         //console.log(charCode);
         var bool = SystemService.checkInputTel(charCode);
         $scope.isNumberSubNo = !bool;
-            //setTimeout(function () {
-            //    $scope.isNumberSubNo = false;
-            //    $('#idBindDataAgain').click();
-            //}, 3000);
+        //setTimeout(function () {
+        //    $scope.isNumberSubNo = false;
+        //    $('#idBindDataAgain').click();
+        //}, 3000);
         $scope.autoHideNumberSubNo = false;
         return bool;
     }
 
-    setTimeout(function () {
+    setTimeout(function() {
         SystemService.validateNummeric();
     }, 1000);
-    $scope.onloadNext = function () {
+    $scope.onloadNext = function() {
         //if ($scope.isNonePartner) {
         SystemService.showLoading();
 
@@ -291,7 +291,7 @@ smartApp.controller('ChangePricePlanController', function (
         }
         //alert(generateOrder_target);
         //call generate-order-id
-        SystemService.generateOrderId(generateOrder_target, function (data) {
+        SystemService.generateOrderId(generateOrder_target, function(data) {
             localStorage.setItem('orderId', data["response-data"]);
             $scope.TrxID = data["trx-id"];
             $scope.orderId = data["response-data"];
@@ -301,7 +301,7 @@ smartApp.controller('ChangePricePlanController', function (
             }
 
             //call validateChangePricePlan
-            ChangePricePlanService.getChangePricePlan($scope.SubNo, $scope.OUID, function (result) {
+            ChangePricePlanService.getChangePricePlan($scope.SubNo, $scope.OUID, function(result) {
                 console.log(result);
                 if (result.status) {
                     $scope.data = result.data;
@@ -317,8 +317,7 @@ smartApp.controller('ChangePricePlanController', function (
                     }
                     if ($scope.Level == "OU") {
                         $scope.isReadCardSuccess = false;
-                    }
-                    else {
+                    } else {
                         $scope.isReadCardSuccess = true;
                     }
 
@@ -328,7 +327,7 @@ smartApp.controller('ChangePricePlanController', function (
                     //$scope.getPriceplan();
 
                     if ($scope.shopType == "1") {
-                        setTimeout(function () {
+                        setTimeout(function() {
 
                             SystemService.calendarDatePicker();
 
@@ -363,7 +362,7 @@ smartApp.controller('ChangePricePlanController', function (
                         });
                         $("#btn-fancy-ReadCard").fancybox().trigger('hide');
                         if (result.data["display-messages"].length == 0) {
-                            setTimeout(function () {
+                            setTimeout(function() {
 
                                 $scope.initModalReadCard();
 
@@ -373,7 +372,7 @@ smartApp.controller('ChangePricePlanController', function (
                     } else {
 
                         $scope.isCustomerProfile = true;
-                        setTimeout(function () {
+                        setTimeout(function() {
 
                             $('#loadingReadCard2').hide();
                             $('#unMatch2').hide();
@@ -385,7 +384,7 @@ smartApp.controller('ChangePricePlanController', function (
                     if (!$scope.isNonePartner && $scope.shopType == '1') {
                         $scope.data = {};
                         $scope.isNonePartner = true;
-                        setTimeout(function () {
+                        setTimeout(function() {
                             $scope.openSSO();
 
                         }, 1000);
@@ -397,7 +396,7 @@ smartApp.controller('ChangePricePlanController', function (
                     //error
                     SystemService.hideLoading();
                     //error
-                    setTimeout(function () {
+                    setTimeout(function() {
                         if ($scope.isNullSubNo) {
                             SystemService.showAlert({
                                 "message": result.data["display-messages"][0]["message"],
@@ -425,7 +424,7 @@ smartApp.controller('ChangePricePlanController', function (
             });
 
             //call getCUGId
-            ChangePricePlanService.getCUGList(function (result) {
+            ChangePricePlanService.getCUGList(function(result) {
                 $scope.cugList = result.data["cug-list"];
                 //alert($scope.cugList.length);
             });
@@ -435,26 +434,26 @@ smartApp.controller('ChangePricePlanController', function (
         //}
     };
 
-    $scope.onSelectCUG = function (item) {
+    $scope.onSelectCUG = function(item) {
         $scope.isSelectCUGList = true;
         console.log(item);
         $scope.selectCUG = item;
     };
-    $scope.onBeforeWarning = function () {
+    $scope.onBeforeWarning = function() {
 
         $scope.initModalReadCard();
 
     };
-    $scope.getPriceplan = function () {
+    $scope.getPriceplan = function() {
         // $scope.pricePlanFilter.value = "";
 
         SystemService.showLoading();
         console.log($scope.data.priceplan);
 
         var target = 'sales/catalog/product/tmv/priceplan/aftersales-priceplan-groupsearch?' +
-                'company-code=' + $scope.data.priceplan['company-code'] + '&' +
-                'customer-type=' + $scope.data.priceplan['account-category'] + '&' +
-                'customer-subtype=' + $scope.data.priceplan['account-sub-type'];
+            'company-code=' + $scope.data.priceplan['company-code'] + '&' +
+            'customer-type=' + $scope.data.priceplan['account-category'] + '&' +
+            'customer-subtype=' + $scope.data.priceplan['account-sub-type'];
 
         if (SystemService.checkObj($scope.data.priceplan, ["product-id"])) {
             target += '&current-priceplan=' + $scope.data.priceplan['product-id'];
@@ -471,8 +470,7 @@ smartApp.controller('ChangePricePlanController', function (
                     if (Number(propositionList[i]["contract-fee"]) > 0) {
                         currentPropositions = currentPropositions + (currentPropositions ? "," : "&current-propositions=") + propositionList[i]["product-id"];
                     }
-                } catch (e) {
-                }
+                } catch (e) {}
             }
         }
         //check discount
@@ -485,8 +483,7 @@ smartApp.controller('ChangePricePlanController', function (
                 try {
                     currentDiscounts = currentDiscounts + (currentDiscounts ? "," : "&current-discounts=") + discountList[i]["product-id"];
 
-                } catch (e) {
-                }
+                } catch (e) {}
             }
         }
         //add parameter
@@ -514,13 +511,13 @@ smartApp.controller('ChangePricePlanController', function (
         }
 
         //call Priceplan
-        ChangePricePlanService.getPriceplan(target, function (resultGetPriceplan) {
+        ChangePricePlanService.getPriceplan(target, function(resultGetPriceplan) {
             if (resultGetPriceplan.status) {
                 console.log($scope.aftersalePriceplans);
                 $scope.propositionList = [];
                 $scope.propositions = [];
                 valPricePlans = [];
-                var makeDataPriceplan = function (arr, proName, proCode) {
+                var makeDataPriceplan = function(arr, proName, proCode) {
                     if (arr && arr != undefined && arr != null) {
                         for (var i = 0; i < arr.length; i++) {
                             var item = {
@@ -541,6 +538,31 @@ smartApp.controller('ChangePricePlanController', function (
 
                         $scope.propositionList = $filter('filter')(valPricePlans, $scope.pricePlanFilter.value);
                         console.log($scope.propositionList);
+
+                        setTimeout(function() {
+
+                            var id = "selectProposition";
+                            var select_box = document.getElementById(id);
+                            if(select_box.options.length > 10){
+                                select_box.size = 10;
+                            }else{
+                                select_box.size = select_box.options.length;
+                            }
+                            
+                            $('#selectProposition').focus();
+                            $('#selectProposition').click(function() {
+                                select_box.size = 1;
+                            });
+                            $('#selectProposition').blur(function() {
+                                select_box.size = 1;
+                            });
+                            $('#selectProposition').keydown(function(e) {
+                                var charCode = (e.which) ? e.which : e.keyCode;
+                                if (charCode == 13)
+                                    select_box.size = 1;
+                            });
+
+                        }, 1200);
                     }
 
                 };
@@ -568,7 +590,7 @@ smartApp.controller('ChangePricePlanController', function (
                 $scope.isLoadPricePlan = true;
                 SystemService.hideLoading();
 
-                
+
 
             } else {
                 $scope.propositionList = [];
@@ -576,7 +598,7 @@ smartApp.controller('ChangePricePlanController', function (
 
                 SystemService.hideLoading();
                 //error
-                setTimeout(function () {
+                setTimeout(function() {
                     SystemService.showAlert({
                         "message": resultGetPriceplan.data["display-messages"][0]["message"],
                         "message-code": resultGetPriceplan.data["display-messages"][0]["message-code"],
@@ -590,12 +612,12 @@ smartApp.controller('ChangePricePlanController', function (
             }
         });
     };
-    $scope.getOfferDetail = function (soc) {
+    $scope.getOfferDetail = function(soc) {
         $scope.clearSP()
         SystemService.showLoading();
         console.log(soc);
         //call offerDetail route 1
-        ChangePricePlanService.getOfferDetail(soc, function (resultOfferDetail) {
+        ChangePricePlanService.getOfferDetail(soc, function(resultOfferDetail) {
 
             if (resultOfferDetail.status) {
                 SystemService.hideLoading();
@@ -618,13 +640,15 @@ smartApp.controller('ChangePricePlanController', function (
                     }
                     if (sp == 'FriendAndFamily') {
                         $scope.specialOfferType.FF = true;
-                        var crodList = $filter('filter')($scope.offerDetail["csm-offer-details"]["csm-related-offer-details"], { "special-offer-type": sp });
+                        var crodList = $filter('filter')($scope.offerDetail["csm-offer-details"]["csm-related-offer-details"], {
+                            "special-offer-type": sp
+                        });
                         console.log('crodList :::: ');
                         console.log(crodList);
                         var code = crodList[0]["code"];
 
                         //call offerDetail route 2
-                        ChangePricePlanService.getOfferDetail(code, function (resultOfferDetail2) {
+                        ChangePricePlanService.getOfferDetail(code, function(resultOfferDetail2) {
                             console.log("resultOfferDetail2 :::: ");
                             console.log(resultOfferDetail2);
                             $scope.offerDetailRoute2 = resultOfferDetail2.data;
@@ -648,7 +672,7 @@ smartApp.controller('ChangePricePlanController', function (
         });
     };
 
-    $scope.readCardError = function (msg) {
+    $scope.readCardError = function(msg) {
         $.fancybox.close();
         SystemService.showAlert({
             "message": msg,
@@ -660,11 +684,11 @@ smartApp.controller('ChangePricePlanController', function (
         });
     };
 
-    $scope.initModalReadCard = function () {
+    $scope.initModalReadCard = function() {
         if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
             $("#btn-fancy-ReadCard").fancybox().trigger('click');
         }
-        setTimeout(function () {
+        setTimeout(function() {
             $('#loadingReadCard').hide();
             $('#loadingReadCard2').hide();
             $('#unMatch2').hide();
@@ -675,7 +699,7 @@ smartApp.controller('ChangePricePlanController', function (
 
             if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
                 $('#CitizenID').prop('disabled', false);
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#btnSSO').hide();
                 }, 100);
 
@@ -687,7 +711,7 @@ smartApp.controller('ChangePricePlanController', function (
             $('input[type=reset]').show();
         }, 200);
     }
-    $scope.openSSO = function () {
+    $scope.openSSO = function() {
         //var new_window = window.open('', "MsgWindow", "width=320, height=240");
         //new_window.onbeforeunload = function () {
         //    alert('close');
@@ -697,10 +721,10 @@ smartApp.controller('ChangePricePlanController', function (
 
 
 
-        var openDialog = function (uri, name, options, closeCallback) {
+        var openDialog = function(uri, name, options, closeCallback) {
             var win = window.open(uri, name, options);
 
-            var interval = window.setInterval(function () {
+            var interval = window.setInterval(function() {
 
                 try {
                     if (win == null || win.closed) {
@@ -708,9 +732,7 @@ smartApp.controller('ChangePricePlanController', function (
                         closeCallback(win);
                     }
 
-                }
-                catch (e) {
-                }
+                } catch (e) {}
             }, 1000);
             return win;
         };
@@ -720,10 +742,10 @@ smartApp.controller('ChangePricePlanController', function (
 
         if ($scope.getAuthen["isSecondAuthen"]) {
 
-            openDialog(url, "MsgWindow", "width=800, height=600", function (w) {
+            openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
                 //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
                 SystemService.showLoading();
-                SystemService.second_authen($scope.TrxID, function (result) {
+                SystemService.second_authen($scope.TrxID, function(result) {
                     //alert(result["status"]);
                     SystemService.hideLoading();
                     console.log(result);
@@ -734,7 +756,7 @@ smartApp.controller('ChangePricePlanController', function (
                         $.fancybox.close();
                         //unsuccessul
 
-                        setTimeout(function () {
+                        setTimeout(function() {
                             SystemService.showAlert({
                                 "message": result["display-messages"][0]["message"],
                                 "message-code": result["display-messages"][0]["message-code"],
@@ -754,10 +776,10 @@ smartApp.controller('ChangePricePlanController', function (
             $scope.manualInputReadCard();
         }
     };
-    $scope.checkPartnet = function () {
+    $scope.checkPartnet = function() {
         //$('#btnSSO').hide();
     };
-    $scope.manualInputReadCard = function () {
+    $scope.manualInputReadCard = function() {
 
         $('#loadingReadCard').hide();
         $('#loadingReadCard2').hide();
@@ -765,7 +787,7 @@ smartApp.controller('ChangePricePlanController', function (
         $('#unMatch2').hide();
         $('#CitizenID').prop('disabled', false);
 
-        setTimeout(function () {
+        setTimeout(function() {
             $('#CitizenID').val('');
             $('#CitizenID').select();
         }, 100);
@@ -779,7 +801,7 @@ smartApp.controller('ChangePricePlanController', function (
 
     var isFocus = false;
 
-    $scope.validateUI = function () {
+    $scope.validateUI = function() {
         var countFF = 0;
         $scope.attModalVal = "";
         for (var i = 1; i <= $scope.ffData.max; i++) {
@@ -816,20 +838,20 @@ smartApp.controller('ChangePricePlanController', function (
         }
         var errorAuthorizeID = false;
         var errorAuthorizeName = false;
-        if ($('#authorize').prop('checked')) {//กดมอบอำนาจ:
-            if ($('#CitizenID2').val()) {// ไม่เป็นค่าว่าง
+        if ($('#authorize').prop('checked')) { //กดมอบอำนาจ:
+            if ($('#CitizenID2').val()) { // ไม่เป็นค่าว่าง
 
-            } else {// เป็นค่าว่าง
+            } else { // เป็นค่าว่าง
                 errorAuthorizeID = true;
             }
-            if ($('#authorizeFullName').val()) {// ไม่เป็นค่าว่าง
+            if ($('#authorizeFullName').val()) { // ไม่เป็นค่าว่าง
 
-            } else {// เป็นค่าว่าง
+            } else { // เป็นค่าว่าง
                 errorAuthorizeName = true;
             }
         }
 
-        var showValidate = function (id, msg) {
+        var showValidate = function(id, msg) {
             if (isFocus) {
                 $('#' + id).focus();
 
@@ -852,7 +874,7 @@ smartApp.controller('ChangePricePlanController', function (
                 //$('#' + id).focus();
             }
         };
-        var checkCapmaxNull = function (val) {
+        var checkCapmaxNull = function(val) {
             if (val == '' || val == 'null') {
                 return true;
             } else {
@@ -920,7 +942,7 @@ smartApp.controller('ChangePricePlanController', function (
         }
     };
 
-    $scope.printOrder = function () {
+    $scope.printOrder = function() {
 
         $scope.isValidateFF = true;
         $scope.attModalVal = "modal";
@@ -953,7 +975,7 @@ smartApp.controller('ChangePricePlanController', function (
             "district": "",
             "amphur": "",
             "province": ""
-            //NEW---
+                //NEW---
         };
         if ($scope.isCardValueData) {
             cardValueData.photoType = "SC";
@@ -985,7 +1007,7 @@ smartApp.controller('ChangePricePlanController', function (
                 "district": $scope.cardInfo.District,
                 "amphur": $scope.cardInfo.Amphur,
                 "province": $scope.cardInfo.Province
-                //NEW---
+                    //NEW---
             };
 
         }
@@ -1037,7 +1059,7 @@ smartApp.controller('ChangePricePlanController', function (
                 "district": cardValueData["district"],
                 "amphur": cardValueData["amphur"],
                 "province": cardValueData["province"]
-                //NEW---
+                    //NEW---
 
 
             },
@@ -1058,9 +1080,9 @@ smartApp.controller('ChangePricePlanController', function (
         console.log(data);
         //api generatePDF
         var srcPDF = "";
-        SystemService.generatePDF(data, function (result) {
+        SystemService.generatePDF(data, function(result) {
             var url = result;
-            setTimeout(function () {
+            setTimeout(function() {
 
                 //var browser = navigator.appName;
                 //if (browser == "Microsoft Internet Explorer") {
@@ -1073,7 +1095,7 @@ smartApp.controller('ChangePricePlanController', function (
                 //            f.print();
                 //        }
                 //    }
-                //} else {//firefox, chorme		
+                //} else {//firefox, chorme     
                 //    var frame = document.getElementById("iframePDF")
                 //    frame.src = url;
                 //    if ($scope.shopType == "1") {
@@ -1087,8 +1109,12 @@ smartApp.controller('ChangePricePlanController', function (
                 var srcPDF = url;
                 document.getElementById('iframePDF').src = url + '?clearData=N';
                 if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                    setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000);
-                    setTimeout(function () { document.getElementById('iframePDF').src = srcPDF }, 2500);
+                    setTimeout(function() {
+                        document.getElementById('iframePDF').src = 'javascript:window.print();'
+                    }, 2000);
+                    setTimeout(function() {
+                        document.getElementById('iframePDF').src = srcPDF
+                    }, 2500);
                 }
 
 
@@ -1098,18 +1124,18 @@ smartApp.controller('ChangePricePlanController', function (
         });
     };
     $scope.isClickPrint = true;
-    $scope.noneShopPrint = function () {
+    $scope.noneShopPrint = function() {
         $scope.isClickPrint = true;
         $scope.validateUI();
     };
 
-    $scope.onModalCUG = function () {
+    $scope.onModalCUG = function() {
         //$scope.onCancelCUG();
         $scope.isSelectCUGList = false;
         $('.radioCUG').prop('checked', false);
     }
 
-    $scope.onSetValueCUG = function () {
+    $scope.onSetValueCUG = function() {
         var s = $scope.selectCUG;
         $scope.saveSelectCUG = s;
         console.log($scope.saveSelectCUG);
@@ -1118,19 +1144,23 @@ smartApp.controller('ChangePricePlanController', function (
             id: $scope.saveSelectCUG['group-id']
         };
     };
-    $scope.onCancelCUG = function () {
+    $scope.onCancelCUG = function() {
         $scope.isSelectCUGList = false;
         $scope.saveDataCUG.filter = "";
         $scope.saveDataCUG = {};
         $scope.selectCUG = {};
         $('.radioCUG').prop('checked', false);
     };
-    $scope.onFilterCUGId = function () {
+    $scope.onFilterCUGId = function() {
         $scope.isSelectCUGList = false;
         if ($scope.saveDataCUG.filter) {
             //$scope.onSearchCUG()
-            var list = $filter('filter')($scope.cugList, { 'group-id': $scope.saveDataCUG.filter });
-            var list2 = $filter('filter')($scope.cugList, { 'group-name': $scope.saveDataCUG.filter });
+            var list = $filter('filter')($scope.cugList, {
+                'group-id': $scope.saveDataCUG.filter
+            });
+            var list2 = $filter('filter')($scope.cugList, {
+                'group-name': $scope.saveDataCUG.filter
+            });
             var l = list.length + list2.length;
             //alert(list.length);
             if (l == 1) {
@@ -1150,7 +1180,7 @@ smartApp.controller('ChangePricePlanController', function (
 
         }
     };
-    $scope.onCheckFF = function () {
+    $scope.onCheckFF = function() {
         for (var i = 1; i <= $scope.ffData.max; i++) {
             if ($scope.saveParamData["ff" + i]) {
                 if ($scope.saveParamData["ff" + i].length < 3) {
@@ -1161,7 +1191,7 @@ smartApp.controller('ChangePricePlanController', function (
         }
     };
     $scope.isNumberFF = false;
-    $scope.onInputFF = function (charCode) {
+    $scope.onInputFF = function(charCode) {
         //console.log(charCode);
         var bool = SystemService.checkInputTel(charCode);
         $scope.isNumberFF = !bool;
@@ -1169,8 +1199,8 @@ smartApp.controller('ChangePricePlanController', function (
     };
 
 
-      $scope.isNumberVolume = false;
-    $scope.onInputVolume = function (charCode) {
+    $scope.isNumberVolume = false;
+    $scope.onInputVolume = function(charCode) {
         //console.log(charCode);
         var bool = SystemService.checkInputTel(charCode);
         $scope.isNumberVolume = !bool;
@@ -1178,7 +1208,7 @@ smartApp.controller('ChangePricePlanController', function (
     };
 
     $scope.isNumberMonetary = false;
-    $scope.onInputMonetary = function (charCode) {
+    $scope.onInputMonetary = function(charCode) {
         //console.log(charCode);
         var bool = SystemService.checkInputTel(charCode);
         $scope.isNumberMonetary = !bool;
@@ -1186,7 +1216,7 @@ smartApp.controller('ChangePricePlanController', function (
     };
 
     $scope.isNumberOccurrence = false;
-    $scope.onInputOccurrence = function (charCode) {
+    $scope.onInputOccurrence = function(charCode) {
         //console.log(charCode);
         var bool = SystemService.checkInputTel(charCode);
         $scope.isNumberOccurrence = !bool;
@@ -1194,7 +1224,7 @@ smartApp.controller('ChangePricePlanController', function (
     };
 
     $scope.isNumberDuration = false;
-    $scope.onInputDuration = function (charCode) {
+    $scope.onInputDuration = function(charCode) {
         //console.log(charCode);
         var bool = SystemService.checkInputTel(charCode);
         $scope.isNumberDuration = !bool;
@@ -1202,7 +1232,7 @@ smartApp.controller('ChangePricePlanController', function (
     };
 
 
-    $scope.saveOrder = function () {
+    $scope.saveOrder = function() {
         if ($('.dateManual').val()) {
             $scope.saveData['EFFECTIVE-DATE'] = $('.dateManual').val();
             $scope.saveData['EFFECTIVE-OPTION'] = 'FUTURE';
@@ -1232,7 +1262,7 @@ smartApp.controller('ChangePricePlanController', function (
                     "contact-number": $scope.data.customerProfile["contact-number"],
                     "id-type": $scope.data.customerProfile["id-type"],
                     "customer-id": $scope.data.customerProfile["customer-id"],
-                    "id-number": $scope.data.customerProfile["id-number"]//,"birthdate":"2015-08-12T08:30:00+0700"//yyyy-MM-dd'T'HH:mm:ssZ
+                    "id-number": $scope.data.customerProfile["id-number"] //,"birthdate":"2015-08-12T08:30:00+0700"//yyyy-MM-dd'T'HH:mm:ssZ
                 },
                 //จะสร้างโดย service JAVA
                 "sale-agent": {
@@ -1405,7 +1435,7 @@ smartApp.controller('ChangePricePlanController', function (
         } else {
             if ($scope.isValidate && $scope.isValidateFF) {
 
-                SystemService.callServicePost(data, headers, function (result) {
+                SystemService.callServicePost(data, headers, function(result) {
                     console.log(result);
                     if (result.status) {
                         SystemService.showBeforeClose({
@@ -1426,7 +1456,7 @@ smartApp.controller('ChangePricePlanController', function (
             }
         }
     };
-    $scope.confirmPrint = function () {
+    $scope.confirmPrint = function() {
         //confirm
         //SystemService.showBeforeClose({
         //    "message": "รายการคำขอเลขที่ " + $scope.orderId,
@@ -1439,11 +1469,11 @@ smartApp.controller('ChangePricePlanController', function (
 
         //});
     };
-    $scope.ReadCardMockUp = function (personId) {
+    $scope.ReadCardMockUp = function(personId) {
         //var certificateID = smartCardReaderService.readCardMockUp(personId);
         var certificateID = personId;
 
-        ChangePricePlanService.getChangePricePlan($scope.SubNo, $scope.OUID, function (result) {
+        ChangePricePlanService.getChangePricePlan($scope.SubNo, $scope.OUID, function(result) {
 
             document.getElementById('btnReadCardClose2').click();
             $('input[type=submit]').show();
@@ -1455,7 +1485,7 @@ smartApp.controller('ChangePricePlanController', function (
             $scope.isReadCardSuccess = true;
         });
     };
-    $scope.SetCardValue = function (result) {
+    $scope.SetCardValue = function(result) {
         $('#loadingReadCard').hide();
         $('#loadingReadCard2').hide();
         $('#unMatch2').hide();
@@ -1475,7 +1505,7 @@ smartApp.controller('ChangePricePlanController', function (
             $scope.isCustomerProfile = true;
             $.fancybox.close();
 
-            setTimeout(function () {
+            setTimeout(function() {
                 $('#idBindDataAgain').click();
             }, 500);
 
@@ -1493,7 +1523,7 @@ smartApp.controller('ChangePricePlanController', function (
 
     }
 
-    $scope.onInputId2 = function () {
+    $scope.onInputId2 = function() {
         var cid = $('#CitizenID2').val();
         if (cid.length == 13) {
             if (SystemService.validatePID(cid)) {
@@ -1503,7 +1533,7 @@ smartApp.controller('ChangePricePlanController', function (
             }
         }
     };
-    $scope.SetCardValue2 = function (result) {
+    $scope.SetCardValue2 = function(result) {
         $('#loadingReadCard2').hide();
 
         $scope.cardInfo2 = eval(result);
@@ -1520,7 +1550,7 @@ smartApp.controller('ChangePricePlanController', function (
     }
 
     $scope.isManualReadCard = true;
-    $scope.onInputId = function () {
+    $scope.onInputId = function() {
         console.log($('#CitizenID').val().length);
         var cid = $('#CitizenID').val();
 
@@ -1559,7 +1589,7 @@ smartApp.controller('ChangePricePlanController', function (
     }
     $scope.customDialogOptions = {
         templateUrl: 'app/views/ngBootbox-template.html?v=' + runTime,
-        onEscape: function () {
+        onEscape: function() {
             console.log('Escape was pressed');
         },
         show: true,
@@ -1589,9 +1619,9 @@ smartApp.controller('ChangePricePlanController', function (
     };
 
     $scope.isSelectedPricePlan = false;
-    $scope.selectedPricePlan = function (pp) {
+    $scope.selectedPricePlan = function(pp) {
 
-        $('#divPage').click(function () {
+        $('#divPage').click(function() {
             $scope.onBlurPricePlanItem();
         });
         //$('#ppfilter').val('');
@@ -1610,7 +1640,7 @@ smartApp.controller('ChangePricePlanController', function (
         console.log(pp);
     };
     $scope.isSelectedPricePlan2 = false;
-    $scope.onBlurPricePlanItem = function () {
+    $scope.onBlurPricePlanItem = function() {
         //alert('');
         if ($scope.isSelectedPricePlan && $('input[name=pricelsx]:checked').val()) {
             $scope.isSelectedPricePlan2 = true;
@@ -1619,10 +1649,10 @@ smartApp.controller('ChangePricePlanController', function (
         }
         $('#idBindDataAgain').click();
     };
-    $scope.selectedPricePlan2 = function () {
+    $scope.selectedPricePlan2 = function() {
         paginationService.setCurrentPage('PPList', 1);
-        var setPPP = function () {
-            setTimeout(function () {
+        var setPPP = function() {
+            setTimeout(function() {
                 $('#selectProposition').focus();
             }, 1000);
             selectProposition = $scope.pricePlan2.code;
@@ -1660,7 +1690,7 @@ smartApp.controller('ChangePricePlanController', function (
         }
     };
 
-    $scope.selectedPricePlan3 = function () {
+    $scope.selectedPricePlan3 = function() {
         $scope.isSelectedPricePlan2 = false;
         if (!$scope.isLoadPricePlan) {
             //call Priceplan
@@ -1683,13 +1713,13 @@ smartApp.controller('ChangePricePlanController', function (
         $('.radioPriceplan').prop('checked', false);
 
     };
-    $scope.focusPricePlanFilter = function () {
+    $scope.focusPricePlanFilter = function() {
         if (!$scope.isLoadPricePlan && $scope.isCustomerProfile) {
             //call Priceplan
             $scope.getPriceplan();
         }
     };
-    $scope.selectedPricePlan4 = function () {
+    $scope.selectedPricePlan4 = function() {
         $scope.selectProposition = "null";
 
         //$('#selectProposition').val($scope.selectProposition);
@@ -1699,7 +1729,7 @@ smartApp.controller('ChangePricePlanController', function (
 
         console.log($scope.selectProposition);
     };
-    $scope.onCancelPricePlan = function () {
+    $scope.onCancelPricePlan = function() {
         //$('#ppfilter').val("");
         //$('#ppfilter2').val("");
         $scope.pricePlanFilter.value = "";
@@ -1707,8 +1737,8 @@ smartApp.controller('ChangePricePlanController', function (
         // $scope.onClearPricePlan();
     };
 
-    $scope.getCapmaxParameter = function (soc) {
-        var checkValue = function (capmax) {
+    $scope.getCapmaxParameter = function(soc) {
+        var checkValue = function(capmax) {
             var value = "";
             if (capmax == "0") {
                 //value = "0";
@@ -1723,7 +1753,7 @@ smartApp.controller('ChangePricePlanController', function (
             }
             return value;
         };
-        var checkValueCapmax = function (capmax) {
+        var checkValueCapmax = function(capmax) {
             var value = "";
             if (capmax == "0") {
                 //value = "0";
@@ -1738,7 +1768,7 @@ smartApp.controller('ChangePricePlanController', function (
             }
             return value;
         };
-        ChangePricePlanService.getCapmaxParameter(soc, function (result) {
+        ChangePricePlanService.getCapmaxParameter(soc, function(result) {
             console.log(result.data);
             $scope.capMaxParameterList = result.data['cap-max-parameter'];
 
@@ -1764,12 +1794,11 @@ smartApp.controller('ChangePricePlanController', function (
 
     $scope.promotion = "";
     var selectProposition = '';
-    $scope.selectedPromotion = function () {
+    $scope.selectedPromotion = function() {
 
         $scope.selectProposition = $('#selectProposition').val() == 'null' ? '' : $('#selectProposition').val();
         //alert(selectProposition+":"+$scope.selectProposition);
-        if (selectProposition == $scope.selectProposition) {
-        } else {
+        if (selectProposition == $scope.selectProposition) {} else {
             selectProposition = $scope.selectProposition;
             $scope.pricePlan = {};
             $scope.isValidate = false;
@@ -1783,14 +1812,16 @@ smartApp.controller('ChangePricePlanController', function (
             };
         }
         console.log($scope.selectProposition);
-        $scope.propositionList = $filter('filter')(valPricePlans, { "proposition-code": $scope.selectProposition });
+        $scope.propositionList = $filter('filter')(valPricePlans, {
+            "proposition-code": $scope.selectProposition
+        });
         console.log($scope.selectProposition, $scope.propositionList);
     };
 
     //End pricePlan
 
     $scope.isAuthorize = false;
-    $scope.authorize = function () {
+    $scope.authorize = function() {
         $scope.isAuthorize = true;
     };
 
@@ -1798,7 +1829,7 @@ smartApp.controller('ChangePricePlanController', function (
     $scope.reasons = [];
     $scope.reason = "";
     $scope.selectReason = {};
-    ReasonService.list("119", function (result) {
+    ReasonService.list("119", function(result) {
         // $scope.reasons = result;
         // $scope.reason = $scope.reasons[86];
         // $scope.selectReason = $scope.reasons[86];
@@ -1820,19 +1851,19 @@ smartApp.controller('ChangePricePlanController', function (
         $scope.reason = $scope.reasons[index];
         $scope.selectReason = $scope.reasons[index];
         //solution for none fix index
-        
+
     });
-    $scope.onReasonChange = function () {
+    $scope.onReasonChange = function() {
         $scope.selectReason = $scope.reasons[$('#selectReasonId').val()];
         console.log($scope.selectReason);
     };
     //end reson
-    $scope.cancelChanged = function () {
+    $scope.cancelChanged = function() {
         closeWP();
         //$window.closed();
     };
 
-    $scope.onClearPricePlan = function () {
+    $scope.onClearPricePlan = function() {
         paginationService.setCurrentPage('PPList', 1);
         //$('#ppfilter').val('');
         //$scope.pricePlanFilter.value = "";
@@ -1851,12 +1882,11 @@ smartApp.controller('ChangePricePlanController', function (
         //$scope.onCancelPOOLED();
         $scope.saveParamData = {};
     };
-    $scope.onCancelFF = function () {
+    $scope.onCancelFF = function() {
 
     };
-    $scope.onCancelPOOLED = function () {
-    };
-    $scope.clearSP = function () {
+    $scope.onCancelPOOLED = function() {};
+    $scope.clearSP = function() {
         $scope.specialOfferType = {
             CUG: false,
             FF: false,
@@ -1873,9 +1903,9 @@ smartApp.controller('ChangePricePlanController', function (
     };
 
     //----------- camera ----------------
-    $scope.initWebCam = function () {
+    $scope.initWebCam = function() {
 
-        setTimeout(function () {
+        setTimeout(function() {
             $('#btnSavePhoto').hide();
             var html = webcam.get_html(320, 240);
             $("#dataCamera").html(html);
@@ -1898,18 +1928,18 @@ smartApp.controller('ChangePricePlanController', function (
         $('#btnSavePhoto').show();
     }
 
-    $scope.webcamSnap = function () {
+    $scope.webcamSnap = function() {
         webcam.snap();
     }
 
 
     //bind data again
-    $scope.onBindDataAgain = function () {
+    $scope.onBindDataAgain = function() {
         //alert('BindDataAgain');
     };
 
 
-    $scope.onSearchCUG = function (item) {
+    $scope.onSearchCUG = function(item) {
         if ($scope.saveDataCUG.filter) {
             var groupName = item['group-name'].toUpperCase();
             var groupId = item['group-id'].toUpperCase();
@@ -1924,7 +1954,7 @@ smartApp.controller('ChangePricePlanController', function (
         return false;
     };
 
-    $scope.onSearchPricePlan = function (item) {
+    $scope.onSearchPricePlan = function(item) {
         if ($scope.pricePlanFilter.value) {
             var groupName = item['group-name'].toUpperCase();
             var groupId = item['group-id'].toUpperCase();
