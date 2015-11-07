@@ -1214,7 +1214,7 @@ smartApp.controller('changeOwnershipController', function(
                     SystemService.hideLoading();
                     console.log(result);
                     $scope.secondAuthenDataLastest = result;
-                    if (result["display-messages"].length == 0) {
+                    if (result["display-messages"] === undefined) {
                         $('#CitizenIDLastest').prop('disabled', false);
 
                         //$scope.approver = result['response-data'][0]['loginName'];
@@ -1265,7 +1265,7 @@ smartApp.controller('changeOwnershipController', function(
                     SystemService.hideLoading();
                     console.log(result);
                     $scope.secondAuthenData = result;
-                    if (result["display-messages"].length == 0) {
+                    if (result["display-messages"] === undefined) {
                         $scope.approver = result['response-data'][0]['loginName'];
                         $scope.manualInputReadCard();
                     } else {
