@@ -17,7 +17,7 @@
                 "response-data": {
                     "customer": {
                         "title": "",
-                        "title-code": "",
+                        "title-code": "T3",
                         "firstname": "พฤกษวดี",
                         "lastname": "พฤกษวดีนงลักษณ์",
                         "birthdate": "1991-09-01T00:00:00+0700",
@@ -33,7 +33,7 @@
                             "product-type": "PRICEPLAN",
                             "product-sub-type": "P",
                             "product-status": null,
-                            "account-category": "B",
+                            "account-category": "P",
                             "account-sub-type": "PRE",
                             "product-id": "R12RMMNP1",
                             "product-name": "R12RMMNP1",
