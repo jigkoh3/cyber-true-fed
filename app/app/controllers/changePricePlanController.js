@@ -41,23 +41,7 @@ smartApp.controller('ChangePricePlanController', function(
         //$ngBootbox.alert('xxxxxxxxxxx');
         //$ngBootbox.customDialog($scope.customDialogOptions);
     };
-    $scope.isEnterPP = false;
-    $scope.openPricePlanDialog = function() {
-        $scope.focusPricePlanFilter();
-        $scope.isEnterPP = false;
-        //var runTime = new Date().getTime();
-        //$ngBootbox.customDialog({
-        //    templateUrl: 'app/views/ngBootbox-pricePlan.html?v=' + runTime,
-        //    onEscape: function () {
-        //        return false;
-        //    },
-        //    show: true,
-        //    backdrop: true,
-        //    closeButton: false,
-        //    animate: true,
-        //    size: 'large'
-        //});
-        //$scope.pricePlanFilter = $('#ppfilter').val();
+    $scope.filterAndOpen = function() {
         var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
         console.log(list.length, $scope.pricePlanFilter.value);
         if (list.length == 1) {
@@ -73,6 +57,18 @@ smartApp.controller('ChangePricePlanController', function(
             SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
 
         }
+    };
+    $scope.isEnterPP = false;
+    $scope.openPricePlanDialog = function() {
+        $scope.isEnterPP = false;
+        if (!$scope.isLoadPricePlan) {
+            //call Priceplan
+            $scope.focusPricePlanFilter();
+        } else {
+            $scope.filterAndOpen();
+        }
+
+
     };
 
     $scope.isSelectCUGList = false;
@@ -564,6 +560,24 @@ smartApp.controller('ChangePricePlanController', function(
                                 });
 
                             }, 1200);
+                        } else {
+                            //เอาไว้พรุ่งนี้
+                            //$scope.filterAndOpen();
+                            // var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
+                            // console.log(list.length, $scope.pricePlanFilter.value);
+                            // // if (list.length == 1) {
+                            // //     $scope.isEnterPP = true;
+                            // //     $scope.selectedPricePlan(list[0]);
+                            // //     $scope.selectedPricePlan2();
+
+                            // // }
+                            // if (list.length > 1 && $scope.pricePlanFilter.value) {
+                            //     $('#modalnewpriceplan').click();
+                            // }
+                            // if (list.length == 0) {
+                            //     SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
+
+                            // }
                         }
                     }
 
