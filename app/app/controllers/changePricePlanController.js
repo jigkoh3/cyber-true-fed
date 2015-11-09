@@ -539,30 +539,32 @@ smartApp.controller('ChangePricePlanController', function(
                         $scope.propositionList = $filter('filter')(valPricePlans, $scope.pricePlanFilter.value);
                         console.log($scope.propositionList);
 
-                        setTimeout(function() {
+                        if (!$scope.pricePlanFilter.value) {
 
-                            var id = "selectProposition";
-                            var select_box = document.getElementById(id);
-                            if(select_box.options.length > 10){
-                                select_box.size = 10;
-                            }else{
-                                select_box.size = select_box.options.length;
-                            }
-                            
-                            $('#selectProposition').focus();
-                            $('#selectProposition').click(function() {
-                                select_box.size = 1;
-                            });
-                            $('#selectProposition').blur(function() {
-                                select_box.size = 1;
-                            });
-                            $('#selectProposition').keydown(function(e) {
-                                var charCode = (e.which) ? e.which : e.keyCode;
-                                if (charCode == 13)
+                            setTimeout(function() {
+                                var id = "selectProposition";
+                                var select_box = document.getElementById(id);
+                                if (select_box.options.length > 10) {
+                                    select_box.size = 10;
+                                } else {
+                                    select_box.size = select_box.options.length;
+                                }
+
+                                $('#selectProposition').focus();
+                                $('#selectProposition').click(function() {
                                     select_box.size = 1;
-                            });
+                                });
+                                $('#selectProposition').blur(function() {
+                                    select_box.size = 1;
+                                });
+                                $('#selectProposition').keydown(function(e) {
+                                    var charCode = (e.which) ? e.which : e.keyCode;
+                                    if (charCode == 13)
+                                        select_box.size = 1;
+                                });
 
-                        }, 1200);
+                            }, 1200);
+                        }
                     }
 
                 };
