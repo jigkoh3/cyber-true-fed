@@ -598,9 +598,12 @@
     };
 
     $scope.SetCardValue2 = function(result) {
+        $('#loadingReadCard2').hide();
         var cardInfo = eval(result);
+        $scope.cardInfo2 = eval(result);
 
         $('#CitizenID2').val(cardInfo.CitizenID);
+        $('#authorizeFullName').val($scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH);
     };
     $scope.dataReadCard3 = {};
     $scope.isDataReadCard3 = false;
