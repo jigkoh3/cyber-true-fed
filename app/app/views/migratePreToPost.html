@@ -230,7 +230,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>เลขที่ประจำตัวผู้เสียภาษี<span style="color:red;">*</span> </label>
-                                    <input name="taxIds" type="text" ng-model="customer['tax-id']" ng-disabled="onChangeCardTypes() || !isCustomerProfile" id="taxId3" placeholder="" class="form-control numberic" maxlength="13" required>
+                                    <input name="taxIds" type="text" ng-model="customer['tax-id']" ng-disabled="disableTaxID || !isCustomerProfile" id="taxId3" placeholder="" class="form-control numberic" maxlength="13" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.taxIds.$error.required">
                                         Required.
                                     </span>-->
@@ -275,7 +275,7 @@
                                 <label>
                                     <p></p>
                                 </label>
-                                <select class="form-control" ng-change="onChangeTitleOther()" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;">
+                                <select class="form-control" ng-change="onChangeTitleOther()" ng-show="checkPrefixT5()" ng-model="titleOther" style="width:100px;" ng-disabled="isCardValueData || !isCustomerProfile">
                                     <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                 </select>
                             </div>
@@ -814,7 +814,7 @@
                                             <button type="button" ng-click="useAddressAsCard('H')" ng-hide="!isCardValueData" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button>
                                         </div>
                                         <div class="col-md-1"></div>
-                                        <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
+                                        <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งเอกสาร <span style="color:red;">*</span></label>
                                         <div class="col-md-3">
                                             <select class="form-control" ng-change="onChangeBillPaymentAccountLang()" ng-model="billPayment.accountLang">
                                                 <option value="TH">ไทย</option>
@@ -1083,15 +1083,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
-                            <div class="col-md-4">
-                                <select class="form-control" ng-model="billPayment.accountLang">
-                                    <option value="TH">ไทย</option>
-                                    <option value="EN">อังกฤษ</option>
-                                </select>
-                            </div>
-                        </div>
+                    
                         <div class="form-group" ng-show="(customerType=='B' || customerType=='C') && shopType=='0'">
                             <div ng-show="shopType=='0'">
                                 <label class="col-md-4 control-label">รอบบิล <span style="color:red;">*</span></label>

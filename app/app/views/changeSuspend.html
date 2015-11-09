@@ -94,7 +94,7 @@
 
                     <!-- <input ng-click="logDataBeforeSubmit()" type="button" value="debug"/> -->
 
-                    <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()"  />
+                    <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!isValidateSave"  />
 
                     <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
 

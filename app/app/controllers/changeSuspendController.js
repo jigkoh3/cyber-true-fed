@@ -154,11 +154,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         ChangeSuspendService.getSIMData($scope.SubNo, onGetSIMData);
-    } else {
-        setTimeout(function() {
-            $('#divShowAuthorize').hide();
-        }, 1000);
-    }
+    } 
 
     $scope.onInputSubNo = function() {
         $scope.subNoInput = $('#dataSubNo').val();
