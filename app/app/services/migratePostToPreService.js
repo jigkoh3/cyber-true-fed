@@ -22,13 +22,20 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
         if (!demo) {
             var target = '/aftersales/tmv/migrateposttopre/validatemigrateposttopre?msisdn=' + msisdn;
 
-            SystemService.callServiceGet(target, null, function(result) {
+            SystemService.callServiceGetByPass(target, null, function(result) {
                 cb(result);
             });
         } else {
             var data = {
                 "status": "SUCCESSFUL",
-                "display-messages": [],
+                "display-messages": [{
+                    "message": "Mobile Number is not found or cancel, Please check and try again.",
+                    "message-code": "TMV-MIGRATE-POST-TO-PRE-00000",
+                    "message-type": "WARNING",
+                    "en-message": "Mobile Number is not found or cancel, Please check and try again.",
+                    "th-message": "ขออภัยไม่พบหมายเลขโทรศัพท์นี้ในระบบ หรือหมายเลขถูกยกเลิก กรุณาตรวจสอบอีกครั้ง",
+                    "technical-message": "xxxxxxxxxxxxxxxx"
+                }],
                 "trx-id": "491T8UKQ6DIDO",
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": {
@@ -194,7 +201,6 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
     this.decorateSIMData = function(data) {
         var msg = utils.getObject(data, 'display-messages');
         console.log(msg);
-
         if (msg.length > 0) {
             setTimeout(function() {
                 if ($routeParams.subno) {
@@ -209,7 +215,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "technical-message": msg[0]["technical-message"]
                     });
                 }
-            }, 1200);
+            }, 2000);
             if (msg[0]['message-type'] == "ERROR") {
                 return false;
             }
