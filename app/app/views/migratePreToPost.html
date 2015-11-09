@@ -230,7 +230,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>เลขที่ประจำตัวผู้เสียภาษี<span style="color:red;">*</span> </label>
-                                    <input name="taxIds" type="text" ng-model="customer['tax-id']" ng-disabled="onChangeCardTypes() || !isCustomerProfile" id="taxId3" placeholder="" class="form-control numberic" maxlength="13" required>
+                                    <input name="taxIds" type="text" ng-model="customer['tax-id']" ng-disabled="disableTaxID || !isCustomerProfile" id="taxId3" placeholder="" class="form-control numberic" maxlength="13" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.taxIds.$error.required">
                                         Required.
                                     </span>-->

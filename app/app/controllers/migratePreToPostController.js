@@ -576,6 +576,7 @@ smartApp.controller('MigratePreToPostController', function(
 
                             // $scope.onInputIdLastest3();
                             $scope.onInputCitizenID3();
+                            $scope.onChangeCardTypes();
 
                             setTimeout(function() {
                                 // $('#divShowAuthorize').hide();
@@ -697,15 +698,16 @@ smartApp.controller('MigratePreToPostController', function(
 
         });
     };
-
+    $scope.disableTaxID = false;
     $scope.onChangeCardTypes = function() {
         // console.log($scope.cardType.value);
-        if ($scope.cardType.value == "I") {
+        if ($scope.data.customerProfile['id-type'] == "I") {
 
             $scope.customer['tax-id'] = $scope.customer['id-number'];
             console.log($scope.customer['tax-id'], $scope.customer['id-number']);
-            return true;
+            $scope.disableTaxID = true;
         } else {
+            $scope.disableTaxID = false;
             $scope.customer['tax-id'] = "0000000000000";
         }
     }
