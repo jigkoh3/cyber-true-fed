@@ -190,7 +190,7 @@ smartApp.controller('changeOwnershipController', function(
 
     $scope.SetCardValue3 = function(result) {
         $('#loadingReadCard3').hide();
-        if (eval(result).CitizenID == $scope.data.customerProfile["id-number"]  || $('#CitizenIDLastest').val() == $scope.data.customerProfile["id-number"]) {
+        if (eval(result).CitizenID == $scope.data.customerProfile["id-number"] || $('#CitizenIDLastest').val() == $scope.data.customerProfile["id-number"]) {
             SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
         } else {
             $scope.isCardValueDataLastest = true;
@@ -867,16 +867,18 @@ smartApp.controller('changeOwnershipController', function(
     $scope.isAddressList = {};
     $scope.onInputCitizenID3 = function() {
         if ($('#citizenID3').val() == $scope.data.customerProfile["id-number"] || $('#CitizenIDLastest').val() == $scope.data.customerProfile["id-number"]) {
-                SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
-            
+            SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
+             
+
             $scope.ClearTxt();
             $scope.customer['id-number'] = "";
+            $('#CitizenIDLastest').val('');
+            // $('#CitizenIDLastest').focus();
+
             return;
-
-
-
         }
 
+              
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;
         if (!$scope.isCardValueDataLastest) {
@@ -1186,6 +1188,7 @@ smartApp.controller('changeOwnershipController', function(
 
             $scope.customer['id-number'] = cid;
             $scope.onInputCitizenID3();
+
 
         }
     };
@@ -1785,6 +1788,21 @@ smartApp.controller('changeOwnershipController', function(
         if (type == 'H') {
             console.log($scope.cardInfo3);
             //$scope.mailAddress = $scope.tempCardAddress;
+            $scope.mailAddress.province = "";
+            $scope.mailAddress.amphur = "";
+            $scope.mailAddress.district = "";
+            $scope.mailAddress.homeNumber = "";
+            $scope.mailAddress.moo = "";
+            $scope.mailAddress.road = "";
+            $scope.mailAddress.soi = "";
+            $scope.mailAddress.trok = "";
+            $scope.mailAddress.postcode = "";
+            $scope.mailAddress.village = "";
+            $scope.mailAddress.buildingName = "";
+            $scope.mailAddress.buildingRoom = "";
+            $scope.mailAddress.buildingFloor = "";
+
+
             $scope.mailAddress.province = $scope.cardInfo3.Province;
             $scope.mailAddress.amphur = $scope.cardInfo3.Amphur;
             $scope.mailAddress.district = $scope.cardInfo3.District;
@@ -3219,7 +3237,8 @@ smartApp.controller('changeOwnershipController', function(
         isFocus = true;
         $scope.initModalReadCard();
 
-
+        $('#CitizenIDLastest').focus();
+        
         if (idFocus) {
             $('#' + idFocus).focus();
             idFocus = "";
