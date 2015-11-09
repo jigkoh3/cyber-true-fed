@@ -27,7 +27,7 @@ smartApp.controller('ResumeController', function(
     $scope.isReadCardSuccess = false;
     $scope.isAuthorize = false;
     $scope.isMatch = true;
-    $scope.isVerify = true; //for demo ============ true
+    $scope.isVerify = false; //for demo ============ true
     $scope.isSelectedPricePlan2 = false;
 
     $scope.demo = SystemService.demo;
