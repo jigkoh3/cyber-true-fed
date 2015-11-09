@@ -1436,6 +1436,26 @@
         }
         //
     };
+    this.getMasterResumeCancel_OA_OS = function() {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "70L32TV3DB7X",
+            "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+            "response-data": {
+                "id": "RESUME-CANCEL-OA-OS",
+                "name": "List of change status resume - old account , ols sim",
+                "description": "List of change status resume - old account , old sim",
+                "configuration-items": [{
+                    "key": "CANCEL-OA-OS",
+                    "value": "CANCEL-OA-OS",
+                    "description": "Resume",
+                    "en-description": "Resume",
+                    "th-description": "Resume"
+                }]
+            }
+        }
+        //
+    };
     //masterData ------//for demo-----
     this.getMasterData = function(target, headers, fnCallback) {
         var result = {};
@@ -1452,10 +1472,12 @@
             result = that.getMasterIdTypeC();
         } else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-I') {
             result = that.getMasterIdTypeI();
-        } else if (target == 'aftersales/configuration/master/SUSPEND-ACTIVE') {
-            result = that.getMasterSuspendActive();
         } else if (target == 'aftersales/configuration/master/CUST-ID-TYPE-P') {
             result = that.getMasterIdTypeP();
+        } else if (target == 'aftersales/configuration/master/SUSPEND-ACTIVE') {
+            result = that.getMasterSuspendActive();
+        } else if (target == 'aftersales/configuration/master/RESUME-CANCEL-OA-OS') {
+            result = that.getMasterResumeCancel_OA_OS();
         } else {
             status = false;
         }

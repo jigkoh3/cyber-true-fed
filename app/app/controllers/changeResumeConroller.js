@@ -10,6 +10,7 @@ smartApp.controller('ResumeController', function(
     ChangePricePlanService,
     paginationService,
     ValidateMsgService,
+    ChangeSwapSimService,
     $filter,
     $window) {
 
@@ -26,7 +27,7 @@ smartApp.controller('ResumeController', function(
     $scope.isReadCardSuccess = false;
     $scope.isAuthorize = false;
     $scope.isMatch = true;
-    $scope.isVerify = false; //for demo ============ true
+    $scope.isVerify = true; //for demo ============ true
     $scope.isSelectedPricePlan2 = false;
 
     $scope.demo = SystemService.demo;
@@ -53,6 +54,13 @@ smartApp.controller('ResumeController', function(
     // $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
     $scope.lastestCustomer = {};
 
+    $scope.activeDate = "";
+
+    //swapSime
+    $scope.simSerial = "";
+    $scope.simSerialLength = 18;
+
+
 
     //paging
     $scope.currentPage = 1;
@@ -76,7 +84,10 @@ smartApp.controller('ResumeController', function(
 
     setTimeout(function() {
         SystemService.validateNummeric();
-
+        //set effectDate
+        $('#divEffer').width(250);
+        $('#efferNow').removeClass('hidden');
+        $('#efferNow').addClass('active');
     }, 1000);
     //SystemService.genDatePicker();
     SystemService.calendarDatePicker();
@@ -562,7 +573,7 @@ smartApp.controller('ResumeController', function(
                         // }, 2000);
                         if (result.status) {
                             $scope.data = result;
-                            console.log($scope.data.customerProfile['PRODUCT-STATUS-DATE']);
+                            console.log(result);
                             $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
                             $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
                             $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];
@@ -572,12 +583,21 @@ smartApp.controller('ResumeController', function(
                             $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                             $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                             $scope.cardType.value = $scope.data.customerProfile['id-type'];
-                            $scope.activeDate = formatActiveDate($scope.data.customerProfile['PRODUCT-STATUS-DATE']);
+                            $scope.activeDate = formatActiveDate($scope.data.installedProducts["product-properties"]['PRODUCT-STATUS-DATE']);
 
                             $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
                             // $scope.onInputIdLastest3();
                             $scope.onInputCitizenID3();
+
+                            $scope.onChangeCardTypes();
+
+                            //get list dropdown status
+                            SystemService.getMaster_list($scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-CODE"], function(result) {
+                                console.log(result);
+                                $scope.statusList = result;
+                                $scope.statusChange = result[0]['value'];
+                            });
 
                             setTimeout(function() {
                                 // $('#divShowAuthorize').hide();
@@ -699,15 +719,16 @@ smartApp.controller('ResumeController', function(
 
         });
     };
-
+    $scope.isDDDISS = false;
     $scope.onChangeCardTypes = function() {
         // console.log($scope.cardType.value);
-        if ($scope.cardType.value == "I") {
+        if ($scope.data.customerProfile['id-type'] == "I") {
 
             $scope.customer['tax-id'] = $scope.customer['id-number'];
             console.log($scope.customer['tax-id'], $scope.customer['id-number']);
-            return true;
+            $scope.isDDDISS = true;
         } else {
+            $scope.isDDDISS = false;
             $scope.customer['tax-id'] = "0000000000000";
         }
     }
@@ -749,9 +770,9 @@ smartApp.controller('ResumeController', function(
         $scope.isNumberDuration = !bool;
         return bool;
     };
-
     var formatActiveDate = function(date) {
         if (date) {
+            //input: 20/10/2016
             if (date.indexOf("/") >= 0) {
                 var arrDate = date.split("/");
                 var strDate = arrDate[0] + "/" + arrDate[1] + "/" + (Number(arrDate[2]) + 543);
@@ -759,8 +780,17 @@ smartApp.controller('ResumeController', function(
                 return strDate;
 
             } else {
+                //input: 2015-08-28T00:00:00.000+07:00
+                if (date.indexOf("T") >= 0) {
+                    var arrDate = date.split("T");
+                    arrDate = arrDate[0].split("-");
+                    var strDate = arrDate[2] + "/" + arrDate[1] + "/" + (Number(arrDate[0]) + 543);
+                    return strDate;
 
-                return date;
+                } else {
+                    //input: ???
+                    return date;
+                }
             }
             /*if (!date) return date;
 
@@ -1438,7 +1468,8 @@ smartApp.controller('ResumeController', function(
     $scope.billPayment = {
         email: "",
         smss: "",
-        accountLang: "TH"
+        accountLang: "TH",
+        preferedContace: "NONE"
     };
     $scope.onCheckEmail = function() {
         //SystemService.setValidateEmail($scope.billPayment.email);
@@ -3184,6 +3215,7 @@ smartApp.controller('ResumeController', function(
         });
     }, 3000);
 
+
     $scope.checkValidateSave = function() {
         console.log($scope.isAuthorize);
         if ($scope.isAuthorize) {
@@ -3336,6 +3368,87 @@ smartApp.controller('ResumeController', function(
 
         }
     };
+    $scope.fixPreferedContact = "";
+    $scope.onChangePreferedContact = function() {
+        if ($scope.billPayment.preferedContace != "FIX") {
+            $scope.fixPreferedContact = "";
+        }
+        console.log($scope.billPayment.preferedContace);
+    };
+    // Validate new SIM
+    var validateSIMType = function(simType) {
+        return jQuery.inArray(simType, ['1', '3', '5', 'S']) === -1 ? false : true;
+    };
+    var validateResourceStatus = function(resourceStatus) {
+        return resourceStatus === 'AVAILABLE' ? true : false;
+    };
+
+    $scope.onInputSIMSerial = function() {
+        if ($scope.simSerial.length === $scope.simSerialLength) {
+            var data = {
+                'sim-serial': $scope.simSerial,
+                'dealer-code': $scope.dealerCode,
+                'company-code': $scope.data.installedProducts['company-code'],
+                'mobile-servicetype': $scope.data.installedProducts['mobile-servicetype'] == 'PREPAID' ? 'PREPAID' : 'POSTPAID'
+                    //,'product-code': $scope.productCodes,
+                    //'pair-msisdn': $scope.SubNo
+            };
+
+            if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == true) {
+                data['product-code'] = $scope.productCodes;
+            }
+            console.log(data);
+            ChangeSwapSimService.validateSIM(data, function(result) {
+                var displayMsg = utils.getObject(result.data, 'display-messages.0');
+
+                if (displayMsg && displayMsg['message-type']) {
+                    $('#simSerial').prop('disabled', false);
+                    SystemService.showAlert({
+                        "message": result.data["display-messages"][0]["message"],
+                        "message-code": result.data["display-messages"][0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": result.data["display-messages"][0]["en-message"],
+                        "th-message": result.data["display-messages"][0]["th-message"],
+                        "technical-message": result.data["display-messages"][0]["technical-message"]
+                    });
+                    //SystemService.showAlert(displayMsg);
+                } else {
+                    $('#simSerial').prop('disabled', true);
+                }
+
+                $scope.printAble = false;
+
+                if (result.data) {
+                    var simDetails = utils.getObject(result.data, 'response-data.sim-detail');
+                    $scope.data.simDetails = simDetails;
+
+                    if (
+                        // TODO: Validate (See Page 10 - NO 6)
+                        // TODO: Validate (See Page 10 - NO 7)
+                        validateSIMType(simDetails['sim-type']) &&
+                        validateResourceStatus(simDetails['resource-status'])
+                        // TODO: Validate (See Page 10 - NO 10)
+                        // TODO: Validate (See Page 10 - NO 11)
+                        // TODO: Validate (See Page 10 - NO 12)
+                    ) {
+                        $scope.printAble = true;
+
+                        if ($scope.shopType === '1') {
+                            //$scope.openPDFDialog();
+                        }
+                    } else {
+                        alert('หมายเลขซิมการ์ดใหม่ ไม่ถูกต้อง'); // ปรับ alert message
+
+                    }
+                }
+            });
+        } else {
+            $scope.printAble = false;
+        }
+    };
+
+
+
     $scope.noneShopPrint = function() {
         $scope.isClickPrint = true;
         $scope.validateUI();

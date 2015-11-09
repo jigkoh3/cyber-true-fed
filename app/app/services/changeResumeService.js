@@ -12,47 +12,48 @@
             var data = {
                 "status": "SUCCESSFUL",
                 "display-messages": [],
-                "trx-id": "4TA3KLOQ7L5Y",
+                "trx-id": "49L7TCDX15DD",
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": {
                     "customer": {
-                        "title": "",
-                        "title-code": "T3",
-                        "firstname": "พฤกษวดี",
-                        "lastname": "พฤกษวดีนงลักษณ์",
-                        "birthdate": "1991-09-01T00:00:00+0700",
-                        "id-expire-date":"",
+                        "birthdate": "1980-03-03T00:00:00+0700",
                         "contact-number": "",
-                        "id-type": "P",
-                        "id-number": "1189900130607",
-                        "customer-id": "325",
+                        "contact-mobile-number": "",
+                        "id-type": "",
+                        "id-number": "2015010111094",
+                        "id-expire-date": "2020-03-03T00:00:00+0700",
+                        "customer-id": "2589",
                         "installed-products": [{
-                            "ouId": "",
-                            "ban": "",
+                            "ouId": "912",
+                            "ban": "10000540",
                             "product-category": "TMV",
                             "product-type": "PRICEPLAN",
-                            "product-sub-type": "P",
-                            "product-status": null,
-                            "account-category": "P",
-                            "account-sub-type": "PRE",
-                            "product-id": "R12RMMNP1",
-                            "product-name": "R12RMMNP1",
-                            "bill-cycle": "",
+                            "product-sub-type": "R",
+                            "account-category": "I",
+                            "account-sub-type": "RPI",
+                            "product-id": "SMRTPP87",
+                            "product-name": "SMRTPP87",
+                            "product-description": "iSmart 299, voice100mins net500MB UNLTD WiFi UNLTD",
+                            "bill-cycle": "10",
                             "company-code": "RM",
                             "service-level": "C",
+                            "product-soc-code": "",
+                            "subscriber-id": "3164",
                             "product-properties": {
-                                "IMSI": "520002081981781",
-                                "SIM": "896600331500001222",
-                                "PRODUCT-STATUS-DATE": '20/10/2016',
-                                "REASON-CODE": null,
-                                "REASON-DESC": 'test',
-                                "SUBSCRIBER-ID": null,
-                                "PRODUCT-STATUS-CODE": 'SOFT-SUSPEND', // CANCEL-ACTIVE, CANCEL-SOFT-SUSPEND, CANCEL-FULL-SUSPEND
-                                "PRODUCT-STATUS-DESC": 'Soft Suspend by Request' // Active, Soft Suspend by Request, Full Suspend by Request
+                                "REASON-DESC": "Add Additional SOC for Migrate Customer from Ensemble to CCBS for Activate Subscriber by RD",
+                                "PRODUCT-STATUS-DESC": "Cancel",
+                                "CURRENT-ACCOUNT-STATUS": "Active",
+                                "PRODUCT-STATUS-DATE": "2015-08-28T00:00:00.000+07:00",
+                                "IS-NEW-ACCOUNT": "false",
+                                "IS-NEW-SIM": "false",
+                                "CURRENT-SIM-STATUS": "",
+                                "REASON-CODE": "RD03",
+                                "PRODUCT-STATUS-CODE": "RESUME-CANCEL-OA-OS",
+                                "SUBSCRIBER-ID": "3164"
                             },
                             "product-id-name": "MSISDN",
-                            "product-id-number": "0957732665",
-                            "mobile-servicetype": "PREPAID",
+                            "product-id-number": "0957730534",
+                            "mobile-servicetype": "POSTPAID",
                             "has-splitcharge": false,
                             "is-childsim": false,
                             "is-softsuspend": false
@@ -615,7 +616,7 @@
                     "rc": 759.0,
                     "service-level": "C",
                     "priceplan-type": "N"
-                },{
+                }, {
                     "name": "NETSVP89",
                     "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
                     "soc": "107385",
@@ -675,7 +676,7 @@
                     "rc": 759.0,
                     "service-level": "C",
                     "priceplan-type": "N"
-                },{
+                }, {
                     "name": "NETSVP89",
                     "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
                     "soc": "107385",
@@ -735,7 +736,7 @@
                     "rc": 759.0,
                     "service-level": "C",
                     "priceplan-type": "N"
-                },{
+                }, {
                     "name": "NETSVP89",
                     "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
                     "soc": "107385",
