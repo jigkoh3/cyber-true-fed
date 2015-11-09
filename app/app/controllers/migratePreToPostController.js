@@ -913,6 +913,8 @@ smartApp.controller('MigratePreToPostController', function(
                         //$ngBootbox.customDialog($scope.customDialogOptions);
                     }, 1000);
                 }
+                $scope.isVerify = false;
+                $scope.approveCode = "";
             });
         }
     };
