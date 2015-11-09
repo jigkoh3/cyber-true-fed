@@ -868,23 +868,17 @@ smartApp.controller('changeOwnershipController', function(
     $scope.onInputCitizenID3 = function() {
         if ($('#citizenID3').val() == $scope.data.customerProfile["id-number"] || $('#CitizenIDLastest').val() == $scope.data.customerProfile["id-number"]) {
             SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
+             
 
             $scope.ClearTxt();
             $scope.customer['id-number'] = "";
             $('#CitizenIDLastest').val('');
+            // $('#CitizenIDLastest').focus();
 
             return;
-         
-
-
-
-
         }
-        
-               setTimeout(function() {
-                $('#CitizenIDLastest').focus();
-            }, 1100);
 
+              
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;
         if (!$scope.isCardValueDataLastest) {
@@ -3243,7 +3237,8 @@ smartApp.controller('changeOwnershipController', function(
         isFocus = true;
         $scope.initModalReadCard();
 
-
+        $('#CitizenIDLastest').focus();
+        
         if (idFocus) {
             $('#' + idFocus).focus();
             idFocus = "";
