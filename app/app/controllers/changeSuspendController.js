@@ -189,7 +189,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
             }
 
-            //คำนำหน้า
+            //get list dropdown status
             SystemService.getMaster_list($scope.data.simData["product-properties"]["PRODUCT-STATUS-CODE"], function(result) {
                 $scope.statusList = result;
                 //console.log($scope.statusList);
