@@ -152,6 +152,9 @@ smartApp.controller('MigratePreToPostController', function(
         if ($scope.shopType == "1") {
             if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
                 $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                setTimeout(function() {
+                    $("#btn-fancy-ReadCard").click();
+                }, 1200);
             }
 
             setTimeout(function() {
@@ -665,15 +668,17 @@ smartApp.controller('MigratePreToPostController', function(
                                 });
 
 
-                                setTimeout(function() {
-                                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                                }, 1000);
+                                // setTimeout(function() {
+                                //     $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                                // }, 1000);
                                 $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
+                                $scope.initModalReadCard();
+
                             } else {
                                 $scope.isCustomerProfile = true;
                             }
 
-                            $scope.initModalReadCard();
+                            //$scope.initModalReadCard();
                             //check partner
                             if (!$scope.isNonePartner && $scope.shopType == '1') {
                                 //$scope.data = {};

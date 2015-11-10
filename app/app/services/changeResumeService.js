@@ -16,11 +16,13 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": {
                     "customer": {
+                        "firstname": "มีนา",
+                        "lastname": "มาดู",
                         "birthdate": "1980-03-03T00:00:00+0700",
                         "contact-number": "",
                         "contact-mobile-number": "",
                         "id-type": "",
-                        "id-number": "2015010111094",
+                        "id-number": "1189900130608",
                         "id-expire-date": "2020-03-03T00:00:00+0700",
                         "customer-id": "2589",
                         "installed-products": [{
@@ -45,7 +47,7 @@
                                 "CURRENT-ACCOUNT-STATUS": "Active",
                                 "PRODUCT-STATUS-DATE": "2015-08-28T00:00:00.000+07:00",
                                 "IS-NEW-ACCOUNT": "false",
-                                "IS-NEW-SIM": "false",
+                                "IS-NEW-SIM": "true",
                                 "CURRENT-SIM-STATUS": "",
                                 "REASON-CODE": "RD03",
                                 "PRODUCT-STATUS-CODE": "RESUME-CANCEL-OA-OS",
@@ -452,7 +454,7 @@
                             "CUSTOMER_ADDRESS": {
                                 "number": "90/1",
                                 "type": "CUSTOMER_ADDRESS",
-                                "moo": "",
+                                "moo": "1",
                                 "village": "",
                                 "street": "พหลโยธิน",
                                 "soi": "",
@@ -468,7 +470,7 @@
                             "BILLING_ADDRESS": {
                                 "number": "90/1",
                                 "type": "BILLING_ADDRESS",
-                                "moo": "",
+                                "moo": "2",
                                 "village": "",
                                 "street": "พหลโยธิน",
                                 "soi": "",
@@ -484,7 +486,7 @@
                             "TAX_ADDRESS": {
                                 "number": "90/1",
                                 "type": "TAX_ADDRESS",
-                                "moo": "",
+                                "moo": "3",
                                 "village": "",
                                 "street": "พหลโยธิน",
                                 "soi": "",
@@ -500,7 +502,7 @@
                             "INSTALLATION_ADDRESS": {
                                 "number": "90/1",
                                 "type": "INSTALLATION_ADDRESS",
-                                "moo": "",
+                                "moo": "4",
                                 "village": "",
                                 "street": "พหลโยธิน",
                                 "soi": "",
