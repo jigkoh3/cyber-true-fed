@@ -45,13 +45,19 @@ smartApp.controller('ChangePricePlanController', function(
         var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
         console.log(list.length, $scope.pricePlanFilter.value);
         if (list.length == 1) {
-            $scope.isEnterPP = true;
-            $scope.selectedPricePlan(list[0]);
-            $scope.selectedPricePlan2();
+            if ($scope.firstSearch == false) {
+                $scope.isEnterPP = true;
+                $scope.selectedPricePlan(list[0]);
+                $scope.selectedPricePlan2();
+            }
 
         }
         if (list.length > 1 && $scope.pricePlanFilter.value) {
-            $('#modalnewpriceplan').click();
+            if ($scope.firstSearch == false) {
+                //setTimeout(function() {
+                    $('#modalnewpriceplan').click();
+                //}, 1100);
+            }
         }
         if (list.length == 0) {
             SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
@@ -107,6 +113,9 @@ smartApp.controller('ChangePricePlanController', function(
         max: 10
     };
     $scope.parameter = {};
+
+    //fix ISSUE search PP
+    $scope.firstSearch = false;
 
     $scope.PPTypeId = "";
     var valPricePlans = [];
@@ -562,22 +571,31 @@ smartApp.controller('ChangePricePlanController', function(
                             }, 1200);
                         } else {
                             //
-                            //$scope.filterAndOpen();
-                            // var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
-                            // console.log(list.length, $scope.pricePlanFilter.value);
+                            // $scope.firstSearch = true;
+                            // //$scope.filterAndOpen();
+                            // var listx = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
+                            // console.log(listx.length, $scope.pricePlanFilter.value);
                             // // if (list.length == 1) {
                             // //     $scope.isEnterPP = true;
                             // //     $scope.selectedPricePlan(list[0]);
                             // //     $scope.selectedPricePlan2();
 
                             // // }
-                            // if (list.length > 1 && $scope.pricePlanFilter.value) {
-                            //     $('#modalnewpriceplan').click();
+                            // if (listx.length > 1 && $scope.pricePlanFilter.value) {
+                            //     setTimeout(function(){
+                            //         $('#modalnewpriceplan').click();
+                            //     }, 1000);
+                            //     setTimeout(function(){
+                            //         $('#modalnewpriceplan').click();
+                            //     }, 2000);
                             // }
-                            // if (list.length == 0) {
+                            // if (listx.length == 0) {
                             //     SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
 
                             // }
+                                setTimeout(function(){
+                                    $('#ppfilter').focus();
+                                }, 2100);
                         }
                     }
 
