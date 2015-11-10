@@ -302,9 +302,9 @@
             authenticate();
         }
 
-        setTimeout(function() {
+        //setTimeout(function() {
             SystemService.calendarDatePicker();
-        }, 0);
+        //}, 100);
     };
     $scope.isSelectedPricePlan = false;
     $scope.selectedPricePlan = function(pp) {

@@ -577,6 +577,8 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                             $scope.cardType.value = $scope.data.customerProfile['id-type'];
 
+                            $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
+
                             $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
                             // $scope.onInputIdLastest3();
@@ -1101,6 +1103,9 @@ smartApp.controller('MigratePreToPostController', function(
 
                                     $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                     $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+
+
+                                    $scope.checkPrefixT5();
                                 }
 
                                 //ระบุผู้ใช้หมายเลข

@@ -16,8 +16,8 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": {
                     "customer": {
-                        "title": "",
-                        "title-code": "T3",
+                        "title": "ชี",
+                        "title-code": "T5",
                         "firstname": "พฤกษวดี",
                         "lastname": "พฤกษวดีนงลักษณ์",
                         "birthdate": "1991-09-01T00:00:00+0700",
@@ -406,8 +406,8 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node1)",
                 "response-data": {
                     "customer": {
-                        "title": "คุณ",
-                        "title-code": "T2",
+                        "title": "ชี",
+                        "title-code": "T5",
                         "firstname": "กอไก่",
                         "lastname": "ขอไข่",
                         'birthdate': '2015-07-20T00:00:00+0700',
