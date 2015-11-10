@@ -157,7 +157,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         CancelService.getSIMData($scope.SubNo, onGetSIMData);
-    } 
+    }
 
     $scope.onInputSubNo = function() {
         $scope.subNoInput = $('#dataSubNo').val();
@@ -185,6 +185,10 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
 
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
+                $('#CitizenID').prop('disabled', false);
+                setTimeout(function() {
+                    $('#btnSSO').hide();
+                }, 100);
             }
 
             if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length >= 1) {
@@ -199,32 +203,33 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
                 $scope.orderId = order.orderId;
                 localStorage.setItem('orderId', order.orderId);
 
-                if ($scope.shopType === '1') {
-                    // Auto-open the CardReader dialog
+                if ($scope.shopType == "1") {
+                    if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                    }
+                    $('#loadingReadCard').hide();
+                    $('#unMatch').hide();
                     setTimeout(function() {
-                        var fancyboxOptions = {
-                            helpers: {
-                                overlay: {
-                                    // closeClick: false
-                                }
-                            },
 
-                            beforeShow: function() {
-                                $('#CitizenID').prop('disabled', true);
-                                $('#loadingReadCard').hide();
-                                $('#unMatch').hide();
-                            },
+                        $('#CitizenID').val('');
+                        if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                            $('#CitizenID').prop('disabled', false);
+                            $('#btnSSO').hide();
+                            setTimeout(function() {
+                                $('#CitizenID').focus();
+                            }, 1000);
 
-                            afterClose: function() {
-                                if (!$scope.onInputId()) {
-                                    // window.close();
-                                }
-                            }
-                        };
+                        } else {
+                            $('#CitizenID').prop('disabled', true);
+                        }
+                    }, 100);
 
-                        $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
-                    }, 1000);
                 }
+
+                setTimeout(function() {
+                    $('#loadingReadCard2').hide();
+                    $('#unMatch2').hide();
+                }, 1000);
             });
         });
     };
@@ -606,26 +611,26 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         $scope.isAuthorize = true;
     };
 
-        $scope.afterCloseWarning = function() {
-       if ($scope.SubNo === 'null') {
-           // $('#dataSubNo').val('');
-           setTimeout(function() {
-               $('#dataSubNo').focus();
-           }, 500);
-       }
-       $scope.isClickPrint = false;
-       isFocus = true;
-       $scope.initModalReadCard();
+    $scope.afterCloseWarning = function() {
+        if ($scope.SubNo === 'null') {
+            // $('#dataSubNo').val('');
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+            }, 500);
+        }
+        $scope.isClickPrint = false;
+        isFocus = true;
+        $scope.initModalReadCard();
 
 
 
-       if (idFocus) {
-           $('#' + idFocus).focus();
-           idFocus = "";
-       } else {
-           $scope.validateUI();
-       }
-   };
+        if (idFocus) {
+            $('#' + idFocus).focus();
+            idFocus = "";
+        } else {
+            $scope.validateUI();
+        }
+    };
 
     //init();
 });

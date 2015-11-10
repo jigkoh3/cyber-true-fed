@@ -196,32 +196,34 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
                 $scope.orderId = order.orderId;
                 localStorage.setItem('orderId', order.orderId);
 
-                if ($scope.shopType === '1') {
-                    // Auto-open the CardReader dialog
+                if ($scope.shopType == "1") {
+                    if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                    }
+                    $('#loadingReadCard').hide();
+                    $('#unMatch').hide();
                     setTimeout(function() {
-                        var fancyboxOptions = {
-                            helpers: {
-                                overlay: {
-                                    // closeClick: false
-                                }
-                            },
 
-                            beforeShow: function() {
-                                $('#CitizenID').prop('disabled', true);
-                                $('#loadingReadCard').hide();
-                                $('#unMatch').hide();
-                            },
+                        $('#CitizenID').val('');
+                        if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                            $('#CitizenID').prop('disabled', false);
+                            $('#btnSSO').hide();
+                            setTimeout(function() {
+                                $('#CitizenID').focus();
+                                
+                            }, 1000);
 
-                            afterClose: function() {
-                                if (!$scope.onInputId()) {
-                                    // window.close();
-                                }
-                            }
-                        };
+                        } else {
+                            $('#CitizenID').prop('disabled', true);
+                        }
+                    }, 100);
 
-                        $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
-                    }, 1000);
                 }
+
+                setTimeout(function() {
+                    $('#loadingReadCard2').hide();
+                    $('#unMatch2').hide();
+                }, 1000);
             });
         });
     };

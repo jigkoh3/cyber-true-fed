@@ -155,7 +155,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         ChangeSuspendService.getSIMData($scope.SubNo, onGetSIMData);
-    } 
+    }
 
     $scope.onInputSubNo = function() {
         $scope.subNoInput = $('#dataSubNo').val();
@@ -204,32 +204,34 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 $scope.orderId = order.orderId;
                 localStorage.setItem('orderId', order.orderId);
 
-                if ($scope.shopType === '1') {
-                    // Auto-open the CardReader dialog
+                if ($scope.shopType == "1") {
+                    if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                    }
+                    $('#loadingReadCard').hide();
+                    $('#unMatch').hide();
                     setTimeout(function() {
-                        var fancyboxOptions = {
-                            helpers: {
-                                overlay: {
-                                    // closeClick: false
-                                }
-                            },
 
-                            beforeShow: function() {
-                                $('#CitizenID').prop('disabled', true);
-                                $('#loadingReadCard').hide();
-                                $('#unMatch').hide();
-                            },
+                        $('#CitizenID').val('');
+                        if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                            $('#CitizenID').prop('disabled', false);
+                            $('#btnSSO').hide();
+                            setTimeout(function() {
+                                $('#CitizenID').focus();
+                                
+                            }, 1000);
 
-                            afterClose: function() {
-                                if (!$scope.onInputId()) {
-                                    // window.close();
-                                }
-                            }
-                        };
+                        } else {
+                            $('#CitizenID').prop('disabled', true);
+                        }
+                    }, 100);
 
-                        $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
-                    }, 1000);
                 }
+
+                setTimeout(function() {
+                    $('#loadingReadCard2').hide();
+                    $('#unMatch2').hide();
+                }, 1000);
             });
         });
     };
@@ -301,9 +303,9 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 // $scope.changereqType("ADD_IRIDD");
 
                 // $scope.data = $scope.data2;
-                if(isRead == true){
+                if (isRead == true) {
                     $('#snapshot').hide();
-                } else{
+                } else {
                     $('#snapshot').show();
                 }
             } else {
@@ -619,24 +621,24 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     };
 
     $scope.afterCloseWarning = function() {
-       if ($scope.SubNo === 'null') {
-           // $('#dataSubNo').val('');
-           setTimeout(function() {
-               $('#dataSubNo').focus();
-           }, 500);
-       }
-       $scope.isClickPrint = false;
-       isFocus = true;
-       $scope.initModalReadCard();
+        if ($scope.SubNo === 'null') {
+            // $('#dataSubNo').val('');
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+            }, 500);
+        }
+        $scope.isClickPrint = false;
+        isFocus = true;
+        $scope.initModalReadCard();
 
 
 
-       if (idFocus) {
-           $('#' + idFocus).focus();
-           idFocus = "";
-       } else {
-           $scope.validateUI();
-       }
-   };
+        if (idFocus) {
+            $('#' + idFocus).focus();
+            idFocus = "";
+        } else {
+            $scope.validateUI();
+        }
+    };
     //init();
 });
