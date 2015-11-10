@@ -114,7 +114,9 @@
         console.log(selectTitleOther[0]);
         if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
             $('#sex3').val(selectTitleOther[0]['attributes']['GENDER']);
+            $scope.data.customerProfileNew['gender'] = selectTitleOther[0]['attributes']['GENDER'];
             console.log(selectTitleOther[0]['attributes']['GENDER']);
+            console.log($scope.data.customerProfileNew['gender']);
         } else {
             $('#sex3').val('ALL');
             console.log('ALL');

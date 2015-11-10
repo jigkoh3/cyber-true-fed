@@ -966,7 +966,8 @@
         //ModalService.hideLoading();
         //alert('hideLoading');
         setTimeout(function() {
-            $ngBootbox.hideAll();
+            //$ngBootbox.hideAll();
+            $('#btnCloseLoading').click();
         }, 1000);
     };
     this.showConfirm = function() {
