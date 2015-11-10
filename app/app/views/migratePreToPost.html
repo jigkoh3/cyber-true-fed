@@ -29,12 +29,12 @@
                             </div>
                         </div>
                         <!-- <div class="col-md-8 right"> -->
-                            <!--<div class="camera-s">
+                        <!--<div class="camera-s">
                                     <a class="btn btn-camera">
                                         <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
                                     </a>
                                 </div>-->
-                            <!-- <button type="button" href="#modal-ReadCamera" ng-show="isCustomerProfile && shopType=='1' && getAuthen['isSecondAuthen'] == true" ng-click="initWebCamLastest()" onclick="return false" data-toggle="modal" class="btn btn-camera">
+                        <!-- <button type="button" href="#modal-ReadCamera" ng-show="isCustomerProfile && shopType=='1' && getAuthen['isSecondAuthen'] == true" ng-click="initWebCamLastest()" onclick="return false" data-toggle="modal" class="btn btn-camera">
                                 <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
                             </button> -->
                         <!-- </div> -->
@@ -76,7 +76,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>สาขาที่<span style="color:red;">*</span></label>
-                                    <input type="text" placeholder="00000" maxlength="5" ng-model="customer['branch-code']" class="form-control numberic" >
+                                    <input type="text" placeholder="00000" maxlength="5" ng-model="customer['branch-code']" class="form-control numberic">
                                 </div>
                             </div>
                         </div>
@@ -203,7 +203,10 @@
                                 <div class="form-group" ng-form="personnalid">
                                     <label>หมายเลขบัตรประชาชน / พาสปอร์ต <span style="color:red;">*</span></label>
                                     <div class="form-group">
-                                        <input type="text" id="citizenID3" ng-disabled="customer['id-number'] || !isCustomerProfile" ng-keyup="($event.keyCode==13 && onInputIdLastest3()); onInputIdLastestKeyUp3();" ng-blur="onCheckInputForVerify()" ng-model="customer['id-number']" placeholder="" class="form-control" maxlength="13" ng-change="ClearTxt()" name="personnalids" required>
+                                        <!-- Case Dealer -->
+                                        <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                        <!-- Case Normal -->
+                                        <input type="text" id="citizenID3" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-disabled="customer['id-number'] || !isCustomerProfile" ng-keyup="($event.keyCode==13 && onInputIdLastest3()); onInputIdLastestKeyUp3();" ng-blur="onCheckInputForVerify()" ng-model="customer['id-number']" placeholder="" class="form-control" maxlength="13" ng-change="ClearTxt()" name="personnalids" required>
                                         
                                     </div>
                                     <div id="loadingReadCard3">
@@ -217,7 +220,10 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ประเภทของบัตร<span style="color:red;">*</span> </label>
-                                    <select name="cardTypes" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes()" id="cardType" ng-disabled="true || !isCustomerProfile" class="form-control" required>
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                    <!-- Case Normal -->
+                                    <select name="cardTypes" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes()" id="cardType" ng-disabled="true || !isCustomerProfile" class="form-control" required>
                                         <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                     </select>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.cardTypes.$error.required">
@@ -230,7 +236,10 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>เลขที่ประจำตัวผู้เสียภาษี<span style="color:red;">*</span> </label>
-                                    <input name="taxIds" type="text" ng-model="customer['tax-id']" ng-disabled="disableTaxID || !isCustomerProfile" id="taxId3" placeholder="" class="form-control numberic" maxlength="13" required>
+                                    <!-- Case Dealer -->
+                                    <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
+                                    <!-- Case Normal -->
+                                    <input name="taxIds" ng-hide="userDealer && !isCustomerProfile" type="text" ng-model="customer['tax-id']" ng-disabled="disableTaxID || !isCustomerProfile" id="taxId3" placeholder="" class="form-control numberic" maxlength="13" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.taxIds.$error.required">
                                         Required.
                                     </span>-->
@@ -239,7 +248,10 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>สาขาที่<span style="color:red;">*</span> </label>
-                                    <input type="text" ng-disabled="customer['branch-code'] || !isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
+                                    <!-- Case Dealer -->
+                                    <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                    <!-- Case Normal -->
+                                    <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-disabled="customer['branch-code'] || !isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.branchid.$error.required">
                                         Required.
                                     </span>-->
@@ -250,7 +262,10 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ประเภทลูกค้าย่อย<span style="color:red;">*</span></label>
-                                    <select ng-model="subCompanyType" ng-disabled="false || !isCustomerProfile" ng-blur="onCheckInputForVerify()" ng-change="onChangeSub()" id="subCompanyType" class="form-control">
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="userDealer && !isCustomerProfile"></select>
+                                    <!-- Case Normal -->
+                                    <select ng-model="subCompanyType" ng-hide="userDealer && !isCustomerProfile" ng-disabled="false || !isCustomerProfile" ng-blur="onCheckInputForVerify()" ng-change="onChangeSub()" id="subCompanyType" class="form-control">
                                         <!--<option>เลือก</option>-->
                                         <option ng-repeat="option in data.accountSubtypeList" value="{{option.name}}">{{option.name}} : {{option.description}}</option>
                                     </select>
@@ -262,7 +277,10 @@
                                 <div class="form-group">
                                     <label>คำนำหน้า<span style="color:red;">*</span></label>
                                     <div id="placeholders">
-                                        <select name="prefixTHs" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="isCardValueData || !isCustomerProfile" ng-model="newOwner.prefixTH" style="width:100px;" required>
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                    <!-- Case Normal -->
+                                        <select name="prefixTHs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="isCardValueData || !isCustomerProfile" ng-model="newOwner.prefixTH" style="width:100px;" required>
                                             <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -275,14 +293,20 @@
                                 <label>
                                     <p></p>
                                 </label>
-                                <select class="form-control" ng-change="onChangeTitleOther()" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-disabled="isCardValueData || !isCustomerProfile">
+                                <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="userDealer && !isCustomerProfile"></select>
+                                <!-- Case Normal -->
+                                <select class="form-control" ng-hide="userDealer && !isCustomerProfile" ng-change="onChangeTitleOther()" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-disabled="isCardValueData || !isCustomerProfile">
                                     <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ชื่อ<span style="color:red;">*</span> </label>
-                                    <input type="text" ng-disabled="isCardValueData || !isCustomerProfile || newOwner.firstNameTH " name="firstNameTH3" id="firstNameTH3" ng-change="newOwner2.firstNameTH=newOwner.firstNameTH" ng-model="newOwner.firstNameTH" class="form-control" required>
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
+                                <!-- Case Normal -->
+                                    <input type="text" ng-hide="userDealer && !isCustomerProfile" ng-disabled="isCardValueData || !isCustomerProfile || newOwner.firstNameTH " name="firstNameTH3" id="firstNameTH3" ng-change="newOwner2.firstNameTH=newOwner.firstNameTH" ng-model="newOwner.firstNameTH" class="form-control" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.firstNameTH3.$error.required">
                                         Required.
                                     </span>-->
@@ -291,7 +315,10 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>นามสกุล<span style="color:red;">*</span></label>
-                                    <input type="text" ng-disabled="isCardValueData || !isCustomerProfile ||newOwner.lastNameTH" id="lastNameTH3" ng-change="newOwner2.lastNameTH=newOwner.lastNameTH" ng-model="newOwner.lastNameTH" name="lastNameTH" class="form-control" required>
+                                    <!-- Case Dealer -->
+                                    <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
+                                    <!-- Case Normal -->
+                                    <input type="text" ng-hide="userDealer && !isCustomerProfile" ng-disabled="isCardValueData || !isCustomerProfile ||newOwner.lastNameTH" id="lastNameTH3" ng-change="newOwner2.lastNameTH=newOwner.lastNameTH" ng-model="newOwner.lastNameTH" name="lastNameTH" class="form-control" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.lastNameTH.$error.required">
                                         Required.
                                     </span>-->
@@ -303,7 +330,10 @@
                                 <div class="form-group">
                                     <label>เพศ<span style="color:red;">*</span></label>
                                     <div id="placeholders">
-                                        <select name="sexs" class="form-control" id="sex3" ng-disabled="isCardValueData || !isCustomerProfile" ng-model="newOwner.sex" style="width:100px;" required>
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                    <!-- Case Normal -->
+                                        <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="isCardValueData || !isCustomerProfile" ng-model="newOwner.sex" style="width:100px;" required>
                                             <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -315,7 +345,10 @@
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="newOwner.birthDay || !isCustomerProfile" readonly class="form-control date-picker" id="birthDay" required>
+                                    <!-- Case Dealer -->
+                                    <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
+                                    <!-- Case Normal -->
+                                    <input name="birthDay" ng-hide="userDealer && !isCustomerProfile" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="newOwner.birthDay || !isCustomerProfile" readonly class="form-control date-picker" id="birthDay" required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
@@ -323,7 +356,7 @@
                                 </div>
                                 <div ng-show="!showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                    <input id="disableNewOwnerBirthday" name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="isCardValueData || !isCustomerProfile" readonly class="form-control " required>
+                                    <input id="disableNewOwnerBirthday" ng-hide="userDealer && !isCustomerProfile" name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="isCardValueData || !isCustomerProfile" readonly class="form-control " required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
@@ -333,12 +366,15 @@
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="newOwner.expireDay || !isCustomerProfile" class="form-control date-picker-start " id="expireDay">
+                                    <!-- Case Dealer -->
+                                    <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
+                                    <!-- Case Normal -->
+                                    <input type="text" ng-hide="userDealer && !isCustomerProfile" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="newOwner.expireDay || !isCustomerProfile" class="form-control date-picker-start " id="expireDay">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <div ng-show="!showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                    <input id="disableNewOwnerExpireDay" type="text" ng-model="newOwner.expireDay" ng-disabled="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" class="form-control">
+                                    <input id="disableNewOwnerExpireDay" ng-hide="userDealer && !isCustomerProfile" type="text" ng-model="newOwner.expireDay" ng-disabled="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" class="form-control">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -357,7 +393,10 @@
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
                                 <p></p>
-                                <select class="form-control" ng-model="partnerCode" ng-blur="onCheckInputForVerify()" ng-disabled="!isCustomerProfile">
+                                <!-- Case Dealer -->
+                                <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                <!-- Case Normal -->
+                                <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="partnerCode" ng-blur="onCheckInputForVerify()" ng-disabled="!isCustomerProfile">
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}
                                     </option>
@@ -365,7 +404,10 @@
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
                                 <p></p>
-                                <input type="text" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="(getAuthen.shopcodes.length==1) || !isCustomerProfile" maxlength="8" required>
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <!-- Case Normal -->
+                                <input type="text" id="txtPartnerCode" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="(getAuthen.shopcodes.length==1) || !isCustomerProfile" maxlength="8" required>
                             </div>
                         </div>
                     </div>
@@ -377,7 +419,10 @@
                             </div>
                             <div class="col-md-4">
                                 <p></p>
-                                <select class="form-control" ng-blur="selectedPromotion()" ng-change="onCheckInputForVerify()" ng-disabled="false || !isCustomerProfile " ng-model="promotion">
+                                <!-- Case Dealer -->
+                                <select class="form-control" ng-disabled="true" ng-show="userDealer && !isCustomerProfile"></select>
+                                <!-- Case Normal -->
+                                <select class="form-control" ng-hide="userDealer && !isCustomerProfile" ng-blur="selectedPromotion()" ng-change="onCheckInputForVerify()" ng-disabled="false || !isCustomerProfile " ng-model="promotion">
                                     <option ng-repeat="item in propositions" value="{{item['proposition-code']}}">
                                         {{item["proposition-code"]}} : {{item["description"]}}
                                     </option>
@@ -1083,7 +1128,6 @@
                                 </select>
                             </div>
                         </div>
-                    
                         <div class="form-group" ng-show="(customerType=='B' || customerType=='C') && shopType=='0'">
                             <div ng-show="shopType=='0'">
                                 <label class="col-md-4 control-label">รอบบิล <span style="color:red;">*</span></label>

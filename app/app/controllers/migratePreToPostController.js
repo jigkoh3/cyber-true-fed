@@ -43,11 +43,13 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.isValidateSave = true;
     $scope.isLastestUser = false;
     $scope.isLastestAdress = false;
+    $scope.userDealer = false;
 
     $scope.shopType = "0";
     $scope.propositions = [];
     $scope.approveCode = "";
     $scope.approver = "";
+    $scope.customerDealer = ""
 
     $scope.attModalVal = "";
     // $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
@@ -194,7 +196,7 @@ smartApp.controller('MigratePreToPostController', function(
 
         if ($scope.cardInfo.CitizenID == $scope.data.customerProfile['id-number']) {
             $scope.isCardValueData = true;
-
+            $scope.showDataDealer = false;
             $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
             $.fancybox.close();
@@ -582,9 +584,10 @@ smartApp.controller('MigratePreToPostController', function(
                             $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
                             // $scope.onInputIdLastest3();
+                            $scope.checkUserDealer();
                             $scope.onInputCitizenID3();
                             $scope.onChangeCardTypes();
-
+                            console.log($scope.userDealer);
                             setTimeout(function() {
                                 // $('#divShowAuthorize').hide();
                                 var cutomerType = $scope.data.priceplan['account-category'];
@@ -1237,6 +1240,7 @@ smartApp.controller('MigratePreToPostController', function(
 
                 //document.getElementById('btnReadCardClose2').click();
                 //$("#btnForm").fancybox().close();
+                $scope.showDataDealer = false;
                 $scope.isCustomerProfile = true;
                 $.fancybox.close();
                 $scope.isReadCardSuccess = false;
@@ -3351,6 +3355,15 @@ smartApp.controller('MigratePreToPostController', function(
             idFocus = "";
         } else {
             $scope.validateUI();
+        }
+    };
+    $scope.checkUserDealer = function(){
+        if($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == false){
+            $scope.userDealer = true;
+            $scope.showDataDealer = true;
+        }else{
+            $scope.userDealer = false;
+            $scope.showDataDealer = false;
         }
     };
     //$scope.init();
