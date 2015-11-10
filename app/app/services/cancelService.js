@@ -40,7 +40,7 @@
         var serviceType = productDetails['mobile-servicetype'];
         if (serviceType === 'PREPAID') {
             productType = 'ทรูมูฟเอช เติมเงิน';
-        } else if (serviceType === 'POSTPAID') {
+        } else {
             productType = 'ทรูมูฟเอช รายเดือน';
         }
 
@@ -260,7 +260,7 @@
                             },
                             "product-id-name": "MSISDN",
                             "product-id-number": "0957730534",
-                            "mobile-servicetype": "POSTPAID",
+                            "mobile-servicetype": "HYBRID",
                             "has-splitcharge": false,
                             "is-childsim": false,
                             "is-softsuspend": false,
