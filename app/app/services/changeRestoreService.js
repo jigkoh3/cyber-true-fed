@@ -40,7 +40,7 @@
         var serviceType = productDetails['mobile-servicetype'];
         if (serviceType === 'PREPAID') {
             productType = 'ทรูมูฟเอช เติมเงิน';
-        } else if (serviceType === 'POSTPAID') {
+        } else {
             productType = 'ทรูมูฟเอช รายเดือน';
         }
 

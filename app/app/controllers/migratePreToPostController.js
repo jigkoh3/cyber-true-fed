@@ -152,6 +152,9 @@ smartApp.controller('MigratePreToPostController', function(
         if ($scope.shopType == "1") {
             if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
                 $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                setTimeout(function() {
+                    $("#btn-fancy-ReadCard").click();
+                }, 1200);
             }
 
             setTimeout(function() {
@@ -436,10 +439,10 @@ smartApp.controller('MigratePreToPostController', function(
         }
     };
 
-    $scope.checkPrefixT5 = function(){
-        if($scope.newOwner.prefixTH == 'T5')
+    $scope.checkPrefixT5 = function() {
+        if ($scope.newOwner.prefixTH == 'T5')
             return true;
-    } 
+    }
 
     $scope.isInputSubNo = false;
     $scope.onInputSubNo = function() {
@@ -665,15 +668,17 @@ smartApp.controller('MigratePreToPostController', function(
                                 });
 
 
-                                setTimeout(function() {
-                                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                                }, 1000);
+                                // setTimeout(function() {
+                                //     $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                                // }, 1000);
                                 $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
+                                $scope.initModalReadCard();
+
                             } else {
                                 $scope.isCustomerProfile = true;
                             }
 
-                            $scope.initModalReadCard();
+                            //$scope.initModalReadCard();
                             //check partner
                             if (!$scope.isNonePartner && $scope.shopType == '1') {
                                 //$scope.data = {};
@@ -1506,14 +1511,34 @@ smartApp.controller('MigratePreToPostController', function(
         console.log(selectTitleOther[0]);
         if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
             $('#sex3').val(selectTitleOther[0]['attributes']['GENDER']);
+            $('#sex32').val(selectTitleOther[0]['attributes']['GENDER']);
             console.log(selectTitleOther[0]['attributes']['GENDER']);
         } else {
             $('#sex3').val('ALL');
+            $('#sex32').val('ALL');
             console.log('ALL');
         }
         $scope.titleOther2 = $scope.titleOther;
+        $scope.newOwner2.sex = $scope.newOwner.sex;
     };
 
+
+    $scope.onChangeTitleOther2 = function() {
+        console.log($scope.titleOther2);
+        var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
+            value: $scope.titleOther2
+        });
+        console.log(selectTitleOther[0]);
+        if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
+            $('#sex32').val(selectTitleOther[0]['attributes']['GENDER']);
+            console.log(selectTitleOther[0]['attributes']['GENDER']);
+        } else {
+            $('#sex32').val('ALL');
+            console.log('ALL');
+        }
+        //$scope.titleOther2 = $scope.titleOther;
+        //$scope.newOwner2.sex = $scope.newOwner.sex;
+    };
 
     //$scope.cardType = "0";
 

@@ -2324,7 +2324,8 @@ smartApp.controller('ResumeController', function(
                             // "ORIGINAL-OWNER-ID-NUMBER": $scope.data.customerProfile['id-number'],
                             // "ORIGINAL-OWNER-FIRSTNAME": $scope.data.customerProfile['firstname'],
                             // "ORIGINAL-OWNER-LASTNAME": $scope.data.customerProfile['lastname']
-                            "SIM": $scope.data.installedProducts["product-properties"]["SIM"], //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            //"SIM": $scope.data.installedProducts["product-properties"]["SIM"], //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "SIM": $scope.simSerial
                         }
                     }]
                     //,"last-modify-date": ""
@@ -2655,7 +2656,7 @@ smartApp.controller('ResumeController', function(
 
 
         var data = {
-            "func": "PEP",
+            "func": "REE",
             "header": {
                 "title-code": customerType == 'Y' ? "" : $scope.data.customerProfile["title-code"],
                 "title": $scope.data.customerProfile["title"],
@@ -3325,6 +3326,8 @@ smartApp.controller('ResumeController', function(
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-SIM'] && isNull($scope.simSerial)) {
+            showValidate("simSerial", ValidateMsgService.data.msgSimSerialEmpty);
         } else if (errorCapmax != "") {
             showValidate(errorCapmaxId, errorCapmaxMsg);
         } else if (errorCUG) {
@@ -3357,10 +3360,10 @@ smartApp.controller('ResumeController', function(
             showValidate("txtMailAddressMoo", ValidateMsgService.data.msgBillVillageNoEmpty);
         } else if (isNull($scope.mailAddress.road)) {
             showValidate("txtMailAddressRoad", ValidateMsgService.data.msgBillRoadEmpty);
-        } else if ($scope.blah == 'E' && isNull($scope.billPayment.email)) {
-            showValidate("idBillPaymentEmail", ValidateMsgService.data.msgBillEmailEmpty);
-        } else if ($scope.blah == 'S' && isNull($scope.billPayment.smss)) {
-            showValidate("txtBillPaymentSmss", ValidateMsgService.data.msgBillSmsNoEmpty);
+        // } else if ($scope.blah == 'E' && isNull($scope.billPayment.email)) {
+        //     showValidate("idBillPaymentEmail", ValidateMsgService.data.msgBillEmailEmpty);
+        // } else if ($scope.blah == 'S' && isNull($scope.billPayment.smss)) {
+        //     showValidate("txtBillPaymentSmss", ValidateMsgService.data.msgBillSmsNoEmpty);
         } else if (isNull($scope.contactNo.number)) {
             showValidate("txtcontactNonumber", ValidateMsgService.data.msgCusContractNoEmpty);
         } else if (errorFUTURE) {
