@@ -986,7 +986,7 @@ smartApp.controller('MigratePreToPostController', function(
 
         //$scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
         // (Start) Get current SIM data ----------------------
-        var formatDate = function(date) {
+        var formatDate2 = function(date) {
             if (!date) return date;
 
             return moment(date).format('DD/MM/YYYY');
