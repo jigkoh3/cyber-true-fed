@@ -968,6 +968,10 @@
         setTimeout(function() {
             //$ngBootbox.hideAll();
             $('#btnCloseLoading').click();
+            setTimeout(function() {
+                //$ngBootbox.hideAll();
+                $('#btnCloseLoading').click();
+            }, 1000);
         }, 1000);
     };
     this.showConfirm = function() {
