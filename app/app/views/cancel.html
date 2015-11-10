@@ -20,13 +20,13 @@
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label class="col-md-4 control-label"><b>สถานะหมายเลขปัจจุบัน</b></label>
-                        <label class="col-md-4 control-label" style="text-align:left">{{productStatus}} Since: {{activeDate}}{{reasonCodeDisplay}}</label>
+                        <label class="col-md-4 control-label" ng-hide="showDataDealer" style="text-align:left" ="expression">{{productStatus}} Since: {{activeDate}}{{reasonCodeDisplay}}</label>
 
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label"><b>สถานะหมายเลขใหม่</b></label>
                         <div class="col-md-4">
-                            <select class="form-control" ng-model="statusCancel" >
+                            <select class="form-control"  ng-model="statusCancel" ng-disabled="!isCustomerProfile" >
                                 <!-- <option value="">เลือก</option> -->
                                 <!-- <option value="CANCEL-SOFT-SUSPEND">Soft Suspend</option> -->
                                 <!-- <option value="CANCEL-FULL-SUSPEND">Full Suspend</option> -->
@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">บันทึก</label>
                         <div class="col-md-4">
-                            <textarea class="form-control" name="message" ng-model="statusReasonMemo" style="width:100%;height:70px;"></textarea>
+                            <textarea class="form-control" name="message" ng-model="statusReasonMemo" ng-disabled="!isCustomerProfile" style="width:100%;height:70px;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -61,13 +61,13 @@
             <div class="row">
                 <div class="col-md-4">
                     <div data-toggle="buttons" class="btn-group btn-group-justified">
-                        <label class="btn btn-default active">
+                        <label class="btn btn-default active" ng-disabled="!isCustomerProfile">
                             <input type="radio" name="date" autocomplete="off" class="radio_ck" checked> ทันที
                         </label>
                     </div>
                 </div>
             </div>
-            <div id="modal-pdf" tabindsex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+            <div id="modal-pdf" tabindsex="-1" class="modal fade"  data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog" style="width:70%;">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -95,7 +95,7 @@
 
                     <!-- <input ng-click="logDataBeforeSubmit()" type="button" value="debug"/> -->
 
-                    <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!isValidateSave"  />
+                    <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!isCustomerProfile"  />
 
                     <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
 
