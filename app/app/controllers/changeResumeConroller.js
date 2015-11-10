@@ -205,6 +205,7 @@ smartApp.controller('ResumeController', function(
 
         if ($scope.cardInfo.CitizenID == $scope.data.customerProfile['id-number']) {
             $scope.isCardValueData = true;
+            $scope.showDataDealer = false;
 
             $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
@@ -479,6 +480,8 @@ smartApp.controller('ResumeController', function(
     }
 
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
+
+    $scope.showDataDealer = false;
     $scope.onLoad = function() {
         if (!$routeParams.subno) {
             // $('#dataSubNo').val('');
@@ -491,7 +494,10 @@ smartApp.controller('ResumeController', function(
         AuthenService.getAuthen(function(result) {
             $scope.getAuthen = result;
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
+                $scope.showDataDealer = true;
                 $scope.isNonePartner = false;
+            }else{
+                $scope.showDataDealer = false;
             }
 
             setTimeout(function() {
@@ -1271,7 +1277,7 @@ smartApp.controller('ResumeController', function(
 
         if (cid.length >= 3) {
             if (cid == $scope.data2.customerProfile["id-number"]) {
-
+                $scope.showDataDealer = false;
                 //document.getElementById('btnReadCardClose2').click();
                 //$("#btnForm").fancybox().close();
                 $scope.isCustomerProfile = true;
