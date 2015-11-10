@@ -872,8 +872,8 @@ smartApp.controller('MigratePreToPostController', function(
             SystemService.showLoading();
             var target = "sales/catalog/product/tmv/priceplan/search?" +
                 "company-code=" + $scope.data.installedProducts['company-code'] +
-                "&customer-type=" + $scope.data.installedProducts['account-category'] +
-                "&customer-subtype=" + $scope.data.installedProducts['account-sub-type'] +
+                "&customer-type=I" +
+                "&customer-subtype=" + $scope.subCompanyType +
                 "&service-level=" + $scope.data.installedProducts['service-level'] +
                 "&proposition=" + $scope.promotion +
                 "&partner-code=" + $scope.partnerCode +
