@@ -35,6 +35,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     $scope.statusReasonMemo = '';
 
     var orderData = {};
+    var isRead = false;
 
     //Reasons
     $scope.reasons = [];
@@ -300,9 +301,15 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 // $scope.changereqType("ADD_IRIDD");
 
                 // $scope.data = $scope.data2;
+                if(isRead == true){
+                    $('#snapshot').hide();
+                } else{
+                    $('#snapshot').show();
+                }
             } else {
                 $('#unMatch').show();
                 $scope.isMatch = false;
+                isRead = false;
             }
 
         }
@@ -442,7 +449,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     };
 
     $scope.openSSO = function() {
-
+        isRead = false;
         var openDialog = function(uri, name, options, closeCallback) {
             var win = window.open(uri, name, options);
             var interval = window.setInterval(function() {
@@ -553,6 +560,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     $scope.SetCardValue = function(result) {
         $('#loadingReadCard').hide();
         $scope.isReadCardSuccess = false;
+        isRead = true;
 
         $scope.cardInfo = eval(result);
         console.log($scope.cardInfo.CitizenID);
