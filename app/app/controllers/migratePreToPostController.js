@@ -1433,9 +1433,9 @@ smartApp.controller('MigratePreToPostController', function(
 
     $scope.blah = "E";
     $scope.dataSlip = {
-        "E": "E-Bill-Email",
-        "S": "E-Bill-SMS",
-        "P": "Bill-Paper",
+        "E": "E-Bill",
+        "P": "จดหมาย (ทางไปรษณีย์)",
+        "S": "SMS",
     };
     $scope.billPayment = {
         email: "",
