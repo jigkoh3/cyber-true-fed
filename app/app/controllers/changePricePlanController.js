@@ -54,9 +54,9 @@ smartApp.controller('ChangePricePlanController', function(
         }
         if (list.length > 1 && $scope.pricePlanFilter.value) {
             if ($scope.firstSearch == false) {
-                setTimeout(function() {
+                //setTimeout(function() {
                     $('#modalnewpriceplan').click();
-                }, 1100);
+                //}, 1100);
             }
         }
         if (list.length == 0) {
