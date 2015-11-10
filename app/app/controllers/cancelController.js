@@ -185,10 +185,13 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
 
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
+                $scope.showDataDealer = true;
                 $('#CitizenID').prop('disabled', false);
                 setTimeout(function() {
                     $('#btnSSO').hide();
                 }, 100);
+            } else {
+              $scope.showDataDealer = false;  
             }
 
             if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length >= 1) {
@@ -203,33 +206,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
                 $scope.orderId = order.orderId;
                 localStorage.setItem('orderId', order.orderId);
 
-                if ($scope.shopType == "1") {
-                    if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
-                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                    }
-                    $('#loadingReadCard').hide();
-                    $('#unMatch').hide();
-                    setTimeout(function() {
-
-                        $('#CitizenID').val('');
-                        if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
-                            $('#CitizenID').prop('disabled', false);
-                            $('#btnSSO').hide();
-                            setTimeout(function() {
-                                $('#CitizenID').focus();
-                            }, 1000);
-
-                        } else {
-                            $('#CitizenID').prop('disabled', true);
-                        }
-                    }, 100);
-
-                }
-
-                setTimeout(function() {
-                    $('#loadingReadCard2').hide();
-                    $('#unMatch2').hide();
-                }, 1000);
+                $scope.initModalReadCard();
             });
         });
     };
@@ -512,6 +489,34 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         document.getElementById("CitizenID").disabled = true;
         $('input[type=submit]').show();
         $('input[type=reset]').show();
+
+        if ($scope.shopType == "1") {
+                    if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                    }
+                    $('#loadingReadCard').hide();
+                    $('#unMatch').hide();
+                    setTimeout(function() {
+
+                        $('#CitizenID').val('');
+                        if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                            $('#CitizenID').prop('disabled', false);
+                            $('#btnSSO').hide();
+                            setTimeout(function() {
+                                $('#CitizenID').focus();
+                            }, 1000);
+
+                        } else {
+                            $('#CitizenID').prop('disabled', true);
+                        }
+                    }, 100);
+
+                }
+
+                setTimeout(function() {
+                    $('#loadingReadCard2').hide();
+                    $('#unMatch2').hide();
+                }, 1000);
     }
     $scope.manualInputReadCard = function() {
         $('#loadingReadCard').hide();
