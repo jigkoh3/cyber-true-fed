@@ -2247,7 +2247,7 @@ smartApp.controller('ResumeController', function(
                 //    "partner-type": ""
                 // },
                 "order-items": [{
-                        "name": "MIGRATE_PRE_TO_POST",
+                        "name": "RESUME",
                         "product-name": $scope.pricePlan.saveName,
                         "product-id-number": $scope.data.installedProducts["product-id-number"],
                         "product-id-name": $scope.data.installedProducts["product-id-name"],
@@ -2306,7 +2306,11 @@ smartApp.controller('ResumeController', function(
                             "ACCOUNT-LANG": $scope.billPayment.accountLang,
                             //"ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
-                            "CHANGE-OPTION": $scope.isLastestAdress ? "EXISTING" : "NEW"
+                            "CHANGE-OPTION": $scope.statusChange,
+                            "PRODUCT-STATUS-DESC": $scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-DESC"],
+                            "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['lastname'],
+                            "ORIGINAL-FIRSTNAME": $scope.data.customerProfile['firstname'],
+                            "ORIGINAL-LASTNAME": $scope.data.customerProfile['lastname']
                         },
                         "primary-order-data": {
                             //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?

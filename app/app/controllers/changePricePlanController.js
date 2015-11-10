@@ -561,7 +561,7 @@ smartApp.controller('ChangePricePlanController', function(
 
                             }, 1200);
                         } else {
-                            //เอาไว้พรุ่งนี้
+                            //
                             //$scope.filterAndOpen();
                             // var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
                             // console.log(list.length, $scope.pricePlanFilter.value);
