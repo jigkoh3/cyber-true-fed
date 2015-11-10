@@ -293,10 +293,7 @@
                                 <label>
                                     <p></p>
                                 </label>
-                                <!-- Case Dealer -->
-                                    <select class="form-control" ng-disabled="true" ng-show="userDealer && !isCustomerProfile"></select>
-                                <!-- Case Normal -->
-                                <select class="form-control" ng-hide="userDealer && !isCustomerProfile" ng-change="onChangeTitleOther()" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-disabled="isCardValueData || !isCustomerProfile">
+                                <select class="form-control" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-disabled="isCardValueData || !isCustomerProfile">
                                     <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                 </select>
                             </div>
@@ -685,7 +682,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd" readonly class=" form-control date-picker">
+                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd" readonly style="background:white" class=" form-control date-picker">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
