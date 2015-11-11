@@ -482,7 +482,7 @@ smartApp.controller('MigratePreToPostController', function(
     }
 
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
-    $scope.onLoadSubNoNull =function(){
+    $scope.onLoadSubNoNull = function() {
 
     };
     $scope.onLoad = function() {
@@ -944,12 +944,12 @@ smartApp.controller('MigratePreToPostController', function(
                     }, 1000);
                 }
                 //$scope.isVerify = false;
-               // $scope.approveCode = "";
-                
+                // $scope.approveCode = "";
+
             });
-             
+
         }
-        
+
     };
     $scope.focusPricePlanFilter = function() {
         if (!$scope.isLoadPricePlan) {
@@ -2683,6 +2683,11 @@ smartApp.controller('MigratePreToPostController', function(
                 "titleEn": cardValueData["titleEn"],
                 "firstnameEn": cardValueData["firstnameEn"],
                 "lastnameEn": cardValueData["lastnameEn"],
+
+                "titleTh": cardValueData["titleTh"],
+                "firstnameTh": cardValueData["firstnameTh"],
+                "lastnameTh": cardValueData["lastnameTh"],
+
                 "expireDay": cardValueData["expireDay"],
                 "birthDay": cardValueData["birthDay"],
                 "issueDay": cardValueData["issueDay"],
@@ -2697,8 +2702,6 @@ smartApp.controller('MigratePreToPostController', function(
                 "amphur": cardValueData["amphur"],
                 "province": cardValueData["province"]
                     //NEW---
-
-
             },
             "body": {
                 "cosOldOwnerData": {
@@ -3400,40 +3403,40 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.validateUI();
         }
     };
-    $scope.checkUserDealer = function(){
-        if($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == false){
+    $scope.checkUserDealer = function() {
+        if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == false) {
             $scope.userDealer = true;
             $scope.showDataDealer = true;
-        }else{
+        } else {
             $scope.userDealer = false;
             $scope.showDataDealer = false;
         }
     };
-    $scope.checkUserShop = function(){
-        if($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true){
+    $scope.checkUserShop = function() {
+        if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
             $scope.userShop = true;
-        }else{
+        } else {
             $scope.userShop = false;
         }
     };
-    $scope.checkUserNonShop = function(){
-        if($scope.shopType == "0"){
+    $scope.checkUserNonShop = function() {
+        if ($scope.shopType == "0") {
             $scope.userNonShop = true;
-        }else{
+        } else {
             $scope.userNonShop = false;
         }
     };
-    $scope.checkValueDate = function(){
-        if($scope.newOwner.birthDay != null){
+    $scope.checkValueDate = function() {
+        if ($scope.newOwner.birthDay != null) {
             $scope.checkBirthDate = true;
-        }else{
+        } else {
             $scope.checkBirthDate = false;
         }
     };
-    $scope.checkValueExpireDate = function(){
-        if($scope.newOwner.expireDay != null){
+    $scope.checkValueExpireDate = function() {
+        if ($scope.newOwner.expireDay != null) {
             $scope.checkExpireDate = true;
-        }else{
+        } else {
             $scope.checkExpireDate = false;
         }
     };
