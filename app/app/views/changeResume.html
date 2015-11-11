@@ -555,6 +555,7 @@
                                                    ng-model="simSerial"
                                                    ng-change="onInputSIMSerial()"
                                                    ng-disabled="!isCustomerProfile"
+                                                   ng-blur="onBlurSimSerial()"
                                                    maxlength="{{ simSerialLength }}" required />
                             </div>
                         </div>
@@ -695,7 +696,7 @@
                 </div>
                 <div  ng-hide="data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Active'">
                     <h4></h4>
-                    <div class="well" ng-show="isVerify" style="background-color:#ffffff;">
+                    <div class="well" ng-show="false" style="background-color:#ffffff;">
                         <div class="row">
                             <div class="form-group">
                                 <label class="col-md-3">
@@ -1152,7 +1153,11 @@
                             <div class="form-group" ng-show="billPayment.preferedContace == 'FIX'">
                                 <label class="col-md-5 control-label">ระบุเบอร์ <span style="color:red;">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" ng-model="fixPreferedContact">
+                                    <input type="text" 
+                                    id="fixPreferedContact" 
+                                    class="form-control" 
+                                    ng-model="fixPreferedContact"
+                                    maxlength="50">
                                 </div>
                             </div>
                         </div>

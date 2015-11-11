@@ -338,6 +338,14 @@
             "en-message": "Please specify Sim Serial.",
             "th-message": "กรุณาระบุ หมายเลขซิมการ์ดใหม่",
             "technical-message": "FROM WEBUI"
+        },
+        "msgFixPreferedContactEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Mobile No.",
+            "th-message": "กรุณาระบุ เบอร์ที่ประสงค์ให้ติดต่อ",
+            "technical-message": "FROM WEBUI"
         }
     };
 });
