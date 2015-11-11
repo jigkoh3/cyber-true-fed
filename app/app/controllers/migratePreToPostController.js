@@ -930,10 +930,13 @@ smartApp.controller('MigratePreToPostController', function(
                         //$ngBootbox.customDialog($scope.customDialogOptions);
                     }, 1000);
                 }
-                $scope.isVerify = false;
-                $scope.approveCode = "";
+                //$scope.isVerify = false;
+               // $scope.approveCode = "";
+                
             });
+             
         }
+        
     };
     $scope.focusPricePlanFilter = function() {
         if (!$scope.isLoadPricePlan) {
@@ -1209,6 +1212,7 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.onCheckInputForVerify = function() {
         setTimeout(function() {
             $scope.isCheckInputForVerify = false;
+            $scope.isVerify = false;
             $scope.newOwner.birthDay = $('#birthDay').val();
             $scope.newOwner.expireDay = $('#expireDay').val();
 
