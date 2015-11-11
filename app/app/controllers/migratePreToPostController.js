@@ -49,7 +49,11 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.propositions = [];
     $scope.approveCode = "";
     $scope.approver = "";
-    $scope.customerDealer = ""
+    $scope.customerDealer = false;
+    $scope.checkBirthDate = false;
+    $scope.checkExpireDate = false;
+    $scope.userShop = false;
+    $scope.userNonShop = false;
 
     $scope.attModalVal = "";
     // $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
@@ -588,9 +592,15 @@ smartApp.controller('MigratePreToPostController', function(
 
                             // $scope.onInputIdLastest3();
                             $scope.checkUserDealer();
+                            $scope.checkUserNonShop();
+                            $scope.checkUserShop();
+                            console.log($scope.userShop);
                             $scope.onInputCitizenID3();
                             $scope.onChangeCardTypes();
-                            console.log($scope.userDealer);
+                            $scope.checkValueDate();
+                            $scope.checkValueExpireDate();
+                            console.log($scope.checkExpireDate);
+                            console.log($scope.newOwner.expireDay);
                             setTimeout(function() {
                                 // $('#divShowAuthorize').hide();
                                 var cutomerType = $scope.data.priceplan['account-category'];
@@ -930,10 +940,13 @@ smartApp.controller('MigratePreToPostController', function(
                         //$ngBootbox.customDialog($scope.customDialogOptions);
                     }, 1000);
                 }
-                $scope.isVerify = false;
-                $scope.approveCode = "";
+                //$scope.isVerify = false;
+               // $scope.approveCode = "";
+                
             });
+             
         }
+        
     };
     $scope.focusPricePlanFilter = function() {
         if (!$scope.isLoadPricePlan) {
@@ -1209,6 +1222,7 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.onCheckInputForVerify = function() {
         setTimeout(function() {
             $scope.isCheckInputForVerify = false;
+            $scope.isVerify = false;
             $scope.newOwner.birthDay = $('#birthDay').val();
             $scope.newOwner.expireDay = $('#expireDay').val();
 
@@ -3389,6 +3403,34 @@ smartApp.controller('MigratePreToPostController', function(
         }else{
             $scope.userDealer = false;
             $scope.showDataDealer = false;
+        }
+    };
+    $scope.checkUserShop = function(){
+        if($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true){
+            $scope.userShop = true;
+        }else{
+            $scope.userShop = false;
+        }
+    };
+    $scope.checkUserNonShop = function(){
+        if($scope.shopType == "0"){
+            $scope.userNonShop = true;
+        }else{
+            $scope.userNonShop = false;
+        }
+    };
+    $scope.checkValueDate = function(){
+        if($scope.newOwner.birthDay != null){
+            $scope.checkBirthDate = true;
+        }else{
+            $scope.checkBirthDate = false;
+        }
+    };
+    $scope.checkValueExpireDate = function(){
+        if($scope.newOwner.expireDay != null){
+            $scope.checkExpireDate = true;
+        }else{
+            $scope.checkExpireDate = false;
         }
     };
     //$scope.init();

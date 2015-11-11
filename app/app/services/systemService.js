@@ -1500,6 +1500,8 @@
         var date = new Date();
         date.setDate(date.getDate() + 1);
 
+        var birthdate = new Date();
+        birthdate.setDate(birthdate.getDate());
 
         var expiredate = new Date();
         expiredate.setDate(expiredate.getDate() - 1);
@@ -1523,6 +1525,13 @@
             todayHighlight: true,
             language: 'th-th',
             startDate: date
+        });
+
+        $('.date-picker-birthdate').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            language: 'th-th',
+            endDate: birthdate
         });
 
     };

@@ -293,7 +293,7 @@
                                 <label>
                                     <p></p>
                                 </label>
-                                <select class="form-control" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-disabled="isCardValueData || !isCustomerProfile">
+                                <select class="form-control" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-change="onChangeTitleOther()" ng-disabled="isCardValueData || !isCustomerProfile">
                                     <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                 </select>
                             </div>
@@ -345,20 +345,25 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
                                     <!-- Case Normal -->
-                                    <input name="birthDay" ng-hide="userDealer && !isCustomerProfile" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="newOwner.birthDay || !isCustomerProfile" readonly class="form-control date-picker" id="birthDay" required>
+                                    <input name="birthDay" ng-show="((userShop || userNonShop || userDealer)&& isCustomerProfile && !checkBirthDate) || !showEnableNewOwnerBirthday" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="!isCustomerProfile" readonly class="form-control date-picker-birthdate" id="birthDay" style="background:white" required>
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+
+
+
+                                    <input name="birthDay" ng-hide="(userDealer && !isCustomerProfile) || (!checkBirthDate && isCustomerProfile)" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="newOwner.birthDay || !isCustomerProfile" readonly class="form-control date-picker" id="birthDay" required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
                                     </span>-->
                                 </div>
-                                <div ng-show="!showEnableNewOwnerBirthday" class="form-group has-feedback">
+                                <!-- <div ng-show="!showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
                                     <input id="disableNewOwnerBirthday" ng-hide="userDealer && !isCustomerProfile" name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="isCardValueData || !isCustomerProfile" readonly class="form-control " required>
-                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span> -->
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
                                     </span>-->
-                                </div>
+                                <!-- </div> -->
                             </div>
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerExpireDay" class="form-group has-feedback">
@@ -366,14 +371,17 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
                                     <!-- Case Normal -->
-                                    <input type="text" ng-hide="userDealer && !isCustomerProfile" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="newOwner.expireDay || !isCustomerProfile" class="form-control date-picker-start " id="expireDay">
+                                    <input type="text" ng-show="((userShop || userNonShop || userDealer )&& isCustomerProfile && !checkExpireDate) || !showEnableNewOwnerExpireDay" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="!isCustomerProfile" class="form-control date-picker-start " id="expireDay" style="background:white">
+
+
+                                    <input type="text" ng-hide="(userDealer && !isCustomerProfile) || (!checkExpireDate && isCustomerProfile)" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="newOwner.expireDay || !isCustomerProfile" class="form-control date-picker-start " id="expireDay">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <div ng-show="!showEnableNewOwnerExpireDay" class="form-group has-feedback">
+                                <!-- <div ng-show="!showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
                                     <input id="disableNewOwnerExpireDay" ng-hide="userDealer && !isCustomerProfile" type="text" ng-model="newOwner.expireDay" ng-disabled="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" class="form-control">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -682,7 +690,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd" readonly style="background:white" class=" form-control date-picker">
+                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd" readonly style="background:white" class=" form-control date-picker-birthdate">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>

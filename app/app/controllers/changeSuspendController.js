@@ -592,15 +592,28 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     $scope.SetCardValue = function(result) {
         $('#loadingReadCard').hide();
         $scope.isReadCardSuccess = false;
-        isRead = true;
 
         $scope.cardInfo = eval(result);
         console.log($scope.cardInfo.CitizenID);
         $scope.CitizenID = $scope.cardInfo.CitizenID;
         $('#CitizenID').val('' + $scope.cardInfo.CitizenID);
 
+        if ($scope.cardInfo.CitizenID == $scope.data.customerProfile['id-number']) {
+            $scope.isCardValueData = true;
+            $scope.showDataDealer = false;
+            $scope.isReadCardSuccess = true;
+            $scope.isCustomerProfile = true;
+            $.fancybox.close();
+            setTimeout(function() {
+                $('#idBindDataAgain').click();
+            }, 500);
+            $('.isCustomerProfile').prop('disabled', false);
+        } else {
+            $('#unMatch').show();
+            $scope.isMatch = false;
+        }
 
-        $scope.onInputId();
+        // $scope.onInputId();
         ///$scope.ReadCardMockUp($scope.cardInfo.CitizenID);
         //console.log(result);
         //console.log(result.CitizenID);
