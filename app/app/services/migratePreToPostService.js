@@ -357,9 +357,9 @@
     };
     var getAccountSubTypeAPI = function(param, fnCallback) {
         var target = 'profiles/tmv/master/account-subtype?' +
-            'cust-type=' + param['cust-type'] +
+            'cust-type=I' + 
             '&company=' + param['company'] +
-            '&service-type=' + param['service-type'] +
+            '&service-type=POSTPAID' + 
             //'&roles' + param['roles'] +
             '&grade=' + param['grade'];
         if (!demo) {

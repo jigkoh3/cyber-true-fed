@@ -1015,7 +1015,7 @@ smartApp.controller('MigratePreToPostController', function(
             return moment(date).format('DD/MM/YYYY');
         };
         var cid = $('#citizenID3').val();
-        if (cid.length >= 9) {
+        if (cid.length >= 3) {
             SystemService.showLoading();
             if (1 == 1) {
                 migratePreToPostService.validateGradingCallback(cid, function(resultData) {
