@@ -1063,6 +1063,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                                     $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                                     $scope.cardType.value = $scope.data.customerProfile['id-type'];
+                                    $scope.onChangeCardTypes();
                                     // $scope.onInputCitizenID3();
 
                                     setTimeout(function() {
