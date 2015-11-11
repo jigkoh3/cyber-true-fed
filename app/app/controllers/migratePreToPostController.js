@@ -482,6 +482,9 @@ smartApp.controller('MigratePreToPostController', function(
     }
 
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
+    $scope.onLoadSubNoNull =function(){
+
+    };
     $scope.onLoad = function() {
         if (!$routeParams.subno) {
             // $('#dataSubNo').val('');
