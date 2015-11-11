@@ -584,13 +584,27 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
         $scope.CitizenID = $scope.cardInfo.CitizenID;
         $('#CitizenID').val('' + $scope.cardInfo.CitizenID);
 
+        if ($scope.cardInfo.CitizenID == $scope.data.customerProfile['id-number']) {
+            $scope.isCardValueData = true;
+            $scope.showDataDealer = false;
+            $scope.isReadCardSuccess = true;
+            $scope.isCustomerProfile = true;
+            $.fancybox.close();
+            setTimeout(function() {
+                $('#idBindDataAgain').click();
+            }, 500);
+            $('.isCustomerProfile').prop('disabled', false);
+        } else {
+            $('#unMatch').show();
+            $scope.isMatch = false;
+        }
 
-        $scope.onInputId();
+        // $scope.onInputId();
         ///$scope.ReadCardMockUp($scope.cardInfo.CitizenID);
         //console.log(result);
         //console.log(result.CitizenID);
     };
-
+    
     $scope.onInputId2 = function() {
         var cid = $('#CitizenID2').val();
         if (cid.length == 13) {
