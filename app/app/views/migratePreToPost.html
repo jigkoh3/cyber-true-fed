@@ -293,7 +293,7 @@
                                 <label>
                                     <p></p>
                                 </label>
-                                <select class="form-control" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-disabled="isCardValueData || !isCustomerProfile">
+                                <select class="form-control" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-change="onChangeTitleOther()" ng-disabled="isCardValueData || !isCustomerProfile">
                                     <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                 </select>
                             </div>
