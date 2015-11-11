@@ -192,6 +192,13 @@ smartApp.controller('ResumeController', function(
 
 
     };
+    $scope.onBlurSimSerial = function(){
+        if($scope.simSerial){
+            if($scope.simSerial.length != $scope.simSerialLength){
+                $scope.simSerial = "";
+            }
+        }
+    };
 
     $scope.SetCardValue = function(result) {
         $('#loadingReadCard').hide();
@@ -1469,7 +1476,7 @@ smartApp.controller('ResumeController', function(
     $scope.dataSlip = {
         "E": "E-Bill-Email",
         "S": "E-Bill-SMS",
-        "P": "Bill-Paper",
+        "P": "Paper",
     };
     $scope.billPayment = {
         email: "",
@@ -3366,10 +3373,12 @@ smartApp.controller('ResumeController', function(
             showValidate("txtMailAddressMoo", ValidateMsgService.data.msgBillVillageNoEmpty);
         } else if (isNull($scope.mailAddress.road)) {
             showValidate("txtMailAddressRoad", ValidateMsgService.data.msgBillRoadEmpty);
-        // } else if ($scope.blah == 'E' && isNull($scope.billPayment.email)) {
-        //     showValidate("idBillPaymentEmail", ValidateMsgService.data.msgBillEmailEmpty);
-        // } else if ($scope.blah == 'S' && isNull($scope.billPayment.smss)) {
-        //     showValidate("txtBillPaymentSmss", ValidateMsgService.data.msgBillSmsNoEmpty);
+        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && $scope.blah == 'E' && isNull($scope.billPayment.email)) {
+            showValidate("idBillPaymentEmail", ValidateMsgService.data.msgBillEmailEmpty);
+        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && $scope.blah == 'S' && isNull($scope.billPayment.smss)) {
+            showValidate("txtBillPaymentSmss", ValidateMsgService.data.msgBillSmsNoEmpty);
+        } else if ($scope.billPayment.preferedContace == 'FIX' && isNull($scope.fixPreferedContact)) {
+            showValidate("fixPreferedContact", ValidateMsgService.data.msgFixPreferedContactEmpty);
         } else if (isNull($scope.contactNo.number)) {
             showValidate("txtcontactNonumber", ValidateMsgService.data.msgCusContractNoEmpty);
         } else if (errorFUTURE) {
