@@ -59,6 +59,7 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.attModalVal = "";
     // $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
     $scope.lastestCustomer = {};
+    $scope.clickModalReadCard = false;
 
 
     //paging
@@ -160,7 +161,11 @@ smartApp.controller('MigratePreToPostController', function(
             if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
                 //$("#btn-fancy-ReadCard").fancybox().trigger('click');
                 setTimeout(function() {
-                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                    if($scope.clickModalReadCard){
+                        $("#btn-fancy-ReadCard").fancybox().trigger('click');    
+                        $scope.clickModalReadCard = false;
+                    }
+                    
                     //$("#btn-fancy-ReadCard").click();
                 }, 1200);
             }
@@ -697,6 +702,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 // }, 1000);
                                 $("#btn-fancy-ReadCard").fancybox().trigger('hide');
                                 $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
+                                $scope.clickModalReadCard = true;
                                 $scope.initModalReadCard();
 
                             } else {
@@ -3411,6 +3417,7 @@ smartApp.controller('MigratePreToPostController', function(
         }
         $scope.isClickPrint = false;
         isFocus = true;
+        $scope.clickModalReadCard = true;
         $scope.initModalReadCard();
 
 
