@@ -28,6 +28,7 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.isMatch = true;
     $scope.isVerify = false; //for demo ============ true
     $scope.isSelectedPricePlan2 = false;
+    $scope.clickButtonAddress = false;
 
     $scope.demo = SystemService.demo;
 
@@ -159,7 +160,7 @@ smartApp.controller('MigratePreToPostController', function(
             if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
                 $("#btn-fancy-ReadCard").fancybox().trigger('click');
                 setTimeout(function() {
-                    //$("#btn-fancy-ReadCard").click();
+                    $("#btn-fancy-ReadCard").click();
                 }, 1200);
             }
 
@@ -207,6 +208,9 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
             $.fancybox.close();
+            if($scope.clickButtonAddress == false){
+                $('#useAddressAsCard').click();
+            }
             setTimeout(function() {
                 $('#idBindDataAgain').click();
             }, 500);
@@ -484,10 +488,6 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.onLoadSubNoNull = function() {
 
-        setTimeout(function() {
-            $('#divShowAuthorize').hide();
-            $('#loadingReadCard3').hide();
-        }, 1000);
     };
     $scope.onLoad = function() {
         if (!$routeParams.subno) {
@@ -691,7 +691,6 @@ smartApp.controller('MigratePreToPostController', function(
                                 // setTimeout(function() {
                                 //     $("#btn-fancy-ReadCard").fancybox().trigger('click');
                                 // }, 1000);
-                                $("#btn-fancy-ReadCard").fancybox().trigger('hide');
                                 $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
                                 $scope.initModalReadCard();
 
@@ -1060,6 +1059,7 @@ smartApp.controller('MigratePreToPostController', function(
                             if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
                                 //ผู้จดทะเบียนใหม่
                                 //$scope.customer = customer;
+                                $scope.clickButtonAddress = false;
                                 if (!$scope.isCardValueDataLastest) {
                                     $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
                                     $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
@@ -1114,8 +1114,9 @@ smartApp.controller('MigratePreToPostController', function(
                                     }
                                 }, 1000);
                                 $scope.isAddressList = {};
-                            } else {
 
+                            } else {
+                                $scope.clickButtonAddress = true;
                                 var customer = lastestCustomer.data["response-data"]["customer"];
 
                                 $scope.lastestCustomer = customer;
@@ -2720,31 +2721,31 @@ smartApp.controller('MigratePreToPostController', function(
                 //     "lastname": $scope.newOwner.lastNameTH,
                 //     "photo": $scope.varPhotoLastest,
                 //     "id-number": $scope.customer['id-number'],
-                    //NEW---
-                    // "photoIdCard": cardValueDataNew["photoIdCard"],
+                //NEW---
+                // "photoIdCard": cardValueDataNew["photoIdCard"],
 
-                    //SC=Scan
-                    //SN=Snap
-                    // "photoType": cardValueDataNew["photoType"],
-                    // "titleEn": cardValueDataNew["titleEn"],
-                    // "firstnameEn": cardValueDataNew["firstnameEn"],
-                    // "lastnameEn": cardValueDataNew["lastnameEn"],
-                    // "expireDay": cardValueDataNew["expireDay"],
-                    // "birthDay": cardValueDataNew["birthDay"],
-                    // "issueDay": cardValueDataNew["issueDay"],
+                //SC=Scan
+                //SN=Snap
+                // "photoType": cardValueDataNew["photoType"],
+                // "titleEn": cardValueDataNew["titleEn"],
+                // "firstnameEn": cardValueDataNew["firstnameEn"],
+                // "lastnameEn": cardValueDataNew["lastnameEn"],
+                // "expireDay": cardValueDataNew["expireDay"],
+                // "birthDay": cardValueDataNew["birthDay"],
+                // "issueDay": cardValueDataNew["issueDay"],
 
-                    //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-                    // "homeNumber": cardValueDataNew["homeNumber"],
-                    // "moo": cardValueDataNew["moo"],
-                    // "trok": cardValueDataNew["trok"],
-                    // "soi": cardValueDataNew["soi"],
-                    // "road": cardValueDataNew["road"],
-                    // "district": cardValueDataNew["district"],
-                    // "amphur": cardValueDataNew["amphur"],
-                    // "province": cardValueDataNew["province"]
-                        //NEW---
-                }
+                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                // "homeNumber": cardValueDataNew["homeNumber"],
+                // "moo": cardValueDataNew["moo"],
+                // "trok": cardValueDataNew["trok"],
+                // "soi": cardValueDataNew["soi"],
+                // "road": cardValueDataNew["road"],
+                // "district": cardValueDataNew["district"],
+                // "amphur": cardValueDataNew["amphur"],
+                // "province": cardValueDataNew["province"]
+                //NEW---
             }
+            // }
         };
         console.log($scope.data);
         console.log(data);
