@@ -158,9 +158,10 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.initModalReadCard = function() {
         if ($scope.shopType == "1") {
             if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
-                $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                //$("#btn-fancy-ReadCard").fancybox().trigger('click');
                 setTimeout(function() {
-                    $("#btn-fancy-ReadCard").click();
+                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                    //$("#btn-fancy-ReadCard").click();
                 }, 1200);
             }
 

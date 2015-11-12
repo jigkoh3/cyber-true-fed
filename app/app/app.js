@@ -246,7 +246,7 @@ smartApp
                     }
                     $(element)
                         .keypress(function(e) {
-
+                            //alert('press');
                             var charCode = (e.which) ? e.which : e.keyCode;
                             if (this.value.indexOf(".") >= 0) {
                                 if (charCode == 46) {
@@ -266,6 +266,11 @@ smartApp
                         .blur(function(event) {
                             /* Act on the event */
                             hideSpan();
+                        })
+                        .keydown(function(event) {
+                            /* Act on the event */
+                            hideSpan();
+                            //return false;
                         });
                 }
             };

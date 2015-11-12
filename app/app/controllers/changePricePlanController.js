@@ -597,6 +597,7 @@ smartApp.controller('ChangePricePlanController', function(
                                     $('#ppfilter').focus();
                                     //$scope.firstSearch = true;
                                     //$scope.openPricePlanDialog();
+                                    //$('#modalnewpriceplan').click();
                                 }, 2100);
 
                         }
