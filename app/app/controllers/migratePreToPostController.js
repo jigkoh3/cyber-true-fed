@@ -2704,39 +2704,39 @@ smartApp.controller('MigratePreToPostController', function(
                     //NEW---
             },
             "body": {
-                "cosOldOwnerData": {
-                    "title": $scope.data.customerProfile['title'],
-                    "firstname": $scope.data.customerProfile['firstname'],
-                    "lastname": $scope.data.customerProfile['lastname']
-                },
-                "cosNewOwnerData": {
-                    "title": newTitle,
-                    "firstname": $scope.newOwner.firstNameTH,
-                    "lastname": $scope.newOwner.lastNameTH,
-                    "photo": $scope.varPhotoLastest,
-                    "id-number": $scope.customer['id-number'],
+                // "cosOldOwnerData": {
+                //     "title": $scope.data.customerProfile['title'],
+                //     "firstname": $scope.data.customerProfile['firstname'],
+                //     "lastname": $scope.data.customerProfile['lastname']
+                // },
+                // "cosNewOwnerData": {
+                //     "title": newTitle,
+                //     "firstname": $scope.newOwner.firstNameTH,
+                //     "lastname": $scope.newOwner.lastNameTH,
+                //     "photo": $scope.varPhotoLastest,
+                //     "id-number": $scope.customer['id-number'],
                     //NEW---
-                    "photoIdCard": cardValueDataNew["photoIdCard"],
+                    // "photoIdCard": cardValueDataNew["photoIdCard"],
 
                     //SC=Scan
                     //SN=Snap
-                    "photoType": cardValueDataNew["photoType"],
-                    "titleEn": cardValueDataNew["titleEn"],
-                    "firstnameEn": cardValueDataNew["firstnameEn"],
-                    "lastnameEn": cardValueDataNew["lastnameEn"],
-                    "expireDay": cardValueDataNew["expireDay"],
-                    "birthDay": cardValueDataNew["birthDay"],
-                    "issueDay": cardValueDataNew["issueDay"],
+                    // "photoType": cardValueDataNew["photoType"],
+                    // "titleEn": cardValueDataNew["titleEn"],
+                    // "firstnameEn": cardValueDataNew["firstnameEn"],
+                    // "lastnameEn": cardValueDataNew["lastnameEn"],
+                    // "expireDay": cardValueDataNew["expireDay"],
+                    // "birthDay": cardValueDataNew["birthDay"],
+                    // "issueDay": cardValueDataNew["issueDay"],
 
                     //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-                    "homeNumber": cardValueDataNew["homeNumber"],
-                    "moo": cardValueDataNew["moo"],
-                    "trok": cardValueDataNew["trok"],
-                    "soi": cardValueDataNew["soi"],
-                    "road": cardValueDataNew["road"],
-                    "district": cardValueDataNew["district"],
-                    "amphur": cardValueDataNew["amphur"],
-                    "province": cardValueDataNew["province"]
+                    // "homeNumber": cardValueDataNew["homeNumber"],
+                    // "moo": cardValueDataNew["moo"],
+                    // "trok": cardValueDataNew["trok"],
+                    // "soi": cardValueDataNew["soi"],
+                    // "road": cardValueDataNew["road"],
+                    // "district": cardValueDataNew["district"],
+                    // "amphur": cardValueDataNew["amphur"],
+                    // "province": cardValueDataNew["province"]
                         //NEW---
                 }
             }
