@@ -2680,8 +2680,8 @@ smartApp.controller('MigratePreToPostController', function(
         var data = {
             "func": "PEP",
             "header": {
-                "title-code": customerType == 'Y' ? "" : $scope.data.customerProfile["title-code"],
-                "title": $scope.data.customerProfile["title"],
+                "title-code": customerType == 'Y' ? "" : $scope.newOwner.prefixTH,
+                "title": $scope.newOwner.prefixTH == 'T4' ? "ดร." : $scope.titleOther,
                 "firstname": $scope.data.customerProfile["firstname"],
                 "lastname": $scope.data.customerProfile["lastname"],
                 "customerType": customerType,
