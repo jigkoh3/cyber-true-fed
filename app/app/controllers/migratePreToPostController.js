@@ -124,6 +124,26 @@ smartApp.controller('MigratePreToPostController', function(
 
     }
 
+    $scope.checkDisableTitle = function() {
+        if ($scope.data.customerProfile['title-code']) {
+            return true;
+
+        } else {
+            return false;
+        }
+
+    }
+
+    $scope.disableGender =  function(){
+      if ($scope.newOwner.prefixTH == 'T5'){
+        return false;
+      }else{
+         return true;
+      }
+    }
+
+
+
 
     $scope.readCardError = function(msg) {
         $.fancybox.close();
@@ -161,11 +181,11 @@ smartApp.controller('MigratePreToPostController', function(
             if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
                 //$("#btn-fancy-ReadCard").fancybox().trigger('click');
                 setTimeout(function() {
-                    if($scope.clickModalReadCard){
-                        $("#btn-fancy-ReadCard").fancybox().trigger('click');    
+                    if ($scope.clickModalReadCard) {
+                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
                         $scope.clickModalReadCard = false;
                     }
-                    
+
                     //$("#btn-fancy-ReadCard").click();
                 }, 1200);
             }
