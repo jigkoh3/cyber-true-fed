@@ -592,7 +592,7 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];
                             $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
                             $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
-                            $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
+                            // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
                             $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                             $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                             $scope.cardType.value = $scope.data.customerProfile['id-type'];
@@ -1069,7 +1069,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
                                     $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
                                     $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
-                                    $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
+                                    // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
                                     $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                                     $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                                     $scope.cardType.value = $scope.data.customerProfile['id-type'];
@@ -1091,7 +1091,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
                                     $scope.newOwner2.prefixTH = $scope.data.customerProfile['title-code'];
 
-                                    $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
+                                    // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
 
 
                                     $scope.onselectPrefix();
@@ -1148,7 +1148,7 @@ smartApp.controller('MigratePreToPostController', function(
 
 
 
-                                $scope.customer['tax-id'] = customer["id-number"];
+                                // $scope.customer['tax-id'] = customer["id-number"];
 
                                 $scope.customer['contact-mobile-number'] = customer['contact-mobile-number'];
                                 $scope.customer['contact-email'] = customer['contact-email'];
@@ -1175,7 +1175,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
                                 $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
                                 $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
-                                $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
+                                // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
                                 $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                                 $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                                 $scope.cardType.value = $scope.data.customerProfile['id-type'];
@@ -1203,7 +1203,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
                                 $scope.newOwner2.prefixTH = $scope.data.customerProfile['title-code'];
 
-                                $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
+                                // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
 
 
                                 $scope.onselectPrefix();
@@ -2681,8 +2681,8 @@ smartApp.controller('MigratePreToPostController', function(
         var data = {
             "func": "PEP",
             "header": {
-                "title-code": customerType == 'Y' ? "" : $scope.data.customerProfile["title-code"],
-                "title": $scope.data.customerProfile["title"],
+                "title-code": customerType == 'Y' ? "" : $scope.newOwner.prefixTH,
+                "title": $scope.newOwner.prefixTH == 'T4' ? "ดร." : $scope.titleOther,
                 "firstname": $scope.data.customerProfile["firstname"],
                 "lastname": $scope.data.customerProfile["lastname"],
                 "customerType": customerType,
