@@ -42,7 +42,7 @@ smartApp.controller('ChangePricePlanController', function(
         //$ngBootbox.customDialog($scope.customDialogOptions);
     };
     $scope.filterAndOpen = function() {
-        var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
+        var list = $filter('filter')(valPricePlans, $scope.pricePlanFilter.value);
         console.log(list.length, $scope.pricePlanFilter.value);
         if (list.length == 1) {
             if ($scope.firstSearch == false) {
@@ -541,8 +541,8 @@ smartApp.controller('ChangePricePlanController', function(
                         SystemService.pricePlans = $scope.propositionList;
                         console.log($scope.propositionList);
 
-                        $scope.propositionList = $filter('filter')(valPricePlans, $scope.pricePlanFilter.value);
-                        console.log($scope.propositionList);
+                        //$scope.propositionList = $filter('filter')(valPricePlans, $scope.pricePlanFilter.value);
+                        //console.log($scope.propositionList);
 
                         if (!$scope.pricePlanFilter.value) {
 
@@ -595,7 +595,10 @@ smartApp.controller('ChangePricePlanController', function(
                             // }
                                 setTimeout(function(){
                                     $('#ppfilter').focus();
+                                    //$scope.firstSearch = true;
+                                    //$scope.openPricePlanDialog();
                                 }, 2100);
+
                         }
                     }
 
