@@ -208,7 +208,7 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
             $.fancybox.close();
-            if($scope.clickButtonAddress == false){
+            if ($scope.clickButtonAddress == false) {
                 $('#useAddressAsCard').click();
             }
             setTimeout(function() {
@@ -1174,7 +1174,15 @@ smartApp.controller('MigratePreToPostController', function(
                                 $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                                 $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                                 $scope.cardType.value = $scope.data.customerProfile['id-type'];
+                                if ($scope.cardType.value == "I") {
 
+                                    $scope.customer['tax-id'] = $scope.customer['id-number'];
+                                    console.log($scope.customer['tax-id'], $scope.customer['id-number']);
+                                    $scope.disableTaxID = true;
+                                } else {
+                                    $scope.disableTaxID = false;
+                                    $scope.customer['tax-id'] = "0000000000000";
+                                }
                                 setTimeout(function() {
                                     // $('#divShowAuthorize').hide();
                                     $('#cardType').val($scope.cardType.value);
