@@ -1140,12 +1140,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group" ng-show="$scope.data.installedProducts['product-properties']!='I'">
+                            <div class="form-group" ng-show="data.installedProducts['account-category']=='B' || data.installedProducts['account-category']=='C'">
                                 <label class="col-md-4 control-label">เบอร์ที่ประสงค์ให้ติดต่อ <span style="color:red;">*</span></label>
                                 <div class="col-md-4">
                                     <select class="form-control" ng-change="onChangePreferedContact()" ng-model="billPayment.preferedContace">
-                                        <option value="NONE">None (ไม่ระบุ)</option>
-                                        <option value="SENDALL">Send All (ส่งทั้งหมด)</option>
+                                        <option value="-">None (ไม่ระบุ)</option>
+                                        <option value="*">Send All (ส่งทั้งหมด)</option>
                                         <option value="FIX">กำหนดเบอร์</option>
                                     </select>
                                 </div>
@@ -1157,8 +1157,10 @@
                                     id="fixPreferedContact" 
                                     class="form-control" 
                                     ng-model="fixPreferedContact"
+                                    ng-telephone-number-multi="fixPreferedContact"
                                     maxlength="50">
                                 </div>
+                                <span style="color:red" class="hide" ng-span-telephone-number-multi="fixPreferedContact">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
                             </div>
                         </div>
                     </div>

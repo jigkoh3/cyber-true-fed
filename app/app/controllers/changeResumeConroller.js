@@ -27,7 +27,7 @@ smartApp.controller('ResumeController', function(
     $scope.isReadCardSuccess = false;
     $scope.isAuthorize = false;
     $scope.isMatch = true;
-    $scope.isVerify = false; //for demo ============ true
+    $scope.isVerify = true; //for demo ============ true
     $scope.isSelectedPricePlan2 = false;
 
     $scope.demo = SystemService.demo;
@@ -1482,7 +1482,7 @@ smartApp.controller('ResumeController', function(
         email: "",
         smss: "",
         accountLang: "TH",
-        preferedContace: "NONE"
+        preferedContace: "-"
     };
     $scope.onCheckEmail = function() {
         //SystemService.setValidateEmail($scope.billPayment.email);
@@ -2190,7 +2190,7 @@ smartApp.controller('ResumeController', function(
                     "firstname": $scope.newOwner.firstNameTH,
                     "lastname": $scope.newOwner.lastNameTH,
                     "gender": $scope.newOwner.sex,
-                    "id-type": "I",
+                    //"id-type": "I",
                     "id-number": $('#citizenID3').val(),
                     "birthdate": SystemService.convertDataThToLongDate($('#birthDay').val()),
                     "id-expire-date": SystemService.convertDataThToLongDate($('#expireDay').val()),
@@ -2323,7 +2323,8 @@ smartApp.controller('ResumeController', function(
                             "PRODUCT-STATUS-DESC": $scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-DESC"],
                             "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['lastname'],
                             "ORIGINAL-FIRSTNAME": $scope.data.customerProfile['firstname'],
-                            "ORIGINAL-LASTNAME": $scope.data.customerProfile['lastname']
+                            "ORIGINAL-LASTNAME": $scope.data.customerProfile['lastname'],
+                            "PREFER-CONTACT" : $scope.billPayment.preferedContace == 'FIX'? $scope.fixPreferedContact : $scope.billPayment.preferedContace
                         },
                         "primary-order-data": {
                             //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?

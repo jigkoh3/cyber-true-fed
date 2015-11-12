@@ -81,7 +81,7 @@ smartApp.config(function($routeProvider, $httpProvider) {
         templateUrl: 'app/views/changeResume.html?v=' + runTime,
         controller: 'ResumeController'
 
-        }).when('/resume', {
+    }).when('/resume', {
         templateUrl: 'app/views/changeResume.html?v=' + runTime,
         controller: 'ResumeController'
 
@@ -311,6 +311,79 @@ smartApp
                         .blur(function(event) {
                             /* Act on the event */
                             hideSpan();
+                        });
+                }
+            };
+        })
+    .directive(
+        'ngTelephoneNumberMulti',
+        function() {
+            // require ng-model="yourModal"
+            // span alert add class="hide"
+            return {
+                restrict: 'A',
+                link: function(scope, element, attrs) {
+                    var showSpan = function() {
+                        $('span[ng-span-telephone-number-multi="' + attrs.ngTelephoneNumberMulti + '"]').removeClass('hide');
+                    }
+                    var hideSpan = function() {
+                        $('span[ng-span-telephone-number-multi="' + attrs.ngTelephoneNumberMulti + '"]').addClass('hide');
+                    }
+                    $(element)
+                        .keypress(function(e) {
+                            var charCode = (e.which) ? e.which : e.keyCode;
+                            if (charCode != 59 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                // show msg
+                                showSpan();
+                                return false;
+                            } else {
+                                hideSpan();
+                            }
+                        })
+                        .blur(function(event) {
+                            var that = this;
+                            var checkZeroFirst = function(subno) {
+                                console.log(subno.indexOf("0"));
+                                    if (subno.indexOf("0") != 0) {
+                                        showSpan();
+                                        that.value = "";
+                                    }
+                                }
+                                /* Act on the event */
+                            hideSpan();
+                            console.log(this.value.indexOf(";"), this.value);
+                            if (this.value.indexOf(";") == 0) {
+                                showSpan();
+                                this.value = "";
+                            }
+                            if (this.value) {
+                                var arr = this.value;
+                                arr = arr.split(';');
+                                if (arr.length > 1) {
+                                    for (var i = 0; i < arr.length; i++) {
+                                        if (arr[i] && arr[i].length != 10) {
+                                            showSpan();
+                                            this.value = "";
+                                        }
+                                        checkZeroFirst(arr[i]);
+                                    }
+                                } else {
+                                    if (arr[0]) {
+                                        if (arr[0].length != 10) {
+                                            showSpan();
+                                            this.value = "";
+                                        } else {
+                                            checkZeroFirst(arr[0]);
+                                        }
+                                    } else {
+                                        showSpan();
+                                        this.value = "";
+                                    }
+                                }
+                            }
+                        })
+                        .keyup(function(e) {
+                            //
                         });
                 }
             };
