@@ -159,7 +159,7 @@ smartApp.controller('MigratePreToPostController', function(
             if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
                 $("#btn-fancy-ReadCard").fancybox().trigger('click');
                 setTimeout(function() {
-                    $("#btn-fancy-ReadCard").click();
+                    //$("#btn-fancy-ReadCard").click();
                 }, 1200);
             }
 
@@ -484,6 +484,10 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.onLoadSubNoNull = function() {
 
+        setTimeout(function() {
+            $('#divShowAuthorize').hide();
+            $('#loadingReadCard3').hide();
+        }, 1000);
     };
     $scope.onLoad = function() {
         if (!$routeParams.subno) {
@@ -687,6 +691,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 // setTimeout(function() {
                                 //     $("#btn-fancy-ReadCard").fancybox().trigger('click');
                                 // }, 1000);
+                                $("#btn-fancy-ReadCard").fancybox().trigger('hide');
                                 $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
                                 $scope.initModalReadCard();
 
