@@ -47,7 +47,7 @@
                                 "CURRENT-ACCOUNT-STATUS": "Active",
                                 "PRODUCT-STATUS-DATE": "2015-08-28T00:00:00.000+07:00",
                                 "IS-NEW-ACCOUNT": "false",
-                                "IS-NEW-SIM": "false",
+                                "IS-NEW-SIM": "true",
                                 "CURRENT-SIM-STATUS": "",
                                 "REASON-CODE": "RD03",
                                 "PRODUCT-STATUS-CODE": "RESUME-CANCEL-OA-OS",
