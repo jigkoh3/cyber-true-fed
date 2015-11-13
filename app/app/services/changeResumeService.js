@@ -454,7 +454,7 @@
                             "CUSTOMER_ADDRESS": {
                                 "number": "90/1",
                                 "type": "CUSTOMER_ADDRESS",
-                                "moo": "1",
+                                "moo": "",
                                 "village": "",
                                 "street": "พหลโยธิน",
                                 "soi": "",
@@ -470,7 +470,7 @@
                             "BILLING_ADDRESS": {
                                 "number": "90/1",
                                 "type": "BILLING_ADDRESS",
-                                "moo": "2",
+                                "moo": "",
                                 "village": "",
                                 "street": "พหลโยธิน",
                                 "soi": "",
@@ -486,7 +486,7 @@
                             "TAX_ADDRESS": {
                                 "number": "90/1",
                                 "type": "TAX_ADDRESS",
-                                "moo": "3",
+                                "moo": "",
                                 "village": "",
                                 "street": "พหลโยธิน",
                                 "soi": "",
@@ -502,7 +502,7 @@
                             "INSTALLATION_ADDRESS": {
                                 "number": "90/1",
                                 "type": "INSTALLATION_ADDRESS",
-                                "moo": "4",
+                                "moo": "",
                                 "village": "",
                                 "street": "พหลโยธิน",
                                 "soi": "",
