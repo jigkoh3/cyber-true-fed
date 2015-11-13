@@ -1183,6 +1183,17 @@
                         "th-description": "พันตำรวจเอกนายแพทย์"
                     },
 
+                     {
+                        "key": "คุณ",
+                        "value": "คุณ",
+                        "attributes": {
+                            "GENDER": "FEMALE"
+                        },
+                        "description": "คุณ",
+                        "en-description": "คุณ",
+                        "th-description": "คุณ"
+                    },
+
 
                     {
                         "key": "แม่ชี",
