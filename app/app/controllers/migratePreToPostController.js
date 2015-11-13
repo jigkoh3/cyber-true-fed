@@ -134,12 +134,12 @@ smartApp.controller('MigratePreToPostController', function(
 
     }
 
-    $scope.disableGender =  function(){
-      if ($scope.newOwner.prefixTH == 'T5'){
-        return false;
-      }else{
-         return true;
-      }
+    $scope.disableGender = function() {
+        if ($scope.newOwner.prefixTH == 'T5') {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 
@@ -981,7 +981,7 @@ smartApp.controller('MigratePreToPostController', function(
                     }, 1000);
                 }
                 //$scope.isVerify = false;
-                // $scope.approveCode = "";
+                $scope.approveCode = "";
 
             });
 
@@ -1162,11 +1162,15 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner2.firstNameTH = customer["firstname"];
                                     $scope.newOwner2.lastNameTH = customer["lastname"];
 
-                                    $scope.newOwner.prefixTH = customer["title-code"];
-                                    $scope.newOwner2.prefixTH = customer["title-code"];
+                                    setTimeout(function() {
+                                        $scope.newOwner.prefixTH = customer["title-code"];
+                                        $scope.newOwner2.prefixTH = customer["title-code"];
+                                    }, 1000);
+
 
                                     $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                     $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+                                    $scope.cardType.value = customer['id-type'];
 
 
                                     $scope.checkPrefixT5();
@@ -1200,13 +1204,13 @@ smartApp.controller('MigratePreToPostController', function(
                                 $scope.isLastestAdress = true;
                                 $scope.changecusStatusN('O');
 
-                                $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
-                                $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
-                                $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
+                                // $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
+                                // $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
+                                // $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
                                 // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
-                                $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
-                                $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
-                                $scope.cardType.value = $scope.data.customerProfile['id-type'];
+                                // $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
+                                // $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
+                                // $scope.cardType.value = $scope.data.customerProfile['id-type'];
                                 if ($scope.cardType.value == "I") {
 
                                     $scope.customer['tax-id'] = $scope.customer['id-number'];
@@ -1224,12 +1228,12 @@ smartApp.controller('MigratePreToPostController', function(
                                     // $scope.onInputCitizenID3();
                                 }, 1000);
 
-                                $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
+                                // $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
 
                                 //ระบุผู้ใช้หมายเลข
-                                $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];;
-                                $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
-                                $scope.newOwner2.prefixTH = $scope.data.customerProfile['title-code'];
+                                // $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];;
+                                // $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
+                                // $scope.newOwner2.prefixTH = $scope.data.customerProfile['title-code'];
 
                                 // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
 
@@ -1274,6 +1278,7 @@ smartApp.controller('MigratePreToPostController', function(
         setTimeout(function() {
             $scope.isCheckInputForVerify = false;
             $scope.isVerify = false;
+            $scope.approveCode = "";
             $scope.newOwner.birthDay = $('#birthDay').val();
             $scope.newOwner.expireDay = $('#expireDay').val();
 

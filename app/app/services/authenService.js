@@ -15,7 +15,7 @@
             "saleCode": "90900051",
             "thaiName": null,
             "engName": "CMTEST48 CMSUR48",
-            "shopcodes": ["12345678", "88888888"],
+            "shopcodes": [],
             "logInName": "CMTEST48",
             "isCorporate": false,
             "roleNonShopCorpDto": {

@@ -280,7 +280,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                        <select name="prefixTHs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="isCardValueData || !isCustomerProfile || checkDisableTitle()" ng-model="newOwner.prefixTH" style="width:100px;" required>
+                                        <select name="prefixTHs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="!isCustomerProfile" ng-model="newOwner.prefixTH" style="width:100px;" required>
                                             <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -295,7 +295,7 @@
                                 </label>
                                 <select class="form-control" id="titleOther" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-change="onChangeTitleOther()" 
                                 ng-disabled="!isCustomerProfile">
-                                    <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                                    <option ng-repeat="option in titleOtherTypeList" value="{{option.description}}">{{option["description"]}}</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -331,7 +331,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                        <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="!isCustomerProfile || disableGender()" ng-model="newOwner.sex" style="width:100px;" required>
+                                        <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="!isCustomerProfile" ng-model="newOwner.sex" style="width:100px;" required>
                                             <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -413,7 +413,7 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtPartnerCode" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="(getAuthen.shopcodes.length==1) || !isCustomerProfile" maxlength="8" required>
+                                <input type="text" id="txtPartnerCode" ng-change="onCheckInputForVerify()" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="!isCustomerProfile" maxlength="8" required>
                             </div>
                         </div>
                     </div>
