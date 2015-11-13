@@ -248,14 +248,14 @@ smartApp
                         .keypress(function(e) {
                             //alert('press');
                             var charCode = (e.which) ? e.which : e.keyCode;
-                            if (this.value.indexOf(".") >= 0) {
-                                if (charCode == 46) {
-                                    // show msg
-                                    showSpan();
-                                    return false;
-                                }
-                            }
-                            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+                            // if (this.value.indexOf(".") >= 0) {
+                            //     if (charCode == 46) {
+                            //         // show msg
+                            //         showSpan();
+                            //         return false;
+                            //     }
+                            // }
+                            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
                                 // show msg
                                 showSpan();
                                 return false;
@@ -316,6 +316,121 @@ smartApp
             };
         })
     .directive(
+        'ngTelephoneNumber',
+        function() {
+            // require ng-model="yourModal"
+            // span alert add class="hide"
+            return {
+                restrict: 'A',
+                link: function(scope, element, attrs) {
+                    var showSpan = function() {
+                        $('span[ng-span-telephone-number="' + attrs.ngTelephoneNumber + '"]').removeClass('hide');
+                    }
+                    var hideSpan = function() {
+                        $('span[ng-span-telephone-number="' + attrs.ngTelephoneNumber + '"]').addClass('hide');
+                    }
+                    $(element)
+                        .keypress(function(e) {
+                            //alert('press');
+                            var charCode = (e.which) ? e.which : e.keyCode;
+                            //console.log(this.value.length, this.value.indexOf("0"), this.value)
+                            if (this.value.length == 0 && charCode != 48) {
+                                showSpan();
+                                return false;
+                            }
+                            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                // show msg
+                                showSpan();
+                                return false;
+                            } else {
+                                hideSpan();
+                            }
+                        })
+                        .blur(function(event) {
+                            /* Act on the event */
+                            hideSpan();
+                            if (this.value) {
+                                console.log(this.value.length, this.value.indexOf("0"));
+                                if (this.value.indexOf("0") != 0) {
+                                    showSpan();
+                                    this.value = "";
+                                    this.focus();
+                                }
+                                if (this.value.length == 9 || this.value.length == 10) {
+                                    
+                                }else{
+                                    showSpan();
+                                    this.value = "";
+                                    this.focus();
+                                }
+                            }
+                        })
+                        .keydown(function(event) {
+                            /* Act on the event */
+                            hideSpan();
+                            //return false;
+                        });
+                }
+            };
+        })
+    .directive(
+        'ngMobileNumber',
+        function() {
+            // require ng-model="yourModal"
+            // span alert add class="hide"
+            return {
+                restrict: 'A',
+                link: function(scope, element, attrs) {
+                    var showSpan = function() {
+                        $('span[ng-span-mobile-number="' + attrs.ngMobileNumber + '"]').removeClass('hide');
+                    }
+                    var hideSpan = function() {
+                        $('span[ng-span-mobile-number="' + attrs.ngMobileNumber + '"]').addClass('hide');
+                    }
+                    $(element)
+                        .keypress(function(e) {
+                            //alert('press');
+                            var charCode = (e.which) ? e.which : e.keyCode;
+                            //console.log(this.value.length, this.value.indexOf("0"), this.value)
+                            if (this.value.length == 0 && charCode != 48) {
+                                showSpan();
+                                return false;
+                            }
+                            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                // show msg
+                                showSpan();
+                                return false;
+                            } else {
+                                hideSpan();
+                            }
+                        })
+                        .blur(function(event) {
+                            /* Act on the event */
+                            hideSpan();
+                            if (this.value) {
+                                console.log(this.value.length, this.value.indexOf("0"));
+                                if (this.value.indexOf("0") != 0) {
+                                    showSpan();
+                                    this.value = "";
+                                }
+                                if (this.value.length == 10) {
+                                    
+                                }else{
+                                    showSpan();
+                                    this.value = "";
+                                    this.focus();
+                                }
+                            }
+                        })
+                        .keydown(function(event) {
+                            /* Act on the event */
+                            hideSpan();
+                            //return false;
+                        });
+                }
+            };
+        })
+    .directive(
         'ngTelephoneNumberMulti',
         function() {
             // require ng-model="yourModal"
@@ -343,7 +458,7 @@ smartApp
                         .blur(function(event) {
                             var that = this;
                             var checkZeroFirst = function(subno) {
-                                console.log(subno.indexOf("0"));
+                                    console.log(subno.indexOf("0"));
                                     if (subno.indexOf("0") != 0) {
                                         showSpan();
                                         that.value = "";

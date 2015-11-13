@@ -44,10 +44,10 @@
                             "product-properties": {
                                 "REASON-DESC": "Add Additional SOC for Migrate Customer from Ensemble to CCBS for Activate Subscriber by RD",
                                 "PRODUCT-STATUS-DESC": "Cancel",
-                                "CURRENT-ACCOUNT-STATUS": "Cancel",
+                                "CURRENT-ACCOUNT-STATUS": "Active",
                                 "PRODUCT-STATUS-DATE": "2015-08-28T00:00:00.000+07:00",
                                 "IS-NEW-ACCOUNT": "false",
-                                "IS-NEW-SIM": "false",
+                                "IS-NEW-SIM": "true",
                                 "CURRENT-SIM-STATUS": "",
                                 "REASON-CODE": "RD03",
                                 "PRODUCT-STATUS-CODE": "RESUME-CANCEL-OA-OS",

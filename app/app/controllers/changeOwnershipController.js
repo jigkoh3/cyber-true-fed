@@ -783,7 +783,7 @@ smartApp.controller('changeOwnershipController', function(
         if ($scope.partnerCode) {
             var propParam = {
                 'company-code': $scope.data.installedProducts["company-code"],
-                'customer-type': $scope.data.installedProducts["account-category"],
+                'customer-type': 'I',
                 'propo-type': 'NEW',
                 'mobile-servicetype': $scope.data.installedProducts["mobile-servicetype"],
                 'partner-code': $scope.partnerCode,
@@ -805,9 +805,9 @@ smartApp.controller('changeOwnershipController', function(
             SystemService.showLoading();
             var target = "sales/catalog/product/tmv/priceplan/search?" +
                 "company-code=" + $scope.data.installedProducts['company-code'] +
-                "&customer-type=" + $scope.data.installedProducts['account-category'] +
-                "&customer-subtype=" + $scope.data.installedProducts['account-sub-type'] +
-                "&service-level=" + $scope.data.installedProducts['service-level'] +
+                "&customer-type=I" +
+                "&customer-subtype=" + $scope.subCompanyType +
+                "&service-level=C" +
                 "&proposition=" + $scope.promotion +
                 "&partner-code=" + $scope.partnerCode +
                 "&privilege=false";

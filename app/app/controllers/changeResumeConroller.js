@@ -3340,7 +3340,7 @@ smartApp.controller('ResumeController', function(
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
-        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-SIM'] && isNull($scope.simSerial)) {
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-SIM'] == 'true' && isNull($scope.simSerial)) {
             showValidate("simSerial", ValidateMsgService.data.msgSimSerialEmpty);
         } else if (errorCapmax != "") {
             showValidate(errorCapmaxId, errorCapmaxMsg);

@@ -638,6 +638,8 @@ smartApp.controller('MigratePreToPostController', function(
                             console.log($scope.checkExpireDate);
                             console.log($scope.newOwner.expireDay);
                             setTimeout(function() {
+                                $scope.titleOther = $scope.data.customerProfile['title'];
+                                $('#titleOther').val($scope.data.customerProfile['title']);
                                 // $('#divShowAuthorize').hide();
                                 var cutomerType = $scope.data.priceplan['account-category'];
                                 console.log(cutomerType);
