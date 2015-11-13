@@ -621,7 +621,9 @@ smartApp.controller('ChangePricePlanController', function(
                     makeDataPriceplan(resultGetPriceplan.data["response-data"]["priceplans"], "", "");
                 }
 
-                $('#modalnewpriceplan').click();
+                if($scope.pricePlanFilter.value){
+                    $('#modalnewpriceplan').click();
+                }
                 $scope.promotion = "";
                 //$scope.selectedPromotion();
                 //$('#modalnewpriceplan').click();
