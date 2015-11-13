@@ -293,7 +293,7 @@
                                 <label>
                                     <p></p>
                                 </label>
-                                <select class="form-control" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-change="onChangeTitleOther()" 
+                                <select class="form-control" id="titleOther" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-change="onChangeTitleOther()" 
                                 ng-disabled="!isCustomerProfile">
                                     <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                 </select>
@@ -724,12 +724,12 @@
                                             <input type="radio" style="cursor:pointer;" name="custom" ng-disabled="!isLastestAdress" ng-change="changecusStatusN('O')" value="O" ng-model="customerStatusN"> ลูกค้าล่าสุด
                                         </label>
                                     </div>
-                                    <div class="col-md-8" ng-hide="customerStatusN =='N'">
+                                    <!-- <div class="col-md-8" ng-hide="customerStatusN =='N'">
                                         <div class="checkbox checkbox-circle2 checkbox-inline authorize">
                                             <input type="checkbox" class="styled" id="openService" ng-model="changOpenserviceN" ng-change="changeOldAddress(changOpenserviceN)">
                                             <label for="openService">ระบุลูกค้าในการเปิดบริการ</label>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-md-4">
                                     <p></p>
@@ -765,7 +765,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" ng-show="(customerType=='N' && changOpenserviceN==true)">
+                    <div class="row" ng-show="(customerType=='N' && customerStatusN=='O')">
                         <div class="form-group">
                             <div class="table-responsive">
                                 <table class="table">
