@@ -92,6 +92,12 @@ smartApp.controller('changeOwnershipController', function(
         //$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
     }
 
+    /*   $scope.defaultNonShop = function() {
+           $scope.newOwner.prefixTH = "T5";
+           $scope.newOwner.sex = "MALE";
+           $scope.titleOther = "แม่ชี";
+
+       }*/
 
     $scope.ClearTxt = function() {
         $scope.newOwner.firstNameTH = "";
@@ -447,6 +453,7 @@ smartApp.controller('changeOwnershipController', function(
         return bool;
     }
 
+
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.onLoad = function() {
         $('#loadingReadCard3').hide();
@@ -474,11 +481,30 @@ smartApp.controller('changeOwnershipController', function(
                 //คำนำหน้า
                 SystemService.getMaster_list("CUST-TITLE-TYPE", function(result) {
                     $scope.titleTypeListx = result;
-                    // console.log($scope.titleTypeListx);
+                    if ($scope.getAuthen["shopType"] == "0") {
+                        setTimeout(function() {
+                            $('#prefixTH3').val('T5');
+                        }, 1000);
+
+
+                    }
+                    //console.log($scope.titleTypeListx[4]);
                 });
                 //คำนำหน้า อื่นๆ
                 SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function(result) {
                     $scope.titleOtherTypeList = result;
+
+                    if ($scope.getAuthen["shopType"] == "0") {
+                        setTimeout(function() {
+                            $scope.titleOther = "คุณ";
+
+                            $('#title5').val('คุณ');
+                            $scope.onChangeTitleOther();
+                        }, 1000);
+
+
+                    }
+
                     //console.log($scope.titleOtherTypeList);
                 });
                 //ประเภทของบัตร
@@ -868,7 +894,7 @@ smartApp.controller('changeOwnershipController', function(
     $scope.onInputCitizenID3 = function() {
         if ($('#citizenID3').val() == $scope.data.customerProfile["id-number"] || $('#CitizenIDLastest').val() == $scope.data.customerProfile["id-number"]) {
             SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
-             
+
 
             $scope.ClearTxt();
             $scope.customer['id-number'] = "";
@@ -878,7 +904,7 @@ smartApp.controller('changeOwnershipController', function(
             return;
         }
 
-              
+
         //ผู้จดทะเบียนใหม่
         //$scope.customer = customer;
         if (!$scope.isCardValueDataLastest) {
@@ -1348,7 +1374,7 @@ smartApp.controller('changeOwnershipController', function(
     $scope.showEnableNewOwnerBirthday = true;
     $scope.showEnableNewOwnerExpireDay = true;
     $scope.newOwner = {
-        prefixTH: "T1",
+        prefixTH: "T5",
         sex: "MALE"
     };
     $scope.newOwner2 = {
@@ -3238,7 +3264,7 @@ smartApp.controller('changeOwnershipController', function(
         $scope.initModalReadCard();
 
         $('#CitizenIDLastest').focus();
-        
+
         if (idFocus) {
             $('#' + idFocus).focus();
             idFocus = "";

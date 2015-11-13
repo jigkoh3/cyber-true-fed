@@ -356,6 +356,8 @@
                                         ng-change="onChangeTitleOther()"
                                         ng-show="newOwner.prefixTH=='T5'"
                                         ng-model="titleOther"
+                                        ng-disabled="!isLastestUser"
+                                        id="title5"
                                         style="width:100px;">
                                     <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                 </select>
