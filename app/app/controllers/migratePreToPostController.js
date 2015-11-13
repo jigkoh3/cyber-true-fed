@@ -1164,7 +1164,10 @@ smartApp.controller('MigratePreToPostController', function(
 
                                     setTimeout(function() {
                                         $scope.newOwner.prefixTH = customer["title-code"];
+                                        $('#prefixTH3').val(customer["title-code"]);
+                                        $('#titleOther').val(customer["title"]);
                                         $scope.newOwner2.prefixTH = customer["title-code"];
+                                        $('#titleRegisterd').val(customer["title-code"]);
                                     }, 1000);
 
 
@@ -1223,7 +1226,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 setTimeout(function() {
                                     // $('#divShowAuthorize').hide();
                                     $('#cardType').val($scope.cardType.value);
-                                    $('#prefixTH3').val($scope.data.customerProfile['title-code']);
+                                    // $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                     //$ngBootbox.customDialog($scope.customDialogOptions);
                                     // $scope.onInputCitizenID3();
                                 }, 1000);
@@ -1239,8 +1242,9 @@ smartApp.controller('MigratePreToPostController', function(
 
 
                                 $scope.onselectPrefix();
-
-
+                                setTimeout(function() {
+                                $('#titleOther').val(customer["title"]);
+                            }, 1500);
                                 console.log(customer);
                                 SystemService.hideLoading();
 
@@ -3376,6 +3380,8 @@ smartApp.controller('MigratePreToPostController', function(
             showValidate("CitizenID2", ValidateMsgService.data.authorizeIdMsg);
         } else if (errorAuthorizeName) {
             showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
+        } else if (($scope.newOwner.prefixTH == "T5") && isNull($('#titleOther').val())) {
+            showValidate("titleOther", ValidateMsgService.data.msgNewPosCusPrefixEmpty);
         } else if (isNull($scope.customer['id-number'])) {
             showValidate("citizenID3", ValidateMsgService.data.msgNewCusIDnoEmpty);
         } else if (isNull($scope.newOwner.firstNameTH)) {

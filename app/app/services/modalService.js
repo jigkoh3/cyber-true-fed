@@ -145,6 +145,14 @@
             "th-message": "กรุณาระบุคำนำหน้าของผู้จดทะเบียนเติมเงิน",
             "technical-message": "FROM WEBUI"
         },
+        "msgNewPosCusPrefixEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Postpaid Customer’s Prefix",
+            "th-message": "กรุณาระบุคำนำหน้าของผู้จดทะเบียนรายเดือน",
+            "technical-message": "FROM WEBUI"
+        },
         "msgNewPreCusIDTypeEmpty": {
             "message": "",
             "message-code": "",
