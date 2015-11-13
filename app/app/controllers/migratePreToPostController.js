@@ -1226,6 +1226,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                     //$ngBootbox.customDialog($scope.customDialogOptions);
                                     // $scope.onInputCitizenID3();
+                                    $scope.initModalReadCard();
                                 }, 1000);
 
                                 // $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
