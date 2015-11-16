@@ -2488,7 +2488,7 @@ smartApp.controller('ResumeController', function(
 
         if($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Active'){
             delete data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"];
-            delete data['order']["order-items"]["address-list"]["BILLING_ADDRESS"];
+            delete data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
         }
         if ($scope.customerStatusN == 'O') {
             data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
