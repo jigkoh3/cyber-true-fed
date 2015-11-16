@@ -44,7 +44,7 @@
                             "product-properties": {
                                 "REASON-DESC": "Add Additional SOC for Migrate Customer from Ensemble to CCBS for Activate Subscriber by RD",
                                 "PRODUCT-STATUS-DESC": "Cancel",
-                                "CURRENT-ACCOUNT-STATUS": "Active",
+                                "CURRENT-ACCOUNT-STATUS": "Cancel",
                                 "PRODUCT-STATUS-DATE": "2015-08-28T00:00:00.000+07:00",
                                 "IS-NEW-ACCOUNT": "false",
                                 "IS-NEW-SIM": "true",
@@ -454,7 +454,7 @@
                             "CUSTOMER_ADDRESS": {
                                 "number": "90/1",
                                 "type": "CUSTOMER_ADDRESS",
-                                "moo": "",
+                                "moo": "-",
                                 "village": "",
                                 "street": "พหลโยธิน",
                                 "soi": "",

@@ -2194,7 +2194,7 @@ smartApp.controller('ResumeController', function(
                     "id-number": $('#citizenID3').val(),
                     "birthdate": SystemService.convertDataThToLongDate($('#birthDay').val()),
                     "id-expire-date": SystemService.convertDataThToLongDate($('#expireDay').val()),
-                    "contact-number": $scope.contactNo.number + ($scope.contactNo.continued ? ("#" + $scope.contactNo.continued) : ""),
+                    //"contact-number": $scope.contactNo.number + ($scope.contactNo.continued ? ("#" + $scope.contactNo.continued) : ""),
                     "contact-mobile-number": $scope.customer["contact-mobile-number"],
                     "contact-email": $scope.customer["contact-email"],
                     "language": $scope.customer["language"],
@@ -3380,10 +3380,10 @@ smartApp.controller('ResumeController', function(
             showValidate("txtBillPaymentSmss", ValidateMsgService.data.msgBillSmsNoEmpty);
         } else if ($scope.billPayment.preferedContace == 'FIX' && isNull($scope.fixPreferedContact)) {
             showValidate("fixPreferedContact", ValidateMsgService.data.msgFixPreferedContactEmpty);
-        } else if (isNull($scope.contactNo.number)) {
-            showValidate("txtcontactNonumber", ValidateMsgService.data.msgCusContractNoEmpty);
-        } else if (errorFUTURE) {
-            showValidate("txtDateManual", ValidateMsgService.data.effectiveDateMsg);
+        //} else if (isNull($scope.contactNo.number)) {
+            //showValidate("txtcontactNonumber", ValidateMsgService.data.msgCusContractNoEmpty);
+        //} else if (errorFUTURE) {
+            //showValidate("txtDateManual", ValidateMsgService.data.effectiveDateMsg);
         } else {
             if ($scope.isClickPrint) {
                 $scope.printOrder();
