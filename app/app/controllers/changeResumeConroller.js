@@ -2199,7 +2199,7 @@ smartApp.controller('ResumeController', function(
                     "firstname": $scope.newOwner.firstNameTH,
                     "lastname": $scope.newOwner.lastNameTH,
                     "gender": $scope.newOwner.sex,
-                    "id-type": $scope.customer["id-type"],
+                    "id-type": $scope.data.customerProfile["id-type"],
                     "id-number": $('#citizenID3').val(),
                     "birthdate": SystemService.convertDataThToLongDate($('#birthDay').val()),
                     "id-expire-date": SystemService.convertDataThToLongDate($('#expireDay').val()),
@@ -2485,6 +2485,11 @@ smartApp.controller('ResumeController', function(
         }
 
         data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"] = data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
+
+        if($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Active'){
+            delete data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"];
+            delete data['order']["order-items"]["address-list"]["BILLING_ADDRESS"];
+        }
         if ($scope.customerStatusN == 'O') {
             data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
         }
