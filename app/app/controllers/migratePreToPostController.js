@@ -351,15 +351,15 @@ smartApp.controller('MigratePreToPostController', function(
         "branch-code": "00000"
     };
 
-   // $scope.disableIdType = false;
-    $scope.valueIdType = function(){
+    // $scope.disableIdType = false;
+    $scope.valueIdType = function() {
 
-        if($scope.cardType.value){
-           // $scope.disableIdType = true;
-           return true;
-        }else{
-           // $scope.disableIdType = false;
-           return false;
+        if ($scope.cardType.value) {
+            // $scope.disableIdType = true;
+            return true;
+        } else {
+            // $scope.disableIdType = false;
+            return false;
         }
 
 
@@ -637,13 +637,13 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                             $scope.cardType.value = $scope.data.customerProfile['id-type'];
 
-                            
+
                             $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
 
                             $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
                             // $scope.onInputIdLastest3();
-                            $scope.valueIdType(); 
+                            $scope.valueIdType();
                             $scope.checkUserDealer();
                             $scope.checkUserNonShop();
                             $scope.checkUserShop();
@@ -931,6 +931,7 @@ smartApp.controller('MigratePreToPostController', function(
             migratePreToPostService.propositionCallback(propParam, function(resultProp) {
                 if (resultProp.status) {
                     $scope.propositions = resultProp.data['response-data'];
+                    console.log($scope.propositions);
                 }
             });
         }
@@ -1124,7 +1125,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.onChangeCardTypes();
 
 
-                                     $scope.valueIdType(); 
+                                    $scope.valueIdType();
                                     // $scope.onInputCitizenID3();
 
                                     setTimeout(function() {
@@ -1198,7 +1199,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
                                     $scope.cardType.value = customer['id-type'];
 
-                                   
+
 
                                     $scope.checkPrefixT5();
                                 }
@@ -1268,8 +1269,8 @@ smartApp.controller('MigratePreToPostController', function(
 
                                 $scope.onselectPrefix();
                                 setTimeout(function() {
-                                $('#titleOther').val(customer["title"]);
-                            }, 1500);
+                                    $('#titleOther').val(customer["title"]);
+                                }, 1500);
                                 console.log(customer);
                                 SystemService.hideLoading();
 
@@ -1719,7 +1720,7 @@ smartApp.controller('MigratePreToPostController', function(
 
         $scope.getOfferDetail($scope.pricePlan2.priceplans.soc);
         //$scope.getCapmaxParameter($scope.pricePlan2.priceplans.soc);
-
+        console.log($scope.pricePlan2.priceplans.soc);
     };
 
     $scope.selectedPricePlan3 = function() {
@@ -1934,7 +1935,7 @@ smartApp.controller('MigratePreToPostController', function(
 
         });
     };
-
+    $scope.propositionSoc = "";
     $scope.promotion = "";
     $scope.selectedPromotion = function() {
         $scope.pricePlan = {};
@@ -1949,6 +1950,9 @@ smartApp.controller('MigratePreToPostController', function(
 
         //var value = $('#selectProposition').val();
         //$scope.propositionList = $filter('filter')(valPricePlans, { "proposition-code": value });
+        var propositionSocList = $filter('filter')($scope.propositions, { "proposition-code": $scope.promotion });
+        console.log(propositionSocList[0].soc);
+        $scope.propositionSoc = propositionSocList[0].soc;
 
         $scope.callSalePricePlanList();
     };
@@ -2277,6 +2281,7 @@ smartApp.controller('MigratePreToPostController', function(
                     "language": $scope.customer["language"],
                     "branch-code": $scope.customer["branch-code"],
                     "tax-id": $scope.customer["tax-id"],
+                    "customer-id": $scope.isLastestUser = true ? $scope.customer["customer-id"] : "",
                     "customer-level": $scope.grade["grade-name"],
                     "customer-id": $scope.data.customerProfile["customer-id"],
                     "customer-sublevel_id": $scope.grade["grade-id"],
@@ -2396,7 +2401,13 @@ smartApp.controller('MigratePreToPostController', function(
                             "ACCOUNT-LANG": $scope.billPayment.accountLang,
                             //"ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
-                            "CHANGE-OPTION": $scope.isLastestAdress ? "EXISTING" : "NEW"
+                            "CHANGE-OPTION": $scope.isLastestAdress ? "EXISTING" : "NEW",
+                            "PRICEPLAN-SOC-CODE": $scope.pricePlan2.priceplans.soc,
+                            "CCBS-PROPOSITION-SOC-CODE": $scope.propositionSoc,
+                            "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['id-number'],
+                            "ORIGINAL-FIRSTNAME": $scope.data.customerProfile['firstname'],
+                            "ORIGINAL-LASTNAME": $scope.data.customerProfile['lastname']
+
                         },
                         "primary-order-data": {
                             //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
