@@ -270,9 +270,10 @@
                 //alert($scope.data.customerProfile['id-type']);
                 //$('#selectCustomerIdType').val(idType);
                 console.log($scope.data);
-                $('#selectCustomerIdType').val($scope.data.customerProfile['id-type']);
+                
 
                 if ($scope.data.simData['account-category'] == "I" || $scope.data.simData['account-category'] == "P") {
+                    $('#selectCustomerIdType').val($scope.data.customerProfile['id-type']);
                     $scope.mailAddress.province = $scope.data.customerAddress['province'];
                     $scope.mailAddress.amphur = $scope.data.customerAddress['sub-district'];
                     $scope.mailAddress.district = $scope.data.customerAddress['district'];
@@ -304,19 +305,20 @@
             $scope.data.customerProfileNew['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
 
             authenticate();
-            $scope.checkUserDealer();
-            console.log($scope.userDealer);
         }
         setTimeout(function() {
 
             if ($scope.data.simData['account-category'] == "B" || $scope.data.simData['account-category'] == "C") {
                 $scope.data.customerProfileNew['id-type'] = "";
+                $('#selectCustomerIdType').val($scope.data.customerProfileNew['id-type']);
                 $scope.data.customerProfileNew['id-number'] = "";
             };
 
         }, 100);
         //setTimeout(function() {
         SystemService.calendarDatePicker();
+        $scope.checkUserDealer();
+        console.log($scope.userDealer);
         //}, 100);
     };
     $scope.isSelectedPricePlan = false;
