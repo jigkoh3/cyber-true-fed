@@ -1477,7 +1477,10 @@
                             <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
                             <div class="col-md-4">
 
-                                <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-change="onReasonChange()" ng-model="reason" class=" form-control"></select>
+                                <!-- <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-change="onReasonChange()" ng-model="reason" class=" form-control"></select> -->
+                                <select class=" form-control">
+                                    <option>COWN: Change Ownership</option>
+                                </select>
 
                             </div>
                         </div>

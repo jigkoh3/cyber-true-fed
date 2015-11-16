@@ -285,11 +285,12 @@
                     $scope.mailAddress.buildingName = $scope.data.customerAddress['building-name'];
                     $scope.mailAddress.buildingRoom = $scope.data.customerAddress['building-room'];
                     $scope.mailAddress.buildingFloor = $scope.data.customerAddress['building-floor'];
-                } else {
-                    $scope.data.customerProfileNew['id-type'] = "";
                 }
+
                 //$scope.data.customerProfile['id-type'] = 'I';
             }, 1000);
+
+
 
             //$scope.data.customerProfile['id-type'] = idType;
 
@@ -306,7 +307,14 @@
             $scope.checkUserDealer();
             console.log($scope.userDealer);
         }
+        setTimeout(function() {
 
+            if ($scope.data.simData['account-category'] == "B" || $scope.data.simData['account-category'] == "C") {
+                $scope.data.customerProfileNew['id-type'] = "";
+                $scope.data.customerProfileNew['id-number'] = "";
+            };
+
+        }, 100);
         //setTimeout(function() {
         SystemService.calendarDatePicker();
         //}, 100);

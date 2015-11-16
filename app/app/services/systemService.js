@@ -1518,12 +1518,14 @@
         expiredate.setDate(expiredate.getDate() - 1);
 
         $('.date-picker').datepicker({
+            clearBtn: true,
             autoclose: true,
             todayHighlight: true,
             language: 'th-th'
         });
 
         $('.date-picker-start').datepicker({
+            clearBtn: true,
             autoclose: true,
             todayHighlight: true,
             language: 'th-th',
@@ -1532,6 +1534,7 @@
 
 
         $('.date-picker-expiredate').datepicker({
+            clearBtn: true,
             autoclose: true,
             todayHighlight: true,
             language: 'th-th',
@@ -1539,6 +1542,7 @@
         });
 
         $('.date-picker-birthdate').datepicker({
+            clearBtn: true,
             autoclose: true,
             todayHighlight: true,
             language: 'th-th',

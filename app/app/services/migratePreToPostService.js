@@ -408,8 +408,8 @@
                     "customer": {
                         "title": "นาย",
                         "title-code": "T1",
-                        "firstname": "กอไก่",
-                        "lastname": "ขอไข่",
+                        "firstname": "กูอุไก่",
+                        "lastname": "สุขใจ",
                         'birthdate': '2015-07-20T00:00:00+0700',
                         'id-expire-date': '2020-07-20T00:00:00+0700',
                         "contact-number": "029448849#123",

@@ -2147,7 +2147,8 @@ smartApp.controller('changeOwnershipController', function(
                         "product-category": $scope.data.installedProducts["product-category"],
                         "product-type": "PRICEPLAN",
                         "order-type": "CHANGE",
-                        "reason-code": $scope.selectReason.id,
+                        //"reason-code": $scope.selectReason.id,
+                        "reason-code": "COWN",
                         "user-memo": $scope.saveData.memo ? $scope.saveData.memo : "",
                         "address-list": {
                             "BILLING_ADDRESS": {
