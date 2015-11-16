@@ -1,7 +1,7 @@
-﻿smartApp.service('ChangePricePlanService', function ($filter, SystemService, $routeParams) {
+﻿smartApp.service('ChangePricePlanService', function($filter, SystemService, $routeParams) {
     var demo = SystemService.demo;
     var that = this;
-    this.validateChangePricePlan = function (msisdn, ouID, fnCallback) {
+    this.validateChangePricePlan = function(msisdn, ouID, fnCallback) {
         if (!demo) {
             var target = 'aftersales/tmv/changepriceplan/validatechangepriceplan?';
             if (msisdn == "null") {
@@ -10,19 +10,19 @@
             if (ouID == "null") {
                 ouID = "";
             }
-            if($routeParams.oulevel){
-                if($routeParams.oulevel == 'Sub'){
+            if ($routeParams.oulevel) {
+                if ($routeParams.oulevel == 'Sub') {
                     //
-                    target = target +'msisdn=' + msisdn;
-                }else{
+                    target = target + 'msisdn=' + msisdn;
+                } else {
                     //
-                    target = target +'ou-id=' + ouID;
+                    target = target + 'ou-id=' + ouID;
                 }
-            }else{
-                target = target +'msisdn=' + msisdn;
+            } else {
+                target = target + 'msisdn=' + msisdn;
             }
-            
-            SystemService.callServiceGet(target, null, function (result) {
+
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -38,35 +38,33 @@
                     "id-type": "",
                     "id-number": "1180200046320",
                     "customer-id": "33896",
-                    "installed-products": [
-                      {
-                          "ouId": "16058",
-                          "ban": "10050233",
-                          "product-category": "TMV",
-                          "product-type": "PRICEPLAN",
-                          "product-sub-type": "R",
-                          "product-status": "",
-                          "number-status": "A",
-                          "account-category": "C",
-                          "account-sub-type": "POSTPAID",
-                          "product-id": "NPSMAP08",
-                          "product-name": "NPSMAP08",
-                          "product-description": "4G iSmart 499, Voice150m, Net1.5GB, WiFi UNLTD",
-                          "bill-cycle": "2",
-                          "bill-cycle-next-date": "02/10/2015",
-                          "company-code": "RM",
-                          "service-level": "C",
-                          "product-id-name": "MSISDN",
-                          "product-id-number": "0870100002",
-                          "mobile-servicetype": "POSTPAID",
-                          "has-splitcharge": false,
-                          "is-childsim": false,
-                          "is-softsuspend": false,
-                          "sim-type": "",
-                          "next-priceplan-code": "",
-                          "next-priceplan-desc": ""
-                      }
-                    ]
+                    "installed-products": [{
+                        "ouId": "16058",
+                        "ban": "10050233",
+                        "product-category": "TMV",
+                        "product-type": "PRICEPLAN",
+                        "product-sub-type": "R",
+                        "product-status": "",
+                        "number-status": "A",
+                        "account-category": "C",
+                        "account-sub-type": "POSTPAID",
+                        "product-id": "NPSMAP08",
+                        "product-name": "NPSMAP08",
+                        "product-description": "4G iSmart 499, Voice150m, Net1.5GB, WiFi UNLTD",
+                        "bill-cycle": "2",
+                        "bill-cycle-next-date": "02/10/2015",
+                        "company-code": "RM",
+                        "service-level": "C",
+                        "product-id-name": "MSISDN",
+                        "product-id-number": "0870100002",
+                        "mobile-servicetype": "POSTPAID",
+                        "has-splitcharge": false,
+                        "is-childsim": false,
+                        "is-softsuspend": false,
+                        "sim-type": "",
+                        "next-priceplan-code": "",
+                        "next-priceplan-desc": ""
+                    }]
                 },
                 "display-messages": [],
                 "trx-id": "8D14IN26571RG",
@@ -87,6 +85,58 @@
                 "trx-id": "46CT191OOBJJ",
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
                 "status-code": "2"
+            };
+            var data4 = {
+                "status": "SUCCESSFUL",
+                "customer": {
+                    "title": "",
+                    "firstname": "CHK003",
+                    "lastname": "",
+                    "contact-number": "",
+                    "contact-mobile-number": "",
+                    "id-type": "",
+                    "id-number": "CHK003",
+                    "customer-id": "54817",
+                    "installed-products": [{
+                        "ouId": "29442",
+                        "ban": "10057247",
+                        "product-category": "TMV",
+                        "product-type": "PRICEPLAN",
+                        "product-sub-type": "H",
+                        "product-status": "Active",
+                        "account-category": "C",
+                        "account-sub-type": "HYE",
+                        "product-id": "R13ESMP20",
+                        "product-name": "R13ESMP20",
+                        "product-description": "Biz & Ent HYB 699 V450S50UnWEG2G384_F&F Unlimited",
+                        "bill-cycle": "2",
+                        "bill-cycle-next-date": "02/12/2015",
+                        "company-code": "RF",
+                        "service-level": "G",
+                        "subscriber-id": "82589",
+                        "product-id-name": "MSISDN",
+                        "product-id-number": "0880100078",
+                        "mobile-servicetype": "HYBRID",
+                        "has-splitcharge": false,
+                        "is-childsim": false,
+                        "is-softsuspend": false,
+                        "ou-hierarchytype": ""
+                    }]
+                },
+                "display-messages": [{
+                    "message-code": "TMV-CHANGE-PP-00008",
+                    "message-type": "WARNING",
+                    "th-message": "เป็น Large Customer Size จะมีผล end of day."
+                }, {
+                    "message": "Hybrid number, New Price Plan bill effective on next bill cycle",
+                    "message-code": "TMV-CHANGE-PP-00007",
+                    "message-type": "WARNING",
+                    "en-message": "Hybrid number, New Price Plan bill effective on next bill cycle",
+                    "th-message": "สำหรับหมายเลขประเภทไฮบริด การเปลี่ยนแปลงโปรโมชั่นใหม่จะมีผลรอบบิลถัดไปเท่านั้น"
+                }],
+                "trx-id": "40OFDU619WFW",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "status-code": "1"
             };
 
             var data3 = {
@@ -170,7 +220,7 @@
             if (msisdn == "0870100002") {
                 fnCallback({
                     status: true,
-                    data: data,
+                    data: data4,
                     error: "",
                     msgErr: ""
                 });
@@ -189,19 +239,65 @@
                     msgErr: ""
                 });
             }
-            
+
         }
     };
-    this.getChangePricePlan = function (msisdn, ouID, fnCallback) {
-        that.validateChangePricePlan(msisdn, ouID, function (result) {
+    this.getChangePricePlan = function(msisdn, ouID, fnCallback) {
+        that.validateChangePricePlan(msisdn, ouID, function(result) {
             //console.log("ChangePricePlanService.getChangePricePlan : ");
             //console.log(data);
+            var checkNullText = function(txt){
+                if(txt){
+                    return txt;
+                }else{
+                    return "";
+                }
+                
+            };
+            setTimeout(function() {
+                $.fancybox.close();
+                var errorText = {
+                    "message": "",
+                    "en-message": "",
+                    "th-message": "",
+                    "technical-message": ""
+                };
+                var errorList = data["display-messages"];
+                for (var i = 0; i < errorList.length; i++) {
+                    errorText["message"] += errorList[i]["message"] + "<br /> ";
+                    errorText["en-message"] += checkNullText(errorList[i]["en-message"]) + "<br /> ";
+                    errorText["th-message"] += checkNullText(errorList[i]["th-message"]) + "<br /> ";
+                    errorText["technical-message"] += checkNullText(errorList[i]["technical-message"]) + "<br /> ";
+                }
+                SystemService.showAlert({
+                    "message": errorText["message"],
+                    "message-code": "",
+                    "message-type": "WARNING",
+                    "en-message": errorText["en-message"],
+                    "th-message": errorText["th-message"],
+                    "technical-message": errorText["technical-message"]
+                });
+                //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ยังไม่ได้ทำให้ multi alert
+                setTimeout(function() {
+                    $('.ngdMessage').html(errorText["message"]);
+                    $('.ngdEnMessage').html(errorText["en-message"]);
+                    $('.ngdThMessage').html(errorText["th-message"]);
+                    $('.ngdTechnicalMessage').html(errorText["technical-message"]);
+                }, 200);
+
+            }, 1000);
             if (result.status) {
                 var data = result.data;
                 if (data["status-code"] != "2") {
-                    var priceplan = $filter('filter')(data.customer["installed-products"], { "product-type": "PRICEPLAN" })[0];
-                    var offer = $filter('filter')(data.customer["installed-products"], { "product-type": "PROPOSITION" });
-                    var discount = $filter('filter')(data.customer["installed-products"], { "product-type": "DISCOUNT" });
+                    var priceplan = $filter('filter')(data.customer["installed-products"], {
+                        "product-type": "PRICEPLAN"
+                    })[0];
+                    var offer = $filter('filter')(data.customer["installed-products"], {
+                        "product-type": "PROPOSITION"
+                    });
+                    var discount = $filter('filter')(data.customer["installed-products"], {
+                        "product-type": "DISCOUNT"
+                    });
 
                     var mobileServiceType = "ทรูมูฟเอช รายเดือน";
                     if (priceplan["mobile-servicetype"] == "PREPAID")
@@ -223,14 +319,14 @@
                     };
                     delete rusult.customerProfile['installed-products'];
                     if (data["display-messages"].length != 0) {
-                        SystemService.showAlert({
-                            "message": data["display-messages"][0]["message"],
-                            "message-code": data["display-messages"][0]["message-code"],
-                            "message-type": "WARNING",
-                            "en-message": data["display-messages"][0]["en-message"],
-                            "th-message": data["display-messages"][0]["th-message"],
-                            "technical-message": data["display-messages"][0]["technical-message"]
-                        });
+                        // SystemService.showAlert({
+                        //     "message": data["display-messages"][0]["message"],
+                        //     "message-code": data["display-messages"][0]["message-code"],
+                        //     "message-type": "WARNING",
+                        //     "en-message": data["display-messages"][0]["en-message"],
+                        //     "th-message": data["display-messages"][0]["th-message"],
+                        //     "technical-message": data["display-messages"][0]["technical-message"]
+                        // });
                     } else {
                         //alert('validateChangePricePlan');
                         SystemService.hideLoading();
@@ -254,9 +350,9 @@
             }
         });
     };
-    this.aftersalePriceplan = function (target, fnCallback) {
+    this.aftersalePriceplan = function(target, fnCallback) {
         if (!demo) {
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -294,8 +390,7 @@
                         "rc": 1299.0,
                         "service-level": "C",
                         "priceplan-type": "N"
-                    }
-                    , {
+                    }, {
                         "name": "NPSMAP02",
                         "description": "3G iSmart 399,VoiceAllNet150m,Net750MB, WiFiUNLTD",
                         "soc": "10633911",
@@ -1119,8 +1214,8 @@
             });
         }
     };
-    this.getPriceplan = function (target, fnCallback) {
-        that.aftersalePriceplan(target, function (result) {
+    this.getPriceplan = function(target, fnCallback) {
+        that.aftersalePriceplan(target, function(result) {
             console.log("getPriceplan ::::::: ");
             console.log("target ::::: " + target);
             console.log(result);
@@ -1129,10 +1224,10 @@
             //SystemService.hideLoading();
         });
     };
-    this.offerDetail = function (soc, fnCallback) {
+    this.offerDetail = function(soc, fnCallback) {
         if (!demo) {
             var target = 'aftersales/tmv/priceplan/details?offer-code=' + soc;
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -1207,7 +1302,7 @@
                             "sale-expiration-date": "08/08/2250 00:00:00",
                             "offer-type": "U",
                             "sale-effective-date": "28/02/2008 00:00:00",
-                            "special-offer-type": "FriendAndFamily"//FriendAndFamily
+                            "special-offer-type": "FriendAndFamily" //FriendAndFamily
                         }, {
                             "code": "40941",
                             "name": "PROSTDA1",
@@ -1270,7 +1365,7 @@
                             "sale-expiration-date": "08/08/2250 00:00:00",
                             "offer-type": "U",
                             "sale-effective-date": "28/02/2008 00:00:00",
-                            "special-offer-type": "FriendAndFamily"//FriendAndFamily
+                            "special-offer-type": "FriendAndFamily" //FriendAndFamily
                         }, {
                             "code": "40941",
                             "name": "PROSTDA1",
@@ -1301,14 +1396,14 @@
             });
         }
     };
-    this.getOfferDetail = function (soc, fnCallback) {
-        that.offerDetail(soc, function (result) {
+    this.getOfferDetail = function(soc, fnCallback) {
+        that.offerDetail(soc, function(result) {
             console.log("getOfferDetail ::::::: ");
             console.log(result);
             fnCallback(result);
         });
     };
-    this.getCUGList = function (fnCallback) {
+    this.getCUGList = function(fnCallback) {
         var data = {};
         if (demo) {
             data = {
@@ -1915,13 +2010,13 @@
             });
         } else {
             var target = 'sales/catalog/product/tmv/aftersales/cug/list?search-type=GROUP_IDENTIFIER';
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         }
 
     };
-    this.getCapmaxParameter = function (offerCode, fnCallback) {
+    this.getCapmaxParameter = function(offerCode, fnCallback) {
         var data = {};
         if (demo) {
             data = {
@@ -1949,7 +2044,7 @@
             });
         } else {
             var target = 'aftersales/tmv/offer/listcapmaxparameter?offer-code=' + offerCode;
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         }

@@ -796,7 +796,8 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     "product-category": payload.productDetails['product-category'],
                     "product-type": payload.productDetails['product-type'],
                     "order-type": "CHANGE",
-                    "reason-code": payload.selectReason.id,
+                    //"reason-code": payload.selectReason.id,
+                    "reason-code": "MGJ5",
                     "address-list": {
                         "BILLING_ADDRESS": payload.customerAddress,
                         "TAX_ADDRESS": payload.customerAddress
