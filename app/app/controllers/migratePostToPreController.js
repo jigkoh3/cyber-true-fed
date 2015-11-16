@@ -931,7 +931,7 @@
         //solution for none fix index
         $scope.reasons = result;
         var myArray = result;
-        var searchText = "CREQ",
+        var searchText = "MGJ5",
             index = -1;
         for (var i = 0, len = myArray.length; i < len; i++) {
             if (myArray[i].id === searchText) {
