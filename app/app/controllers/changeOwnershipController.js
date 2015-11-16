@@ -514,29 +514,32 @@ smartApp.controller('changeOwnershipController', function(
                 });
 
                 //reason
-                ReasonService.list("119", function(result) {
-                    // $scope.reasons = result;
-                    // $scope.reason = $scope.reasons[39];
-                    // $scope.selectReason = $scope.reasons[39];
 
-                    //solution for none fix index
-                    $scope.reasons = result;
-                    var myArray = result;
-                    var searchText = "COWN",
-                        index = -1;
-                    for (var i = 0, len = myArray.length; i < len; i++) {
-                        if (myArray[i].id === searchText) {
-                            index = i;
-                            break;
-                        }
-                    }
+                //fix COWN : 16/11/2558
 
-                    console.log(index);
+                // ReasonService.list("119", function(result) {
+                //     // $scope.reasons = result;
+                //     // $scope.reason = $scope.reasons[39];
+                //     // $scope.selectReason = $scope.reasons[39];
 
-                    $scope.reason = $scope.reasons[index];
-                    $scope.selectReason = $scope.reasons[index];
-                    //solution for none fix index
-                });
+                //     //solution for none fix index
+                //     $scope.reasons = result;
+                //     var myArray = result;
+                //     var searchText = "COWN",
+                //         index = -1;
+                //     for (var i = 0, len = myArray.length; i < len; i++) {
+                //         if (myArray[i].id === searchText) {
+                //             index = i;
+                //             break;
+                //         }
+                //     }
+
+                //     console.log(index);
+
+                //     $scope.reason = $scope.reasons[index];
+                //     $scope.selectReason = $scope.reasons[index];
+                //     //solution for none fix index
+                // });
 
                 //เพศ
                 SystemService.getMaster_list("CUST-GENDER", function(result) {
