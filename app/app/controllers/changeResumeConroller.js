@@ -1155,6 +1155,7 @@ smartApp.controller('ResumeController', function(
 
                                     $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                     $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+                                    //alert($scope.newOwner.prefixTH);
                                 }
 
                                 //ระบุผู้ใช้หมายเลข
@@ -1201,7 +1202,7 @@ smartApp.controller('ResumeController', function(
                                     // $scope.onInputCitizenID3();
                                 }, 1000);
 
-                                $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
+                                //$scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
 
                                 //ระบุผู้ใช้หมายเลข
                                 $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];;
@@ -2194,7 +2195,7 @@ smartApp.controller('ResumeController', function(
                     "id-number": $('#citizenID3').val(),
                     "birthdate": SystemService.convertDataThToLongDate($('#birthDay').val()),
                     "id-expire-date": SystemService.convertDataThToLongDate($('#expireDay').val()),
-                    "contact-number": $scope.contactNo.number + ($scope.contactNo.continued ? ("#" + $scope.contactNo.continued) : ""),
+                    //"contact-number": $scope.contactNo.number + ($scope.contactNo.continued ? ("#" + $scope.contactNo.continued) : ""),
                     "contact-mobile-number": $scope.customer["contact-mobile-number"],
                     "contact-email": $scope.customer["contact-email"],
                     "language": $scope.customer["language"],
@@ -2672,8 +2673,8 @@ smartApp.controller('ResumeController', function(
         var data = {
             "func": "REE",
             "header": {
-                "title-code": customerType == 'Y' ? "" : $scope.data.customerProfile["title-code"],
-                "title": $scope.data.customerProfile["title"],
+                "title-code": customerType == 'Y' ? "" : $scope.newOwner.prefixTH,
+                "title": $scope.newOwner.prefixTH == 'T4' ? "ดร." : newTitle,
                 "firstname": $scope.data.customerProfile["firstname"],
                 "lastname": $scope.data.customerProfile["lastname"],
                 "customerType": customerType,
@@ -3380,10 +3381,10 @@ smartApp.controller('ResumeController', function(
             showValidate("txtBillPaymentSmss", ValidateMsgService.data.msgBillSmsNoEmpty);
         } else if ($scope.billPayment.preferedContace == 'FIX' && isNull($scope.fixPreferedContact)) {
             showValidate("fixPreferedContact", ValidateMsgService.data.msgFixPreferedContactEmpty);
-        } else if (isNull($scope.contactNo.number)) {
-            showValidate("txtcontactNonumber", ValidateMsgService.data.msgCusContractNoEmpty);
-        } else if (errorFUTURE) {
-            showValidate("txtDateManual", ValidateMsgService.data.effectiveDateMsg);
+        //} else if (isNull($scope.contactNo.number)) {
+            //showValidate("txtcontactNonumber", ValidateMsgService.data.msgCusContractNoEmpty);
+        //} else if (errorFUTURE) {
+            //showValidate("txtDateManual", ValidateMsgService.data.effectiveDateMsg);
         } else {
             if ($scope.isClickPrint) {
                 $scope.printOrder();
