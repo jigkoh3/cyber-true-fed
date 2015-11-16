@@ -587,6 +587,9 @@ smartApp.controller('ResumeController', function(
                         if (result.status) {
                             $scope.data = result;
                             console.log(result);
+
+                            $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
+
                             $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
                             $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
                             $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];
