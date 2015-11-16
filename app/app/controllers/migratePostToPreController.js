@@ -317,7 +317,7 @@
         }, 100);
         //setTimeout(function() {
         SystemService.calendarDatePicker();
-        $scope.checkUserDealer();
+        
         console.log($scope.userDealer);
         //}, 100);
     };
@@ -443,7 +443,6 @@
     var authenticate = function() {
         AuthenService.getAuthen(function(authResult) {
             $scope.getAuthen = authResult;
-
             $scope.shopType = $scope.getAuthen['shopType'];
             if ($scope.shopType === '0') {
                 $scope.isCustomerProfile = true;
@@ -461,6 +460,8 @@
                     $('#btnSSO').hide();
                 }, 1100);
             }
+
+            $scope.checkUserDealer();
 
             var partnerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
 
