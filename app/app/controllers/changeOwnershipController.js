@@ -945,9 +945,12 @@ smartApp.controller('changeOwnershipController', function(
             return moment(date).format('DD/MM/YYYY');
         };
         var cid = $('#citizenID3').val();
+        if(cid.length == 13 && !SystemService.validatePID(cid)){
+            return;
+        }
         if (cid.length >= 3) {
             SystemService.showLoading();
-            if (SystemService.validatePID($('#citizenID3').val())) {
+            if (1==1) {
                 changeOwnershipService.validateGradingCallback(cid, function(resultData) {
                     console.log(resultData);
                     console.log(resultData.data["display-messages"]);
@@ -1170,7 +1173,7 @@ smartApp.controller('changeOwnershipController', function(
         console.log($('#CitizenIDLastest').val().length);
         var cid = $('#CitizenIDLastest').val();
 
-        if (cid.length >= 9) {
+        if (cid.length >= 3) {
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
@@ -1199,7 +1202,7 @@ smartApp.controller('changeOwnershipController', function(
         console.log($('#citizenID3').val().length);
         var cid = $('#citizenID3').val();
 
-        if (cid.length >= 9) {
+        if (cid.length >= 3) {
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
