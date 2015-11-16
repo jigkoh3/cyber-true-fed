@@ -28,6 +28,7 @@
     $scope.isSecondAuhenFailed = true;
     $scope.approver = "";
     $scope.isCardValueData = false;
+    $scope.userDealer = false;
 
     //paging
     $scope.currentPage = 1;
@@ -243,7 +244,6 @@
     };
 
     var onGetSIMData = function(result) {
-
         if (result == false) {
             console.log(result);
             $scope.SubNo = 'null';
@@ -285,7 +285,7 @@
                     $scope.mailAddress.buildingName = $scope.data.customerAddress['building-name'];
                     $scope.mailAddress.buildingRoom = $scope.data.customerAddress['building-room'];
                     $scope.mailAddress.buildingFloor = $scope.data.customerAddress['building-floor'];
-                }else{
+                } else {
                     $scope.data.customerProfileNew['id-type'] = "";
                 }
                 //$scope.data.customerProfile['id-type'] = 'I';
@@ -303,6 +303,8 @@
             $scope.data.customerProfileNew['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
 
             authenticate();
+            $scope.checkUserDealer();
+            console.log($scope.userDealer);
         }
 
         //setTimeout(function() {
@@ -545,6 +547,7 @@
             if (value === $scope.data.customerProfile['id-number']) {
                 $scope.isCustomerProfile = true;
                 $scope.isSecondAuhenFailed = false;
+                $scope.showDataDealer = false;
 
                 if ($scope.isCardValueData) {
                     //alert("");
@@ -1124,6 +1127,17 @@
             }, 1000);
         });
     };
+
+    $scope.checkUserDealer = function() {
+        if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == false) {
+            $scope.userDealer = true;
+            $scope.showDataDealer = true;
+        } else {
+            $scope.userDealer = false;
+            $scope.showDataDealer = false;
+        }
+    };
+
     $scope.openPDFDialog = function() {
         //$scope.data.customerProfile['birthdate'] = SystemService.convertDataThToLongDate($('#birthDate').val());
         //$scope.data.customerProfile['id-expire-date'] = SystemService.convertDataThToLongDate($('#expireDate').val());
@@ -1382,6 +1396,9 @@
             }, 1000);
         });
     };
+
+    $scope.userDealer = false;
+    $scope.showDataDealer = false;
     // (End) Submit Form ----------------------
 
 });

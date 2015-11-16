@@ -18,7 +18,10 @@
                             <div class="form-group imp">
                                 <label>หมายเลขบัตรประชาชน / พาสปอร์ต</label>
                                 <div ng-class="{ 'input-group': data.simData['account-category'] === 'B' || data.simData['account-category'] === 'C' }">
-                                    <input ng-numeric-input type="text" id="citizenID3" ng-model="data.customerProfileNew['id-number']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)" class="form-control" maxlength="13">
+                                    <!-- Case Dealer -->
+                                    <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                    <!-- Case Normal -->
+                                    <input ng-numeric-input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="citizenID3" ng-model="data.customerProfileNew['id-number']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)" class="form-control" maxlength="13">
                                     <span ng-if="data.simData['account-category'] === 'B' || data.simData['account-category'] === 'C'" class="input-group-btn">
                                         <button title="อ่านจากการ์ด" 
                                             onclick="$('#ReadAuthorize').val('readNewOwnerReadCard');ReadCard('ReadP');" 
@@ -40,7 +43,10 @@
                             <div class="form-group">
                                 <!-- id-type -->
                                 <label>ประเภทของบัตร <span style="color:red;">*</span></label>
-                                <select class="form-control" id="selectCustomerIdType" ng-model="data.customerProfileNew['id-type']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
+                                <!-- Case Dealer -->
+                                <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                <!-- Case Normal -->
+                                <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="selectCustomerIdType" ng-model="data.customerProfileNew['id-type']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
                                     <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                 </select>
                             </div>
@@ -51,33 +57,39 @@
                             <div class="form-group">
                                 <label>คำนำหน้า <span style="color:red;">*</span></label>
                                 <div id="placeholders">
-                                    <select class="form-control" ng-model="data.customerProfileNew['title-code']" id="prefix3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                    <!-- Case Normal -->
+                                    <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="data.customerProfileNew['title-code']" id="prefix3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
                                         <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                         <div class="col-md-2">
-                                <label><p></p></label>
-                                <select class="form-control"
-                                        ng-change="onChangeTitleOther()"
-                                        ng-show="data.customerProfileNew['title-code'] =='T5'"
-                                        ng-model="data.customerProfileNew['title']"
-                                        style="width:100px;">
-                                    <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
-                                </select>
-                            </div>
-
+                        <div class="col-md-2">
+                            <label>
+                                <p></p>
+                            </label>
+                            <select class="form-control" ng-change="onChangeTitleOther()" ng-show="data.customerProfileNew['title-code'] =='T5'" ng-model="data.customerProfileNew['title']" style="width:100px;">
+                                <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                            </select>
+                        </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>ชื่อ <span style="color:red;">*</span></label>
-                                <input type="text" id="firstNameTH3" ng-model="data.customerProfileNew['firstname']" class="form-control" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <!-- Case Normal -->
+                                <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="firstNameTH3" ng-model="data.customerProfileNew['firstname']" class="form-control" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>นามสกุล <span style="color:red;">*</span></label>
-                                <input type="text" id="lastNameTH3" ng-model="data.customerProfileNew['lastname']" class="form-control" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <!-- Case Normal -->
+                                <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="lastNameTH3" ng-model="data.customerProfileNew['lastname']" class="form-control" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
                             </div>
                         </div>
                     </div>
@@ -86,8 +98,10 @@
                             <div class="form-group">
                                 <label>เพศ <span style="color:red;">*</span></label>
                                 <div id="placeholders">
-                                    <select class="form-control" style="width:100px;" ng-model="data.customerProfileNew['gender']" 
-                                        id="sex3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                    <!-- Case Normal -->
+                                    <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" style="width:100px;" ng-model="data.customerProfileNew['gender']" id="sex3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
                                         <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
@@ -96,14 +110,20 @@
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
                                 <label>วัน/เดือน/ปีเกิด <span style="color:red;">*</span></label>
-                                <input type="text" id="birthDate" class="form-control date-picker" ng-model="data.customerProfileNew['birthdate']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <!-- Case Normal -->
+                                <input type="text" id="birthDate" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control date-picker" ng-model="data.customerProfileNew['birthdate']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
                                 <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                <input id="expireDate" type="text" class="form-control date-picker" ng-model="data.customerProfileNew['id-expire-date']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isIdCardExpired(data.customerProfile['id-expire-date']) && !isLastestUser) || !isIdCardExpired(data.customerProfile['id-expire-date'])">
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <!-- Case Normal -->
+                                <input id="expireDate" type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control date-picker" ng-model="data.customerProfileNew['id-expire-date']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isIdCardExpired(data.customerProfile['id-expire-date']) && !isLastestUser) || !isIdCardExpired(data.customerProfile['id-expire-date'])">
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
@@ -120,11 +140,12 @@
                                 </div>
                                 <div class="col-md-7">
                                     <p></p>
-                                    <select id="propositionDropdown" class="form-control" ng-model="selectedPricePlan.proposition" ng-disabled="isSecondAuhenFailed"
-                                    ng-change="getProPo()">
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                    <!-- Case Normal -->
+                                    <select id="propositionDropdown" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-model="selectedPricePlan.proposition" ng-disabled="isSecondAuhenFailed" ng-change="getProPo()">
                                         <option value="">-- กรุณาเลือก --</option>
-                                        <option ng-repeat="item in proPositionList | orderBy: item['proposition-code']" 
-                                         value="{{ item['proposition-code']}}">
+                                        <option ng-repeat="item in proPositionList | orderBy: item['proposition-code']" value="{{ item['proposition-code']}}">
                                             {{ item['proposition-code'] }} : {{ item.description }}
                                         </option>
                                     </select>
@@ -137,7 +158,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="col-md-3" style=" text-align: right; top: 5px;">
-                                    <label > โปรโมชั่น<span style="color:red;">*</span></label>
+                                    <label> โปรโมชั่น<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-4">
                                     <input type="text" id="preCusPricePlan" mg-model="preCusPricePlan" value="{{selectedPricePlan.name}}{{selectedPricePlan.description?' : ':null}}{{selectedPricePlan.description}}" readonly class="form-control">
@@ -200,20 +221,26 @@
                                             </select> -->
                                         </div>
                                         <div class="col-md-2"></div>
-                                        <a href="" ng-click="unUseAddressAsCard('H')"><span><i class="fa fa-trash-o fa-2x"></i></span></a>
+                                        <a href="" ng-hide="isSecondAuhenFailed" ng-click="unUseAddressAsCard('H')"><span><i class="fa fa-trash-o fa-2x"></i></span></a>
                                     </div>
                                 </div>
                                 <div class="row" ng-form="onEnterAddress()">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>รหัสไปรษณีย์<span style="color:red;">*</span></label>
-                                            <input type="text" id="txtmailAddresspostcode" ng-model="mailAddress.postcode" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="postcode" maxlength="5" class="form-control telephone" required />
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtmailAddresspostcode" ng-model="mailAddress.postcode" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="postcode" maxlength="5" class="form-control telephone" ng-disabled="isSecondAuhenFailed" required />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>จังหวัด<span style="color:red;">*</span></label>
-                                            <input type="text" id="txtmailAddressprovince" ng-model="mailAddress.province" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="province" class="form-control" required>
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtmailAddressprovince" ng-model="mailAddress.province" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="province" class="form-control" ng-disabled="isSecondAuhenFailed" required>
                                             <!--<span class="error" style="color:red;" ng-show="provinces.province.$error.required">
                                                 Required.
                                             </span>-->
@@ -222,7 +249,10 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>เขต / อำเภอ <span style="color:red;">*</span></label>
-                                            <input type="text" id="txtmailAddressamphur" ng-model="mailAddress.amphur" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="aumpers" class="form-control" required>
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtmailAddressamphur" ng-model="mailAddress.amphur" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="aumpers" class="form-control" ng-disabled="isSecondAuhenFailed" required>
                                             <!--<span class="error" style="color:red;" ng-show="aumper.aumpers.$error.required">
                                                 Required.
                                             </span>-->
@@ -231,7 +261,10 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>แขวง / ตำบล <span style="color:red;">*</span></label>
-                                            <input type="text" id="txtMaillAddressDistrict" ng-model="mailAddress.district" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="tumbols" data-toggle="dropdown" class="form-control" required>
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtMaillAddressDistrict" ng-model="mailAddress.district" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="tumbols" data-toggle="dropdown" class="form-control" ng-disabled="isSecondAuhenFailed" required>
                                             <!--<span class="error" style="color:red;" ng-show="tumbol.tumbols.$error.required">
                                                 Required.
                                             </span>-->
@@ -256,10 +289,13 @@
                                         <div class="form-group" ng-form="codeban">
                                             <div class="checkbox checkbox-circle2 checkbox-inline">
                                                 <span>บ้านเลขที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
-                                                <input type="checkbox" id="bantypeMail" ng-model="bantypeMail" ng-change="bantypeMail?mailAddress.homeNumber='-':mailAddress.homeNumber=''" class="styled">
+                                                <input type="checkbox" id="bantypeMail" ng-model="bantypeMail" ng-change="bantypeMail?mailAddress.homeNumber='-':mailAddress.homeNumber=''" ng-disabled="isSecondAuhenFailed" class="styled">
                                                 <label for="bantypeMail" style=" padding-left: 5px;">ไม่มีบ้านเลขที่ </label>
                                             </div>
-                                            <input type="text" id="txtMailAdressHomeNumber" ng-model="mailAddress.homeNumber" ng-disabled="bantypeMail" name="codebans" class="form-control" required>
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtMailAdressHomeNumber" ng-model="mailAddress.homeNumber" ng-disabled="bantypeMail || isSecondAuhenFailed" name="codebans" class="form-control" ng-disabled="isSecondAuhenFailed" required>
                                             <!--<span class="error" style="color:red;" ng-show="codeban.codebans.$error.required">
                                                 Required.
                                             </span>-->
@@ -269,10 +305,13 @@
                                         <div class="form-group" ng-form="moono">
                                             <div class="checkbox checkbox-circle2 checkbox-inline">
                                                 <span>หมู่ที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
-                                                <input type="checkbox" id="mootypeMail" ng-model="mootypeMail" ng-change="mootypeMail?mailAddress.moo='-':mailAddress.moo=''" class="styled">
+                                                <input type="checkbox" id="mootypeMail" ng-model="mootypeMail" ng-change="mootypeMail?mailAddress.moo='-':mailAddress.moo=''" class="styled" ng-disabled="isSecondAuhenFailed">
                                                 <label for="mootypeMail" style=" padding-left: 5px;">ไม่มีหมู่ที่ </label>
                                             </div>
-                                            <input type="text" id="txtMailAddressMoo" ng-model="mailAddress.moo" ng-disabled="mootypeMail" name="moonos" class="form-control" required>
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtMailAddressMoo" ng-model="mailAddress.moo" ng-disabled="mootypeMail || isSecondAuhenFailed" name="moonos" class="form-control" required>
                                             <!--<span class="error" style="color:red;" ng-show="moono.moonos.$error.required">
                                                 Required.
                                             </span>-->
@@ -281,13 +320,19 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>หมู่บ้าน</label>
-                                            <input type="text" id="txtMailAddressVillage" name="หมู่บ้าน" ng-model="mailAddress.village" class="form-control">
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtMailAddressVillage" name="หมู่บ้าน" ng-model="mailAddress.village" class="form-control" ng-disabled="isSecondAuhenFailed">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>อาคาร</label>
-                                            <input type="text" name="อาคาร" ng-model="mailAddress.buildingName" class="form-control">
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" name="อาคาร" ng-model="mailAddress.buildingName" class="form-control" ng-disabled="isSecondAuhenFailed">
                                         </div>
                                     </div>
                                 </div>
@@ -295,25 +340,37 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label>ชั้น</label>
-                                            <input type="text" name="ชั้น" ng-model="mailAddress.buildingFloor" class="form-control">
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" name="ชั้น" ng-model="mailAddress.buildingFloor" class="form-control" ng-disabled="isSecondAuhenFailed">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label>เลขห้อง</label>
-                                            <input type="text" name="เลขห้อง" ng-model="mailAddress.buildingRoom" class="form-control">
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" name="เลขห้อง" ng-model="mailAddress.buildingRoom" class="form-control" ng-disabled="isSecondAuhenFailed">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>ซอย</label>
-                                            <input type="text" ng-model="mailAddress.soi" name="ซอย" class="form-control">
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="mailAddress.soi" name="ซอย" class="form-control" ng-disabled="isSecondAuhenFailed">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group" ng-form="roads">
                                             <label>ถนน<span style="color:red;">*</span></label>
-                                            <input type="text" id="txtMailAddressRoad" ng-model="mailAddress.road" name="road" class="form-control" required>
+                                            <!-- Case Dealer -->
+                                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                            <!-- Case Normal -->
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtMailAddressRoad" ng-model="mailAddress.road" name="road" class="form-control" ng-disabled="isSecondAuhenFailed" required>
                                             <!--<span class="error" style="color:red;" ng-show="roads.road.$error.required">
                                                 Required.
                                             </span>-->
@@ -434,15 +491,14 @@
                     <div class="form-group" ng-show="shopType=='0'">
                         <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
                         <div class="col-md-4">
-                           <!--  <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-model="selectedReason" class="form-control"></select> -->
-
+                            <!--  <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-model="selectedReason" class="form-control"></select> -->
                             <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-change="onReasonChange()" ng-model="reason" class=" form-control"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">บันทึก</label>
                         <div class="col-md-4">
-                            <textarea class="form-control" ng-model="memo" name="message" style="width:100%;height:70px;" ng-disabled="isSecondAuhenFailed"></textarea>
+                            <textarea class="form-control" ng-model="memo" name="message" style="width:100%;height:70px;resize:none;" ng-disabled="isSecondAuhenFailed"></textarea>
                         </div>
                     </div>
                 </div>

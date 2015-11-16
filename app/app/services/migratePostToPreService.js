@@ -48,7 +48,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "contact-number": "",
                         "contact-mobile-number": "",
                         "id-type": "I",
-                        "id-number": "1180200046320",
+                        "id-number": "1189900130607",
                         "birthdate": "10/10/2526",
                         "id-expire-date": "2020-02-11T00:00:00+0700",
                         "customer-id": "2768",
