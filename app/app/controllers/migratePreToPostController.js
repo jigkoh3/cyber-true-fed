@@ -351,6 +351,21 @@ smartApp.controller('MigratePreToPostController', function(
         "branch-code": "00000"
     };
 
+   // $scope.disableIdType = false;
+    $scope.valueIdType = function(){
+
+        if($scope.cardType.value){
+           // $scope.disableIdType = true;
+           return true;
+        }else{
+           // $scope.disableIdType = false;
+           return false;
+        }
+
+
+    }
+
+
     $scope.isNumberTel = false;
     $scope.onInputTel = function(charCode) {
         console.log($scope.contactNo.number);
@@ -622,11 +637,13 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                             $scope.cardType.value = $scope.data.customerProfile['id-type'];
 
+                            
                             $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
 
                             $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
                             // $scope.onInputIdLastest3();
+                            $scope.valueIdType(); 
                             $scope.checkUserDealer();
                             $scope.checkUserNonShop();
                             $scope.checkUserShop();
@@ -763,6 +780,9 @@ smartApp.controller('MigratePreToPostController', function(
 
         });
     };
+
+
+
     $scope.disableTaxID = false;
     $scope.onChangeCardTypes = function() {
         // console.log($scope.cardType.value);
@@ -1102,6 +1122,9 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                                     $scope.cardType.value = $scope.data.customerProfile['id-type'];
                                     $scope.onChangeCardTypes();
+
+
+                                     $scope.valueIdType(); 
                                     // $scope.onInputCitizenID3();
 
                                     setTimeout(function() {
@@ -1175,6 +1198,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
                                     $scope.cardType.value = customer['id-type'];
 
+                                   
 
                                     $scope.checkPrefixT5();
                                 }
