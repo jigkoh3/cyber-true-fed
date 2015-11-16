@@ -21,7 +21,7 @@
                         "firstname": "พฤกษวดี",
                         "lastname": "พฤกษวดีนงลักษณ์",
                         "birthdate": "1991-09-01T00:00:00+0700",
-                        "id-expire-date":"2020-09-01T00:00:00+0700",
+                        "id-expire-date": "2020-09-01T00:00:00+0700",
                         "contact-number": "",
                         "id-type": "P",
                         "id-number": "1189900130607",
@@ -357,9 +357,9 @@
     };
     var getAccountSubTypeAPI = function(param, fnCallback) {
         var target = 'profiles/tmv/master/account-subtype?' +
-            'cust-type=I' + 
+            'cust-type=I' +
             '&company=' + param['company'] +
-            '&service-type=POSTPAID' + 
+            '&service-type=POSTPAID' +
             //'&roles' + param['roles'] +
             '&grade=' + param['grade'];
         if (!demo) {
@@ -609,7 +609,7 @@
                     "rc": 759.0,
                     "service-level": "C",
                     "priceplan-type": "N"
-                },{
+                }, {
                     "name": "NETSVP89",
                     "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
                     "soc": "107385",
@@ -669,7 +669,7 @@
                     "rc": 759.0,
                     "service-level": "C",
                     "priceplan-type": "N"
-                },{
+                }, {
                     "name": "NETSVP89",
                     "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
                     "soc": "107385",
@@ -729,7 +729,7 @@
                     "rc": 759.0,
                     "service-level": "C",
                     "priceplan-type": "N"
-                },{
+                }, {
                     "name": "NETSVP89",
                     "description": "MG iNet 899, net 10 GB ULTD WiFi ULTD",
                     "soc": "107385",
@@ -879,15 +879,29 @@
         } else {
             var data = {
                 "status": "SUCCESSFUL",
-                "trx-id": "3X18RYBCFS9L9",
+                "trx-id": "4AR3P1G9VBLD",
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": [{
                     "name": "RMV000000000001",
-                    "description": "Proposition for TEST RF ",
+                    "description": "New Sim Only",
                     "soc": "45552",
                     "rc": 0.0,
                     "service-level": "C",
-                    "proposition-code": "0019537"
+                    "proposition-code": "0019123"
+                }, {
+                    "name": "RMV000000000211",
+                    "description": "iPhone5 MNP",
+                    "soc": "81592",
+                    "rc": 0.0,
+                    "service-level": "C",
+                    "proposition-code": "0019460"
+                }, {
+                    "name": "RMV000000000215",
+                    "description": "iPhone5 MNP 1,000bt",
+                    "soc": "81612",
+                    "rc": 0.0,
+                    "service-level": "C",
+                    "proposition-code": "0019447"
                 }]
             };
             fnCallback({
