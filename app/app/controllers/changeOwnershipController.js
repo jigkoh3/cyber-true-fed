@@ -945,9 +945,9 @@ smartApp.controller('changeOwnershipController', function(
             return moment(date).format('DD/MM/YYYY');
         };
         var cid = $('#citizenID3').val();
-        if (cid.length >= 9) {
+        if (cid.length >= 3) {
             SystemService.showLoading();
-            if (1 == 1) {
+            if (SystemService.validatePID($('#citizenID3').val())) {
                 changeOwnershipService.validateGradingCallback(cid, function(resultData) {
                     console.log(resultData);
                     console.log(resultData.data["display-messages"]);
@@ -973,114 +973,119 @@ smartApp.controller('changeOwnershipController', function(
                         $scope.callPropositionList();
                         $scope.isLastestUser = false; // jigkoh3 mockup
 
-                        changeOwnershipService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
-                            $scope.isLastestUser = true;
-                            $.fancybox.close();
+
+                        if (0==0) {
+                            
+
+                            changeOwnershipService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
+                                $scope.isLastestUser = true;
+                                $.fancybox.close();
 
 
-                            SystemService.hideLoading();
-                            if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
-                                //ผู้จดทะเบียนใหม่
-                                //$scope.customer = customer;
-                                if (!$scope.isCardValueDataLastest) {
-                                    $scope.newOwner.firstNameTH = "";
-                                    $scope.newOwner.lastNameTH = "";
-                                    $scope.newOwner.prefixTH = "T2";
+                                SystemService.hideLoading();
+                                if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
+                                    //ผู้จดทะเบียนใหม่
+                                    //$scope.customer = customer;
+                                    if (!$scope.isCardValueDataLastest) {
+                                        $scope.newOwner.firstNameTH = "";
+                                        $scope.newOwner.lastNameTH = "";
+                                        $scope.newOwner.prefixTH = "T2";
+                                        //ระบุผู้ใช้หมายเลข
+                                        $scope.newOwner2.firstNameTH = "";
+                                        $scope.newOwner2.lastNameTH = "";
+                                        $scope.newOwner2.prefixTH = "T2";
+
+                                        $scope.customer['tax-id'] = $scope.customer['id-number'];
+
+                                        $scope.customer['contact-mobile-number'] = "";
+                                        $scope.customer['contact-email'] = "";
+
+
+                                        $scope.contactNo.number = "";
+                                        $scope.contactNo.continued = "";
+
+                                        $scope.onselectPrefix();
+
+                                    }
+
+                                    $scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
+
+                                    setTimeout(function() {
+                                        $scope.isLastestAdress = false;
+                                        $scope.changecusStatusN('N');
+
+
+                                        if (lastestCustomer.data['display-messages'].length > 0) {
+                                            SystemService.showAlert({
+
+                                                "message": lastestCustomer.data["display-messages"][0]["message"],
+                                                "message-code": lastestCustomer.data["display-messages"][0]["message-code"],
+                                                "message-type": "WARNING",
+                                                "en-message": lastestCustomer.data["display-messages"][0]["en-message"],
+                                                "th-message": lastestCustomer.data["display-messages"][0]["th-message"],
+                                                "technical-message": lastestCustomer.data["display-messages"][0]["technical-message"]
+
+                                            });
+                                        }
+                                    }, 1000);
+                                    $scope.isAddressList = {};
+                                } else {
+
+                                    var customer = lastestCustomer.data["response-data"]["customer"];
+
+                                    $scope.lastestCustomer = customer;
+                                    if ($scope.isCardValueDataLastest == false) {
+                                        //ผู้จดทะเบียนใหม่
+                                        //$scope.customer = customer;
+                                        $scope.newOwner.firstNameTH = customer["firstname"];
+                                        $scope.newOwner.lastNameTH = customer["lastname"];
+
+                                        $scope.newOwner2.firstNameTH = customer["firstname"];
+                                        $scope.newOwner2.lastNameTH = customer["lastname"];
+
+                                        $scope.newOwner.prefixTH = customer["title-code"];
+                                        $scope.newOwner2.prefixTH = customer["title-code"];
+
+                                        $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
+                                        $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+                                    }
+
                                     //ระบุผู้ใช้หมายเลข
-                                    $scope.newOwner2.firstNameTH = "";
-                                    $scope.newOwner2.lastNameTH = "";
-                                    $scope.newOwner2.prefixTH = "T2";
-
-                                    $scope.customer['tax-id'] = $scope.customer['id-number'];
-
-                                    $scope.customer['contact-mobile-number'] = "";
-                                    $scope.customer['contact-email'] = "";
 
 
-                                    $scope.contactNo.number = "";
-                                    $scope.contactNo.continued = "";
+
+                                    $scope.customer['tax-id'] = customer["id-number"];
+
+                                    $scope.customer['contact-mobile-number'] = customer['contact-mobile-number'];
+                                    $scope.customer['contact-email'] = customer['contact-email'];
+
+
+                                    $scope.contactNo.number = SystemService.getContactNo(customer["contact-number"], "number");
+                                    $scope.contactNo.continued = SystemService.getContactNo(customer["contact-number"], "continued");
+
+                                    $scope.isAddressList = customer['address-list']['CUSTOMER_ADDRESS'];
 
                                     $scope.onselectPrefix();
 
+
+                                    $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
+
+
+                                    //ที่อยู่จัดส่งเอกสาร
+                                    $scope.setAddress(customer['address-list']['CUSTOMER_ADDRESS']);
+
+                                    //disable ที่อยู่ลูกค้าเก่า
+                                    $scope.isLastestAdress = true;
+                                    $scope.changecusStatusN('O');
+
+                                    console.log(customer);
+                                    SystemService.hideLoading();
+
+
+
                                 }
-
-                                $scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
-
-                                setTimeout(function() {
-                                    $scope.isLastestAdress = false;
-                                    $scope.changecusStatusN('N');
-
-
-                                    if (lastestCustomer.data['display-messages'].length > 0) {
-                                        SystemService.showAlert({
-
-                                            "message": lastestCustomer.data["display-messages"][0]["message"],
-                                            "message-code": lastestCustomer.data["display-messages"][0]["message-code"],
-                                            "message-type": "WARNING",
-                                            "en-message": lastestCustomer.data["display-messages"][0]["en-message"],
-                                            "th-message": lastestCustomer.data["display-messages"][0]["th-message"],
-                                            "technical-message": lastestCustomer.data["display-messages"][0]["technical-message"]
-
-                                        });
-                                    }
-                                }, 1000);
-                                $scope.isAddressList = {};
-                            } else {
-
-                                var customer = lastestCustomer.data["response-data"]["customer"];
-
-                                $scope.lastestCustomer = customer;
-                                if ($scope.isCardValueDataLastest == false) {
-                                    //ผู้จดทะเบียนใหม่
-                                    //$scope.customer = customer;
-                                    $scope.newOwner.firstNameTH = customer["firstname"];
-                                    $scope.newOwner.lastNameTH = customer["lastname"];
-
-                                    $scope.newOwner2.firstNameTH = customer["firstname"];
-                                    $scope.newOwner2.lastNameTH = customer["lastname"];
-
-                                    $scope.newOwner.prefixTH = customer["title-code"];
-                                    $scope.newOwner2.prefixTH = customer["title-code"];
-
-                                    $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
-                                    $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
-                                }
-
-                                //ระบุผู้ใช้หมายเลข
-
-
-
-                                $scope.customer['tax-id'] = customer["id-number"];
-
-                                $scope.customer['contact-mobile-number'] = customer['contact-mobile-number'];
-                                $scope.customer['contact-email'] = customer['contact-email'];
-
-
-                                $scope.contactNo.number = SystemService.getContactNo(customer["contact-number"], "number");
-                                $scope.contactNo.continued = SystemService.getContactNo(customer["contact-number"], "continued");
-
-                                $scope.isAddressList = customer['address-list']['CUSTOMER_ADDRESS'];
-
-                                $scope.onselectPrefix();
-
-
-                                $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
-
-
-                                //ที่อยู่จัดส่งเอกสาร
-                                $scope.setAddress(customer['address-list']['CUSTOMER_ADDRESS']);
-
-                                //disable ที่อยู่ลูกค้าเก่า
-                                $scope.isLastestAdress = true;
-                                $scope.changecusStatusN('O');
-
-                                console.log(customer);
-                                SystemService.hideLoading();
-
-
-
-                            }
-                        });
+                            });
+                        }
                     } else {
                         $scope.onselectPrefix();
                         SystemService.hideLoading();
@@ -1098,8 +1103,8 @@ smartApp.controller('changeOwnershipController', function(
                 });
 
             } else {
-                $('#citizenID3').val('');
-                $scope.customer['id-number'] = "";
+                //$('#citizenID3').val('');
+                //$scope.customer['id-number'] = "";
             }
         }
     };

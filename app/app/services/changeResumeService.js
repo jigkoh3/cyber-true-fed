@@ -47,7 +47,7 @@
                                 "CURRENT-ACCOUNT-STATUS": "Active",
                                 "PRODUCT-STATUS-DATE": "2015-08-28T00:00:00.000+07:00",
                                 "IS-NEW-ACCOUNT": "false",
-                                "IS-NEW-SIM": "true",
+                                "IS-NEW-SIM": "false",
                                 "CURRENT-SIM-STATUS": "",
                                 "REASON-CODE": "RD03",
                                 "PRODUCT-STATUS-CODE": "RESUME-CANCEL-OA-OS",
@@ -416,7 +416,7 @@
                 "response-data": {
                     "customer": {
                         "title": "คุณ",
-                        "title-code": "T2",
+                        "title-code": "T3",
                         "firstname": "กอไก่",
                         "lastname": "ขอไข่",
                         'birthdate': '2015-07-20T00:00:00+0700',
@@ -454,7 +454,7 @@
                             "CUSTOMER_ADDRESS": {
                                 "number": "90/1",
                                 "type": "CUSTOMER_ADDRESS",
-                                "moo": "",
+                                "moo": "-",
                                 "village": "",
                                 "street": "พหลโยธิน",
                                 "soi": "",
