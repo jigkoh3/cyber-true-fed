@@ -934,28 +934,30 @@
     $scope.reason = "";
     $scope.selectReason = {};
 
-    ReasonService.list('119', function(result) {
-        // $scope.reasons = result;
-        // $scope.selectedReason = $scope.reasons[86];
+    //fix MG5J : 16/11/2558
 
-        //solution for none fix index
-        $scope.reasons = result;
-        var myArray = result;
-        var searchText = "MGJ5",
-            index = -1;
-        for (var i = 0, len = myArray.length; i < len; i++) {
-            if (myArray[i].id === searchText) {
-                index = i;
-                break;
-            }
-        }
+    // ReasonService.list('119', function(result) {
+    //     // $scope.reasons = result;
+    //     // $scope.selectedReason = $scope.reasons[86];
 
-        console.log(index);
+    //     //solution for none fix index
+    //     $scope.reasons = result;
+    //     var myArray = result;
+    //     var searchText = "MGJ5",
+    //         index = -1;
+    //     for (var i = 0, len = myArray.length; i < len; i++) {
+    //         if (myArray[i].id === searchText) {
+    //             index = i;
+    //             break;
+    //         }
+    //     }
 
-        $scope.reason = $scope.reasons[index];
-        $scope.selectReason = $scope.reasons[index];
-        //solution for none fix index
-    });
+    //     console.log(index);
+
+    //     $scope.reason = $scope.reasons[index];
+    //     $scope.selectReason = $scope.reasons[index];
+    //     //solution for none fix index
+    // });
     // (End) Reason Control ----------------------
 
     $scope.onReasonChange = function() {
