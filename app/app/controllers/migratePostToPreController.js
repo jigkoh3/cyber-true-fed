@@ -285,6 +285,8 @@
                     $scope.mailAddress.buildingName = $scope.data.customerAddress['building-name'];
                     $scope.mailAddress.buildingRoom = $scope.data.customerAddress['building-room'];
                     $scope.mailAddress.buildingFloor = $scope.data.customerAddress['building-floor'];
+                }else{
+                    $scope.data.customerProfileNew['id-type'] = "";
                 }
                 //$scope.data.customerProfile['id-type'] = 'I';
             }, 1000);
