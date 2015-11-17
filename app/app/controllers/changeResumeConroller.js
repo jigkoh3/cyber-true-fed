@@ -823,7 +823,7 @@ smartApp.controller('ResumeController', function(
 
     $scope.onCheckShopCode = function() {
         SystemService.showLoading();
-        var target = "profiles/partner/validatepartner?function-type=CHANGE_OWNERSHIP&partner-code=" + $scope.partnerCode;
+        var target = "profiles/partner/validatepartner?function-type=RESUME&partner-code=" + $scope.partnerCode;
         resumeService.validatePartnerCallback(target, function(result) {
             SystemService.hideLoading();
             if (result.data["display-messages"].length == 0) {
