@@ -223,7 +223,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                    <select name="cardTypes" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes()" id="cardType" ng-disabled="!isCustomerProfile" class="form-control" required>
+                                    <select name="cardTypes" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes(); promotion = '';" id="cardType" ng-disabled="!isCustomerProfile" class="form-control" required>
                                         <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                     </select>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.cardTypes.$error.required">

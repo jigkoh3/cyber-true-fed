@@ -177,42 +177,45 @@ smartApp.controller('MigratePreToPostController', function(
     };
 
     $scope.initModalReadCard = function() {
+        var startModal = function() {
+            $('#loadingReadCard').hide();
+            $('#unMatch').hide();
+            $('#CitizenID').val('');
+            if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                $('#CitizenID').prop('disabled', false);
+                setTimeout(function() {
+                    $('#CitizenID').focus();
+                    $('#btnSSO').hide();
+                }, 100);
+
+            } else {
+                $('#CitizenID').prop('disabled', true);
+            }
+        }
         if ($scope.shopType == "1") {
             if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
-                //$("#btn-fancy-ReadCard").fancybox().trigger('click');
-                setTimeout(function() {
-                    if ($scope.clickModalReadCard) {
-                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                        $scope.clickModalReadCard = false;
-                    }
-
+                if ($scope.clickModalReadCard) {
+                    $scope.clickModalReadCard = false;
                     if (navigator.userAgent.indexOf('Chrome') > 0) {
-                    }else{
-                        $("#btn-fancy-ReadCard").click();    
+                        setTimeout(function(){
+                            $("#btn-fancy-ReadCard").click();
+                            startModal();
+                        }, 1000);
+                        
+                    } else {
+                        $(document).ready(function() {
+                            setTimeout(function() {
+                                $("#btn-fancy-ReadCard").click();
+                                startModal();
+                                //alert('ie click 5000');
+                            }, 3000);
+                        });
                     }
-                    SystemService.hideLoading();
-                    
-                    
-                }, 1200);
+                }
+
             }
 
-            setTimeout(function() {
 
-
-                $('#loadingReadCard').hide();
-                $('#unMatch').hide();
-                $('#CitizenID').val('');
-                if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
-                    $('#CitizenID').prop('disabled', false);
-                    setTimeout(function() {
-                        $('#CitizenID').focus();
-                        $('#btnSSO').hide();
-                    }, 100);
-
-                } else {
-                    $('#CitizenID').prop('disabled', true);
-                }
-            }, 1000);
 
         }
 
@@ -795,8 +798,8 @@ smartApp.controller('MigratePreToPostController', function(
 
     $scope.disableTaxID = false;
     $scope.onChangeCardTypes = function() {
-         //console.log($scope.cardType.value);
-         var ct = $('#cardType').val();
+        //console.log($scope.cardType.value);
+        var ct = $('#cardType').val();
 
         if (!ct || ct == "I") {
 
@@ -810,6 +813,7 @@ smartApp.controller('MigratePreToPostController', function(
     }
     $scope.onInputShopCode = function() {
         if ($scope.partnerCode && $scope.partnerCode.length == 8) {
+            $scope.promotion = "";
             $scope.onCheckShopCode();
         }
     };
@@ -1261,12 +1265,12 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.customer['tax-id'] = "0000000000000";
                                 }
                                 //setTimeout(function() {
-                                    // $('#divShowAuthorize').hide();
-                                    $('#cardType').val($scope.cardType.value);
-                                    // $('#prefixTH3').val($scope.data.customerProfile['title-code']);
-                                    //$ngBootbox.customDialog($scope.customDialogOptions);
-                                    // $scope.onInputCitizenID3();
-                                    $scope.initModalReadCard();
+                                // $('#divShowAuthorize').hide();
+                                $('#cardType').val($scope.cardType.value);
+                                // $('#prefixTH3').val($scope.data.customerProfile['title-code']);
+                                //$ngBootbox.customDialog($scope.customDialogOptions);
+                                // $scope.onInputCitizenID3();
+                                $scope.initModalReadCard();
                                 //}, 1000);
                                 $scope.onChangeCardTypes();
 
@@ -1963,7 +1967,9 @@ smartApp.controller('MigratePreToPostController', function(
 
         //var value = $('#selectProposition').val();
         //$scope.propositionList = $filter('filter')(valPricePlans, { "proposition-code": value });
-        var propositionSocList = $filter('filter')($scope.propositions, { "proposition-code": $scope.promotion });
+        var propositionSocList = $filter('filter')($scope.propositions, {
+            "proposition-code": $scope.promotion
+        });
         console.log(propositionSocList[0].soc);
         $scope.propositionSoc = propositionSocList[0].soc;
 

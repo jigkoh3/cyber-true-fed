@@ -971,6 +971,14 @@
             setTimeout(function() {
                 //$ngBootbox.hideAll();
                 $('#btnCloseLoading').click();
+                setTimeout(function() {
+                    //$ngBootbox.hideAll();
+                    $('#btnCloseLoading').click();
+                    setTimeout(function() {
+                        //$ngBootbox.hideAll();
+                        $('#btnCloseLoading').click();
+                    }, 1000);
+                }, 1000);
             }, 1000);
         }, 1000);
     };
@@ -1183,7 +1191,7 @@
                         "th-description": "พันตำรวจเอกนายแพทย์"
                     },
 
-                     {
+                    {
                         "key": "คุณ",
                         "value": "คุณ",
                         "attributes": {
