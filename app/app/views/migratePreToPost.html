@@ -346,7 +346,7 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
                                     <!-- Case Normal -->
-                                    <input name="birthDay" ng-show="((userShop || userNonShop || userDealer)&& isCustomerProfile && !checkBirthDate) || !showEnableNewOwnerBirthday" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="!isCustomerProfile" readonly class="form-control date-picker-birthdate" id="birthDay" style="background:white" required>
+                                    <input name="birthDay" ng-show="((userShop || userNonShop || userDealer)&& isCustomerProfile && !checkBirthDate) || !showEnableNewOwnerBirthday" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="!isCustomerProfile" class="form-control date-picker-birthdate" id="birthDay" style="background:white" required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
 
 
@@ -402,7 +402,7 @@
                                 <!-- Case Dealer -->
                                 <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                 <!-- Case Normal -->
-                                <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="partnerCode" ng-blur="onCheckInputForVerify()" ng-disabled="!isCustomerProfile">
+                                <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="partnerCode" ng-change="callPropositionList()" ng-blur="onCheckInputForVerify()" ng-disabled="!isCustomerProfile">
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}
                                     </option>

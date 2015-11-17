@@ -414,7 +414,7 @@
                         'id-expire-date': '2020-07-20T00:00:00+0700',
                         "contact-number": "029448849#123",
                         "contact-mobile-number": "444444444",
-                        "id-type": "",
+                        "id-type": "I",
                         "id-number": "1189900130608",
                         "customer-id": "4811",
                         "customer-level": "NON-TOP",

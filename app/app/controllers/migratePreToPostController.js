@@ -192,7 +192,6 @@ smartApp.controller('MigratePreToPostController', function(
                 $('#CitizenID').prop('disabled', true);
             }
         }
-        if ($scope.shopType == "1") {
             if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
                 if ($scope.clickModalReadCard) {
                     $scope.clickModalReadCard = false;
@@ -200,7 +199,7 @@ smartApp.controller('MigratePreToPostController', function(
                         setTimeout(function(){
                             $("#btn-fancy-ReadCard").click();
                             startModal();
-                        }, 1000);
+                        }, 2000);
                         
                     } else {
                         $(document).ready(function() {
@@ -214,10 +213,6 @@ smartApp.controller('MigratePreToPostController', function(
                 }
 
             }
-
-
-
-        }
 
         setTimeout(function() {
             $('#loadingReadCard2').hide();
@@ -813,7 +808,7 @@ smartApp.controller('MigratePreToPostController', function(
     }
     $scope.onInputShopCode = function() {
         if ($scope.partnerCode && $scope.partnerCode.length == 8) {
-            $scope.promotion = "";
+            
             $scope.onCheckShopCode();
         }
     };
@@ -859,6 +854,7 @@ smartApp.controller('MigratePreToPostController', function(
     };
 
     $scope.onCheckShopCode = function() {
+        $scope.promotion = "";
         SystemService.showLoading();
         var target = "profiles/partner/validatepartner?function-type=CHANGE_OWNERSHIP&partner-code=" + $scope.partnerCode;
         migratePreToPostService.validatePartnerCallback(target, function(result) {
@@ -1052,37 +1048,7 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.isAddressList = {};
     $scope.onInputCitizenID3 = function() {
 
-        //ผู้จดทะเบียนใหม่
-        //$scope.customer = customer;
-        if (!$scope.isCardValueDataLastest) {
-            $('#idBindDataAgain').click();
-
-            // $scope.newOwner.firstNameTH = "";
-            // $scope.newOwner.lastNameTH = "";
-            // $scope.newOwner.prefixTH = "T2";
-            // $scope.newOwner.birthDay = "";
-            // $scope.newOwner.expireDay = "";
-
-            // //ระบุผู้ใช้หมายเลข
-            // $scope.newOwner2.firstNameTH = "";
-            // $scope.newOwner2.lastNameTH = "";
-            // $scope.newOwner2.prefixTH = "T2";
-
-            // $scope.customer['tax-id'] = "";
-
-            // $scope.customer['contact-mobile-number'] = "";
-            // $scope.customer['contact-email'] = "";
-
-
-            // $scope.contactNo.number = "";
-            // $scope.contactNo.continued = "";
-
-            // $scope.onselectPrefix();
-
-
-
-
-        }
+        
 
         //$scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
         // (Start) Get current SIM data ----------------------
@@ -1315,6 +1281,37 @@ smartApp.controller('MigratePreToPostController', function(
                 $('#citizenID3').val('');
                 $scope.customer['id-number'] = "";
             }
+        }
+        //ผู้จดทะเบียนใหม่
+        //$scope.customer = customer;
+        if (!$scope.isCardValueDataLastest) {
+            //$('#idBindDataAgain').click();
+
+            // $scope.newOwner.firstNameTH = "";
+            // $scope.newOwner.lastNameTH = "";
+            // $scope.newOwner.prefixTH = "T2";
+            // $scope.newOwner.birthDay = "";
+            // $scope.newOwner.expireDay = "";
+
+            // //ระบุผู้ใช้หมายเลข
+            // $scope.newOwner2.firstNameTH = "";
+            // $scope.newOwner2.lastNameTH = "";
+            // $scope.newOwner2.prefixTH = "T2";
+
+            // $scope.customer['tax-id'] = "";
+
+            // $scope.customer['contact-mobile-number'] = "";
+            // $scope.customer['contact-email'] = "";
+
+
+            // $scope.contactNo.number = "";
+            // $scope.contactNo.continued = "";
+
+            // $scope.onselectPrefix();
+
+
+
+
         }
     };
     //end check input

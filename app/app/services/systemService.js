@@ -1557,6 +1557,19 @@
             endDate: birthdate
         });
 
+        // var x = "";
+        // $('.date-picker-birthdate').keydown(function(event) {
+        //     /* Act on the event */
+        //     if(this.value){
+        //         if(this.value.length==10){
+        //             x = this.value;
+        //         }
+        //     }else{
+        //         this.value = x;
+        //     }
+        // });
+        
+
     };
 
     //masterData //for deploy
