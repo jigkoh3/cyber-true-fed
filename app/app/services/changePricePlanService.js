@@ -220,7 +220,7 @@
             if (msisdn == "0870100002") {
                 fnCallback({
                     status: true,
-                    data: data4,
+                    data: data,
                     error: "",
                     msgErr: ""
                 });
@@ -269,21 +269,23 @@
                     errorText["th-message"] += checkNullText(errorList[i]["th-message"]) + "<br /> ";
                     errorText["technical-message"] += checkNullText(errorList[i]["technical-message"]) + "<br /> ";
                 }
-                SystemService.showAlert({
-                    "message": errorText["message"],
-                    "message-code": "",
-                    "message-type": "WARNING",
-                    "en-message": errorText["en-message"],
-                    "th-message": errorText["th-message"],
-                    "technical-message": errorText["technical-message"]
-                });
-                //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ยังไม่ได้ทำให้ multi alert
-                setTimeout(function() {
-                    $('.ngdMessage').html(errorText["message"]);
-                    $('.ngdEnMessage').html(errorText["en-message"]);
-                    $('.ngdThMessage').html(errorText["th-message"]);
-                    $('.ngdTechnicalMessage').html(errorText["technical-message"]);
-                }, 200);
+                if (errorList.length > 0) {
+                    SystemService.showAlert({
+                        "message": errorText["message"],
+                        "message-code": "",
+                        "message-type": "WARNING",
+                        "en-message": errorText["en-message"],
+                        "th-message": errorText["th-message"],
+                        "technical-message": errorText["technical-message"]
+                    });
+                    //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ยังไม่ได้ทำให้ multi alert
+                    setTimeout(function() {
+                        $('.ngdMessage').html(errorText["message"]);
+                        $('.ngdEnMessage').html(errorText["en-message"]);
+                        $('.ngdThMessage').html(errorText["th-message"]);
+                        $('.ngdTechnicalMessage').html(errorText["technical-message"]);
+                    }, 200);
+                }
 
             }, 1000);
             if (result.status) {
