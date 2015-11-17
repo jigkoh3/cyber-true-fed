@@ -208,7 +208,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 $("#btn-fancy-ReadCard").click();
                                 startModal();
                                 //alert('ie click 5000');
-                            }, 1000);
+                            }, 2000);
                         });
                     }
                 }
