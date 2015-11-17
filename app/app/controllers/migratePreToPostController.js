@@ -186,7 +186,13 @@ smartApp.controller('MigratePreToPostController', function(
                         $scope.clickModalReadCard = false;
                     }
 
-                    //$("#btn-fancy-ReadCard").click();
+                    if (navigator.userAgent.indexOf('Chrome') > 0) {
+                    }else{
+                        $("#btn-fancy-ReadCard").click();    
+                    }
+                    SystemService.hideLoading();
+                    
+                    
                 }, 1200);
             }
 
@@ -234,6 +240,10 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
             $.fancybox.close();
+
+            $('#cardType').val('I');
+            $scope.customer['tax-id'] = $scope.cardInfo.CitizenID;
+
             if ($scope.clickButtonAddress == false) {
                 $('#useAddressAsCard').click();
             }
@@ -785,8 +795,10 @@ smartApp.controller('MigratePreToPostController', function(
 
     $scope.disableTaxID = false;
     $scope.onChangeCardTypes = function() {
-        // console.log($scope.cardType.value);
-        if ($scope.data.customerProfile['id-type'] == "I") {
+         //console.log($scope.cardType.value);
+         var ct = $('#cardType').val();
+
+        if (!ct || ct == "I") {
 
             $scope.customer['tax-id'] = $scope.customer['id-number'];
             console.log($scope.customer['tax-id'], $scope.customer['id-number']);
@@ -1248,14 +1260,15 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.disableTaxID = false;
                                     $scope.customer['tax-id'] = "0000000000000";
                                 }
-                                setTimeout(function() {
+                                //setTimeout(function() {
                                     // $('#divShowAuthorize').hide();
                                     $('#cardType').val($scope.cardType.value);
                                     // $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                     //$ngBootbox.customDialog($scope.customDialogOptions);
                                     // $scope.onInputCitizenID3();
                                     $scope.initModalReadCard();
-                                }, 1000);
+                                //}, 1000);
+                                $scope.onChangeCardTypes();
 
                                 // $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
 
@@ -1936,7 +1949,7 @@ smartApp.controller('MigratePreToPostController', function(
         });
     };
     $scope.propositionSoc = "";
-    $scope.promotion = "null";
+    $scope.promotion = "";
     $scope.selectedPromotion = function() {
         $scope.pricePlan = {};
         $scope.onCheckInputForVerify();
