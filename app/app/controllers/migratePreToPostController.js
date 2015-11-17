@@ -1936,7 +1936,7 @@ smartApp.controller('MigratePreToPostController', function(
         });
     };
     $scope.propositionSoc = "";
-    $scope.promotion = "";
+    $scope.promotion = "null";
     $scope.selectedPromotion = function() {
         $scope.pricePlan = {};
         $scope.onCheckInputForVerify();
