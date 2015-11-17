@@ -1568,6 +1568,20 @@
         //         this.value = x;
         //     }
         // });
+
+        $('.dateFormat').keyup(function(event) {
+            /* Act on the event */
+            if(this.value){
+                console.log(this.value, this.value.split('/').length);
+                if(this.value.length==2 && this.value.split('/').length==1){
+                    this.value = this.value+"/";
+                }
+
+                if(this.value.length==5 && this.value.split('/').length==2){
+                    this.value = this.value+"/";
+                }
+            }
+        });
         
 
     };

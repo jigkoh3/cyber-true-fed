@@ -113,7 +113,7 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <!-- Case Normal -->
-                                <input type="text" id="birthDate" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control date-picker" ng-model="data.customerProfileNew['birthdate']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
+                                <input type="text" id="birthDate" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control date-picker dateFormat" ng-model="data.customerProfileNew['birthdate']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <!-- Case Normal -->
-                                <input id="expireDate" type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control date-picker" ng-model="data.customerProfileNew['id-expire-date']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isIdCardExpired(data.customerProfile['id-expire-date']) && !isLastestUser) || !isIdCardExpired(data.customerProfile['id-expire-date'])">
+                                <input id="expireDate" type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control date-picker dateFormat" ng-model="data.customerProfileNew['id-expire-date']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isIdCardExpired(data.customerProfile['id-expire-date']) && !isLastestUser) || !isIdCardExpired(data.customerProfile['id-expire-date'])">
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>

@@ -346,7 +346,16 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
                                     <!-- Case Normal -->
-                                    <input name="birthDay" ng-show="((userShop || userNonShop || userDealer)&& isCustomerProfile && !checkBirthDate) || !showEnableNewOwnerBirthday" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="!isCustomerProfile" class="form-control date-picker-birthdate" id="birthDay" style="background:white" required>
+                                    <input name="birthDay" 
+                                        ng-show="((userShop || userNonShop || userDealer)&& isCustomerProfile && !checkBirthDate) || !showEnableNewOwnerBirthday" 
+                                        type="text" 
+                                        onchange="$('#birthDayRegisterd').val(this.value);" 
+                                        ng-blur="onCheckInputForVerify();" 
+                                        ng-model="newOwner.birthDay" 
+                                        ng-disabled="!isCustomerProfile" 
+                                        class="form-control date-picker-birthdate dateFormat" 
+                                        id="birthDay" 
+                                        style="background:white" required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
 
 
@@ -372,7 +381,7 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
                                     <!-- Case Normal -->
-                                    <input type="text" ng-show="((userShop || userNonShop || userDealer )&& isCustomerProfile && !checkExpireDate) || !showEnableNewOwnerExpireDay" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="!isCustomerProfile" class="form-control date-picker-start " id="expireDay" style="background:white">
+                                    <input type="text" ng-show="((userShop || userNonShop || userDealer )&& isCustomerProfile && !checkExpireDate) || !showEnableNewOwnerExpireDay" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="!isCustomerProfile" class="form-control date-picker-start dateFormat" id="expireDay" style="background:white">
 
 
                                     <input type="text" ng-hide="(userDealer && !isCustomerProfile) || (!checkExpireDate && isCustomerProfile)" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="newOwner.expireDay || !isCustomerProfile" class="form-control date-picker-start " id="expireDay">
@@ -692,7 +701,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd" readonly style="background:white" class=" form-control date-picker-birthdate">
+                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd"  style="background:white" class=" form-control date-picker-birthdate dateFormat">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
