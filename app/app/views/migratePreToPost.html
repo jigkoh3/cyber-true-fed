@@ -428,7 +428,8 @@
                                 <!-- Case Dealer -->
                                 <select class="form-control" ng-disabled="true" ng-show="userDealer && !isCustomerProfile"></select>
                                 <!-- Case Normal -->
-                                <select class="form-control" ng-hide="userDealer && !isCustomerProfile" ng-blur="selectedPromotion()" ng-change="onCheckInputForVerify()" ng-disabled="false || !isCustomerProfile " ng-model="promotion">
+                                <select class="form-control" ng-hide="userDealer && !isCustomerProfile" ng-change="onCheckInputForVerify(); selectedPromotion();" ng-disabled="false || !isCustomerProfile " ng-model="promotion">
+                                    <option value="null">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in propositions" value="{{item['proposition-code']}}">
                                         {{item["proposition-code"]}} : {{item["description"]}}
                                     </option>
