@@ -134,6 +134,15 @@ smartApp.controller('MigratePreToPostController', function(
 
     }
 
+    $scope.isChkShopcode = true;
+    $scope.chkShopcode = function(){
+        if($scope.getAuthen.shopcodes.length==1){
+            $scope.isChkShopcode = true;
+        }else{
+            $scope.isChkShopcode = false;
+        }
+    }
+
     $scope.disableGender = function() {
         if ($scope.newOwner.prefixTH == 'T5') {
             return false;
@@ -658,9 +667,10 @@ smartApp.controller('MigratePreToPostController', function(
                             // $scope.onInputIdLastest3();
                             $scope.valueIdType();
                             $scope.checkUserDealer();
+                            $scope.chkShopcode();
                             $scope.checkUserNonShop();
                             $scope.checkUserShop();
-                            console.log($scope.userShop);
+                            console.log($scope.isChkShopcode);
                             $scope.onInputCitizenID3();
                             $scope.onChangeCardTypes();
                             $scope.checkValueDate();
