@@ -1639,6 +1639,17 @@
                 return false;
         });
 
+        $(".inputDate").keypress(function(e) {
+            var charCode = (e.which) ? e.which : e.keyCode;
+            if (this.value.indexOf("/") >= 3) {
+                if (charCode == 47) {
+                    return false;
+                }
+            }
+            if (charCode != 47 && charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+        });
+
         $(".telephone").keypress(function(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))
