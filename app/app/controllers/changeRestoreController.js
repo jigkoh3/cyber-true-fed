@@ -353,7 +353,7 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
                 'firstname': $scope.data.customerProfile['firstname'],
                 'lastname': $scope.data.customerProfile['lastname'],
                 'customerType': customerType,
-                'authorizeFullName': '',
+                'authorizeFullName': $('#authorizeFullName').val(),
                 'id-number': $scope.data.customerProfile['id-number'],
                 'product-id-number': $scope.SubNo,
                 'ouId': $scope.data.simData['ouId'],
