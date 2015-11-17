@@ -217,6 +217,9 @@
                                 <div class="form-group" ng-form="personnalid">
                                     <label>หมายเลขบัตรประชาชน / พาสปอร์ต <span style="color:red;">*</span></label>
                                     <div class="input-group" ng-submit="onInputIdLastest3()">
+                                    <!-- Case Dealer -->
+                                    <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                    <!-- Case Normal -->
                                         <input type="text"
                                                id="citizenID3"
                                                ng-disabled="!isLastestUser && (shopType=='1' && getAuthen['isSecondAuthen'] == true)"
@@ -227,7 +230,8 @@
                                                class="form-control"
                                                maxlength="13"
                                                ng-change="ClearTxt()"
-                                               name="personnalids" required>
+                                               name="personnalids" 
+                                               ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'"required>
 
                                         <span class="input-group-btn">
                                             <button ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true"
@@ -270,13 +274,17 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ประเภทของบัตร<span style="color:red;">*</span> </label>
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                    <!-- Case Normal -->
                                     <select name="cardTypes"
                                             ng-model="cardType.value"
                                             ng-blur="onCheckInputForVerify()" 
                                             ng-change="onChangeCardTypes()"
                                             id="cardType"
                                             ng-disabled="!isLastestUser"
-                                            class="form-control" required>
+                                            class="form-control" 
+                                            ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'"required>
                                         <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                     </select>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.cardTypes.$error.required">
@@ -305,7 +313,10 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>สาขาที่<span style="color:red;">*</span> </label>
-                                    <input type="text" ng-disabled="!isLastestUser" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
+                                    <!-- Case Dealer -->
+                                    <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                    <!-- Case Normal -->
+                                    <input type="text" ng-disabled="!isLastestUser" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.branchid.$error.required">
                                         Required.
                                     </span>-->
@@ -317,12 +328,16 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ประเภทลูกค้าย่อย<span style="color:red;">*</span></label>
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>                    
+                                    <!-- Case Normal -->
                                     <select ng-model="subCompanyType"
                                             ng-disabled="!isLastestUser"
                                             ng-blur="onCheckInputForVerify()"
                                             ng-change="onChangeSub()"
                                             id="subCompanyType"
-                                            class="form-control">
+                                            class="form-control"
+                                            ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                         <!--<option>เลือก</option>-->
                                         <option ng-repeat="option in data.accountSubtypeList" value="{{option.name}}">{{option.name}} : {{option.description}}</option>
                                     </select>
@@ -334,13 +349,17 @@
                                 <div class="form-group">
                                     <label>คำนำหน้า<span style="color:red;">*</span></label>
                                     <div id="placeholders">
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>                    
+                                    <!-- Case Normal -->
                                         <select name="prefixTHs" class="form-control"
                                                 ng-change="onselectPrefix()"
                                                 ng-blur="onselectPrefix()"
                                                 id="prefixTH3"
                                                 ng-disabled="!isLastestUser"
                                                 ng-model="newOwner.prefixTH"
-                                                style="width:100px;" required>
+                                                style="width:100px;" 
+                                                ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'"required>
                                             <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
 
@@ -399,11 +418,15 @@
                                 <div class="form-group">
                                     <label>เพศ<span style="color:red;">*</span></label>
                                     <div id="placeholders">
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>                                       
+                                    <!-- Case Normal -->
                                         <select name="sexs" class="form-control"
                                                 id="sex3"
                                                 ng-disabled="!isLastestUser"
                                                 ng-model="newOwner.sex"
-                                                style="width:100px;" required>
+                                                style="width:100px;" 
+                                                ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'"required>
                                             <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -456,15 +479,19 @@
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
                                 <label>
-                                Shop Code/Dealer Code 
+                                รหัสร้านค้า
                                 <span style="color:red;">*</span></label>
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
                                 <p></p>
+                                <!-- Case Dealer -->
+                                <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                <!-- Case Normal -->
                                 <select class="form-control"
                                         ng-model="partnerCode"
                                         ng-blur="onCheckInputForVerify()"
-                                        ng-disabled="!isLastestUser">
+                                        ng-disabled="!isLastestUser"
+                                        ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
 
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}
@@ -473,6 +500,9 @@
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
                                 <p></p>
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <!-- Case Normal -->
                                 <input type="text"
                                        id="txtPartnerCode"
                                        name="partnerCode"
@@ -480,7 +510,8 @@
                                        ng-keyup="onInputShopCode()"
                                        class="form-control"
                                        ng-disabled="(getAuthen.shopcodes.length==1) || !isLastestUser"
-                                       maxlength="8" required>
+                                       maxlength="8" 
+                                       ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'"required>
                             </div>
 
 

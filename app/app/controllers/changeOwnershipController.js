@@ -43,6 +43,7 @@ smartApp.controller('changeOwnershipController', function(
     $scope.isValidateSave = true;
     $scope.isLastestUser = false;
     $scope.isLastestAdress = false;
+    $scope.userDealer = false;
 
     $scope.shopType = "0";
     $scope.propositions = [];
@@ -176,7 +177,7 @@ smartApp.controller('changeOwnershipController', function(
 
         if ($scope.cardInfo.CitizenID == $scope.data.customerProfile['id-number']) {
             $scope.isCardValueData = true;
-
+            $scope.showDataDealer = false;
             $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
             $.fancybox.close();
@@ -555,6 +556,9 @@ smartApp.controller('changeOwnershipController', function(
 
                 $scope.shopType = result.shopType;
                 $scope.id = $routeParams.id;
+                // Check Role User
+                $scope.checkUserDealer();
+                console.log($scope.userDealer);
 
                 if ($scope.SubNo != 'null') {
                     changeOwnershipService.validateChangeOwnershipCallback($scope.SubNo, function(result) {
@@ -1161,6 +1165,7 @@ smartApp.controller('changeOwnershipController', function(
                 $.fancybox.close();
                 $scope.isReadCardSuccess = false;
                 $scope.CitizenID = "";
+                $scope.showDataDealer = false;
 
 
                 $scope.data = $scope.data2;
@@ -3282,6 +3287,16 @@ smartApp.controller('changeOwnershipController', function(
             idFocus = "";
         } else {
             $scope.validateUI();
+        }
+    };
+
+    $scope.checkUserDealer = function() {
+        if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == false) {
+            $scope.userDealer = true;
+            $scope.showDataDealer = true;
+        } else {
+            $scope.userDealer = false;
+            $scope.showDataDealer = false;
         }
     };
     //$scope.init();
