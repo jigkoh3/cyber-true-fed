@@ -882,7 +882,7 @@ smartApp.controller('ResumeController', function(
                 SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
 
             }
-        }else{
+        } else {
             $scope.callSalePricePlanList();
         }
     };
@@ -1365,55 +1365,55 @@ smartApp.controller('ResumeController', function(
     };
     $scope.secondAuthenDataLastest = {};
     $scope.openSSOLastest = function() {
-        var openDialog = function(uri, name, options, closeCallback) {
-            var win = window.open(uri, name, options);
-            var interval = window.setInterval(function() {
-                try {
-                    if (win == null || win.closed) {
-                        window.clearInterval(interval);
-                        closeCallback(win);
-                    }
-                } catch (e) {}
-            }, 1000);
-            return win;
-        };
-        var url = SystemService.secondAuthenURL + "SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
-        if ($scope.getAuthen["isSecondAuthen"]) {
-            openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
-                //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
-                SystemService.showLoading();
-                SystemService.second_authen($scope.TrxID, function(result) {
-                    //alert(result["status"]);
-                    SystemService.hideLoading();
-                    console.log(result);
-                    $scope.secondAuthenDataLastest = result;
-                    if (result["status"] == "SUCCESSFUL") {
-                        $('#CitizenIDLastest').prop('disabled', false);
+        // var openDialog = function(uri, name, options, closeCallback) {
+        //     var win = window.open(uri, name, options);
+        //     var interval = window.setInterval(function() {
+        //         try {
+        //             if (win == null || win.closed) {
+        //                 window.clearInterval(interval);
+        //                 closeCallback(win);
+        //             }
+        //         } catch (e) {}
+        //     }, 1000);
+        //     return win;
+        // };
+        // var url = SystemService.secondAuthenURL + "SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
+        // if ($scope.getAuthen["isSecondAuthen"]) {
+        //     openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
+        //         //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
+        //         SystemService.showLoading();
+        //         SystemService.second_authen($scope.TrxID, function(result) {
+        //             //alert(result["status"]);
+        //             SystemService.hideLoading();
+        //             console.log(result);
+        //             $scope.secondAuthenDataLastest = result;
+        //             if (result["status"] == "SUCCESSFUL") {
+        //                 $('#CitizenIDLastest').prop('disabled', false);
 
-                        //$scope.approver = result['response-data'][0]['loginName'];
-                        //$scope.manualInputReadCard();
-                    } else {
-                        $.fancybox.close();
-                        //unsuccessul
+        //                 //$scope.approver = result['response-data'][0]['loginName'];
+        //                 //$scope.manualInputReadCard();
+        //             } else {
+        //                 $.fancybox.close();
+        //                 //unsuccessul
 
-                        setTimeout(function() {
-                            SystemService.showAlert({
-                                "message": result["display-messages"][0]["message"],
-                                "message-code": result["display-messages"][0]["message-code"],
-                                "message-type": "WARNING",
-                                "en-message": result["display-messages"][0]["en-message"],
-                                "th-message": result["display-messages"][0]["th-message"],
-                                "technical-message": result["display-messages"][0]["technical-message"]
-                            });
-                        }, 1000);
-                    }
-                });
+        //                 setTimeout(function() {
+        //                     SystemService.showAlert({
+        //                         "message": result["display-messages"][0]["message"],
+        //                         "message-code": result["display-messages"][0]["message-code"],
+        //                         "message-type": "WARNING",
+        //                         "en-message": result["display-messages"][0]["en-message"],
+        //                         "th-message": result["display-messages"][0]["th-message"],
+        //                         "technical-message": result["display-messages"][0]["technical-message"]
+        //                     });
+        //                 }, 1000);
+        //             }
+        //         });
 
-            });
-        } else {
-            //$scope.isNonePartner = true;
-            //$scope.manualInputReadCard();
-        }
+        //     });
+        // } else {
+        //     //$scope.isNonePartner = true;
+        //     //$scope.manualInputReadCard();
+        // }
     };
     $scope.openSSO = function() {
         var openDialog = function(uri, name, options, closeCallback) {
@@ -1439,8 +1439,26 @@ smartApp.controller('ResumeController', function(
                     console.log(result);
                     $scope.secondAuthenData = result;
                     if (result["display-messages"] === undefined) {
-                        $scope.approver = result['response-data'][0]['loginName'];
-                        $scope.manualInputReadCard();
+                        var res = result["response-data"][0]['authRes'];
+                        if (res['responseCode'] == "200") {
+                            $scope.approver = result['response-data'][0]['loginName'];
+                            $scope.manualInputReadCard();
+                        } else {
+                            $.fancybox.close();
+                            //unsuccessul
+
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": "",
+                                    "message-code": "",
+                                    "message-type": "WARNING",
+                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "th-message": "",
+                                    "technical-message": "changeResumeConroller"
+                                });
+                            }, 1000);
+                        }
+
                     } else {
                         $.fancybox.close();
                         //unsuccessul

@@ -402,6 +402,22 @@
                     }
                 }]
             };
+            var data3 = {
+                "status": "SUCCESSFUL",
+                "trx-id": "3MSQPX2TRAYH",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": [{
+                    "loginName": "fsdf",
+                    "employeeId": "",
+                    "authRes": {
+                        "app": "WEBUI",
+                        "info": null,
+                        "responseCode": "401",
+                        "responseDesc": "OPENAM_ERROR=AuthenticationFailed",
+                        "trxID": "5USQP1ZRRP79"
+                    }
+                }]
+            };
             if (trx_id == "4EONTQNYU4VZ") {
                 fnCallback(data);
             } else {
@@ -1571,25 +1587,25 @@
 
         $('.dateFormat').keyup(function(event) {
             /* Act on the event */
-            if(this.value){
+            if (this.value) {
                 console.log(this.value, this.value.split('/').length);
-                if(this.value.length==2 && this.value.split('/').length==1){
-                    this.value = this.value+"/";
+                if (this.value.length == 2 && this.value.split('/').length == 1) {
+                    this.value = this.value + "/";
                 }
 
-                if(this.value.length==5 && this.value.split('/').length==2){
-                    this.value = this.value+"/";
+                if (this.value.length == 5 && this.value.split('/').length == 2) {
+                    this.value = this.value + "/";
                 }
             }
         });
 
         $('.inputPartner').keyup(function(event) {
             /* Act on the event */
-            if(this.value.length==8){
-                    return false;
-                }
+            if (this.value.length == 8) {
+                return false;
+            }
         });
-        
+
 
     };
 
