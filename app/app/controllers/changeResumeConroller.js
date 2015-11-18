@@ -822,6 +822,7 @@ smartApp.controller('ResumeController', function(
     };
 
     $scope.onCheckShopCode = function() {
+        //$scope.promotion = "";
         SystemService.showLoading();
         var target = "profiles/partner/validatepartner?function-type=RESUME&partner-code=" + $scope.partnerCode;
         resumeService.validatePartnerCallback(target, function(result) {
@@ -862,35 +863,27 @@ smartApp.controller('ResumeController', function(
     $scope.isEnterPP = false;
     $scope.openPricePlanDialog = function() {
         $scope.isEnterPP = false;
-        //var runTime = new Date().getTime();
-        //$ngBootbox.customDialog({
-        //    templateUrl: 'app/views/ngBootbox-pricePlan.html?v=' + runTime,
-        //    onEscape: function () {
-        //        return false;
-        //    },
-        //    show: true,
-        //    backdrop: true,
-        //    closeButton: false,
-        //    animate: true,
-        //    size: 'large'
-        //});
-        //$scope.pricePlanFilter = $('#ppfilter').val();
-        var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
-        console.log(list.length, $scope.pricePlanFilter.value);
-        if (list.length == 1) {
-            $scope.isEnterPP = true;
-            $scope.selectedPricePlan(list[0]);
-            $scope.selectedPricePlan2();
+        if ($scope.propositionList) {
 
-        }
-        if (list.length > 1 && $scope.pricePlanFilter.value) {
-            $('#modalnewpriceplan').click();
-        }
-        if (list.length == 0) {
-            idFocus = "ppfilter";
-            $scope.pricePlanFilter.value = "";
-            SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
+            var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
+            console.log(list.length, $scope.pricePlanFilter.value);
+            if (list.length == 1) {
+                $scope.isEnterPP = true;
+                $scope.selectedPricePlan(list[0]);
+                $scope.selectedPricePlan2();
 
+            }
+            if (list.length > 1 && $scope.pricePlanFilter.value) {
+                $('#modalnewpriceplan').click();
+            }
+            if (list.length == 0) {
+                idFocus = "ppfilter";
+                $scope.pricePlanFilter.value = "";
+                SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
+
+            }
+        }else{
+            $scope.callSalePricePlanList();
         }
     };
 
@@ -960,6 +953,9 @@ smartApp.controller('ResumeController', function(
                     console.log($scope.propositionList);
                     $scope.isLoadPricePlan = true;
                     SystemService.hideLoading();
+
+                    //open modal price plan list
+                    $scope.openPricePlanDialog();
 
                 } else {
                     $scope.propositionList = [];
@@ -2486,7 +2482,7 @@ smartApp.controller('ResumeController', function(
 
         data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"] = data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
 
-        if($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Active'){
+        if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Active') {
             delete data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"];
             delete data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
         }

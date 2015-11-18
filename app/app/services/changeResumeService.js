@@ -857,7 +857,7 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {}
             };
-            if (target == "profiles/partner/validatepartner?function-type=CHANGE_OWNERSHIP&partner-code=88888888") {
+            if (target == "profiles/partner/validatepartner?function-type=RESUME&partner-code=88888888") {
                 fnCallback({
                     status: true,
                     data: data,
@@ -895,11 +895,25 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": [{
                     "name": "RMV000000000001",
-                    "description": "Proposition for TEST RF ",
+                    "description": "New Sim Only",
                     "soc": "45552",
                     "rc": 0.0,
                     "service-level": "C",
-                    "proposition-code": "0019537"
+                    "proposition-code": "0019123"
+                }, {
+                    "name": "RMV000000000211",
+                    "description": "iPhone5 MNP",
+                    "soc": "81592",
+                    "rc": 0.0,
+                    "service-level": "C",
+                    "proposition-code": "0019460"
+                }, {
+                    "name": "RMV000000000215",
+                    "description": "iPhone5 MNP 1,000bt",
+                    "soc": "81612",
+                    "rc": 0.0,
+                    "service-level": "C",
+                    "proposition-code": "0019447"
                 }]
             };
             fnCallback({
@@ -937,11 +951,15 @@
                     SystemService.hideLoading();
                     if (result.status) {
                         var dataCustomer = data["response-data"]["customer"];
-                        var mobileServiceType = "ทรูมูฟเอช เติมเงิน";
+                        var mobileServiceType = "ทรูมูฟเอช รายเดือน";
                         //var priceplan = dataCustomer["installed-products"][0];
                         var priceplan = $filter('filter')(dataCustomer["installed-products"], {
                             "product-type": "PRICEPLAN"
                         })[0];
+
+                        if (priceplan["mobile-servicetype"] == "PREPAID")
+                            mobileServiceType = "ทรูมูฟเอช เติมเงิน";
+
                         var _header = {
                             "producttype": mobileServiceType,
                             "subscriberno": msisdn,

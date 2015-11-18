@@ -382,7 +382,14 @@
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
                                 <p></p>
-                                <input type="text" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="(getAuthen.shopcodes.length==1) || !isCustomerProfile" maxlength="8" required>
+                                <input type="text" 
+                                        ng-change="onCheckInputForVerify();promotion='';propositions=[];onInputShopCode();" 
+                                        id="txtPartnerCode" 
+                                        name="partnerCode" 
+                                        ng-model="partnerCode" 
+                                        class="form-control inputPartner" 
+                                        ng-disabled="!isCustomerProfile" 
+                                        maxlength="8" required>
                             </div>
                         </div>
                     </div>
@@ -394,7 +401,8 @@
                             </div>
                             <div class="col-md-4">
                                 <p></p>
-                                <select class="form-control" ng-blur="selectedPromotion()" ng-change="onCheckInputForVerify()" ng-disabled="false || !isCustomerProfile " ng-model="promotion">
+                                <select class="form-control" ng-change="onCheckInputForVerify();selectedPromotion();" ng-disabled="false || !isCustomerProfile " ng-model="promotion">
+                                    <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in propositions" value="{{item['proposition-code']}}">
                                         {{item["proposition-code"]}} : {{item["description"]}}
                                     </option>
@@ -454,8 +462,8 @@
                             <div class="col-md-6" id="priceplan_sl">
                                 <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
                             </div>
-                            <div class="col-md-2" ng-submit="openPricePlanDialog()">
-                                <input type="text" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog()" ng-focus="focusPricePlanFilter()" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
+                            <div class="col-md-2">
+                                <input type="text" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog()" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
                             </div>
                             <div class="col-md-1">
                                 <!--<button type="button"

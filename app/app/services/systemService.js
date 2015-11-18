@@ -1582,6 +1582,13 @@
                 }
             }
         });
+
+        $('.inputPartner').keyup(function(event) {
+            /* Act on the event */
+            if(this.value.length==8){
+                    return false;
+                }
+        });
         
 
     };
