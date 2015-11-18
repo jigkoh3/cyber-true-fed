@@ -619,7 +619,7 @@ smartApp.controller('ResumeController', function(
                                 // $('#divShowAuthorize').hide();
                                 var cutomerType = $scope.data.priceplan['account-category'];
                                 console.log(cutomerType);
-                                if (cutomerType == "P") {
+                                if (cutomerType == "P" || cutomerType == "I") {
 
                                     $('#divShowAuthorize').hide();
                                 }
