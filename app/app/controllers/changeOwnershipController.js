@@ -668,6 +668,10 @@ smartApp.controller('changeOwnershipController', function(
                     //$scope.partnerCode = $scope.getAuthen["shopcodes"][0];
                     $scope.partnerCode = "";
                 }
+                if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length == 1) {
+                    //$scope.partnerCode = $scope.getAuthen["shopcodes"][0];
+                    //$scope.partnerCode = $scope.getAuthen["shopcodes"][0];
+                }
 
 
 
