@@ -1586,18 +1586,34 @@
         // });
 
         $('.dateFormat').keyup(function(event) {
-            /* Act on the event */
-            if (this.value) {
-                console.log(this.value, this.value.split('/').length);
-                if (this.value.length == 2 && this.value.split('/').length == 1) {
-                    this.value = this.value + "/";
-                }
+                /* Act on the event */
+                if (this.value) {
+                    console.log(this.value, this.value.split('/').length);
+                    if (this.value.length == 2 && this.value.split('/').length == 1) {
+                        this.value = this.value + "/";
+                    }
 
-                if (this.value.length == 5 && this.value.split('/').length == 2) {
-                    this.value = this.value + "/";
+                    if (this.value.length == 5 && this.value.split('/').length == 2) {
+                        this.value = this.value + "/";
+                    }
                 }
-            }
-        });
+            })
+            .keypress(function(e) {
+                //alert('press');
+                var charCode = (e.which) ? e.which : e.keyCode;
+                //console.log(this.value.length, this.value.indexOf("0"), this.value)
+                // if (this.value.length == 0 && charCode != 48) {
+                //     //showSpan();
+                //     return false;
+                // }
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    // show msg
+                    //showSpan();
+                    return false;
+                } else {
+                    //hideSpan();
+                }
+            });
 
         $('.inputPartner').keyup(function(event) {
             /* Act on the event */
