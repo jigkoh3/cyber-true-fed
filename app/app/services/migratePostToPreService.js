@@ -42,7 +42,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     "customer": {
                         "gender": "FEMALE",
                         "title": "นาง",
-                        "title-code": "T2",
+                        "title-code": "",
                         "firstname": "ประยูรกาฬวรรณ",
                         "lastname": "จันทรรัศมี",
                         "contact-number": "",

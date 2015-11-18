@@ -101,7 +101,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                    <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" style="width:100px;" ng-model="data.customerProfileNew['gender']" id="sex3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
+                                    <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" style="width:100px;" ng-model="data.customerProfileNew['gender']" id="sex3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isPrefixNull)">
                                         <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
