@@ -47,7 +47,7 @@
                             "product-properties": {
                                 "REASON-DESC": "Customer request",
                                 "PRODUCT-STATUS-DESC": "Cancel",
-                                "CURRENT-ACCOUNT-STATUS": "Active",
+                                "CURRENT-ACCOUNT-STATUS": "Canceled",
                                 "PRODUCT-STATUS-DATE": "2015-09-14T23:59:59.000+07:00",
                                 "IS-NEW-ACCOUNT": "false",
                                 "IS-NEW-SIM": "false",

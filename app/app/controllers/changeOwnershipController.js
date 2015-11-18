@@ -788,6 +788,7 @@ smartApp.controller('changeOwnershipController', function(
 
     //proposition
     $scope.callPropositionList = function() {
+        $scope.isVerify = false;
         if ($scope.partnerCode) {
             var propParam = {
                 'company-code': $scope.data.installedProducts["company-code"],
@@ -799,7 +800,9 @@ smartApp.controller('changeOwnershipController', function(
                     //,'proposition': ''
 
             };
+            SystemService.showLoading();
             changeOwnershipService.propositionCallback(propParam, function(resultProp) {
+                SystemService.hideLoading();
                 if (resultProp.status) {
                     $scope.propositions = resultProp.data['response-data'];
                 }
@@ -1078,8 +1081,16 @@ smartApp.controller('changeOwnershipController', function(
 
                                     $scope.onselectPrefix();
 
-
-                                    $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
+                                    //
+                                    var astList = $filter('filter')($scope.data.accountSubtypeList, {name : customer["installed-products"][0]["account-sub-type"]});
+                                    if(astList && astList.length > 0){
+                                        //
+                                        $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
+                                    }else{
+                                        //
+                                        $scope.subCompanyType = "";
+                                    }
+                                    
 
 
                                     //ที่อยู่จัดส่งเอกสาร
@@ -1235,6 +1246,10 @@ smartApp.controller('changeOwnershipController', function(
 
         }
     };
+    $scope.onChangeShop = function(){
+        $scope.callPropositionList();
+    };
+
     $scope.secondAuthenDataLastest = {};
     $scope.openSSOLastest = function() {
         var openDialog = function(uri, name, options, closeCallback) {
@@ -1260,11 +1275,27 @@ smartApp.controller('changeOwnershipController', function(
                     SystemService.hideLoading();
                     console.log(result);
                     $scope.secondAuthenDataLastest = result;
+                    
                     if (result["display-messages"] === undefined) {
-                        $('#CitizenIDLastest').prop('disabled', false);
+                        var res = result["response-data"][0]['authRes'];
+                        if (res['responseCode'] == "200") {
+                            $('#CitizenIDLastest').prop('disabled', false);
+                        } else {
+                            $.fancybox.close();
+                            //unsuccessul
 
-                        //$scope.approver = result['response-data'][0]['loginName'];
-                        //$scope.manualInputReadCard();
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": "",
+                                    "message-code": "",
+                                    "message-type": "WARNING",
+                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "th-message": "",
+                                    "technical-message": "changeOwnershipConroller"
+                                });
+                            }, 1000);
+                        }
+
                     } else {
                         $.fancybox.close();
                         //unsuccessul
@@ -1312,8 +1343,26 @@ smartApp.controller('changeOwnershipController', function(
                     console.log(result);
                     $scope.secondAuthenData = result;
                     if (result["display-messages"] === undefined) {
-                        $scope.approver = result['response-data'][0]['loginName'];
-                        $scope.manualInputReadCard();
+                        var res = result["response-data"][0]['authRes'];
+                        if (res['responseCode'] == "200") {
+                            $scope.approver = result['response-data'][0]['loginName'];
+                            $scope.manualInputReadCard();
+                        } else {
+                            $.fancybox.close();
+                            //unsuccessul
+
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": "",
+                                    "message-code": "",
+                                    "message-type": "WARNING",
+                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "th-message": "",
+                                    "technical-message": "changeOwnershipConroller"
+                                });
+                            }, 1000);
+                        }
+
                     } else {
                         $.fancybox.close();
                         //unsuccessul

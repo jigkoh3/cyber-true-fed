@@ -420,7 +420,7 @@
                             "product-type": "PRICEPLAN",
                             "product-sub-type": "R",
                             "account-category": "I",
-                            "account-sub-type": "FIN",
+                            "account-sub-type": "FINx",
                             "product-id": "0880500207",
                             "bill-cycle": "10",
                             "bill-cycle-date": "10/10",
@@ -512,7 +512,7 @@
                 "response-data": {}
             };
 
-            if (certificateid == "1250100186030") {
+            if (certificateid == "3400400489300") {
                 fnCallback({
                     status: true,
                     data: data,

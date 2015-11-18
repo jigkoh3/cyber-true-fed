@@ -339,6 +339,7 @@
                                             class="form-control"
                                             ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                         <!--<option>เลือก</option>-->
+                                        <option value="">-- กรุณาเลือก --</option>
                                         <option ng-repeat="option in data.accountSubtypeList" value="{{option.name}}">{{option.name}} : {{option.description}}</option>
                                     </select>
                                 </div>
@@ -490,6 +491,7 @@
                                 <select class="form-control"
                                         ng-model="partnerCode"
                                         ng-blur="onCheckInputForVerify()"
+                                        ng-change="onChangeShop()"
                                         ng-disabled="!isLastestUser"
                                         ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
 
@@ -526,10 +528,10 @@
                             <div class="col-md-4">
                                 <p></p>
                                 <select class="form-control"
-                                        ng-blur="selectedPromotion()"
-                                        ng-change="onCheckInputForVerify()"
+                                        ng-change="onCheckInputForVerify(); selectedPromotion();"
                                         ng-disabled="propositions.length==0"
                                         ng-model="promotion">
+                                        <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in propositions" value="{{item['proposition-code']}}">
                                         {{item["proposition-code"]}} : {{item["description"]}}
                                     </option>

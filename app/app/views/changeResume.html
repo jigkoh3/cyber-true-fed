@@ -27,8 +27,8 @@
                         </div>
                     </div>
                 </div>
-                <h4 ng-hide="data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Active'">ข้อมูลผู้จดทะเบียน</h4>
-                <div ng-hide="data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Active'" class="well" style="background-color:#ffffff;" ng-form="newcustomers">
+                <h4 ng-show="data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true'">ข้อมูลผู้จดทะเบียน</h4>
+                <div ng-show="data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true'" class="well" style="background-color:#ffffff;" ng-form="newcustomers">
                     <div class="row" ng-hide="true">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -702,7 +702,7 @@
                         </div>
                     </div>
                 </div>
-                <div  ng-hide="data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Active'">
+                <div  ng-show="data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true'">
                     <h4></h4>
                     <div class="well" ng-show="false" style="background-color:#ffffff;">
                         <div class="row">
