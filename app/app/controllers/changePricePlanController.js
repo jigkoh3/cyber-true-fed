@@ -60,6 +60,7 @@ smartApp.controller('ChangePricePlanController', function(
             }
         }
         if (list.length == 0) {
+            idFocus = "ppfilter";
             SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
 
         }
