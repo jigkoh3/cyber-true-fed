@@ -220,6 +220,7 @@ smartApp.controller('changeOwnershipController', function(
             $scope.customer['id-number'] = $scope.cardInfo3.CitizenID;
             $('#citizenID3').val($scope.cardInfo3.CitizenID);
             $('#prefixTH3').val(prefix);
+            $scope.newOwner.prefixTH = prefix;
             $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
             $('#lastNameTH3').val($scope.cardInfo3.LastNameTH);
             $('#birthDay').val($scope.cardInfo3.BirthDay);
