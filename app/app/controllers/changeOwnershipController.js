@@ -115,7 +115,11 @@ smartApp.controller('changeOwnershipController', function(
         $scope.newOwner2.sex = "FEMALE";
         $scope.newOwner2.birthDay = "";
 
+        $scope.partnerCode = "";
+        $scope.subCompanyType = "";
+        $scope.promotion = "";
 
+        $scope.onCheckInputForVerify();
 
     }
 
@@ -454,6 +458,14 @@ smartApp.controller('changeOwnershipController', function(
         $scope.autoHideNumberSubNo = false;
         return bool;
     }
+    $scope.isChkShopcode = true;
+    $scope.chkShopcode = function() {
+        if ($scope.getAuthen.shopcodes.length == 1) {
+            $scope.isChkShopcode = true;
+        } else {
+            $scope.isChkShopcode = false;
+        }
+    }
 
 
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
@@ -461,6 +473,7 @@ smartApp.controller('changeOwnershipController', function(
         $('#loadingReadCard3').hide();
         AuthenService.getAuthen(function(result) {
             $scope.getAuthen = result;
+            $scope.chkShopcode();
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
             }
@@ -652,7 +665,8 @@ smartApp.controller('changeOwnershipController', function(
                     SystemService.hideLoading();
                 }
                 if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length >= 1) {
-                    $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
+                    //$scope.partnerCode = $scope.getAuthen["shopcodes"][0];
+                    $scope.partnerCode = "";
                 }
 
 
@@ -788,6 +802,7 @@ smartApp.controller('changeOwnershipController', function(
 
     //proposition
     $scope.callPropositionList = function() {
+        $scope.promotion = "";
         $scope.isVerify = false;
         if ($scope.partnerCode) {
             var propParam = {
@@ -900,7 +915,7 @@ smartApp.controller('changeOwnershipController', function(
 
 
     //start check input 
-    $scope.subCompanyType = "PRI";
+    $scope.subCompanyType = "";
     $scope.isAddressList = {};
     $scope.onInputCitizenID3 = function() {
         if ($('#citizenID3').val() == $scope.data.customerProfile["id-number"] || $('#CitizenIDLastest').val() == $scope.data.customerProfile["id-number"]) {
@@ -951,17 +966,32 @@ smartApp.controller('changeOwnershipController', function(
         //$scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
         // (Start) Get current SIM data ----------------------
         var formatDate = function(date) {
-            if (!date) return date;
+            if (date) {
+                if (date.indexOf("-") >= 0) {
+                    var arr = date.split("T");
+                    var arrDate = arr[0].split("-");
+                    var strDate = arrDate[2] + "/" + arrDate[1] + "/" + (Number(arrDate[0]) + 543);
+                    console.log(arrDate);
+                    return strDate;
 
-            return moment(date).format('DD/MM/YYYY');
+                } else {
+
+                    return date;
+                }
+                /*if (!date) return date;
+                return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');*/
+            }
+            // if (!date) return date;
+
+            // return moment(date).format('DD/MM/YYYY');
         };
         var cid = $('#citizenID3').val();
-        if(cid.length == 13 && !SystemService.validatePID(cid)){
+        if (cid.length == 13 && !SystemService.validatePID(cid)) {
             return;
         }
         if (cid.length >= 3) {
             SystemService.showLoading();
-            if (1==1) {
+            if (1 == 1) {
                 changeOwnershipService.validateGradingCallback(cid, function(resultData) {
                     console.log(resultData);
                     console.log(resultData.data["display-messages"]);
@@ -988,8 +1018,8 @@ smartApp.controller('changeOwnershipController', function(
                         $scope.isLastestUser = false; // jigkoh3 mockup
 
 
-                        if (0==0) {
-                            
+                        if (0 == 0) {
+
 
                             changeOwnershipService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
                                 $scope.isLastestUser = true;
@@ -1062,6 +1092,11 @@ smartApp.controller('changeOwnershipController', function(
 
                                         $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                         $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+
+                                        $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
+                                        $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
+                                        $("#birthDayRegisterd").datepicker("update", $scope.newOwner.birthDay);
+                                        
                                     }
 
                                     //ระบุผู้ใช้หมายเลข
@@ -1082,15 +1117,17 @@ smartApp.controller('changeOwnershipController', function(
                                     $scope.onselectPrefix();
 
                                     //
-                                    var astList = $filter('filter')($scope.data.accountSubtypeList, {name : customer["installed-products"][0]["account-sub-type"]});
-                                    if(astList && astList.length > 0){
+                                    var astList = $filter('filter')($scope.data.accountSubtypeList, {
+                                        name: customer["installed-products"][0]["account-sub-type"]
+                                    });
+                                    if (astList && astList.length > 0) {
                                         //
                                         $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
-                                    }else{
+                                    } else {
                                         //
                                         $scope.subCompanyType = "";
                                     }
-                                    
+
 
 
                                     //ที่อยู่จัดส่งเอกสาร
@@ -1140,10 +1177,10 @@ smartApp.controller('changeOwnershipController', function(
             $scope.newOwner.birthDay = $('#birthDay').val();
             $scope.newOwner.expireDay = $('#expireDay').val();
 
-            console.log($scope.partnerCode.length == 8, $scope.customer['id-number'], $scope.cardType.value, $scope.newOwner.birthDay, $scope.newOwner.expireDay, $scope.promotion);
+            console.log($scope.partnerCode.length == 8, $scope.customer['id-number'], $scope.cardType.value, $scope.newOwner.birthDay, $scope.newOwner.expireDay, $scope.promotion, $scope.subCompanyType);
 
 
-            if ($scope.partnerCode.length == 8 && $scope.customer['id-number'] && $scope.cardType.value && $scope.newOwner.birthDay && $scope.newOwner.expireDay && $scope.promotion) {
+            if ($scope.partnerCode.length == 8 && $scope.customer['id-number'] && $scope.cardType.value && $scope.newOwner.birthDay && $scope.newOwner.expireDay && $scope.promotion && $scope.subCompanyType) {
                 $scope.isCheckInputForVerify = true;
             } else {
                 $scope.isCheckInputForVerify = false;
@@ -1246,7 +1283,8 @@ smartApp.controller('changeOwnershipController', function(
 
         }
     };
-    $scope.onChangeShop = function(){
+    $scope.onChangeShop = function() {
+
         $scope.callPropositionList();
     };
 
@@ -1275,7 +1313,7 @@ smartApp.controller('changeOwnershipController', function(
                     SystemService.hideLoading();
                     console.log(result);
                     $scope.secondAuthenDataLastest = result;
-                    
+
                     if (result["display-messages"] === undefined) {
                         var res = result["response-data"][0]['authRes'];
                         if (res['responseCode'] == "200") {
@@ -1289,7 +1327,7 @@ smartApp.controller('changeOwnershipController', function(
                                     "message": "",
                                     "message-code": "",
                                     "message-type": "WARNING",
-                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "en-message": res['responseCode'] + ": " + res['responseDesc'],
                                     "th-message": "",
                                     "technical-message": "changeOwnershipConroller"
                                 });
@@ -1356,7 +1394,7 @@ smartApp.controller('changeOwnershipController', function(
                                     "message": "",
                                     "message-code": "",
                                     "message-type": "WARNING",
-                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "en-message": res['responseCode'] + ": " + res['responseDesc'],
                                     "th-message": "",
                                     "technical-message": "changeOwnershipConroller"
                                 });

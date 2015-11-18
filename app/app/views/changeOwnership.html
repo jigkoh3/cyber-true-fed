@@ -333,8 +333,7 @@
                                     <!-- Case Normal -->
                                     <select ng-model="subCompanyType"
                                             ng-disabled="!isLastestUser"
-                                            ng-blur="onCheckInputForVerify()"
-                                            ng-change="onChangeSub()"
+                                            ng-change="onChangeSub(); onCheckInputForVerify();"
                                             id="subCompanyType"
                                             class="form-control"
                                             ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
@@ -490,11 +489,10 @@
                                 <!-- Case Normal -->
                                 <select class="form-control"
                                         ng-model="partnerCode"
-                                        ng-blur="onCheckInputForVerify()"
-                                        ng-change="onChangeShop()"
+                                        ng-change="onChangeShop(); onCheckInputForVerify()"
                                         ng-disabled="!isLastestUser"
                                         ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
-
+                                    <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}
                                     </option>
@@ -510,10 +508,11 @@
                                        name="partnerCode"
                                        ng-model="partnerCode"
                                        ng-keyup="onInputShopCode()"
+                                       ng-change="promotion='';isVerify=false;propositions=[];onCheckInputForVerify();"
                                        class="form-control"
-                                       ng-disabled="(getAuthen.shopcodes.length==1) || !isLastestUser"
+                                       ng-disabled="isChkShopcode || !isLastestUser"
                                        maxlength="8" 
-                                       ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'"required>
+                                       ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                             </div>
 
 
@@ -859,7 +858,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd" readonly class=" form-control date-picker dateFormat">
+                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd" class=" form-control date-picker dateFormat">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
