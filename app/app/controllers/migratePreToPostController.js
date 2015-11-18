@@ -206,14 +206,14 @@ smartApp.controller('MigratePreToPostController', function(
                     $scope.clickModalReadCard = false;
                     if (navigator.userAgent.indexOf('Chrome') > 0) {
                         setTimeout(function(){
-                            $("#btn-fancy-ReadCard").click();
+                            //$("#btn-fancy-ReadCard").click();
                             startModal();
                         }, 2000);
                         
                     } else {
                         $(document).ready(function() {
                             setTimeout(function() {
-                                $("#btn-fancy-ReadCard").click();
+                                //$("#btn-fancy-ReadCard").click();
                                 startModal();
                                 //alert('ie click 5000');
                             }, 2000);
@@ -698,33 +698,28 @@ smartApp.controller('MigratePreToPostController', function(
                             // console.log($scope.data.customerProfile['firstname']);
 
                             if ($scope.shopType == '1') {
-                                $("#btn-fancy-ReadCard").fancybox({
-                                    'type': 'div',
-                                    width: '50%',
-                                    height: '95%',
-                                    openEffect: false,
-                                    closeEffect: false,
-                                    speedIn: 15000,
-                                    speedOut: 15000,
-                                    autoScale: false,
-                                    centerOnScroll: false, // and not 'true',
-                                    autoCenter: false, // and not 'true'
-                                    autoDimensions: 'false',
-                                    resize: 'Auto',
-                                    helpers: {
-                                        overlay: {
-                                            css: {
-                                                'background': 'transparent',
-                                                'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
-                                                'zoom': '1',
-                                                'background': 'rgba(42, 42, 42, 0.95)'
-                                            },
-                                            locked: true,
-                                            closeClick: false,
-                                        }
+                                // Auto-open the CardReader dialog
+                    setTimeout(function() {
+                        var fancyboxOptions = {
+                            helpers: {
+                                overlay: {
+                                    //closeClick: false
+                                }
+                            },
 
-                                    }
-                                });
+                            beforeShow: function() {
+                                $('#CitizenID').prop('disabled', true);
+                                $('#loadingReadCard').hide();
+                                $('#unMatch').hide();
+                            },
+
+                            afterClose: function() {
+                                //
+                            }
+                        };
+
+                        $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
+                    }, 1000);
                                 $("#btn-fancy-ReadCardLastest").fancybox({
                                     'type': 'div',
                                     width: '50%',
@@ -757,7 +752,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 // setTimeout(function() {
                                 //     $("#btn-fancy-ReadCard").fancybox().trigger('click');
                                 // }, 1000);
-                                $("#btn-fancy-ReadCard").fancybox().trigger('hide');
+                                //$("#btn-fancy-ReadCard").fancybox().trigger('hide');
                                 $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
                                 $scope.clickModalReadCard = true;
                                 $scope.initModalReadCard();
