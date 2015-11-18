@@ -55,12 +55,12 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>คำนำหน้า <span style="color:red;">*</span></label>
+                                <label>คำนำหน้า<span style="color:red;">*</span></label>
                                 <div id="placeholders">
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                    <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="data.customerProfileNew['title-code']" id="prefix3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isLastestUser)">
+                                    <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="data.customerProfileNew['title-code']" id="prefix3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isPrefixNull)">
                                         <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>

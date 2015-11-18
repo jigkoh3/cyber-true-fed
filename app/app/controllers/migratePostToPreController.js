@@ -29,6 +29,7 @@
     $scope.approver = "";
     $scope.isCardValueData = false;
     $scope.userDealer = false;
+    $scope.isPrefixNull = true;
 
     //paging
     $scope.currentPage = 1;
@@ -270,7 +271,7 @@
                 //alert($scope.data.customerProfile['id-type']);
                 //$('#selectCustomerIdType').val(idType);
                 console.log($scope.data);
-                
+
 
                 if ($scope.data.simData['account-category'] == "I" || $scope.data.simData['account-category'] == "P") {
                     $('#selectCustomerIdType').val($scope.data.customerProfile['id-type']);
@@ -317,7 +318,7 @@
         }, 100);
         //setTimeout(function() {
         SystemService.calendarDatePicker();
-        
+
         console.log($scope.userDealer);
         //}, 100);
     };
@@ -462,6 +463,7 @@
             }
 
             $scope.checkUserDealer();
+            $scope.checkPrefixNull();
 
             var partnerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
 
@@ -535,10 +537,31 @@
 
                     var displayMsg = utils.getObject(result, 'display-messages.0');
                     if (!displayMsg || !displayMsg['message-type']) {
-                        $scope.approver = result['response-data'][0]['loginName'];
-                        setTimeout(function() {
-                            getReadyCitizenInput();
-                        }, 1000);
+
+                    }
+                    if (result["display-messages"] === undefined) {
+                        var res = result["response-data"][0]['authRes'];
+                        if (res['responseCode'] == "200") {
+                            $scope.approver = result['response-data'][0]['loginName'];
+                            setTimeout(function() {
+                                getReadyCitizenInput();
+                            }, 1000);
+                        } else {
+                            // $.fancybox.close();
+                            //unsuccessul
+
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": "",
+                                    "message-code": "",
+                                    "message-type": "WARNING",
+                                    "en-message": res['responseCode'] + ": " + res['responseDesc'],
+                                    "th-message": "",
+                                    "technical-message": "changeResumeConroller"
+                                });
+                            }, 1000);
+                        }
+
                     } else {
                         setTimeout(function() {
                             SystemService.showAlert(displayMsg);
@@ -1148,6 +1171,14 @@
         } else {
             $scope.userDealer = false;
             $scope.showDataDealer = false;
+        }
+    };
+
+    $scope.checkPrefixNull = function() {
+        if ($scope.data.customerProfile['title-code']) {
+            $scope.isPrefixNull = false;
+        } else {
+            $scope.isPrefixNull = true;
         }
     };
 
