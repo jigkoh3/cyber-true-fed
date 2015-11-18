@@ -790,9 +790,27 @@ smartApp.controller('ChangePricePlanController', function(
                     //alert(result["status"]);
                     SystemService.hideLoading();
                     console.log(result);
-                    if (result["status"] == "SUCCESSFUL") {
-                        $scope.approver = result['response-data'][0]['loginName'];
-                        $scope.manualInputReadCard();
+                    if (result["display-messages"] === undefined) {
+                        var res = result["response-data"][0]['authRes'];
+                        if (res['responseCode'] == "200") {
+                            $scope.approver = result['response-data'][0]['loginName'];
+                            $scope.manualInputReadCard();
+                        } else {
+                            $.fancybox.close();
+                            //unsuccessul
+
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": "",
+                                    "message-code": "",
+                                    "message-type": "WARNING",
+                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "th-message": "",
+                                    "technical-message": "changeResumeConroller"
+                                });
+                            }, 1000);
+                        }
+
                     } else {
                         $.fancybox.close();
                         //unsuccessul
@@ -831,7 +849,8 @@ smartApp.controller('ChangePricePlanController', function(
         setTimeout(function() {
             $('#CitizenID').val('');
             $('#CitizenID').select();
-        }, 100);
+            $('#CitizenID').focus();
+        }, 1100);
 
         $scope.isManualReadCard = false;
         $('input[type=submit]').show();
