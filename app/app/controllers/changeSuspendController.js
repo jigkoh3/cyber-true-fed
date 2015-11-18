@@ -474,11 +474,30 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
 
         openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
             //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
+            SystemService.showLoading();
             SystemService.second_authen($scope.TrxID, function(result) {
-                $scope.manualInputReadCard();
-                if (result.status == "SUCCESSFUL") {
-                    $scope.approver = result["response-data"][0]["loginName"];
-                    console.log(result);
+                SystemService.hideLoading();
+                if (result["display-messages"] === undefined) {
+                    var res = result["response-data"][0]['authRes'];
+                    if (res['responseCode'] == "200") {
+                        $scope.approver = result['response-data'][0]['loginName'];
+                        $scope.manualInputReadCard();
+                    } else {
+                        $.fancybox.close();
+                        //unsuccessul
+
+                        setTimeout(function() {
+                            SystemService.showAlert({
+                                "message": "",
+                                "message-code": "",
+                                "message-type": "WARNING",
+                                "en-message": res['responseCode'] + ": " + res['responseDesc'],
+                                "th-message": "",
+                                "technical-message": "changeResumeConroller"
+                            });
+                        }, 1000);
+                    }
+
                 } else {
                     $.fancybox.close();
                     //unsuccessul

@@ -1465,11 +1465,26 @@ smartApp.controller('MigratePreToPostController', function(
                     SystemService.hideLoading();
                     console.log(result);
                     $scope.secondAuthenDataLastest = result;
-                    if (result["status"] == "SUCCESSFUL") {
-                        $('#CitizenIDLastest').prop('disabled', false);
+                    if (result["display-messages"] === undefined) {
+                        var res = result["response-data"][0]['authRes'];
+                        if (res['responseCode'] == "200") {
+                            $('#CitizenIDLastest').prop('disabled', false);
+                        } else {
+                            //$.fancybox.close();
+                            //unsuccessul
 
-                        //$scope.approver = result['response-data'][0]['loginName'];
-                        //$scope.manualInputReadCard();
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": "",
+                                    "message-code": "",
+                                    "message-type": "WARNING",
+                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "th-message": "",
+                                    "technical-message": "changeResumeConroller"
+                                });
+                            }, 1000);
+                        }
+
                     } else {
                         $.fancybox.close();
                         //unsuccessul
@@ -1517,8 +1532,26 @@ smartApp.controller('MigratePreToPostController', function(
                     console.log(result);
                     $scope.secondAuthenData = result;
                     if (result["display-messages"] === undefined) {
-                        $scope.approver = result['response-data'][0]['loginName'];
-                        $scope.manualInputReadCard();
+                        var res = result["response-data"][0]['authRes'];
+                        if (res['responseCode'] == "200") {
+                            $scope.approver = result['response-data'][0]['loginName'];
+                            $scope.manualInputReadCard();
+                        } else {
+                            $.fancybox.close();
+                            //unsuccessul
+
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": "",
+                                    "message-code": "",
+                                    "message-type": "WARNING",
+                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "th-message": "",
+                                    "technical-message": "changeResumeConroller"
+                                });
+                            }, 1000);
+                        }
+
                     } else {
                         $.fancybox.close();
                         //unsuccessul

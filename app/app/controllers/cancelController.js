@@ -191,7 +191,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
                     $('#btnSSO').hide();
                 }, 100);
             } else {
-              $scope.showDataDealer = false;  
+                $scope.showDataDealer = false;
             }
 
             if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length >= 1) {
@@ -440,11 +440,31 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
 
         openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
             //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
+            SystemService.showLoading();
             SystemService.second_authen($scope.TrxID, function(result) {
-                $scope.manualInputReadCard();
-                if (result.status == "SUCCESSFUL") {
-                    $scope.approver = result["response-data"][0]["loginName"];
-                    console.log(result);
+                SystemService.hideLoading();
+                console.log(result);
+                if (result["display-messages"] === undefined) {
+                    var res = result["response-data"][0]['authRes'];
+                    if (res['responseCode'] == "200") {
+                        $scope.approver = result['response-data'][0]['loginName'];
+                        $scope.manualInputReadCard();
+                    } else {
+                        $.fancybox.close();
+                        //unsuccessul
+
+                        setTimeout(function() {
+                            SystemService.showAlert({
+                                "message": "",
+                                "message-code": "",
+                                "message-type": "WARNING",
+                                "en-message": res['responseCode'] + ": " + res['responseDesc'],
+                                "th-message": "",
+                                "technical-message": "changeResumeConroller"
+                            });
+                        }, 1000);
+                    }
+
                 } else {
                     $.fancybox.close();
                     //unsuccessul
@@ -491,39 +511,40 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         $('input[type=reset]').show();
 
         if ($scope.shopType == "1") {
-                    if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
-                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                    }
-                    $('#loadingReadCard').hide();
-                    $('#unMatch').hide();
+            if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+                $("#btn-fancy-ReadCard").fancybox().trigger('click');
+            }
+            $('#loadingReadCard').hide();
+            $('#unMatch').hide();
+            setTimeout(function() {
+
+                $('#CitizenID').val('');
+                if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                    $('#CitizenID').prop('disabled', false);
+                    $('#btnSSO').hide();
                     setTimeout(function() {
+                        $('#CitizenID').focus();
+                    }, 1000);
 
-                        $('#CitizenID').val('');
-                        if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
-                            $('#CitizenID').prop('disabled', false);
-                            $('#btnSSO').hide();
-                            setTimeout(function() {
-                                $('#CitizenID').focus();
-                            }, 1000);
-
-                        } else {
-                            $('#CitizenID').prop('disabled', true);
-                        }
-                    }, 100);
-
+                } else {
+                    $('#CitizenID').prop('disabled', true);
                 }
+            }, 100);
 
-                setTimeout(function() {
-                    $('#loadingReadCard2').hide();
-                    $('#unMatch2').hide();
-                }, 1000);
+        }
+
+        setTimeout(function() {
+            $('#loadingReadCard2').hide();
+            $('#unMatch2').hide();
+        }, 1000);
     }
     $scope.manualInputReadCard = function() {
         $('#loadingReadCard').hide();
         $('#loadingReadCard2').hide();
         $('#unMatch').hide();
         $('#unMatch2').hide();
-        document.getElementById("CitizenID").disabled = false;
+        //document.getElementById("CitizenID").disabled = false;
+        $('#CitizenID').prop('disabled', false);
 
         setTimeout(function() {
             $('#CitizenID').val('');

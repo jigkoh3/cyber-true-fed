@@ -560,11 +560,29 @@
 
 
                     var displayMsg = utils.getObject(result, 'display-messages.0');
-                    if (!displayMsg || !displayMsg['message-type']) {
-                        $scope.approver = result['response-data'][0]['loginName'];
-                        setTimeout(function() {
-                            getReadyCitizenInput();
-                        }, 1000);
+                    if (result["display-messages"] === undefined) {
+                        var res = result["response-data"][0]['authRes'];
+                        if (res['responseCode'] == "200") {
+                            $scope.approver = result['response-data'][0]['loginName'];
+                            setTimeout(function() {
+                                getReadyCitizenInput();
+                            }, 1000);
+                        } else {
+                            //$.fancybox.close();
+                            //unsuccessul
+
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": "",
+                                    "message-code": "",
+                                    "message-type": "WARNING",
+                                    "en-message": res['responseCode'] + ": " + res['responseDesc'],
+                                    "th-message": "",
+                                    "technical-message": "changeResumeConroller"
+                                });
+                            }, 1000);
+                        }
+
                     } else {
                         setTimeout(function() {
                             SystemService.showAlert(displayMsg);
