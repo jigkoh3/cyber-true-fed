@@ -333,7 +333,7 @@
                                     <!-- Case Normal -->
                                     <select ng-model="subCompanyType"
                                             ng-disabled="!isLastestUser"
-                                            ng-change="onChangeSub(); onCheckInputForVerify();"
+                                            ng-change="onChangeSub(); onCheckInputForVerify(); isVerify=false;"
                                             id="subCompanyType"
                                             class="form-control"
                                             ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
