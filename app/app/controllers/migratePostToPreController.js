@@ -464,6 +464,7 @@
 
             $scope.checkUserDealer();
             $scope.checkPrefixNull();
+            $scope.isIdCardExpired();
 
             var partnerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
 
@@ -632,6 +633,8 @@
 
         $('#CitizenID').val($scope.cardInfo.CitizenID);
         $scope.onInputId();
+
+
         setTimeout(function() {
             $('#idBindDataAgain').click();
 
@@ -652,6 +655,7 @@
     $scope.SetCardValue3 = function(result) {
 
         var cardInfo = eval(result);
+        $scope.isReadIdCardExpired(cardInfo.ExpireDay);
         console.log(cardInfo);
         $('#loadingReadCard3').hide();
         $scope.isDataReadCard3 = true;
@@ -757,8 +761,35 @@
 
 
     };
+    $scope.cardExpire = false;
     // (Start) Validation ----------------------
-    $scope.isIdCardExpired = function(expireDate) {
+    $scope.isIdCardExpired = function() {
+        // if (expireDate) {
+            var str = $scope.data.customerProfile['id-expire-date'];
+            var res1 = str.split("T");
+            var res = res1[0].split("-");
+            var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
+            var b = moment([""+(Number(res[0]) + 543)+"", res[1], res[2]]);
+        
+            //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
+            // return (a.diff(b, 'days') >= 0);
+            //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
+            if (a.diff(b, 'days') >= 0) {
+                $scope.cardExpire = false;
+                $scope.data.customerProfileNew['id-expire-date'] = "";
+                $('#expireDate').val($scope.data.customerProfileNew['id-expire-date']);
+            } else {
+                $scope.cardExpire = true;
+                
+            }
+
+        // }
+
+        // return true;
+
+    };
+
+    $scope.isReadIdCardExpired = function(expireDate) {
         if (expireDate) {
             var str = expireDate;
             var res = str.split("/");
@@ -775,7 +806,6 @@
         return true;
 
     };
-
 
     $scope.getProPo = function() {
 
