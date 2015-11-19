@@ -74,7 +74,7 @@
                 "status": "SUCCESSFUL",
                 "display-messages": [{
                     "message": "",
-                    "message-code": "2",
+                    "message-code": "1",
                     "message-type": "WARNING",
                     "en-message": "; nested exception is: \n\torg.xml.sax.SAXException: Invalid element in th.co.truecorp.ads.sff.ext.services.ccbint.resourcemanagement.NiceNumberInfoM - dealerCode",
                     "th-message": "; nested exception is: \n\torg.xml.sax.SAXException: Invalid element in th.co.truecorp.ads.sff.ext.services.ccbint.resourcemanagement.NiceNumberInfoM - dealerCode",
@@ -133,7 +133,7 @@
             } else if (msisdn == "0939861331") {
                 fnCallback({
                     status: true,
-                    data: data,
+                    data: data3,
                     error: "",
                     msgErr: ""
                 });
@@ -904,9 +904,27 @@
                     "proposition-code": "0019447"
                 }]
             };
+            var data2 = {
+                "trx-id": "62TSNI7WEJFH",
+                "status": "SUCCESSFUL",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "fault": {
+                    "name": "th.co.truecorp.ads.api.persistent.jdbc.DataNotFoundException",
+                    "code": "PROFILE-404",
+                    "message": "Not found proposition with specific criteria.",
+                    "detailed-message": "DataNotFoundException Not found proposition with specific criteria.. "
+                },
+                "display-messages": [{
+                    "message": "Not found proposition with specific criteria.",
+                    "message-type": "WARNING",
+                    "en-message": "Not found proposition with specific criteria.",
+                    "th-message": "Not found proposition with specific criteria.",
+                    "technical-message": "tmsapnpr1 (instance: SFF_node3) DataNotFoundException Not found proposition with specific criteria.. "
+                }]
+            };
             fnCallback({
                 status: true,
-                data: data,
+                data: data2,
                 error: "",
                 msgErr: ""
             });

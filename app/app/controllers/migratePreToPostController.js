@@ -948,6 +948,18 @@ smartApp.controller('MigratePreToPostController', function(
                 if (resultProp.status) {
                     $scope.propositions = resultProp.data['response-data'];
                     console.log($scope.propositions);
+
+                    setTimeout(function() {
+                        SystemService.showAlert({
+                            "message": resultProp.data["display-messages"][0]["message"],
+                            "message-code": resultProp.data["display-messages"][0]["message-code"],
+                            "message-type": "WARNING",
+                            "en-message": resultProp.data["display-messages"][0]["en-message"],
+                            "th-message": resultProp.data["display-messages"][0]["th-message"],
+                            "technical-message": resultProp.data["display-messages"][0]["technical-message"]
+                        });
+                        //$ngBootbox.customDialog($scope.customDialogOptions);
+                    }, 3000);
                 }
             });
         }
