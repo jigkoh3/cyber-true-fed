@@ -71,7 +71,10 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ประเภทของบัตร<span style="color:red;">*</span></label>
-                                    <select name="cardTypes" ng-model="cardType" ng-options="key as value for (key , value) in cardTypeOptions" class="form-control" required>
+                                    <select name="cardTypes" 
+                                            ng-model="cardType" 
+                                            ng-options="key as value for (key , value) in cardTypeOptions" 
+                                            class="form-control" required>
                                         <!--<option ng-repeat="(key , value) in cardTypeOptions" value="{{key}}">{{value}}</option>-->
                                     </select>
 
@@ -280,7 +283,7 @@
                                     <select name="cardTypes"
                                             ng-model="cardType.value"
                                             ng-blur="onCheckInputForVerify()" 
-                                            ng-change="onChangeCardTypes()"
+                                            ng-change="onChangeCardTypes(); isVerify=false; approveCode='';"
                                             id="cardType"
                                             ng-disabled="!isLastestUser"
                                             class="form-control" 

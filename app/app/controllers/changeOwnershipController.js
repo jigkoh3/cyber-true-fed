@@ -115,7 +115,16 @@ smartApp.controller('changeOwnershipController', function(
         $scope.newOwner2.sex = "FEMALE";
         $scope.newOwner2.birthDay = "";
 
-        $scope.partnerCode = "";
+        //$scope.partnerCode = "";
+        if ($scope.getAuthen) {
+            if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length == 1) {
+                $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
+            } else {
+                $scope.partnerCode = "";
+            }
+        }
+
+
         $scope.subCompanyType = "";
         $scope.promotion = "";
 
@@ -664,13 +673,12 @@ smartApp.controller('changeOwnershipController', function(
                 } else {
                     SystemService.hideLoading();
                 }
-                if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length >= 1) {
-                    //$scope.partnerCode = $scope.getAuthen["shopcodes"][0];
-                    $scope.partnerCode = "";
-                }
+
                 if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length == 1) {
                     //$scope.partnerCode = $scope.getAuthen["shopcodes"][0];
                     $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
+                } else {
+                    $scope.partnerCode = "";
                 }
 
 
@@ -1100,7 +1108,7 @@ smartApp.controller('changeOwnershipController', function(
                                         $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
                                         $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
                                         $("#birthDayRegisterd").datepicker("update", $scope.newOwner.birthDay);
-                                        
+
                                     }
 
                                     //ระบุผู้ใช้หมายเลข
@@ -1181,7 +1189,7 @@ smartApp.controller('changeOwnershipController', function(
             $scope.newOwner.birthDay = $('#birthDay').val();
             $scope.newOwner.expireDay = $('#expireDay').val();
 
-            console.log($scope.partnerCode.length == 8, $scope.customer['id-number'], $scope.cardType.value, $scope.newOwner.birthDay, $scope.newOwner.expireDay, $scope.promotion, $scope.subCompanyType);
+            console.log($scope.partnerCode, $scope.customer['id-number'], $scope.cardType.value, $scope.newOwner.birthDay, $scope.newOwner.expireDay, $scope.promotion, $scope.subCompanyType);
 
 
             if ($scope.partnerCode.length == 8 && $scope.customer['id-number'] && $scope.cardType.value && $scope.newOwner.birthDay && $scope.newOwner.expireDay && $scope.promotion && $scope.subCompanyType) {
@@ -1194,8 +1202,6 @@ smartApp.controller('changeOwnershipController', function(
             $scope.setBirthDateOwner2();
             console.log($scope.isCheckInputForVerify);
             $('#idBindDataAgain').click();
-
-
         }, 500);
 
     };
