@@ -717,6 +717,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 //
                             }
                         };
+                        alert('');
 
                         $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
                     }, 1000);
