@@ -717,8 +717,6 @@ smartApp.controller('MigratePreToPostController', function(
                                 //
                             }
                         };
-                        alert('');
-
                         $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
                     }, 1000);
                                 $("#btn-fancy-ReadCardLastest").fancybox({
@@ -1094,7 +1092,7 @@ smartApp.controller('MigratePreToPostController', function(
 
                         migratePreToPostService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
                             $scope.isLastestUser = true;
-                            $.fancybox.close();
+                            //$.fancybox.close();
 
 
                             SystemService.hideLoading();
