@@ -1020,7 +1020,7 @@ smartApp.controller('changeOwnershipController', function(
                         };
                         changeOwnershipService.getAccountSubTypeCallback(param, function(resultST) {
                             $scope.data.accountSubtypeList = resultST.data["response-data"];
-                            $scope.subCompanyType = resultST.data["response-data"][0]['name'];
+                            //$scope.subCompanyType = resultST.data["response-data"][0]['name'];
                         });
 
 
@@ -1137,7 +1137,16 @@ smartApp.controller('changeOwnershipController', function(
                                         $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
                                     } else {
                                         //
-                                        $scope.subCompanyType = "";
+                                        if(customer["installed-products"][0]["account-sub-type"] == "RMV"){
+                                            $scope.subCompanyType = "RPI";
+                                        }else if(customer["installed-products"][0]["account-sub-type"] == "RFT"){
+                                            $scope.subCompanyType = "FIN";
+                                        }else{
+                                            $scope.subCompanyType = "";
+                                        }
+                                        setTimeout(function() {
+                                        $('#subCompanyType').val($scope.subCompanyType);
+                                        }, 1000);
                                     }
 
 
