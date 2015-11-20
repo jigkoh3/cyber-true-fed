@@ -55,7 +55,7 @@ smartApp.controller('ChangePricePlanController', function(
         if (list.length > 1 && $scope.pricePlanFilter.value) {
             if ($scope.firstSearch == false) {
                 //setTimeout(function() {
-                    $('#modalnewpriceplan').click();
+                $('#modalnewpriceplan').click();
                 //}, 1100);
             }
         }
@@ -519,6 +519,21 @@ smartApp.controller('ChangePricePlanController', function(
         //call Priceplan
         ChangePricePlanService.getPriceplan(target, function(resultGetPriceplan) {
             if (resultGetPriceplan.status) {
+                //console.log(resultGetPriceplan.data["display-messages"][0]);
+                if (SystemService.checkObj(resultGetPriceplan.data, ["display-messages"]) && resultGetPriceplan.data["display-messages"].length > 0) {
+                    //error
+                    setTimeout(function() {
+                        SystemService.showAlert({
+                            "message": resultGetPriceplan.data["display-messages"][0]["message"],
+                            "message-code": resultGetPriceplan.data["display-messages"][0]["message-code"],
+                            "message-type": "WARNING",
+                            "en-message": resultGetPriceplan.data["display-messages"][0]["en-message"],
+                            "th-message": resultGetPriceplan.data["display-messages"][0]["th-message"],
+                            "technical-message": resultGetPriceplan.data["display-messages"][0]["technical-message"]
+                        });
+                        //$ngBootbox.customDialog($scope.customDialogOptions);
+                    }, 1000);
+                }
                 console.log($scope.aftersalePriceplans);
                 $scope.propositionList = [];
                 $scope.propositions = [];
@@ -594,12 +609,12 @@ smartApp.controller('ChangePricePlanController', function(
                             //     SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
 
                             // }
-                                setTimeout(function(){
-                                    $('#ppfilter').focus();
-                                    //$scope.firstSearch = true;
-                                    //$scope.openPricePlanDialog();
-                                    //$('#modalnewpriceplan').click();
-                                }, 2100);
+                            setTimeout(function() {
+                                $('#ppfilter').focus();
+                                //$scope.firstSearch = true;
+                                //$scope.openPricePlanDialog();
+                                //$('#modalnewpriceplan').click();
+                            }, 2100);
 
                         }
                     }
@@ -622,7 +637,7 @@ smartApp.controller('ChangePricePlanController', function(
                     makeDataPriceplan(resultGetPriceplan.data["response-data"]["priceplans"], "", "");
                 }
 
-                if($scope.pricePlanFilter.value){
+                if ($scope.pricePlanFilter.value) {
                     $('#modalnewpriceplan').click();
                 }
                 $scope.promotion = "";
@@ -631,6 +646,10 @@ smartApp.controller('ChangePricePlanController', function(
                 $scope.isLoadPricePlan = true;
                 SystemService.hideLoading();
 
+                if($scope.propositionList.length==0){
+                    $('#spanMsgNotFound').removeClass('hide');
+                }
+                
 
 
             } else {
@@ -804,7 +823,7 @@ smartApp.controller('ChangePricePlanController', function(
                                     "message": "",
                                     "message-code": "",
                                     "message-type": "WARNING",
-                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "en-message": res['responseCode'] + ": " + res['responseDesc'],
                                     "th-message": "",
                                     "technical-message": "changeResumeConroller"
                                 });
