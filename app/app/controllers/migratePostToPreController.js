@@ -465,10 +465,17 @@
             $scope.checkUserDealer();
             $scope.checkPrefixNull();
             $scope.isIdCardExpired();
+            $scope.chkShopcode();
 
             var partnerCode = utils.getObject($scope.getAuthen, 'shopcodes.0');
+            if ($scope.getAuthen.shopcodes.length == 1) {
+                $scope.partnerCode = partnerCode;
+                getProPosition($scope.partnerCode);
+            } else {
 
-            getProPosition(partnerCode);
+                $scope.partnerCode = "";
+            }
+            // getProPosition(partnerCode);
 
             SystemService.getOrderId($scope.getAuthen.channel, partnerCode, function(order) {
                 SystemService.hideLoading();
@@ -753,6 +760,9 @@
             }, 1000);
         }
         if (idFocus) {
+            if (idFocus == "txtPartnerCode") {
+                $scope.partnerCode = "";
+            }
             $('#' + idFocus).focus();
             idFocus = "";
         } else {
@@ -765,23 +775,23 @@
     // (Start) Validation ----------------------
     $scope.isIdCardExpired = function() {
         // if (expireDate) {
-            var str = $scope.data.customerProfile['id-expire-date'];
-            var res1 = str.split("T");
-            var res = res1[0].split("-");
-            var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
-            var b = moment([""+(Number(res[0]) + 543)+"", res[1], res[2]]);
-        
-            //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
-            // return (a.diff(b, 'days') >= 0);
-            //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
-            if (a.diff(b, 'days') >= 0) {
-                $scope.cardExpire = false;
-                $scope.data.customerProfileNew['id-expire-date'] = "";
-                $('#expireDate').val($scope.data.customerProfileNew['id-expire-date']);
-            } else {
-                $scope.cardExpire = true;
-                
-            }
+        var str = $scope.data.customerProfile['id-expire-date'];
+        var res1 = str.split("T");
+        var res = res1[0].split("-");
+        var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
+        var b = moment(["" + (Number(res[0]) + 543) + "", res[1], res[2]]);
+
+        //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
+        // return (a.diff(b, 'days') >= 0);
+        //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
+        if (a.diff(b, 'days') >= 0) {
+            $scope.cardExpire = false;
+            $scope.data.customerProfileNew['id-expire-date'] = "";
+            $('#expireDate').val($scope.data.customerProfileNew['id-expire-date']);
+        } else {
+            $scope.cardExpire = true;
+
+        }
 
         // }
 
@@ -816,8 +826,8 @@
             'customer-type': "P",
             'customer-subtype': "PRE",
             'service-level': "C",
-            'proposition': $scope.selectedPricePlan.proposition,
-            'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
+            'proposition': $scope.selectedPricePlan.proposition ? $scope.selectedPricePlan.proposition : "",
+            'partner-code': $scope.partnerCode,
             'privilege': false
         };
 
@@ -833,16 +843,17 @@
     // (Start) Number Information ----------------------
     var getProPosition = function(partnerCode) {
         //bypass call pricePlan
+        SystemService.showLoading();
         var payload = {
             'company-code': $scope.data.simData['company-code'],
             'customer-type': "P",
             'customer-subtype': "PRE",
             'service-level': "C",
-            'proposition': "",
-            'partner-code': utils.getObject($scope.getAuthen, 'shopcodes.0'),
+            'proposition': $scope.selectedPricePlan.proposition ? $scope.selectedPricePlan.proposition : "",
+            'partner-code': $scope.partnerCode,
             'privilege': false
         };
-
+        console.log(payload);
         MigratePostToPreService.getPricePlan(payload, onGetPricePlan);
         //end bypass
 
@@ -916,6 +927,29 @@
     //         $scope.data.customerAddress['province'] = address.province;
     //     }
     // };
+    $scope.clearPP = function(){
+        $scope.proPositionList = [];
+        $scope.pricePlanList = [];
+    };
+
+    $scope.onChangeShop = function() {
+        $scope.clearPP();
+        $scope.selectedPricePlan = {};
+        if ($scope.partnerCode) {
+            getProPosition($scope.partnerCode);
+        }
+    };
+
+    $scope.onKeyChangeShop = function() {
+        $scope.clearPP();
+        $scope.selectedPricePlan = {};
+        if ($scope.partnerCode && $scope.partnerCode.length == 8) {
+            // getProPosition($scope.partnerCode);
+            $scope.onCheckShopCode();
+        } else {
+            $scope.selectedPricePlan = {};
+        }
+    };
 
     $scope.useSameAddressAsCard = function() {
         $scope.data.customerAddress = angular.copy($scope.data.customerAddressOriginal);
@@ -1157,7 +1191,8 @@
             memo: $scope.memo,
             postToPreData: postToPreData,
             approver: $scope.approver,
-            selectReason: $scope.selectReason
+            selectReason: $scope.selectReason,
+            partnerCode: $scope.partnerCode
         };
     };
     $scope.submit = function() {
@@ -1473,6 +1508,48 @@
 
     $scope.userDealer = false;
     $scope.showDataDealer = false;
+
+    $scope.isChkShopcode = true;
+    $scope.chkShopcode = function() {
+        if ($scope.getAuthen.shopcodes.length == 1) {
+            $scope.isChkShopcode = true;
+        } else {
+            $scope.isChkShopcode = false;
+        }
+    };
+
+    $scope.onCheckShopCode = function() {
+        SystemService.showLoading();
+        var target = "profiles/partner/validatepartner?function-type=MIGRATE_POSTTOPRE&partner-code=" + $scope.partnerCode;
+        MigratePostToPreService.validatePartnerCallback(target, function(result) {
+            SystemService.hideLoading();
+            if (result.data["display-messages"].length == 0) {
+                // if ($scope.isLastestUser == true) {
+                //     $scope.callPropositionList();
+                // }
+                getProPosition($scope.partnerCode)
+                    // $scope.getAuthen.shopcodes = ["" + $scope.partnerCode + ""];
+                    // $scope.onCheckInputForVerify();
+            } else {
+                //error ?
+                idFocus = "txtPartnerCode";
+                // $scope.partnerCode = "";
+                setTimeout(function() {
+                    SystemService.showAlert({
+                        "message": result.data["display-messages"][0]["message"],
+                        "message-code": result.data["display-messages"][0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": result.data["display-messages"][0]["en-message"],
+                        "th-message": result.data["display-messages"][0]["th-message"],
+                        "technical-message": result.data["display-messages"][0]["technical-message"]
+                    });
+                    //$ngBootbox.customDialog($scope.customDialogOptions);
+                }, 1000);
+            }
+
+        });
+    };
+
     // (End) Submit Form ----------------------
 
 });

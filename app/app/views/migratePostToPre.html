@@ -123,12 +123,7 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <!-- Case Normal -->
-                                <input id="expireDate" 
-                                    type="text" 
-                                    ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" 
-                                    class="form-control date-picker-expiredate dateFormat" 
-                                    ng-model="data.customerProfileNew['id-expire-date']" 
-                                    ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && cardExpire)">
+                                <input id="expireDate" type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control date-picker-expiredate dateFormat" ng-model="data.customerProfileNew['id-expire-date']" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && cardExpire)">
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
@@ -136,7 +131,7 @@
                 </div>
                 <h4>ข้อมูลหมายเลข</h4>
                 <div class="well">
-                <div class="row">
+                    <div class="row">
                         <div class="col-md-12" ng-hide="shopType=='1' && getAuthen['isSecondAuthen'] == true && getAuthen.shopcodes.length == 1">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
@@ -149,7 +144,8 @@
                                 <!-- Case Dealer -->
                                 <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                 <!-- Case Normal -->
-                                <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="partnerCode" ng-change="callPropositionList()" ng-blur="onCheckInputForVerify()" ng-disabled="!isCustomerProfile">
+                                <select class="form-control" ng-model="partnerCode" ng-change="onChangeShop();" ng-disabled="isSecondAuhenFailed" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                    <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}
                                     </option>
@@ -158,9 +154,9 @@
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
                                 <p></p>
                                 <!-- Case Dealer -->
-                                <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtPartnerCode" ng-change="onCheckInputForVerify()" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="!isCustomerProfile || isChkShopcode " maxlength="8" required>
+                                <input type="text" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" ng-change="onKeyChangeShop();" class="form-control inputPartner" ng-disabled="isChkShopcode || isSecondAuhenFailed" maxlength="8" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                             </div>
                         </div>
                     </div>
@@ -194,7 +190,7 @@
                                     <label> โปรโมชั่น<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="preCusPricePlan" mg-model="preCusPricePlan" value="{{selectedPricePlan.name}}{{selectedPricePlan.description?' : ':null}}{{selectedPricePlan.description}}" readonly class="form-control">
+                                    <input type="text" id="preCusPricePlan"  value="{{selectedPricePlan.name}}{{selectedPricePlan.description?' : ':null}}{{selectedPricePlan.description}}" readonly class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <input type="text" id="txtPricePlanFilter" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control" ng-disabled="isSecondAuhenFailed">
@@ -524,8 +520,7 @@
                     <div class="form-group" ng-show="shopType=='0'">
                         <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
                         <div class="col-md-4">
-                           <!--  <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-model="selectedReason" class="form-control"></select> -->
-
+                            <!--  <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-model="selectedReason" class="form-control"></select> -->
                             <!-- <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-change="onReasonChange()" ng-model="reason" class=" form-control" ng-disabled="true"></select> -->
                             <select class=" form-control">
                                 <option>MGJ5: Migrate Post to Pre</option>

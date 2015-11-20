@@ -692,6 +692,72 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
         }
     };
 
+    var validatePartnerAPI = function(target, fnCallback) {
+        if (!demo) {
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
+            });
+        } else {
+
+            var data = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "43RTPW8S64H6",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "partnerInfo": {
+                        "status-id": "1",
+                        "register-date": "2004-06-30 00:00:00.0",
+                        "status-name": "Active",
+                        "biz-reg-type-name": "นิติบุคคล",
+                        "dealer-code": "79000001",
+                        "emp-code": "",
+                        "tvs-code": "",
+                        "tmx-emp-code": "",
+                        "channel-alias": "ENTP",
+                        "channel-name": "Enterprise Customer & International Services",
+                        "partner-type-name": "Corporate",
+                        "partner-sub-type-name": "",
+                        "partner-type-group-name": "L1",
+                        "parent-code": "",
+                        "partner-name-th": "บริษัท ทรู มูฟ จำกัด"
+                    }
+                }
+            };
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "",
+                    "message-code": "2",
+                    "message-type": "ERROR",
+                    "en-message": "Partner Code นี้ไม่มีในระบบ",
+                    "th-message": "Partner Code นี้ไม่มีในระบบ",
+                    "technical-message": ""
+                }],
+                "trx-id": "3ERTR5HRVF9L",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {}
+            };
+            if (target == "profiles/partner/validatepartner?function-type=MIGRATE_POSTTOPRE&partner-code=88888888") {
+                fnCallback({
+                    status: true,
+                    data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: true,
+                    data: data2,
+                    error: "",
+                    msgErr: ""
+                });
+            }
+
+        }
+    };
+
+
     this.searchAddress = function(payload, fnCallback) {
         if (!payload.lang) payload.lang = 'TH';
 
@@ -783,7 +849,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                 "sale-agent": {
                     'name': payload.saleAgent['engName'],
                     'channel': payload.saleAgent['channel'],
-                    'partner-code': payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : payload.saleAgent["ssoEmployeePrincipal"]['employeeId'],
+                    'partner-code': payload.partnerCode,
                     'partner-name': payload.saleAgent['partnerName'],
                     'sale-code': payload.saleAgent['saleCode'],
                     'partner-type': payload.saleAgent['partnerType']
@@ -870,5 +936,11 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             }, 1000);
         }
     };
+
+    this.validatePartnerCallback = function(target, fnCallback) {
+            validatePartnerAPI(target, function(result) {
+                fnCallback(result);
+            });
+        };
 
 });
