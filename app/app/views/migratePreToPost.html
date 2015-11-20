@@ -223,7 +223,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                    <select name="cardTypes" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes(); promotion = '';" id="cardType" ng-disabled="!isCustomerProfile" class="form-control" required>
+                                    <select name="cardTypes" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes(); promotion = '';" id="cardType" ng-disabled="!isCustomerProfile || isUseCardValueData" class="form-control" required>
                                         <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                     </select>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.cardTypes.$error.required">
@@ -280,7 +280,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                        <select name="prefixTHs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="!isCustomerProfile" ng-model="newOwner.prefixTH" style="width:100px;" required>
+                                        <select name="prefixTHs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.prefixTH" style="width:100px;" required>
                                             <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -331,7 +331,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                        <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="!isCustomerProfile" ng-model="newOwner.sex" style="width:100px;" required>
+                                        <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.sex" style="width:100px;" required>
                                             <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -352,10 +352,10 @@
                                         onchange="$('#birthDayRegisterd').val(this.value);" 
                                         ng-blur="onCheckInputForVerify();" 
                                         ng-model="newOwner.birthDay" 
-                                        ng-disabled="!isCustomerProfile" 
+                                        ng-disabled="!isCustomerProfile || isUseCardValueData" 
                                         class="form-control date-picker-birthdate dateFormat" 
                                         id="birthDay" 
-                                        style="background:white" required>
+                                        required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
 
 
@@ -381,7 +381,7 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
                                     <!-- Case Normal -->
-                                    <input type="text" ng-show="((userShop || userNonShop || userDealer )&& isCustomerProfile && !checkExpireDate) || !showEnableNewOwnerExpireDay" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" placeholder="" ng-disabled="!isCustomerProfile" class="form-control date-picker-start dateFormat" id="expireDay" style="background:white">
+                                    <input type="text" ng-show="((userShop || userNonShop || userDealer )&& isCustomerProfile && !checkExpireDate) || !showEnableNewOwnerExpireDay" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" placeholder="" ng-disabled="!isCustomerProfile || isUseCardValueData" class="form-control date-picker-start dateFormat" id="expireDay">
 
 
                                     <input type="text" ng-hide="(userDealer && !isCustomerProfile) || (!checkExpireDate && isCustomerProfile)" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" readonly placeholder="" ng-disabled="newOwner.expireDay || !isCustomerProfile" class="form-control date-picker-start " id="expireDay">
