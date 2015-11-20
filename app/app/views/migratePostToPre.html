@@ -126,7 +126,7 @@
                                 <input id="expireDate" 
                                     type="text" 
                                     ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" 
-                                    class="form-control date-picker dateFormat" 
+                                    class="form-control date-picker-expiredate dateFormat" 
                                     ng-model="data.customerProfileNew['id-expire-date']" 
                                     ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && cardExpire)">
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
@@ -136,6 +136,34 @@
                 </div>
                 <h4>ข้อมูลหมายเลข</h4>
                 <div class="well">
+                <div class="row">
+                        <div class="col-md-12" ng-hide="shopType=='1' && getAuthen['isSecondAuthen'] == true && getAuthen.shopcodes.length == 1">
+                            <div class="col-md-3" style=" text-align: right; top: 5px;">
+                                <p></p>
+                                <label>
+                                    รหัสร้านค้า
+                                    <span style="color:red;">*</span></label>
+                            </div>
+                            <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
+                                <p></p>
+                                <!-- Case Dealer -->
+                                <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                <!-- Case Normal -->
+                                <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="partnerCode" ng-change="callPropositionList()" ng-blur="onCheckInputForVerify()" ng-disabled="!isCustomerProfile">
+                                    <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
+                                        {{item}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
+                                <p></p>
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <!-- Case Normal -->
+                                <input type="text" id="txtPartnerCode" ng-change="onCheckInputForVerify()" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="!isCustomerProfile || isChkShopcode " maxlength="8" required>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
