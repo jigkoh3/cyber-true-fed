@@ -60,7 +60,7 @@ smartApp.controller('MigratePreToPostController', function(
     // $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
     $scope.lastestCustomer = {};
     $scope.clickModalReadCard = false;
-
+    $scope.isUseCardValueData = false;
 
     //paging
     $scope.currentPage = 1;
@@ -135,10 +135,10 @@ smartApp.controller('MigratePreToPostController', function(
     }
 
     $scope.isChkShopcode = true;
-    $scope.chkShopcode = function(){
-        if($scope.getAuthen.shopcodes.length==1){
+    $scope.chkShopcode = function() {
+        if ($scope.getAuthen.shopcodes.length == 1) {
             $scope.isChkShopcode = true;
-        }else{
+        } else {
             $scope.isChkShopcode = false;
         }
     }
@@ -201,27 +201,27 @@ smartApp.controller('MigratePreToPostController', function(
                 $('#CitizenID').prop('disabled', true);
             }
         }
-            if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
-                if ($scope.clickModalReadCard) {
-                    $scope.clickModalReadCard = false;
-                    if (navigator.userAgent.indexOf('Chrome') > 0) {
-                        setTimeout(function(){
+        if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+            if ($scope.clickModalReadCard) {
+                $scope.clickModalReadCard = false;
+                if (navigator.userAgent.indexOf('Chrome') > 0) {
+                    setTimeout(function() {
+                        //$("#btn-fancy-ReadCard").click();
+                        startModal();
+                    }, 2000);
+
+                } else {
+                    $(document).ready(function() {
+                        setTimeout(function() {
                             //$("#btn-fancy-ReadCard").click();
                             startModal();
+                            //alert('ie click 5000');
                         }, 2000);
-                        
-                    } else {
-                        $(document).ready(function() {
-                            setTimeout(function() {
-                                //$("#btn-fancy-ReadCard").click();
-                                startModal();
-                                //alert('ie click 5000');
-                            }, 2000);
-                        });
-                    }
+                    });
                 }
-
             }
+
+        }
 
         setTimeout(function() {
             $('#loadingReadCard2').hide();
@@ -243,10 +243,54 @@ smartApp.controller('MigratePreToPostController', function(
 
         if ($scope.cardInfo.CitizenID == $scope.data.customerProfile['id-number']) {
             $scope.isCardValueData = true;
+            $scope.isUseCardValueData = true;
             $scope.showDataDealer = false;
             $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
             $.fancybox.close();
+            $scope.cardInfo3 = eval(result);
+            console.log($scope.cardInfo3);
+            var prefix = "T2";
+            if ($scope.cardInfo3.PrefixEN == "Mr.") {
+                prefix = "T1";
+            }
+            if ($scope.cardInfo3.PrefixEN == "Miss") {
+                prefix = "T3";
+            }
+
+            var sex = "MALE";
+            if ($scope.cardInfo3.Sex == "2") {
+                sex = "FEMALE";
+            }
+            $scope.customer['id-number'] = $scope.cardInfo3.CitizenID;
+            $('#citizenID3').val($scope.cardInfo3.CitizenID);
+            $('#prefixTH3').val(prefix);
+            $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
+            $('#lastNameTH3').val($scope.cardInfo3.LastNameTH);
+            $('#birthDay').val($scope.cardInfo3.BirthDay);
+            $('#disableNewOwnerBirthday').val($scope.cardInfo3.BirthDay);
+            $('#expireDay').val($scope.cardInfo3.ExpireDay);
+            $('#disableNewOwnerExpireDay').val($scope.cardInfo3.ExpireDay);
+            $('#sex3').val(sex);
+
+            $('#birthDay').removeClass('date-picker');
+            $scope.newOwner.firstNameTH = $scope.cardInfo3.FirstNameTH;
+            $scope.newOwner.lastNameTH = $scope.cardInfo3.LastNameTH;
+            $scope.newOwner2.firstNameTH = $scope.cardInfo3.FirstNameTH;
+            $scope.newOwner2.lastNameTH = $scope.cardInfo3.LastNameTH;
+            console.log($scope.newOwner.firstNameTH);
+
+            $scope.cardType.value = "I";
+            $('#cardType').val('I');
+
+            //binding Tax Id
+            $('#taxId3').val($scope.cardInfo3.CitizenID);
+
+            //binding user registerd - ระบุผู้ใช้หมายเลข
+            $('#titleRegisterd').val(sex);
+            $('#firstNameRegisterd').val($scope.cardInfo3.FirstNameTH);
+            $('#lastNameRegisterd').val($scope.cardInfo3.LastNameTH);
+            $('#birthDayRegisterd').val($scope.cardInfo3.BirthDay);
 
             $('#cardType').val('I');
             $scope.customer['tax-id'] = $scope.cardInfo.CitizenID;
@@ -699,26 +743,26 @@ smartApp.controller('MigratePreToPostController', function(
 
                             if ($scope.shopType == '1') {
                                 // Auto-open the CardReader dialog
-                    setTimeout(function() {
-                        var fancyboxOptions = {
-                            helpers: {
-                                overlay: {
-                                    //closeClick: false
-                                }
-                            },
+                                setTimeout(function() {
+                                    var fancyboxOptions = {
+                                        helpers: {
+                                            overlay: {
+                                                //closeClick: false
+                                            }
+                                        },
 
-                            beforeShow: function() {
-                                $('#CitizenID').prop('disabled', true);
-                                $('#loadingReadCard').hide();
-                                $('#unMatch').hide();
-                            },
+                                        beforeShow: function() {
+                                            $('#CitizenID').prop('disabled', true);
+                                            $('#loadingReadCard').hide();
+                                            $('#unMatch').hide();
+                                        },
 
-                            afterClose: function() {
-                                //
-                            }
-                        };
-                        $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
-                    }, 1000);
+                                        afterClose: function() {
+                                            //
+                                        }
+                                    };
+                                    $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
+                                }, 1000);
                                 $("#btn-fancy-ReadCardLastest").fancybox({
                                     'type': 'div',
                                     width: '50%',
@@ -812,7 +856,7 @@ smartApp.controller('MigratePreToPostController', function(
     }
     $scope.onInputShopCode = function() {
         if ($scope.partnerCode && $scope.partnerCode.length == 8) {
-            
+
             $scope.onCheckShopCode();
         }
     };
@@ -1064,7 +1108,7 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.isAddressList = {};
     $scope.onInputCitizenID3 = function() {
 
-        
+
 
         //$scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
         // (Start) Get current SIM data ----------------------
@@ -1484,7 +1528,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     "message": "",
                                     "message-code": "",
                                     "message-type": "WARNING",
-                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "en-message": res['responseCode'] + ": " + res['responseDesc'],
                                     "th-message": "",
                                     "technical-message": "changeResumeConroller"
                                 });
@@ -1551,7 +1595,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     "message": "",
                                     "message-code": "",
                                     "message-type": "WARNING",
-                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "en-message": res['responseCode'] + ": " + res['responseDesc'],
                                     "th-message": "",
                                     "technical-message": "changeResumeConroller"
                                 });

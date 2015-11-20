@@ -12,8 +12,8 @@
                         ng-focus="selectedPricePlan3()"
                         ng-blur="selectedPromotion()">
                     <option value="null">-- กรุณาเลือก --</option>
-                    <option ng-repeat="item in propositions" ng-selected="item['proposition-code']==selectProposition" value="{{item['proposition-code']}}">
-                        {{item["proposition-code"]}} : {{item["description"]}}
+                    <option ng-repeat="item in propositions | orderBy: 'description'" ng-selected="item['proposition-code']==selectProposition" value="{{item['proposition-code']}}">
+                        [{{item["proposition-code"]}}] {{item["name"]}} : {{item["description"]}}
                     </option>
                 </select>
             </div>
