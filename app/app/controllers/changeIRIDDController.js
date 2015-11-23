@@ -62,7 +62,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             $scope.selectReason = $scope.reasons[index];
         }
         if ($scope.shopType == '1' && $scope.getAuthen['isSecondAuthen'] == true) {
-            $scope.reasons = {
+            $scope.reason = {
                 id: value
             };
         }

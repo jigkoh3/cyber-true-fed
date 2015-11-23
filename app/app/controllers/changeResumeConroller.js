@@ -903,7 +903,7 @@ smartApp.controller('ResumeController', function(
             resumeService.propositionCallback(propParam, function(resultProp) {
                 if (resultProp.status) {
                     var displayMsg = utils.getObject(resultProp.data, 'display-messages.0');
-                    if(displayMsg){
+                    if (displayMsg) {
                         SystemService.showAlert(displayMsg);
                     }
                     $scope.propositions = resultProp.data['response-data'];
@@ -955,6 +955,21 @@ smartApp.controller('ResumeController', function(
 
 
                     console.log($scope.propositionList);
+
+                    var checkOldPricePlans = $filter('filter')($scope.propositionList, {
+                        saveName: $scope.data.installedProducts['product-name']
+                    });
+                    if (checkOldPricePlans && checkOldPricePlans.length > 0) {
+                        //setDefaultPricePlan
+                        $scope.pricePlan = {
+                            name: checkOldPricePlans[0].name,
+                            promotion: checkOldPricePlans[0].promotion,
+                            rc: checkOldPricePlans[0].rc,
+                            pricePlanFilter: "",
+                            saveName: checkOldPricePlans[0].saveName
+                        };
+                    }
+
                     $scope.isLoadPricePlan = true;
                     SystemService.hideLoading();
 
@@ -1456,7 +1471,7 @@ smartApp.controller('ResumeController', function(
                                     "message": "",
                                     "message-code": "",
                                     "message-type": "WARNING",
-                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "en-message": res['responseCode'] + ": " + res['responseDesc'],
                                     "th-message": "",
                                     "technical-message": "changeResumeConroller"
                                 });
