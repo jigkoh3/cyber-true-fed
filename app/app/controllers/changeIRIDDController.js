@@ -61,6 +61,11 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             $scope.reason = $scope.reasons[index];
             $scope.selectReason = $scope.reasons[index];
         }
+        if ($scope.shopType == '1' && $scope.getAuthen['isSecondAuthen'] == true) {
+            $scope.reasons = {
+                id: value
+            };
+        }
     };
     ReasonService.list("78", function(result) {
         //$scope.reasons = result;
@@ -68,7 +73,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         //$scope.selectReason = $scope.reasons[86];
         //solution for none fix index
         $scope.reasons = result;
-        $scope.setDefualtReason($scope.reasons, "CPP03");
+        $scope.setDefualtReason($scope.reasons, "C16");
         //solution for none fix index
     });
     $scope.onReasonChange = function() {
@@ -451,9 +456,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.requestTypeDB = "";
 
     $scope.changereqType = function(requestType) {
-        if(requestType == 'ADD_IRIDD'){
+        if (requestType == 'ADD_IRIDD') {
             $scope.setDefualtReason($scope.reasons, "C16");
-        }else{
+        } else {
             $scope.setDefualtReason($scope.reasons, "DDSC");
         }
         setTimeout(function() {

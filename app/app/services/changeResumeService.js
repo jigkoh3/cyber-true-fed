@@ -134,6 +134,62 @@
                     }
                 }
             };
+            var data4 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "5CX6ZEICYKEU",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "customer": {
+                        "title": "",
+                        "firstname": "โสลาศ",
+                        "lastname": "",
+                        "birthdate": "1995-11-23T18:51:28+0700",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "O",
+                        "id-number": "2005031811179",
+                        "id-expire-date": "2020-11-24T00:00:00+0700",
+                        "customer-id": "60393",
+                        "installed-products": [{
+                            "ouId": "31443",
+                            "ban": "10062023",
+                            "product-category": "TMV",
+                            "product-type": "R",
+                            "product-sub-type": "R",
+                            "product-status": "Cancelled",
+                            "account-category": "B",
+                            "account-sub-type": "SRE",
+                            "product-id": "EDOGAP11",
+                            "product-name": "EDOGAP11",
+                            "product-description": "D_Ent_799_3GB DATA&amp;Wifi+HS",
+                            "bill-cycle": "2",
+                            "company-code": "RM",
+                            "service-level": "C",
+                            "product-soc-code": "",
+                            "subscriber-id": "89405",
+                            "product-properties": {
+                                "REASON-DESC": "Customer request",
+                                "PRODUCT-STATUS-DESC": "Cancel",
+                                "CURRENT-ACCOUNT-STATUS": "Cancelled",
+                                "PRODUCT-STATUS-DATE": "2015-11-25T00:00:00.000+07:00",
+                                "IS-NEW-ACCOUNT": "false",
+                                "IS-NEW-SIM": "true",
+                                "CURRENT-SIM-STATUS": "AVAILABLE",
+                                "REASON-CODE": "CREQ",
+                                "PRODUCT-STATUS-CODE": "RESUME-CANCEL-OA-NS",
+                                "SUBSCRIBER-ID": "89405"
+                            },
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0863200731",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false
+                        }]
+                    }
+                }
+            };
 
             if (msisdn == "0870100002") {
                 fnCallback({
@@ -145,7 +201,7 @@
             } else if (msisdn == "0939861331") {
                 fnCallback({
                     status: true,
-                    data: data,
+                    data: data4,
                     error: "",
                     msgErr: ""
                 });

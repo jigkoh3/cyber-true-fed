@@ -686,7 +686,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             $('#' + idFocus).focus();
             idFocus = "";
         } else {
-            $scope.validateUI();
+            //$scope.validateUI();
         }
     };
 

@@ -992,18 +992,20 @@ smartApp.controller('MigratePreToPostController', function(
                 if (resultProp.status) {
                     $scope.propositions = resultProp.data['response-data'];
                     console.log($scope.propositions);
-
-                    setTimeout(function() {
-                        SystemService.showAlert({
-                            "message": resultProp.data["display-messages"][0]["message"],
-                            "message-code": resultProp.data["display-messages"][0]["message-code"],
-                            "message-type": "WARNING",
-                            "en-message": resultProp.data["display-messages"][0]["en-message"],
-                            "th-message": resultProp.data["display-messages"][0]["th-message"],
-                            "technical-message": resultProp.data["display-messages"][0]["technical-message"]
-                        });
-                        //$ngBootbox.customDialog($scope.customDialogOptions);
-                    }, 3000);
+                    var displayMsg = utils.getObject(resultProp, 'display-messages.0');
+                    if (displayMsg && resultProp.data["display-messages"].length > 0) {
+                        setTimeout(function() {
+                            SystemService.showAlert({
+                                "message": resultProp.data["display-messages"][0]["message"],
+                                "message-code": resultProp.data["display-messages"][0]["message-code"],
+                                "message-type": "WARNING",
+                                "en-message": resultProp.data["display-messages"][0]["en-message"],
+                                "th-message": resultProp.data["display-messages"][0]["th-message"],
+                                "technical-message": resultProp.data["display-messages"][0]["technical-message"]
+                            });
+                            //$ngBootbox.customDialog($scope.customDialogOptions);
+                        }, 3000);
+                    }
                 }
             });
         }
@@ -1240,6 +1242,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                     $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
                                     $scope.cardType.value = customer['id-type'];
+                                    $scope.checkValueExpireDate();
 
 
 
@@ -3639,6 +3642,25 @@ smartApp.controller('MigratePreToPostController', function(
         }
     };
     $scope.checkValueExpireDate = function() {
+
+        var str = $scope.newOwner.expireDay;
+        // var res1 = str.split("T");
+        var res = str.split("/");
+        var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
+        var b = moment(["" + (Number(res[0]) + 543) + "", res[1], res[2]]);
+
+        //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
+        // return (a.diff(b, 'days') >= 0);
+        //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
+        if (a.diff(b, 'days') >= 0) {
+            $scope.cardExpire = false;
+            $scope.newOwner.expireDay = "";
+            $('#expireDate').val($scope.newOwner.expireDay);
+        } else {
+            $scope.cardExpire = true;
+
+        }
+
         if ($scope.newOwner.expireDay != null) {
             $scope.checkExpireDate = true;
         } else {
