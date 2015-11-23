@@ -704,16 +704,16 @@ smartApp.controller('MigratePreToPostController', function(
                             $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
                             // $scope.onInputIdLastest3();
+                            $scope.checkValueExpireDate();
                             $scope.valueIdType();
                             $scope.checkUserDealer();
                             $scope.chkShopcode();
                             $scope.checkUserNonShop();
                             $scope.checkUserShop();
                             console.log($scope.isChkShopcode);
-                            $scope.onInputCitizenID3();
+                            // $scope.onInputCitizenID3();
                             $scope.onChangeCardTypes();
                             $scope.checkValueDate();
-                            $scope.checkValueExpireDate();
                             console.log($scope.checkExpireDate);
                             console.log($scope.newOwner.expireDay);
                             setTimeout(function() {
@@ -809,6 +809,7 @@ smartApp.controller('MigratePreToPostController', function(
                             if (!$scope.isNonePartner && $scope.shopType == '1') {
                                 //$scope.data = {};
                             }
+                        $scope.onInputCitizenID3();
                         } else {
                             $scope.SubNo = "null";
                         }
@@ -3641,14 +3642,17 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.checkBirthDate = false;
         }
     };
+    $scope.cardExpire = false;
     $scope.checkValueExpireDate = function() {
 
         var str = $scope.newOwner.expireDay;
         // var res1 = str.split("T");
         var res = str.split("/");
         var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
-        var b = moment(["" + (Number(res[0]) + 543) + "", res[1], res[2]]);
-
+        var b = moment([(Number(res[2])), res[1], res[0]]);
+        console.log(a , b);
+console.log(a.diff(b, 'days'),$scope.newOwner.expireDay);
+// alert('555');
         //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
         // return (a.diff(b, 'days') >= 0);
         //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
