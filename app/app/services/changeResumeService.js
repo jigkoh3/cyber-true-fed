@@ -201,7 +201,7 @@
             } else if (msisdn == "0939861331") {
                 fnCallback({
                     status: true,
-                    data: data4,
+                    data: data,
                     error: "",
                     msgErr: ""
                 });
