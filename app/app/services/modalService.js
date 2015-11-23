@@ -354,6 +354,14 @@
             "en-message": "Please specify Mobile No.",
             "th-message": "กรุณาระบุ เบอร์ที่ประสงค์ให้ติดต่อ",
             "technical-message": "FROM WEBUI"
+        },
+        "msgReasonCodeEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Reason Code.",
+            "th-message": "กรุณาระบุ เหตุผล",
+            "technical-message": "FROM WEBUI"
         }
     };
 });

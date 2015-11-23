@@ -44,26 +44,31 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.reasons = [];
     $scope.reason = "";
     $scope.selectReason = {};
+    $scope.setDefualtReason = function(result, value) {
+        if (result) {
+            var myArray = result;
+            var searchText = value,
+                index = -1;
+            for (var i = 0, len = myArray.length; i < len; i++) {
+                if (myArray[i].id === searchText) {
+                    index = i;
+                    break;
+                }
+            }
+
+            console.log(index);
+
+            $scope.reason = $scope.reasons[index];
+            $scope.selectReason = $scope.reasons[index];
+        }
+    };
     ReasonService.list("78", function(result) {
         //$scope.reasons = result;
         //$scope.reason = $scope.reasons[86];
         //$scope.selectReason = $scope.reasons[86];
         //solution for none fix index
         $scope.reasons = result;
-        var myArray = result;
-        var searchText = "CREQ",
-            index = -1;
-        for (var i = 0, len = myArray.length; i < len; i++) {
-            if (myArray[i].id === searchText) {
-                index = i;
-                break;
-            }
-        }
-
-        console.log(index);
-
-        $scope.reason = $scope.reasons[index];
-        $scope.selectReason = $scope.reasons[index];
+        $scope.setDefualtReason($scope.reasons, "CPP03");
         //solution for none fix index
     });
     $scope.onReasonChange = function() {
@@ -177,7 +182,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                                     "message": "",
                                     "message-code": "",
                                     "message-type": "WARNING",
-                                    "en-message": res['responseCode']+": "+res['responseDesc'],
+                                    "en-message": res['responseCode'] + ": " + res['responseDesc'],
                                     "th-message": "",
                                     "technical-message": "changeResumeConroller"
                                 });
@@ -446,6 +451,11 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.requestTypeDB = "";
 
     $scope.changereqType = function(requestType) {
+        if(requestType == 'ADD_IRIDD'){
+            $scope.setDefualtReason($scope.reasons, "C16");
+        }else{
+            $scope.setDefualtReason($scope.reasons, "DDSC");
+        }
         setTimeout(function() {
             $('#btnValidatePrint').prop('disabled', true);
         }, 100);
@@ -717,11 +727,13 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
         console.log(errorAuthorizeID, errorAuthorizeName, errorFUTURE);
 
-        //check error validate
+        //check error validate 
         if (errorAuthorizeID) {
             showValidate("CitizenID2", ValidateMsgService.data.authorizeIdMsg);
         } else if (errorAuthorizeName) {
             showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
+        } else if (!SystemService.checkObj($scope.reason, ["id"])) {
+            showValidate("selectReasonCode", ValidateMsgService.data.msgReasonCodeEmpty);
         } else if (errorFUTURE) {
             showValidate("txtDateManual", ValidateMsgService.data.effectiveDateMsg);
             return false;
@@ -774,12 +786,12 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 //    alert('require. OFFER-GROUP-IR');
                 //}
                 // $scope.irChecked();
-                if($scope.offerGroupIR){
+                if ($scope.offerGroupIR) {
                     $scope.data.orderRequest['order']['order-items'][0]['primary-order-data']['OFFER-GROUP-IR'] = $scope.offerGroupIR;
-                }else{
+                } else {
                     $scope.data.orderRequest['order']['order-items'][0]['primary-order-data']['OFFER-GROUP-IR'] = $scope.offerGroup;
                 }
-                
+
             }
 
 

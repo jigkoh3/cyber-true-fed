@@ -902,6 +902,10 @@ smartApp.controller('ResumeController', function(
             };
             resumeService.propositionCallback(propParam, function(resultProp) {
                 if (resultProp.status) {
+                    var displayMsg = utils.getObject(resultProp.data, 'display-messages.0');
+                    if(displayMsg){
+                        SystemService.showAlert(displayMsg);
+                    }
                     $scope.propositions = resultProp.data['response-data'];
                 }
             });
@@ -3412,6 +3416,8 @@ smartApp.controller('ResumeController', function(
             //showValidate("txtcontactNonumber", ValidateMsgService.data.msgCusContractNoEmpty);
             //} else if (errorFUTURE) {
             //showValidate("txtDateManual", ValidateMsgService.data.effectiveDateMsg);
+        } else if (!SystemService.checkObj($scope.reason, ["id"])) {
+            showValidate("selectReasonId", ValidateMsgService.data.msgReasonCodeEmpty);
         } else {
             if ($scope.isClickPrint) {
                 $scope.printOrder();
