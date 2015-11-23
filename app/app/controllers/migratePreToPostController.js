@@ -3650,9 +3650,7 @@ smartApp.controller('MigratePreToPostController', function(
         var res = str.split("/");
         var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
         var b = moment([(Number(res[2])), res[1], res[0]]);
-        console.log(a , b);
-console.log(a.diff(b, 'days'),$scope.newOwner.expireDay);
-// alert('555');
+        
         //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
         // return (a.diff(b, 'days') >= 0);
         //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
@@ -3663,12 +3661,6 @@ console.log(a.diff(b, 'days'),$scope.newOwner.expireDay);
         } else {
             $scope.cardExpire = true;
 
-        }
-
-        if ($scope.newOwner.expireDay != null) {
-            $scope.checkExpireDate = true;
-        } else {
-            $scope.checkExpireDate = false;
         }
     };
     //$scope.init();
