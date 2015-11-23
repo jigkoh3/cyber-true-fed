@@ -641,29 +641,29 @@ smartApp.controller('MigratePreToPostController', function(
                 });
 
                 //reason
-                ReasonService.list("119", function(result) {
-                    // $scope.reasons = result;
-                    // $scope.reason = $scope.reasons[39];
-                    // $scope.selectReason = $scope.reasons[39];
+                // ReasonService.list("119", function(result) {
+                //     // $scope.reasons = result;
+                //     // $scope.reason = $scope.reasons[39];
+                //     // $scope.selectReason = $scope.reasons[39];
 
-                    //solution for none fix index
-                    $scope.reasons = result;
-                    var myArray = result;
-                    var searchText = "CREQ",
-                        index = -1;
-                    for (var i = 0, len = myArray.length; i < len; i++) {
-                        if (myArray[i].id === searchText) {
-                            index = i;
-                            break;
-                        }
-                    }
+                //     //solution for none fix index
+                //     $scope.reasons = result;
+                //     var myArray = result;
+                //     var searchText = "CREQ",
+                //         index = -1;
+                //     for (var i = 0, len = myArray.length; i < len; i++) {
+                //         if (myArray[i].id === searchText) {
+                //             index = i;
+                //             break;
+                //         }
+                //     }
 
-                    console.log(index);
+                //     console.log(index);
 
-                    $scope.reason = $scope.reasons[index];
-                    $scope.selectReason = $scope.reasons[index];
-                    //solution for none fix index
-                });
+                //     $scope.reason = $scope.reasons[index];
+                //     $scope.selectReason = $scope.reasons[index];
+                //     //solution for none fix index
+                // });
 
                 //เพศ
                 SystemService.getMaster_list("CUST-GENDER", function(result) {
@@ -2458,7 +2458,8 @@ smartApp.controller('MigratePreToPostController', function(
                         "product-category": $scope.data.installedProducts["product-category"],
                         "product-type": "PRICEPLAN",
                         "order-type": "CHANGE",
-                        "reason-code": $scope.selectReason.id,
+                        //"reason-code": $scope.selectReason.id,
+                        "reason-code": "MGP2P",
                         "user-memo": $scope.saveData.memo ? $scope.saveData.memo : "",
                         "address-list": {
                             "BILLING_ADDRESS": {

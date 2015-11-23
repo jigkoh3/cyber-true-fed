@@ -26,7 +26,10 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label"><b>สถานะหมายเลขใหม่</b></label>
                         <div class="col-md-4">
-                            <select class="form-control" ng-model="statusChangeSuspend" ng-disabled="!isCustomerProfile">
+                            <select class="form-control" 
+                                    ng-model="statusChangeSuspend" 
+                                    ng-change="onChangeStatus()"
+                                    ng-disabled="!isCustomerProfile">
                                 <option value="">เลือก</option>
                                 <option ng-repeat="item in statusList" value="{{item.key}}">{{item.description}}</option>
                                 <!-- <option value="CANCEL-ACTIVE">Cancel</option> -->
@@ -44,7 +47,11 @@
                         <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
                         <div class="col-md-4">
 
-                            <select ng-options="option.dec for option in reasons" ng-model="statusReason" class=" form-control"></select>
+                            <select ng-options="option.dec for option in reasons" 
+                                    ng-model="statusReason" 
+                                    class=" form-control">
+                                    <option value="">-- กรุณาเลือก --</option>
+                                    </select>
 
                         </div>
                     </div>

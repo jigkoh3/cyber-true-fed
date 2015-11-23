@@ -539,7 +539,7 @@ smartApp.controller('ResumeController', function(
                 });
 
                 //reason
-                ReasonService.list("119", function(result) {
+                ReasonService.list("1338", function(result) {
                     // $scope.reasons = result;
                     // $scope.reason = $scope.reasons[39];
                     // $scope.selectReason = $scope.reasons[39];

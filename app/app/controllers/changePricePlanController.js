@@ -1733,13 +1733,28 @@ smartApp.controller('ChangePricePlanController', function(
         var setPPP = function() {
             setTimeout(function() {
                 $('#selectProposition').focus();
+                //$('#selectProposition').val('null');
             }, 1000);
-            selectProposition = $scope.pricePlan2.code;
-            $scope.selectProposition = $scope.pricePlan2.code;
+            setTimeout(function() {
+                //$('#selectProposition').val('null');
+            }, 500);
+
+            
+            //selectProposition = $scope.pricePlan2.code;
+            //$scope.selectProposition = $scope.pricePlan2.code;
+
+            //selectProposition = "null";
+            //$scope.selectProposition = "null";
+
             //$('#selectProposition').val($scope.selectProposition);
+            var newProposition = "";
+            if($('#selectProposition').val() != 'null'){
+                newProposition = $scope.pricePlan2.promotion;
+            }
+
             $scope.pricePlan = {
                 name: $scope.pricePlan2.name,
-                promotion: $scope.pricePlan2.promotion,
+                promotion: newProposition,
                 rc: $scope.pricePlan2.rc,
                 pricePlanFilter: "",
                 saveName: $scope.pricePlan2.saveName
@@ -1877,19 +1892,19 @@ smartApp.controller('ChangePricePlanController', function(
 
         $scope.selectProposition = $('#selectProposition').val() == 'null' ? '' : $('#selectProposition').val();
         //alert(selectProposition+":"+$scope.selectProposition);
-        if (selectProposition == $scope.selectProposition) {} else {
-            selectProposition = $scope.selectProposition;
-            $scope.pricePlan = {};
-            $scope.isValidate = false;
-            $scope.specialOfferType = {
-                CUG: false,
-                FF: false,
-                SA: false,
-                POOL: false,
-                POOLING: false,
-                CAPMAX: false
-            };
-        }
+        // if (selectProposition == $scope.selectProposition) {} else {
+        //     selectProposition = $scope.selectProposition;
+        //     $scope.pricePlan = {};
+        //     $scope.isValidate = false;
+        //     $scope.specialOfferType = {
+        //         CUG: false,
+        //         FF: false,
+        //         SA: false,
+        //         POOL: false,
+        //         POOLING: false,
+        //         CAPMAX: false
+        //     };
+        // }
         console.log($scope.selectProposition);
         $scope.propositionList = $filter('filter')(valPricePlans, {
             "proposition-code": $scope.selectProposition
@@ -1908,7 +1923,7 @@ smartApp.controller('ChangePricePlanController', function(
     $scope.reasons = [];
     $scope.reason = "";
     $scope.selectReason = {};
-    ReasonService.list("119", function(result) {
+    ReasonService.list("84", function(result) {
         // $scope.reasons = result;
         // $scope.reason = $scope.reasons[86];
         // $scope.selectReason = $scope.reasons[86];

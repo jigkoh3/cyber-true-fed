@@ -41,10 +41,9 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     $scope.reasons = [];
     $scope.statusReason = "";
 
-    ReasonService.list("119", function(result) {
-        $scope.reasons = result;
-        $scope.statusReason = $scope.reasons[86];
-    });
+
+
+
 
     //end reson
 
@@ -150,12 +149,52 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
         if (!utils.isEmpty(companyCode)) {
             // DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
         }
+        var reasonCode = utils.getObject($scope.data, 'simData.product-properties.REASON-DESC');
+        if (reasonCode) {
+            $scope.reasonCodeDisplay = '(' + reasonCode + ')';
+        }
+
+
     };
 
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         ChangeSuspendService.getSIMData($scope.SubNo, onGetSIMData);
     }
+
+    $scope.onChangeStatus = function() {
+        if ($scope.getAuthen['shopType'] == '0') {
+            var actPathId = "78";
+            if ($scope.statusChangeSuspend == 'FULL-SUSPEND') {
+                actPathId = "196";
+            }
+            console.log($scope.statusChangeSuspend, actPathId);
+            ReasonService.list(actPathId, function(resultReason) {
+                //solution for none fix index
+                $scope.reasons = resultReason;
+                var myArray = resultReason;
+                var searchText = "CREQ",
+                    index = -1;
+                for (var i = 0, len = myArray.length; i < len; i++) {
+                    if (myArray[i].id === searchText) {
+                        index = i;
+                        break;
+                    }
+                }
+
+                console.log(index);
+
+                $scope.reason = $scope.reasons[index];
+                $scope.selectReason = $scope.reasons[index];
+                $scope.statusReason = $scope.reasons[index];
+                //solution for none fix index
+            });
+        }else{
+            $scope.statusReason = {
+                id: "CREQ"
+            };
+        }
+    };
 
     $scope.onInputSubNo = function() {
         $scope.subNoInput = $('#dataSubNo').val();
@@ -429,7 +468,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
         var data = generateOrderRequest();
 
         data['statusChangeSuspend'] = $scope.statusChangeSuspend;
-        data['statusReason'] = $scope.statusReason.id;
+        data['statusReason'] = $scope.statusReason.id ? $scope.statusReason.id : "CREQ";
         data['statusReasonMemo'] = $scope.statusReasonMemo;
 
         ChangeSuspendService.submitChangeSuspend(data, function(result) {
