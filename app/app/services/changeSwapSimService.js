@@ -357,7 +357,7 @@
                         'product-category': payload.simData['product-category'],
                         'product-type': 'PRICEPLAN',
                         'order-type': 'CHANGE',
-                        //'reason-code': 'AA02',
+                        'reason-code': 'CREQ',
                         //'user-memo': 'Customer want to request .',
                         'order-data': {
                             'OU-ID': payload.simData['ouId'],

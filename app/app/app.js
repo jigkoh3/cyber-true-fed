@@ -158,20 +158,28 @@ smartApp.config(function($routeProvider, $httpProvider) {
 
 //TODO unique
 smartApp.filter('unique', function() {
-   return function(collection, keyname) {
-      var output = [], 
-          keys = [];
+    return function(collection, keyname) {
+        var output = [],
+            keys = [];
 
-      angular.forEach(collection, function(item) {
-          var key = item[keyname];
-          if(keys.indexOf(key) === -1) {
-              keys.push(key);
-              output.push(item);
-          }
-      });
+        // angular.forEach(collection, function(item) {
+        //     var key = item[keyname];
+        //     if(keys.indexOf(key) === -1) {
+        //         keys.push(key);
+        //         output.push(item);
+        //     }
+        // });
+        var keyItem = "XYZZXY";
+        for (var i = 0; i < collection.length; i++) {
+            var item = collection[i];
+            if (keyItem != item[keyname]) {
+                keyItem = item[keyname];
+                output.push(item);
+            }
+        }
 
-      return output;
-   };
+        return output;
+    };
 });
 //end TODO
 
@@ -376,8 +384,8 @@ smartApp
                                     this.focus();
                                 }
                                 if (this.value.length == 9 || this.value.length == 10) {
-                                    
-                                }else{
+
+                                } else {
                                     showSpan();
                                     this.value = "";
                                     this.focus();
@@ -433,8 +441,8 @@ smartApp
                                     this.value = "";
                                 }
                                 if (this.value.length == 10) {
-                                    
-                                }else{
+
+                                } else {
                                     showSpan();
                                     this.value = "";
                                     this.focus();
