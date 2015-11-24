@@ -475,6 +475,18 @@ smartApp.controller('changeOwnershipController', function(
             $scope.isChkShopcode = false;
         }
     }
+    $scope.setDefaultSubType = function() {
+        if ($scope.data.installedProducts["company-code"] == "RM") {
+            $scope.subCompanyType = "RPI";
+        } else if ($scope.data.installedProducts["company-code"] == "RF") {
+            $scope.subCompanyType = "FIN";
+        } else {
+            $scope.subCompanyType = "";
+        }
+        setTimeout(function() {
+            $('#subCompanyType').val($scope.subCompanyType);
+        }, 1000);
+    }
 
 
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
@@ -591,18 +603,9 @@ smartApp.controller('changeOwnershipController', function(
                         if (result.status) {
                             $scope.data = result;
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
-                            if ($scope.data.installedProducts["company-code"] == "RM") {
-                                $scope.subCompanyType = "RPI";
-                            } else if ($scope.data.installedProducts["company-code"] == "RF") {
-                                $scope.subCompanyType = "FIN";
-                            } else {
-                                $scope.subCompanyType = "";
-                            }
-                            setTimeout(function() {
-                                $('#subCompanyType').val($scope.subCompanyType);
-                            }, 1000);
 
 
+                            //$scope.setDefaultSubType();
                             $scope.data2 = result;
 
                             //console.log($scope.data);
@@ -1032,6 +1035,7 @@ smartApp.controller('changeOwnershipController', function(
                         changeOwnershipService.getAccountSubTypeCallback(param, function(resultST) {
                             $scope.data.accountSubtypeList = resultST.data["response-data"];
                             //$scope.subCompanyType = resultST.data["response-data"][0]['name'];
+                            $scope.setDefaultSubType();
                         });
 
 
