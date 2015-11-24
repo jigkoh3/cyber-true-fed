@@ -1562,6 +1562,8 @@
             result = that.getMasterRestoreActive();
         } else if (target == 'aftersales/configuration/master/CANCEL-ACTIVE') {
             result = that.getMasterCancel();
+        } else if (target == 'aftersales/configuration/master/RESUME-CANCEL-OA-OS') {
+            result = that.getMasterResumeCancel_OA_OS();
         } else {
             status = false;
         }

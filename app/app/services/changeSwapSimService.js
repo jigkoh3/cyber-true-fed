@@ -179,7 +179,14 @@
     };
 
     this.validateSIM = function(payload, fnCallback) {
-        payload['project'] = 'SWAPSIM-' + payload['mobile-servicetype'];
+        
+        if($('#divID').val() == "changeSwapSimContent"){
+            payload['project'] = 'SWAPSIM-' + payload['mobile-servicetype'];
+        }else{
+            payload['project'] = '' + payload['mobile-servicetype'];
+        }
+        alert(payload['project']);
+        
 
         var params = utils.createParamGet(payload, [
             'sim-serial',
