@@ -775,22 +775,24 @@
     // (Start) Validation ----------------------
     $scope.isIdCardExpired = function() {
         // if (expireDate) {
-        var str = $scope.data.customerProfile['id-expire-date'];
-        var res1 = str.split("T");
-        var res = res1[0].split("-");
-        var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
-        var b = moment(["" + (Number(res[0]) + 543) + "", res[1], res[2]]);
+        if (SystemService.checkObj($scope.data.customerProfile, ['id-expire-date'])) {
+            var str = $scope.data.customerProfile['id-expire-date'];
+            var res1 = str.split("T");
+            var res = res1[0].split("-");
+            var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
+            var b = moment(["" + (Number(res[0]) + 543) + "", res[1], res[2]]);
 
-        //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
-        // return (a.diff(b, 'days') >= 0);
-        //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
-        if (a.diff(b, 'days') >= 0) {
-            $scope.cardExpire = false;
-            $scope.data.customerProfileNew['id-expire-date'] = "";
-            $('#expireDate').val($scope.data.customerProfileNew['id-expire-date']);
-        } else {
-            $scope.cardExpire = true;
+            //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
+            // return (a.diff(b, 'days') >= 0);
+            //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
+            if (a.diff(b, 'days') >= 0) {
+                $scope.cardExpire = false;
+                $scope.data.customerProfileNew['id-expire-date'] = "";
+                $('#expireDate').val($scope.data.customerProfileNew['id-expire-date']);
+            } else {
+                $scope.cardExpire = true;
 
+            }
         }
 
         // }
@@ -927,7 +929,7 @@
     //         $scope.data.customerAddress['province'] = address.province;
     //     }
     // };
-    $scope.clearPP = function(){
+    $scope.clearPP = function() {
         $scope.proPositionList = [];
         $scope.pricePlanList = [];
     };
