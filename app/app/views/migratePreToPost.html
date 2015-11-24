@@ -412,6 +412,7 @@
                                 <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                 <!-- Case Normal -->
                                 <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="partnerCode" ng-change="callPropositionList()" ng-blur="onCheckInputForVerify()" ng-disabled="!isCustomerProfile">
+                                <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}
                                     </option>
