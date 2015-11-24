@@ -160,6 +160,9 @@
                 }, {
                     "name": "SOL",
                     "description": "เจ้าของกิจการคนเดียว"
+                },{
+                    "name": "FIN",
+                    "description": "บุคคลธรรมดา"
                 }]
             };
 

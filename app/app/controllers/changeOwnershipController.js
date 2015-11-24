@@ -125,7 +125,7 @@ smartApp.controller('changeOwnershipController', function(
         }
 
 
-        $scope.subCompanyType = "";
+        //$scope.subCompanyType = "";
         $scope.promotion = "";
 
         $scope.onCheckInputForVerify();
@@ -591,6 +591,17 @@ smartApp.controller('changeOwnershipController', function(
                         if (result.status) {
                             $scope.data = result;
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
+                            if ($scope.data.installedProducts["company-code"] == "RM") {
+                                $scope.subCompanyType = "RPI";
+                            } else if ($scope.data.installedProducts["company-code"] == "RF") {
+                                $scope.subCompanyType = "FIN";
+                            } else {
+                                $scope.subCompanyType = "";
+                            }
+                            setTimeout(function() {
+                                $('#subCompanyType').val($scope.subCompanyType);
+                            }, 1000);
+
 
                             $scope.data2 = result;
 
@@ -1064,7 +1075,7 @@ smartApp.controller('changeOwnershipController', function(
 
                                     }
 
-                                    $scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
+                                    //$scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
 
                                     setTimeout(function() {
                                         $scope.isLastestAdress = false;
@@ -1128,26 +1139,26 @@ smartApp.controller('changeOwnershipController', function(
 
                                     $scope.onselectPrefix();
 
-                                    //
-                                    var astList = $filter('filter')($scope.data.accountSubtypeList, {
-                                        name: customer["installed-products"][0]["account-sub-type"]
-                                    });
-                                    if (astList && astList.length > 0) {
-                                        //
-                                        $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
-                                    } else {
-                                        //
-                                        if(customer["installed-products"][0]["company-code"] == "RM"){
-                                            $scope.subCompanyType = "RPI";
-                                        }else if(customer["installed-products"][0]["company-code"] == "RF"){
-                                            $scope.subCompanyType = "FIN";
-                                        }else{
-                                            $scope.subCompanyType = "";
-                                        }
-                                        setTimeout(function() {
-                                        $('#subCompanyType').val($scope.subCompanyType);
-                                        }, 1000);
-                                    }
+                                    // //
+                                    // var astList = $filter('filter')($scope.data.accountSubtypeList, {
+                                    //     name: customer["installed-products"][0]["account-sub-type"]
+                                    // });
+                                    // if (astList && astList.length > 0) {
+                                    //     //
+                                    //     $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
+                                    // } else {
+                                    //     //
+                                    //     if (customer["installed-products"][0]["company-code"] == "RM") {
+                                    //         $scope.subCompanyType = "RPI";
+                                    //     } else if (customer["installed-products"][0]["company-code"] == "RF") {
+                                    //         $scope.subCompanyType = "FIN";
+                                    //     } else {
+                                    //         $scope.subCompanyType = "";
+                                    //     }
+                                    //     setTimeout(function() {
+                                    //         $('#subCompanyType').val($scope.subCompanyType);
+                                    //     }, 1000);
+                                    // }
 
 
 
