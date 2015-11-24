@@ -126,6 +126,8 @@ smartApp.controller('changeOwnershipController', function(
 
 
         //$scope.subCompanyType = "";
+        $scope.setDefaultSubType();
+
         $scope.promotion = "";
 
         $scope.onCheckInputForVerify();
@@ -476,16 +478,18 @@ smartApp.controller('changeOwnershipController', function(
         }
     }
     $scope.setDefaultSubType = function() {
-        if ($scope.data.installedProducts["company-code"] == "RM") {
-            $scope.subCompanyType = "RPI";
-        } else if ($scope.data.installedProducts["company-code"] == "RF") {
-            $scope.subCompanyType = "FIN";
-        } else {
-            $scope.subCompanyType = "";
+        if (SystemService.checkObj($scope.data, ["installedProducts", "company-code"])) {
+            if ($scope.data.installedProducts["company-code"] == "RM") {
+                $scope.subCompanyType = "RPI";
+            } else if ($scope.data.installedProducts["company-code"] == "RF") {
+                $scope.subCompanyType = "FIN";
+            } else {
+                $scope.subCompanyType = "";
+            }
+            setTimeout(function() {
+                $('#subCompanyType').val($scope.subCompanyType);
+            }, 1000);
         }
-        setTimeout(function() {
-            $('#subCompanyType').val($scope.subCompanyType);
-        }, 1000);
     }
 
 
