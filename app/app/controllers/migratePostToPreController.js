@@ -108,6 +108,10 @@
         }
     };
 
+    $scope.funcEvent = function(){
+        $('#modalnewpriceplan').click();
+    };
+
     $scope.onChangeTitleOther = function() {
         console.log($scope.data.customerProfileNew['title']);
         var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
