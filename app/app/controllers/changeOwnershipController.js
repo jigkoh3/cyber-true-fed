@@ -1137,9 +1137,9 @@ smartApp.controller('changeOwnershipController', function(
                                         $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
                                     } else {
                                         //
-                                        if(customer["installed-products"][0]["account-sub-type"] == "RMV"){
+                                        if(customer["installed-products"][0]["company-code"] == "RM"){
                                             $scope.subCompanyType = "RPI";
-                                        }else if(customer["installed-products"][0]["account-sub-type"] == "RFT"){
+                                        }else if(customer["installed-products"][0]["company-code"] == "RF"){
                                             $scope.subCompanyType = "FIN";
                                         }else{
                                             $scope.subCompanyType = "";

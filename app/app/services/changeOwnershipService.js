@@ -365,7 +365,7 @@
                 "trx-id": "03V94EUARX80",
                 "process-instance": "tpx61.true.th (instance: sale)",
                 "response-data": [{
-                    "name": "PRI",
+                    "name": "RPI",
                     "description": "บุคคลธรรมดา"
                 }, {
                     "name": "SOL",
@@ -424,7 +424,7 @@
                             "product-id": "0880500207",
                             "bill-cycle": "10",
                             "bill-cycle-date": "10/10",
-                            "company-code": "RF",
+                            "company-code": "RM",
                             "service-level": "C",
                             "product-id-name": "MSISDN",
                             "product-id-number": "0880500207",
