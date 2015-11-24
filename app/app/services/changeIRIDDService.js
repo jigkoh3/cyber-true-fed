@@ -45,7 +45,7 @@
                             "has-splitcharge": false,
                             "is-childsim": false,
                             "is-softsuspend": false,
-                            "offer-group": "",
+                            "offer-group": "IDD",
                             "effective-date": "02/09/2015 00:00:00"
                         }, {
                             "ouId": "16058",

@@ -956,13 +956,13 @@ smartApp.controller('ResumeController', function(
 
                     console.log($scope.propositionList);
 
-                    var checkOldPricePlans = $filter('filter')($scope.propositionList, {
+                    var checkOldPricePlans = $filter('filter')(valPricePlans, {
                         saveName: $scope.data.installedProducts['product-name']
                     });
                     if (checkOldPricePlans && checkOldPricePlans.length > 0) {
                         //setDefaultPricePlan
                         $scope.pricePlan = {
-                            name: checkOldPricePlans[0].name,
+                            name: checkOldPricePlans[0].pricePlan,
                             promotion: checkOldPricePlans[0].promotion,
                             rc: checkOldPricePlans[0].rc,
                             pricePlanFilter: "",

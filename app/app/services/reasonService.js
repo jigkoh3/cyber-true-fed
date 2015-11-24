@@ -135,7 +135,7 @@
         }
     };
     this.list = function(activityCode, funCallback) {
-        that.get("119", function(result) {
+        that.get(activityCode, function(result) {
             //console.log("ReasonService.get");
             //console.log(result);
             var listReason = [];

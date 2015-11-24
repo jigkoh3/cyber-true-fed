@@ -169,7 +169,9 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 actPathId = "196";
             }
             console.log($scope.statusChangeSuspend, actPathId);
+            SystemService.showLoading();
             ReasonService.list(actPathId, function(resultReason) {
+                SystemService.hideLoading();
                 //solution for none fix index
                 $scope.reasons = resultReason;
                 var myArray = resultReason;
