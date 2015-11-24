@@ -344,7 +344,7 @@
                         'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
                         'SERVICE-LEVEL': "C",
                         'SUBSCRIBER-ID': payload.customerProfile['subscriber-id'],
-                        "CHANGE-OPTION": "CANCEL",
+                        "CHANGE-OPTION": payload.statusCancel,
                         "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-DESC'] 
 
                         // 'OU-ID': payload.productDetails['ouId'],

@@ -75,7 +75,8 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             newSIMData: {
                 productCodes: $scope.productCodes,
                 simSerial: $scope.simSerial
-            }
+            },
+            changeOption: $scope.statusCancel
         };
 
         CancelService.submitCancel(data, function(result) {
@@ -170,6 +171,15 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         if (!utils.isEmpty(companyCode)) {
             // DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
         }
+
+        var statusType = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-CODE');
+        //get list dropdown status
+        SystemService.getMaster_list(statusType, function(result) {
+            $scope.statusList = result;
+            $scope.statusCancel = result[0].key;
+            //alert(result[0].key);
+            //console.log($scope.statusList);
+        });
     };
 
     if ($scope.SubNo !== 'null') {

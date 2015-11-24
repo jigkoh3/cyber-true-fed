@@ -40,10 +40,27 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
     $scope.reasons = [];
     $scope.statusReason = "";
 
-    ReasonService.list("119", function(result) {
-        $scope.reasons = result;
-        $scope.statusReason = $scope.reasons[86];
-    });
+    $scope.setDefualtReason = function(actPathId) {
+
+        ReasonService.list(actPathId, function(result) {
+            //solution for none fix index
+            $scope.reasons = result;
+            var myArray = result;
+            var searchText = "CREQ",
+                index = -1;
+            for (var i = 0, len = myArray.length; i < len; i++) {
+                if (myArray[i].id === searchText) {
+                    index = i;
+                    break;
+                }
+            }
+            console.log(index);
+            $scope.reason = $scope.reasons[index];
+            $scope.selectReason = $scope.reasons[index];
+            $scope.statusReason = $scope.reasons[index];
+            //solution for none fix index
+        });
+    };
 
     //end reson
 
@@ -149,12 +166,26 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
         if (!utils.isEmpty(companyCode)) {
             // DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
         }
+        var actPathId = "78";
+        var statusType = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-CODE');
+        if (statusType == "RESTORE-FULL-SUSPEND") {
+            actPathId = "202";
+        }
+        $scope.setDefualtReason(actPathId);
+
+        //get list dropdown status
+        SystemService.getMaster_list(statusType, function(result) {
+            $scope.statusList = result;
+            $scope.statusChangeRestore = result[0].key;
+            //alert(result[0].key);
+            //console.log($scope.statusList);
+        });
     };
 
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         ChangeRestoreService.getSIMData($scope.SubNo, onGetSIMData);
-    } 
+    }
 
     $scope.onInputSubNo = function() {
         $scope.subNoInput = $('#dataSubNo').val();
@@ -211,7 +242,7 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
                             $('#btnSSO').hide();
                             setTimeout(function() {
                                 $('#CitizenID').focus();
-                                
+
                             }, 1000);
 
                         } else {
@@ -462,27 +493,27 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
             SystemService.second_authen($scope.TrxID, function(result) {
                 SystemService.hideLoading();
                 if (result["display-messages"] === undefined) {
-                        var res = result["response-data"][0]['authRes'];
-                        if (res['responseCode'] == "200") {
-                            $scope.approver = result['response-data'][0]['loginName'];
-                            $scope.manualInputReadCard();
-                        } else {
-                            $.fancybox.close();
-                            //unsuccessul
-
-                            setTimeout(function() {
-                                SystemService.showAlert({
-                                    "message": "",
-                                    "message-code": "",
-                                    "message-type": "WARNING",
-                                    "en-message": res['responseCode']+": "+res['responseDesc'],
-                                    "th-message": "",
-                                    "technical-message": "changeResumeConroller"
-                                });
-                            }, 1000);
-                        }
-
+                    var res = result["response-data"][0]['authRes'];
+                    if (res['responseCode'] == "200") {
+                        $scope.approver = result['response-data'][0]['loginName'];
+                        $scope.manualInputReadCard();
                     } else {
+                        $.fancybox.close();
+                        //unsuccessul
+
+                        setTimeout(function() {
+                            SystemService.showAlert({
+                                "message": "",
+                                "message-code": "",
+                                "message-type": "WARNING",
+                                "en-message": res['responseCode'] + ": " + res['responseDesc'],
+                                "th-message": "",
+                                "technical-message": "changeResumeConroller"
+                            });
+                        }, 1000);
+                    }
+
+                } else {
                     $.fancybox.close();
                     //unsuccessul
 
@@ -529,32 +560,32 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
         $('input[type=reset]').show();
 
         if ($scope.shopType == "1") {
-                    if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
-                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                    }
-                    $('#loadingReadCard').hide();
-                    $('#unMatch').hide();
+            if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+                $("#btn-fancy-ReadCard").fancybox().trigger('click');
+            }
+            $('#loadingReadCard').hide();
+            $('#unMatch').hide();
+            setTimeout(function() {
+
+                $('#CitizenID').val('');
+                if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                    $('#CitizenID').prop('disabled', false);
+                    $('#btnSSO').hide();
                     setTimeout(function() {
+                        $('#CitizenID').focus();
+                    }, 1000);
 
-                        $('#CitizenID').val('');
-                        if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
-                            $('#CitizenID').prop('disabled', false);
-                            $('#btnSSO').hide();
-                            setTimeout(function() {
-                                $('#CitizenID').focus();
-                            }, 1000);
-
-                        } else {
-                            $('#CitizenID').prop('disabled', true);
-                        }
-                    }, 100);
-
+                } else {
+                    $('#CitizenID').prop('disabled', true);
                 }
+            }, 100);
 
-                setTimeout(function() {
-                    $('#loadingReadCard2').hide();
-                    $('#unMatch2').hide();
-                }, 1000);
+        }
+
+        setTimeout(function() {
+            $('#loadingReadCard2').hide();
+            $('#unMatch2').hide();
+        }, 1000);
     }
     $scope.manualInputReadCard = function() {
         $('#loadingReadCard').hide();
@@ -623,7 +654,7 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
         //console.log(result);
         //console.log(result.CitizenID);
     };
-    
+
     $scope.onInputId2 = function() {
         var cid = $('#CitizenID2').val();
         if (cid.length == 13) {
@@ -669,24 +700,24 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
     };
 
     $scope.afterCloseWarning = function() {
-       if ($scope.SubNo === 'null') {
-           // $('#dataSubNo').val('');
-           setTimeout(function() {
-               $('#dataSubNo').focus();
-           }, 500);
-       }
-       $scope.isClickPrint = false;
-       isFocus = true;
-       $scope.initModalReadCard();
+        if ($scope.SubNo === 'null') {
+            // $('#dataSubNo').val('');
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+            }, 500);
+        }
+        $scope.isClickPrint = false;
+        isFocus = true;
+        $scope.initModalReadCard();
 
 
 
-       if (idFocus) {
-           $('#' + idFocus).focus();
-           idFocus = "";
-       } else {
-           $scope.validateUI();
-       }
-   };
+        if (idFocus) {
+            $('#' + idFocus).focus();
+            idFocus = "";
+        } else {
+            $scope.validateUI();
+        }
+    };
     //init();
 });

@@ -4,39 +4,32 @@
     <div class="content m_content">
         <div class="col-md-1"></div>
         <div class="col-md-11">
-
-                    
-
             <div ng-include="template.header"></div>
-            
             <div class="clearfix"></div>
             <h1 class="content-title">ยกเลิกเลขหมาย</h1>
             <div class="content-body">
                 <div ng-include="template.customerprofile" scope="" onload=""></div>
                 <!-- end authorize -->
                 <div ng-include="template.currentpriceplan" scope="" onload=""></div>
-
-
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label class="col-md-4 control-label"><b>สถานะหมายเลขปัจจุบัน</b></label>
-                        <label class="col-md-4 control-label" ng-hide="showDataDealer" style="text-align:left" ="expression">{{productStatus}} Since: {{activeDate}}{{reasonCodeDisplay}}</label>
-
+                        <label class="col-md-4 control-label" ng-hide="showDataDealer" style="text-align:left"="expression">{{productStatus}} Since: {{activeDate}}{{reasonCodeDisplay}}</label>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label"><b>สถานะหมายเลขใหม่</b></label>
                         <div class="col-md-4">
-                            <select class="form-control"  ng-model="statusCancel" ng-disabled="!isCustomerProfile" >
+                            <select class="form-control" ng-model="statusCancel" ng-disabled="!isCustomerProfile">
+                                <option ng-repeat="item in statusList" value="{{item.key}}">{{item.description}}</option>
                                 <!-- <option value="">เลือก</option> -->
                                 <!-- <option value="CANCEL-SOFT-SUSPEND">Soft Suspend</option> -->
                                 <!-- <option value="CANCEL-FULL-SUSPEND">Full Suspend</option> -->
-                                <option value="CANCEL-ACTIVE">Cancel</option>
+                                <!-- <option value="CANCEL-ACTIVE">Cancel</option> -->
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
-           
             <!--<div ng-include="template.reasonmemo" scope="" onload=""></div>-->
             <h4>บันทึกและเหตุผล</h4>
             <div class="well">
@@ -44,9 +37,7 @@
                     <div class="form-group" ng-show="shopType=='0'">
                         <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
                         <div class="col-md-4">
-
                             <select ng-options="option.dec for option in reasons" ng-model="statusReason" class=" form-control"></select>
-
                         </div>
                     </div>
                     <div class="form-group">
@@ -67,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div id="modal-pdf" tabindsex="-1" class="modal fade"  data-backdrop="static" data-keyboard="false">
+            <div id="modal-pdf" tabindsex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog" style="width:70%;">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -77,12 +68,10 @@
                             </h4>
                         </div>
                         <div class="modal-body">
-
                             <iframe id="iframePDF" src="" style="width: 100%; height: 400px;" frameborder="0" scrolling="no">
                                 <p>It appears your web browser doesn't support iframes.</p>
                             </iframe>
                         </div>
-
                         <div class="modal-footer">
                             <span ng-show="shopType=='0'"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000); setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 2500);" ng-click="confirmPrint()" class="btn btn-success"></span>
                             <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-toggle="modal" ng-click="confirmPrint()" class="btn btn-success"></span>
@@ -92,18 +81,12 @@
             </div>
             <div class="col-md-12 form-buttons">
                 <div class="form-group">
-
                     <!-- <input ng-click="logDataBeforeSubmit()" type="button" value="debug"/> -->
-
-                    <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!isCustomerProfile"  />
-
+                    <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!isCustomerProfile" />
                     <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
-
                     <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
-
                 </div>
             </div>
-
         </div>
     </div>
 </div>

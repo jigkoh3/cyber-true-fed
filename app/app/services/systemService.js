@@ -1476,6 +1476,46 @@
         }
         //
     };
+    this.getMasterRestoreActive = function() {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "41XY43HJ1BYE",
+            "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+            "response-data": {
+                "id": "RESTORE-FULL-SUSPEND",
+                "name": "List of change status restore - full suspend",
+                "description": "List of change status suspend - full suspend",
+                "configuration-items": [{
+                    "key": "ACTIVE",
+                    "value": "ACTIVE",
+                    "description": "Active",
+                    "en-description": "Active",
+                    "th-description": "Active"
+                }]
+            }
+        }
+        //
+    };
+    this.getMasterCancel = function() {
+        return {
+            "status": "SUCCESSFUL",
+            "trx-id": "41XYDHWGQP1I",
+            "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+            "response-data": {
+                "id": "CANCEL-ACTIVE",
+                "name": "List of change status cancel - active",
+                "description": "List of change status cancel - active",
+                "configuration-items": [{
+                    "key": "CANCEL",
+                    "value": "CANCEL",
+                    "description": "Cancel",
+                    "en-description": "Cancel",
+                    "th-description": "Cancel"
+                }]
+            }
+        }
+        //
+    };
     this.getMasterResumeCancel_OA_OS = function() {
         return {
             "status": "SUCCESSFUL",
@@ -1516,8 +1556,12 @@
             result = that.getMasterIdTypeP();
         } else if (target == 'aftersales/configuration/master/SUSPEND-ACTIVE') {
             result = that.getMasterSuspendActive();
-        } else if (target == 'aftersales/configuration/master/RESUME-CANCEL-OA-OS') {
-            result = that.getMasterResumeCancel_OA_OS();
+        } else if (target == 'aftersales/configuration/master/RESTORE-FULL-SUSPEND') {
+            result = that.getMasterRestoreActive();
+        } else if (target == 'aftersales/configuration/master/RESTORE-SOFT-SUSPEND') {
+            result = that.getMasterRestoreActive();
+        } else if (target == 'aftersales/configuration/master/CANCEL-ACTIVE') {
+            result = that.getMasterCancel();
         } else {
             status = false;
         }
