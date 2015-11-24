@@ -738,7 +738,7 @@ smartApp.controller('MigratePreToPostController', function(
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
 
                             $scope.data2 = result;
-
+                            $scope.onInputCitizenID3();
                             // console.log($scope.data.customerProfile['firstname']);
 
                             if ($scope.shopType == '1') {
@@ -809,7 +809,7 @@ smartApp.controller('MigratePreToPostController', function(
                             if (!$scope.isNonePartner && $scope.shopType == '1') {
                                 //$scope.data = {};
                             }
-                        $scope.onInputCitizenID3();
+                            
                         } else {
                             $scope.SubNo = "null";
                         }
@@ -3644,23 +3644,24 @@ smartApp.controller('MigratePreToPostController', function(
     };
     $scope.cardExpire = false;
     $scope.checkValueExpireDate = function() {
+        if ($scope.newOwner.expireDay) {
+            var str = $scope.newOwner.expireDay;
+            // var res1 = str.split("T");
+            var res = str.split("/");
+            var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
+            var b = moment([(Number(res[2])), res[1], res[0]]);
 
-        var str = $scope.newOwner.expireDay;
-        // var res1 = str.split("T");
-        var res = str.split("/");
-        var a = moment([Number(moment().format('YYYY')) + 543, moment().format('MM'), moment().format('DD')]);
-        var b = moment([(Number(res[2])), res[1], res[0]]);
-        
-        //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
-        // return (a.diff(b, 'days') >= 0);
-        //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
-        if (a.diff(b, 'days') >= 0) {
-            $scope.cardExpire = false;
-            $scope.newOwner.expireDay = "";
-            $('#expireDate').val($scope.newOwner.expireDay);
-        } else {
-            $scope.cardExpire = true;
+            //return moment(expireDate, 'DD/MM/YYYY').diff(moment(), 'days') >= 0;
+            // return (a.diff(b, 'days') >= 0);
+            //return SystemService.convertDateToTH(moment(date).format('DD/MM/YYYY'), 'TH');
+            if (a.diff(b, 'days') >= 0) {
+                $scope.cardExpire = false;
+                $scope.newOwner.expireDay = "";
+                $('#expireDate').val($scope.newOwner.expireDay);
+            } else {
+                $scope.cardExpire = true;
 
+            }
         }
     };
     //$scope.init();

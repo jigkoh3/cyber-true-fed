@@ -50,7 +50,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "id-type": "I",
                         "id-number": "1189900130607",
                         "birthdate": "1920-02-11T00:00:00+0700",
-                        "id-expire-date": "2015-11-15T00:00:00+0700",
+                        // "id-expire-date": "2015-11-15T00:00:00+0700",
                         "customer-id": "2768",
                         "installed-products": [{
                             "ouId": "1078",
