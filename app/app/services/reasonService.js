@@ -126,6 +126,24 @@
                     }
                 }
             };
+            var data2 = {
+                "trx-id": "4AXPSKZN99D9",
+                "status": "SUCCESSFUL",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "fault": {
+                    "name": "th.co.truecorp.ads.api.persistent.jdbc.DataNotFoundException",
+                    "code": "PROFILE-404",
+                    "message": "Not found activity reason for activity code 1338",
+                    "detailed-message": "DataNotFoundException Not found activity reason for activity code 1338. "
+                },
+                "display-messages": [{
+                    "message": "Not found activity reason for activity code 1338",
+                    "message-type": "WARNING",
+                    "en-message": "Not found activity reason for activity code 1338",
+                    "th-message": "Not found activity reason for activity code 1338",
+                    "technical-message": "tmsapnpr1 (instance: SFF_node3) DataNotFoundException Not found activity reason for activity code 1338. "
+                }]
+            };
             fnCallback({
                 status: true,
                 data: data,
@@ -161,7 +179,23 @@
                     //     "th-message": "",
                     //     "technical-message": "webui-reasonService"
                     // });
-                    alert('Object response-data, available-reasons is not found!');
+                    if (SystemService.checkObj(result.data, ["display-messages"])) {
+                        setTimeout(function() {
+                            SystemService.showAlert({
+                                "message": result.data["display-messages"][0]["message"],
+                                "message-code": result.data["display-messages"][0]["message-code"],
+                                "message-type": "WARNING",
+                                "en-message": result.data["display-messages"][0]["en-message"],
+                                "th-message": result.data["display-messages"][0]["th-message"],
+                                "technical-message": result.data["display-messages"][0]["technical-message"]
+                            });
+                        }, 1000);
+                        //
+                    } else {
+                        //
+                        alert('Object response-data, available-reasons is not found!');
+                    }
+                    
                 }
             } else {
                 funCallback(listReason);
