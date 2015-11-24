@@ -648,6 +648,8 @@ smartApp.controller('ChangePricePlanController', function(
 
                 if($scope.propositionList.length==0){
                     $('#spanMsgNotFound').removeClass('hide');
+                }else{
+                    $('#spanMsgNotFound').addClass('hide');
                 }
                 
 
