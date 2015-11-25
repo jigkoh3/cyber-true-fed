@@ -797,6 +797,8 @@
                 $scope.cardExpire = true;
 
             }
+        }else{
+            $scope.cardExpire = false;
         }
 
         // }
