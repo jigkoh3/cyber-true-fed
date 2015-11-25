@@ -587,7 +587,7 @@ smartApp.controller('ResumeController', function(
                         if (result.status) {
                             $scope.data = result;
                             console.log(result);
-
+                            console.log($scope.data.customerProfile['lastname']);
                             $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
 
                             $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
@@ -603,6 +603,10 @@ smartApp.controller('ResumeController', function(
 
                             $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
+                            if($scope.data.customerProfile['lastname'] == undefined || $scope.data.customerProfile['lastname'] == null){
+                                $scope.newOwner.lastNameTH = $scope.data.customerProfile['firstname'];
+                                $scope.newOwner2.lastNameTH = $scope.data.customerProfile['firstname'];
+                            }
                             // $scope.onInputIdLastest3();
                             $scope.onInputCitizenID3();
 
