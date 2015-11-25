@@ -705,6 +705,7 @@ smartApp.controller('MigratePreToPostController', function(
 
                             // $scope.onInputIdLastest3();
                             $scope.checkValueExpireDate();
+                            $scope.checkValueDate();
                             $scope.valueIdType();
                             $scope.checkUserDealer();
                             $scope.chkShopcode();
@@ -713,7 +714,6 @@ smartApp.controller('MigratePreToPostController', function(
                             console.log($scope.isChkShopcode);
                             // $scope.onInputCitizenID3();
                             $scope.onChangeCardTypes();
-                            $scope.checkValueDate();
                             console.log($scope.checkExpireDate);
                             console.log($scope.newOwner.expireDay);
                             setTimeout(function() {
@@ -1244,7 +1244,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
                                     $scope.cardType.value = customer['id-type'];
                                     $scope.checkValueExpireDate();
-
+                                    $scope.checkValueDate();
 
 
                                     $scope.checkPrefixT5();
@@ -3636,7 +3636,7 @@ smartApp.controller('MigratePreToPostController', function(
         }
     };
     $scope.checkValueDate = function() {
-        if ($scope.newOwner.birthDay != null) {
+        if ($scope.newOwner.birthDay) {
             $scope.checkBirthDate = true;
         } else {
             $scope.checkBirthDate = false;
@@ -3662,6 +3662,8 @@ smartApp.controller('MigratePreToPostController', function(
                 $scope.cardExpire = true;
 
             }
+        }else{
+            $scope.cardExpire = false;
         }
     };
     //$scope.init();
