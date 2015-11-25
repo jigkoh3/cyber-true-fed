@@ -185,7 +185,7 @@
         }else{
             payload['project'] = '' + payload['mobile-servicetype'];
         }
-        alert(payload['project']);
+        //alert(payload['project']);
         
 
         var params = utils.createParamGet(payload, [
