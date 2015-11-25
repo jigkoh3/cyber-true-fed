@@ -120,7 +120,7 @@ smartApp.controller('MigratePreToPostController', function(
         $scope.newOwner2.sex = "FEMALE";
         $scope.newOwner2.birthDay = "";
 
-
+        $scope.setDefaultSubType();
 
     }
 
@@ -1107,7 +1107,7 @@ smartApp.controller('MigratePreToPostController', function(
 
 
     //start check input 
-    $scope.subCompanyType = "PRI";
+    // $scope.subCompanyType = "PRI";
     $scope.isAddressList = {};
     $scope.onInputCitizenID3 = function() {
 
@@ -1140,7 +1140,8 @@ smartApp.controller('MigratePreToPostController', function(
                         };
                         migratePreToPostService.getAccountSubTypeCallback(param, function(resultST) {
                             $scope.data.accountSubtypeList = resultST.data["response-data"];
-                            $scope.subCompanyType = resultST.data["response-data"][0]['name'];
+                            // $scope.subCompanyType = resultST.data["response-data"][0]['name'];
+                            $scope.setDefaultSubType();
                         });
 
 
@@ -1195,7 +1196,7 @@ smartApp.controller('MigratePreToPostController', function(
 
                                 }
 
-                                $scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
+                                // $scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
 
                                 setTimeout(function() {
                                     $scope.isLastestAdress = false;
@@ -1268,7 +1269,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 $scope.onselectPrefix();
 
 
-                                $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
+                                // $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
 
 
                                 //ที่อยู่จัดส่งเอกสาร
@@ -3713,4 +3714,18 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.ischkNumber = false;
         }
     };
+    $scope.setDefaultSubType = function() {
+        if (SystemService.checkObj($scope.data, ["installedProducts", "company-code"])) {
+            if ($scope.data.installedProducts["company-code"] == "RM") {
+                $scope.subCompanyType = "RPI";
+            } else if ($scope.data.installedProducts["company-code"] == "RF") {
+                $scope.subCompanyType = "FIN";
+            } else {
+                $scope.subCompanyType = "";
+            }
+            setTimeout(function() {
+                $('#subCompanyType').val($scope.subCompanyType);
+            }, 1000);
+        }
+    }
 });

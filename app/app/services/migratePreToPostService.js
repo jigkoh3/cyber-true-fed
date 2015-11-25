@@ -372,7 +372,7 @@
                 "trx-id": "03V94EUARX80",
                 "process-instance": "tpx61.true.th (instance: sale)",
                 "response-data": [{
-                    "name": "PRI",
+                    "name": "RPI",
                     "description": "บุคคลธรรมดา"
                 }, {
                     "name": "SOL",
