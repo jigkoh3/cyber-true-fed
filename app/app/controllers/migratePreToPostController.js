@@ -1868,7 +1868,7 @@ smartApp.controller('MigratePreToPostController', function(
         //$('#ppfilter2').val("");
         $scope.pricePlanFilter.value = "";
         console.log($scope.pricePlanFilter.value);
-        $scope.onClearPricePlan();
+       // $scope.onClearPricePlan();
     };
 
 
