@@ -16,16 +16,16 @@
                 <div ng-include="template.customerprofile" onload="onCustomerProfileTemplateLoaded()"></div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="margin-top:-10px;">
                         <h4>ข้อมูลปัจจุบัน</h4>
                         <div class="well" style="background-color:#ffffff;">
                             <div class="row">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
-                                    <p>&nbsp;</p>
+                                <p>&nbsp;</p>
                                     &nbsp;
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" style="margin-top:-12.5px;">
                                             <div class="checkbox checkbox-circle2 checkbox-inline authorize">
                                                 <input id="checkBox4g" ng-disabled="true" type="checkbox" class="styled" ng-model="data.simData['is-4g']">
                                                 <label for="checkBox4g"><b style="position:relative;top:4px;">4G</b></label>
@@ -54,12 +54,12 @@
                                     </div>
                                     <div ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true">
                                         <p>&nbsp;</p>
-                                        <div class="row">
-                                            <div class="col-md-4"><b>ประเภทอุปกรณ์ <span style="color:red;">*</span> </b></div>
+                                        <div class="row" >
+                                            <div class="col-md-4" style="margin-top:-18px;"><b>ประเภทอุปกรณ์ <span style="color:red;">*</span> </b></div>
                                         </div>
                                         &nbsp;
                                         <div class="row">
-                                            <div class="col-md-12" ng-form="deviceTypeForm">
+                                            <div class="col-md-12" ng-form="deviceTypeForm" style="margin-top:-3px;">
                                                 <select ng-model="deviceType" ng-disabled="!isCustomerProfile" name="deviceTypeDropdown" class="form-control" required>
                                                     <option value="">Please Select</option>
                                                     <option ng-repeat="device in deviceTypeList" value="{{ device['device-code'] }}">{{ device.deviceType }}</option>
@@ -77,13 +77,13 @@
                             
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="margin-top:-10px;">
                         <h4>ข้อมูลซิมใหม่</h4>
                         <div class="well" style="background-color:#ffffff;">
                             <div class="row">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
-                                    <p>&nbsp;</p>
+                                    
                                     <div ng-show="!dealerCodeList || !dealerCodeList.length || dealerCodeList.length > 1">
                                         <p></p>
                                         <div class="row">
@@ -218,7 +218,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 form-buttons">
+            <div class="col-md-12 form-buttons" style="margin-top:-10px;">
                 <div class="form-group">
                     <input ng-if="shopType === '0'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!printAble" />
                     <input ng-if="shopType === '1'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!printAble" />

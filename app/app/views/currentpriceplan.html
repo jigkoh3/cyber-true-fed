@@ -1,8 +1,8 @@
-<h4>ข้อมูลหมายเลขปัจจุบัน</h4>
+<h4 style="margin-top:-10px;">ข้อมูลหมายเลขปัจจุบัน</h4>
 <div class="row current-info" style="margin-left: 0px;">
     <div class="row">
         <div class="col-md-3">
-            <p class="label">รายการส่งเสริมการขาย</p>
+            <p class="label" style="margin-top:-2px;">รายการส่งเสริมการขาย</p>
         </div>
         <div class="col-md-9" ng-hide="(Action == 'ADD')">
             <div class="events" ng-repeat="item in data.offer">
@@ -13,10 +13,10 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <p class="label">โปรโมชั่น</p>
+            <p class="label" style="margin-top:-7px;">โปรโมชั่น</p>
         </div>
         <div class="col-md-9" ng-hide="(Action == 'ADD')">
-            <p class="text-b">&nbsp;&nbsp;{{data.priceplan["product-name"]}} : {{data.priceplan["product-description"]}}</p>
+            <p class="text-b" style="margin-top:-7px;">&nbsp;&nbsp;{{data.priceplan["product-name"]}} : {{data.priceplan["product-description"]}}</p>
         </div>
     </div>
     <!-- <div class="col-md-4">

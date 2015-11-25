@@ -354,7 +354,8 @@
                                         ng-model="newOwner.birthDay" 
                                         ng-disabled="!isCustomerProfile || isUseCardValueData || checkBirthDate"  
                                         class="form-control date-picker-birthdate dateFormat" 
-                                        id="birthDay" 
+                                        id="birthDay"
+                                        maxlength="10" 
                                         required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
 
@@ -381,7 +382,7 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                     <!-- Case Normal -->
-                                    <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" placeholder="" ng-disabled="!isCustomerProfile || isUseCardValueData || cardExpire" class="form-control date-picker-start dateFormat" id="expireDay">
+                                    <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" placeholder="" ng-disabled="!isCustomerProfile || isUseCardValueData || cardExpire" class="form-control date-picker-start dateFormat" id="expireDay" maxlength="10">
 
 
                                     <!-- <input type="text" ng-hide="(userDealer && !isCustomerProfile) || (!checkExpireDate && isCustomerProfile)" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()"  placeholder="" ng-disabled="!isCustomerProfile || isUseCardValueData || !checkExpireDate" class="form-control date-picker-start " id="expireDay"> -->
