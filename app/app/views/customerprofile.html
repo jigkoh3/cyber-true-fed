@@ -1,4 +1,4 @@
-<h4>ข้อมูลลูกค้า</h4>
+<h4 style="margin-top:-5px;">ข้อมูลลูกค้า</h4>
 <div class="customer-info">
     <!-- <a href="#" class="btn btn-camera"><img src="images/user.png"> </a> -->
     <button type="button" class="hidden"
@@ -10,7 +10,7 @@
     <div class="row">
         <div>
             <div class="col-md-4">
-                <div class="input-group">
+                <div class="input-group" style="margin-top:-10px;">
                     <h4>
                         <small></small>
                         <small></small>
@@ -48,7 +48,7 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" style="margin-top:-10px;">
                 <h4>
                     <small ng-show="data.priceplan['account-category'] != 'B' && data.priceplan['account-category'] != 'C'">ชื่อ - นามสกุล</small>
                     <small ng-show="data.priceplan['account-category'] == 'B' || data.priceplan['account-category'] == 'C'">ชื่อนิติบุคคล</small>
@@ -76,7 +76,7 @@
         <div class="col-md-5">
 
             <div ng-show="(isCustomerProfile == true) && (shopType == '1') && isReadCardSuccess == false">
-                <button type="button" id="snapshot" href="#modal-ReadCamera" ng-click="initWebCam()" onclick="return false" data-toggle="modal" class="btn btn-camera" style="margin-bottom: -10px;">
+                <button type="button" id="snapshot" href="#modal-ReadCamera" ng-click="initWebCam()" onclick="return false" data-toggle="modal" class="btn btn-camera" style="margin-bottom: -10px; margin-top:10px;">
                     <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
                 </button>
             </div>
@@ -85,7 +85,7 @@
         </div>
     </div>
     &nbsp;
-    <div id="divShowAuthorize" class="row">
+    <div id="divShowAuthorize" class="row" style="margin-top:-12px;">
         <div class="col-md-12">
             <div class="checkbox checkbox-circle2 checkbox-inline authorize">
                 <input type="checkbox"
