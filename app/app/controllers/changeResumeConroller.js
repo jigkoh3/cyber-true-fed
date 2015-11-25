@@ -603,7 +603,7 @@ smartApp.controller('ResumeController', function(
 
                             $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
-                            if($scope.data.customerProfile['lastname'] == undefined || $scope.data.customerProfile['lastname'] == null){
+                            if($scope.data.customerProfile['lastname'] == undefined || $scope.data.customerProfile['lastname'] == null || $scope.data.customerProfile['lastname'] == ""){
                                 $scope.newOwner.lastNameTH = $scope.data.customerProfile['firstname'];
                                 $scope.newOwner2.lastNameTH = $scope.data.customerProfile['firstname'];
                             }
