@@ -3459,7 +3459,7 @@ smartApp.controller('ResumeController', function(
         if ($scope.simSerial.length === $scope.simSerialLength) {
             var data = {
                 'sim-serial': $scope.simSerial,
-                'dealer-code': $scope.dealerCode,
+                'dealer-code': $scope.partnerCode,
                 'company-code': $scope.data.installedProducts['company-code'],
                 'mobile-servicetype': $scope.data.installedProducts['mobile-servicetype'] == 'PREPAID' ? 'PREPAID' : 'POSTPAID'
                     //,'product-code': $scope.productCodes,

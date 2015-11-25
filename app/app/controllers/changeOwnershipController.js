@@ -3426,4 +3426,51 @@ smartApp.controller('changeOwnershipController', function(
         }
     };
     //$scope.init();
+
+    $scope.isNumberTelSms = false;
+    $scope.onInputTelSms = function(charCode) {
+        console.log($scope.billPayment.smss);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberTelSms = !bool;
+
+        return bool;
+    };
+
+    $scope.isNumberTelLengthSms = false;
+    $scope.onBlurTelSms = function() {
+        $scope.isNumberTelSms = false;
+        $scope.isNumberTelZeroSms = false;
+        if ($scope.billPayment.smss) {
+            if ($scope.billPayment.smss.length == 9 || $scope.billPayment.smss.length == 10 ) {
+                $scope.isNumberTelLengthSms = false;
+                $scope.billPayment.smss = '';
+            } else {
+                $scope.isNumberTelLengthSms = true;
+            }
+            console.log($scope.billPayment.smss.length);
+        }
+    }
+
+    $scope.isNumberTelZeroSms = false;
+    $scope.onInputTelZeroSms = function(charCode) {
+        if (!$scope.billPayment.smss) {
+            $scope.billPayment.smss = "";
+        }
+        if ($scope.billPayment.smss.length == 0 && charCode != 48) {
+            $scope.isNumberTelZeroSms = true;
+        } else {
+            $scope.isNumberTelZeroSms = false;
+        }
+    };
+
+    $scope.ischkNumber = false;
+    $scope.onChkNumber = function(){
+        if($scope.billPayment.smss.charAt(0) != '0'){
+            $scope.ischkNumber = true;
+            $scope.billPayment.smss = "";
+        } else {
+            $scope.ischkNumber = false;
+        }
+    };
+
 });

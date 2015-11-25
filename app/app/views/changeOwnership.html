@@ -1351,16 +1351,14 @@
                             </div>
                         </div>
                         <div class="form-group" ng-hide="blah=='E'||blah=='P'" ng-form="ngsmss">
-                            <label class="col-md-5 control-label">SMS <span style="color:red;">*</span></label>
+                            <label class="col-md-5 control-label">SMS<span style="color:red;">*</span></label>
                             <div class="col-md-3">
-                                <input type="text" 
-                                       id="txtBillPaymentSmss"
-                                       name="smss" 
-                                       ng-model="billPayment.smss" 
-                                       class="form-control" required>
-                                <!--<span class="error" style="color:red;" ng-show="ngsmss.smss.$error.required">
-                                    Required.
-                                </span>-->
+                                <input type="text" ng-number-only="smss" class="form-control telephoneZero" id="txtBillPaymentSmss" ng-model="billPayment.smss" ng-keyup="onInputTelZeroSms($event.keyCode); onInputTelSms($event.keyCode); onChkNumber();" ng-blur="onBlurTelSms()" maxlength="10" required/>                      
+                            </div>
+                             <div class="col-md-3">
+                                <span ng-show="isNumberTelSms || isNumberTelLengthSms || isNumberTelZeroSms " style="color:red;">
+                                       ต้องเป็นตัวเลข 9-10หลัก และขึ้นต้นด้วย 0 
+                                </span>
                             </div>
                         </div>
                         <div class="form-group">
