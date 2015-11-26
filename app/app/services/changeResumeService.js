@@ -965,7 +965,7 @@
                     "proposition-code": "0019460"
                 }, {
                     "name": "RMV000000000215",
-                    "description": "iPhone5 MNP 1,000bt",
+                    "description": "iPhone5 MNP 1,000btxxxxxxxxxxxxxxxxxxxxx xx",
                     "soc": "81612",
                     "rc": 0.0,
                     "service-level": "C",

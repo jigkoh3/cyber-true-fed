@@ -374,7 +374,10 @@
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
                                 <p></p>
-                                <select class="form-control" ng-model="partnerCode" ng-change="onCheckInputForVerify(); selectedPromotion();" ng-disabled="!isCustomerProfile">
+                                <select class="form-control" 
+                                        ng-model="partnerCode" 
+                                        ng-change="onCheckInputForVerify();promotion='';propositions=[];  changePartnerCode(); " 
+                                        ng-disabled="!isCustomerProfile">
                                 <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}

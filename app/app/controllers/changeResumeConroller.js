@@ -603,7 +603,7 @@ smartApp.controller('ResumeController', function(
 
                             $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
-                            if($scope.data.customerProfile['lastname'] == undefined || $scope.data.customerProfile['lastname'] == null || $scope.data.customerProfile['lastname'] == ""){
+                            if ($scope.data.customerProfile['lastname'] == undefined || $scope.data.customerProfile['lastname'] == null || $scope.data.customerProfile['lastname'] == "") {
                                 $scope.newOwner.lastNameTH = $scope.data.customerProfile['firstname'];
                                 $scope.newOwner2.lastNameTH = $scope.data.customerProfile['firstname'];
                             }
@@ -722,7 +722,10 @@ smartApp.controller('ResumeController', function(
                         $('#divShowAuthorize').hide();
                     }, 1000);
                 }
-                if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length >= 1) {
+                if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length > 1) {
+                    $scope.partnerCode = "";
+                }
+                if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length == 1) {
                     $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
                 }
 
@@ -1903,9 +1906,7 @@ smartApp.controller('ResumeController', function(
 
         });
     };
-
-    $scope.promotion = "";
-    $scope.selectedPromotion = function() {
+    $scope.changePartnerCode = function(){
         $scope.pricePlan = {};
         $scope.onCheckInputForVerify();
         $scope.isValidate = false;
@@ -1918,8 +1919,44 @@ smartApp.controller('ResumeController', function(
 
         //var value = $('#selectProposition').val();
         //$scope.propositionList = $filter('filter')(valPricePlans, { "proposition-code": value });
+        //proposition
+        if ($scope.partnerCode) {
+            var propParam = {
+                'company-code': $scope.data.installedProducts["company-code"],
+                'customer-type': "I",
+                'propo-type': 'NEW',
+                'mobile-servicetype': "POSTPAID",
+                'partner-code': $scope.partnerCode,
+                'privilege': false
+                    //,'proposition': ''
 
-        $scope.callSalePricePlanList();
+            };
+            SystemService.showLoading();
+            resumeService.propositionCallback(propParam, function(resultProp) {
+                SystemService.hideLoading();
+                if (resultProp.status) {
+                    var displayMsg = utils.getObject(resultProp.data, 'display-messages.0');
+                    if (displayMsg) {
+                        SystemService.showAlert(displayMsg);
+                    }
+                    $scope.propositions = resultProp.data['response-data'];
+                    $scope.callSalePricePlanList();
+                }
+            });
+        }
+    };
+
+    $scope.promotion = "";
+    $scope.selectedPromotion = function() {
+        $scope.pricePlan = {};
+        $scope.onCheckInputForVerify();
+        $scope.isValidate = false;
+        $scope.specialOfferType = {
+            CUG: false,
+            FF: false,
+            SA: false,
+            POOL: false
+        };
     };
     $scope.getOfferDetail = function(soc) {
         $scope.clearSP()
