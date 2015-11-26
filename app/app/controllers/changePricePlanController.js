@@ -1911,6 +1911,7 @@ smartApp.controller('ChangePricePlanController', function(
         $scope.propositionList = $filter('filter')(valPricePlans, {
             "proposition-code": $scope.selectProposition
         });
+        
         console.log($scope.selectProposition, $scope.propositionList);
     };
 
@@ -1958,7 +1959,8 @@ smartApp.controller('ChangePricePlanController', function(
         closeWP();
         //$window.closed();
     };
-
+    $scope.propoCode = "null";
+    //$scope.onChangePropo = function
     $scope.onClearPricePlan = function() {
         paginationService.setCurrentPage('PPList', 1);
         //$('#ppfilter').val('');
@@ -1978,9 +1980,7 @@ smartApp.controller('ChangePricePlanController', function(
         //$scope.onCancelPOOLED();
         $scope.saveParamData = {};
     };
-    $scope.onCancelFF = function() {
-
-    };
+    $scope.onCancelFF = function() {};
     $scope.onCancelPOOLED = function() {};
     $scope.clearSP = function() {
         $scope.specialOfferType = {
