@@ -49,7 +49,7 @@
                                 "PRODUCT-STATUS-DESC": "Cancel",
                                 "CURRENT-ACCOUNT-STATUS": "Canceled",
                                 "PRODUCT-STATUS-DATE": "2015-09-14T23:59:59.000+07:00",
-                                "IS-NEW-ACCOUNT": "false",
+                                "IS-NEW-ACCOUNT": "true",
                                 "IS-NEW-SIM": "true",
                                 "CURRENT-SIM-STATUS": "",
                                 "REASON-CODE": "CREQ",

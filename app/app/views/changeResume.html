@@ -405,7 +405,10 @@
                             </div>
                             <div class="col-md-4">
                                 <p></p>
-                                <select class="form-control" ng-change="onCheckInputForVerify();selectedPromotion();" ng-disabled="false || !isCustomerProfile " ng-model="promotion">
+                                <select class="form-control" 
+                                        ng-change=" isVerify=false; selectedPromotion();" 
+                                        ng-disabled="false || !isCustomerProfile " 
+                                        ng-model="promotion">
                                     <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in propositions" value="{{item['proposition-code']}}">
                                         {{item["proposition-code"]}} : {{item["description"]}}
@@ -1119,10 +1122,21 @@
                             <div class="form-group" ng-hide="blah=='E'||blah=='P'" ng-form="ngsmss">
                                 <label class="col-md-5 control-label">SMS <span style="color:red;">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="text" id="txtBillPaymentSmss" name="smss" ng-model="billPayment.smss" class="form-control" required>
+                                    <input type="text" 
+                                            id="txtBillPaymentSmss" 
+                                            name="smss" 
+                                            ng-model="billPayment.smss" 
+                                            ng-mobile-number="billPaymentSMSS"
+                                            maxlength="10"
+                                            class="form-control" required>
                                     <!--<span class="error" style="color:red;" ng-show="ngsmss.smss.$error.required">
                                     Required.
                                 </span>-->
+                                </div>
+                                <div class="col-md-4"  style="margin-top:8px;">
+                                    <span ng-span-mobile-number="billPaymentSMSS" class="hide" style="color:red;">
+                                        ต้องเป็นตัวเลข 10หลัก และขึ้นต้นด้วย 0
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -1198,8 +1212,11 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>เบอร์มือถือ</label>
-                                    <input type="text" class="form-control telephoneZero" ng-model="customer['contact-mobile-number']" maxlength="10" ng-keyup="onInputTelZero2($event.keyCode); 
-                                onInputTel2($event.keyCode)" ng-blur="onBlurTel2()">
+                                    <input type="text" 
+                                            class="form-control telephoneZero" 
+                                            ng-model="customer['contact-mobile-number']" 
+                                            maxlength="10" 
+                                            ng-blur="onBlurTel2()">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -1224,7 +1241,10 @@
                         </span>
                             </div>
                             <div class="col-md-5 ">
-                                <span ng-show="isNumberTel2 || isNumberTelLength2 || isNumberTelZero2" style="color:red;">
+                                <!-- <span ng-show="isNumberTel2 || isNumberTelLength2 || isNumberTelZero2" style="color:red;">
+                            ต้องเป็นตัวเลข 10หลัก และขึ้นต้นด้วย 0
+                        </span> -->
+                        <span ng-span-mobile-number="txtcontactNonumber2" class="hide" style="color:red;">
                             ต้องเป็นตัวเลข 10หลัก และขึ้นต้นด้วย 0
                         </span>
                             </div>

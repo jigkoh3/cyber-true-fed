@@ -2464,7 +2464,7 @@ smartApp.controller('MigratePreToPostController', function(
                         "product-type": "PRICEPLAN",
                         "order-type": "CHANGE",
                         //"reason-code": $scope.selectReason.id,
-                        "reason-code": "MGP2P",
+                        "reason-code": "CREQ",
                         "user-memo": $scope.saveData.memo ? $scope.saveData.memo : "",
                         "address-list": {
                             "BILLING_ADDRESS": {
