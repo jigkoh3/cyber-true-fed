@@ -1102,7 +1102,7 @@ smartApp.controller('ResumeController', function(
 
 
                         // not call lastest is OA
-                        if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel') {
+                        if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true') {
 
                             resumeService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
                                 $scope.isLastestUser = true;
@@ -3463,23 +3463,23 @@ smartApp.controller('ResumeController', function(
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH)) {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
-        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && isNull($scope.mailAddress.postcode)) {
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true' && isNull($scope.mailAddress.postcode)) {
             showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
-        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && isNull($scope.mailAddress.province)) {
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true' && isNull($scope.mailAddress.province)) {
             showValidate("txtmailAddressprovince", ValidateMsgService.data.msgBillProvinceEmpty);
-        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && isNull($scope.mailAddress.amphur)) {
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true' && isNull($scope.mailAddress.amphur)) {
             showValidate("txtmailAddressamphur", ValidateMsgService.data.msgBillDistrictEmpty);
-        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && isNull($scope.mailAddress.district)) {
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true' && isNull($scope.mailAddress.district)) {
             showValidate("txtMaillAddressDistrict", ValidateMsgService.data.msgBillSubDistrictEmpty);
-        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && isNull($scope.mailAddress.homeNumber)) {
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true' && isNull($scope.mailAddress.homeNumber)) {
             showValidate("txtMailAdressHomeNumber", ValidateMsgService.data.msgBillHouseNoEmpty);
-        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && isNull($scope.mailAddress.moo)) {
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true' && isNull($scope.mailAddress.moo)) {
             showValidate("txtMailAddressMoo", ValidateMsgService.data.msgBillVillageNoEmpty);
-        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && isNull($scope.mailAddress.road)) {
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true' && isNull($scope.mailAddress.road)) {
             showValidate("txtMailAddressRoad", ValidateMsgService.data.msgBillRoadEmpty);
-        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && $scope.blah == 'E' && isNull($scope.billPayment.email)) {
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true' && $scope.blah == 'E' && isNull($scope.billPayment.email)) {
             showValidate("idBillPaymentEmail", ValidateMsgService.data.msgBillEmailEmpty);
-        } else if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Cancel' && $scope.blah == 'S' && isNull($scope.billPayment.smss)) {
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true' && $scope.blah == 'S' && isNull($scope.billPayment.smss)) {
             showValidate("txtBillPaymentSmss", ValidateMsgService.data.msgBillSmsNoEmpty);
         } else if ($scope.billPayment.preferedContace == 'FIX' && isNull($scope.fixPreferedContact)) {
             showValidate("fixPreferedContact", ValidateMsgService.data.msgFixPreferedContactEmpty);
