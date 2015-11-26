@@ -2523,7 +2523,7 @@ smartApp.controller('ResumeController', function(
 
         data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"] = data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
 
-        if ($scope.data.installedProducts['product-properties']['CURRENT-ACCOUNT-STATUS'] == 'Active') {
+        if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'false') {
             delete data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"];
             delete data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
         }
