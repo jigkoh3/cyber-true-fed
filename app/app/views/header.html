@@ -1,4 +1,7 @@
-﻿<div class="profile" ng-show="SubNo!='null'">
+﻿
+
+
+<div class="profile" ng-show="SubNo!='null'">
     <h5><span ng-hide="showDataDealer">{{data.header["producttype"]}}</span></h5>
     <h3 ng-hide="showDataDealer"><span ng-show="(Level == 'OU')">OU ID : {{data.priceplan["ouId"]}}</span></h3>
     <h3 ng-hide="showDataDealer"><span ng-hide="(Level == 'OU')">{{data.header["subscriberno"]}}</span></h3>
@@ -17,10 +20,8 @@
                    ng-keyup="onInputSubNo(); ($event.keyCode==13 && onInputSubNo_reset())" 
                    maxlength="10" />
         </div>
+        <div style="margin-top: 10px;">
+          <span style="color:red" class="hide" ng-span-number-only="isNumberSubNo">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
+        </div>
     </div>
-    <br />
-    <span style="color:red" class="hide" ng-span-number-only="isNumberSubNo">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
-    <!-- <span style="color:red" ng-show="isNumberSubNo">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span> -->
-    
 </div>
-<br />
