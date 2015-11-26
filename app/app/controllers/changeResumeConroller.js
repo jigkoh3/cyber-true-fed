@@ -1771,7 +1771,7 @@ smartApp.controller('ResumeController', function(
         $scope.saveSelectCUG = s;
         console.log($scope.saveSelectCUG);
         $scope.saveDataCUG = {
-            name: $scope.saveSelectCUG['group-name'],
+            name: $scope.saveSelectCUG['group-id']+' : '+$scope.saveSelectCUG['group-name'],
             id: $scope.saveSelectCUG['group-id']
         };
     };
