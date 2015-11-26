@@ -490,257 +490,257 @@ smartApp.controller('ResumeController', function(
 
     $scope.showDataDealer = false;
     $scope.onLoad = function() {
-        if (!$routeParams.subno) {
+        if ($scope.SubNo == 'null') {
             // $('#dataSubNo').val('');
             setTimeout(function() {
                 $('#dataSubNo').focus();
             }, 1500);
-        }
+        } else {
 
-        $('#loadingReadCard3').hide();
-        AuthenService.getAuthen(function(result) {
-            $scope.getAuthen = result;
-            if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
-                $scope.showDataDealer = true;
-                $scope.isNonePartner = false;
-            } else {
-                $scope.showDataDealer = false;
-            }
-
-            setTimeout(function() {
-                if ($scope.SubNo == 'null') {
-                    $('#dataSubNo').focus();
+            $('#loadingReadCard3').hide();
+            AuthenService.getAuthen(function(result) {
+                $scope.getAuthen = result;
+                if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
+                    $scope.showDataDealer = true;
+                    $scope.isNonePartner = false;
+                } else {
+                    $scope.showDataDealer = false;
                 }
-            }, 1100);
 
-            //call generate-order-id
-            SystemService.showLoading();
-            SystemService.getOrderId(result.channel, result.shopcode, function(resultData) {
-                localStorage.setItem('orderId', resultData.orderId);
-                $scope.TrxID = resultData.TrxID;
-                $scope.orderId = resultData.orderId;
-
-
-
-                //คำนำหน้า
-                SystemService.getMaster_list("CUST-TITLE-TYPE", function(result) {
-                    $scope.titleTypeListx = result;
-                    // console.log($scope.titleTypeListx);
-                });
-                //คำนำหน้า อื่นๆ
-                SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function(result) {
-                    $scope.titleOtherTypeList = result;
-                    //console.log($scope.titleOtherTypeList);
-                });
-                //ประเภทของบัตร
-                SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
-                    $scope.cardTypeOptions = result;
-                    //console.log($scope.cardTypeOptions);
-                });
-
-                //reason
-                ReasonService.list("1338", function(result) {
-                    // $scope.reasons = result;
-                    // $scope.reason = $scope.reasons[39];
-                    // $scope.selectReason = $scope.reasons[39];
-
-                    //solution for none fix index
-                    $scope.reasons = result;
-                    var myArray = result;
-                    var searchText = "CREQ",
-                        index = -1;
-                    for (var i = 0, len = myArray.length; i < len; i++) {
-                        if (myArray[i].id === searchText) {
-                            index = i;
-                            break;
-                        }
+                setTimeout(function() {
+                    if ($scope.SubNo == 'null') {
+                        $('#dataSubNo').focus();
                     }
+                }, 1100);
 
-                    console.log(index);
-
-                    $scope.reason = $scope.reasons[index];
-                    $scope.selectReason = $scope.reasons[index];
-                    //solution for none fix index
-                });
-
-                //เพศ
-                SystemService.getMaster_list("CUST-GENDER", function(result) {
-                    $scope.genderTypeList = result;
-                    //console.log($scope.genderTypeList);
-                });
-                //call getCUGId
-                ChangePricePlanService.getCUGList(function(result) {
-                    $scope.cugList = result.data["cug-list"];
-                    //alert($scope.cugList.length);
-                });
+                //call generate-order-id
+                SystemService.showLoading();
+                SystemService.getOrderId(result.channel, result.shopcode, function(resultData) {
+                    localStorage.setItem('orderId', resultData.orderId);
+                    $scope.TrxID = resultData.TrxID;
+                    $scope.orderId = resultData.orderId;
 
 
-                $scope.shopType = result.shopType;
-                $scope.id = $routeParams.id;
 
+                    //คำนำหน้า
+                    SystemService.getMaster_list("CUST-TITLE-TYPE", function(result) {
+                        $scope.titleTypeListx = result;
+                        // console.log($scope.titleTypeListx);
+                    });
+                    //คำนำหน้า อื่นๆ
+                    SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function(result) {
+                        $scope.titleOtherTypeList = result;
+                        //console.log($scope.titleOtherTypeList);
+                    });
+                    //ประเภทของบัตร
+                    SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
+                        $scope.cardTypeOptions = result;
+                        //console.log($scope.cardTypeOptions);
+                    });
 
-                if ($scope.SubNo != 'null') {
-                    resumeService.validateResumeCallback($scope.SubNo, function(result) {
-                        // setTimeout(function() {
-                        //     SystemService.hideLoading();
-                        // }, 2000);
-                        if (result.status) {
-                            $scope.data = result;
-                            console.log(result);
-                            console.log($scope.data.customerProfile['lastname']);
-                            $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
+                    //reason
+                    ReasonService.list("1338", function(result) {
+                        // $scope.reasons = result;
+                        // $scope.reason = $scope.reasons[39];
+                        // $scope.selectReason = $scope.reasons[39];
 
-                            $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
-                            $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
-                            $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];
-                            $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
-                            $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
-                            $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
-                            $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
-                            $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
-                            $scope.cardType.value = $scope.data.customerProfile['id-type'];
-                            $scope.activeDate = formatActiveDate($scope.data.installedProducts["product-properties"]['PRODUCT-STATUS-DATE']);
-
-                            $('#citizenID3').val($scope.data.customerProfile['id-number']);
-
-                            if ($scope.data.customerProfile['lastname'] == undefined || $scope.data.customerProfile['lastname'] == null || $scope.data.customerProfile['lastname'] == "") {
-                                $scope.newOwner.lastNameTH = $scope.data.customerProfile['firstname'];
-                                $scope.newOwner2.lastNameTH = $scope.data.customerProfile['firstname'];
+                        //solution for none fix index
+                        $scope.reasons = result;
+                        var myArray = result;
+                        var searchText = "CREQ",
+                            index = -1;
+                        for (var i = 0, len = myArray.length; i < len; i++) {
+                            if (myArray[i].id === searchText) {
+                                index = i;
+                                break;
                             }
-                            // $scope.onInputIdLastest3();
-                            $scope.onInputCitizenID3();
+                        }
 
-                            $scope.onChangeCardTypes();
+                        console.log(index);
 
-                            //get list dropdown status
-                            SystemService.getMaster_list($scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-CODE"], function(result) {
+                        $scope.reason = $scope.reasons[index];
+                        $scope.selectReason = $scope.reasons[index];
+                        //solution for none fix index
+                    });
+
+                    //เพศ
+                    SystemService.getMaster_list("CUST-GENDER", function(result) {
+                        $scope.genderTypeList = result;
+                        //console.log($scope.genderTypeList);
+                    });
+                    //call getCUGId
+                    ChangePricePlanService.getCUGList(function(result) {
+                        $scope.cugList = result.data["cug-list"];
+                        //alert($scope.cugList.length);
+                    });
+
+
+                    $scope.shopType = result.shopType;
+                    $scope.id = $routeParams.id;
+
+
+                    if ($scope.SubNo != 'null') {
+                        resumeService.validateResumeCallback($scope.SubNo, function(result) {
+                            // setTimeout(function() {
+                            //     SystemService.hideLoading();
+                            // }, 2000);
+                            if (result.status) {
+                                $scope.data = result;
                                 console.log(result);
-                                $scope.statusList = result;
-                                $scope.statusChange = result[0]['value'];
-                            });
+                                console.log($scope.data.customerProfile['lastname']);
+                                $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
 
-                            setTimeout(function() {
-                                // $('#divShowAuthorize').hide();
-                                var cutomerType = $scope.data.priceplan['account-category'];
-                                console.log(cutomerType);
-                                if (cutomerType == "P" || cutomerType == "I") {
+                                $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
+                                $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
+                                $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];
+                                $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
+                                $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
+                                $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
+                                $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
+                                $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
+                                $scope.cardType.value = $scope.data.customerProfile['id-type'];
+                                $scope.activeDate = formatActiveDate($scope.data.installedProducts["product-properties"]['PRODUCT-STATUS-DATE']);
 
-                                    $('#divShowAuthorize').hide();
+                                $('#citizenID3').val($scope.data.customerProfile['id-number']);
+
+                                if ($scope.data.customerProfile['lastname'] == undefined || $scope.data.customerProfile['lastname'] == null || $scope.data.customerProfile['lastname'] == "") {
+                                    $scope.newOwner.lastNameTH = $scope.data.customerProfile['firstname'];
+                                    $scope.newOwner2.lastNameTH = $scope.data.customerProfile['firstname'];
                                 }
-                                $('#cardType').val($scope.cardType.value);
-                                $('#prefixTH3').val($scope.data.customerProfile['title-code']);
-                                $scope.onselectPrefix();
-                                //$ngBootbox.customDialog($scope.customDialogOptions);
+                                // $scope.onInputIdLastest3();
+                                $scope.onInputCitizenID3();
 
-                            }, 1000);
+                                $scope.onChangeCardTypes();
 
-
-
-                            $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
-
-                            $scope.data2 = result;
-
-                            // console.log($scope.data.customerProfile['firstname']);
-
-                            if ($scope.shopType == '1') {
-                                $("#btn-fancy-ReadCard").fancybox({
-                                    'type': 'div',
-                                    width: '50%',
-                                    height: '95%',
-                                    openEffect: false,
-                                    closeEffect: false,
-                                    speedIn: 15000,
-                                    speedOut: 15000,
-                                    autoScale: false,
-                                    centerOnScroll: false, // and not 'true',
-                                    autoCenter: false, // and not 'true'
-                                    autoDimensions: 'false',
-                                    resize: 'Auto',
-                                    helpers: {
-                                        overlay: {
-                                            css: {
-                                                'background': 'transparent',
-                                                'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
-                                                'zoom': '1',
-                                                'background': 'rgba(42, 42, 42, 0.95)'
-                                            },
-                                            locked: true,
-                                            closeClick: false,
-                                        }
-
-                                    }
+                                //get list dropdown status
+                                SystemService.getMaster_list($scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-CODE"], function(result) {
+                                    console.log(result);
+                                    $scope.statusList = result;
+                                    $scope.statusChange = result[0]['value'];
                                 });
-                                $("#btn-fancy-ReadCardLastest").fancybox({
-                                    'type': 'div',
-                                    width: '50%',
-                                    height: '95%',
-                                    openEffect: false,
-                                    closeEffect: false,
-                                    speedIn: 15000,
-                                    speedOut: 15000,
-                                    autoScale: false,
-                                    centerOnScroll: false, // and not 'true',
-                                    autoCenter: false, // and not 'true'
-                                    autoDimensions: 'false',
-                                    resize: 'Auto',
-                                    helpers: {
-                                        overlay: {
-                                            css: {
-                                                'background': 'transparent',
-                                                'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
-                                                'zoom': '1',
-                                                'background': 'rgba(42, 42, 42, 0.95)'
-                                            },
-                                            locked: true,
-                                            closeClick: false,
-                                        }
-
-                                    }
-                                });
-
 
                                 setTimeout(function() {
-                                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                                    // $('#divShowAuthorize').hide();
+                                    var cutomerType = $scope.data.priceplan['account-category'];
+                                    console.log(cutomerType);
+                                    if (cutomerType == "P" || cutomerType == "I") {
+
+                                        $('#divShowAuthorize').hide();
+                                    }
+                                    $('#cardType').val($scope.cardType.value);
+                                    $('#prefixTH3').val($scope.data.customerProfile['title-code']);
+                                    $scope.onselectPrefix();
+                                    //$ngBootbox.customDialog($scope.customDialogOptions);
+
                                 }, 1000);
-                                $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
+
+
+
+                                $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
+
+                                $scope.data2 = result;
+
+                                // console.log($scope.data.customerProfile['firstname']);
+
+                                if ($scope.shopType == '1') {
+                                    $("#btn-fancy-ReadCard").fancybox({
+                                        'type': 'div',
+                                        width: '50%',
+                                        height: '95%',
+                                        openEffect: false,
+                                        closeEffect: false,
+                                        speedIn: 15000,
+                                        speedOut: 15000,
+                                        autoScale: false,
+                                        centerOnScroll: false, // and not 'true',
+                                        autoCenter: false, // and not 'true'
+                                        autoDimensions: 'false',
+                                        resize: 'Auto',
+                                        helpers: {
+                                            overlay: {
+                                                css: {
+                                                    'background': 'transparent',
+                                                    'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
+                                                    'zoom': '1',
+                                                    'background': 'rgba(42, 42, 42, 0.95)'
+                                                },
+                                                locked: true,
+                                                closeClick: false,
+                                            }
+
+                                        }
+                                    });
+                                    $("#btn-fancy-ReadCardLastest").fancybox({
+                                        'type': 'div',
+                                        width: '50%',
+                                        height: '95%',
+                                        openEffect: false,
+                                        closeEffect: false,
+                                        speedIn: 15000,
+                                        speedOut: 15000,
+                                        autoScale: false,
+                                        centerOnScroll: false, // and not 'true',
+                                        autoCenter: false, // and not 'true'
+                                        autoDimensions: 'false',
+                                        resize: 'Auto',
+                                        helpers: {
+                                            overlay: {
+                                                css: {
+                                                    'background': 'transparent',
+                                                    'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
+                                                    'zoom': '1',
+                                                    'background': 'rgba(42, 42, 42, 0.95)'
+                                                },
+                                                locked: true,
+                                                closeClick: false,
+                                            }
+
+                                        }
+                                    });
+
+
+                                    setTimeout(function() {
+                                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                                    }, 1000);
+                                    $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
+                                } else {
+                                    $scope.isCustomerProfile = true;
+                                }
+
+                                $scope.initModalReadCard();
+                                //check partner
+                                if (!$scope.isNonePartner && $scope.shopType == '1') {
+                                    //$scope.data = {};
+                                }
                             } else {
-                                $scope.isCustomerProfile = true;
+                                $scope.SubNo = "null";
                             }
-
-                            $scope.initModalReadCard();
-                            //check partner
-                            if (!$scope.isNonePartner && $scope.shopType == '1') {
-                                //$scope.data = {};
-                            }
-                        } else {
-                            $scope.SubNo = "null";
-                        }
-                    });
-                } else {
-                    SystemService.hideLoading();
-                    setTimeout(function() {
-                        $('#divShowAuthorize').hide();
-                    }, 1000);
-                }
-                if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length > 1) {
-                    $scope.partnerCode = "";
-                }
-                if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length == 1) {
-                    $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
-                }
+                        });
+                    } else {
+                        SystemService.hideLoading();
+                        setTimeout(function() {
+                            $('#divShowAuthorize').hide();
+                        }, 1000);
+                    }
+                    if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length == 1) {
+                        $scope.partnerCode = $scope.getAuthen["shopcodes"][0];
+                    } else {
+                        $scope.partnerCode = "";
+                    }
 
 
+
+
+                });
+
+
+                if ($scope.SubNo != "null") {
+                    $scope.callPropositionList();
+                }
 
 
             });
-
-
-            if ($scope.SubNo != "null") {
-                $scope.callPropositionList();
-            }
-
-
-        });
+        }
     };
     $scope.isDDDISS = false;
     $scope.onChangeCardTypes = function() {
@@ -870,7 +870,7 @@ smartApp.controller('ResumeController', function(
     $scope.isEnterPP = false;
     $scope.openPricePlanDialog = function() {
         $scope.isEnterPP = false;
-        if ($scope.propositionList) {
+        if ($scope.isLoadPricePlan) {
 
             var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
             console.log(list.length, $scope.pricePlanFilter.value);
@@ -932,8 +932,9 @@ smartApp.controller('ResumeController', function(
                 "&partner-code=" + $scope.partnerCode +
                 "&privilege=false";
 
-
+            SystemService.showLoading();
             resumeService.salePriceplanCallback(target, function(resultGetPriceplan) {
+                SystemService.hideLoading();
                 if (resultGetPriceplan.status) {
                     console.log(target);
                     $scope.propositionList = [];
@@ -1728,7 +1729,8 @@ smartApp.controller('ResumeController', function(
         //$('#ppfilter2').val("");
         $scope.pricePlanFilter.value = "";
         console.log($scope.pricePlanFilter.value);
-        $scope.onClearPricePlan();
+        //$scope.onClearPricePlan();
+        $scope.clearSP();
     };
 
 
@@ -1771,7 +1773,7 @@ smartApp.controller('ResumeController', function(
         $scope.saveSelectCUG = s;
         console.log($scope.saveSelectCUG);
         $scope.saveDataCUG = {
-            name: $scope.saveSelectCUG['group-name'],
+            name: $scope.saveSelectCUG['group-id'] +' : '+ $scope.saveSelectCUG['group-name'],
             id: $scope.saveSelectCUG['group-id']
         };
     };
@@ -1906,7 +1908,13 @@ smartApp.controller('ResumeController', function(
 
         });
     };
-    $scope.changePartnerCode = function(){
+
+    $scope.resetSimSerial = function(){
+        //reset sim
+        $scope.simSerial = ""; 
+        $('#simSerial').prop('disabled', false);
+    };
+    $scope.changePartnerCode = function() {
         $scope.pricePlan = {};
         $scope.onCheckInputForVerify();
         $scope.isValidate = false;
@@ -1916,6 +1924,7 @@ smartApp.controller('ResumeController', function(
             SA: false,
             POOL: false
         };
+        $scope.resetSimSerial();
 
         //var value = $('#selectProposition').val();
         //$scope.propositionList = $filter('filter')(valPricePlans, { "proposition-code": value });
@@ -1940,7 +1949,7 @@ smartApp.controller('ResumeController', function(
                         SystemService.showAlert(displayMsg);
                     }
                     $scope.propositions = resultProp.data['response-data'];
-                    $scope.callSalePricePlanList();
+                    //$scope.callSalePricePlanList();
                 }
             });
         }
@@ -1949,7 +1958,8 @@ smartApp.controller('ResumeController', function(
     $scope.promotion = "";
     $scope.selectedPromotion = function() {
         $scope.pricePlan = {};
-        $scope.onCheckInputForVerify();
+        $scope.isLoadPricePlan = false;
+        
         $scope.isValidate = false;
         $scope.specialOfferType = {
             CUG: false,
@@ -1957,6 +1967,8 @@ smartApp.controller('ResumeController', function(
             SA: false,
             POOL: false
         };
+        $scope.onCheckInputForVerify();
+        //$scope.callSalePricePlanList();
     };
     $scope.getOfferDetail = function(soc) {
         $scope.clearSP()
@@ -2940,6 +2952,9 @@ smartApp.controller('ResumeController', function(
     };
 
     $scope.onVerify = function() {
+
+        $scope.resetSimSerial();
+
         SystemService.showLoading();
         var checkMaxAllow = function(result) {
             SystemService.hideLoading();
