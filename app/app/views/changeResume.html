@@ -406,11 +406,15 @@
                             <div class="col-md-4">
                                 <p></p>
                                 <select class="form-control" 
+                                        onchange="$(this).attr('title',$('#idSelectProPo option:selected').text());" 
                                         ng-change=" isVerify=false; selectedPromotion();" 
                                         ng-disabled="false || !isCustomerProfile " 
+                                        id="idSelectProPo"
                                         ng-model="promotion">
                                     <option value="">-- กรุณาเลือก --</option>
-                                    <option ng-repeat="item in propositions" value="{{item['proposition-code']}}">
+                                    <option ng-repeat="item in propositions" 
+                                            title="{{item['proposition-code']}} : {{item['description']}}" 
+                                            value="{{item['proposition-code']}}">
                                         {{item["proposition-code"]}} : {{item["description"]}}
                                     </option>
                                 </select>
