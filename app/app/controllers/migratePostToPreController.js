@@ -108,7 +108,7 @@
         }
     };
 
-    $scope.funcEvent = function(){
+    $scope.funcEvent = function() {
         $('#modalnewpriceplan').click();
     };
 
@@ -797,7 +797,7 @@
                 $scope.cardExpire = true;
 
             }
-        }else{
+        } else {
             $scope.cardExpire = false;
         }
 
@@ -1246,7 +1246,19 @@
             $scope.showDataDealer = false;
         }
     };
-
+   /* $scope.titleOther = "";
+    $scope.titleOtherTypeList = [];*/
+    $scope.onselectPrefix = function() {
+        console.log($scope.data.customerProfileNew['title-code']);
+        
+        if ($scope.data.customerProfileNew['title-code'] == 'MR.' || $scope.data.customerProfileNew['title-code'] == 'T1') {
+            $scope.data.customerProfileNew['gender'] = "MALE";
+            
+        } else {
+            $scope.data.customerProfileNew['gender'] = "FEMALE";
+           
+        }
+    };
     $scope.checkPrefixNull = function() {
         if ($scope.data.customerProfile['title-code']) {
             $scope.isPrefixNull = false;

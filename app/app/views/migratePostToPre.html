@@ -53,30 +53,28 @@
                         </div>
                     </div>
                     <div class="row">
-                    <div  ng-class="data.customerProfileNew['title-code'] =='T5'?'col-md-4':'col-md-2'">
-                        <div  ng-class="data.customerProfileNew['title-code'] =='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
-                            <div class="form-group">
-                                <label>คำนำหน้า<span style="color:red;">*</span></label>
-                                <div id="placeholders">
-                                    <!-- Case Dealer -->
-                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
-                                    <!-- Case Normal -->
-                                    <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="data.customerProfileNew['title-code']" id="prefix3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isPrefixNull)">
-                                        <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
-                                    </select>
+                        <div ng-class="data.customerProfileNew['title-code'] =='T5'?'col-md-4':'col-md-2'">
+                            <div ng-class="data.customerProfileNew['title-code'] =='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
+                                <div class="form-group">
+                                    <label>คำนำหน้า<span style="color:red;">*</span></label>
+                                    <div id="placeholders">
+                                        <!-- Case Dealer -->
+                                        <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                        <!-- Case Normal -->
+                                        <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="data.customerProfileNew['title-code']" id="prefix3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isPrefixNull)" ng-change="onselectPrefix()">
+                                            <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-7" ng-show="data.customerProfileNew['title-code'] =='T5'" style="padding: 0;">
-                            <label>
-                                <p></p>
-                            </label>
-                            <select class="form-control" ng-change="onChangeTitleOther()" ng-show="data.customerProfileNew['title-code'] =='T5'" ng-model="data.customerProfileNew['title']"
-                            onchange="$(this).attr('title',$('#title5 option:selected').text());" id="title5"
-                            >
-                                <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
-                            </select>
-                        </div>
+                            <div class="col-xs-7" ng-show="data.customerProfileNew['title-code'] =='T5'" style="padding: 0;">
+                                <label>
+                                    <p></p>
+                                </label>
+                                <select class="form-control" ng-change="onChangeTitleOther()" ng-show="data.customerProfileNew['title-code'] =='T5'" ng-model="data.customerProfileNew['title']" onchange="$(this).attr('title',$('#title5 option:selected').text());" id="title5">
+                                    <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
@@ -98,20 +96,20 @@
                         </div>
                     </div>
                     <div class="row">
-                    <div ng-class="data.customerProfileNew['title-code'] =='T5'?'col-md-4':'col-md-2'">
-                        <div ng-class="data.customerProfileNew['title-code'] =='T5'?'col-xs-5':'col-xs-12'"style="padding-left:0px;">
-                            <div class="form-group">
-                                <label>เพศ <span style="color:red;">*</span></label>
-                                <div id="placeholders">
-                                    <!-- Case Dealer -->
-                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
-                                    <!-- Case Normal -->
-                                    <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'"  ng-model="data.customerProfileNew['gender']" id="sex3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isPrefixNull)">
-                                        <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
-                                    </select>
+                        <div ng-class="data.customerProfileNew['title-code'] =='T5'?'col-md-4':'col-md-2'">
+                            <div ng-class="data.customerProfileNew['title-code'] =='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
+                                <div class="form-group">
+                                    <label>เพศ <span style="color:red;">*</span></label>
+                                    <div id="placeholders">
+                                        <!-- Case Dealer -->
+                                        <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                        <!-- Case Normal -->
+                                        <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="data.customerProfileNew['gender']" id="sex3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isPrefixNull)">
+                                            <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
@@ -196,7 +194,7 @@
                                     <label> โปรโมชั่น<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="preCusPricePlan"  value="{{selectedPricePlan.name}}{{selectedPricePlan.description?' : ':null}}{{selectedPricePlan.description}}" readonly class="form-control">
+                                    <input type="text" id="preCusPricePlan" value="{{selectedPricePlan.name}}{{selectedPricePlan.description?' : ':null}}{{selectedPricePlan.description}}" readonly class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <input type="text" id="txtPricePlanFilter" ng-keyup="$event.keyCode == 13 && funcEvent()" ng-model="pricePlanFilter" placeholder="ค้นหา" class="form-control" ng-disabled="isSecondAuhenFailed">
@@ -518,7 +516,7 @@
                 <h4></h4>
                 <!-- end authorize -->
                 <div ng-include="template.currentpriceplan" scope="" onload=""></div>
-            </div>
+            
             <!--<div ng-include="template.reasonmemo" scope="" onload=""></div>-->
             <h4>บันทึกและเหตุผล</h4>
             <div class="well">
@@ -533,6 +531,7 @@
                             </select> -->
                             <select class=" form-control">
                                 <option>CREQ: Customer request</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -542,6 +541,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
             <!--<div ng-include="template.effectivepriceplan" scope="" onload=""></div>-->
             <div id="modal-pdf" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
