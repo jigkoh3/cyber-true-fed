@@ -936,6 +936,20 @@ smartApp.controller('ResumeController', function(
             resumeService.salePriceplanCallback(target, function(resultGetPriceplan) {
                 SystemService.hideLoading();
                 if (resultGetPriceplan.status) {
+                    if (SystemService.checkObj(resultGetPriceplan.data, ["display-messages"]) && resultGetPriceplan.data["display-messages"].length > 0) {
+                        //error
+                        setTimeout(function() {
+                            SystemService.showAlert({
+                                "message": resultGetPriceplan.data["display-messages"][0]["message"],
+                                "message-code": resultGetPriceplan.data["display-messages"][0]["message-code"],
+                                "message-type": "WARNING",
+                                "en-message": resultGetPriceplan.data["display-messages"][0]["en-message"],
+                                "th-message": resultGetPriceplan.data["display-messages"][0]["th-message"],
+                                "technical-message": resultGetPriceplan.data["display-messages"][0]["technical-message"]
+                            });
+                            //$ngBootbox.customDialog($scope.customDialogOptions);
+                        }, 1000);
+                    }
                     console.log(target);
                     $scope.propositionList = [];
                     valPricePlans = [];
@@ -1773,7 +1787,7 @@ smartApp.controller('ResumeController', function(
         $scope.saveSelectCUG = s;
         console.log($scope.saveSelectCUG);
         $scope.saveDataCUG = {
-            name: $scope.saveSelectCUG['group-id'] +' : '+ $scope.saveSelectCUG['group-name'],
+            name: $scope.saveSelectCUG['group-id'] + ' : ' + $scope.saveSelectCUG['group-name'],
             id: $scope.saveSelectCUG['group-id']
         };
     };
@@ -1909,9 +1923,9 @@ smartApp.controller('ResumeController', function(
         });
     };
 
-    $scope.resetSimSerial = function(){
+    $scope.resetSimSerial = function() {
         //reset sim
-        $scope.simSerial = ""; 
+        $scope.simSerial = "";
         $('#simSerial').prop('disabled', false);
     };
     $scope.changePartnerCode = function() {
@@ -1959,7 +1973,7 @@ smartApp.controller('ResumeController', function(
     $scope.selectedPromotion = function() {
         $scope.pricePlan = {};
         $scope.isLoadPricePlan = false;
-        
+
         $scope.isValidate = false;
         $scope.specialOfferType = {
             CUG: false,

@@ -871,6 +871,20 @@ smartApp.controller('changeOwnershipController', function(
 
             changeOwnershipService.salePriceplanCallback(target, function(resultGetPriceplan) {
                 if (resultGetPriceplan.status) {
+                    if (SystemService.checkObj(resultGetPriceplan.data, ["display-messages"]) && resultGetPriceplan.data["display-messages"].length > 0) {
+                        //error
+                        setTimeout(function() {
+                            SystemService.showAlert({
+                                "message": resultGetPriceplan.data["display-messages"][0]["message"],
+                                "message-code": resultGetPriceplan.data["display-messages"][0]["message-code"],
+                                "message-type": "WARNING",
+                                "en-message": resultGetPriceplan.data["display-messages"][0]["en-message"],
+                                "th-message": resultGetPriceplan.data["display-messages"][0]["th-message"],
+                                "technical-message": resultGetPriceplan.data["display-messages"][0]["technical-message"]
+                            });
+                            //$ngBootbox.customDialog($scope.customDialogOptions);
+                        }, 1000);
+                    }
                     console.log(target);
                     $scope.propositionList = [];
                     valPricePlans = [];
@@ -1679,7 +1693,7 @@ smartApp.controller('changeOwnershipController', function(
         //$('#ppfilter2').val("");
         $scope.pricePlanFilter.value = "";
         console.log($scope.pricePlanFilter.value);
-       // $scope.onClearPricePlan();
+        // $scope.onClearPricePlan();
     };
 
 
@@ -1722,7 +1736,7 @@ smartApp.controller('changeOwnershipController', function(
         $scope.saveSelectCUG = s;
         console.log($scope.saveSelectCUG);
         $scope.saveDataCUG = {
-            name: $scope.saveSelectCUG['group-id']+' : '+$scope.saveSelectCUG['group-name'],
+            name: $scope.saveSelectCUG['group-id'] + ' : ' + $scope.saveSelectCUG['group-name'],
             id: $scope.saveSelectCUG['group-id']
         };
     };
@@ -3441,7 +3455,7 @@ smartApp.controller('changeOwnershipController', function(
         $scope.isNumberTelSms = false;
         $scope.isNumberTelZeroSms = false;
         if ($scope.billPayment.smss) {
-            if ($scope.billPayment.smss.length == 9 || $scope.billPayment.smss.length == 10 ) {
+            if ($scope.billPayment.smss.length == 9 || $scope.billPayment.smss.length == 10) {
                 $scope.isNumberTelLengthSms = false;
                 $scope.billPayment.smss = '';
             } else {
@@ -3464,8 +3478,8 @@ smartApp.controller('changeOwnershipController', function(
     };
 
     $scope.ischkNumber = false;
-    $scope.onChkNumber = function(){
-        if($scope.billPayment.smss.charAt(0) != '0'){
+    $scope.onChkNumber = function() {
+        if ($scope.billPayment.smss.charAt(0) != '0') {
             $scope.ischkNumber = true;
             $scope.billPayment.smss = "";
         } else {
