@@ -273,14 +273,15 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2">
+                        <div  ng-class="newOwner.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                            <div  ng-class="newOwner.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
                                 <div class="form-group">
                                     <label>คำนำหน้า<span style="color:red;">*</span></label>
                                     <div id="placeholders">
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                        <select name="prefixTHs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.prefixTH" style="width:100px;" required>
+                                        <select name="prefixTHs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.prefixTH" required>
                                             <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -289,14 +290,15 @@
                                     </span>-->
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-xs-7" ng-show="newOwner.prefixTH=='T5'" style="padding: 0;">
                                 <label>
                                     <p></p>
                                 </label>
-                                <select class="form-control" id="titleOther" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" style="width:100px;" ng-change="onChangeTitleOther()" 
-                                ng-disabled="!isCustomerProfile">
-                                    <option ng-repeat="option in titleOtherTypeList" value="{{option.description}}">{{option["description"]}}</option>
+                                <select class="form-control" id="titleOther" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" ng-change="onChangeTitleOther()" 
+                                ng-disabled="!isCustomerProfile" onchange="$(this).attr('title',$('#titleOther option:selected').text());" >
+                                    <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.description}}">{{option["description"]}}</option>
                                 </select>
+                            </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -310,6 +312,7 @@
                                     </span>-->
                                 </div>
                             </div>
+                            
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>นามสกุล<span style="color:red;">*</span></label>
@@ -324,14 +327,15 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2">
+                        <div ng-class="newOwner.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                            <div ng-class="newOwner.prefixTH=='T5'?'col-xs-5':'col-xs-12'"style="padding-left:0px;">
                                 <div class="form-group">
                                     <label>เพศ<span style="color:red;">*</span></label>
                                     <div id="placeholders">
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                        <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.sex" style="width:100px;" required>
+                                        <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.sex"  required>
                                             <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -339,6 +343,7 @@
                                         Required.
                                     </span>-->
                                 </div>
+                            </div>
                             </div>
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerBirthday" class="form-group has-feedback">
@@ -646,12 +651,13 @@
                         </div>
                         <div ng-show="(customerType=='N') || (businessType=='P')">
                             <div class="row">
-                                <div class="col-md-2">
+                            <div  ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                                <div  ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
                                     <div class="form-group" ng-form="titlename">
                                         <label>คำนำหน้า<span style="color:red;">*</span></label>
                                         <div id="placeholders">
-                                            <select name="prefixsThs" class="form-control" id="titleRegisterd" ng-change="onselectPrefix2()" ng-model="newOwner2.prefixTH" style="width:100px;" required>
-                                                <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
+                                            <select name="prefixsThs" class="form-control" id="titleRegisterd" ng-change="onselectPrefix2()" ng-model="newOwner2.prefixTH" required>
+                                                <option ng-repeat="option in titleTypeListx"  value="{{option.value}}">{{option["th-description"]}}</option>
                                             </select>
                                         </div>
                                         <!--<span class="error" style="color:red;" ng-show="titlename.prefixsThs.$error.required">
@@ -659,13 +665,14 @@
                         </span>-->
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-xs-7" ng-show="newOwner2.prefixTH=='T5'" style="padding: 0;">
                                     <label>
                                         <p></p>
                                     </label>
-                                    <select class="form-control" id="titleOtherRegisterd" ng-change = "onChangeTitleOther2()" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" style="width:100px;">
-                                        <option ng-repeat="option in titleOtherTypeList" value="{{option.description}}">{{option["th-description"]}}</option>
+                                    <select class="form-control" id="titleOtherRegisterd" ng-change = "onChangeTitleOther2()" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
+                                        <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.description}}">{{option["th-description"]}}</option>
                                     </select>
+                                </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group" ng-form="firstname">
@@ -687,11 +694,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">
+                            <div ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                                <div ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'"style="padding-left:0px;">
                                     <div class="form-group">
                                         <label>เพศ<span style="color:red;">*</span></label>
                                         <div id="placeholders">
-                                            <select name="sexs2" class="form-control" id="sex32" ng-model="newOwner2.sex" style="width:100px;" required>
+                                            <select name="sexs2" class="form-control" id="sex32" ng-model="newOwner2.sex"  required>
                                                 <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                             </select>
                                         </div>
@@ -699,6 +707,7 @@
                             Required.
                         </span>-->
                                     </div>
+                                </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">

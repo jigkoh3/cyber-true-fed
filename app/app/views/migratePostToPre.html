@@ -53,7 +53,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2">
+                    <div  ng-class="data.customerProfileNew['title-code'] =='T5'?'col-md-4':'col-md-2'">
+                        <div  ng-class="data.customerProfileNew['title-code'] =='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
                             <div class="form-group">
                                 <label>คำนำหน้า<span style="color:red;">*</span></label>
                                 <div id="placeholders">
@@ -66,13 +67,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-xs-7" ng-show="data.customerProfileNew['title-code'] =='T5'" style="padding: 0;">
                             <label>
                                 <p></p>
                             </label>
-                            <select class="form-control" ng-change="onChangeTitleOther()" ng-show="data.customerProfileNew['title-code'] =='T5'" ng-model="data.customerProfileNew['title']" style="width:100px;">
-                                <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                            <select class="form-control" ng-change="onChangeTitleOther()" ng-show="data.customerProfileNew['title-code'] =='T5'" ng-model="data.customerProfileNew['title']"
+                            onchange="$(this).attr('title',$('#title5 option:selected').text());" id="title5"
+                            >
+                                <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
                             </select>
+                        </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
@@ -94,18 +98,20 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2">
+                    <div ng-class="data.customerProfileNew['title-code'] =='T5'?'col-md-4':'col-md-2'">
+                        <div ng-class="data.customerProfileNew['title-code'] =='T5'?'col-xs-5':'col-xs-12'"style="padding-left:0px;">
                             <div class="form-group">
                                 <label>เพศ <span style="color:red;">*</span></label>
                                 <div id="placeholders">
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                    <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" style="width:100px;" ng-model="data.customerProfileNew['gender']" id="sex3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isPrefixNull)">
+                                    <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'"  ng-model="data.customerProfileNew['gender']" id="sex3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isPrefixNull)">
                                         <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
                             </div>
+                        </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
