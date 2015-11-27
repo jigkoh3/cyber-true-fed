@@ -2573,8 +2573,10 @@ smartApp.controller('ResumeController', function(
         data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"] = data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
 
         if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'false') {
-            delete data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"];
-            delete data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
+            // delete data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"];
+            // delete data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
+            delete data['order']["customer"]["address-list"];
+            delete data['order']["order-items"][0]["address-list"];
         }
         if ($scope.customerStatusN == 'O') {
             data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];

@@ -319,8 +319,8 @@
                                     <label>
                                         <p></p>
                                     </label>
-                                    <select class="form-control" ng-change="onChangeTitleOther()" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" ng-disabled="!isLastestUser" id="title5">
-                                        <option ng-repeat="option in titleOtherTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                                    <select class="form-control" title="{{titleOther}}" ng-change="onChangeTitleOther()" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" ng-disabled="!isLastestUser" id="title5">
+                                        <option ng-repeat="option in titleOtherTypeList"  title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
                             </div>
