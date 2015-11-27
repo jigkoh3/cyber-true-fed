@@ -296,7 +296,7 @@
                                 </label>
                                 <select class="form-control" id="titleOther" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" ng-change="onChangeTitleOther()" 
                                 ng-disabled="!isCustomerProfile" onchange="$(this).attr('title',$('#titleOther option:selected').text());" >
-                                    <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.description}}">{{option["description"]}}</option>
+                                    <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["description"]}}</option>
                                 </select>
                             </div>
                             </div>
@@ -670,7 +670,7 @@
                                         <p></p>
                                     </label>
                                     <select class="form-control" id="titleOtherRegisterd" ng-change = "onChangeTitleOther2()" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
-                                        <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.description}}">{{option["th-description"]}}</option>
+                                        <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
                                     </select>
                                 </div>
                                 </div>

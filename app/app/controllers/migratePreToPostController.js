@@ -1721,6 +1721,7 @@ smartApp.controller('MigratePreToPostController', function(
     };
     $scope.onChangeTitleOther = function() {
         console.log($scope.titleOther);
+        console.log($scope.titleOtherTypeList);
         var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
             value: $scope.titleOther
         });
