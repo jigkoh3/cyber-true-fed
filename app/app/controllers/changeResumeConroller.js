@@ -3546,8 +3546,10 @@ smartApp.controller('ResumeController', function(
                 var displayMsg = utils.getObject(result.data, 'display-messages.0');
 
                 if (displayMsg && displayMsg['message-type']) {
-                    $scope.simSerial = "";
+                    //$scope.simSerial = "";
                     $('#simSerial').prop('disabled', false);
+                    //$('#simSerial').focus();
+                    idFocus = "simSerial";
                     SystemService.showAlert({
                         "message": result.data["display-messages"][0]["message"],
                         "message-code": result.data["display-messages"][0]["message-code"],

@@ -290,7 +290,7 @@
             $timeout(function() {
                 cb({
                     status: true,
-                    data: data,
+                    data: data2,
                     error: '',
                     msgErr: ''
                 });
