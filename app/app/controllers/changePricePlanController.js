@@ -42,7 +42,7 @@ smartApp.controller('ChangePricePlanController', function(
         //$ngBootbox.customDialog($scope.customDialogOptions);
     };
     $scope.filterAndOpen = function() {
-        var list = $filter('filter')(valPricePlans, $scope.pricePlanFilter.value);
+        var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
         console.log(list.length, $scope.pricePlanFilter.value);
         if (list.length == 1) {
             if ($scope.firstSearch == false) {
@@ -637,9 +637,7 @@ smartApp.controller('ChangePricePlanController', function(
                     makeDataPriceplan(resultGetPriceplan.data["response-data"]["priceplans"], "", "");
                 }
 
-                if ($scope.pricePlanFilter.value) {
-                    $('#modalnewpriceplan').click();
-                }
+                
                 $scope.promotion = "";
                 //$scope.selectedPromotion();
                 //$('#modalnewpriceplan').click();
@@ -651,7 +649,11 @@ smartApp.controller('ChangePricePlanController', function(
                 }else{
                     $('#spanMsgNotFound').addClass('hide');
                 }
-                
+
+                // if ($scope.pricePlanFilter.value) {
+                //     $('#modalnewpriceplan').click();
+                // }
+                $scope.filterAndOpen();
 
 
             } else {
