@@ -1873,14 +1873,14 @@ smartApp.controller('ResumeController', function(
             var value = "";
             if (capmax == "0") {
                 //value = "0";
-                value = "null";
+                value = "-2";
             } else if (capmax == "-2") {
                 //value = "-2";
-                value = "null";
+                value = "-2";
             } else if (capmax == "") {
                 value = "hide";
             } else {
-                value = "null";
+                value = "-2";
             }
             return value;
         };
@@ -1888,10 +1888,10 @@ smartApp.controller('ResumeController', function(
             var value = "";
             if (capmax == "0") {
                 //value = "0";
-                value = "";
+                value = "-2";
             } else if (capmax == "-2") {
                 //value = "-2";
-                value = "";
+                value = "-2";
             } else if (capmax == "") {
                 value = "hide";
             } else {
@@ -3461,6 +3461,8 @@ smartApp.controller('ResumeController', function(
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
         } else if ($scope.data.installedProducts['product-properties']['IS-NEW-SIM'] == 'true' && isNull($scope.simSerial)) {
             showValidate("simSerial", ValidateMsgService.data.msgSimSerialEmpty);
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-SIM'] == 'true' && $scope.printAble == false){
+            showValidate("simSerial", ValidateMsgService.data.msgSimSerialEmpty);
         } else if (errorCapmax != "") {
             showValidate(errorCapmaxId, errorCapmaxMsg);
         } else if (errorCUG) {
@@ -3527,6 +3529,7 @@ smartApp.controller('ResumeController', function(
         return resourceStatus === 'AVAILABLE' ? true : false;
     };
 
+    $scope.printAble = false;
     $scope.onInputSIMSerial = function() {
         if ($scope.simSerial.length === $scope.simSerialLength) {
             var data = {
@@ -3567,25 +3570,27 @@ smartApp.controller('ResumeController', function(
 
                 if (result.data) {
                     var simDetails = utils.getObject(result.data, 'response-data.sim-detail');
-                    $scope.data.simDetails = simDetails;
+                    if (simDetails) {
+                        $scope.data.simDetails = simDetails;
 
-                    if (
-                        // TODO: Validate (See Page 10 - NO 6)
-                        // TODO: Validate (See Page 10 - NO 7)
-                        validateSIMType(simDetails['sim-type']) &&
-                        validateResourceStatus(simDetails['resource-status'])
-                        // TODO: Validate (See Page 10 - NO 10)
-                        // TODO: Validate (See Page 10 - NO 11)
-                        // TODO: Validate (See Page 10 - NO 12)
-                    ) {
-                        $scope.printAble = true;
+                        if (
+                            // TODO: Validate (See Page 10 - NO 6)
+                            // TODO: Validate (See Page 10 - NO 7)
+                            validateSIMType(simDetails['sim-type']) &&
+                            validateResourceStatus(simDetails['resource-status'])
+                            // TODO: Validate (See Page 10 - NO 10)
+                            // TODO: Validate (See Page 10 - NO 11)
+                            // TODO: Validate (See Page 10 - NO 12)
+                        ) {
+                            $scope.printAble = true;
 
-                        if ($scope.shopType === '1') {
-                            //$scope.openPDFDialog();
+                            if ($scope.shopType === '1') {
+                                //$scope.openPDFDialog();
+                            }
+                        } else {
+                            alert('หมายเลขซิมการ์ดใหม่ ไม่ถูกต้อง'); // ปรับ alert message
+
                         }
-                    } else {
-                        alert('หมายเลขซิมการ์ดใหม่ ไม่ถูกต้อง'); // ปรับ alert message
-
                     }
                 }
             });

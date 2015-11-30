@@ -15,8 +15,8 @@
                                     ng-init="saveParamData.Volume=parameter.Volume"
                                     ng-model="parameter.Volume"
                                     ng-change="saveParamData.Volume=parameter.Volume">
-                                <option value="null">-- กรุณาเลือก --</option>
-                                <option value="-2">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
                                 <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
                                 <option value="0">Not Allow</option>
 
@@ -55,7 +55,7 @@
                             <select class="form-control"
                                     ng-options="item.id as item.value for item in capMaxParameterList['volumeCapMaxUOMCombo']"
                                     ng-model="capMaxParameterList['volume-capmax-uom']"
-                                    ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2'"></select>
+                                    ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2' || parameter.Volume=='-1'"></select>
 
                         </div>
 
@@ -71,8 +71,8 @@
                                     ng-init="saveParamData.Monetary=parameter.Monetary"
                                     ng-model="parameter.Monetary"
                                     ng-change="saveParamData.Monetary=parameter.Monetary">
-                                <option value="null">-- กรุณาเลือก --</option>
-                                <option value="-2">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
                                 <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
                                 <option value="0">Not Allow</option>
 
@@ -120,8 +120,8 @@
                                     ng-init="saveParamData.Occurrence=parameter.Occurrence"
                                     ng-model="parameter.Occurrence"
                                     ng-change="saveParamData.Occurrence=parameter.Occurrence">
-                                <option value="null">-- กรุณาเลือก --</option>
-                                <option value="-2">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
                                 <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
                                 <option value="0">Not Allow</option>
 
@@ -169,8 +169,8 @@
                                     ng-init="saveParamData.Duration=parameter.Duration"
                                     ng-model="parameter.Duration"
                                     ng-change="saveParamData.Duration=parameter.Duration">
-                                <option value="null">-- กรุณาเลือก --</option>
-                                <option value="-2">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
                                 <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
                                 <option value="0">Not Allow</option>
 
@@ -206,7 +206,7 @@
                             <select class="form-control"
                                     ng-options="item.id as item.value for item in capMaxParameterList['durationCapMaxUOMCombo']"
                                     ng-model="capMaxParameterList['duration-capmax-uom']"
-                                    ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'"></select>
+                                    ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'  || parameter.Duration=='-1'"></select>
                         </div>
 
                     </div>

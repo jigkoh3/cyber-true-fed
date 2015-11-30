@@ -1999,14 +1999,14 @@ smartApp.controller('MigratePreToPostController', function(
             var value = "";
             if (capmax == "0") {
                 //value = "0";
-                value = "null";
+                value = "-2";
             } else if (capmax == "-2") {
                 //value = "-2";
-                value = "null";
+                value = "-2";
             } else if (capmax == "") {
                 value = "hide";
             } else {
-                value = "null";
+                value = "-2";
             }
             return value;
         };
@@ -2014,10 +2014,10 @@ smartApp.controller('MigratePreToPostController', function(
             var value = "";
             if (capmax == "0") {
                 //value = "0";
-                value = "";
+                value = "-2";
             } else if (capmax == "-2") {
                 //value = "-2";
-                value = "";
+                value = "-2";
             } else if (capmax == "") {
                 value = "hide";
             } else {
