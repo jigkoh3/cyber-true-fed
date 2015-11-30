@@ -373,7 +373,7 @@
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-disabled="!isLastestUser" ng-model="newOwner.birthDay" class="form-control date-picker dateFormat" id="birthDay" required>
+                                    <input name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-disabled="!isLastestUser" ng-model="newOwner.birthDay" class="form-control date-picker dateFormat" id="birthDay" maxlength="10" required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
@@ -391,7 +391,7 @@
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" placeholder="" ng-disabled="!isLastestUser" class="form-control date-picker-start dateFormat" id="expireDay">
+                                    <input type="text" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" placeholder="" ng-disabled="!isLastestUser" class="form-control date-picker-start dateFormat" id="expireDay" maxlength="10">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <div ng-show="!showEnableNewOwnerExpireDay" class="form-group has-feedback">
@@ -711,7 +711,7 @@
                                     <div class="form-group has-feedback">
                                         <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
                                         <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd" class=" form-control date-picker dateFormat">
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                        <span class="form-control-feedback is-bound" maxlength="10"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
