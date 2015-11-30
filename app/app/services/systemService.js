@@ -1661,7 +1661,7 @@
                 }
                 if(charCode==13){
                     //alert('');
-                    $('.btn-cancel').focus();
+                    this.blur();
                 }
             });
 
