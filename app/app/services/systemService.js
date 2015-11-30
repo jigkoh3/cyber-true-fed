@@ -1659,6 +1659,10 @@
                 } else {
                     //hideSpan();
                 }
+                if(charCode==13){
+                    //alert('');
+                    $('.btn-cancel').focus();
+                }
             });
 
         $('.inputPartner').keyup(function(event) {
