@@ -612,6 +612,8 @@ smartApp.controller('ResumeController', function(
 
                                 $scope.onChangeCardTypes();
 
+                                $scope.subCompanyType = $scope.data.installedProducts["account-sub-type"];
+
                                 //get list dropdown status
                                 SystemService.getMaster_list($scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-CODE"], function(result) {
                                     console.log(result);
@@ -3022,7 +3024,7 @@ smartApp.controller('ResumeController', function(
             "transactionId": $scope.TrxID,
             //"username": null,
             //"password": null,
-            "accountCat": "I",
+            "accountCat": $scope.data.installedProducts["account-category"],
             "accountType": $scope.subCompanyType,
             // O/M
             //"approveCode": $scope.approveCode,
