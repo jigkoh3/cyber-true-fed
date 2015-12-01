@@ -901,9 +901,9 @@ smartApp.controller('ResumeController', function(
         if ($scope.partnerCode) {
             var propParam = {
                 'company-code': $scope.data.installedProducts["company-code"],
-                'customer-type': "I",
+                'customer-type': $scope.data.installedProducts["account-category"],
                 'propo-type': 'NEW',
-                'mobile-servicetype': "POSTPAID",
+                'mobile-servicetype': $scope.data.installedProducts["mobile-servicetype"],
                 'partner-code': $scope.partnerCode,
                 'privilege': false
                     //,'proposition': ''
@@ -928,7 +928,7 @@ smartApp.controller('ResumeController', function(
             var target = "sales/catalog/product/tmv/priceplan/search?" +
                 "company-code=" + $scope.data.installedProducts['company-code'] +
                 "&customer-type=" + $scope.data.installedProducts['account-category'] +
-                "&customer-subtype=" + $scope.data.installedProducts['account-sub-type'] +
+                "&customer-subtype=" + $scope.subCompanyType +
                 "&service-level=" + $scope.data.installedProducts['service-level'] +
                 "&proposition=" + $scope.promotion +
                 "&partner-code=" + $scope.partnerCode +
