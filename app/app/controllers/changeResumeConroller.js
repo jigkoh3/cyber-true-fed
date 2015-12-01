@@ -1107,7 +1107,9 @@ smartApp.controller('ResumeController', function(
                         };
                         resumeService.getAccountSubTypeCallback(param, function(resultST) {
                             $scope.data.accountSubtypeList = resultST.data["response-data"];
-                            $scope.subCompanyType = resultST.data["response-data"][0]['name'];
+                            if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true') {
+                                $scope.subCompanyType = resultST.data["response-data"][0]['name'];
+                            }
                         });
 
 
@@ -1161,7 +1163,7 @@ smartApp.controller('ResumeController', function(
 
                                     }
 
-                                    $scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
+                                    //$scope.subCompanyType = $scope.data.accountSubtypeList[0]['name'];
 
                                     setTimeout(function() {
                                         $scope.isLastestAdress = false;
@@ -1222,7 +1224,7 @@ smartApp.controller('ResumeController', function(
                                     $scope.onselectPrefix();
 
 
-                                    $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
+                                    //$scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
 
 
                                     //ที่อยู่จัดส่งเอกสาร
@@ -3463,7 +3465,7 @@ smartApp.controller('ResumeController', function(
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
         } else if ($scope.data.installedProducts['product-properties']['IS-NEW-SIM'] == 'true' && isNull($scope.simSerial)) {
             showValidate("simSerial", ValidateMsgService.data.msgSimSerialEmpty);
-        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-SIM'] == 'true' && $scope.printAble == false){
+        } else if ($scope.data.installedProducts['product-properties']['IS-NEW-SIM'] == 'true' && $scope.printAble == false) {
             showValidate("simSerial", ValidateMsgService.data.msgSimSerialEmpty);
         } else if (errorCapmax != "") {
             showValidate(errorCapmaxId, errorCapmaxMsg);
