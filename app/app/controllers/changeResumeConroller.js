@@ -2597,7 +2597,9 @@ smartApp.controller('ResumeController', function(
             delete data['order']["order-items"][0]["address-list"];
         }
         if ($scope.customerStatusN == 'O') {
-            data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
+            if($scope.lastestCustomer['customer-id']){
+                //data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
+            }
         }
 
 
@@ -3592,7 +3594,7 @@ smartApp.controller('ResumeController', function(
                                 //$scope.openPDFDialog();
                             }
                         } else {
-                            alert('หมายเลขซิมการ์ดใหม่ ไม่ถูกต้อง'); // ปรับ alert message
+                            //alert('หมายเลขซิมการ์ดใหม่ ไม่ถูกต้อง'); // ปรับ alert message
 
                         }
                     }
