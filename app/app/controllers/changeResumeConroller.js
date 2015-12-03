@@ -3534,10 +3534,20 @@ smartApp.controller('ResumeController', function(
     var validateResourceStatus = function(resourceStatus) {
         return resourceStatus === 'AVAILABLE' ? true : false;
     };
+    $scope.onKeyUpSimSerial = function(){
+        if ($scope.simSerial.length === $scope.simSerialLength) {
+            $scope.onInputSIMSerial();
+        } else {
+            $scope.printAble = false;
+        }
+    };
+    $scope.onEnterSimSerial = function(){
+        $scope.onInputSIMSerial();
+    };
 
     $scope.printAble = false;
     $scope.onInputSIMSerial = function() {
-        if ($scope.simSerial.length === $scope.simSerialLength) {
+        
             var data = {
                 'sim-serial': $scope.simSerial,
                 'dealer-code': $scope.partnerCode,
@@ -3551,7 +3561,9 @@ smartApp.controller('ResumeController', function(
                 data['product-code'] = $scope.productCodes;
             }
             console.log(data);
+            SystemService.showLoading();
             ChangeSwapSimService.validateSIM(data, function(result) {
+                SystemService.hideLoading();
                 var displayMsg = utils.getObject(result.data, 'display-messages.0');
 
                 if (displayMsg && displayMsg['message-type']) {
@@ -3600,9 +3612,7 @@ smartApp.controller('ResumeController', function(
                     }
                 }
             });
-        } else {
-            $scope.printAble = false;
-        }
+        
     };
 
 

@@ -50,7 +50,7 @@
                                 "CURRENT-ACCOUNT-STATUS": "Canceled",
                                 "PRODUCT-STATUS-DATE": "2015-09-14T23:59:59.000+07:00",
                                 "IS-NEW-ACCOUNT": "false",
-                                "IS-NEW-SIM": "false",
+                                "IS-NEW-SIM": "true",
                                 "CURRENT-SIM-STATUS": "",
                                 "REASON-CODE": "CREQ",
                                 "PRODUCT-STATUS-CODE": "RESUME-CANCEL-OA-OS",
@@ -694,9 +694,27 @@
                     "priceplan-type": "N"
                 }]
             };
+            var data2 = {
+                "trx-id": "8SIJX3WDLPNX",
+                "status": "SUCCESSFUL",
+                "process-instance": "tmsapnpr1 (instance: SFF_node1)",
+                "fault": {
+                    "name": "th.co.truecorp.ads.api.persistent.jdbc.DataNotFoundException",
+                    "code": "CAT-404",
+                    "message": "Not found priceplan for changing.",
+                    "detailed-message": "DataNotFoundException Not found priceplan for changing.. "
+                },
+                "display-messages": [{
+                    "message": "Not found priceplan for changing.",
+                    "message-type": "WARNING",
+                    "en-message": "Not found priceplan for changing.",
+                    "th-message": "Not found priceplan for changing.",
+                    "technical-message": "tmsapnpr1 (instance: SFF_node1) DataNotFoundException Not found priceplan for changing.. "
+                }]
+            };
             fnCallback({
                 status: true,
-                data: data,
+                data: data2,
                 error: "",
                 msgErr: ""
             });

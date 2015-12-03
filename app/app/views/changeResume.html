@@ -568,14 +568,18 @@
                             <div class="col-md-4">
                                 <p></p>
                                 <input id="simSerial"
-                                                   ng-numeric-input type="text"
+                                                   ng-number-only="simSerial" type="text"
                                                    name="simSerialInput"
                                                    class="form-control"
                                                    ng-model="simSerial"
-                                                   ng-change="onInputSIMSerial()"
+                                                   ng-keyup="($event.keyCode==13 && onEnterSimSerial())"
+                                                   ng-change="onKeyUpSimSerial()"
                                                    ng-disabled="!isCustomerProfile"
-                                                   ng-blur="onBlurSimSerial()"
                                                    maxlength="{{ simSerialLength }}" required />
+                            </div>
+                            <div class="col-md-5" style="color:red; top: 5px;">
+                            <br/>
+                                                   <span class="hide" ng-span-number-only="simSerial">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
                             </div>
                         </div>
                     </div>
