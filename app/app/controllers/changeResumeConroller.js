@@ -845,8 +845,10 @@ smartApp.controller('ResumeController', function(
             } else {
                 //error ?
                 idFocus = "txtPartnerCode";
-                $scope.partnerCode = "";
+                $('#txtPartnerCode').blur();
+                //$scope.partnerCode = "";
                 setTimeout(function() {
+
                     SystemService.showAlert({
                         "message": result.data["display-messages"][0]["message"],
                         "message-code": result.data["display-messages"][0]["message-code"],
@@ -1298,6 +1300,7 @@ smartApp.controller('ResumeController', function(
     $scope.partnerCode = "";
     $scope.isCheckInputForVerify = false;
     $scope.onCheckInputForVerify = function() {
+
         setTimeout(function() {
             $scope.isCheckInputForVerify = false;
             $scope.newOwner.birthDay = $('#birthDay').val();
