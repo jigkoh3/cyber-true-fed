@@ -284,7 +284,7 @@
 
             if (!$scope.data) return;
 
-            authenticate();
+            // authenticate();
 
             var companyCode = utils.getObject(result.data, 'simData.company-code');
             if (!utils.isEmpty(companyCode)) {
@@ -297,7 +297,8 @@
     $scope.onload = function() {
         if ($scope.SubNo !== 'null') {
             SystemService.showLoading();
-            ChangeSwapSimService.getSIMData($scope.SubNo, onGetSIMData);
+            authenticate();
+            // ChangeSwapSimService.getSIMData($scope.SubNo, onGetSIMData);
         }
     }
 
@@ -453,6 +454,7 @@
     $scope.showDataDealer = false;
     var authenticate = function() {
         AuthenService.getAuthen(function(authResult) {
+            ChangeSwapSimService.getSIMData($scope.SubNo, onGetSIMData);
             $scope.getAuthen = authResult;
             $scope.shopType = authResult.shopType;
             //console.log(authResult);
