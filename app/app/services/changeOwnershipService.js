@@ -402,8 +402,8 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node1)",
                 "response-data": {
                     "customer": {
-                        "title": "คุณ",
-                        "title-code": "T2",
+                        "title": "นาย",
+                        "title-code": "T1",
                         "firstname": "กอไก่",
                         "lastname": "ขอไข่",
                         'birthdate': '2015-07-20T00:00:00+0700',

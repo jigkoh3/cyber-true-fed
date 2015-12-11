@@ -809,7 +809,7 @@ smartApp.controller('MigratePreToPostController', function(
                             if (!$scope.isNonePartner && $scope.shopType == '1') {
                                 //$scope.data = {};
                             }
-                            
+
                         } else {
                             $scope.SubNo = "null";
                         }
@@ -1231,11 +1231,12 @@ smartApp.controller('MigratePreToPostController', function(
 
                                     $scope.newOwner2.firstNameTH = customer["firstname"];
                                     $scope.newOwner2.lastNameTH = customer["lastname"];
+                                    $scope.titleOther = customer["title"];
 
                                     setTimeout(function() {
                                         $scope.newOwner.prefixTH = customer["title-code"];
                                         $('#prefixTH3').val(customer["title-code"]);
-                                        $('#titleOther').val(customer["title"]);
+                                        //$('#titleOther').val(customer["title"]);
                                         $scope.newOwner2.prefixTH = customer["title-code"];
                                         $('#titleRegisterd').val(customer["title-code"]);
                                     }, 1000);
@@ -1266,7 +1267,7 @@ smartApp.controller('MigratePreToPostController', function(
 
                                 $scope.isAddressList = customer['address-list']['CUSTOMER_ADDRESS'];
 
-                                $scope.onselectPrefix();
+                                //$scope.onselectPrefix();
 
 
                                 // $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
@@ -1315,9 +1316,10 @@ smartApp.controller('MigratePreToPostController', function(
                                 // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
 
 
-                                $scope.onselectPrefix();
+                                //$scope.onselectPrefix();
                                 setTimeout(function() {
-                                    $('#titleOther').val(customer["title"]);
+                                    $scope.onselectPrefix();
+                                    //$('#titleOther').val(customer["title"]);
                                 }, 1500);
                                 console.log(customer);
                                 SystemService.hideLoading();
@@ -1705,7 +1707,15 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.newOwner.sex = "MALE";
             $('#sex3').val("MALE");
             $scope.newOwner2.sex = "MALE";
+        } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther == "") {
+            $scope.titleOther = "คุณ";
+            $('#titleOther').val('คุณ');
+        }else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
+            //$scope.titleOther = "คุณ";
+            
+            $('#titleOther').val($scope.titleOther);
         } else {
+
             $scope.newOwner.sex = "FEMALE";
             $('#sex3').val("FEMALE");
             $scope.newOwner2.sex = "FEMALE";
@@ -1870,7 +1880,7 @@ smartApp.controller('MigratePreToPostController', function(
         //$('#ppfilter2').val("");
         $scope.pricePlanFilter.value = "";
         console.log($scope.pricePlanFilter.value);
-       // $scope.onClearPricePlan();
+        // $scope.onClearPricePlan();
     };
 
 
@@ -1913,7 +1923,7 @@ smartApp.controller('MigratePreToPostController', function(
         $scope.saveSelectCUG = s;
         console.log($scope.saveSelectCUG);
         $scope.saveDataCUG = {
-            name: $scope.saveSelectCUG['group-id']+' : '+$scope.saveSelectCUG['group-name'],
+            name: $scope.saveSelectCUG['group-id'] + ' : ' + $scope.saveSelectCUG['group-name'],
             id: $scope.saveSelectCUG['group-id']
         };
     };
@@ -3664,7 +3674,7 @@ smartApp.controller('MigratePreToPostController', function(
                 $scope.cardExpire = true;
 
             }
-        }else{
+        } else {
             $scope.cardExpire = false;
         }
     };
@@ -3684,7 +3694,7 @@ smartApp.controller('MigratePreToPostController', function(
         $scope.isNumberTelSms = false;
         $scope.isNumberTelZeroSms = false;
         if ($scope.billPayment.smss) {
-            if ($scope.billPayment.smss.length == 9 || $scope.billPayment.smss.length == 10 ) {
+            if ($scope.billPayment.smss.length == 9 || $scope.billPayment.smss.length == 10) {
                 $scope.isNumberTelLengthSms = false;
                 $scope.billPayment.smss = '';
             } else {
@@ -3707,8 +3717,8 @@ smartApp.controller('MigratePreToPostController', function(
     };
 
     $scope.ischkNumber = false;
-    $scope.onChkNumber = function(){
-        if($scope.billPayment.smss.charAt(0) != '0'){
+    $scope.onChkNumber = function() {
+        if ($scope.billPayment.smss.charAt(0) != '0') {
             $scope.ischkNumber = true;
             $scope.billPayment.smss = "";
         } else {
