@@ -430,17 +430,17 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" ng-change="promotion='';isVerify=false;propositions=[];onCheckInputForVerify();" class="form-control" ng-disabled="isChkShopcode || !isLastestUser" maxlength="8" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                                <input type="text" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" ng-change="isVerify=false;propositions=[];onCheckInputForVerify();" class="form-control" ng-disabled="isChkShopcode || !isLastestUser" maxlength="8" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-hide="isVerify">
                         <div class="col-md-12">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
-                                <p></p>
-                                <label>รายการส่งเสริมการขาย <span style="color:red;">*</span></label>
+                                <!-- <p></p>
+                                <label>รายการส่งเสริมการขาย <span style="color:red;">*</span></label> -->
                             </div>
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <p></p>
                                 <select class="form-control" ng-change="onCheckInputForVerify(); selectedPromotion();" ng-disabled="propositions.length==0" ng-model="promotion">
                                     <option value="">-- กรุณาเลือก --</option>
@@ -448,20 +448,21 @@
                                         {{item["proposition-code"]}} : {{item["description"]}}
                                     </option>
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="col-md-2">
                                 <label>
                                     <!--<input type="button"
                                            ng-click="onVerify()"
                                            value="Verify"
                                            class="btn btn-success">-->
-                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCheckInputForVerify" ng-click="onVerify()" value="Verify" class="btn btn-success">
+                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCheckInputForVerify" ng-click="onVerify()" value="ตรวจสอบลูกค้า" class="btn btn-success">
                                 </label>
                             </div>
-                            <div class="col-md-3">
-                                <span style="color:red;" ng-show="showApprovCode">* Approve code by referral*</span>
-                            </div>
+                            <!-- <div class="col-md-3">
+                                
+                            </div> -->
                             <div class="col-md-2" ng-form="onVerify()">
+                            <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span><br />
                                 <input type="text" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
                             </div>
                         </div>

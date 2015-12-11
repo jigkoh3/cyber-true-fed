@@ -376,7 +376,7 @@
                                 <p></p>
                                 <select class="form-control" 
                                         ng-model="partnerCode" 
-                                        ng-change="onCheckInputForVerify();promotion='';propositions=[];  changePartnerCode(); " 
+                                        ng-change="onCheckInputForVerify();propositions=[];  changePartnerCode(); " 
                                         ng-disabled="!isCustomerProfile">
                                 <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
@@ -387,7 +387,7 @@
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
                                 <p></p>
                                 <input type="text" 
-                                        ng-change="onCheckInputForVerify();promotion='';propositions=[];onInputShopCode();" 
+                                        ng-change="onCheckInputForVerify();propositions=[];onInputShopCode();" 
                                         id="txtPartnerCode" 
                                         name="partnerCode" 
                                         ng-model="partnerCode" 
@@ -397,13 +397,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-hide="isVerify">
                         <div class="col-md-12">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
-                                <label>รายการส่งเสริมการขาย <span style="color:red;">*</span></label>
+                                <!-- <label>รายการส่งเสริมการขาย <span style="color:red;">*</span></label> -->
                             </div>
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <p></p>
                                 <select class="form-control" 
                                         onchange="$(this).attr('title',$('#idSelectProPo option:selected').text());" 
@@ -418,20 +418,21 @@
                                         {{item["proposition-code"]}} : {{item["description"]}}
                                     </option>
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="col-md-2">
                                 <label>
                                     <!--<input type="button"
                                            ng-click="onVerify()"
                                            value="Verify"
                                            class="btn btn-success">-->
-                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCheckInputForVerify " ng-click="onVerify()" value="Verify" class="btn btn-success">
+                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCheckInputForVerify " ng-click="onVerify()" value="ตรวจสอบลูกค้า" class="btn btn-success">
                                 </label>
                             </div>
-                            <div class="col-md-3">
+                            <!-- <div class="col-md-3">
                                 <span style="color:red;" ng-show="showApprovCode">* Approve code by referral*</span>
-                            </div>
+                            </div> -->
                             <div class="col-md-2" ng-form="onVerify()">
+                                <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span><br />
                                 <input type="text" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
                             </div>
                         </div>
