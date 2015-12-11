@@ -307,7 +307,7 @@ smartApp.controller('ResumeController', function(
     $scope.changeType = function(customerType) {
         $scope.customerType = customerType;
         $scope.isVerify = false;
-        $scope.promotion = "";
+        //$scope.promotion = "";
 
         if (customerType == 'B' || customerType == 'C') {
             $scope.blah = "P";
@@ -640,6 +640,13 @@ smartApp.controller('ResumeController', function(
 
                                 $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
 
+                                if($scope.data.installedProducts['company-code'] == "RF"){
+                                    $scope.promotion = "0022416";
+                                }else{
+                                    $scope.promotion = "0022415";
+                                }
+                                $scope.onCheckInputForVerify();
+
                                 $scope.data2 = result;
 
                                 // console.log($scope.data.customerProfile['firstname']);
@@ -900,27 +907,27 @@ smartApp.controller('ResumeController', function(
 
     //proposition
     $scope.callPropositionList = function() {
-        if ($scope.partnerCode) {
-            var propParam = {
-                'company-code': $scope.data.installedProducts["company-code"],
-                'customer-type': $scope.data.installedProducts["account-category"],
-                'propo-type': 'NEW',
-                'mobile-servicetype': $scope.data.installedProducts["mobile-servicetype"],
-                'partner-code': $scope.partnerCode,
-                'privilege': false
-                    //,'proposition': ''
+        // if ($scope.partnerCode) {
+        //     var propParam = {
+        //         'company-code': $scope.data.installedProducts["company-code"],
+        //         'customer-type': $scope.data.installedProducts["account-category"],
+        //         'propo-type': 'NEW',
+        //         'mobile-servicetype': $scope.data.installedProducts["mobile-servicetype"],
+        //         'partner-code': $scope.partnerCode,
+        //         'privilege': false
+        //             //,'proposition': ''
 
-            };
-            resumeService.propositionCallback(propParam, function(resultProp) {
-                if (resultProp.status) {
-                    var displayMsg = utils.getObject(resultProp.data, 'display-messages.0');
-                    if (displayMsg) {
-                        SystemService.showAlert(displayMsg);
-                    }
-                    $scope.propositions = resultProp.data['response-data'];
-                }
-            });
-        }
+        //     };
+        //     resumeService.propositionCallback(propParam, function(resultProp) {
+        //         if (resultProp.status) {
+        //             var displayMsg = utils.getObject(resultProp.data, 'display-messages.0');
+        //             if (displayMsg) {
+        //                 SystemService.showAlert(displayMsg);
+        //             }
+        //             $scope.propositions = resultProp.data['response-data'];
+        //         }
+        //     });
+        // }
     };
     //salepriceplan
     $scope.isLoadPricePlan = false;
@@ -932,7 +939,7 @@ smartApp.controller('ResumeController', function(
                 "&customer-type=" + $scope.data.installedProducts['account-category'] +
                 "&customer-subtype=" + $scope.subCompanyType +
                 "&service-level=" + $scope.data.installedProducts['service-level'] +
-                "&proposition=" + $scope.promotion +
+                //"&proposition=" + $scope.promotion +
                 "&partner-code=" + $scope.partnerCode +
                 "&privilege=false";
 
@@ -973,11 +980,12 @@ smartApp.controller('ResumeController', function(
                             }
                         }
                     };
-                    var listProp = $filter('filter')($scope.propositions, {
-                        'proposition-code': $scope.promotion
-                    });
+                    // var listProp = $filter('filter')($scope.propositions, {
+                    //     'proposition-code': $scope.promotion
+                    // });
 
-                    makeDataPriceplan(resultGetPriceplan.data["response-data"], listProp[0]['name'], $scope.promotion);
+                    //makeDataPriceplan(resultGetPriceplan.data["response-data"], listProp[0]['name'], $scope.promotion);
+                    makeDataPriceplan(resultGetPriceplan.data["response-data"], "xxx", $scope.promotion);
 
 
                     console.log($scope.propositionList);

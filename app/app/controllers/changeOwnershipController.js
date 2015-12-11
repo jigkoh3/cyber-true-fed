@@ -128,7 +128,7 @@ smartApp.controller('changeOwnershipController', function(
         //$scope.subCompanyType = "";
         $scope.setDefaultSubType();
 
-        $scope.promotion = "";
+        //$scope.promotion = "";
 
         $scope.onCheckInputForVerify();
 
@@ -291,7 +291,7 @@ smartApp.controller('changeOwnershipController', function(
     $scope.changeType = function(customerType) {
         $scope.customerType = customerType;
         $scope.isVerify = false;
-        $scope.promotion = "";
+        //$scope.promotion = "";
 
         if (customerType == 'B' || customerType == 'C') {
             $scope.blah = "P";
@@ -608,6 +608,12 @@ smartApp.controller('changeOwnershipController', function(
                             $scope.data = result;
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
 
+                            if($scope.data.installedProducts['company-code'] == "RF"){
+                                $scope.promotion = "0022416";
+                            }else{
+                                $scope.promotion = "0022415";
+                            }
+
 
                             //$scope.setDefaultSubType();
                             $scope.data2 = result;
@@ -832,27 +838,27 @@ smartApp.controller('changeOwnershipController', function(
 
     //proposition
     $scope.callPropositionList = function() {
-        $scope.promotion = "";
-        $scope.isVerify = false;
-        if ($scope.partnerCode) {
-            var propParam = {
-                'company-code': $scope.data.installedProducts["company-code"],
-                'customer-type': 'I',
-                'propo-type': 'NEW',
-                'mobile-servicetype': $scope.data.installedProducts["mobile-servicetype"],
-                'partner-code': $scope.partnerCode,
-                'privilege': false
-                    //,'proposition': ''
+        //$scope.promotion = "";
+        // $scope.isVerify = false;
+        // if ($scope.partnerCode) {
+        //     var propParam = {
+        //         'company-code': $scope.data.installedProducts["company-code"],
+        //         'customer-type': 'I',
+        //         'propo-type': 'NEW',
+        //         'mobile-servicetype': $scope.data.installedProducts["mobile-servicetype"],
+        //         'partner-code': $scope.partnerCode,
+        //         'privilege': false
+        //             //,'proposition': ''
 
-            };
-            SystemService.showLoading();
-            changeOwnershipService.propositionCallback(propParam, function(resultProp) {
-                SystemService.hideLoading();
-                if (resultProp.status) {
-                    $scope.propositions = resultProp.data['response-data'];
-                }
-            });
-        }
+        //     };
+        //     SystemService.showLoading();
+        //     changeOwnershipService.propositionCallback(propParam, function(resultProp) {
+        //         SystemService.hideLoading();
+        //         if (resultProp.status) {
+        //             $scope.propositions = resultProp.data['response-data'];
+        //         }
+        //     });
+        // }
     };
     //salepriceplan
     $scope.isLoadPricePlan = false;
@@ -864,7 +870,7 @@ smartApp.controller('changeOwnershipController', function(
                 "&customer-type=I" +
                 "&customer-subtype=" + $scope.subCompanyType +
                 "&service-level=C" +
-                "&proposition=" + $scope.promotion +
+                //"&proposition=" + $scope.promotion +
                 "&partner-code=" + $scope.partnerCode +
                 "&privilege=false";
 
@@ -904,11 +910,12 @@ smartApp.controller('changeOwnershipController', function(
                             }
                         }
                     };
-                    var listProp = $filter('filter')($scope.propositions, {
-                        'proposition-code': $scope.promotion
-                    });
+                    // var listProp = $filter('filter')($scope.propositions, {
+                    //     'proposition-code': $scope.promotion
+                    // });
 
-                    makeDataPriceplan(resultGetPriceplan.data["response-data"], listProp[0]['name'], $scope.promotion);
+                    //makeDataPriceplan(resultGetPriceplan.data["response-data"], listProp[0]['name'], $scope.promotion);
+                    makeDataPriceplan(resultGetPriceplan.data["response-data"], "xxx", $scope.promotion);
 
 
                     console.log($scope.propositionList);
