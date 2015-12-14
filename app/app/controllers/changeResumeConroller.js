@@ -985,7 +985,7 @@ smartApp.controller('ResumeController', function(
                     // });
 
                     //makeDataPriceplan(resultGetPriceplan.data["response-data"], listProp[0]['name'], $scope.promotion);
-                    makeDataPriceplan(resultGetPriceplan.data["response-data"], "xxx", $scope.promotion);
+                    makeDataPriceplan(resultGetPriceplan.data["response-data"], "Proposition for Aftersales", $scope.promotion);
 
 
                     console.log($scope.propositionList);
