@@ -1199,6 +1199,8 @@ smartApp.controller('changeOwnershipController', function(
                                     $scope.changecusStatusN('O');
 
                                     console.log(customer);
+
+                                    $scope.onCheckInputForVerify();
                                     SystemService.hideLoading();
 
 
