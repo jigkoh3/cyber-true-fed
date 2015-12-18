@@ -229,6 +229,9 @@ smartApp.controller('ChangePricePlanController', function(
             if (!$scope.getAuthen["isSecondAuthen"]) {
                 $scope.isNonePartner = false;
             }
+            if($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == '1'){
+                $scope.approver = $scope.getAuthen['logInName'];
+            }
             if ($scope.SubNo != 'null') {
                 $scope.onloadNext();
             }
