@@ -120,6 +120,7 @@ smartApp.controller('ChangePricePlanController', function(
 
     $scope.PPTypeId = "";
     var valPricePlans = [];
+    var valPricePlansUnique = [];
     $scope.propositionList = [];
     $scope.propositions = [];
     $scope.selectProposition = "null";
@@ -229,7 +230,7 @@ smartApp.controller('ChangePricePlanController', function(
             if (!$scope.getAuthen["isSecondAuthen"]) {
                 $scope.isNonePartner = false;
             }
-            if($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == '1'){
+            if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == '1') {
                 $scope.approver = $scope.getAuthen['logInName'];
             }
             if ($scope.SubNo != 'null') {
@@ -541,6 +542,7 @@ smartApp.controller('ChangePricePlanController', function(
                 $scope.propositionList = [];
                 $scope.propositions = [];
                 valPricePlans = [];
+                valPricePlansUnique = [];
                 var makeDataPriceplan = function(arr, proName, proCode) {
                     if (arr && arr != undefined && arr != null) {
                         for (var i = 0; i < arr.length; i++) {
@@ -553,14 +555,22 @@ smartApp.controller('ChangePricePlanController', function(
                                 "saveName": arr[i]["name"],
                                 "radioId": arr[i]["name"] + ":" + proName
                             };
-                            $scope.propositionList.push(item);
+                            var numRow = $filter('filter')($scope.propositionList, {
+                                pricePlan: arr[i]["name"]
+                            });
+                            if (numRow.length == 0) {
+
+                                $scope.propositionList.push(item);
+                                valPricePlansUnique.push(item);
+
+                            }
                             valPricePlans.push(item);
                         }
 
                         SystemService.pricePlans = $scope.propositionList;
                         console.log($scope.propositionList);
 
-                        //$scope.propositionList = $filter('filter')(valPricePlans, $scope.pricePlanFilter.value);
+                        //$scope.propositionList = $filter('unique')($scope.propositionList);
                         //console.log($scope.propositionList);
 
                         if (!$scope.pricePlanFilter.value) {
@@ -640,16 +650,16 @@ smartApp.controller('ChangePricePlanController', function(
                     makeDataPriceplan(resultGetPriceplan.data["response-data"]["priceplans"], "", "");
                 }
 
-                
+
                 $scope.promotion = "";
                 //$scope.selectedPromotion();
                 //$('#modalnewpriceplan').click();
                 $scope.isLoadPricePlan = true;
                 SystemService.hideLoading();
 
-                if($scope.propositionList.length==0){
+                if ($scope.propositionList.length == 0) {
                     $('#spanMsgNotFound').removeClass('hide');
-                }else{
+                } else {
                     $('#spanMsgNotFound').addClass('hide');
                 }
 
@@ -662,6 +672,7 @@ smartApp.controller('ChangePricePlanController', function(
             } else {
                 $scope.propositionList = [];
                 valPricePlans = [];
+                valPricePlansUnique = [];
 
                 SystemService.hideLoading();
                 //error
@@ -1226,7 +1237,7 @@ smartApp.controller('ChangePricePlanController', function(
         $scope.saveSelectCUG = s;
         console.log($scope.saveSelectCUG);
         $scope.saveDataCUG = {
-            name: $scope.saveSelectCUG['group-id']+' : '+$scope.saveSelectCUG['group-name'],
+            name: $scope.saveSelectCUG['group-id'] + ' : ' + $scope.saveSelectCUG['group-name'],
             id: $scope.saveSelectCUG['group-id']
         };
     };
@@ -1746,7 +1757,7 @@ smartApp.controller('ChangePricePlanController', function(
                 //$('#selectProposition').val('null');
             }, 500);
 
-            
+
             //selectProposition = $scope.pricePlan2.code;
             //$scope.selectProposition = $scope.pricePlan2.code;
 
@@ -1755,7 +1766,7 @@ smartApp.controller('ChangePricePlanController', function(
 
             //$('#selectProposition').val($scope.selectProposition);
             var newProposition = "";
-            if($('#selectProposition').val() != 'null'){
+            if ($('#selectProposition').val() != 'null') {
                 newProposition = $scope.pricePlan2.promotion;
             }
 
@@ -1913,10 +1924,16 @@ smartApp.controller('ChangePricePlanController', function(
         //     };
         // }
         console.log($scope.selectProposition);
-        $scope.propositionList = $filter('filter')(valPricePlans, {
-            "proposition-code": $scope.selectProposition
-        });
-        
+        if ($scope.selectProposition) {
+            $scope.propositionList = $filter('filter')(valPricePlans, {
+                "proposition-code": $scope.selectProposition
+            });
+        } else {
+            $scope.propositionList = $filter('filter')(valPricePlansUnique, {
+                "proposition-code": $scope.selectProposition
+            });
+        }
+
         console.log($scope.selectProposition, $scope.propositionList);
     };
 

@@ -73,7 +73,7 @@
                             </th>
                         </tr>
 
-                        <tr dir-paginate="pp in propositionList | filter:pricePlanFilter.value | orderBy:'pricePlan'| itemsPerPage: pageSize | unique:'pricePlan'"
+                        <tr dir-paginate="pp in propositionList | filter:pricePlanFilter.value | orderBy:'pricePlan'| itemsPerPage: pageSize"
                             pagination-id="PPList"
                             current-page="currentPage">
                             <th colspan="5" style="padding: 5px; padding-bottom: 0px;">

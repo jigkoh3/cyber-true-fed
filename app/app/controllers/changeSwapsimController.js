@@ -23,6 +23,8 @@
     $scope.isReadCardSuccess = false;
     $scope.approver = "";
 
+    var idFocus = "";
+
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the SwapSIM page
     $scope.onCustomerProfileTemplateLoaded = function() {
@@ -277,8 +279,14 @@
             console.log(result);
             $scope.SubNo = 'null';
             // $('#dataSubNo').val("");
+            idFocus = "dataSubNo";
             return;
         } else {
+            //check enable input
+            if ($scope.shopType == '1') {} else {
+                $scope.isCustomerProfile = true;
+            }
+
             $scope.data = result.data;
             $scope.SubNo = result.data.header.subscriberno;
 
@@ -375,6 +383,9 @@
 
                 if (displayMsg && displayMsg['message-type']) {
                     $('#simSerial').prop('disabled', false);
+                    $scope.simSerial = "";
+                    idFocus = "simSerial";
+
                     SystemService.showAlert({
                         "message": result.data["display-messages"][0]["message"],
                         "message-code": result.data["display-messages"][0]["message-code"],
@@ -397,8 +408,9 @@
                     if (
                         // TODO: Validate (See Page 10 - NO 6)
                         // TODO: Validate (See Page 10 - NO 7)
-                        validateSIMType(simDetails['sim-type']) &&
-                        validateResourceStatus(simDetails['resource-status'])
+                        //validateSIMType(simDetails['sim-type']) &&
+                        //validateResourceStatus(simDetails['resource-status'])
+                        1 == 1
                         // TODO: Validate (See Page 10 - NO 10)
                         // TODO: Validate (See Page 10 - NO 11)
                         // TODO: Validate (See Page 10 - NO 12)
@@ -454,20 +466,17 @@
     $scope.showDataDealer = false;
     var authenticate = function() {
         AuthenService.getAuthen(function(authResult) {
-            ChangeSwapSimService.getSIMData($scope.SubNo, onGetSIMData);
             $scope.getAuthen = authResult;
             $scope.shopType = authResult.shopType;
             //console.log(authResult);
+            ChangeSwapSimService.getSIMData($scope.SubNo, onGetSIMData);
+
 
 
 
 
             $scope.shopType = $scope.getAuthen['shopType'];
-            if ($scope.shopType == '1') {
 
-            } else {
-                $scope.isCustomerProfile = true;
-            }
 
             if ($scope.shopType == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
                 $scope.showDataDealer = true;
@@ -706,11 +715,17 @@
         }
         //end----------- camera ----------------
     $scope.afterCloseWarning = function() {
-        if ($scope.SubNo === 'null') {
-            // $('#dataSubNo').val('');
-            setTimeout(function() {
-                $('#dataSubNo').focus();
-            }, 500);
+        // if ($scope.SubNo === 'null') {
+        //     // $('#dataSubNo').val('');
+        //     setTimeout(function() {
+        //         $('#dataSubNo').focus();
+        //     }, 500);
+        // }
+        if (idFocus) {
+            $('#' + idFocus).focus();
+            idFocus = "";
+        } else {
+            //$scope.validateUI();
         }
         $scope.isClickPrint = false;
         isFocus = true;
@@ -718,12 +733,6 @@
 
 
 
-        if (idFocus) {
-            $('#' + idFocus).focus();
-            idFocus = "";
-        } else {
-            $scope.validateUI();
-        }
     };
 });
 
