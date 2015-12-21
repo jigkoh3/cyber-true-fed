@@ -4,7 +4,7 @@
 
         if (!demo) {
             var target = '/aftersales/tmv/changeiridd/validateiridd?msisdn=' + msisdn;
-            SystemService.callServiceGet(target, null, function(result) {
+            SystemService.callServiceGetByPass(target, null, function(result) {
                 fnCallback(result);
             });
         } else {

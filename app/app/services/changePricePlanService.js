@@ -73,7 +73,7 @@
             };
 
             var data2 = {
-                "status": "UNSUCCESSFUL",
+                "status": "SUCCESSFUL",
                 "display-messages": [{
                     "message": "Data not found.",
                     "message-code": "ACAHblG10001",
