@@ -1372,22 +1372,25 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             setTimeout(function() {
                 $('#dataSubNo').focus();
             }, 1000);
+
+        } else {
+            //เปิด modal
+            if ($scope.shopType == "1" && !$scope.isCustomerProfile) {
+                setTimeout(function() {
+                    $scope.initModalReadCard();
+                }, 500);
+                setTimeout(function() {
+                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                    if ($scope.getAuthen["isSecondAuthen"] == false) {
+                        $scope.isNonePartner = false;
+                        $scope.manualInputReadCard();
+                    }
+                }, 1000);
+
+            }
         }
 
-        //เปิด modal
-        if ($scope.shopType == "1" && !$scope.isCustomerProfile) {
-            setTimeout(function() {
-                $scope.initModalReadCard();
-            }, 500);
-            setTimeout(function() {
-                $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                if ($scope.getAuthen["isSecondAuthen"] == false) {
-                    $scope.isNonePartner = false;
-                    $scope.manualInputReadCard();
-                }
-            }, 1000);
 
-        }
 
     };
 
