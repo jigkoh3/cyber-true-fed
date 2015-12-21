@@ -612,7 +612,7 @@
     $scope.onInputId = function() {
         var value = $('#CitizenID').val();
 
-        if (value.length === 13) {
+        if (value.length >= 3) {
             if (value === $scope.data.customerProfile['id-number']) {
                 $scope.isCustomerProfile = true;
                 $scope.showDataDealer = false;
