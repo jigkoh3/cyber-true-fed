@@ -303,7 +303,7 @@
         validateIRIDDCallback: function(msisdn, fnCallback) {
             validateIRIDDAPI(msisdn, function(result) {
                 console.log(result);
-                //SystemService.hideLoading();
+                SystemService.hideLoading();
                 if (result.status) {
                     var data = result.data["response-data"];
 
