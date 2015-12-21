@@ -1087,11 +1087,12 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                         $scope.data = resultData;
 
 
-                        console.log(resultData.priceplan['product-properties']['OFFER-INSTANCE-ID']);
+                        
+                        if ($scope.data.status) {
+                            console.log(resultData.priceplan['product-properties']['OFFER-INSTANCE-ID']);
                         $scope.hybridInstanceID = resultData.priceplan['product-properties']['OFFER-INSTANCE-ID'];
 
                         $scope.data2 = resultData;
-                        if ($scope.data.status) {
                             //$scope.data.orderRequest['order']['sale-agent']
 
                             $scope.data.orderRequest['order']['order-id'] = resultOrder.orderId;
@@ -1357,6 +1358,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     //// end validate ปุ่ม พิมพ์
 
     $scope.afterCloseWarning = function() {
+
         if ($scope.isValidateSave == false) {
             $('#referralcodes').focus();
             //$scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = "";
@@ -1374,6 +1376,10 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             }, 1000);
 
         } else {
+
+            if(!$scope.data.status){
+
+            }
             //เปิด modal
             if ($scope.shopType == "1" && !$scope.isCustomerProfile) {
                 setTimeout(function() {

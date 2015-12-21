@@ -141,7 +141,7 @@
                 });
             } else {
                 fnCallback({
-                    status: true,
+                    status: false,
                     data: data2,
                     error: "",
                     msgErr: ""
@@ -310,34 +310,8 @@
                     try {
                         var check = result.data["display-messages"][0]['message-type'];
 
-                        if ($routeParams.subno) {
-                            setTimeout(function() {
-                                SystemService.showAlert({
-                                    "message": result.data["display-messages"][0]["message"],
-                                    "message-code": result.data["display-messages"][0]["message-code"],
-                                    "message-type": result.data["display-messages"][0]["message-type"],
-                                    "en-message": result.data["display-messages"][0]["en-message"],
-                                    "th-message": result.data["display-messages"][0]["th-message"],
-                                    "technical-message": result.data["display-messages"][0]["technical-message"]
-                                });
-                            }, 1200);
-                        } else {
-                            setTimeout(function() {
-                                SystemService.showAlert({
-                                    "message": result.data["display-messages"][0]["message"],
-                                    "message-code": result.data["display-messages"][0]["message-code"],
-                                    "message-type": "WARNING",
-                                    "en-message": result.data["display-messages"][0]["en-message"],
-                                    "th-message": result.data["display-messages"][0]["th-message"],
-                                    "technical-message": result.data["display-messages"][0]["technical-message"]
-                                });
-                            }, 1200);
-                        }
-                        fnCallback({
-                            data: {
-                                status: false
-                            }
-                        });
+                        
+                        
 
                     } catch (e) {
 
@@ -504,6 +478,35 @@
 
                     }
 
+                }else{
+                    fnCallback({
+                            data: {
+                                status: false
+                            }
+                        });
+                    if ($routeParams.subno) {
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": result.data["display-messages"][0]["message"],
+                                    "message-code": result.data["display-messages"][0]["message-code"],
+                                    "message-type": result.data["display-messages"][0]["message-type"],
+                                    "en-message": result.data["display-messages"][0]["en-message"],
+                                    "th-message": result.data["display-messages"][0]["th-message"],
+                                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                                });
+                            }, 1200);
+                        } else {
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": result.data["display-messages"][0]["message"],
+                                    "message-code": result.data["display-messages"][0]["message-code"],
+                                    "message-type": "WARNING",
+                                    "en-message": result.data["display-messages"][0]["en-message"],
+                                    "th-message": result.data["display-messages"][0]["th-message"],
+                                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                                });
+                            }, 1200);
+                        }
                 }
             });
 
