@@ -303,6 +303,7 @@
     };
 
     $scope.onload = function() {
+        //alert($scope.SubNo);
         if ($scope.SubNo !== 'null') {
             SystemService.showLoading();
             authenticate();
@@ -334,14 +335,15 @@
             $scope.SubNo = $('#dataSubNo').val();
             $('#swapSubNo').prop('disabled', true);
 
-            SystemService.showLoading();
+            // SystemService.showLoading();
 
-            ChangeSwapSimService.getSIMData(dataSubNo, function(result) {
+            // ChangeSwapSimService.getSIMData(dataSubNo, function(result) {
 
-                $('#swapSubNo').prop('disabled', false);
+            //     $('#swapSubNo').prop('disabled', false);
 
-                onGetSIMData(result);
-            });
+            //     onGetSIMData(result);
+            // });
+            $scope.onload();
         }
 
     };
@@ -394,9 +396,10 @@
                         "th-message": result.data["display-messages"][0]["th-message"],
                         "technical-message": result.data["display-messages"][0]["technical-message"]
                     });
+                    return;
                     //SystemService.showAlert(displayMsg);
                 } else {
-                    $('#simSerial').prop('disabled', true);
+                    //$('#simSerial').prop('disabled', true);
                 }
 
                 $scope.printAble = false;
@@ -417,7 +420,7 @@
                     ) {
                         $scope.printAble = true;
 
-                        if ($scope.shopType === '1') {
+                        if ($scope.shopType === '1' && $scope.deviceType) {
                             $scope.openPDFDialog();
                         }
                     } else {

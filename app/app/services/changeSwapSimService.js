@@ -1,4 +1,4 @@
-﻿smartApp.service('ChangeSwapSimService', function($timeout, SystemService,$routeParams) {
+﻿smartApp.service('ChangeSwapSimService', function($timeout, SystemService, $routeParams) {
     var demo = SystemService.demo;
 
     this.getSIMData = function(msisdn, fnCallback) {
@@ -179,14 +179,14 @@
     };
 
     this.validateSIM = function(payload, fnCallback) {
-        
-        if($('#divID').val() == "changeSwapSimContent"){
+
+        if ($('#divID').val() == "changeSwapSimContent") {
             payload['project'] = 'SWAPSIM-' + payload['mobile-servicetype'];
-        }else{
+        } else {
             payload['project'] = '' + payload['mobile-servicetype'];
         }
         //alert(payload['project']);
-        
+
 
         var params = utils.createParamGet(payload, [
             'sim-serial',
@@ -288,12 +288,21 @@
             };
 
             $timeout(function() {
-                cb({
-                    status: true,
-                    data: data2,
-                    error: '',
-                    msgErr: ''
-                });
+                if (payload['sim-serial'] == "888888888888888888") {
+                    cb({
+                        status: true,
+                        data: data,
+                        error: '',
+                        msgErr: ''
+                    });
+                } else {
+                    cb({
+                        status: true,
+                        data: data2,
+                        error: '',
+                        msgErr: ''
+                    });
+                }
             }, 1000);
 
         }
