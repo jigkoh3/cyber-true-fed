@@ -298,7 +298,45 @@
             if (!utils.isEmpty(companyCode)) {
                 DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
             }
+
+            if ($scope.shopType === '1') {
+                    // Auto-open the CardReader dialog
+                    setTimeout(function() {
+                        var fancyboxOptions = {
+                            helpers: {
+                                overlay: {
+                                    //closeClick: false
+                                }
+                            },
+
+                            beforeShow: function() {
+
+                                if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
+                                    $('#btnSSO').hide();
+                                    //hidden button and disabled=false
+                                    $('#CitizenID').prop('disabled', false);
+                                } else {
+                                    //disabled=true
+                                    //alert('show');
+                                    $('#CitizenID').prop('disabled', true);
+                                }
+                                $('#loadingReadCard').hide();
+                                $('#unMatch').hide();
+                            },
+
+                            afterClose: function() {
+                                if (!$scope.onInputId()) {
+                                    //window.close();
+                                }
+                            }
+                        };
+
+                        $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
+                    }, 1000);
+                }
         }
+
+
 
     };
 
@@ -503,41 +541,7 @@
                 orderData = order;
                 localStorage.setItem('orderId', order.orderId);
 
-                if ($scope.shopType === '1') {
-                    // Auto-open the CardReader dialog
-                    setTimeout(function() {
-                        var fancyboxOptions = {
-                            helpers: {
-                                overlay: {
-                                    //closeClick: false
-                                }
-                            },
-
-                            beforeShow: function() {
-
-                                if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
-                                    $('#btnSSO').hide();
-                                    //hidden button and disabled=false
-                                    $('#CitizenID').prop('disabled', false);
-                                } else {
-                                    //disabled=true
-                                    //alert('show');
-                                    $('#CitizenID').prop('disabled', true);
-                                }
-                                $('#loadingReadCard').hide();
-                                $('#unMatch').hide();
-                            },
-
-                            afterClose: function() {
-                                if (!$scope.onInputId()) {
-                                    //window.close();
-                                }
-                            }
-                        };
-
-                        $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
-                    }, 1000);
-                }
+                
             });
         });
     };
