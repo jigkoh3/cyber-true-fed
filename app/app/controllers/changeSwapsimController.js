@@ -278,10 +278,11 @@
         if (result == false) {
             console.log(result);
             $scope.SubNo = 'null';
-            // $('#dataSubNo').val("");
+             $('#dataSubNo').val("");
             idFocus = "dataSubNo";
             return;
         } else {
+
             //check enable input
             if ($scope.shopType == '1') {} else {
                 $scope.isCustomerProfile = true;
@@ -722,6 +723,10 @@
         }
         //end----------- camera ----------------
     $scope.afterCloseWarning = function() {
+        if($scope.data && $routeParams.subno){
+        }else{
+            $scope.SubNo = "null";
+        }
         // if ($scope.SubNo === 'null') {
         //     // $('#dataSubNo').val('');
         //     setTimeout(function() {
@@ -735,8 +740,9 @@
             //$scope.validateUI();
         }
         $scope.isClickPrint = false;
-        isFocus = true;
-        $scope.initModalReadCard();
+
+        //isFocus = true;
+        //$scope.initModalReadCard();
 
 
 
