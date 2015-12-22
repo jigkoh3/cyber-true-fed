@@ -723,7 +723,7 @@
         }
         //end----------- camera ----------------
     $scope.afterCloseWarning = function() {
-        if($scope.data && $routeParams.subno){
+        if($scope.data || $routeParams.subno){
         }else{
             $scope.SubNo = "null";
         }
