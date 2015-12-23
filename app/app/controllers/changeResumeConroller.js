@@ -940,7 +940,7 @@ smartApp.controller('ResumeController', function(
                 "&customer-subtype=" + $scope.subCompanyType +
                 "&service-level=" + $scope.data.installedProducts['service-level'] +
                 //"&proposition=" + $scope.promotion +
-                "&partner-code=" + $scope.partnerCode +
+                //"&partner-code=" + $scope.partnerCode +
                 "&privilege=false";
 
             SystemService.showLoading();
