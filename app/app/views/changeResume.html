@@ -425,7 +425,7 @@
                                            ng-click="onVerify()"
                                            value="Verify"
                                            class="btn btn-success">-->
-                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCheckInputForVerify " ng-click="onVerify()" value="ตรวจสอบลูกค้า" class="btn btn-success">
+                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCustomerProfile || !partnerCode " ng-click="onVerify()" value="ตรวจสอบลูกค้า" class="btn btn-success">
                                 </label>
                             </div>
                             <!-- <div class="col-md-3">
