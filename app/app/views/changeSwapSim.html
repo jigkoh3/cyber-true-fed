@@ -98,6 +98,7 @@
                                                        class="form-control" 
                                                        ng-model="dealerCode" 
                                                        ng-change="onInputDealerCode()" 
+                                                       ng-disabled="!isCustomerProfile"
                                                        maxlength="{{ dealerCodeLength }}" required />
 
                                                 <span class="error" style="color:red;" ng-show="!dealerCodeValid && alreadyValidatedDealerCode">
