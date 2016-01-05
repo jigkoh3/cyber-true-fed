@@ -853,7 +853,8 @@ smartApp.controller('ResumeController', function(
                 //error ?
                 idFocus = "txtPartnerCode";
                 $('#txtPartnerCode').blur();
-                //$scope.partnerCode = "";
+                $scope.partnerCode = "";
+                $scope.showApprovCode = false;
                 setTimeout(function() {
 
                     SystemService.showAlert({
