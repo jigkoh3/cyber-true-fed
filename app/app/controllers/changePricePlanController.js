@@ -1240,6 +1240,9 @@ smartApp.controller('ChangePricePlanController', function(
             name: $scope.saveSelectCUG['group-id'] + ' : ' + $scope.saveSelectCUG['group-name'],
             id: $scope.saveSelectCUG['group-id']
         };
+        setTimeout(function(){
+            $('#idModalCUG').blur();
+        }, 1200);
     };
     $scope.onCancelCUG = function() {
         $scope.isSelectCUGList = false;

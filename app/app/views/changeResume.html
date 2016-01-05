@@ -573,7 +573,7 @@
                                                    name="simSerialInput"
                                                    class="form-control"
                                                    ng-model="simSerial"
-                                                   ng-keyup="($event.keyCode==13 && onEnterSimSerial())"
+                                                   ng-keyup="(simSerial && $event.keyCode==13 && onEnterSimSerial())"
                                                    ng-change="onKeyUpSimSerial()"
                                                    ng-disabled="!isCustomerProfile"
                                                    maxlength="{{ simSerialLength }}" required />
