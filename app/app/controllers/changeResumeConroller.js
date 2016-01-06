@@ -3564,6 +3564,7 @@ smartApp.controller('ResumeController', function(
     };
     $scope.onKeyUpSimSerial = function() {
         if ($scope.simSerial.length === $scope.simSerialLength) {
+            $('#simSerial').blur();
             $scope.onInputSIMSerial();
         } else {
             $scope.printAble = false;
@@ -3575,7 +3576,7 @@ smartApp.controller('ResumeController', function(
 
     $scope.printAble = false;
     $scope.onInputSIMSerial = function() {
-
+        $scope.simSerial = $('#simSerial').val();
         var data = {
             'sim-serial': $scope.simSerial,
             'dealer-code': $scope.partnerCode,
