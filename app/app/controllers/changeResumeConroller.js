@@ -640,9 +640,9 @@ smartApp.controller('ResumeController', function(
 
                                 $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
 
-                                if($scope.data.installedProducts['company-code'] == "RF"){
+                                if ($scope.data.installedProducts['company-code'] == "RF") {
                                     $scope.promotion = "0022416";
-                                }else{
+                                } else {
                                     $scope.promotion = "0022415";
                                 }
                                 $scope.onCheckInputForVerify();
@@ -1945,7 +1945,22 @@ smartApp.controller('ResumeController', function(
         $('#simSerial').prop('disabled', false);
     };
     $scope.changePartnerCode = function() {
-        $scope.pricePlan = {};
+        var checkOldPricePlans = $filter('filter')(valPricePlans, {
+            saveName: $scope.data.installedProducts['product-name']
+        });
+        if (checkOldPricePlans && checkOldPricePlans.length > 0) {
+            //setDefaultPricePlan
+            $scope.pricePlan = {
+                name: checkOldPricePlans[0].pricePlan,
+                promotion: checkOldPricePlans[0].promotion,
+                rc: checkOldPricePlans[0].rc,
+                pricePlanFilter: "",
+                saveName: checkOldPricePlans[0].saveName
+            };
+        } else {
+            $scope.pricePlan = {};
+        }
+
         $scope.onCheckInputForVerify();
         $scope.isValidate = false;
         $scope.specialOfferType = {
@@ -2609,7 +2624,7 @@ smartApp.controller('ResumeController', function(
             delete data['order']["order-items"][0]["address-list"];
         }
         if ($scope.customerStatusN == 'O') {
-            if($scope.lastestCustomer['customer-id']){
+            if ($scope.lastestCustomer['customer-id']) {
                 //data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
             }
         }
@@ -3024,6 +3039,7 @@ smartApp.controller('ResumeController', function(
             } else {
                 $scope.isVerify = true;
                 $scope.showApprovCode = false;
+                $scope.callSalePricePlanList();
             }
         };
 
@@ -3546,85 +3562,85 @@ smartApp.controller('ResumeController', function(
     var validateResourceStatus = function(resourceStatus) {
         return resourceStatus === 'AVAILABLE' ? true : false;
     };
-    $scope.onKeyUpSimSerial = function(){
+    $scope.onKeyUpSimSerial = function() {
         if ($scope.simSerial.length === $scope.simSerialLength) {
             $scope.onInputSIMSerial();
         } else {
             $scope.printAble = false;
         }
     };
-    $scope.onEnterSimSerial = function(){
+    $scope.onEnterSimSerial = function() {
         $scope.onInputSIMSerial();
     };
 
     $scope.printAble = false;
     $scope.onInputSIMSerial = function() {
-        
-            var data = {
-                'sim-serial': $scope.simSerial,
-                'dealer-code': $scope.partnerCode,
-                'company-code': $scope.data.installedProducts['company-code'],
-                'mobile-servicetype': $scope.data.installedProducts['mobile-servicetype'] == 'PREPAID' ? 'PREPAID' : 'POSTPAID'
-                    //,'product-code': $scope.productCodes,
-                    //'pair-msisdn': $scope.SubNo
-            };
 
-            if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == true) {
-                data['product-code'] = $scope.productCodes;
+        var data = {
+            'sim-serial': $scope.simSerial,
+            'dealer-code': $scope.partnerCode,
+            'company-code': $scope.data.installedProducts['company-code'],
+            'mobile-servicetype': $scope.data.installedProducts['mobile-servicetype'] == 'PREPAID' ? 'PREPAID' : 'POSTPAID'
+                //,'product-code': $scope.productCodes,
+                //'pair-msisdn': $scope.SubNo
+        };
+
+        if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == true) {
+            data['product-code'] = $scope.productCodes;
+        }
+        console.log(data);
+        SystemService.showLoading();
+        ChangeSwapSimService.validateSIM(data, function(result) {
+            SystemService.hideLoading();
+            var displayMsg = utils.getObject(result.data, 'display-messages.0');
+
+            if (displayMsg && displayMsg['message-type']) {
+                $scope.simSerial = "";
+                $('#simSerial').prop('disabled', false);
+                //$('#simSerial').focus();
+                idFocus = "simSerial";
+                SystemService.showAlert({
+                    "message": result.data["display-messages"][0]["message"],
+                    "message-code": result.data["display-messages"][0]["message-code"],
+                    "message-type": "WARNING",
+                    "en-message": result.data["display-messages"][0]["en-message"],
+                    "th-message": result.data["display-messages"][0]["th-message"],
+                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                });
+                //SystemService.showAlert(displayMsg);
+            } else {
+                $('#simSerial').prop('disabled', true);
             }
-            console.log(data);
-            SystemService.showLoading();
-            ChangeSwapSimService.validateSIM(data, function(result) {
-                SystemService.hideLoading();
-                var displayMsg = utils.getObject(result.data, 'display-messages.0');
 
-                if (displayMsg && displayMsg['message-type']) {
-                    $scope.simSerial = "";
-                    $('#simSerial').prop('disabled', false);
-                    //$('#simSerial').focus();
-                    idFocus = "simSerial";
-                    SystemService.showAlert({
-                        "message": result.data["display-messages"][0]["message"],
-                        "message-code": result.data["display-messages"][0]["message-code"],
-                        "message-type": "WARNING",
-                        "en-message": result.data["display-messages"][0]["en-message"],
-                        "th-message": result.data["display-messages"][0]["th-message"],
-                        "technical-message": result.data["display-messages"][0]["technical-message"]
-                    });
-                    //SystemService.showAlert(displayMsg);
-                } else {
-                    $('#simSerial').prop('disabled', true);
-                }
+            $scope.printAble = false;
 
-                $scope.printAble = false;
+            if (result.data) {
+                var simDetails = utils.getObject(result.data, 'response-data.sim-detail');
+                if (simDetails) {
+                    $scope.data.simDetails = simDetails;
 
-                if (result.data) {
-                    var simDetails = utils.getObject(result.data, 'response-data.sim-detail');
-                    if (simDetails) {
-                        $scope.data.simDetails = simDetails;
+                    if (
+                        // TODO: Validate (See Page 10 - NO 6)
+                        // TODO: Validate (See Page 10 - NO 7)
+                        validateSIMType(simDetails['sim-type']) &&
+                        validateResourceStatus(simDetails['resource-status'])
+                        // TODO: Validate (See Page 10 - NO 10)
+                        // TODO: Validate (See Page 10 - NO 11)
+                        // TODO: Validate (See Page 10 - NO 12)
+                    ) {
+                        $scope.printAble = true;
 
-                        if (
-                            // TODO: Validate (See Page 10 - NO 6)
-                            // TODO: Validate (See Page 10 - NO 7)
-                            validateSIMType(simDetails['sim-type']) &&
-                            validateResourceStatus(simDetails['resource-status'])
-                            // TODO: Validate (See Page 10 - NO 10)
-                            // TODO: Validate (See Page 10 - NO 11)
-                            // TODO: Validate (See Page 10 - NO 12)
-                        ) {
-                            $scope.printAble = true;
-
-                            if ($scope.shopType === '1') {
-                                //$scope.openPDFDialog();
-                            }
-                        } else {
-                            //alert('หมายเลขซิมการ์ดใหม่ ไม่ถูกต้อง'); // ปรับ alert message
-
+                        if ($scope.shopType === '1') {
+                            //$scope.openPDFDialog();
                         }
+                    } else {
+                        //alert('หมายเลขซิมการ์ดใหม่ ไม่ถูกต้อง'); // ปรับ alert message
+
                     }
                 }
-            });
-        
+            }
+        });
+
     };
 
 
