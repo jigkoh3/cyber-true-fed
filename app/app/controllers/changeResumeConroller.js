@@ -996,13 +996,16 @@ smartApp.controller('ResumeController', function(
                     });
                     if (checkOldPricePlans && checkOldPricePlans.length > 0) {
                         //setDefaultPricePlan
-                        $scope.pricePlan = {
-                            name: checkOldPricePlans[0].pricePlan,
-                            promotion: checkOldPricePlans[0].promotion,
-                            rc: checkOldPricePlans[0].rc,
-                            pricePlanFilter: "",
-                            saveName: checkOldPricePlans[0].saveName
-                        };
+                        // $scope.pricePlan = {
+                        //     name: checkOldPricePlans[0].pricePlan,
+                        //     promotion: checkOldPricePlans[0].promotion,
+                        //     rc: checkOldPricePlans[0].rc,
+                        //     pricePlanFilter: "",
+                        //     saveName: checkOldPricePlans[0].saveName
+                        // };
+                        $scope.selectedPricePlan(checkOldPricePlans[0]);
+                        $scope.selectedPricePlan2();
+
                     }
 
                     $scope.isLoadPricePlan = true;
