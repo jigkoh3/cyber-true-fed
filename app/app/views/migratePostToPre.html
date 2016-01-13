@@ -554,11 +554,11 @@
                                 </h4>
                         </div>
                         
-                        <div class="modal-body" style="overflow-x: auto; overflow-y: auto; height: 520px;">
-                            <iframe id="iframePDF" src="" style="width: 100%; height: 500px;" frameborder="0" scrolling="yes">
-                                <p>It appears your web browser doesn't support iframes.</p>
-                            </iframe>
-                        </div>
+                         <div class="modal-body modalBodyDivStyle">
+						    <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
+						        <p>It appears your web browser doesn't support iframes.</p>
+						    </iframe>
+						</div>
                         <div class="modal-footer">
                             <span ng-show="(shopType === '1' && getAuthen['isSecondAuthen'] === false) || shopType === '0'">
                                 <input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000); setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 2500);" ng-click="submit()" class="btn btn-success" />

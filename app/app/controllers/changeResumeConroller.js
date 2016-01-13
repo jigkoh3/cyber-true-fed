@@ -986,7 +986,7 @@ smartApp.controller('ResumeController', function(
                     // });
 
                     //makeDataPriceplan(resultGetPriceplan.data["response-data"], listProp[0]['name'], $scope.promotion);
-                    makeDataPriceplan(resultGetPriceplan.data["response-data"], "Proposition for Aftersales", $scope.promotion);
+                    makeDataPriceplan(resultGetPriceplan.data["response-data"], "", $scope.promotion);
 
 
                     console.log($scope.propositionList);
@@ -3445,7 +3445,7 @@ smartApp.controller('ResumeController', function(
                 $('#' + id).focus();
                 isFocus = false;
                 return;
-            } else {
+            } else {บ
                 SystemService.showAlert(msg);
             }
         };
