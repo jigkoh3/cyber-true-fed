@@ -959,7 +959,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                         document.getElementById('iframePDF').src = url + '?clearData=N';
                         if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
                             setTimeout(function() {
+                                document.getElementById('iframePDF').focus();
                                 document.getElementById('iframePDF').src = 'javascript:window.print();'
+                                //window.print();
                             }, 2000);
                             setTimeout(function() {
                                 document.getElementById('iframePDF').src = srcPDF
@@ -1087,12 +1089,12 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                         $scope.data = resultData;
 
 
-                        
+
                         if ($scope.data.status) {
                             console.log(resultData.priceplan['product-properties']['OFFER-INSTANCE-ID']);
-                        $scope.hybridInstanceID = resultData.priceplan['product-properties']['OFFER-INSTANCE-ID'];
+                            $scope.hybridInstanceID = resultData.priceplan['product-properties']['OFFER-INSTANCE-ID'];
 
-                        $scope.data2 = resultData;
+                            $scope.data2 = resultData;
                             //$scope.data.orderRequest['order']['sale-agent']
 
                             $scope.data.orderRequest['order']['order-id'] = resultOrder.orderId;
@@ -1377,7 +1379,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
         } else {
 
-            if(!$scope.data.status){
+            if (!$scope.data.status) {
 
             }
             //เปิด modal
