@@ -194,7 +194,47 @@
     <script src="app/controllers/changeTelnoController.js"></script>
 
 
+    <style>
+    /*.fancybox-wrap {
+                z-index: 1999;
+            }
     
+            .fancybox-overlay {
+                z-index: 1998;
+            }
+            */
+            
+    <c:choose>
+        <c:when test="${fn:contains(header['User-Agent'],'Mobile')}">
+            .modalBodyDivStyle {
+                overflow-x: auto;
+                overflow-y: auto;
+                overflow:auto !important;
+                -webkit-overflow-scrolling:touch !important;
+                height: 520px;
+            }
+            .modalBodyIframeStyle {
+                width: 100%; 
+                height: 800px; 
+                overflow-x: auto; 
+                overflow-y: auto; 
+                overflow:auto !important; 
+                -webkit-overflow-scrolling:touch !important;
+            }
+        </c:when>
+    
+        <c:otherwise>
+            .modalBodyDivStyle {
+                
+            }
+            .modalBodyIframeStyle {
+                width: 100%; 
+                height: 400px;
+            }
+        </c:otherwise>
+    </c:choose>
+    
+    </style>
 </head>
 <body ng-app="smartApp" id="smartBody" style="overflow-y:scroll;">
 

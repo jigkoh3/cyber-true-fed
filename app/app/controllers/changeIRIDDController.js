@@ -9,6 +9,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     ValidateMsgService,
     $ngBootbox) {
 
+    $scope.srcPrintPDF = "PDFs/AfterSaleReport.pdf";
+
 
     $scope.isSubIDDNo = true;
     $scope.isSubIRNo = true;
@@ -954,13 +956,45 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 var srcPDF = "";
                 SystemService.generatePDF(data, function(result) {
                     var url = result;
+                    $scope.srcPrintPDF = url;
                     setTimeout(function() {
                         var srcPDF = url;
                         document.getElementById('iframePDF').src = url + '?clearData=N';
+                        //document.getElementById('idPdfObject').data = url + '?clearData=N';
+                        //document.getElementById('idPdfEmbed').src = url + '?clearData=N';
+                        
                         if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
                             setTimeout(function() {
-                                document.getElementById('iframePDF').focus();
-                                document.getElementById('iframePDF').src = 'javascript:window.print();'
+                                //document.getElementById('iframePDF').focus();
+                                //document.getElementById('iframePDF').src = 'javascript:window.print();';
+                                //-----------------ST fixed IE8 15/01/2016 ------------------
+                                function printIframePdf() {
+                                    window.frames["iframePDF"].focus();
+                                    try {
+                                        window.frames["iframePDF"].print();
+                                    } catch (e) {
+                                        //window.print();
+                                        document.getElementById('iframePDF').src = 'javascript:window.print();';
+                                        console.log(e);
+                                    }
+                                }
+
+                                function printObjectPdf() {
+                                    try {
+                                        document.getElementById('idPdfObject').Print();
+                                        
+                                    } catch (e) {
+                                        printIframePdf();
+                                        console.log(e);
+                                    }
+                                }
+
+                                // function idPdf_onreadystatechange() {
+                                //     if (idPdf.readyState === 4)
+                                //         setTimeout(printObjectPdf, 1000);
+                                // }
+                                printObjectPdf();
+                                //-----------------EN fixed IE8 15/01/2016 ------------------
                                 //window.print();
                             }, 2000);
                             setTimeout(function() {
