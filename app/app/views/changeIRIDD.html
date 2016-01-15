@@ -5,6 +5,12 @@
         <div class="col-md-1"></div>
         <div class="col-md-11">
             <div ng-include="template.header"></div>
+            <div id="divPDF2"></div>
+            <!-- <object id="idPdfObject" width="440" height="440" style="width: 440px; height: 440px;" type="application/pdf" data="PDFs/hello.pdf">
+                <embed src="PDFs/hello.pdf" width="440" height="580" style="width: 440px; height: 580px;" type="application/pdf">
+                </embed>
+                <span>PDF plugin is not available.</span>
+            </object> -->
             <div class="clearfix"></div>
             <h1 class="content-title">บริการ IR/IDD</h1>
             <div class="content-body">
@@ -175,11 +181,6 @@
                                 <p>It appears your web browser doesn't support iframes.</p>
                             </iframe>
                             
-                            <object id="idPdfObject" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="{{srcPrintPDF}}">
-                                <embed id="idPdfEmbed" src="{{srcPrintPDF}}" width="440" height="580" style="width: 440px; height: 580px;" type="application/pdf">
-                                </embed>
-                                <span>PDF plugin is not available.</span>
-                            </object>
                         </div>
                         <div class="modal-footer">
                             <span ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)">
