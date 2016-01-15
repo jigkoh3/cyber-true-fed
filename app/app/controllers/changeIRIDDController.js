@@ -249,7 +249,16 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     }, 100);
 
                 } else {
-                    $('#CitizenID').prop('disabled', true);
+                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                        $('#CitizenID').prop('disabled', false);
+                        setTimeout(function() {
+                        $('#CitizenID').focus();
+                    }, 500);
+                        
+
+                    } else {
+                        $('#CitizenID').prop('disabled', true);
+                    }
                 }
 
                 $("#btnReadCardClose").click(function() {

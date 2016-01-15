@@ -782,14 +782,14 @@ smartApp.controller('ChangePricePlanController', function(
                     }, 100);
 
                 } else {
-                    if ($scope.getAuthen["isByPassSecondAuthen"] == false) {
+                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
                         $('#CitizenID').prop('disabled', false);
-
+                        $('#CitizenID').focus();
                     } else {
                         $('#CitizenID').prop('disabled', true);
                     }
                 }
-            }
+            
 
             $('input[type=submit]').show(); $('input[type=reset]').show();
         }, 200);
