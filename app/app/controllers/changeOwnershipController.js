@@ -915,7 +915,7 @@ smartApp.controller('changeOwnershipController', function(
                     // });
 
                     //makeDataPriceplan(resultGetPriceplan.data["response-data"], listProp[0]['name'], $scope.promotion);
-                    makeDataPriceplan(resultGetPriceplan.data["response-data"], "", $scope.promotion);
+                    makeDataPriceplan(resultGetPriceplan.data["response-data"], "RMV000000001641", $scope.promotion);
 
 
                     console.log($scope.propositionList);
