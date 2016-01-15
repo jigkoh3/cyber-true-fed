@@ -957,32 +957,34 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 SystemService.generatePDF(data, function(result) {
                     var url = result;
                     $scope.srcPrintPDF = url;
+                    divPDF2.innerHTML =
+                                '<object id="idPdfObject" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="' + url + '?clearData=N' + '">' +
+                                '<embed src="' + url + '?clearData=N' + '" width="440" height="580" style="width: 440px; height: 580px;" type="application/pdf">' +
+                                '</embed>' +
+                                '<span>PDF plugin is not available.</span>' +
+                                '</object>';
                     setTimeout(function() {
                         var srcPDF = url;
                         document.getElementById('iframePDF').src = url + '?clearData=N';
                         //document.getElementById('idPdfObject').data = url + '?clearData=N';
                         //document.getElementById('idPdfEmbed').src = url + '?clearData=N';
                         //$('#idPdfObject').load(url);
-                        divPDF2.innerHTML = 
-            '<object id="idPdfObject" onreadystatechange="idPdf_onreadystatechange()" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="'+url + '?clearData=N'+'">'+
-                '<embed src="'+url + '?clearData=N'+'" width="440" height="580" style="width: 440px; height: 580px;" type="application/pdf">'+
-                '</embed>'+
-                '<span>PDF plugin is not available.</span>'+
-            '</object>';
 
                         if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                            
+
                             setTimeout(function() {
                                 //document.getElementById('iframePDF').focus();
                                 //document.getElementById('iframePDF').src = 'javascript:window.print();';
                                 //-----------------ST fixed IE8 15/01/2016 ------------------
-                                
+
 
                                 // function idPdf_onreadystatechange() {
                                 //     if (idPdf.readyState === 4)
                                 //         setTimeout(printObjectPdf, 1000);
                                 // }
 
-                                //printObjectPdf();
+                                printObjectPdf();
                                 //-----------------EN fixed IE8 15/01/2016 ------------------
                                 //window.print();
                             }, 2000);

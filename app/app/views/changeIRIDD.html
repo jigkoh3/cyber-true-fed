@@ -188,7 +188,7 @@
                                        href="#modal-pdf"
                                        value="ยืนยันและพิมพ์เอกสาร"
                                        data-toggle="modal"
-                                       onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 2000); setTimeout(function () { document.getElementById('iframePDF').src = 'PDFs/AfterSaleReport.pdf' }, 2500);"
+                                       onclick="printObjectPdf();"
                                        ng-click="saveOrder()"
                                        class="btn btn-success">
                             </span>
