@@ -609,9 +609,9 @@ smartApp.controller('changeOwnershipController', function(
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
 
                             if($scope.data.installedProducts['company-code'] == "RF"){
-                                $scope.promotion = "0022416";
+                                $scope.promotion = "0022698";
                             }else{
-                                $scope.promotion = "0022415";
+                                $scope.promotion = "0022697";
                             }
 
 
