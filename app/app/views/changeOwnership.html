@@ -670,7 +670,7 @@
                                         <label>
                                             <p></p>
                                         </label>
-                                        <select class="form-control" id="titleOtherRegisterd" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());" >
+                                        <select class="form-control" id="titleOtherRegisterd" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());" ng-change="onChangeTitleOther2()" >
                                             <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
