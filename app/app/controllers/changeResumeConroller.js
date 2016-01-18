@@ -2156,174 +2156,6 @@ smartApp.controller('ResumeController', function(
         $scope.isManualReadCard = false;
     };
 
-
-
-
-    //var picker = new Pikaday({
-    //    field: document.getElementById('startB1'),
-    //    format: "DD/MM/YYYY",
-    //    i18n: {
-    //        previousMonth: 'ย้อนหลัง',
-    //        nextMonth: 'ถัดไป',
-    //        months: [
-    //            'มกราคม',
-    //            'กุมภาพันธ์',
-    //            'มีนาคม',
-    //            'เมษายน',
-    //            'พฤษภาคม',
-    //            'มิถุนายน',
-    //            'กรกฎาคม',
-    //            'สิงหาคม',
-    //            'กันยายน',
-    //            'ตุลาคม',
-    //            'พฤศจิกายน',
-    //            'ธันวาคม'],
-    //        weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
-    //        weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
-    //    },
-
-    //    onSelect: function () {
-    //        picker2.setMinDate(this.getDate());
-    //    }
-    //});
-    //var picker = new Pikaday({
-    //    field: document.getElementById('startB2'),
-    //    format: "DD/MM/YYYY",
-    //    i18n: {
-    //        previousMonth: 'ย้อนหลัง',
-    //        nextMonth: 'ถัดไป',
-    //        months: [
-    //            'มกราคม',
-    //            'กุมภาพันธ์',
-    //            'มีนาคม',
-    //            'เมษายน',
-    //            'พฤษภาคม',
-    //            'มิถุนายน',
-    //            'กรกฎาคม',
-    //            'สิงหาคม',
-    //            'กันยายน',
-    //            'ตุลาคม',
-    //            'พฤศจิกายน',
-    //            'ธันวาคม'],
-    //        weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
-    //        weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
-    //    },
-
-    //    onSelect: function () {
-    //        picker2.setMinDate(this.getDate());
-    //    }
-    //});
-    //var picker = new Pikaday({
-    //    field: document.getElementById('startB3'),
-    //    format: "DD/MM/YYYY",
-    //    i18n: {
-    //        previousMonth: 'ย้อนหลัง',
-    //        nextMonth: 'ถัดไป',
-    //        months: [
-    //            'มกราคม',
-    //            'กุมภาพันธ์',
-    //            'มีนาคม',
-    //            'เมษายน',
-    //            'พฤษภาคม',
-    //            'มิถุนายน',
-    //            'กรกฎาคม',
-    //            'สิงหาคม',
-    //            'กันยายน',
-    //            'ตุลาคม',
-    //            'พฤศจิกายน',
-    //            'ธันวาคม'],
-    //        weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
-    //        weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
-    //    },
-
-    //    onSelect: function () {
-    //        picker2.setMinDate(this.getDate());
-    //    }
-    //});
-    //var ddd = document.getElementById('start');
-    //console.log("dddddddddd : " + ddd);
-    //var picker = new Pikaday({
-    //    field: document.getElementById('start'),
-    //    format: "DD/MM/YYYY",
-    //    i18n: {
-    //        previousMonth: 'ย้อนหลัง',
-    //        nextMonth: 'ถัดไป',
-    //        months: [
-    //            'มกราคม',
-    //            'กุมภาพันธ์',
-    //            'มีนาคม',
-    //            'เมษายน',
-    //            'พฤษภาคม',
-    //            'มิถุนายน',
-    //            'กรกฎาคม',
-    //            'สิงหาคม',
-    //            'กันยายน',
-    //            'ตุลาคม',
-    //            'พฤศจิกายน',
-    //            'ธันวาคม'],
-    //        weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
-    //        weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
-    //    },
-
-    //    onSelect: function () {
-    //        picker2.setMinDate(this.getDate());
-    //    }
-    //});
-    //var picker2 = new Pikaday({
-    //    field: document.getElementById('end'),
-    //    format: "DD/MM/YYYY",
-    //    i18n: {
-    //        previousMonth: 'ย้อนหลัง',
-    //        nextMonth: 'ถัดไป',
-    //        months: [
-    //            'มกราคม',
-    //            'กุมภาพันธ์',
-    //            'มีนาคม',
-    //            'เมษายน',
-    //            'พฤษภาคม',
-    //            'มิถุนายน',
-    //            'กรกฎาคม',
-    //            'สิงหาคม',
-    //            'กันยายน',
-    //            'ตุลาคม',
-    //            'พฤศจิกายน',
-    //            'ธันวาคม'],
-    //        weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
-    //        weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
-    //    },
-    //    onSelect: function () {
-    //        picker.setMaxDate(this.getDate());
-    //    }
-    //});
-
-    //var picker = new Pikaday({
-    //    field: document.getElementById('startid'),
-    //    format: "DD/MM/YYYY",
-    //    i18n: {
-    //        previousMonth: 'ย้อนหลัง',
-    //        nextMonth: 'ถัดไป',
-    //        months: [
-    //            'มกราคม',
-    //            'กุมภาพันธ์',
-    //            'มีนาคม',
-    //            'เมษายน',
-    //            'พฤษภาคม',
-    //            'มิถุนายน',
-    //            'กรกฎาคม',
-    //            'สิงหาคม',
-    //            'กันยายน',
-    //            'ตุลาคม',
-    //            'พฤศจิกายน',
-    //            'ธันวาคม'],
-    //        weekdays: ['อาทิตย์', 'จันทร', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
-    //        weekdaysShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.']
-    //    },
-
-    //    onSelect: function () {
-    //        picker2.setMinDate(this.getDate());
-    //    }
-    //});
-
     $scope.onChangeSub = function() {
         console.log($scope.subCompanyType);
     };
@@ -2371,55 +2203,16 @@ smartApp.controller('ResumeController', function(
                         "CUSTOMER_ADDRESS": {
                             "number": "61/268",
                             "moo": "8",
-                            //        "village": "moo ban",
                             "street": "ratchada",
-                            //        "soi": "8",
                             "district": "dindaeng",
                             "province": "Pathumthani",
-                            //        "building-name": "Pakin",
-                            //        "building-room": "22",
-                            //        "building-floor": "13",
                             "sub-district": "Dindaeng",
-                            "zip": "22222",
-                            //        "household": "18"
+                            "zip": "22222"
                         }
                     }
-                    //"customer-agents": {
-                    //    "AUTH_1": {
-                    //        "contact": "0868836665",
-                    //        "id-number": "9988877688845",
-                    //        "id-type": "I",
-                    //        "firstname": "สมคิด",
-                    //        "lastname": "คิดมากไป",
-                    //        "birthdate": "2015-07-20T00:00:00+0700"
-                    //    }
-                    //,"POA": {
-                    //    "contact": "0868836664",
-                    //    "id-number": "3257588733945",
-                    //    "id-type": "I",
-                    //    "firstname": "สมชาย",
-                    //    "lastname": "ปากสว่าง",
-                    //    "birthdate": "2015-07-20T00:00:00+0700"
-                    //},
-                    //"AUTH_2": {
-                    //    "contact": "0868836666",
-                    //    "id-number": "9988877687723",
-                    //    "id-type": "I",
-                    //    "firstname": "สมฤดี",
-                    //    "lastname": "ดีเกินไป",
-                    //    "birthdate": "2015-07-20T00:00:00+0700"
-                    //}
-                    //}
+                    
                 },
-                // "sale-agent": {
-                // "name": "Chitchai Changpradist",
-                //    "channel": "CM",
-                //    "partner-code": "",
-                //    "partner-name": "",
-                //    "sale-code": "01019580",
-                //    "sale-assist-code": "",
-                //    "partner-type": ""
-                // },
+                
                 "order-items": [{
                         "name": "RESUME",
                         "product-name": $scope.pricePlan.saveName,
@@ -2429,7 +2222,7 @@ smartApp.controller('ResumeController', function(
                         "product-type": "PRICEPLAN",
                         "order-type": "CHANGE",
                         "reason-code": $scope.selectReason.id,
-                        "user-memo": $scope.saveData.memo ? $scope.saveData.memo : "",
+                        "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
                         "address-list": {
                             "BILLING_ADDRESS": {
                                 "number": $scope.mailAddress.homeNumber,
@@ -2446,21 +2239,7 @@ smartApp.controller('ResumeController', function(
                                 "zip": $scope.mailAddress.postcode,
                                 // "household": ""
                             }
-                            //,"TAX_ADDRESS": {
-                            //    "number": "61/268",
-                            //    "moo": "8",
-                            //    "village": "moo ban",
-                            //    "street": "ratchada",
-                            //    "soi": "8",
-                            //    "district": "dindaeng",
-                            //    "province": "Pathumthani",
-                            //    "building-name": "Pakin",
-                            //    "building-room": "22",
-                            //    "building-floor": "13",
-                            //    "sub-district": "Dindaeng",
-                            //    "zip": "22222",
-                            //    "household": "18"
-                            //}
+                            
                         },
                         "order-data": {
                             //"IMSI": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
@@ -2496,14 +2275,9 @@ smartApp.controller('ResumeController', function(
                             "COMPANY-CODE": $scope.data.installedProducts["company-code"],
                             "NAS-PROPOSITION": $scope.selectProposition,
                             "CCBS-PROPOSITION": $scope.pricePlan.promotion,
-                            // "ORIGINAL-OWNER-ID-NUMBER": $scope.data.customerProfile['id-number'],
-                            // "ORIGINAL-OWNER-FIRSTNAME": $scope.data.customerProfile['firstname'],
-                            // "ORIGINAL-OWNER-LASTNAME": $scope.data.customerProfile['lastname']
-                            //"SIM": $scope.data.installedProducts["product-properties"]["SIM"], //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
                             "SIM": $scope.simSerial
                         }
                     }]
-                    //,"last-modify-date": ""
             },
             "ref-id": "xxxxxxxxxxxxxxxxxxxADD",
             "user-id": "xxxxxxxxxxxxxxxxxxxADD",
@@ -3368,12 +3142,10 @@ smartApp.controller('ResumeController', function(
         }, 500);
 
     }
+
     $scope.initWebCam = function() {
         $scope.isCameraLastest = false;
         $scope.initWebCamNext();
-
-
-
     }
 
     function onCompleteSnap(msg) {
@@ -3468,7 +3240,7 @@ smartApp.controller('ResumeController', function(
                 $('#' + id).focus();
                 isFocus = false;
                 return;
-            } else {บ
+            } else {
                 SystemService.showAlert(msg);
             }
         };
