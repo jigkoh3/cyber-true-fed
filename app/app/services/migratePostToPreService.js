@@ -613,7 +613,6 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
 
 
     this.submitOrder = function(payload, fnCallback) {
-
         var request = {
             "order": {
                 "order-id": payload.orderData.orderId,
@@ -652,9 +651,8 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     "product-category": payload.productDetails['product-category'],
                     "product-type": payload.productDetails['product-type'],
                     "order-type": "CHANGE",
-                    //"reason-code": payload.selectReason.id,
-                    //"reason-code": "MGJ5",
                     "reason-code": "CREQ",
+                    'user-memo': payload.memo ? payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": "  + payload.memo : payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": ",
                     "address-list": {
                         "BILLING_ADDRESS": payload.customerAddress,
                         "TAX_ADDRESS": payload.customerAddress
@@ -664,8 +662,6 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "ORIGINAL-ID-NUMBER": payload.customerProfile['id-number'],
                         "ORIGINAL-FIRSTNAME": payload.customerProfile['firstname'],
                         "ORIGINAL-LASTNAME": payload.customerProfile['lastname']
-
-                        //,"CCBS-PROPOSITION-SOC-CODE": payload.propositionSelected['soc']
                     },
                     "primary-order-data": {
                         "OU-ID": payload.productDetails['ouId'],
@@ -673,8 +669,6 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                         "ACCOUNT-CATEGORY": "P",
                         "ACCOUNT-SUB-TYPE": "PRE",
                         "COMPANY-CODE": payload.productDetails['company-code']
-                            //,"NAS-PROPOSITION": payload.propositionSelected['proposition-code'],
-                            //"CCBS-PROPOSITION": payload.propositionSelected['name']
                     }
                 }],
                 "last-modify-date": ""
