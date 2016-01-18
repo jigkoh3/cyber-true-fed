@@ -151,9 +151,9 @@ smartApp.config(function($routeProvider, $httpProvider) {
         controller: 'MigratePreToPostController'
     });
 
-    $routeProvider.otherwise({
-        redirectTo: '/home'
-    });
+    // $routeProvider.otherwise({
+    //     redirectTo: '/home'
+    // });
 });
 
 //TODO unique

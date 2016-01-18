@@ -1208,9 +1208,14 @@ $scope.printOrder = function() {
 
             var srcPDF = url;
             document.getElementById('iframePDF').src = url + '?clearData=N';
+
+            SystemService.printPDF(url);
+            //printObjectPdf();
+
             if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
                 setTimeout(function() {
-                    document.getElementById('iframePDF').src = 'javascript:window.print();'
+                    //document.getElementById('iframePDF').src = 'javascript:window.print();'
+                    printObjectPdf();
                 }, 2000);
                 setTimeout(function() {
                     document.getElementById('iframePDF').src = srcPDF

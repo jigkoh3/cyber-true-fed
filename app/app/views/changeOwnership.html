@@ -1296,7 +1296,7 @@
 							    </iframe>
 							</div>
                             <div class="modal-footer">
-                                <span ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์" data-dismiss="modal" ng-click="saveOrder()" onclick="setTimeout(function () { document.getElementById('iframePDF').src = 'javascript:window.print();' }, 1000);" class="btn btn-success"></span>
+                                <span ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์" data-dismiss="modal" ng-click="saveOrder()" onclick="printObjectPdf();" class="btn btn-success"></span>
                                 <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-dismiss="modal" ng-click="saveOrder()" class="btn btn-success"></span>
                             </div>
                         </div>

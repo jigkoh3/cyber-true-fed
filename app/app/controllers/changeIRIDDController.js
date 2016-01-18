@@ -966,12 +966,10 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 SystemService.generatePDF(data, function(result) {
                     var url = result;
                     $scope.srcPrintPDF = url;
-                    divPDF2.innerHTML =
-                                '<object id="idPdfObject" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="' + url + '?clearData=N' + '">' +
-                                '<embed src="' + url + '?clearData=N' + '" width="440" height="580" style="width: 440px; height: 580px;" type="application/pdf">' +
-                                '</embed>' +
-                                '<span>PDF plugin is not available.</span>' +
-                                '</object>';
+
+                    SystemService.printPDF(url);
+                    //printObjectPdf();
+
                     setTimeout(function() {
                         var srcPDF = url;
                         document.getElementById('iframePDF').src = url + '?clearData=N';

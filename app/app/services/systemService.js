@@ -9,6 +9,15 @@
     //for get by env
     this.secondAuthenURL = getSecondAuthenURL();
 
+    this.printPDF = function(url) {
+        divPDF2.innerHTML =
+            '<object id="idPdfObject" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="' + url + '?clearData=N' + '">' +
+            '<embed src="' + url + '?clearData=N' + '" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf">' +
+            '</embed>' +
+            '<span>PDF plugin is not available.</span>' +
+            '</object>';
+    }
+
     this.pricePlans = [];
     var runTime = new Date().getTime();
 
@@ -1659,7 +1668,7 @@
                 } else {
                     //hideSpan();
                 }
-                if(charCode==13){
+                if (charCode == 13) {
                     //alert('');
                     this.blur();
                 }

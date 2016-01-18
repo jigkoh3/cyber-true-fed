@@ -395,6 +395,9 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
 
+            SystemService.printPDF(url);
+                    //printObjectPdf();
+
             setTimeout(function() {
                 $('#modalPDFOpener').click();
 
@@ -403,7 +406,8 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
                     document.getElementById('iframePDF').src = url + '?clearData=N';
                     if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
                         setTimeout(function() {
-                            document.getElementById('iframePDF').src = 'javascript:window.print();'
+                            //document.getElementById('iframePDF').src = 'javascript:window.print();'
+                            printObjectPdf();
                         }, 2000);
                         setTimeout(function() {
                             document.getElementById('iframePDF').src = srcPDF

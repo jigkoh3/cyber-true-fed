@@ -217,6 +217,9 @@
         console.log(data);
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
+            
+            SystemService.printPDF(url);
+            //printObjectPdf();
 
             setTimeout(function() {
                 $('#modalPDFOpener').click();
@@ -226,7 +229,8 @@
                     document.getElementById('iframePDF').src = url + '?clearData=N';
                     if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
                         setTimeout(function() {
-                            document.getElementById('iframePDF').src = 'javascript:window.print();'
+                            //document.getElementById('iframePDF').src = 'javascript:window.print();'
+                            printObjectPdf();
                         }, 2000);
                         setTimeout(function() {
                             document.getElementById('iframePDF').src = srcPDF
@@ -278,7 +282,7 @@
         if (result == false) {
             console.log(result);
             $scope.SubNo = 'null';
-             $('#dataSubNo').val("");
+            $('#dataSubNo').val("");
             idFocus = "dataSubNo";
             return;
         } else {
@@ -301,40 +305,40 @@
             }
 
             if ($scope.shopType === '1') {
-                    // Auto-open the CardReader dialog
-                    setTimeout(function() {
-                        var fancyboxOptions = {
-                            helpers: {
-                                overlay: {
-                                    //closeClick: false
-                                }
-                            },
-
-                            beforeShow: function() {
-
-                                if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
-                                    $('#btnSSO').hide();
-                                    //hidden button and disabled=false
-                                    $('#CitizenID').prop('disabled', false);
-                                } else {
-                                    //disabled=true
-                                    //alert('show');
-                                    $('#CitizenID').prop('disabled', true);
-                                }
-                                $('#loadingReadCard').hide();
-                                $('#unMatch').hide();
-                            },
-
-                            afterClose: function() {
-                                if (!$scope.onInputId()) {
-                                    //window.close();
-                                }
+                // Auto-open the CardReader dialog
+                setTimeout(function() {
+                    var fancyboxOptions = {
+                        helpers: {
+                            overlay: {
+                                //closeClick: false
                             }
-                        };
+                        },
 
-                        $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
-                    }, 1000);
-                }
+                        beforeShow: function() {
+
+                            if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
+                                $('#btnSSO').hide();
+                                //hidden button and disabled=false
+                                $('#CitizenID').prop('disabled', false);
+                            } else {
+                                //disabled=true
+                                //alert('show');
+                                $('#CitizenID').prop('disabled', true);
+                            }
+                            $('#loadingReadCard').hide();
+                            $('#unMatch').hide();
+                        },
+
+                        afterClose: function() {
+                            if (!$scope.onInputId()) {
+                                //window.close();
+                            }
+                        }
+                    };
+
+                    $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
+                }, 1000);
+            }
         }
 
 
@@ -542,7 +546,7 @@
                 orderData = order;
                 localStorage.setItem('orderId', order.orderId);
 
-                
+
             });
         });
     };
@@ -723,8 +727,7 @@
         }
         //end----------- camera ----------------
     $scope.afterCloseWarning = function() {
-        if($scope.data || $routeParams.subno){
-        }else{
+        if ($scope.data || $routeParams.subno) {} else {
             $scope.SubNo = "null";
         }
         // if ($scope.SubNo === 'null') {
