@@ -2222,7 +2222,7 @@ smartApp.controller('ResumeController', function(
                         "product-type": "PRICEPLAN",
                         "order-type": "CHANGE",
                         "reason-code": $scope.selectReason.id,
-                        "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")",
+                        "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
                         "address-list": {
                             "BILLING_ADDRESS": {
                                 "number": $scope.mailAddress.homeNumber,
