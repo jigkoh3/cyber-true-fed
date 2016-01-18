@@ -114,7 +114,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            
             <!--<div ng-include="template.reasonmemo" scope="" onload=""></div>-->
             <h4>บันทึกและเหตุผล</h4>
             <div class="well">
@@ -137,7 +137,7 @@
             </div>
             <style type="text/css">
             .divEffer {
-                width: 250px;
+                width: 658px;
             }
             </style>
             <h4>มีผลเมื่อ </h4>
@@ -150,15 +150,15 @@
                         <label id="efferNext" class="btn btn-default hidden" onclick="$('.date-picker-start').val('');" ng-click="onEffectiveDate('NEXTBILL')">
                             <input type="radio" name="date" autocomplete="off" class="radio_ck"> รอบบิลถัดไป {{saveData['nextBillDate']}}
                         </label>
-                        <label id="efferManual" class="btn btn-default form-group has-feedback hidden" ng-click="onEffectiveDate('FUTURE')">
+                        <label id="efferManual" class="btn btn-default form-group has-feedback " ng-click="onEffectiveDate('FUTURE')">
                             <div class="form-group has-feedback">
                                 <div class="col-xs-3">
-                                    <span class="col-xs-2" style="float: right; top: 14px;">ระบุวันที่ </span>
-                                    <input type="radio" name="date" autocomplete="off" class="enable_tb col-xs-8" value="specify">
+                                    <span class="col-xs-2" style="float: right; top: 14px; margin-top:-8px;">ระบุวันที่ </span>
+                                    <input type="radio" name="date" autocomplete="off" clastyle="float: right; top: 14px; margin-top:-8px;"s="enable_tb col-xs-8" value="specify">
                                 </div>
-                                <div class="col-xs-7" style="margin:2px;">
+                                <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;">
                                     <div class="form-group has-feedback imp" style="top:5px;">
-                                        <input id="txtDateManual" type="text" ng-model="saveData['manualBillDate']" class="form-control dateManual date-picker-start dateFormat">
+                                        <input id="txtDateManual" style="height:30px;" type="text" ng-model="saveData['manualBillDate']" class="form-control dateManual date-picker-start dateFormat">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -166,6 +166,7 @@
                         </label>
                     </div>
                 </div>
+            </div>
             </div>
             <div id="modal-pdf" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog" style="width:85%">

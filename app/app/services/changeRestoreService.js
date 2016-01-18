@@ -181,43 +181,7 @@
                     }]
 
                 },
-                // 'display-messages': [{
-                //  'message': '',
-                //  'message-type': 'ERROR',
-                //  'en-message': 'VIP',
-                //  'th-message': '',
-                //  'technical-message': ''
-                // }, {
-                //  'message': '',
-                //  'message-type': 'WARNING',
-                //  'en-message': 'DISCOUNT',
-                //  'th-message': '',
-                //  'technical-message': ''
-                // }, {
-                //  'message': '',
-                //  'message-type': 'ERROR',
-                //  'en-message': 'SUBSCRIBER STATUS',
-                //  'th-message': '',
-                //  'technical-message': ''
-                // }, {
-                //  'message': '',
-                //  'message-type': 'ERROR',
-                //  'en-message': 'NICE NUMBER',
-                //  'th-message': '',
-                //  'technical-message': ''
-                // }, {
-                //  'message': '',
-                //  'message-type': 'ERROR',
-                //  'en-message': 'SHARED PLAN',
-                //  'th-message': '',
-                //  'technical-message': ''
-                // }, {
-                //  'message': '',
-                //  'message-type': 'WARNING',
-                //  'en-message': 'CONVERGENT',
-                //  'th-message': '',
-                //  'technical-message': ''
-                // }]
+               
             };
             var data2 = {
                 "status": "SUCCESSFUL",
@@ -293,34 +257,7 @@
                     'firstname': payload.customerProfile['firstname'],
                     'lastname': payload.customerProfile['lastname'],
                     'id-number': payload.customerProfile['id-number'],
-                    'customer-id': payload.customerProfile['customer-id']
-
-                    // 'customer-agents': {
-                    //  'AUTH_1': {
-                    //      'contact': '0868836665',
-                    //      'id-number': '9988877688845',
-                    //      'id-type': 'I',
-                    //      'firstname': 'สมคิด',
-                    //      'lastname': 'คิดมากไป',
-                    //      'birthdate': '2015-07-20T00:00:00+0700'
-                    //  },
-                    //  'POA': {
-                    //      'contact': '0868836664',
-                    //      'id-number': '3257588733945',
-                    //      'id-type': 'I',
-                    //      'firstname': 'สมชาย',
-                    //      'lastname': 'ปากสว่าง',
-                    //      'birthdate': '2015-07-20T00:00:00+0700'
-                    //  },
-                    //  'AUTH_2': {
-                    //      'contact': '0868836666',
-                    //      'id-number': '9988877687723',
-                    //      'id-type': 'I',
-                    //      'firstname': 'สมฤดี',
-                    //      'lastname': 'ดีเกินไป',
-                    //      'birthdate': '2015-07-20T00:00:00+0700'
-                    //  }
-                    // }
+                    'customer-id': payload.customerProfile['customer-id']                   
                 },
                 "sale-agent": {
                     'name': payload.saleAgent['engName'],
@@ -337,19 +274,12 @@
                     'product-id-name': payload.productDetails['product-id-name'],
                     // 'product-category': payload.productDetails['product-category'],
                     'reason-code': payload.statusReason,
-                    'user-memo': payload.statusReasonMemo,
+                    'user-memo': payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": "  + payload.statusReasonMemo,
                     'order-data': {
                         'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
                         "CHANGE-OPTION": 'RESTORE',
                         "PRODUCT-STATUS-DESC": payload.productDetails['product-properties'] ['PRODUCT-STATUS-DESC'],
-                            // 'SERVICE-LEVEL': "C",
-                            // 'CHANGE-OPTION': payload.statusChangeRestore
-                            // 'SUBSCRIBER-ID': payload.customerProfile['subscriber-id']
-
-                        // 'OU-ID': payload.productDetails['ouId'],
-                        // 'BAN': payload.productDetails['ban'],
-                        // 'PREPAID-SUBSCRIBER-ID': payload.productDetails['prepaid-subscriber-id'],
-                        // 'IMSI': payload.productDetails['product-id-number']
+                          
                     },
                     'primary-order-data': {
                         'OU-ID': payload.productDetails['ouId'],
@@ -375,6 +305,7 @@
             'approver': payload.approver
         };
         console.log(request);
+        console.log(payload);
         var cb = function(result) {
             fnCallback(result);
         };

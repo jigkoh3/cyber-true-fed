@@ -102,6 +102,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             'WEB_METHOD_CHANNEL': 'WEBUI',
             'E2E_REFID': $scope.data.orderRequest["order"]["order-id"]
         };
+        $scope.data.orderRequest['order']['order-items'][0]['user-memo'] = $scope.getAuthen['logInName'] + "(" + $scope.getAuthen['ssoEmployeePrincipal']['employeeId'] + ": " + $scope.getAuthen['engName'] + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.data.orderRequest['order']['order-items'][0]['user-memo'];
         //console.log(headers);
         if (SystemService.demo) {
             SystemService.showBeforeClose({

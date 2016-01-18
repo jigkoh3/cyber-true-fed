@@ -1597,6 +1597,22 @@ smartApp.controller('changeOwnershipController', function(
         $scope.titleOther2 = $scope.titleOther;
     };
 
+    $scope.onChangeTitleOther2 = function() {
+        console.log($scope.titleOther);
+        var selectTitleOther2 = $filter('filter')($scope.titleOtherTypeList, {
+            value: $scope.titleOther2
+        });
+        console.log(selectTitleOther2[0]);
+        if (SystemService.checkObj(selectTitleOther2[0], ['attributes', 'GENDER'])) {
+            $('#sex32').val(selectTitleOther2[0]['attributes']['GENDER']);
+            console.log(selectTitleOther2[0]['attributes']['GENDER']);
+        } else {
+            $('#sex32').val('ALL');
+            console.log('ALL');
+        }
+        // $scope.titleOther2 = $scope.titleOther;
+    };
+
 
     //$scope.cardType = "0";
 
