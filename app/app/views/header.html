@@ -3,7 +3,7 @@
 
 <div class="profile" ng-show="SubNo!='null'">
     <h5><span ng-hide="showDataDealer">{{data.header["producttype"]}}</span></h5>
-    <h3 ng-hide="showDataDealer"><span ng-show="(Level == 'OU')">OU ID : {{data.priceplan["ouId"]}}</span></h3>
+    <h3 ng-hide="showDataDealer"><span ng-show="(Level == 'OU')">OU ID : {{data.priceplan["ouId"]}} </span> <span ng-show="(Level == 'OU') && data.priceplan['ou-hierarchytype']">({{data.priceplan["ou-hierarchytype"]}})</span> </h3>
     <h3 ng-hide="showDataDealer"><span ng-hide="(Level == 'OU')">{{data.header["subscriberno"]}}</span></h3>
     <h4 ng-hide="showDataDealer"><span ng-hide="(Action == 'ADD')">{{data.header["currpriceplan"]}}</span></h4>
 </div>
