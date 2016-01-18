@@ -489,28 +489,36 @@
                 if ($scope.shopType === '1') {
                     // Auto-open the CardReader dialog
                     setTimeout(function() {
-                        var fancyboxOptions = {
-                            helpers: {
-                                overlay: {
-                                    //closeClick: false
+                            var fancyboxOptions = {
+                                helpers: {
+                                    overlay: {
+                                        //closeClick: false
+                                    }
+                                },
+
+                                beforeShow: function() {
+                                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                                        $('#CitizenID').prop('disabled', false);
+                                        setTimeout(function() {
+                                            $('#CitizenID').focus();
+                                        }, 500);
+                                    } else {
+                                        $('#CitizenID').prop('disabled', true);
+                                    }
+                                    $('#loadingReadCard').hide();
+                                    $('#unMatch').hide();
+                                },
+
+                                afterClose: function() {
+                                    if (!$scope.onInputId()) {
+                                        //window.close();
+                                    }
                                 }
-                            },
+                            };
 
-                            beforeShow: function() {
-                                $('#CitizenID').prop('disabled', true);
-                                $('#loadingReadCard').hide();
-                                $('#unMatch').hide();
-                            },
-
-                            afterClose: function() {
-                                if (!$scope.onInputId()) {
-                                    //window.close();
-                                }
-                            }
-                        };
-
-                        $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
-                    }, 1000);
+                            $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
+                        },
+                        1000);
                 }
             });
         });
@@ -1246,17 +1254,17 @@
             $scope.showDataDealer = false;
         }
     };
-   /* $scope.titleOther = "";
-    $scope.titleOtherTypeList = [];*/
+    /* $scope.titleOther = "";
+     $scope.titleOtherTypeList = [];*/
     $scope.onselectPrefix = function() {
         console.log($scope.data.customerProfileNew['title-code']);
-        
+
         if ($scope.data.customerProfileNew['title-code'] == 'MR.' || $scope.data.customerProfileNew['title-code'] == 'T1') {
             $scope.data.customerProfileNew['gender'] = "MALE";
-            
+
         } else {
             $scope.data.customerProfileNew['gender'] = "FEMALE";
-           
+
         }
     };
     $scope.checkPrefixNull = function() {
@@ -1506,7 +1514,7 @@
             SystemService.hideLoading();
 
             SystemService.printPDF(url);
-                    //printObjectPdf();
+            //printObjectPdf();
 
             setTimeout(function() {
                 $('#modalPDFOpener').click();

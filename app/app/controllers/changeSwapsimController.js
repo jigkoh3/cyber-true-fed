@@ -217,7 +217,7 @@
         console.log(data);
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
-            
+
             SystemService.printPDF(url);
             //printObjectPdf();
 
@@ -321,9 +321,16 @@
                                 //hidden button and disabled=false
                                 $('#CitizenID').prop('disabled', false);
                             } else {
-                                //disabled=true
-                                //alert('show');
-                                $('#CitizenID').prop('disabled', true);
+                                if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                                    $('#CitizenID').prop('disabled', false);
+                                    setTimeout(function() {
+                                        $('#CitizenID').focus();
+                                    }, 500);
+
+
+                                } else {
+                                    $('#CitizenID').prop('disabled', true);
+                                }
                             }
                             $('#loadingReadCard').hide();
                             $('#unMatch').hide();

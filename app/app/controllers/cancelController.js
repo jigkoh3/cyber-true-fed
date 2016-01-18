@@ -396,7 +396,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             SystemService.hideLoading();
 
             SystemService.printPDF(url);
-                    //printObjectPdf();
+            //printObjectPdf();
 
             setTimeout(function() {
                 $('#modalPDFOpener').click();
@@ -559,7 +559,16 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
                     }, 1000);
 
                 } else {
-                    $('#CitizenID').prop('disabled', true);
+                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                        $('#CitizenID').prop('disabled', false);
+                        setTimeout(function() {
+                            $('#CitizenID').focus();
+                        }, 1000);
+
+
+                    } else {
+                        $('#CitizenID').prop('disabled', true);
+                    }
                 }
             }, 100);
 

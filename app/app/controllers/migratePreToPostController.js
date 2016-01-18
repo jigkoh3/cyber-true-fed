@@ -198,7 +198,16 @@ smartApp.controller('MigratePreToPostController', function(
                 }, 100);
 
             } else {
-                $('#CitizenID').prop('disabled', true);
+                if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                    $('#CitizenID').prop('disabled', false);
+                    setTimeout(function() {
+                        $('#CitizenID').focus();
+                    }, 500);
+
+
+                } else {
+                    $('#CitizenID').prop('disabled', true);
+                }
             }
         }
         if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
@@ -1710,9 +1719,9 @@ smartApp.controller('MigratePreToPostController', function(
         } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther == "") {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
-        }else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
+        } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
             //$scope.titleOther = "คุณ";
-            
+
             $('#titleOther').val($scope.titleOther);
         } else {
 
@@ -2967,7 +2976,7 @@ smartApp.controller('MigratePreToPostController', function(
             var url = result;
 
             SystemService.printPDF(url);
-                    //printObjectPdf();
+            //printObjectPdf();
 
             setTimeout(function() {
                 var srcPDF = url;

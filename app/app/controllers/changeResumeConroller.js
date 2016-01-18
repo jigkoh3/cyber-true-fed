@@ -179,7 +179,25 @@ smartApp.controller('ResumeController', function(
                     }, 100);
 
                 } else {
-                    $('#CitizenID').prop('disabled', true);
+                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                        $('#CitizenID').prop('disabled', false);
+                        setTimeout(function() {
+                        $('#CitizenID').focus();
+                    }, 500);
+                        
+
+                    } else {
+                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                        $('#CitizenID').prop('disabled', false);
+                        setTimeout(function() {
+                        $('#CitizenID').focus();
+                    }, 500);
+                        
+
+                    } else {
+                        $('#CitizenID').prop('disabled', true);
+                    }
+                }
                 }
             }, 1000);
 

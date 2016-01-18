@@ -246,7 +246,16 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
                             }, 1000);
 
                         } else {
-                            $('#CitizenID').prop('disabled', true);
+                            if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                                $('#CitizenID').prop('disabled', false);
+                                setTimeout(function() {
+                                    $('#CitizenID').focus();
+                                }, 500);
+
+
+                            } else {
+                                $('#CitizenID').prop('disabled', true);
+                            }
                         }
                     }, 100);
 
@@ -417,7 +426,7 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
             SystemService.hideLoading();
 
             SystemService.printPDF(url);
-                    //printObjectPdf();
+            //printObjectPdf();
 
             setTimeout(function() {
                 $('#modalPDFOpener').click();

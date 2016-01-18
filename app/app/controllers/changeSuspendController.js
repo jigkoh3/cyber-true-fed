@@ -191,7 +191,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 $scope.statusReason = $scope.reasons[index];
                 //solution for none fix index
             });
-        }else{
+        } else {
             $scope.statusReason = {
                 id: "CREQ"
             };
@@ -443,7 +443,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
             SystemService.hideLoading();
 
             SystemService.printPDF(url);
-                    //printObjectPdf();
+            //printObjectPdf();
 
             setTimeout(function() {
                 $('#modalPDFOpener').click();
@@ -604,7 +604,14 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                     }, 1000);
 
                 } else {
-                    $('#CitizenID').prop('disabled', true);
+                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                        $('#CitizenID').prop('disabled', false);
+                        setTimeout(function() {
+                            $('#CitizenID').focus();
+                        }, 1000);
+                    } else {
+                        $('#CitizenID').prop('disabled', true);
+                    }
                 }
             }, 100);
 
