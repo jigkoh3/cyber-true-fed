@@ -27,6 +27,9 @@ smartApp.config(function($routeProvider, $httpProvider) {
     }).when('/changeOwnership', {
         templateUrl: 'app/views/changeOwnership.html?v=' + runTime,
         controller: 'changeOwnershipController'
+    }).when('/changeOwnershipIBC', {
+        templateUrl: 'app/views/changeOwnershipIBC.html?v=' + runTime,
+        controller: 'changeOwnershipIBCController'
     }).when('/changeOwnership/:id/:subno', {
         templateUrl: 'app/views/changeOwnership.html?v=' + runTime,
         controller: 'changeOwnershipController'

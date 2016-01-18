@@ -9,6 +9,7 @@
     //for get by env
     this.secondAuthenURL = getSecondAuthenURL();
 
+
     this.printPDF = function(url) {
         divPDF2.innerHTML =
             '<object id="idPdfObject" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="' + url + '?clearData=N' + '">' +
@@ -331,6 +332,29 @@
             }, 1000);
 
         });
+    };
+
+
+    this.getCustomerPreverify = function(data, fnCallback) {
+        //var target = 'aftersales/order/generate-id?channel=WEBUI&dealer=80000011';
+        var headers = {
+            'WEB_METHOD_CHANNEL': 'WEBUI'
+        };
+        data['target'] = 'profiles/customer/customer-preverify';
+        if (!that.demo) {
+            that.callServicePostByPass(data, headers, function(result) {
+                fnCallback(result.data);
+            });
+        } else {
+            fnCallback({
+                "status": "SUCCESSFUL",
+                "trx-id": null,
+                "process-instance": null,
+                'display-messages': [],
+                "response-data": []
+            });
+        }
+
     };
 
 
