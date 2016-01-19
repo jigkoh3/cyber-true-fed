@@ -182,22 +182,22 @@ smartApp.controller('ResumeController', function(
                     if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
                         $('#CitizenID').prop('disabled', false);
                         setTimeout(function() {
-                        $('#CitizenID').focus();
-                    }, 500);
-                        
+                            $('#CitizenID').focus();
+                        }, 1000);
+
 
                     } else {
-                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
-                        $('#CitizenID').prop('disabled', false);
-                        setTimeout(function() {
-                        $('#CitizenID').focus();
-                    }, 500);
-                        
+                        if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                            $('#CitizenID').prop('disabled', false);
+                            setTimeout(function() {
+                                $('#CitizenID').focus();
+                            }, 500);
 
-                    } else {
-                        $('#CitizenID').prop('disabled', true);
+
+                        } else {
+                            $('#CitizenID').prop('disabled', true);
+                        }
                     }
-                }
                 }
             }, 1000);
 
@@ -246,6 +246,10 @@ smartApp.controller('ResumeController', function(
         ///$scope.ReadCardMockUp($scope.cardInfo.CitizenID);
         //console.log(result);
         //console.log(result.CitizenID);
+
+    };
+
+    $scope.checkBlackList = function() {
 
     };
 
@@ -602,146 +606,187 @@ smartApp.controller('ResumeController', function(
                             // setTimeout(function() {
                             //     SystemService.hideLoading();
                             // }, 2000);
-                            if (result.status) {
-                                $scope.data = result;
-                                console.log(result);
-                                console.log($scope.data.customerProfile['lastname']);
-                                $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
-
-                                $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
-                                $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
-                                $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];
-                                $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
-                                $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
-                                $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
-                                $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
-                                $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
-                                $scope.cardType.value = $scope.data.customerProfile['id-type'];
-                                $scope.activeDate = formatActiveDate($scope.data.installedProducts["product-properties"]['PRODUCT-STATUS-DATE']);
-
-                                $('#citizenID3').val($scope.data.customerProfile['id-number']);
-
-                                if ($scope.data.customerProfile['lastname'] == undefined || $scope.data.customerProfile['lastname'] == null || $scope.data.customerProfile['lastname'] == "") {
-                                    $scope.newOwner.lastNameTH = $scope.data.customerProfile['firstname'];
-                                    $scope.newOwner2.lastNameTH = $scope.data.customerProfile['firstname'];
-                                }
-                                // $scope.onInputIdLastest3();
-                                $scope.onInputCitizenID3();
-
-                                $scope.onChangeCardTypes();
-
-                                $scope.subCompanyType = $scope.data.installedProducts["account-sub-type"];
-
-                                //get list dropdown status
-                                SystemService.getMaster_list($scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-CODE"], function(result) {
-                                    console.log(result);
-                                    $scope.statusList = result;
-                                    $scope.statusChange = result[0]['value'];
-                                });
-
-                                setTimeout(function() {
-                                    // $('#divShowAuthorize').hide();
-                                    var cutomerType = $scope.data.priceplan['account-category'];
-                                    console.log(cutomerType);
-                                    if (cutomerType == "P" || cutomerType == "I") {
-
-                                        $('#divShowAuthorize').hide();
-                                    }
-                                    $('#cardType').val($scope.cardType.value);
-                                    $('#prefixTH3').val($scope.data.customerProfile['title-code']);
-                                    $scope.onselectPrefix();
-                                    //$ngBootbox.customDialog($scope.customDialogOptions);
-
-                                }, 1000);
-
-
-
-                                $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
-
-                                if ($scope.data.installedProducts['company-code'] == "RF") {
-                                    $scope.promotion = "0022416";
-                                } else {
-                                    $scope.promotion = "0022415";
-                                }
-                                $scope.onCheckInputForVerify();
-
-                                $scope.data2 = result;
-
-                                // console.log($scope.data.customerProfile['firstname']);
-
-                                if ($scope.shopType == '1') {
-                                    $("#btn-fancy-ReadCard").fancybox({
-                                        'type': 'div',
-                                        width: '50%',
-                                        height: '95%',
-                                        openEffect: false,
-                                        closeEffect: false,
-                                        speedIn: 15000,
-                                        speedOut: 15000,
-                                        autoScale: false,
-                                        centerOnScroll: false, // and not 'true',
-                                        autoCenter: false, // and not 'true'
-                                        autoDimensions: 'false',
-                                        resize: 'Auto',
-                                        helpers: {
-                                            overlay: {
-                                                css: {
-                                                    'background': 'transparent',
-                                                    'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
-                                                    'zoom': '1',
-                                                    'background': 'rgba(42, 42, 42, 0.95)'
-                                                },
-                                                locked: true,
-                                                closeClick: false,
-                                            }
-
-                                        }
-                                    });
-                                    $("#btn-fancy-ReadCardLastest").fancybox({
-                                        'type': 'div',
-                                        width: '50%',
-                                        height: '95%',
-                                        openEffect: false,
-                                        closeEffect: false,
-                                        speedIn: 15000,
-                                        speedOut: 15000,
-                                        autoScale: false,
-                                        centerOnScroll: false, // and not 'true',
-                                        autoCenter: false, // and not 'true'
-                                        autoDimensions: 'false',
-                                        resize: 'Auto',
-                                        helpers: {
-                                            overlay: {
-                                                css: {
-                                                    'background': 'transparent',
-                                                    'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
-                                                    'zoom': '1',
-                                                    'background': 'rgba(42, 42, 42, 0.95)'
-                                                },
-                                                locked: true,
-                                                closeClick: false,
-                                            }
-
-                                        }
-                                    });
-
-
-                                    setTimeout(function() {
-                                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                                    }, 1000);
-                                    $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
-                                } else {
-                                    $scope.isCustomerProfile = true;
-                                }
-
-                                $scope.initModalReadCard();
-                                //check partner
-                                if (!$scope.isNonePartner && $scope.shopType == '1') {
-                                    //$scope.data = {};
-                                }
-                            } else {
-                                $scope.SubNo = "null";
+                            var accountCat = 'I';
+                            var msgType = 'WARNING';
+                            if ($routeParams.subno) {
+                                msgType = 'ERROR';
                             }
+                            // if ($scope.customerType == 'B' || $scope.customerType == 'C') {
+                            //     accountCat = $scope.customerType;
+                            // }
+                            var data = {
+                                "accountCat": accountCat,
+                                "channel": "WEBUI",
+                                "companyCode": "AL",
+                                "idNumber": $scope.customer['id-number'],
+                                //"language": null,
+                                "verifyType": "ALL"
+                            };
+
+                            SystemService.getCustomerPreverify(data, function(blackList) {
+                                var msg = utils.getObject(blackList, 'display-messages');
+                                if (msg && msg.length > 0) {
+                                    SystemService.showAlert({
+                                        "message": msg[0]["message"],
+                                        "message-code": msg[0]["message-code"],
+                                        "message-type": msgType,
+                                        "en-message": msg[0]["en-message"],
+                                        "th-message": msg[0]["th-message"],
+                                        "technical-message": msg[0]["technical-message"]
+                                    });
+                                    $scope.SubNo = "null";
+                                    setTimeout(function() {
+                                        $('#btn_ngbOK').focus();
+                                    }, 1500);
+                                    
+                                    return;
+                                } else {
+                                    if (result.status) {
+                                        $scope.data = result;
+                                        console.log(result);
+                                        console.log($scope.data.customerProfile['lastname']);
+                                        $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
+
+                                        $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
+                                        $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
+                                        $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];
+                                        $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
+                                        $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
+                                        $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
+                                        $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
+                                        $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
+                                        $scope.cardType.value = $scope.data.customerProfile['id-type'];
+                                        $scope.activeDate = formatActiveDate($scope.data.installedProducts["product-properties"]['PRODUCT-STATUS-DATE']);
+
+                                        $('#citizenID3').val($scope.data.customerProfile['id-number']);
+
+                                        if ($scope.data.customerProfile['lastname'] == undefined || $scope.data.customerProfile['lastname'] == null || $scope.data.customerProfile['lastname'] == "") {
+                                            $scope.newOwner.lastNameTH = $scope.data.customerProfile['firstname'];
+                                            $scope.newOwner2.lastNameTH = $scope.data.customerProfile['firstname'];
+                                        }
+
+
+                                        // $scope.onInputIdLastest3();
+                                        $scope.onInputCitizenID3();
+
+                                        $scope.onChangeCardTypes();
+
+                                        $scope.subCompanyType = $scope.data.installedProducts["account-sub-type"];
+
+                                        //get list dropdown status
+                                        SystemService.getMaster_list($scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-CODE"], function(result) {
+                                            console.log(result);
+                                            $scope.statusList = result;
+                                            $scope.statusChange = result[0]['value'];
+                                        });
+
+                                        setTimeout(function() {
+                                            // $('#divShowAuthorize').hide();
+                                            var cutomerType = $scope.data.priceplan['account-category'];
+                                            console.log(cutomerType);
+                                            if (cutomerType == "P" || cutomerType == "I") {
+
+                                                $('#divShowAuthorize').hide();
+                                            }
+                                            $('#cardType').val($scope.cardType.value);
+                                            $('#prefixTH3').val($scope.data.customerProfile['title-code']);
+                                            $scope.onselectPrefix();
+                                            //$ngBootbox.customDialog($scope.customDialogOptions);
+
+                                        }, 1000);
+
+
+
+                                        $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
+
+                                        if ($scope.data.installedProducts['company-code'] == "RF") {
+                                            $scope.promotion = "0022416";
+                                        } else {
+                                            $scope.promotion = "0022415";
+                                        }
+                                        $scope.onCheckInputForVerify();
+
+                                        $scope.data2 = result;
+
+                                        // console.log($scope.data.customerProfile['firstname']);
+
+                                        if ($scope.shopType == '1') {
+                                            $("#btn-fancy-ReadCard").fancybox({
+                                                'type': 'div',
+                                                width: '50%',
+                                                height: '95%',
+                                                openEffect: false,
+                                                closeEffect: false,
+                                                speedIn: 15000,
+                                                speedOut: 15000,
+                                                autoScale: false,
+                                                centerOnScroll: false, // and not 'true',
+                                                autoCenter: false, // and not 'true'
+                                                autoDimensions: 'false',
+                                                resize: 'Auto',
+                                                helpers: {
+                                                    overlay: {
+                                                        css: {
+                                                            'background': 'transparent',
+                                                            'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
+                                                            'zoom': '1',
+                                                            'background': 'rgba(42, 42, 42, 0.95)'
+                                                        },
+                                                        locked: true,
+                                                        closeClick: false,
+                                                    }
+
+                                                }
+                                            });
+                                            $("#btn-fancy-ReadCardLastest").fancybox({
+                                                'type': 'div',
+                                                width: '50%',
+                                                height: '95%',
+                                                openEffect: false,
+                                                closeEffect: false,
+                                                speedIn: 15000,
+                                                speedOut: 15000,
+                                                autoScale: false,
+                                                centerOnScroll: false, // and not 'true',
+                                                autoCenter: false, // and not 'true'
+                                                autoDimensions: 'false',
+                                                resize: 'Auto',
+                                                helpers: {
+                                                    overlay: {
+                                                        css: {
+                                                            'background': 'transparent',
+                                                            'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
+                                                            'zoom': '1',
+                                                            'background': 'rgba(42, 42, 42, 0.95)'
+                                                        },
+                                                        locked: true,
+                                                        closeClick: false,
+                                                    }
+
+                                                }
+                                            });
+
+
+                                            setTimeout(function() {
+                                                $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                                            }, 1000);
+                                            $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
+                                        } else {
+                                            $scope.isCustomerProfile = true;
+                                        }
+
+                                        $scope.initModalReadCard();
+                                        //check partner
+                                        if (!$scope.isNonePartner && $scope.shopType == '1') {
+                                            //$scope.data = {};
+                                        }
+                                    } else {
+                                        $scope.SubNo = "null";
+                                    }
+                                    // alert('OK');
+                                }
+                            });
+
                         });
                     } else {
                         SystemService.hideLoading();
@@ -2210,74 +2255,74 @@ smartApp.controller('ResumeController', function(
                             "zip": "22222"
                         }
                     }
-                    
-                },
-                
-                "order-items": [{
-                        "name": "RESUME",
-                        "product-name": $scope.pricePlan.saveName,
-                        "product-id-number": $scope.data.installedProducts["product-id-number"],
-                        "product-id-name": $scope.data.installedProducts["product-id-name"],
-                        "product-category": $scope.data.installedProducts["product-category"],
-                        "product-type": "PRICEPLAN",
-                        "order-type": "CHANGE",
-                        "reason-code": $scope.selectReason.id,
-                        "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
-                        "address-list": {
-                            "BILLING_ADDRESS": {
-                                "number": $scope.mailAddress.homeNumber,
-                                "moo": $scope.mailAddress.moo,
-                                "village": $scope.mailAddress.village,
-                                "street": $scope.mailAddress.road,
-                                "soi": $scope.mailAddress.soi,
-                                "district": $scope.mailAddress.amphur,
-                                "province": $scope.mailAddress.province,
-                                "building-name": $scope.mailAddress.buildingName,
-                                "building-room": $scope.mailAddress.buildingRoom,
-                                "building-floor": $scope.mailAddress.buildingFloor,
-                                "sub-district": $scope.mailAddress.district,
-                                "zip": $scope.mailAddress.postcode,
-                                // "household": ""
-                            }
-                            
-                        },
-                        "order-data": {
-                            //"IMSI": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                            "MAXALLOW-APPROVE-CODE": $scope.approveCode,
-                            //"MOBILE-SERVICETYPE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                            "SUBSCRIBER-TITLE-CODE": $scope.newOwner2.prefixTH,
-                            "SUBSCRIBER-TITLE": $scope.titleOther2,
-                            "SUBSCRIBER-FIRSTNAME": $scope.newOwner2.firstNameTH,
-                            "SUBSCRIBER-LASTNAME": $scope.newOwner2.lastNameTH,
-                            "SUBSCRIBER-BIRTHDATE": SystemService.convertDateToEng($('#birthDayRegisterd').val(), "ENG"),
-                            "SUBSCRIBER-GENDER": $scope.newOwner2.sex,
-                            "SUBSCRIBER-SMS-LANG": $scope.newOwner2.smsLanguage,
-                            "ACCOUNT-BILL-FORMAT": $scope.blah,
-                            "ACCOUNT-EMAIL": $scope.billPayment.email,
-                            "ACCOUNT-SMS-NUMBER": $scope.billPayment.smss,
-                            "ACCOUNT-PAYMENT-METHOD": "CA",
-                            "ACCOUNT-LANG": $scope.billPayment.accountLang,
-                            //"ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
-                            "CHANGE-OPTION": $scope.statusChange,
-                            "PRODUCT-STATUS-DESC": $scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-DESC"],
-                            "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['lastname'],
-                            "ORIGINAL-FIRSTNAME": $scope.data.customerProfile['firstname'],
-                            "ORIGINAL-LASTNAME": $scope.data.customerProfile['lastname'],
-                            "PREFER-CONTACT": $scope.billPayment.preferedContace == 'FIX' ? $scope.fixPreferedContact : $scope.billPayment.preferedContace
-                        },
-                        "primary-order-data": {
-                            //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                            "OU-ID": $scope.customerStatusN == 'O' ? $scope.data.installedProducts['ouId'] : "",
-                            "BAN": $scope.customerStatusN == 'O' ? $scope.data.installedProducts['ban'] : "",
-                            "ACCOUNT-CATEGORY": "I",
-                            "ACCOUNT-SUB-TYPE": $scope.subCompanyType,
-                            "COMPANY-CODE": $scope.data.installedProducts["company-code"],
-                            "NAS-PROPOSITION": $scope.selectProposition,
-                            "CCBS-PROPOSITION": $scope.pricePlan.promotion,
-                            "SIM": $scope.simSerial
+                },
+
+                "order-items": [{
+                    "name": "RESUME",
+                    "product-name": $scope.pricePlan.saveName,
+                    "product-id-number": $scope.data.installedProducts["product-id-number"],
+                    "product-id-name": $scope.data.installedProducts["product-id-name"],
+                    "product-category": $scope.data.installedProducts["product-category"],
+                    "product-type": "PRICEPLAN",
+                    "order-type": "CHANGE",
+                    "reason-code": $scope.selectReason.id,
+                    "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
+                    "address-list": {
+                        "BILLING_ADDRESS": {
+                            "number": $scope.mailAddress.homeNumber,
+                            "moo": $scope.mailAddress.moo,
+                            "village": $scope.mailAddress.village,
+                            "street": $scope.mailAddress.road,
+                            "soi": $scope.mailAddress.soi,
+                            "district": $scope.mailAddress.amphur,
+                            "province": $scope.mailAddress.province,
+                            "building-name": $scope.mailAddress.buildingName,
+                            "building-room": $scope.mailAddress.buildingRoom,
+                            "building-floor": $scope.mailAddress.buildingFloor,
+                            "sub-district": $scope.mailAddress.district,
+                            "zip": $scope.mailAddress.postcode,
+                            // "household": ""
                         }
-                    }]
+
+                    },
+                    "order-data": {
+                        //"IMSI": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                        "MAXALLOW-APPROVE-CODE": $scope.approveCode,
+                        //"MOBILE-SERVICETYPE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                        "SUBSCRIBER-TITLE-CODE": $scope.newOwner2.prefixTH,
+                        "SUBSCRIBER-TITLE": $scope.titleOther2,
+                        "SUBSCRIBER-FIRSTNAME": $scope.newOwner2.firstNameTH,
+                        "SUBSCRIBER-LASTNAME": $scope.newOwner2.lastNameTH,
+                        "SUBSCRIBER-BIRTHDATE": SystemService.convertDateToEng($('#birthDayRegisterd').val(), "ENG"),
+                        "SUBSCRIBER-GENDER": $scope.newOwner2.sex,
+                        "SUBSCRIBER-SMS-LANG": $scope.newOwner2.smsLanguage,
+                        "ACCOUNT-BILL-FORMAT": $scope.blah,
+                        "ACCOUNT-EMAIL": $scope.billPayment.email,
+                        "ACCOUNT-SMS-NUMBER": $scope.billPayment.smss,
+                        "ACCOUNT-PAYMENT-METHOD": "CA",
+                        "ACCOUNT-LANG": $scope.billPayment.accountLang,
+                        //"ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+
+                        "CHANGE-OPTION": $scope.statusChange,
+                        "PRODUCT-STATUS-DESC": $scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-DESC"],
+                        "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['lastname'],
+                        "ORIGINAL-FIRSTNAME": $scope.data.customerProfile['firstname'],
+                        "ORIGINAL-LASTNAME": $scope.data.customerProfile['lastname'],
+                        "PREFER-CONTACT": $scope.billPayment.preferedContace == 'FIX' ? $scope.fixPreferedContact : $scope.billPayment.preferedContace
+                    },
+                    "primary-order-data": {
+                        //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                        "OU-ID": $scope.customerStatusN == 'O' ? $scope.data.installedProducts['ouId'] : "",
+                        "BAN": $scope.customerStatusN == 'O' ? $scope.data.installedProducts['ban'] : "",
+                        "ACCOUNT-CATEGORY": "I",
+                        "ACCOUNT-SUB-TYPE": $scope.subCompanyType,
+                        "COMPANY-CODE": $scope.data.installedProducts["company-code"],
+                        "NAS-PROPOSITION": $scope.selectProposition,
+                        "CCBS-PROPOSITION": $scope.pricePlan.promotion,
+                        "SIM": $scope.simSerial
+                    }
+                }]
             },
             "ref-id": "xxxxxxxxxxxxxxxxxxxADD",
             "user-id": "xxxxxxxxxxxxxxxxxxxADD",
@@ -2700,7 +2745,7 @@ smartApp.controller('ResumeController', function(
             var url = result;
 
             SystemService.printPDF(url);
-                    //printObjectPdf();
+            //printObjectPdf();
 
             setTimeout(function() {
                 var srcPDF = url;
