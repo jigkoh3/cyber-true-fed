@@ -346,11 +346,28 @@
                 fnCallback(result.data);
             });
         } else {
-            fnCallback({
+            // fnCallback({
+            //     "status": "SUCCESSFUL",
+            //     "trx-id": null,
+            //     "process-instance": null,
+            //     "response-data": []
+            // });
+            //=================Data for blacklist=================
+             fnCallback({
                 "status": "SUCCESSFUL",
-                "trx-id": null,
-                "process-instance": null,
-                "response-data": []
+                "display-messages": [{
+                    "message": "BLACKLIST:Unable to activate the service due to outstanding balance on customer’s ID, please inform customer to  make a payment at True Shop or True Partner\n",
+                    "message-code": "BLACKLIST:TMV-PREVERIFY-11007\n",
+                    "message-type": "ERROR",
+                    "en-message": "BLACKLIST:Unable to activate the service due to outstanding balance on customer’s ID, please inform customer to  make a payment at True Shop or True Partner\n",
+                    "th-message": "BLACKLIST:ไม่สามารถเปิดบริการได้ เนื่องจากมียอดค้างชำระแจ้งลูกค้าชำระค่าบริการที่ ทรู ช็อป/ตัวแทนจำหน่าย\n",
+                    "technical-message": "BLACKLIST:(-2-) checkBlacklist return result=Y\n"
+                }],
+                "trx-id": "7U29L82ZRK653",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "verifyCode": null
+                }
             });
         }
 
