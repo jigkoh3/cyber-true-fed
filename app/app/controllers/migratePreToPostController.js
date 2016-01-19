@@ -1654,11 +1654,12 @@ smartApp.controller('MigratePreToPostController', function(
     //SystemService.calendarDatePicker();
     //$scope.data = {};
 
-    $scope.blah = "E";
+    $scope.blah = "PS";
     $scope.dataSlip = {
         "E": "E-Bill",
         "P": "จดหมาย (ทางไปรษณีย์)",
         "S": "SMS",
+        "PS": "ไปรษณีย์(Paper) และ SMS",
     };
     $scope.billPayment = {
         email: "",
