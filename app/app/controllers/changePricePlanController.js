@@ -1377,7 +1377,7 @@ $scope.saveOrder = function() {
                 "product-id-number": $scope.data.priceplan["product-id-number"],
                 "product-id-name": $scope.data.priceplan["product-id-name"],
                 "reason-code": $scope.selectReason.id,
-                "user-memo": $scope.saveData.memo,
+                "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
                 "order-data": {
                     "SERVICE-LEVEL": $scope.data.priceplan["service-level"],
                     "MOBILE-SERVICETYPE": $scope.data.priceplan["mobile-servicetype"],
