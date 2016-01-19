@@ -297,7 +297,9 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     };
 
+    $scope.isCustomerPreverify = false;
     $scope.isAuthorizeBC = false;
+    $scope.bcName = "";
     $scope.auth_1 = {
         "contact": "0868836665",
         "id-number": "9988877688845",
@@ -317,8 +319,13 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.clearInputIBC = function() {
         $scope.auth_1 = {};
         $scope.poa_1 = {};
+        $scope.isCustomerPreverify = false;
         $scope.isAuthorizeBC = false;
+        $scope.isLastestUser = false;
         $scope.customer['id-number'] = "";
+        $scope.customer['branch-code'] = "00000";
+        $scope.customer['tax-id'] = "";
+        $scope.bcName = "";
     };
     $scope.onInputIdBC = function() {
         var accountCat = 'I';
@@ -333,10 +340,12 @@ smartApp.controller('changeOwnershipIBCController', function(
             //"language": null,
             "verifyType": "ALL"
         };
-
+        SystemService.showLoading();
         SystemService.getCustomerPreverify(data, function(result) {
+            SystemService.hideLoading();
             var msg = utils.getObject(result, 'display-messages');
             if (msg && msg.length > 0) {
+                $scope.isCustomerPreverify = false;
                 SystemService.showAlert({
                     "message": msg[0]["message"],
                     "message-code": msg[0]["message-code"],
@@ -346,9 +355,25 @@ smartApp.controller('changeOwnershipIBCController', function(
                     "technical-message": msg[0]["technical-message"]
                 });
             }else{
-                alert('OK');
+                $scope.isCustomerPreverify = true;
+                $scope.onInputCitizenID3();
             }
         });
+    };
+    $scope.setFreeReadCard = '';
+    $scope.freeReadCard = function(result){
+        var cardInfo = eval(result);
+
+        if($scope.setFreeReadCard == 'auth_1'){
+            $scope.auth_1['id-number'] = cardInfo.CitizenID;
+            $scope.auth_1['firstname'] = cardInfo.FirstNameTH;
+            $scope.auth_1['lastname'] = cardInfo.LastNameTH;
+        }
+        if($scope.setFreeReadCard == 'poa_1'){
+            $scope.poa_1['id-number'] = cardInfo.CitizenID;
+            $scope.poa_1['firstname'] = cardInfo.FirstNameTH;
+            $scope.poa_1['lastname'] = cardInfo.LastNameTH;
+        }
     };
 
     $scope.changeType = function(customerType) {
@@ -563,6 +588,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.onLoad = function() {
         $('#loadingReadCard3').hide();
         AuthenService.getAuthen(function(result) {
+            if(result=="ERROR") return;
             $scope.getAuthen = result;
             $scope.chkShopcode();
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
@@ -1118,7 +1144,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                         $scope.grade = resultData.data["response-data"]["company-grade"];
                         var param = {
                             //'cust-type': $scope.data.installedProducts["account-category"],
-                            'cust-type': 'I',
+                            'cust-type': 'I',//
                             'company': $scope.data.installedProducts["company-code"],
                             'service-type': $scope.data.installedProducts["mobile-servicetype"],
                             'grade': grade

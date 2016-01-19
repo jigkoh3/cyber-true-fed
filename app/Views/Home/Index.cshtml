@@ -375,6 +375,9 @@
                     angular.element(document.getElementById('' + $('#divID').val())).scope().SetCardValue3(args);
                     $('#btnReadCard3Close').click();
                 }
+                else if ($('#ReadAuthorize').val() == 'freeReadCard') {
+                    angular.element(document.getElementById('' + $('#divID').val())).scope().freeReadCard(args);
+                }
                 else {
                     angular.element(document.getElementById('' + $('#divID').val())).scope().SetCardValue(args);
                 }

@@ -350,7 +350,6 @@
                 "status": "SUCCESSFUL",
                 "trx-id": null,
                 "process-instance": null,
-                'display-messages': [],
                 "response-data": []
             });
         }

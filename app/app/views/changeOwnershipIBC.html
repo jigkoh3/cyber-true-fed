@@ -34,7 +34,7 @@
                                         <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
                                     </a>
                                 </div>-->
-                            <button type="button" href="#modal-ReadCamera" ng-show="isCustomerProfile && shopType=='1' && getAuthen['isSecondAuthen'] == true" ng-click="initWebCamLastest()" onclick="return false" data-toggle="modal" class="btn btn-camera">
+                            <button type="button" href="#modal-ReadCamera" ng-show="isCustomerProfile && shopType=='1' && getAuthen['isSecondAuthen'] == true && customerType=='N'" ng-click="initWebCamLastest()" onclick="return false" data-toggle="modal" class="btn btn-camera">
                                 <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
                             </button>
                         </div>
@@ -50,6 +50,7 @@
                                     <div class="form-group">
                                         <input type="text" 
                                                 placeholder="" 
+                                                ng-change="(isCustomerPreverify==true && clearInputIBC())"
                                                 ng-model="customer['id-number']"
                                                 ng-keyup="($event.keyCode==13 && onInputIdBC());" 
                                                 class="form-control">
@@ -67,7 +68,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                    <select name="cardTypes" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes(); isVerify=false; approveCode='';" id="cardTypeBC" ng-disabled="!isLastestUser" class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                                    <select name="cardTypes" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes(); isVerify=false; approveCode='';" id="cardTypeBC" ng-disabled="!isCustomerPreverify" class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                                         <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                     </select>
                                 </div>
@@ -77,13 +78,38 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>เลขที่ประจำตัวผู้เสียภาษี<span style="color:red;">*</span></label>
-                                    <input type="text" placeholder="" class="form-control numberic">
+                                    <input type="text" 
+                                            disabled="!isCustomerPreverify" 
+                                            ng-disabled="!isCustomerPreverify"
+                                            placeholder=""
+                                            ng-model="customer['tax-id']" 
+                                            class="form-control numberic">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>สาขาที่<span style="color:red;">*</span></label>
-                                    <input type="text" placeholder="00000" maxlength="5" ng-model="customer['branch-code']" class="form-control numberic">
+                                    <input type="text" 
+                                            placeholder="00000" 
+                                            maxlength="5" 
+                                            ng-disabled="!isCustomerPreverify"
+                                            ng-model="customer['branch-code']" 
+                                            class="form-control numberic">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>ประเภทลูกค้าย่อย<span style="color:red;">*</span></label>
+                                    <!-- Case Dealer -->
+                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                    <!-- Case Normal -->
+                                    <select ng-model="subCompanyType" ng-disabled="!isLastestUser" ng-change="onChangeSub(); onCheckInputForVerify(); isVerify=false;" id="subCompanyType" class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                        <!--<option>เลือก</option>-->
+                                        <option value="">-- กรุณาเลือก --</option>
+                                        <option ng-repeat="option in data.accountSubtypeList" value="{{option.name}}">{{option.name}} : {{option.description}}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +117,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>ชื่อบริษัท<span style="color:red;">*</span></label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" 
+                                            ng-model="bcName"
+                                            ng-disabled="!isCustomerPreverify"
+                                            class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -108,7 +137,7 @@
                                         <!-- Case Normal -->
                                         <input type="text" 
                                         id="auth_1_id_number" 
-                                        ng-disabled="!isLastestUser && (shopType=='1' && getAuthen['isSecondAuthen'] == true)" 
+                                        ng-disabled="!isCustomerPreverify" 
                                         ng-model="auth_1['id-number']" 
                                         placeholder="" 
                                         class="form-control" 
@@ -117,10 +146,11 @@
                                         ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                                         <span class="input-group-btn">
                                             <button title="อ่านจากการ์ด"
-                                                    onclick="$('#ReadAuthorize').val('readNewOwnerBCReadCard');ReadCard('ReadP');"
+                                                    ng-click="setFreeReadCard='auth_1';"
+                                                    onclick="$('#ReadAuthorize').val('freeReadCard');ReadCard('ReadP');"
                                                     style="height:30px;"
                                                     type="button"
-                                                    ng-disabled="!isCustomerProfile"
+                                                    ng-disabled="!isCustomerPreverify"
                                                     class="btn credit_ie8">
                                                 <i class="fa fa-credit-card"></i>
                                             </button>
@@ -136,13 +166,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ชื่อ<span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="auth_1['firstname']" class="form-control">
+                                    <input type="text"
+                                            ng-model="auth_1['firstname']" 
+                                            ng-disabled="!isCustomerPreverify"
+                                            class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>นามสกุล<span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="auth_1['lastname']" class="form-control">
+                                    <input type="text" 
+                                            ng-model="auth_1['lastname']" 
+                                            ng-disabled="!isCustomerPreverify"
+                                            class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -191,7 +227,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                    <input type="checkbox" class="styled" id="authorize_03" ng-model="isAuthorizeBC">
+                                    <input type="checkbox" 
+                                            class="styled" 
+                                            id="authorize_03" 
+                                            ng-disabled="!isCustomerPreverify"
+                                            ng-model="isAuthorizeBC">
                                     <label for="authorize_03">กรณีมอบอำนาจ </label>
                                 </div>
                             </div>
@@ -218,7 +258,8 @@
                                             ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                                             <span class="input-group-btn">
                                             <button title="อ่านจากการ์ด"
-                                                    onclick="$('#ReadAuthorize').val('readNewOwnerBCAuthenReadCard');ReadCard('ReadP');"
+                                                    ng-click="setFreeReadCard='poa_1'; poa_1['id-number']='Loading...';"
+                                                    onclick="$('#ReadAuthorize').val('freeReadCard');ReadCard('ReadP');"
                                                     style="height:30px;"
                                                     type="button"
                                                     ng-disabled="!isCustomerProfile"
@@ -479,6 +520,23 @@
                                         {{item}}
                                     </option>
                                 </select>
+                            </div>
+                            <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
+                                <p></p>
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <!-- Case Normal -->
+                                <input type="text" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" ng-change="isVerify=false;propositions=[];onCheckInputForVerify();" class="form-control" ng-disabled="isChkShopcode || !isLastestUser" maxlength="8" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" ng-show="customerType=='B' || customerType=='C'">
+                            <div class="col-md-3" style=" text-align: right; top: 5px;">
+                                <p></p>
+                                <label>
+                                    รหัสร้านค้า
+                                    <span style="color:red;">*</span></label>
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
                                 <p></p>
