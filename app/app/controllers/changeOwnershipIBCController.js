@@ -327,13 +327,16 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.customer['tax-id'] = "";
         $scope.bcName = "";
     };
-    $scope.onInputIdBC = function() {
+    $scope.getAccountCat = function() {
         var accountCat = 'I';
         if ($scope.customerType == 'B' || $scope.customerType == 'C') {
             accountCat = $scope.customerType;
         }
+        return accountCat;
+    };
+    $scope.onInputIdBC = function() {
         var data = {
-            "accountCat": accountCat,
+            "accountCat": $scope.getAccountCat(),
             "channel": "WEBUI",
             "companyCode": "AL",
             "idNumber": $scope.customer['id-number'],
@@ -354,22 +357,22 @@ smartApp.controller('changeOwnershipIBCController', function(
                     "th-message": msg[0]["th-message"],
                     "technical-message": msg[0]["technical-message"]
                 });
-            }else{
-                $scope.isCustomerPreverify = true;
+            } else {
+                //$scope.isCustomerPreverify = true;
                 $scope.onInputCitizenID3();
             }
         });
     };
     $scope.setFreeReadCard = '';
-    $scope.freeReadCard = function(result){
+    $scope.freeReadCard = function(result) {
         var cardInfo = eval(result);
 
-        if($scope.setFreeReadCard == 'auth_1'){
+        if ($scope.setFreeReadCard == 'auth_1') {
             $scope.auth_1['id-number'] = cardInfo.CitizenID;
             $scope.auth_1['firstname'] = cardInfo.FirstNameTH;
             $scope.auth_1['lastname'] = cardInfo.LastNameTH;
         }
-        if($scope.setFreeReadCard == 'poa_1'){
+        if ($scope.setFreeReadCard == 'poa_1') {
             $scope.poa_1['id-number'] = cardInfo.CitizenID;
             $scope.poa_1['firstname'] = cardInfo.FirstNameTH;
             $scope.poa_1['lastname'] = cardInfo.LastNameTH;
@@ -588,7 +591,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.onLoad = function() {
         $('#loadingReadCard3').hide();
         AuthenService.getAuthen(function(result) {
-            if(result=="ERROR") return;
+            if (result == "ERROR") return;
             $scope.getAuthen = result;
             $scope.chkShopcode();
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
@@ -1144,7 +1147,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                         $scope.grade = resultData.data["response-data"]["company-grade"];
                         var param = {
                             //'cust-type': $scope.data.installedProducts["account-category"],
-                            'cust-type': 'I',//
+                            'cust-type': $scope.getAccountCat(), //
                             'company': $scope.data.installedProducts["company-code"],
                             'service-type': $scope.data.installedProducts["mobile-servicetype"],
                             'grade': grade
@@ -1153,6 +1156,8 @@ smartApp.controller('changeOwnershipIBCController', function(
                             $scope.data.accountSubtypeList = resultST.data["response-data"];
                             //$scope.subCompanyType = resultST.data["response-data"][0]['name'];
                             $scope.setDefaultSubType();
+
+                            $scope.isCustomerPreverify = true;
                         });
 
 
@@ -1165,7 +1170,20 @@ smartApp.controller('changeOwnershipIBCController', function(
                         if (0 == 0) {
 
 
-                            changeOwnershipIBCService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
+                            changeOwnershipIBCService.lastestCustomerCallback(cid, $scope.getAccountCat(), function(lastestCustomer) {
+
+                                //CR02
+                                if ($scope.getAccountCat() != 'I') {
+                                    $scope.newOwner.birthDay = formatDate("2015-07-20T00:00:00+0700");
+                                    $scope.newOwner.expireDay = formatDate("2020-07-20T00:00:00+0700");
+
+                                    $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
+                                    $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
+                                    $("#birthDayRegisterd").datepicker("update", $scope.newOwner.birthDay);
+
+                                    $scope.onCheckInputForVerify();
+                                }
+
                                 $scope.isLastestUser = true;
                                 $.fancybox.close();
 
