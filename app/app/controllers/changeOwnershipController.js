@@ -2331,7 +2331,7 @@ smartApp.controller('changeOwnershipController', function(
                         "order-type": "CHANGE",
                         //"reason-code": $scope.selectReason.id,
                         "reason-code": "COWN",
-                        "user-memo": $scope.saveData.memo ? $scope.saveData.memo : "",
+                        "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
                         "address-list": {
                             "BILLING_ADDRESS": {
                                 "number": $scope.mailAddress.homeNumber,
