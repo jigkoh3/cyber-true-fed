@@ -169,15 +169,57 @@ smartApp.controller('changeOwnershipController', function(
                     if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
                         $('#CitizenID').prop('disabled', false);
                         setTimeout(function() {
-                        $('#CitizenID').focus();
-                    }, 500);
-                        
+                            $('#CitizenID').focus();
+                        }, 500);
+
 
                     } else {
                         $('#CitizenID').prop('disabled', true);
                     }
                 }
             }, 1000);
+
+        }
+
+        setTimeout(function() {
+            $('#loadingReadCard2').hide();
+            $('#unMatch2').hide();
+        }, 1000);
+
+
+    };
+
+    $scope.newOwnerModalReadCard = function() {
+        if ($scope.shopType == "1") {
+            if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+                $("#btn-fancy-ReadCard").fancybox().trigger('click');
+            }
+            $('#unMatchLastest').hide();
+            $('#loadingReadCardLastest').hide();
+            
+
+
+                $('#CitizenIDLastest').val('');
+                if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                    $('#CitizenIDLastest').prop('disabled', false);
+                    setTimeout(function() {
+                        $('#CitizenID').focus();
+                        $('#btnSSO').hide();
+                    }, 100);
+
+                } else {
+                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                        $('#CitizenIDLastest').prop('disabled', false);
+                        setTimeout(function() {
+                            $('#CitizenIDLastest').focus();
+                        }, 500);
+
+
+                    } else {
+                        $('#CitizenIDLastest').prop('disabled', true);
+                    }
+                }
+            
 
         }
 
@@ -617,9 +659,9 @@ smartApp.controller('changeOwnershipController', function(
                             $scope.data = result;
                             $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
 
-                            if($scope.data.installedProducts['company-code'] == "RF"){
+                            if ($scope.data.installedProducts['company-code'] == "RF") {
                                 $scope.promotion = "0022698";
-                            }else{
+                            } else {
                                 $scope.promotion = "0022697";
                             }
 
@@ -2331,7 +2373,7 @@ smartApp.controller('changeOwnershipController', function(
                         "order-type": "CHANGE",
                         //"reason-code": $scope.selectReason.id,
                         "reason-code": "COWN",
-                        "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
+                        "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
                         "address-list": {
                             "BILLING_ADDRESS": {
                                 "number": $scope.mailAddress.homeNumber,
