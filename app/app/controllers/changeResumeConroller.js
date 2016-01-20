@@ -618,7 +618,7 @@ smartApp.controller('ResumeController', function(
                                 "accountCat": accountCat,
                                 "channel": "WEBUI",
                                 "companyCode": "AL",
-                                "idNumber": $scope.customer['id-number'],
+                                "idNumber": result.customerProfile['id-number'],
                                 //"language": null,
                                 "verifyType": "ALL"
                             };

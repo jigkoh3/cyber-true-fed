@@ -696,6 +696,7 @@ smartApp.controller('MigratePreToPostController', function(
                         //     SystemService.hideLoading();
                         // }, 2000);
                         var accountCat = 'I';
+                        console.log(result);
                         var msgType = 'WARNING';
                         if ($routeParams.subno) {
                             msgType = 'ERROR';
@@ -707,7 +708,7 @@ smartApp.controller('MigratePreToPostController', function(
                             "accountCat": accountCat,
                             "channel": "WEBUI",
                             "companyCode": "AL",
-                            "idNumber": $scope.customer['id-number'],
+                            "idNumber": result.customerProfile['id-number'],
                             //"language": null,
                             "verifyType": "ALL"
                         };

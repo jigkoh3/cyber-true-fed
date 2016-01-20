@@ -1,7 +1,7 @@
 ﻿smartApp.service('SystemService', function($ngBootbox, $filter, $http, ModalService, ValidateMsgService) {
     console.log('SystemService');
     var that = this;
-    this.demo = false;
+    this.demo = true;
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
@@ -336,6 +336,7 @@
 
 
     this.getCustomerPreverify = function(data, fnCallback) {
+        
         //var target = 'aftersales/order/generate-id?channel=WEBUI&dealer=80000011';
         var headers = {
             'WEB_METHOD_CHANNEL': 'WEBUI'
@@ -346,14 +347,14 @@
                 fnCallback(result.data);
             });
         } else {
-            // fnCallback({
-            //     "status": "SUCCESSFUL",
-            //     "trx-id": null,
-            //     "process-instance": null,
-            //     "response-data": []
-            // });
+            var dataTest = {
+                "status": "SUCCESSFUL",
+                "trx-id": null,
+                "process-instance": null,
+                "response-data": []
+            };
             //=================Data for blacklist=================
-             fnCallback({
+             var dataTest2 = {
                 "status": "SUCCESSFUL",
                 "display-messages": [{
                     "message": "BLACKLIST:Unable to activate the service due to outstanding balance on customer’s ID, please inform customer to  make a payment at True Shop or True Partner\n",
@@ -368,7 +369,12 @@
                 "response-data": {
                     "verifyCode": null
                 }
-            });
+            };
+            if(data.idNumber == "2011112916616"){
+                fnCallback(dataTest2);
+            }else{
+                fnCallback(dataTest);
+            }
         }
 
     };
