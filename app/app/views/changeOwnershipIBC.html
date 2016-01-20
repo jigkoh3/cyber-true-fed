@@ -466,7 +466,13 @@
                                             </td>
                                             <td class="col-md-2">
                                                 <span ng-show="changOpenserviceBC == 'L'">10448763</span>
-                                                <input ng-show="changOpenserviceBC == 'S'" type="text" style="height:30px; font-size: 12px;" placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
+                                                <input ng-show="changOpenserviceBC == 'S'" 
+                                                        ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" 
+                                                        ng-model="accountID_root"
+                                                        type="text" 
+                                                        style="height:30px; font-size: 12px;" 
+                                                        placeholder="ระบุเลขบัญชีลูกค้า" 
+                                                        class="form-control">
                                             </td>
                                             <td class="col-md-5">
                                                 <div class="row">
@@ -477,7 +483,12 @@
                                                     </div>
                                                 </div>
                                                 <div ng-show="changOpenserviceBC == 'L'" class="col-md-6">
-                                                    <input type="text" style="height:30px; font-size: 12px;" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify()); onKeyUpAccountPreverify();" placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
+                                                    <input type="text" 
+                                                            style="height:30px; font-size: 12px;" 
+                                                            ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('CHILD', accountID_child)); onKeyUpAccountPreverify('CHILD', accountID_child);" 
+                                                            ng-model="accountID_child"
+                                                            placeholder="ระบุเลขบัญชีลูกค้า" 
+                                                            class="form-control">
                                                 </div>
                                             </td>
                                             <td class="col-md-2">13/12</td>

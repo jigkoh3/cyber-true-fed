@@ -303,6 +303,8 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.isCustomerPreverify = false;
     $scope.isAuthorizeBC = false;
     $scope.bcName = "";
+    $scope.accountID_root = "";
+    $scope.accountID_child = "";
     $scope.auth_1 = {
         "contact": "0868836665",
         "id-number": "9988877688845",
@@ -385,7 +387,12 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.poa_1['lastname'] = cardInfo.LastNameTH;
         }
     };
-
+    $scope.onEnterAccountPreverify = function(level, id){
+        alert('next day.'+level+":"+id);
+    };
+    $scope.onKeyUpAccountPreverify = function(){
+        //if lenght == 5
+    };
     //END: CR02 
 
     $scope.changeType = function(customerType) {
@@ -652,7 +659,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                     //console.log($scope.titleOtherTypeList);
                 });
                 //ประเภทของบัตร
-                SystemService.getMaster_list("CUST-ID-TYPE-I", function(result) {
+                SystemService.getMaster_list("CUST-ID-TYPE-"+$scope.getAccountCat(), function(result) {
                     $scope.cardTypeOptions = result;
                     //console.log($scope.cardTypeOptions);
                 });
@@ -2491,7 +2498,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                             //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
                             "OU-ID": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "",
                             "BAN": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "",
-                            "ACCOUNT-CATEGORY": "I",
+                            "ACCOUNT-CATEGORY": $scope.getAccountCat(),
                             "ACCOUNT-SUB-TYPE": $scope.subCompanyType,
                             "COMPANY-CODE": $scope.data.installedProducts["company-code"],
                             "NAS-PROPOSITION": $scope.selectProposition,
@@ -3066,7 +3073,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             "transactionId": $scope.TrxID,
             //"username": null,
             //"password": null,
-            "accountCat": "I",
+            "accountCat": $scope.getAccountCat(),
             "accountType": $scope.subCompanyType,
             // O/M
             //"approveCode": $scope.approveCode,
