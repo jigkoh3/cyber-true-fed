@@ -297,6 +297,9 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     };
 
+
+    //START: CR02 -- 18/01/2016
+    $scope.promotionLevel = "SUB";
     $scope.isCustomerPreverify = false;
     $scope.isAuthorizeBC = false;
     $scope.bcName = "";
@@ -317,11 +320,15 @@ smartApp.controller('changeOwnershipIBCController', function(
         "birthdate": "2015-07-20T00:00:00+0700"
     };
     $scope.clearInputIBC = function() {
+        $scope.ClearTxt();
         $scope.auth_1 = {};
         $scope.poa_1 = {};
         $scope.isCustomerPreverify = false;
+        $scope.isCheckInputForVerify = false;
+        $scope.showApprovCode = false;
         $scope.isAuthorizeBC = false;
         $scope.isLastestUser = false;
+        $scope.isVerify = false;
         $scope.customer['id-number'] = "";
         $scope.customer['branch-code'] = "00000";
         $scope.customer['tax-id'] = "";
@@ -378,6 +385,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.poa_1['lastname'] = cardInfo.LastNameTH;
         }
     };
+
+    //END: CR02 
 
     $scope.changeType = function(customerType) {
         $scope.customerType = customerType;
@@ -572,7 +581,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     }
     $scope.setDefaultSubType = function() {
-        if (SystemService.checkObj($scope.data, ["installedProducts", "company-code"])) {
+        if (SystemService.checkObj($scope.data, ["installedProducts", "company-code"]) && $scope.customerType=='N') {
             if ($scope.data.installedProducts["company-code"] == "RM") {
                 $scope.subCompanyType = "RPI";
             } else if ($scope.data.installedProducts["company-code"] == "RF") {
@@ -1179,8 +1188,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
                                     $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
                                     $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
-                                    $("#birthDayRegisterd").datepicker("update", $scope.newOwner.birthDay);
-
+                                    
                                     $scope.onCheckInputForVerify();
                                 }
 
@@ -1201,7 +1209,13 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $scope.newOwner2.lastNameTH = "";
                                         $scope.newOwner2.prefixTH = "T2";
 
-                                        $scope.customer['tax-id'] = $scope.customer['id-number'];
+                                        if($scope.customerType=='N'){
+                                            $scope.customer['tax-id'] = $scope.customer['id-number'];
+                                        }else{
+                                            if($scope.customer['id-number'] && $scope.customer['id-number'].length==13){
+                                                $scope.customer['tax-id'] = $scope.customer['id-number'];
+                                            }
+                                        }
 
                                         $scope.customer['contact-mobile-number'] = "";
                                         $scope.customer['contact-email'] = "";
@@ -1258,6 +1272,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
                                         $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
                                         $("#birthDayRegisterd").datepicker("update", $scope.newOwner.birthDay);
+
+                                        //BC--------------
+                                        $scope.bcName = customer["firstname"]+" "+customer["lastname"];
 
                                     }
 
@@ -1612,12 +1629,13 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.dataSlip = {
         "E": "E-Bill-Email",
         "S": "E-Bill-SMS",
-        "P": "Bill-Paper",
+        "P": "Paper (ทางไปรษณีย์)",
     };
     $scope.billPayment = {
         email: "",
         smss: "",
-        accountLang: "TH"
+        accountLang: "TH",
+        preferedContace: "*"
     };
     $scope.onCheckEmail = function() {
         //SystemService.setValidateEmail($scope.billPayment.email);
@@ -2928,7 +2946,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.customerType = "N";
     $scope.changCheckno = false;
     $scope.changOpenserviceN = false;
-    $scope.changOpenserviceBC = false;
+    $scope.changOpenserviceBC = "L";
     $scope.customerStatusN = "O";
     $scope.customerStatusBC = "O";
     $scope.slipType = "H";
@@ -2951,7 +2969,6 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
     $scope.changecusStatusBC = function(customerStatus) {
         if (customerStatus == 'N') {
-            $scope.changOpenserviceBC = false;
 
         }
         $scope.customerStatusBC = customerStatus;
@@ -2980,9 +2997,8 @@ smartApp.controller('changeOwnershipIBCController', function(
 
     $scope.changeOldAddressBC = function(status) {
         if (status) {
-            $scope.changOpenserviceBC = true;
+            
         } else {
-            $scope.changOpenserviceBC = false;
             $scope.mailAddress = {};
             $scope.billAddress = {};
         }
@@ -3535,6 +3551,13 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         }
     };
+    $scope.fixPreferedContact = "";
+    $scope.onChangePreferedContact = function() {
+        if ($scope.billPayment.preferedContace != "FIX") {
+            $scope.fixPreferedContact = "";
+        }
+        console.log($scope.billPayment.preferedContace);
+    };
     $scope.noneShopPrint = function() {
         $scope.isClickPrint = true;
         $scope.validateUI();
@@ -3553,6 +3576,17 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.validateUI();
         }
     };
+
+
+
+
+
+
+
+
+
+
+
 
     $scope.checkUserDealer = function() {
         if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == false) {
@@ -3581,9 +3615,9 @@ smartApp.controller('changeOwnershipIBCController', function(
         if ($scope.billPayment.smss) {
             if ($scope.billPayment.smss.length == 9 || $scope.billPayment.smss.length == 10) {
                 $scope.isNumberTelLengthSms = false;
-                $scope.billPayment.smss = '';
             } else {
                 $scope.isNumberTelLengthSms = true;
+                $scope.billPayment.smss = '';
             }
             console.log($scope.billPayment.smss.length);
         }

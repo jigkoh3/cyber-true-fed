@@ -714,6 +714,35 @@
             });
         }
     };
+    var accountPreverifyAPI = function (param, fnCallback) {
+        var target = "sales/catalog/product/tmv/proposition/search";
+        console.log(target);
+        if (!demo) {
+            SystemService.callServiceGet(target, null, function (result) {
+                fnCallback(result);
+            });
+        } else {
+            var data = {
+                "status": "SUCCESSFUL",
+                "trx-id": "3X18RYBCFS9L9",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": [{
+                    "name": "RMV000000000001",
+                    "description": "Proposition for TEST RF ",
+                    "soc": "45552",
+                    "rc": 0.0,
+                    "service-level": "C",
+                    "proposition-code": "0019537"
+                }]
+            };
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
+        }
+    };
 
 
     return {
@@ -936,6 +965,11 @@
         },
         propositionCallback: function (target, fnCallback) {
             propositionAPI(target, function (result) {
+                fnCallback(result);
+            });
+        },
+        accountPreverifyCallback: function (target, fnCallback) {
+            accountPreverifyAPI(target, function (result) {
                 fnCallback(result);
             });
         }
