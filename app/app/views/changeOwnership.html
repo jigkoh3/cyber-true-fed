@@ -210,7 +210,7 @@
                                         <span class="input-group-btn">
                                             <button ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true"
                                                     style="height:30px;"
-                                                    onclick="$('#unMatchLastest').hide(); $('#loadingReadCardLastest').hide(); $('#CitizenIDLastest').val(''); $('#CitizenIDLastest').prop('disabled', true);"
+                                                    ng-click="newOwnerModalReadCard()"
                                                     type="button"
                                                     href="#fancy-ReadCardLastest"
                                                     id="btn-fancy-ReadCardLastest"

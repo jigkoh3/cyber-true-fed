@@ -695,133 +695,171 @@ smartApp.controller('MigratePreToPostController', function(
                         // setTimeout(function() {
                         //     SystemService.hideLoading();
                         // }, 2000);
-                        if (result.status) {
-                            $scope.data = result;
-                            $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
-                            $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
-                            $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];
-                            $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
-                            $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
-                            // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
-                            $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
-                            $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
-                            $scope.cardType.value = $scope.data.customerProfile['id-type'];
-
-
-                            $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
-
-                            $('#citizenID3').val($scope.data.customerProfile['id-number']);
-
-                            // $scope.onInputIdLastest3();
-                            $scope.checkValueExpireDate();
-                            $scope.checkValueDate();
-                            $scope.valueIdType();
-                            $scope.checkUserDealer();
-                            $scope.chkShopcode();
-                            $scope.checkUserNonShop();
-                            $scope.checkUserShop();
-                            console.log($scope.isChkShopcode);
-                            // $scope.onInputCitizenID3();
-                            $scope.onChangeCardTypes();
-                            console.log($scope.checkExpireDate);
-                            console.log($scope.newOwner.expireDay);
-                            setTimeout(function() {
-                                $scope.titleOther = $scope.data.customerProfile['title'];
-                                $('#titleOther').val($scope.data.customerProfile['title']);
-                                // $('#divShowAuthorize').hide();
-                                var cutomerType = $scope.data.priceplan['account-category'];
-                                console.log(cutomerType);
-                                if (cutomerType == "P") {
-
-                                    $('#divShowAuthorize').hide();
-                                }
-                                $('#cardType').val($scope.cardType.value);
-                                $('#prefixTH3').val($scope.data.customerProfile['title-code']);
-                                $scope.onselectPrefix();
-                                //$ngBootbox.customDialog($scope.customDialogOptions);
-
-                            }, 1000);
-
-
-
-                            $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
-
-                            $scope.data2 = result;
-                            $scope.onInputCitizenID3();
-                            // console.log($scope.data.customerProfile['firstname']);
-
-                            if ($scope.shopType == '1') {
-                                // Auto-open the CardReader dialog
-                                setTimeout(function() {
-                                    var fancyboxOptions = {
-                                        helpers: {
-                                            overlay: {
-                                                //closeClick: false
-                                            }
-                                        },
-
-                                        beforeShow: function() {
-                                            $('#CitizenID').prop('disabled', true);
-                                            $('#loadingReadCard').hide();
-                                            $('#unMatch').hide();
-                                        },
-
-                                        afterClose: function() {
-                                            //
-                                        }
-                                    };
-                                    $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
-                                }, 1000);
-                                $("#btn-fancy-ReadCardLastest").fancybox({
-                                    'type': 'div',
-                                    width: '50%',
-                                    height: '95%',
-                                    openEffect: false,
-                                    closeEffect: false,
-                                    speedIn: 15000,
-                                    speedOut: 15000,
-                                    autoScale: false,
-                                    centerOnScroll: false, // and not 'true',
-                                    autoCenter: false, // and not 'true'
-                                    autoDimensions: 'false',
-                                    resize: 'Auto',
-                                    helpers: {
-                                        overlay: {
-                                            css: {
-                                                'background': 'transparent',
-                                                'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
-                                                'zoom': '1',
-                                                'background': 'rgba(42, 42, 42, 0.95)'
-                                            },
-                                            locked: true,
-                                            closeClick: false,
-                                        }
-
-                                    }
-                                });
-
-
-                                // setTimeout(function() {
-                                //     $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                                // }, 1000);
-                                //$("#btn-fancy-ReadCard").fancybox().trigger('hide');
-                                $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
-                                $scope.clickModalReadCard = true;
-                                $scope.initModalReadCard();
-
-                            } else {
-                                $scope.isCustomerProfile = true;
-                            }
-
-                            //$scope.initModalReadCard();
-                            //check partner
-                            if (!$scope.isNonePartner && $scope.shopType == '1') {
-                                //$scope.data = {};
-                            }
-
-                        } else {
-                            $scope.SubNo = "null";
+                        var accountCat = 'I';
+                        var msgType = 'WARNING';
+                        if ($routeParams.subno) {
+                            msgType = 'ERROR';
                         }
+                        // if ($scope.customerType == 'B' || $scope.customerType == 'C') {
+                        //     accountCat = $scope.customerType;
+                        // }
+                        var data = {
+                            "accountCat": accountCat,
+                            "channel": "WEBUI",
+                            "companyCode": "AL",
+                            "idNumber": $scope.customer['id-number'],
+                            //"language": null,
+                            "verifyType": "ALL"
+                        };
+
+                        SystemService.getCustomerPreverify(data, function(blackList) {
+                            var msg = utils.getObject(blackList, 'display-messages');
+                            if (msg && msg.length > 0) {
+                                SystemService.showAlert({
+                                    "message": msg[0]["message"],
+                                    "message-code": msg[0]["message-code"],
+                                    "message-type": msgType,
+                                    "en-message": msg[0]["en-message"],
+                                    "th-message": msg[0]["th-message"],
+                                    "technical-message": msg[0]["technical-message"]
+                                });
+                                $scope.SubNo = "null";
+                                setTimeout(function() {
+                                    $('#btn_ngbOK').focus();
+                                }, 1500);
+
+                                return;
+                            } else {
+                                if (result.status) {
+                                    $scope.data = result;
+                                    $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
+                                    $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
+                                    $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];
+                                    $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
+                                    $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
+                                    // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
+                                    $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
+                                    $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
+                                    $scope.cardType.value = $scope.data.customerProfile['id-type'];
+
+
+                                    $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
+
+                                    $('#citizenID3').val($scope.data.customerProfile['id-number']);
+
+                                    // $scope.onInputIdLastest3();
+                                    $scope.checkValueExpireDate();
+                                    $scope.checkValueDate();
+                                    $scope.valueIdType();
+                                    $scope.checkUserDealer();
+                                    $scope.chkShopcode();
+                                    $scope.checkUserNonShop();
+                                    $scope.checkUserShop();
+                                    console.log($scope.isChkShopcode);
+                                    // $scope.onInputCitizenID3();
+                                    $scope.onChangeCardTypes();
+                                    console.log($scope.checkExpireDate);
+                                    console.log($scope.newOwner.expireDay);
+                                    setTimeout(function() {
+                                        $scope.titleOther = $scope.data.customerProfile['title'];
+                                        $('#titleOther').val($scope.data.customerProfile['title']);
+                                        // $('#divShowAuthorize').hide();
+                                        var cutomerType = $scope.data.priceplan['account-category'];
+                                        console.log(cutomerType);
+                                        if (cutomerType == "P") {
+
+                                            $('#divShowAuthorize').hide();
+                                        }
+                                        $('#cardType').val($scope.cardType.value);
+                                        $scope.onChangeCardTypes();
+                                        $('#prefixTH3').val($scope.data.customerProfile['title-code']);
+                                        $scope.onselectPrefix();
+                                        //$ngBootbox.customDialog($scope.customDialogOptions);
+
+                                    }, 1000);
+
+
+
+                                    $scope.billPayment.smss = $scope.data.installedProducts['product-id-number'];
+
+                                    $scope.data2 = result;
+                                    $scope.onInputCitizenID3();
+                                    // console.log($scope.data.customerProfile['firstname']);
+
+                                    if ($scope.shopType == '1') {
+                                        // Auto-open the CardReader dialog
+                                        setTimeout(function() {
+                                            var fancyboxOptions = {
+                                                helpers: {
+                                                    overlay: {
+                                                        //closeClick: false
+                                                    }
+                                                },
+
+                                                beforeShow: function() {
+                                                    $('#CitizenID').prop('disabled', true);
+                                                    $('#loadingReadCard').hide();
+                                                    $('#unMatch').hide();
+                                                },
+
+                                                afterClose: function() {
+                                                    //
+                                                }
+                                            };
+                                            $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
+                                        }, 1000);
+                                        $("#btn-fancy-ReadCardLastest").fancybox({
+                                            'type': 'div',
+                                            width: '50%',
+                                            height: '95%',
+                                            openEffect: false,
+                                            closeEffect: false,
+                                            speedIn: 15000,
+                                            speedOut: 15000,
+                                            autoScale: false,
+                                            centerOnScroll: false, // and not 'true',
+                                            autoCenter: false, // and not 'true'
+                                            autoDimensions: 'false',
+                                            resize: 'Auto',
+                                            helpers: {
+                                                overlay: {
+                                                    css: {
+                                                        'background': 'transparent',
+                                                        'filter': 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#F22a2a2a,endColorstr=#F22a2a2a)',
+                                                        'zoom': '1',
+                                                        'background': 'rgba(42, 42, 42, 0.95)'
+                                                    },
+                                                    locked: true,
+                                                    closeClick: false,
+                                                }
+
+                                            }
+                                        });
+
+
+                                        // setTimeout(function() {
+                                        //     $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                                        // }, 1000);
+                                        //$("#btn-fancy-ReadCard").fancybox().trigger('hide');
+                                        $("#btn-fancy-ReadCardLastest").fancybox().trigger('hide');
+                                        $scope.clickModalReadCard = true;
+                                        $scope.initModalReadCard();
+
+                                    } else {
+                                        $scope.isCustomerProfile = true;
+                                    }
+
+                                    //$scope.initModalReadCard();
+                                    //check partner
+                                    if (!$scope.isNonePartner && $scope.shopType == '1') {
+                                        //$scope.data = {};
+                                    }
+
+                                } else {
+                                    $scope.SubNo = "null";
+                                }
+                            }
+                        });
                     });
                 } else {
                     SystemService.hideLoading();
@@ -1155,7 +1193,7 @@ smartApp.controller('MigratePreToPostController', function(
 
 
                         $('#cardType').val($scope.cardType.value);
-
+                        $scope.onChangeCardTypes();
                         $scope.callPropositionList();
                         $scope.isLastestUser = false; // jigkoh3 mockup
 
@@ -1186,6 +1224,7 @@ smartApp.controller('MigratePreToPostController', function(
                                     setTimeout(function() {
                                         // $('#divShowAuthorize').hide();
                                         $('#cardType').val($scope.cardType.value);
+                                        $scope.onChangeCardTypes();
                                         $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                         //$ngBootbox.customDialog($scope.customDialogOptions);
 
@@ -1308,6 +1347,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 //setTimeout(function() {
                                 // $('#divShowAuthorize').hide();
                                 $('#cardType').val($scope.cardType.value);
+                                $scope.onChangeCardTypes();
                                 // $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                 //$ngBootbox.customDialog($scope.customDialogOptions);
                                 // $scope.onInputCitizenID3();
@@ -1720,7 +1760,10 @@ smartApp.controller('MigratePreToPostController', function(
         } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther == "") {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
-        } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
+        }else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != ""){
+            $scope.titleOther = "คุณ";
+            $('#titleOther').val('คุณ');
+        }else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
             //$scope.titleOther = "คุณ";
 
             $('#titleOther').val($scope.titleOther);
@@ -2486,7 +2529,7 @@ smartApp.controller('MigratePreToPostController', function(
                         "order-type": "CHANGE",
                         //"reason-code": $scope.selectReason.id,
                         "reason-code": "CREQ",
-                        "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
+                        "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
                         "address-list": {
                             "BILLING_ADDRESS": {
                                 "number": $scope.mailAddress.homeNumber,
@@ -3711,9 +3754,9 @@ smartApp.controller('MigratePreToPostController', function(
         if ($scope.billPayment.smss) {
             if ($scope.billPayment.smss.length == 9 || $scope.billPayment.smss.length == 10) {
                 $scope.isNumberTelLengthSms = false;
-                $scope.billPayment.smss = '';
             } else {
                 $scope.isNumberTelLengthSms = true;
+                $scope.billPayment.smss = '';
             }
             console.log($scope.billPayment.smss.length);
         }

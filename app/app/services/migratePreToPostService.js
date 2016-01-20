@@ -23,8 +23,8 @@
                         "birthdate": "1991-09-01T00:00:00+0700",
                         "id-expire-date": "2020-09-01T00:00:00+0700",
                         "contact-number": "",
-                        "id-type": "P",
-                        "id-number": "1189900130607",
+                        "id-type": "I",
+                        "id-number": "1189900130609",
                         "customer-id": "325",
                         "installed-products": [{
                             "ouId": "",
@@ -91,7 +91,7 @@
                         "contact-number": "",
                         "contact-mobile-number": "",
                         "id-type": "P",
-                        "id-number": "1189900130607",
+                        "id-number": "1189900130608",
                         "customer-id": "2595",
                         "installed-products": [{
                             "ouId": "930",
