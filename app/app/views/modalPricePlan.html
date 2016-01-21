@@ -4,7 +4,7 @@
         <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
     </div>
     <div class="col-md-2" ng-submit="openPricePlanDialog()">
-        <input type="text" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog()" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
+        <input type="text" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog() && smartSearchPP(pricePlanFilter.value)" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
     </div>
     <div class="col-md-1">
         <!--<button type="button"
@@ -37,7 +37,7 @@
             </div>-->
             <div class="modal-body">
                 <div class="col-md-12">
-                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter.value" id="ppfilter2" class="form-control pricePlanFilter">
+                    <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter.value" id="ppfilter2" class="form-control pricePlanFilter" ng-keyup="smartSearchPP(pricePlanFilter.value)">
                 </div>
                 &nbsp;
                 <div class="table-responsive">
@@ -56,7 +56,7 @@
                                 </label>
                             </th>
                         </tr>
-                        <tr dir-paginate="pp in propositionList | filter:pricePlanFilter.value | orderBy:'pricePlan'| itemsPerPage: pageSize" pagination-id="PPList" current-page="currentPage">
+                        <tr dir-paginate="pp in propositionList | orderBy:'pricePlan'| itemsPerPage: pageSize" pagination-id="PPList" current-page="currentPage">
                             <th colspan="5" style="padding: 5px; padding-bottom: 0px;">
                                 <label class="col-xs-12" style="cursor:pointer;">
                                     <div class="row">

@@ -42,7 +42,8 @@ smartApp.controller('ChangePricePlanController', function(
         //$ngBootbox.customDialog($scope.customDialogOptions);
     };
     $scope.filterAndOpen = function() {
-        var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
+        $scope.smartSearchPP($scope.pricePlanFilter.value);
+        var list = $scope.propositionList;
         console.log(list.length, $scope.pricePlanFilter.value);
         if (list.length == 1) {
             if ($scope.firstSearch == false) {
@@ -1795,6 +1796,7 @@ $scope.selectedPricePlan3 = function() {
         //call Priceplan
         $scope.getPriceplan();
     } else {
+        $scope.smartSearchPP($scope.pricePlanFilter.value);
         //$scope.onClearPricePlan();
         //var value = $('#selectProposition').val() == "null" ? "" : $('#selectProposition').val();
         ////var value = $scope.selectProposition;
@@ -2068,6 +2070,20 @@ $scope.onSearchPricePlan = function(item) {
 
 
 // };
+
+$scope.smartSearchPP = function(txtSearch) {
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = valPricePlans;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.propositionList = arr;
+        } else {
+            $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
+        }
+    };
 $scope.afterCloseWarning = function() {
     if ($scope.SubNo === 'null') {
         // $('#dataSubNo').val('');
