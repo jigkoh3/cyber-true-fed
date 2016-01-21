@@ -438,11 +438,10 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                        <input type="radio" style="cursor:pointer;" name="customBC" value="N" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'"> ลูกค้าใหม่
-                                    </label>
+                                            <input type="radio" style="cursor:pointer;" name="customBC" value="N" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'"> ลูกค้าใหม่
+                                        </label>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -466,13 +465,7 @@
                                             </td>
                                             <td class="col-md-2">
                                                 <span ng-show="changOpenserviceBC == 'L'">10448763</span>
-                                                <input ng-show="changOpenserviceBC == 'S'" 
-                                                        ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" 
-                                                        ng-model="accountID_root"
-                                                        type="text" 
-                                                        style="height:30px; font-size: 12px;" 
-                                                        placeholder="ระบุเลขบัญชีลูกค้า" 
-                                                        class="form-control">
+                                                <input ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" type="text" style="height:30px; font-size: 12px;" placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
                                             </td>
                                             <td class="col-md-5">
                                                 <div class="row">
@@ -483,12 +476,7 @@
                                                     </div>
                                                 </div>
                                                 <div ng-show="changOpenserviceBC == 'L'" class="col-md-6">
-                                                    <input type="text" 
-                                                            style="height:30px; font-size: 12px;" 
-                                                            ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('CHILD', accountID_child)); onKeyUpAccountPreverify('CHILD', accountID_child);" 
-                                                            ng-model="accountID_child"
-                                                            placeholder="ระบุเลขบัญชีลูกค้า" 
-                                                            class="form-control">
+                                                    <input type="text" style="height:30px; font-size: 12px;" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('CHILD', accountID_child)); onKeyUpAccountPreverify('CHILD', accountID_child);" ng-model="accountID_child" placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
                                                 </div>
                                             </td>
                                             <td class="col-md-2">13/12</td>
@@ -604,7 +592,7 @@
                                     </div>-->
                                     <div class="modal-body">
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="ค้นหา" ng-model="pricePlanFilter.value" id="ppfilter2" class="form-control pricePlanFilter">
+                                            <input type="text" placeholder="ค้นหา" ng-keyup="smartSearchPP(pricePlanFilter.value)" ng-model="pricePlanFilter.value" id="ppfilter2" class="form-control pricePlanFilter">
                                         </div>
                                         &nbsp;
                                         <div class="table-responsive">
@@ -621,7 +609,7 @@
                                                         </label>
                                                     </th>
                                                 </tr>
-                                                <tr dir-paginate="pp in propositionList | filter:pricePlanFilter.value | orderBy:'pricePlan'| itemsPerPage: pageSize" pagination-id="PPList" current-page="currentPage">
+                                                <tr dir-paginate="pp in propositionList | orderBy:'pricePlan'| itemsPerPage: pageSize" pagination-id="PPList" current-page="currentPage">
                                                     <th colspan="5" style="padding: 5px; padding-bottom: 0px;">
                                                         <label class="col-xs-12" style="cursor:pointer;">
                                                             <div class="row">
@@ -672,7 +660,7 @@
                     <br />
                     <div ng-hide="changCheckno==false || !isVerify">
                         <div ng-show="(customerType=='B') || (customerType=='C')">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-4">
                                     <div data-toggle="buttons" class="btn-group btn-group-justified">
                                         <label class="btn btn-default active" ng-click="changeReqType('O')">
@@ -683,9 +671,25 @@
                                         </label>
                                     </div>
                                 </div>
+                            </div> -->
+                            <div class="row" ng-show="isVerify && (customerType=='B' || customerType=='C')">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label style="cursor:pointer;">
+                                            <input type="radio" style="cursor:pointer;" name="useNumberType" value="BC" ng-model="useNumberType" ng-init="useNumberType='BC'"> 
+                                            บริษัท/ที่ทำงาน
+                                        </label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label style="cursor:pointer;">
+                                            <input type="radio" style="cursor:pointer;" name="useNumberType" value="I" ng-model="useNumberType"> 
+                                            บุคคลธรรมดา
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <br />
-                            <div ng-show="businessType=='O'" class="row">
+                            <div class="row" ng-show="useNumberType=='BC'">
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>บริษัท/ที่ทำงาน <span style="color:red;">*</span></label>
@@ -771,6 +775,72 @@
                                     <div class="form-group has-feedback">
                                         <label>SMS Language<span style="color:red;">*</span></label>
                                         <select ng-model="newOwner2.smsLanguage" id="smsLanguageRegisterd" class="form-control">
+                                            <option value="TH">ไทย</option>
+                                            <option value="EN">อังกฤษ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="useNumberType=='I'">
+                            <div class="row">
+                                <div ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                                    <div ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
+                                        <div class="form-group" ng-form="titlename">
+                                            <label>คำนำหน้า<span style="color:red;">*</span></label>
+                                            <div>
+                                                <select name="prefixsThs" class="form-control" id="titleRegisterdBC" ng-change="onselectPrefix2()" ng-model="newOwner2.prefixTH" required>
+                                                    <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7" ng-show="newOwner2.prefixTH=='T5'" style="padding: 0;">
+                                        <label>
+                                            <p></p>
+                                        </label>
+                                        <select class="form-control" id="titleOtherRegisterdBC" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
+                                            <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group" ng-form="firstname">
+                                        <label>ชื่อ<span style="color:red;">*</span></label>
+                                        <input type="text" ng-model="newOwner2.firstNameTH" id="firstNameRegisterdBC" name="firstNamesTHs" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group" ng-form="lastname">
+                                        <label>นามสกุล<span style="color:red;">*</span></label>
+                                        <input type="text" ng-model="newOwner2.lastNameTH" id="lastNameRegisterdBC" name="lastNamesTHs" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                                    <div ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
+                                        <div class="form-group">
+                                            <label>เพศ<span style="color:red;">*</span></label>
+                                            <div>
+                                                <select name="sexs2" class="form-control" id="sex32" ng-model="newOwner2.sex" required>
+                                                    <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
+                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterdBC" class=" form-control date-picker dateFormat">
+                                        <span class="form-control-feedback is-bound" maxlength="10"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label>SMS Language<span style="color:red;">*</span></label>
+                                        <select ng-model="newOwner2.smsLanguage" id="smsLanguageRegisterdBC" class="form-control">
                                             <option value="TH">ไทย</option>
                                             <option value="EN">อังกฤษ</option>
                                         </select>
@@ -1027,14 +1097,12 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="col-md-3">
-                                            <button type="button" 
-                                                    ng-click="useAddressMailAsBillBC()" 
-                                                    class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button>
+                                            <button type="button" ng-click="useAddressMailAsBillBC()" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับใบกำกับภาษี</button>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
                                         <div class="col-md-3">
-                                            <select class="form-control" ng-change="onChangeMailPaymentAccountLangBC()" ng-model="mailPaymentBC.accountLang">
+                                            <select class="form-control" ng-change="onChangeMailAddressAccountLangBC()" ng-model="mailAddressBC.accountLang">
                                                 <option value="TH">ไทย</option>
                                                 <option value="EN">อังกฤษ</option>
                                             </select>
