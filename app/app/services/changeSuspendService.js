@@ -381,8 +381,13 @@
 
         if (!demo) {
             var target = '/aftersales/order/submit';
-
+            
             SystemService.callServicePost(request, null, function(result) {
+            	//save report to server
+            	SystemService.saveReportToServer({}, function(result){
+            		
+            	});
+                
                 cb(result);
             });
         } else {

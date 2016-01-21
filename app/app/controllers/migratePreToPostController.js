@@ -211,6 +211,18 @@ smartApp.controller('MigratePreToPostController', function(
             }
         }
         if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+            if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                    
+                    setTimeout(function() {
+                        $('#CitizenID').prop('disabled', false);
+                        $('#CitizenID').focus();
+                    }, 500);
+
+
+                } else {
+                    $('#CitizenID').prop('disabled', true);
+                }
+
             if ($scope.clickModalReadCard) {
                 $scope.clickModalReadCard = false;
                 if (navigator.userAgent.indexOf('Chrome') > 0) {
@@ -1761,10 +1773,10 @@ smartApp.controller('MigratePreToPostController', function(
         } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther == "") {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
-        }else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != ""){
+        } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "") {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
-        }else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
+        } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
             //$scope.titleOther = "คุณ";
 
             $('#titleOther').val($scope.titleOther);
@@ -2753,17 +2765,41 @@ smartApp.controller('MigratePreToPostController', function(
         };
         console.log(data);
         if (SystemService.demo) {
+            var result = {
+                data: {
+                    "status": "SUCCESSFUL",
+                    "display-messages": [{
+                        "message": "Order ORD150700000032 successful saved.",
+                        "message-type": "INFORMATION",
+                        "en-message": "Order ORD150700000032 successful saved.",
+                        "th-message": "รายการคำขอเลขที่ ORD150700000032 ได้รับข้อมูลเรียบร้อยแล้ว"
+                    },
+                    {
+                        "message": "",
+                        "message-type": "",
+                        "en-message": "",
+                        "th-message": "* หมายเลขได้รับสิทธิตามแคมเปญ"
+                    }],
+                    "trx-id": "03J5HVSFXH8R",
+                    "process-instance": "tpx61.true.th (instance: sale)"
+
+                }
+            }
             SystemService.showBeforeClose({
-                "message": "รายการคำขอเลขที่ " + $scope.orderId,
-                "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
+                "message": result.data["display-messages"][0]["th-message"],
+                "message2": result.data["display-messages"].length > 1 ? result.data["display-messages"][1]["th-message"] : ""
             });
         } else {
             SystemService.callServicePost(data, headers, function(result) {
                 console.log(result);
                 if (result.status) {
+                	SystemService.saveReportToServer({}, function(result){
+                		
+                	});
+
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
-                        "message2": ""
+                        "message2": result.data["display-messages"].length > 1 ? result.data["display-messages"][1]["th-message"] : ""
                     });
                 } else {
                     SystemService.showAlert({

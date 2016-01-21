@@ -323,38 +323,8 @@
                     //'gender': null,
                     'id-type': payload.customerProfile['id-type'],
                     'id-number': payload.customerProfile['id-number'],
-                    //'birthdate': '2015-07-20T00:00:00+0700',
-                    //'id-expire-date': null,
                     'contact-number': payload.customerProfile['contact-number'],
                     'contact-mobile-number': payload.customerProfile['contact-mobile-number'],
-                    //'contact-email': 'chitchai@cmail.com',
-                    //'customer-agents': {
-                    //  'AUTH_1': {
-                    //      'contact': '0868836665',
-                    //      'id-number': '9988877688845',
-                    //      'id-type': 'I',
-                    //      'firstname': 'สมคิด',
-                    //      'lastname': 'คิดมากไป',
-                    //      'birthdate': '2015-07-20T00:00:00+0700'
-                    //  }
-                    //    ,
-                    //  'POA': {
-                    //      'contact': '0868836664',
-                    //      'id-number': '3257588733945',
-                    //      'id-type': 'I',
-                    //      'firstname': 'สมชาย',
-                    //      'lastname': 'ปากสว่าง',
-                    //      'birthdate': '2015-07-20T00:00:00+0700'
-                    //  },
-                    //  'AUTH_2': {
-                    //      'contact': '0868836666',
-                    //      'id-number': '9988877687723',
-                    //      'id-type': 'I',
-                    //      'firstname': 'สมฤดี',
-                    //      'lastname': 'ดีเกินไป',
-                    //      'birthdate': '2015-07-20T00:00:00+0700'
-                    //  }
-                    //}
                 },
                 'sale-agent': {
                     'name': payload.saleAgent['engName'],
@@ -408,6 +378,11 @@
             //var target = '/aftersales/order/submit';
 
             SystemService.callServicePost(request, null, function(result) {
+            	//save report to server
+            	SystemService.saveReportToServer({}, function(result){
+            		
+            	});
+                
                 cb(result);
             });
         } else {

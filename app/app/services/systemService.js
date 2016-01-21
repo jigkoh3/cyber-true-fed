@@ -276,6 +276,30 @@
 
         });
     };
+    
+    this.saveReportToServer = function(data, fnCallback) {
+    	var httpRequest = {
+                method: "POST",
+                url: getURL('/services/report/saveFile.service'),
+                data: data,
+                timeout: 30000
+            };
+    	
+    	httpRequest.headers = {
+                'WEB_METHOD_CHANNEL': 'WEBUI',
+                'E2E_REFID': localStorage.getItem('orderId')
+            };
+    	
+        $http(httpRequest).success(function(response) {
+        	fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
+        });
+    };
+    
     this.callServicePostByPass = function(data, headers, fnCallback) {
         console.log(data);
         var httpRequest = {
