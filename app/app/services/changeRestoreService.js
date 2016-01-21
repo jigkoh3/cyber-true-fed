@@ -314,7 +314,12 @@
             var target = '/aftersales/order/submit';
 
             SystemService.callServicePost(request, null, function(result) {
-                cb(result);
+            	//save report to server
+            	SystemService.saveReportToServer({}, function(result){            		
+            	});
+                
+                cb(result);                
+                
             });
         } else {
             var data = {

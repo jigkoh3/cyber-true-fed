@@ -2598,6 +2598,9 @@ smartApp.controller('changeOwnershipController', function(
             SystemService.callServicePost(data, headers, function(result) {
                 console.log(result);
                 if (result.status) {
+                	SystemService.saveReportToServer({}, function(result){
+                		
+                	});
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
                         "message2": ""

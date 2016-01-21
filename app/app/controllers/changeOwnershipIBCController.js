@@ -337,6 +337,12 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.bcName = "";
 
         $scope.slipType = 'H';
+
+        // clear searchAddress
+        $scope.pauseAddress = false;
+        $scope.isLoadAddress = false;
+        $('#ulAddressList').hide();
+        $scope.addressList = [];
     };
     $scope.getAccountCat = function() {
         var accountCat = 'I';
@@ -415,6 +421,19 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
     $scope.onKeyUpAccountPreverify = function() {
         //if lenght == 5
+    };
+    $scope.smartSearchPP = function(txtSearch){
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = valPricePlans;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.propositionList = arr;
+        } else {
+            $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
+        }
     };
     //END: CR02 
 
@@ -2130,6 +2149,10 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.mailAddress = {
         newss: ''
     };
+    $scope.mailAddressBC = {
+        newss: '',
+        accountLang: "TH"
+    };
     $scope.tempCardAddress = {
         newss: ''
     };
@@ -2166,9 +2189,31 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.billAddress = $scope.tempCardAddress;
         }
     };
+    $scope.useAddressMailAsBillBC = function(type) {
+        $scope.bantypeMailBC = $scope.bantypeMail;
+        $scope.mootypeMailBC = $scope.mootypeMail;
+
+        $scope.mailAddressBC.accountLang = $scope.billPayment.accountLang;
+
+        $scope.mailAddressBC.province = $scope.mailAddress.province;
+        $scope.mailAddressBC.amphur = $scope.mailAddress.amphur;
+        $scope.mailAddressBC.district = $scope.mailAddress.district;
+        $scope.mailAddressBC.homeNumber = $scope.mailAddress.homeNumber;
+        $scope.mailAddressBC.moo = $scope.mailAddress.moo;
+        $scope.mailAddressBC.road = $scope.mailAddress.road;
+        $scope.mailAddressBC.soi = $scope.mailAddress.soi;
+        $scope.mailAddressBC.trok = $scope.mailAddress.trok;
+        $scope.mailAddressBC.postcode = $scope.mailAddress.postcode;
+        $scope.mailAddressBC.village = $scope.mailAddress.village;
+        $scope.mailAddressBC.buildingName = $scope.mailAddress.buildingName;
+        $scope.mailAddressBC.buildingRoom = $scope.mailAddress.buildingRoom;
+        $scope.mailAddressBC.buildingFloor = $scope.mailAddress.buildingFloor;
+    };
 
     $scope.unUseAddressAsCard = function(type) {
         if (type == 'H') {
+            $scope.bantypeMail = false;
+            $scope.mootypeMail = false;
             $scope.mailAddress = {};
             $('#ulAddressList').hide();
             $scope.addressList = [];
@@ -2176,6 +2221,15 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.billAddress = {};
         }
 
+    };
+    $scope.unUseAddressMailBC = function() {
+        $scope.bantypeMailBC = false;
+        $scope.mootypeMailBC = false;
+
+        $scope.mailAddressBC = {};
+        $scope.mailAddressBC.accountLang = "TH";
+        $('#ulAddressListBC').hide();
+        $scope.addressListBC = [];
     };
 
 
@@ -3210,10 +3264,15 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
     //address AND PostCodes zipcode
     $scope.addressList = [];
+    $scope.addressListBC = [];
     var tempAddressList = [];
+    var tempAddressListBC = [];
     $scope.selectedAddress = "";
+    $scope.selectedAddressBC = "";
     $scope.pauseAddress = false;
+    $scope.pauseAddressBC = false;
     $scope.isLoadAddress = false;
+    $scope.isLoadAddressBC = false;
     var checkNull = function(org, txt) {
         if (txt) {
             if (org) {
@@ -3234,13 +3293,29 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.onInputAddress();
         }
     };
+    $scope.onEnterAddressBC = function() {
+        if ($scope.addressListBC.length == 1) {
+            $scope.setSearchAddressBC($scope.addressListBC[0]);
+        }
+        if ($scope.addressListBC.length == 0 && $scope.txtSearchAddressBC) {
+            $scope.onInputAddressBC();
+        }
+    };
     $scope.onFocusAddress = function() {
         if ($scope.addressList.length > 0) {
             $('#ulAddressList').show();
         }
     };
+    $scope.onFocusAddressBC = function() {
+        if ($scope.addressListBC.length > 0) {
+            $('#ulAddressListBC').show();
+        }
+    };
     $scope.onBlurAddress = function() {
         $('#ulAddressList').hide();
+    };
+    $scope.onBlurAddressBC = function() {
+        $('#ulAddressListBC').hide();
     };
     var filterAddressList = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {
@@ -3266,8 +3341,30 @@ smartApp.controller('changeOwnershipIBCController', function(
             }
         }, 0);
     };
+    var filterAddressListBC = function(txtSearch) {
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = tempAddressListBC;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.addressListBC = arr;
+        } else {
+            $scope.addressListBC = $filter('filter')(tempAddressListBC, txtSearch);
+        }
+        setTimeout(function() {
+            if ($scope.addressListBC.length == 0) {
+                $('#ulAddressListBC').hide();
+            } else {
+                $('#ulAddressListBC').show();
+            }
+        }, 0);
+    };
     $scope.txtSearchAddress = "";
+    $scope.txtSearchAddressBC = "";
     var accountLang = "TH";
+    var accountLangBC = "TH";
     $scope.onInputAddress = function() {
         $scope.txtSearchAddress = "";
         $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.postcode);
@@ -3313,8 +3410,56 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.addressList = [];
         }
     };
+    $scope.onInputAddressBC = function() {
+        $scope.txtSearchAddressBC = "";
+        $scope.txtSearchAddressBC += checkNull($scope.txtSearchAddressBC, $scope.mailAddressBC.postcode);
+        $scope.txtSearchAddressBC += checkNull($scope.txtSearchAddressBC, $scope.mailAddressBC.province);
+        $scope.txtSearchAddressBC += checkNull($scope.txtSearchAddressBC, $scope.mailAddressBC.amphur);
+        $scope.txtSearchAddressBC += checkNull($scope.txtSearchAddressBC, $scope.mailAddressBC.district);
+        var target = "profiles/master/address/search?keyword=" + $scope.txtSearchAddressBC + "&lang=" + $scope.mailAddressBC.accountLang;
+        console.log($scope.txtSearchAddress.length, target);
+        if ($scope.txtSearchAddressBC.length >= 3) {
+            if (accountLangBC != $scope.mailAddressBC.accountLang) {
+                $scope.pauseAddressBC = false;
+                $scope.isLoadAddressBC = false;
+                accountLangBC = $scope.mailAddressBC.accountLang;
+            }
+            if (!$scope.isLoadAddressBC) {
+                //SystemService.showLoading();
+
+                if (!$scope.pauseAddressBC) {
+                    SystemService.getAddressMaster(target, function(result) {
+                        //SystemService.hideLoading();
+
+                        if (result.status) {
+                            $scope.isLoadAddressBC = true;
+                            $scope.addressListBC = result.data['response-data'];
+                            tempAddressListBC = result.data['response-data'];
+
+                            if ($scope.addressListBC.length == 1) {
+                                $scope.setSearchAddressBC($scope.addressListBC[0]);
+                            }
+
+                            filterAddressListBC($scope.txtSearchAddressBC);
+                        }
+                    });
+                }
+                $scope.pauseAddressBC = true;
+            } else {
+                filterAddressListBC($scope.txtSearchAddressBC);
+            }
+        } else {
+            $scope.pauseAddressBC = false;
+            $scope.isLoadAddressBC = false;
+            $('#ulAddressListBC').hide();
+            $scope.addressListBC = [];
+        }
+    };
     $scope.onChangeBillPaymentAccountLang = function() {
         $scope.onInputAddress();
+    };
+    $scope.onChangeBillPaymentAccountLangBC = function() {
+        $scope.onInputAddressBC();
     };
     $scope.setSearchAddress = function(address) {
         console.log(address);
@@ -3324,9 +3469,24 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.mailAddress.postcode = address['zipcode'];
         $('#ulAddressList').hide();
     };
+    $scope.setSearchAddressBC = function(address) {
+        console.log(address);
+        $scope.mailAddressBC.province = address['province'];
+        $scope.mailAddressBC.amphur = address['district'];
+        $scope.mailAddressBC.district = address['subdistrict'];
+        $scope.mailAddressBC.postcode = address['zipcode'];
+        $('#ulAddressListBC').hide();
+    };
     $scope.onSelectedAddress = function(e) {
 
         $scope.setSearchAddress($scope.addressList[e]);
+        setTimeout(function() {
+            $('#idBindDataAgain').click();
+        }, 0);
+    };
+    $scope.onSelectedAddressBC = function(e) {
+
+        $scope.setSearchAddressBC($scope.addressListBC[e]);
         setTimeout(function() {
             $('#idBindDataAgain').click();
         }, 0);
