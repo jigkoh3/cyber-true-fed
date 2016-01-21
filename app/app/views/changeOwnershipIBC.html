@@ -424,25 +424,25 @@
                             </label>
                             <!-- นิติบุคคล -->
                             <div ng-show="(customerType=='B' || customerType=='C')">
-                                <div class="col-md-5">
+                                <div class="col-md-9">
                                     <p></p>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label style="cursor:pointer;">
                                             <input type="radio" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'" checked="checked"> ลูกค้าล่าสุด
                                         </label>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label style="cursor:pointer;">
                                             <input type="radio" style="cursor:pointer;" name="customBC" value="S" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'"> ระบุลูกค้า
                                         </label>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <p></p>
-                                    <label style="cursor:pointer;">
+                                    <div class="col-md-4">
+                                        <label style="cursor:pointer;">
                                         <input type="radio" style="cursor:pointer;" name="customBC" value="N" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'"> ลูกค้าใหม่
                                     </label>
+                                    </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -452,15 +452,15 @@
                                 <div class="table-responsive">
                                     <table class="table" style="margin-bottom: 5px;">
                                         <tr class="row">
-                                            <th class="col-md-1"></th>
-                                            <th class="col-md-1"></th>
+                                            <th class="col-md-1">&nbsp;</th>
+                                            <th class="col-md-1">&nbsp;</th>
                                             <th class="col-md-2"><span style="color:green;"> เลขที่ลูกค้า</span></th>
                                             <th class="col-md-5"><span style="color:green;"> ชื่อบริษัท</span></th>
                                             <th class="col-md-2"><span style="color:green;"> รอบบิล</span></th>
-                                            <th class="col-md-1"></th>
+                                            <th class="col-md-1">&nbsp;</th>
                                         </tr>
                                         <tr class="row">
-                                            <th class="col-md-1"></th>
+                                            <th class="col-md-1">&nbsp;</th>
                                             <td class="col-md-1">
                                                 <input type="radio" ng-change="selectCompany('1')" value="1" name="rdoCompany" ng-model="selectedCompany" checked="checked" />
                                             </td>
@@ -492,7 +492,7 @@
                                                 </div>
                                             </td>
                                             <td class="col-md-2">13/12</td>
-                                            <th class="col-md-1"></th>
+                                            <th class="col-md-1">&nbsp;</th>
                                         </tr>
                                     </table>
                                 </div>
@@ -781,7 +781,7 @@
                     </div>
                 </div>
                 <h4></h4>
-                <div class="well" ng-show="isVerify" style="background-color:#ffffff;">
+                <div class="well" ng-show="isVerify && customerType == 'N'" style="background-color:#ffffff;">
                     <div class="row">
                         <div class="form-group">
                             <label class="col-md-3">
@@ -847,15 +847,26 @@
                     </div>
                 </div>
                 <h4></h4>
-                <div ng-show="isVerify" class="row">
+                <div ng-show="isVerify && customerType=='N'" class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <div data-toggle="buttons" class="btn-group btn-group-justified">
                                 <label class="btn btn-default active" ng-click="slipchangeType('H')">
                                     <input type="radio" name="type" ng-model="slipType" value="H"> ที่อยู่จัดส่งเอกสาร
                                 </label>
-                                <label ng-hide="customerType=='N'" class="btn btn-default" ng-click="slipchangeType('B')">
-                                    <input type="radio" name="type" ng-model="slipType" value="B"> ที่อยู่ออกใบกำกับภาษี
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="isVerify && customerType!='N'" class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div data-toggle="buttons" class="btn-group btn-group-justified">
+                                <label class="btn btn-default active" ng-click="slipchangeType('H')">
+                                    <input type="radio" name="type" ng-model="slipType" value="H"> ที่อยู่ออกใบกำกับภาษี
+                                </label>
+                                <label class="btn btn-default" ng-click="slipchangeType('B')">
+                                    <input type="radio" name="type" ng-model="slipType" value="B"> ที่อยู่จัดส่งเอกสาร
                                 </label>
                             </div>
                         </div>
@@ -882,53 +893,13 @@
                                         <a href="" ng-click="unUseAddressAsCard('H')"><span><i class="fa fa-trash-o fa-2x"></i></span></a>
                                     </div>
                                 </div>
-                                <div class="row" ng-form="onEnterAddress()">
-                                    <div class="col-md-3">
+                                <div class="row" ng-show="customerType!='N'">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>รหัสไปรษณีย์<span style="color:red;">*</span></label>
-                                            <input type="text" id="txtmailAddresspostcode" ng-model="mailAddress.postcode" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="postcode" maxlength="5" class="form-control telephone" required />
+                                            <label>ชื่อสำหรับออกใบกำกับภาษี</label>
+                                            <input type="text" ng-model="mailAddress.sendName" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>จังหวัด<span style="color:red;">*</span></label>
-                                            <input type="text" id="txtmailAddressprovince" ng-model="mailAddress.province" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="province" class="form-control" required>
-                                            <!--<span class="error" style="color:red;" ng-show="provinces.province.$error.required">
-                                                Required.
-                                            </span>-->
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>เขต / อำเภอ <span style="color:red;">*</span></label>
-                                            <input type="text" id="txtmailAddressamphur" ng-model="mailAddress.amphur" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="aumpers" class="form-control" required>
-                                            <!--<span class="error" style="color:red;" ng-show="aumper.aumpers.$error.required">
-                                                Required.
-                                            </span>-->
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>แขวง / ตำบล <span style="color:red;">*</span></label>
-                                            <input type="text" id="txtMaillAddressDistrict" ng-model="mailAddress.district" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="tumbols" data-toggle="dropdown" class="form-control" required>
-                                            <!--<span class="error" style="color:red;" ng-show="tumbol.tumbols.$error.required">
-                                                Required.
-                                            </span>-->
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <ul id="ulAddressList" class="dropdown-menu dropdown-default" style="position:static;width:100%;">
-                                        <li>
-                                            <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressList | limitTo: 10" ng-click="setSearchAddress(item)">
-                                                <div class="row">
-                                                    <div class="col-xs-3">{{item.zipcode}}</div>
-                                                    <div class="col-xs-3">{{item.province}}</div>
-                                                    <div class="col-xs-3">{{item.district}}</div>
-                                                    <div class="col-xs-3">{{item.subdistrict}}</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
@@ -971,25 +942,25 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>ชั้น</label>
                                             <input type="text" name="ชั้น" ng-model="mailAddress.buildingFloor" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>เลขห้อง</label>
                                             <input type="text" name="เลขห้อง" ng-model="mailAddress.buildingRoom" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>ซอย</label>
                                             <input type="text" ng-model="mailAddress.soi" name="ซอย" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group" ng-form="roads">
                                             <label>ถนน<span style="color:red;">*</span></label>
                                             <input type="text" id="txtMailAddressRoad" ng-model="mailAddress.road" name="road" class="form-control" required>
@@ -999,108 +970,201 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--<div class="row" ng-show="slipType == 'B'">
-                        <div class="col-md-12">
-                            <div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <span>
-                                            <button type="button" ng-click="useAddressAsCard('B')" class="btn btn-default btn_address">
-                                                ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร
-                                            </button>
-                                        </span>
-                                        &nbsp;
-                                        <a href="" ng-click="unUseAddressAsCard('B')">
-                                            <span>
-                                                <i class="fa fa-trash-o fa-2x"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row">
+                                <div class="row" ng-form="onEnterAddress()">
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>รหัสไปรษณีย์<span style="color:red;">*</span></label>
-                                            <input type="text" ng-model="billAddress.postcode" name="รหัสไปรษณีย์" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>จังหวัด <span style="color:red;">*</span></label>
-                                            <input type="text" ng-model="billAddress.province" name="จังหวัด" class="form-control">
+                                            <label>แขวง / ตำบล <span style="color:red;">*</span></label>
+                                            <input type="text" id="txtMaillAddressDistrict" ng-model="mailAddress.district" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="tumbols" data-toggle="dropdown" class="form-control" required>
+                                            <!--<span class="error" style="color:red;" ng-show="tumbol.tumbols.$error.required">
+                                                Required.
+                                            </span>-->
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>เขต / อำเภอ <span style="color:red;">*</span></label>
-                                            <input type="text" ng-model="billAddress.amphur" name="เขต / อำเภอ" class="form-control">
+                                            <input type="text" id="txtmailAddressamphur" ng-model="mailAddress.amphur" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="aumpers" class="form-control" required>
+                                            <!--<span class="error" style="color:red;" ng-show="aumper.aumpers.$error.required">
+                                                Required.
+                                            </span>-->
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>แขวง / ตำบล<span style="color:red;">*</span></label>
-                                            <input type="text" ng-model="billAddress.district" name="แขวง / ตำบล" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <div class="checkbox checkbox-circle2 checkbox-inline">
-                                                <span>บ้านเลขที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
-                                                <input type="checkbox" ng-model="bantypeBill" class="styled">
-                                                <label>ไม่มีบ้านเลขที่ </label>
-                                            </div>
-                                            <input type="text" ng-model="billAddress.homeNumber" ng-disabled="bantypeBill" name="บ้านเลขที่" class="form-control">
+                                            <label>จังหวัด<span style="color:red;">*</span></label>
+                                            <input type="text" id="txtmailAddressprovince" ng-model="mailAddress.province" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="province" class="form-control" required>
+                                            <!--<span class="error" style="color:red;" ng-show="provinces.province.$error.required">
+                                                Required.
+                                            </span>-->
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <div class="checkbox checkbox-circle2 checkbox-inline">
-                                                <span>หมู่ที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
-                                                <input type="checkbox" ng-model="mootypeBill" class="styled">
-                                                <label>ไม่มีหมู่ที่ </label>
-                                            </div>
-                                            <input type="text" ng-model="billAddress.moo" ng-disabled="mootypeBill" name="หมู่ที่" class="form-control">
+                                            <label>รหัสไปรษณีย์<span style="color:red;">*</span></label>
+                                            <input type="text" id="txtmailAddresspostcode" ng-model="mailAddress.postcode" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="postcode" maxlength="5" class="form-control telephone" required />
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>หมู่บ้าน</label>
-                                            <input type="text" name="หมู่บ้าน" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>อาคาร / ชั้น / เลขห้อง</label>
-                                            <input type="text" name="อาคาร / ชั้น / เลขห้อง" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>ซอย</label>
-                                            <input type="text" ng-model="billAddress.soi" name="ซอย" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>ถนน<span style="color:red;">*</span></label>
-                                            <input type="text" 
-                                                   id="txtBillAddressRoad"
-                                                   ng-model="billAddress.road" 
-                                                   name="ถนน" 
-                                                   class="form-control">
-                                        </div>
-                                    </div>
+                                    <br />
+                                    <ul id="ulAddressList" class="dropdown-menu dropdown-default" style="position:static;width:100%;">
+                                        <li>
+                                            <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressList | limitTo: 10" ng-click="setSearchAddress(item)">
+                                                <div class="row">
+                                                    <div class="col-xs-3">{{item.subdistrict}}</div>
+                                                    <div class="col-xs-3">{{item.district}}</div>
+                                                    <div class="col-xs-3">{{item.province}}</div>
+                                                    <div class="col-xs-3">{{item.zipcode}}</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                    </div>-->
+                    </div>
+                    <div class="row" ng-show="slipType == 'B'">
+                        <div class="col-md-12">
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <button type="button" 
+                                                    ng-click="useAddressMailAsBillBC()" 
+                                                    class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                        <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
+                                        <div class="col-md-3">
+                                            <select class="form-control" ng-change="onChangeMailPaymentAccountLangBC()" ng-model="mailPaymentBC.accountLang">
+                                                <option value="TH">ไทย</option>
+                                                <option value="EN">อังกฤษ</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <a href="" ng-click="unUseAddressMailBC()"><span><i class="fa fa-trash-o fa-2x"></i></span></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>ชื่อผู้รับเอกสาร</label>
+                                            <input type="text" ng-model="mailAddressBC.sendName" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group" ng-form="codeban">
+                                            <div class="checkbox checkbox-circle2 checkbox-inline">
+                                                <span>บ้านเลขที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
+                                                <input type="checkbox" id="bantypeMailBC" ng-model="bantypeMailBC" ng-change="bantypeMailBC?mailAddressBC.homeNumber='-':mailAddressBC.homeNumber=''" class="styled">
+                                                <label for="bantypeMailBC" style=" padding-left: 5px;">ไม่มีบ้านเลขที่ </label>
+                                            </div>
+                                            <input type="text" ng-model="mailAddressBC.homeNumber" ng-disabled="bantypeMailBC" name="codebans" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group" ng-form="moono">
+                                            <div class="checkbox checkbox-circle2 checkbox-inline">
+                                                <span>หมู่ที่ <span style="color:red;">*</span></span> &nbsp;&nbsp; &nbsp;&nbsp;
+                                                <input type="checkbox" id="mootypeMailBC" ng-model="mootypeMailBC" ng-change="mootypeMailBC?mailAddressBC.moo='-':mailAddressBC.moo=''" class="styled">
+                                                <label for="mootypeMailBC" style=" padding-left: 5px;">ไม่มีหมู่ที่ </label>
+                                            </div>
+                                            <input type="text" ng-model="mailAddressBC.moo" ng-disabled="mootypeMailBC" name="moonos" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>หมู่บ้าน</label>
+                                            <input type="text" name="หมู่บ้าน" ng-model="mailAddressBC.village" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>อาคาร</label>
+                                            <input type="text" name="อาคาร" ng-model="mailAddressBC.buildingName" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>ชั้น</label>
+                                            <input type="text" name="ชั้น" ng-model="mailAddressBC.buildingFloor" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>เลขห้อง</label>
+                                            <input type="text" name="เลขห้อง" ng-model="mailAddressBC.buildingRoom" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>ซอย</label>
+                                            <input type="text" ng-model="mailAddressBC.soi" name="ซอย" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group" ng-form="roads">
+                                            <label>ถนน<span style="color:red;">*</span></label>
+                                            <input type="text" ng-model="mailAddressBC.road" name="road" class="form-control" required>
+                                            <!--<span class="error" style="color:red;" ng-show="roads.road.$error.required">
+                                                Required.
+                                            </span>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" ng-form="onEnterAddress()">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>แขวง / ตำบล <span style="color:red;">*</span></label>
+                                            <input type="text" id="txtMaillAddressDistrictBC" ng-model="mailAddressBC.district" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="tumbols" data-toggle="dropdown" class="form-control" required>
+                                            <!--<span class="error" style="color:red;" ng-show="tumbol.tumbols.$error.required">
+                                                Required.
+                                            </span>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>เขต / อำเภอ <span style="color:red;">*</span></label>
+                                            <input type="text" id="txtmailAddressamphurBC" ng-model="mailAddressBC.amphur" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="aumpers" class="form-control" required>
+                                            <!--<span class="error" style="color:red;" ng-show="aumper.aumpers.$error.required">
+                                                Required.
+                                            </span>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>จังหวัด<span style="color:red;">*</span></label>
+                                            <input type="text" id="txtmailAddressprovinceBC" ng-model="mailAddressBC.province" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="province" class="form-control" required>
+                                            <!--<span class="error" style="color:red;" ng-show="provinces.province.$error.required">
+                                                Required.
+                                            </span>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>รหัสไปรษณีย์<span style="color:red;">*</span></label>
+                                            <input type="text" id="txtmailAddresspostcodeBC" ng-model="mailAddressBC.postcode" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="postcode" maxlength="5" class="form-control telephone" required />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <ul id="ulAddressListBC" class="dropdown-menu dropdown-default" style="position:static;width:100%;">
+                                        <li>
+                                            <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressListBC | limitTo: 10" ng-click="setSearchAddressBC(item)">
+                                                <div class="row">
+                                                    <div class="col-xs-3">{{item.subdistrict}}</div>
+                                                    <div class="col-xs-3">{{item.district}}</div>
+                                                    <div class="col-xs-3">{{item.province}}</div>
+                                                    <div class="col-xs-3">{{item.zipcode}}</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <h4 ng-show="isVerify">ใบแจ้งค่าบริการและประเภทการรับชำระ</h4>
                 <div ng-show="isVerify" class="well">
