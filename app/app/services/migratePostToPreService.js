@@ -694,7 +694,11 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             request['target'] = '/aftersales/order/submit';
 
             SystemService.callServicePost(request, null, function(result) {
-
+            	//save report to server
+            	SystemService.saveReportToServer({}, function(result){
+            		
+            	});
+                
                 cb(result);
             });
         } else {

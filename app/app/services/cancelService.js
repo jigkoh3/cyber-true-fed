@@ -377,13 +377,18 @@
         };
         console.log(request);
         var cb = function(result) {
-            fnCallback(result);
+            fnCallback(result);      
         };
 
         if (!demo) {
             var target = '/aftersales/order/submit';
 
             SystemService.callServicePost(request, null, function(result) {
+            	//save report to server
+            	SystemService.saveReportToServer({}, function(result){
+            		
+            	});
+                
                 cb(result);
             });
         } else {
