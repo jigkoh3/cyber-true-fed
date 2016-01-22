@@ -63,7 +63,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                    <select name="cardTypes" ng-model="cardType.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes(); isVerify=false; approveCode='';" id="cardTypeBC" ng-disabled="!isCustomerPreverify" class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                                    <select name="cardTypes" ng-model="cardTypeBC.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes(); isVerify=false; approveCode='';" id="cardTypeBC" ng-disabled="!isCustomerPreverify" class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                                         <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                     </select>
                                 </div>
@@ -1102,7 +1102,7 @@
                                         <div class="col-md-1"></div>
                                         <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
                                         <div class="col-md-3">
-                                            <select class="form-control" ng-change="onChangeMailAddressAccountLangBC()" ng-model="mailAddressBC.accountLang">
+                                            <select class="form-control" ng-change="onChangeBillPaymentAccountLangBC()" ng-model="mailAddressBC.accountLang">
                                                 <option value="TH">ไทย</option>
                                                 <option value="EN">อังกฤษ</option>
                                             </select>
