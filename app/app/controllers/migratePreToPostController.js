@@ -716,27 +716,27 @@ smartApp.controller('MigratePreToPostController', function(
                         // if ($scope.customerType == 'B' || $scope.customerType == 'C') {
                         //     accountCat = $scope.customerType;
                         // }
-                        var data = {
-                            "accountCat": accountCat,
-                            "channel": "WEBUI",
-                            "companyCode": "AL",
-                            "idNumber": result.customerProfile['id-number'],
-                            //"language": null,
-                            "verifyType": "ALL"
-                        };
+                        if (result.status) {
+                            var data = {
+                                "accountCat": accountCat,
+                                "channel": "WEBUI",
+                                "companyCode": "AL",
+                                "idNumber": result.customerProfile['id-number'],
+                                //"language": null,
+                                "verifyType": "ALL"
+                            };
 
-                        SystemService.getCustomerPreverify(data, function(blackList) {
-                            var msg = utils.getObject(blackList, 'display-messages');
-                            if (msg && msg.length > 0) {
-                                SystemService.showAlertMulti(msg, msgType);
-                                $scope.SubNo = "null";
-                                setTimeout(function() {
-                                    $('#btn_ngbOK').focus();
-                                }, 1500);
+                            SystemService.getCustomerPreverify(data, function(blackList) {
+                                var msg = utils.getObject(blackList, 'display-messages');
+                                if (msg && msg.length > 0) {
+                                    SystemService.showAlertMulti(msg, msgType);
+                                    $scope.SubNo = "null";
+                                    setTimeout(function() {
+                                        $('#btn_ngbOK').focus();
+                                    }, 1500);
 
-                                return;
-                            } else {
-                                if (result.status) {
+                                    return;
+                                } else {
                                     $scope.data = result;
                                     $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
                                     $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
@@ -860,12 +860,11 @@ smartApp.controller('MigratePreToPostController', function(
                                     if (!$scope.isNonePartner && $scope.shopType == '1') {
                                         //$scope.data = {};
                                     }
-
-                                } else {
-                                    $scope.SubNo = "null";
                                 }
-                            }
-                        });
+                            });
+                        } else {
+                            $scope.SubNo = "null";
+                        }
                     });
                 } else {
                     SystemService.hideLoading();
