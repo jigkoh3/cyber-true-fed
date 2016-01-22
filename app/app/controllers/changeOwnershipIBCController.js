@@ -291,7 +291,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             // };
             //$scope.onselectPrefix();    
             //console.log($scope.newOwner);
-            $scope.onInputCitizenID3();
+            //$scope.onInputCitizenID3();
+            $scope.onInputIdBC();
             setTimeout(function() {
                 $('#idBindDataAgain').click();
             }, 1000);
@@ -369,14 +370,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             var msg = utils.getObject(result, 'display-messages');
             if (msg && msg.length > 0) {
                 $scope.isCustomerPreverify = false;
-                SystemService.showAlert({
-                    "message": msg[0]["message"],
-                    "message-code": msg[0]["message-code"],
-                    "message-type": "WARNING",
-                    "en-message": msg[0]["en-message"],
-                    "th-message": msg[0]["th-message"],
-                    "technical-message": msg[0]["technical-message"]
-                });
+
+                SystemService.showAlertMulti(msg);
+                
             } else {
                 //$scope.isCustomerPreverify = true;
                 $scope.onInputCitizenID3();
@@ -756,9 +752,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                             }]
                         }
                     };
-                    if($scope.getAccountCat() == 'I'){
+                    if ($scope.getAccountCat() == 'I') {
                         $scope.cardTypeOptions = result;
-                    }else{
+                    } else {
                         $scope.cardTypeOptions = result2["response-data"]["configuration-items"];
                     }
                 });
@@ -1534,7 +1530,8 @@ smartApp.controller('changeOwnershipIBCController', function(
 
             $scope.customer['id-number'] = cid;
 
-            $scope.onInputCitizenID3();
+            //$scope.onInputCitizenID3();
+            $scope.onInputIdBC();
         }
     };
     $scope.onInputIdLastestKeyUp = function() {
@@ -1548,7 +1545,8 @@ smartApp.controller('changeOwnershipIBCController', function(
 
             $scope.customer['id-number'] = cid;
 
-            $scope.onInputCitizenID3();
+            //$scope.onInputCitizenID3();
+            $scope.onInputIdBC();
 
         }
     };
@@ -1562,7 +1560,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
-            $scope.onInputCitizenID3();
+            //$scope.onInputCitizenID3();
+            $scope.onInputIdBC();
         }
     };
     $scope.onInputIdLastestKeyUp3 = function() {
@@ -1575,7 +1574,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
-            $scope.onInputCitizenID3();
+            //$scope.onInputCitizenID3();
+            $scope.onInputIdBC();
 
 
         }

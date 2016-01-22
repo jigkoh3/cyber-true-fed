@@ -358,7 +358,37 @@
         });
     };
 
-
+    //CR02 ------------
+    this.showAlertMulti = function(msgArray) {
+        var errorText = {
+            "message": "",
+            "en-message": "",
+            "th-message": "",
+            "technical-message": ""
+        };
+        var errorList = msgArray;
+        for (var i = 0; i < errorList.length; i++) {
+            errorText["message"] += errorList[i]["message"] + "<br /> ";
+            errorText["en-message"] += errorList[i]["en-message"] + "<br /> ";
+            errorText["th-message"] += errorList[i]["th-message"] + "<br /> ";
+            errorText["technical-message"] += errorList[i]["technical-message"] + "<br /> ";
+        }
+        that.showAlert({
+            "message": errorText["message"],
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": errorText["en-message"],
+            "th-message": errorText["th-message"],
+            "technical-message": errorText["technical-message"]
+        });
+        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        setTimeout(function() {
+            $('.ngdMessage').html(errorText["message"]);
+            $('.ngdEnMessage').html(errorText["en-message"]);
+            $('.ngdThMessage').html(errorText["th-message"]);
+            $('.ngdTechnicalMessage').html(errorText["technical-message"]);
+        }, 200);
+    };
     this.getCustomerPreverify = function(data, fnCallback) {
 
         //var target = 'aftersales/order/generate-id?channel=WEBUI&dealer=80000011';
