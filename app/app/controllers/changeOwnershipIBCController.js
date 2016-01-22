@@ -336,7 +336,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.isAuthorizeBC = false;
         $scope.isLastestUser = false;
         $scope.isVerify = false;
-        $scope.customer['id-number'] = "";
+        //$scope.customer['id-number'] = "";
         $scope.customer['branch-code'] = "00000";
         $scope.customer['tax-id'] = "";
         $scope.bcName = "";
@@ -500,6 +500,12 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
     $scope.onKeyUpIdBC = function(){
         if($scope.customer['id-number'] && $scope.customer['id-number'].length == 13){
+            $('#idNumberBC').blur();
+            $scope.onInputIdBC();
+        }
+    };
+    $scope.onEnterIdBC = function(){
+        if($scope.customer['id-number'] && $scope.customer['id-number'].length >= 3){
             $scope.onInputIdBC();
         }
     };
