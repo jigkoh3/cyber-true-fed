@@ -307,6 +307,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.isCustomerPreverify = false;
     $scope.isAuthorizeBC = false;
     $scope.bcName = "";
+    $scope.bcName2 = "";
     $scope.accountID_root = "";
     $scope.accountID_child = "";
     $scope.auth_1 = {
@@ -339,6 +340,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.customer['branch-code'] = "00000";
         $scope.customer['tax-id'] = "";
         $scope.bcName = "";
+        $scope.bcName2 = "";
 
         $scope.slipType = 'H';
 
@@ -372,7 +374,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                 $scope.isCustomerPreverify = false;
 
                 SystemService.showAlertMulti(msg, "WARNING");
-                
+
             } else {
                 //$scope.isCustomerPreverify = true;
                 $scope.onInputCitizenID3();
@@ -414,7 +416,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                     "technical-message": msg[0]["technical-message"]
                 });
             } else {
-                alert('OK.');
+                alert('API comming soon...');
             }
         });
     };
@@ -432,6 +434,73 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.propositionList = arr;
         } else {
             $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
+        }
+    };
+    $scope.onChangeCusType = function() {
+        //alert($scope.getAccountCat());
+        //ประเภทของบัตร
+        SystemService.getMaster_list("CUST-ID-TYPE-" + $scope.getAccountCat(), function(result) {
+            var result2 = {
+                "status": "SUCCESSFUL",
+                "trx-id": "4W2BY78EMBJWR",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "id": "CUST-ID-TYPE-B",
+                    "name": "Customer ID type for business customer",
+                    "description": "LIst of id types for business customer",
+                    "configuration-items": [{
+                        "key": "I",
+                        "value": "I",
+                        "description": "บัตรประชาชน"
+                    }, {
+                        "key": "B",
+                        "value": "B",
+                        "description": "บัญชีมูลนิธิ"
+                    }, {
+                        "key": "J",
+                        "value": "J",
+                        "description": "หนังสือรับรองการจัดตั้งสมาคม"
+                    }, {
+                        "key": "C",
+                        "value": "C",
+                        "description": "หนังสือรับรองบริษัท/ห้างฯ"
+                    }, {
+                        "key": "O",
+                        "value": "O",
+                        "description": "ทะเบียนพาณิชย์"
+                    }, {
+                        "key": "P",
+                        "value": "P",
+                        "description": "หนังสือเดินทาง"
+                    }, {
+                        "key": "M",
+                        "value": "M",
+                        "description": "ใบสุทธิ"
+                    }, {
+                        "key": "A",
+                        "value": "A",
+                        "description": "บัตรประจำตัวคนต่างด้าว"
+                    }, {
+                        "key": "T",
+                        "value": "T",
+                        "description": "ทะเบียนวัด"
+                    }, {
+                        "key": "H",
+                        "value": "H",
+                        "description": "อื่นๆ"
+                    }]
+                }
+            };
+            if ($scope.getAccountCat() == 'I') {
+                $scope.cardTypeOptions = result;
+            } else {
+                $scope.cardTypeOptions = result2["response-data"]["configuration-items"];
+            }
+        });
+    };
+    $scope.onKeyUpIdBC = function(){
+        if($scope.customer['id-number'] && $scope.customer['id-number'].length == 13){
+            $scope.onInputIdBC();
         }
     };
     //END: CR02 
@@ -1380,6 +1449,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
                                         //BC--------------
                                         $scope.bcName = customer["firstname"] + " " + customer["lastname"];
+                                        $scope.bcName2 = customer["firstname"] + " " + customer["lastname"];
 
                                     }
 
