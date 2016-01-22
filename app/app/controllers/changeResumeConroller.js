@@ -626,14 +626,7 @@ smartApp.controller('ResumeController', function(
                             SystemService.getCustomerPreverify(data, function(blackList) {
                                 var msg = utils.getObject(blackList, 'display-messages');
                                 if (msg && msg.length > 0) {
-                                    SystemService.showAlert({
-                                        "message": msg[0]["message"],
-                                        "message-code": msg[0]["message-code"],
-                                        "message-type": msgType,
-                                        "en-message": msg[0]["en-message"],
-                                        "th-message": msg[0]["th-message"],
-                                        "technical-message": msg[0]["technical-message"]
-                                    });
+                                    SystemService.showAlertMulti(msg,msgType);
                                     $scope.SubNo = "null";
                                     setTimeout(function() {
                                         $('#btn_ngbOK').focus();
