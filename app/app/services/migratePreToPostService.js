@@ -566,7 +566,7 @@
                     "priceplan-type": "N"
                 }, {
                     "name": "PLNTAP06",
-                    "description": "4GiNet699,4GNetUNLT 6GB,TVS1GB,WiFiUNLT, Free3GB6m",
+                    "description": "4GiNet699,4GNetUNLT 6GB,TVS1GB,WiFiUNLT, Free3GB6m,555",
                     "soc": "10648811",
                     "properties": {
                         "TR_SPECIAL_OFFER_IND": "",
