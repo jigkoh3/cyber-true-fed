@@ -311,7 +311,7 @@
                        maxlength="20"
                        placeholder=""
                        ng-model="CitizenIDLastest"
-                       ng-keyup="($event.keyCode==13 && onInputIdLastest()); onInputIdLastestKeyUp();"
+                       ng-keyup="($event.keyCode==13 && onInputIdLastest()); ($event.keyCode!=13 && onInputIdLastestKeyUp()); "
                        
                        class="form-control">
             </div>

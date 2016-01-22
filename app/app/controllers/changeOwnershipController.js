@@ -330,7 +330,7 @@ smartApp.controller('changeOwnershipController', function(
             // };
             //$scope.onselectPrefix();    
             //console.log($scope.newOwner);
-            $scope.onInputCitizenID3();
+            $scope.onCheckBlackList();
             setTimeout(function() {
                 $('#idBindDataAgain').click();
             }, 1000);
@@ -1019,6 +1019,31 @@ smartApp.controller('changeOwnershipController', function(
     //start check input 
     $scope.subCompanyType = "";
     $scope.isAddressList = {};
+    $scope.onCheckBlackList = function() {
+        var data = {
+            "accountCat": "I",
+            "channel": "WEBUI",
+            "companyCode": "AL",
+            "idNumber": $scope.customer['id-number'],
+            //"language": null,
+            "verifyType": "ALL"
+        };
+        SystemService.showLoading();
+        SystemService.getCustomerPreverify(data, function(result) {
+            SystemService.hideLoading();
+            var msg = utils.getObject(result, 'display-messages');
+            if (msg && msg.length > 0) {
+                $scope.isCustomerPreverify = false;
+
+                SystemService.showAlertMulti(msg, "WARNING");
+                $scope.customer['id-number'] = "";
+                return;
+            } else {
+                //$scope.isCustomerPreverify = true;
+                $scope.onInputCitizenID3();
+            }
+        });
+    };
     $scope.onInputCitizenID3 = function() {
         if ($('#citizenID3').val() == $scope.data.customerProfile["id-number"] || $('#CitizenIDLastest').val() == $scope.data.customerProfile["id-number"]) {
             SystemService.showAlert(ValidateMsgService.data.msgDuplicateID);
@@ -1349,7 +1374,7 @@ smartApp.controller('changeOwnershipController', function(
 
             $scope.customer['id-number'] = cid;
 
-            $scope.onInputCitizenID3();
+            $scope.onCheckBlackList();
         }
     };
     $scope.onInputIdLastestKeyUp = function() {
@@ -1363,7 +1388,7 @@ smartApp.controller('changeOwnershipController', function(
 
             $scope.customer['id-number'] = cid;
 
-            $scope.onInputCitizenID3();
+            $scope.onCheckBlackList();
 
         }
     };
@@ -1377,7 +1402,7 @@ smartApp.controller('changeOwnershipController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
-            $scope.onInputCitizenID3();
+            $scope.onCheckBlackList();
         }
     };
     $scope.onInputIdLastestKeyUp3 = function() {
@@ -1390,7 +1415,7 @@ smartApp.controller('changeOwnershipController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
-            $scope.onInputCitizenID3();
+            $scope.onCheckBlackList();
 
 
         }
