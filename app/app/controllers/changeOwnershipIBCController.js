@@ -371,7 +371,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             if (msg && msg.length > 0) {
                 $scope.isCustomerPreverify = false;
 
-                SystemService.showAlertMulti(msg);
+                SystemService.showAlertMulti(msg, "WARNING");
                 
             } else {
                 //$scope.isCustomerPreverify = true;

@@ -359,7 +359,7 @@
     };
 
     //CR02 ------------
-    this.showAlertMulti = function(msgArray) {
+    this.showAlertMulti = function(msgArray, msgType) {
         var errorText = {
             "message": "",
             "en-message": "",
@@ -376,7 +376,7 @@
         that.showAlert({
             "message": errorText["message"],
             "message-code": "",
-            "message-type": "WARNING",
+            "message-type": msgType,
             "en-message": errorText["en-message"],
             "th-message": errorText["th-message"],
             "technical-message": errorText["technical-message"]
