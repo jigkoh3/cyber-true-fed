@@ -276,22 +276,22 @@
 
         });
     };
-    
+
     this.saveReportToServer = function(data, fnCallback) {
-    	var httpRequest = {
-                method: "POST",
-                url: getURL('/services/report/saveFile.service'),
-                data: data,
-                timeout: 30000
-            };
-    	
-    	httpRequest.headers = {
-                'WEB_METHOD_CHANNEL': 'WEBUI',
-                'E2E_REFID': localStorage.getItem('orderId')
-            };
-    	
+        var httpRequest = {
+            method: "POST",
+            url: getURL('/services/report/saveFile.service'),
+            data: data,
+            timeout: 30000
+        };
+
+        httpRequest.headers = {
+            'WEB_METHOD_CHANNEL': 'WEBUI',
+            'E2E_REFID': localStorage.getItem('orderId')
+        };
+
         $http(httpRequest).success(function(response) {
-        	fnCallback({
+            fnCallback({
                 status: true,
                 data: data,
                 error: "",
@@ -299,7 +299,7 @@
             });
         });
     };
-    
+
     this.callServicePostByPass = function(data, headers, fnCallback) {
         console.log(data);
         var httpRequest = {
@@ -360,7 +360,7 @@
 
 
     this.getCustomerPreverify = function(data, fnCallback) {
-        
+
         //var target = 'aftersales/order/generate-id?channel=WEBUI&dealer=80000011';
         var headers = {
             'WEB_METHOD_CHANNEL': 'WEBUI'
@@ -378,15 +378,29 @@
                 "response-data": []
             };
             //=================Data for blacklist=================
-             var dataTest2 = {
+            var dataTest2 = {
                 "status": "SUCCESSFUL",
                 "display-messages": [{
-                    "message": "BLACKLIST:Unable to activate the service due to outstanding balance on customer’s ID, please inform customer to  make a payment at True Shop or True Partner\n",
-                    "message-code": "BLACKLIST:TMV-PREVERIFY-11007\n",
+                    "message": "Unable to activate the service due to outstanding balance on customer’s ID, please inform customer to  make a payment at True Shop or True Partner",
+                    "message-code": "TMV-PREVERIFY-11008",
                     "message-type": "ERROR",
-                    "en-message": "BLACKLIST:Unable to activate the service due to outstanding balance on customer’s ID, please inform customer to  make a payment at True Shop or True Partner\n",
-                    "th-message": "BLACKLIST:ไม่สามารถเปิดบริการได้ เนื่องจากมียอดค้างชำระแจ้งลูกค้าชำระค่าบริการที่ ทรู ช็อป/ตัวแทนจำหน่าย\n",
-                    "technical-message": "BLACKLIST:(-2-) checkBlacklist return result=Y\n"
+                    "en-message": "Unable to activate the service due to outstanding balance on customer’s ID, please inform customer to  make a payment at True Shop or True Partner",
+                    "th-message": "ไม่สามารถเปิดบริการได้ เนื่องจากมียอดค้างชำระแจ้งลูกค้าชำระค่าบริการที่ ทรู ช็อป/ตัวแทนจำหน่าย",
+                    "technical-message": "(-1-) checkCollection return result=Y"
+                }, {
+                    "message": "Unable to activate the service due to outstanding balance on customer’s ID, please inform customer to  make a payment at True Shop or True Partner",
+                    "message-code": "TMV-PREVERIFY-11007",
+                    "message-type": "ERROR",
+                    "en-message": "Unable to activate the service due to outstanding balance on customer’s ID, please inform customer to  make a payment at True Shop or True Partner",
+                    "th-message": "ไม่สามารถเปิดบริการได้ เนื่องจากมียอดค้างชำระแจ้งลูกค้าชำระค่าบริการที่ ทรู ช็อป/ตัวแทนจำหน่าย",
+                    "technical-message": "(-2-) checkBlacklist return result=Y"
+                }, {
+                    "message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
+                    "message-code": "TMV-PREVERIFY-11009",
+                    "message-type": "ERROR",
+                    "en-message": "Unable to activate the service, please inform staff to contact at 02-699-6222 (Monday - Saturday during 9.00 a.m. - 6.00 p.m.)",
+                    "th-message": "ไม่สามารถเปิดบริการได้ กรุณาแนะนำเจ้าหน้าที่โทรติดต่อ 02-699-6222 (วันจันทร์-เสาร์ เวลา 9.00-18.00)",
+                    "technical-message": "(-3-) checkFruad return result=Y"
                 }],
                 "trx-id": "7U29L82ZRK653",
                 "process-instance": "tmsapnpr1 (instance: SFF_node3)",
@@ -394,9 +408,9 @@
                     "verifyCode": null
                 }
             };
-            if(data.idNumber == "2011112916616"){
+            if (data.idNumber == "2011112916616") {
                 fnCallback(dataTest2);
-            }else{
+            } else {
                 fnCallback(dataTest);
             }
         }

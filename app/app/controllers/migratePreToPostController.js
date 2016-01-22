@@ -1917,7 +1917,9 @@ smartApp.controller('MigratePreToPostController', function(
         if (!$scope.isLoadPricePlan) {
             //call Priceplan
             $scope.callSalePricePlanList();
-        } else {}
+        } else {
+            $scope.smartSearchPP($scope.pricePlanFilter.value);
+        }
         $scope.isSelectedPricePlan = false;
         $('.radioPriceplan').prop('checked', false);
     };
@@ -3818,6 +3820,19 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.billPayment.smss = "";
         } else {
             $scope.ischkNumber = false;
+        }
+    };
+    $scope.smartSearchPP = function(txtSearch) {
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = valPricePlans;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.propositionList = arr;
+        } else {
+            $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
         }
     };
     $scope.setDefaultSubType = function() {
