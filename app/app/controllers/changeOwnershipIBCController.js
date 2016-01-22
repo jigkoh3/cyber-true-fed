@@ -71,6 +71,9 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.cardType = {
         value: "I"
     };
+    $scope.cardTypeBC = {
+        value: "C"
+    };
 
     setTimeout(function() {
         SystemService.validateNummeric();
@@ -422,7 +425,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.onKeyUpAccountPreverify = function() {
         //if lenght == 5
     };
-    $scope.smartSearchPP = function(txtSearch){
+    $scope.smartSearchPP = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {
             var txtList = txtSearch.split(' ');
             var arr = valPricePlans;
@@ -702,8 +705,62 @@ smartApp.controller('changeOwnershipIBCController', function(
                 });
                 //ประเภทของบัตร
                 SystemService.getMaster_list("CUST-ID-TYPE-" + $scope.getAccountCat(), function(result) {
-                    $scope.cardTypeOptions = result;
-                    //console.log($scope.cardTypeOptions);
+                    var result2 = {
+                        "status": "SUCCESSFUL",
+                        "trx-id": "4W2BY78EMBJWR",
+                        "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                        "response-data": {
+                            "id": "CUST-ID-TYPE-B",
+                            "name": "Customer ID type for business customer",
+                            "description": "LIst of id types for business customer",
+                            "configuration-items": [{
+                                "key": "I",
+                                "value": "I",
+                                "description": "บัตรประชาชน"
+                            }, {
+                                "key": "B",
+                                "value": "B",
+                                "description": "บัญชีมูลนิธิ"
+                            }, {
+                                "key": "J",
+                                "value": "J",
+                                "description": "หนังสือรับรองการจัดตั้งสมาคม"
+                            }, {
+                                "key": "C",
+                                "value": "C",
+                                "description": "หนังสือรับรองบริษัท/ห้างฯ"
+                            }, {
+                                "key": "O",
+                                "value": "O",
+                                "description": "ทะเบียนพาณิชย์"
+                            }, {
+                                "key": "P",
+                                "value": "P",
+                                "description": "หนังสือเดินทาง"
+                            }, {
+                                "key": "M",
+                                "value": "M",
+                                "description": "ใบสุทธิ"
+                            }, {
+                                "key": "A",
+                                "value": "A",
+                                "description": "บัตรประจำตัวคนต่างด้าว"
+                            }, {
+                                "key": "T",
+                                "value": "T",
+                                "description": "ทะเบียนวัด"
+                            }, {
+                                "key": "H",
+                                "value": "H",
+                                "description": "อื่นๆ"
+                            }]
+                        }
+                    };
+                    if($scope.getAccountCat() == 'I'){
+                        $scope.cardTypeOptions = result;
+                    }else{
+                        $scope.cardTypeOptions = result2["response-data"]["configuration-items"];
+                    }
                 });
 
                 //reason
@@ -1222,6 +1279,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
 
                         $('#cardType').val($scope.cardType.value);
+                        $('#cardTypeBC').val($scope.cardTypeBC.value);
 
                         $scope.callPropositionList();
                         $scope.isLastestUser = false; // jigkoh3 mockup
