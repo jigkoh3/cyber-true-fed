@@ -2300,7 +2300,7 @@ smartApp.controller('ResumeController', function(
 
                         "CHANGE-OPTION": $scope.statusChange,
                         "PRODUCT-STATUS-DESC": $scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-DESC"],
-                        "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['lastname'],
+                        "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['id-number'],
                         "ORIGINAL-FIRSTNAME": $scope.data.customerProfile['firstname'],
                         "ORIGINAL-LASTNAME": $scope.data.customerProfile['lastname'],
                         "PREFER-CONTACT": $scope.billPayment.preferedContace == 'FIX' ? $scope.fixPreferedContact : $scope.billPayment.preferedContace
