@@ -1365,9 +1365,16 @@ smartApp.controller('changeOwnershipIBCController', function(
                             changeOwnershipIBCService.lastestCustomerCallback(cid, $scope.getAccountCat(), function(lastestCustomer) {
 
                                 //CR02
+                                var dateNow = new Date();
+                                var fillZero = function(i){
+                                    return i<10?("0"+i):i;
+                                }
+                                var birthDate = (dateNow.getFullYear()-20)+"-"+fillZero(dateNow.getMonth()+1)+"-"+fillZero(dateNow.getDate())+"T00:00:00+0700";
+                                var expireDate = (dateNow.getFullYear()+1)+"-"+fillZero(dateNow.getMonth()+1)+"-"+fillZero(dateNow.getDate())+"T00:00:00+0700";
+                                //alert(birthDate+":::"+expireDate);
                                 if ($scope.getAccountCat() != 'I') {
-                                    $scope.newOwner.birthDay = formatDate("2015-07-20T00:00:00+0700");
-                                    $scope.newOwner.expireDay = formatDate("2020-07-20T00:00:00+0700");
+                                    $scope.newOwner.birthDay = formatDate(birthDate);
+                                    $scope.newOwner.expireDay = formatDate(expireDate);
 
                                     $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
                                     $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
