@@ -428,17 +428,17 @@
                                     <p></p>
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'" checked="checked"> ลูกค้าล่าสุด
+                                            <input type="radio" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount()" checked="checked"> ลูกค้าล่าสุด
                                         </label>
                                     </div>
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="customBC" value="S" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'"> ระบุลูกค้า
+                                            <input type="radio" style="cursor:pointer;" name="customBC" value="S" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount()"> ระบุลูกค้า
                                         </label>
                                     </div>
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="customBC" value="N" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'"> ลูกค้าใหม่
+                                            <input type="radio" style="cursor:pointer;" name="customBC" value="N" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount()"> ลูกค้าใหม่
                                         </label>
                                     </div>
                                 </div>
@@ -451,19 +451,19 @@
                                 <div class="table-responsive">
                                     <table class="table" style="margin-bottom: 5px;">
                                         <tr class="row">
-                                            <th class="col-md-1">&nbsp;</th>
-                                            <th class="col-md-1">&nbsp;</th>
-                                            <th class="col-md-2"><span style="color:green;"> เลขที่ลูกค้า</span></th>
-                                            <th class="col-md-5"><span style="color:green;"> ชื่อบริษัท</span></th>
-                                            <th class="col-md-2"><span style="color:green;"> รอบบิล</span></th>
-                                            <th class="col-md-1">&nbsp;</th>
+                                            <th class="col-xs-1">&nbsp;</th>
+                                            <th class="col-xs-1">&nbsp;</th>
+                                            <th class="col-xs-2"><span style="color:green;"> เลขที่ลูกค้า</span></th>
+                                            <th class="col-xs-5"><span style="color:green;"> ชื่อบริษัท</span></th>
+                                            <th class="col-xs-2"><span style="color:green;"> รอบบิล</span></th>
+                                            <th class="col-xs-1">&nbsp;</th>
                                         </tr>
                                         <tr class="row">
-                                            <th class="col-md-1">&nbsp;</th>
-                                            <td class="col-md-1">
+                                            <th class="col-xs-1">&nbsp;</th>
+                                            <td class="col-xs-1">
                                                 <input type="radio" ng-change="selectCompany('1')" value="1" name="rdoCompany" ng-model="selectedCompany" checked="checked" />
                                             </td>
-                                            <td class="col-md-2">
+                                            <td class="col-xs-2">
                                                 <span ng-show="changOpenserviceBC == 'L'">10448763</span>
                                                 <input ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" type="text" style="height:30px; font-size: 12px;" placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
                                             </td>
@@ -475,13 +475,39 @@
                                                     </span>
                                                     </div>
                                                 </div>
-                                                <div ng-show="changOpenserviceBC == 'L'" class="col-md-6">
-                                                    <input type="text" style="height:30px; font-size: 12px;" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('CHILD', accountID_child)); onKeyUpAccountPreverify('CHILD', accountID_child);" ng-model="accountID_child" placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
-                                                </div>
                                             </td>
-                                            <td class="col-md-2">13/12</td>
-                                            <th class="col-md-1">&nbsp;</th>
+                                            <td class="col-xs-2">
+                                                <span ng-show="changOpenserviceBC == 'L'">
+                                                    13/12
+                                                </span>
+                                            </td>
+                                            <th class="col-xs-1">&nbsp;</th>
                                         </tr>
+                                        <tr class="row">
+                                            <th class="col-xs-1">&nbsp;</th>
+                                            <th class="col-xs-1">&nbsp;</th>
+                                            <th class="col-xs-5" colspan="4">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <div ng-show="changOpenserviceBC == 'L'" class="col-xs-1">
+                                                    <img src="images/icon/orangeLine.jpg" alt="">
+                                                </div>
+                                                <div ng-show="changOpenserviceBC == 'L'" class="col-xs-3">
+                                                    <input type="text" 
+                                                        style="height:30px; font-size: 12px;" 
+                                                        ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('CHILD', accountID_child)); onKeyUpAccountPreverify('CHILD', accountID_child);" 
+                                                        ng-model="accountID_child"
+                                                        ng-change="onChangeAccountPreverify('CHILD')" 
+                                                        placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
+                                                </div>
+                                                <div ng-show="changOpenserviceBC == 'L' && isAccount_child" class="col-xs-1">
+                                                    <img src="images/icon/icon_active.png" alt="">
+                                                </div>
+                                                <div ng-show="changOpenserviceBC == 'L' && isAccount_child" class="col-xs-5">
+                                                    บริษัท aa จำกัด
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        
                                     </table>
                                 </div>
                             </div>
@@ -676,14 +702,12 @@
                                 <div class="form-group">
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="useNumberType" value="BC" ng-model="useNumberType" ng-init="useNumberType='BC'"> 
-                                            บริษัท/ที่ทำงาน
+                                            <input type="radio" style="cursor:pointer;" name="useNumberType" value="BC" ng-model="useNumberType" ng-init="useNumberType='BC'"> บริษัท/ที่ทำงาน
                                         </label>
                                     </div>
                                     <div class="col-md-5">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="useNumberType" value="I" ng-model="useNumberType"> 
-                                            บุคคลธรรมดา
+                                            <input type="radio" style="cursor:pointer;" name="useNumberType" value="I" ng-model="useNumberType"> บุคคลธรรมดา
                                         </label>
                                     </div>
                                 </div>
@@ -1256,9 +1280,9 @@
                             </div>
                         </div>
                         <div class="form-group" ng-hide="blah=='E'||blah=='P'" ng-form="ngsmss">
-                            <label class="col-md-5 control-label">SMS<span style="color:red;">*</span></label>
+                            <label class="col-md-5 control-label">SMS <span style="color:red;">*</span></label>
                             <div class="col-md-3">
-                                <input type="text" ng-number-only="smss" class="form-control telephoneZero" id="txtBillPaymentSmss" ng-model="billPayment.smss" ng-keyup="onInputTelZeroSms($event.keyCode); onInputTelSms($event.keyCode); onChkNumber();" ng-blur="onBlurTelSms()" maxlength="10" required/>
+                                <input type="text" ng-number-only="smss" ng-disabled="true" class="form-control telephoneZero" id="txtBillPaymentSmss" ng-model="billPayment.smss" ng-keyup="onInputTelZeroSms($event.keyCode); onInputTelSms($event.keyCode); onChkNumber();" ng-blur="onBlurTelSms()" maxlength="10" required/>
                             </div>
                             <div class="col-md-3">
                                 <span ng-show="isNumberTelSms || isNumberTelLengthSms || isNumberTelZeroSms " style="color:red;">

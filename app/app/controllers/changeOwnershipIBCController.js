@@ -349,6 +349,9 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.isLoadAddress = false;
         $('#ulAddressList').hide();
         $scope.addressList = [];
+
+        $scope.unUseAddressMailBC();
+        $scope.unUseAddressAsCard();
     };
     $scope.getAccountCat = function() {
         var accountCat = 'I';
@@ -396,14 +399,18 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.poa_1['lastname'] = cardInfo.LastNameTH;
         }
     };
+    $scope.isAccount_root = false;
+    $scope.isAccount_child = false;
     $scope.onEnterAccountPreverify = function(level, id) {
         //alert('next day.'+level+":"+id+":"+$scope.getAccountCat());
+        SystemService.showLoading();
         var data = {
             "accountId": id,
             "level": level,
             "customerType": $scope.getAccountCat()
         };
         changeOwnershipIBCService.accountPreverifyCallback(data, function(result) {
+            SystemService.hideLoading();
             var msg = utils.getObject(result, 'display-messages');
             if (msg && msg.length > 0) {
                 $scope.isCustomerPreverify = false;
@@ -416,9 +423,35 @@ smartApp.controller('changeOwnershipIBCController', function(
                     "technical-message": msg[0]["technical-message"]
                 });
             } else {
-                alert('API comming soon...');
+                if (level == 'CHILD') {
+                    $scope.isAccount_child = true;
+                } else {
+                    $scope.isAccount_root = true;
+                }
+
+                console.log(result);
             }
         });
+    };
+    $scope.onChangeAccountPreverify = function(level) {
+        if (level == 'CHILD') {
+            if ($scope.isAccount_child) {
+                $scope.isAccount_child = false;
+                $scope.accountID_child = "";
+            }
+        } else {
+            if ($scope.isAccount_root) {
+                $scope.isAccount_root = false;
+                $scope.accountID_root = "";
+            }
+
+        }
+    };
+    $scope.clearAccount = function() {
+        $scope.isAccount_child = false;
+        $scope.accountID_child = "";
+        $scope.isAccount_root = false;
+        $scope.accountID_root = "";
     };
     $scope.onKeyUpAccountPreverify = function() {
         //if lenght == 5
@@ -498,14 +531,14 @@ smartApp.controller('changeOwnershipIBCController', function(
             }
         });
     };
-    $scope.onKeyUpIdBC = function(){
-        if($scope.customer['id-number'] && $scope.customer['id-number'].length == 13){
+    $scope.onKeyUpIdBC = function() {
+        if ($scope.customer['id-number'] && $scope.customer['id-number'].length == 13) {
             $('#idNumberBC').blur();
             $scope.onInputIdBC();
         }
     };
-    $scope.onEnterIdBC = function(){
-        if($scope.customer['id-number'] && $scope.customer['id-number'].length >= 3){
+    $scope.onEnterIdBC = function() {
+        if ($scope.customer['id-number'] && $scope.customer['id-number'].length >= 3) {
             $scope.onInputIdBC();
         }
     };
@@ -1362,9 +1395,16 @@ smartApp.controller('changeOwnershipIBCController', function(
                             changeOwnershipIBCService.lastestCustomerCallback(cid, $scope.getAccountCat(), function(lastestCustomer) {
 
                                 //CR02
+                                var dateNow = new Date();
+                                var fillZero = function(i) {
+                                    return i < 10 ? ("0" + i) : i;
+                                }
+                                var birthDate = (dateNow.getFullYear() - 20) + "-" + fillZero(dateNow.getMonth() + 1) + "-" + fillZero(dateNow.getDate()) + "T00:00:00+0700";
+                                var expireDate = (dateNow.getFullYear() + 1) + "-" + fillZero(dateNow.getMonth() + 1) + "-" + fillZero(dateNow.getDate()) + "T00:00:00+0700";
+                                //alert(birthDate+":::"+expireDate);
                                 if ($scope.getAccountCat() != 'I') {
-                                    $scope.newOwner.birthDay = formatDate("2015-07-20T00:00:00+0700");
-                                    $scope.newOwner.expireDay = formatDate("2020-07-20T00:00:00+0700");
+                                    $scope.newOwner.birthDay = formatDate(birthDate);
+                                    $scope.newOwner.expireDay = formatDate(expireDate);
 
                                     $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
                                     $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
