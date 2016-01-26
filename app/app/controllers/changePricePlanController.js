@@ -204,6 +204,8 @@ smartApp.controller('ChangePricePlanController', function(
                 $('#divEffer').width(250);
                 $('#efferNext').removeClass('hidden');
                 $('#efferNext').addClass('active');
+            } else if ($scope.Level == "OU") {
+                $scope.checkOULargeCusSize();
             } else {
                 $('#efferNow').removeClass('hidden');
                 $('#efferNext').removeClass('hidden');
@@ -211,6 +213,36 @@ smartApp.controller('ChangePricePlanController', function(
                 $('#efferNow').addClass('active');
             }
         }, 1000);
+    };
+    $scope.largeCusSizeDate = new Date();
+    $scope.checkOULargeCusSize = function() {
+        if ($scope.Level == "OU") {
+            var isLargeCusSize = utils.getObject($scope.data.priceplan, "product-properties")
+            if (isLargeCusSize && isLargeCusSize['IS-LARGE-CUSTOMER-SIZE'] == "true") {
+                //alert(isLargeCusSize['IS-LARGE-CUSTOMER-SIZE']);
+                //$scope.saveData['manualBillDate'] = $scope.largeCusSizeDate;
+                $('#efferNext').removeClass('hidden');
+                $('#efferManual').removeClass('hidden');
+                $('#efferManual').addClass('active');
+
+                //$scope.largeCusSizeDate.setDate($scope.largeCusSizeDate.getDate() + 1);
+                var fillZero = function(i) {
+                    return i < 10 ? ("0" + i) : i;
+                }
+
+                $scope.lcsDate = $scope.largeCusSizeDate.getDate() + 1;
+                $scope.lcsMonth = $scope.largeCusSizeDate.getMonth() + 1;
+                $scope.lcsYear = $scope.largeCusSizeDate.getFullYear()+ 543;
+                $scope.saveData['manualBillDate'] = fillZero($scope.lcsDate) + "/" +  fillZero($scope.lcsMonth) + "/" + $scope.lcsYear;
+                $('#txtDateManual').val($scope.saveData['manualBillDate']);
+                $('#txtDateManual').datepicker("setDate", new Date($scope.lcsYear-543,$scope.lcsMonth-1,$scope.lcsDate) );
+            } else {
+                $('#efferNow').removeClass('hidden');
+                $('#efferNext').removeClass('hidden');
+                $('#efferManual').removeClass('hidden');
+                $('#efferNow').addClass('active');
+            }
+        }
     };
 
     $scope.checkEffectivePrepaid = function(mobileServiceType, accountSubType) {
@@ -315,9 +347,9 @@ smartApp.controller('ChangePricePlanController', function(
             ChangePricePlanService.getChangePricePlan($scope.SubNo, $scope.OUID, function(result) {
                 console.log(result);
                 if (result.status) {
+
                     $scope.data = result.data;
                     $scope.data2 = result.data;
-
                     //$scope.saveData.nextBillDate = SystemService.convertDateTo($scope.data.priceplan['bill-cycle-next-date'], 'TH');
                     $scope.saveData.nextBillDate = SystemService.convertDateToTH($scope.data.priceplan['bill-cycle-next-date'], 'TH');
                     if ($scope.data.offer.length != 0) {
@@ -768,1315 +800,1355 @@ smartApp.controller('ChangePricePlanController', function(
             $("#btn-fancy-ReadCard").fancybox().trigger('click');
         }
         setTimeout(function() {
-                $('#loadingReadCard').hide();
-                $('#loadingReadCard2').hide();
-                $('#unMatch2').hide();
-                $('#unMatch').hide();
+            $('#loadingReadCard').hide();
+            $('#loadingReadCard2').hide();
+            $('#unMatch2').hide();
+            $('#unMatch').hide();
 
-                $('#CitizenID').val('');
-                $('#CitizenID').focus();
+            $('#CitizenID').val('');
+            $('#CitizenID').focus();
 
-                if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+            if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                $('#CitizenID').prop('disabled', false);
+                setTimeout(function() {
+                    $('#btnSSO').hide();
+                }, 100);
+
+            } else {
+                if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
                     $('#CitizenID').prop('disabled', false);
-                    setTimeout(function() {
-                        $('#btnSSO').hide();
-                    }, 100);
-
+                    $('#CitizenID').focus();
                 } else {
-                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
-                        $('#CitizenID').prop('disabled', false);
-                        $('#CitizenID').focus();
-                    } else {
-                        $('#CitizenID').prop('disabled', true);
-                    }
+                    $('#CitizenID').prop('disabled', true);
                 }
-            
+            }
 
-            $('input[type=submit]').show(); $('input[type=reset]').show();
+
+            $('input[type=submit]').show();
+            $('input[type=reset]').show();
         }, 200);
-}
-$scope.openSSO = function() {
-    //var new_window = window.open('', "MsgWindow", "width=320, height=240");
-    //new_window.onbeforeunload = function () {
-    //    alert('close');
-    //}
-    //var new_window = window.open("", "MsgWindow", "width=800, height=600");
-    //new_window.onbeforeunload = function () { alert('close'); }
+    }
+    $scope.openSSO = function() {
+        //var new_window = window.open('', "MsgWindow", "width=320, height=240");
+        //new_window.onbeforeunload = function () {
+        //    alert('close');
+        //}
+        //var new_window = window.open("", "MsgWindow", "width=800, height=600");
+        //new_window.onbeforeunload = function () { alert('close'); }
 
 
 
-    var openDialog = function(uri, name, options, closeCallback) {
-        var win = window.open(uri, name, options);
+        var openDialog = function(uri, name, options, closeCallback) {
+            var win = window.open(uri, name, options);
 
-        var interval = window.setInterval(function() {
+            var interval = window.setInterval(function() {
 
-            try {
-                if (win == null || win.closed) {
-                    window.clearInterval(interval);
-                    closeCallback(win);
-                }
+                try {
+                    if (win == null || win.closed) {
+                        window.clearInterval(interval);
+                        closeCallback(win);
+                    }
 
-            } catch (e) {}
-        }, 1000);
-        return win;
-    };
+                } catch (e) {}
+            }, 1000);
+            return win;
+        };
 
 
-    var url = SystemService.secondAuthenURL + "SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
+        var url = SystemService.secondAuthenURL + "SecondAuthen.jsp?App=WEBUI&TrxID=" + $scope.TrxID + "&Retry=yes&Goto=";
 
-    if ($scope.getAuthen["isSecondAuthen"]) {
+        if ($scope.getAuthen["isSecondAuthen"]) {
 
-        openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
-            //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
-            SystemService.showLoading();
-            SystemService.second_authen($scope.TrxID, function(result) {
-                //alert(result["status"]);
-                SystemService.hideLoading();
-                console.log(result);
-                if (result["display-messages"] === undefined) {
-                    var res = result["response-data"][0]['authRes'];
-                    if (res['responseCode'] == "200") {
-                        $scope.approver = result['response-data'][0]['loginName'];
-                        $scope.manualInputReadCard();
+            openDialog(url, "MsgWindow", "width=800, height=600", function(w) {
+                //alert('debug : close and call(second_authen?trx_id=' + $scope.TrxID + '&app_id=WEBUI)');
+                SystemService.showLoading();
+                SystemService.second_authen($scope.TrxID, function(result) {
+                    //alert(result["status"]);
+                    SystemService.hideLoading();
+                    console.log(result);
+                    if (result["display-messages"] === undefined) {
+                        var res = result["response-data"][0]['authRes'];
+                        if (res['responseCode'] == "200") {
+                            $scope.approver = result['response-data'][0]['loginName'];
+                            $scope.manualInputReadCard();
+                        } else {
+                            $.fancybox.close();
+                            //unsuccessul
+
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": "",
+                                    "message-code": "",
+                                    "message-type": "WARNING",
+                                    "en-message": res['responseCode'] + ": " + res['responseDesc'],
+                                    "th-message": "",
+                                    "technical-message": "changeResumeConroller"
+                                });
+                            }, 1000);
+                        }
+
                     } else {
                         $.fancybox.close();
                         //unsuccessul
 
                         setTimeout(function() {
                             SystemService.showAlert({
-                                "message": "",
-                                "message-code": "",
+                                "message": result["display-messages"][0]["message"],
+                                "message-code": result["display-messages"][0]["message-code"],
                                 "message-type": "WARNING",
-                                "en-message": res['responseCode'] + ": " + res['responseDesc'],
-                                "th-message": "",
-                                "technical-message": "changeResumeConroller"
+                                "en-message": result["display-messages"][0]["en-message"],
+                                "th-message": result["display-messages"][0]["th-message"],
+                                "technical-message": result["display-messages"][0]["technical-message"]
                             });
                         }, 1000);
                     }
 
-                } else {
-                    $.fancybox.close();
-                    //unsuccessul
-
-                    setTimeout(function() {
-                        SystemService.showAlert({
-                            "message": result["display-messages"][0]["message"],
-                            "message-code": result["display-messages"][0]["message-code"],
-                            "message-type": "WARNING",
-                            "en-message": result["display-messages"][0]["en-message"],
-                            "th-message": result["display-messages"][0]["th-message"],
-                            "technical-message": result["display-messages"][0]["technical-message"]
-                        });
-                    }, 1000);
-                }
-
-            });
-
-        });
-    } else {
-        $scope.isNonePartner = true;
-        $scope.manualInputReadCard();
-    }
-}; $scope.checkPartnet = function() {
-    //$('#btnSSO').hide();
-}; $scope.manualInputReadCard = function() {
-
-    $('#loadingReadCard').hide();
-    $('#loadingReadCard2').hide();
-    $('#unMatch').hide();
-    $('#unMatch2').hide();
-    $('#CitizenID').prop('disabled', false);
-
-    setTimeout(function() {
-        $('#CitizenID').val('');
-        $('#CitizenID').select();
-        $('#CitizenID').focus();
-    }, 1100);
-
-    $scope.isManualReadCard = false;
-    $('input[type=submit]').show();
-    $('input[type=reset]').show();
-
-}
-
-
-var isFocus = false;
-
-$scope.validateUI = function() {
-    var countFF = 0;
-    $scope.attModalVal = "";
-    for (var i = 1; i <= $scope.ffData.max; i++) {
-        if ($scope.saveParamData["ff" + i]) {
-            //spArray[sp].push("Friend numbers offer level|" + $scope.saveParamData["ff" + i] + "|");
-            countFF++;
-        }
-    }
-    var idFF = "txtFF1";
-    for (var i = 1; i <= 10; i++) {
-        if ($('#txtFF' + i).val()) {
-
-        } else {
-            idFF = "txtFF" + i;
-            break;
-        }
-    }
-
-    var errorFUTURE = false;
-    if ($scope.saveData['EFFECTIVE-OPTION'] == 'FUTURE') {
-        if ($('.dateManual').val()) {
-
-        } else {
-            errorFUTURE = true;
-        }
-    }
-    var errorCUG = false;
-    if ($scope.specialOfferType.CUG == true) {
-        if ($scope.saveDataCUG.name) {
-
-        } else {
-            errorCUG = true;
-        }
-    }
-    var errorAuthorizeID = false;
-    var errorAuthorizeName = false;
-    if ($('#authorize').prop('checked')) { //กดมอบอำนาจ:
-        if ($('#CitizenID2').val()) { // ไม่เป็นค่าว่าง
-
-        } else { // เป็นค่าว่าง
-            errorAuthorizeID = true;
-        }
-        if ($('#authorizeFullName').val()) { // ไม่เป็นค่าว่าง
-
-        } else { // เป็นค่าว่าง
-            errorAuthorizeName = true;
-        }
-    }
-
-    var showValidate = function(id, msg) {
-        if (isFocus) {
-            $('#' + id).focus();
-
-            //if (id.indexOf('select') >= 0) {
-            //    try {
-            //        $('#' + id).selectpicker();
-            //        setTimeout(function () {
-            //            $('#' + id).focus();
-            //            $('button[data-id=' + id + '').click();
-            //        }, 500);
-            //    } catch (e) {
-            //        $('#' + id).focus();
-            //    }
-            //}
-
-            isFocus = false;
-            return;
-        } else {
-            SystemService.showAlert(msg);
-            //$('#' + id).focus();
-        }
-    };
-    var checkCapmaxNull = function(val) {
-        if (val == '' || val == 'null') {
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-
-    ///start validate capmax
-    var errorCapmax = "";
-    var errorCapmaxId = "";
-    var errorCapmaxMsg = "";
-    if ($scope.specialOfferType.POOL == true) {
-        if ($scope.parameter.Volume != 'hide' && checkCapmaxNull($scope.saveParamData.Volume)) {
-            errorCapmax = "Volume";
-            errorCapmaxId = $scope.parameter.Volume == 'null' ? "selectVolume" : "txtVolume";
-            errorCapmaxMsg = ValidateMsgService.data.volumeMsg;
-        } else if ($scope.parameter.Monetary != 'hide' && checkCapmaxNull($scope.saveParamData.Monetary)) {
-            errorCapmax = "Monetary";
-            errorCapmaxId = $scope.parameter.Monetary == 'null' ? "selectMonetary" : "txtMonetary";
-            errorCapmaxMsg = ValidateMsgService.data.monetaryMsg;
-        } else if ($scope.parameter.Occurrence != 'hide' && checkCapmaxNull($scope.saveParamData.Occurrence)) {
-            errorCapmax = "Occurrence";
-            errorCapmaxId = $scope.parameter.Occurrence == 'null' ? "selectOccurrence" : "txtOccurrence";
-            errorCapmaxMsg = ValidateMsgService.data.occurrenceMsg;
-        } else if ($scope.parameter.Duration != 'hide' && checkCapmaxNull($scope.saveParamData.Duration)) {
-            errorCapmax = "Duration";
-            errorCapmaxId = $scope.parameter.Duration == 'null' ? "selectDuration" : "txtDuration";
-            errorCapmaxMsg = ValidateMsgService.data.durationMsg;
-        }
-    }
-    ///end validate capmax
-
-
-    if (errorAuthorizeID) {
-        showValidate("CitizenID2", ValidateMsgService.data.authorizeIdMsg);
-        $scope.isValidateFF = false;
-    } else if (errorAuthorizeName) {
-        showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
-        $scope.isValidateFF = false;
-    } else if (errorCapmax != "") {
-        showValidate(errorCapmaxId, errorCapmaxMsg);
-        $scope.isValidateFF = false;
-    } else if (errorCUG) {
-        showValidate("txtSearchCUG", ValidateMsgService.data.cugMsg);
-        $scope.isValidateFF = false;
-    } else if ($scope.specialOfferType.FF && countFF < $scope.ffData.min) {
-        showValidate(idFF, {
-            "message": "",
-            "message-code": "",
-            "message-type": "WARNING",
-            "en-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-            "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-            "technical-message": "changePricePlanController"
-        });
-        $scope.isValidateFF = false;
-    } else if (errorFUTURE) {
-        showValidate("txtDateManual", ValidateMsgService.data.effectiveDateMsg);
-        $scope.isValidateFF = false;
-    } else {
-        if ($scope.isClickPrint) {
-            $scope.printOrder();
-        }
-
-    }
-};
-
-$scope.printOrder = function() {
-
-    $scope.isValidateFF = true;
-    $scope.attModalVal = "modal";
-
-
-    var cardValueData = {
-        //NEW---
-        "photoIdCard": "",
-
-        //SC=Scan
-        //SN=Snap
-        "photoType": "SN",
-        "titleEn": "",
-        "firstnameEn": "",
-        "lastnameEn": "",
-        "expireDay": "",
-        "birthDay": "",
-        "issueDay": "",
-
-        "titleTh": "",
-        "firstnameTh": "",
-        "lastnameTh": "",
-
-        //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-        "homeNumber": "",
-        "moo": "",
-        "trok": "",
-        "soi": "",
-        "road": "",
-        "district": "",
-        "amphur": "",
-        "province": ""
-            //NEW---
-    };
-    if ($scope.isCardValueData) {
-        cardValueData.photoType = "SC";
-        cardValueData.photoIdCard = $scope.cardInfo.CitizenID;
-        cardValueData = {
-            //NEW---
-            "photoIdCard": $scope.cardInfo.Photo,
-
-            //SC=Scan
-            //SN=Snap
-            "photoType": "SC",
-            "titleEn": $scope.cardInfo.PrefixEN,
-            "firstnameEn": $scope.cardInfo.FirstNameEN,
-            "lastnameEn": $scope.cardInfo.LastNameEN,
-            "expireDay": $scope.cardInfo.ExpireDay,
-            "birthDay": $scope.cardInfo.BirthDay,
-            "issueDay": $scope.cardInfo.IssueDay,
-
-            "titleTh": $scope.cardInfo.PrefixTH,
-            "firstnameTh": $scope.cardInfo.FirstNameTH,
-            "lastnameTh": $scope.cardInfo.LastNameTH,
-
-            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-            "homeNumber": $scope.cardInfo.HomeNumber,
-            "moo": $scope.cardInfo.Moo,
-            "trok": $scope.cardInfo.Trok,
-            "soi": $scope.cardInfo.Soi,
-            "road": $scope.cardInfo.Road,
-            "district": $scope.cardInfo.District,
-            "amphur": $scope.cardInfo.Amphur,
-            "province": $scope.cardInfo.Province
-                //NEW---
-        };
-
-    }
-    var customerType = "N";
-    if ($scope.data.priceplan['account-category'] == "B" || $scope.data.priceplan['account-category'] == "C") {
-        customerType = "Y";
-    }
-    var data = {
-        "func": "CPP",
-        "header": {
-            "title-code": customerType == 'Y' ? "" : $scope.data.customerProfile["title-code"],
-            "title": $scope.data.customerProfile["title"],
-            "firstname": $scope.data.customerProfile["firstname"],
-            "lastname": $scope.data.customerProfile["lastname"],
-            "customerType": customerType,
-            "authorizeFullName": $('#authorizeFullName').val(),
-            "id-number": $scope.data.customerProfile["id-number"],
-            "product-id-number": $scope.data.priceplan['product-id-number'],
-            "ouId": $scope.OUID,
-            "orderId": $scope.orderId,
-            "photo": $scope.varPhoto,
-
-
-
-            //NEW---
-            "photoIdCard": cardValueData["photoIdCard"],
-
-            //SC=Scan
-            //SN=Snap
-            "photoType": cardValueData["photoType"],
-            "titleEn": cardValueData["titleEn"],
-            "firstnameEn": cardValueData["firstnameEn"],
-            "lastnameEn": cardValueData["lastnameEn"],
-
-            "titleTh": cardValueData["titleTh"],
-            "firstnameTh": cardValueData["firstnameTh"],
-            "lastnameTh": cardValueData["lastnameTh"],
-
-            "expireDay": cardValueData["expireDay"],
-            "birthDay": cardValueData["birthDay"],
-            "issueDay": cardValueData["issueDay"],
-
-            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
-            "homeNumber": cardValueData["homeNumber"],
-            "moo": cardValueData["moo"],
-            "trok": cardValueData["trok"],
-            "soi": cardValueData["soi"],
-            "road": cardValueData["road"],
-            "district": cardValueData["district"],
-            "amphur": cardValueData["amphur"],
-            "province": cardValueData["province"]
-                //NEW---
-
-
-        },
-        "body": {
-            "cppOldPricePlanData": {
-                "name": $scope.data.priceplan["product-name"],
-                "description": $scope.data.priceplan["product-description"],
-                "soc": "10633511",
-                "sale-period": {
-                    "start": "2015-01-16",
-                    "end": "2015-07-03"
-                }
-            },
-            "cppNewPricePlanData": $scope.pricePlan2.priceplans
-        }
-    };
-    console.log($scope.data);
-    console.log(data);
-    //api generatePDF
-    var srcPDF = "";
-    SystemService.generatePDF(data, function(result) {
-        var url = result;
-        setTimeout(function() {
-
-            //var browser = navigator.appName;
-            //if (browser == "Microsoft Internet Explorer") {
-            //    var f = window.frames[0];
-            //    f.src = url;
-            //    if ($scope.shopType == "1") {
-            //        f.onload = function () {
-            //            f.focus();
-            //            //window.frames.print();
-            //            f.print();
-            //        }
-            //    }
-            //} else {//firefox, chorme     
-            //    var frame = document.getElementById("iframePDF")
-            //    frame.src = url;
-            //    if ($scope.shopType == "1") {
-            //        frame.onload = function () {
-            //            frame.focus();
-            //            frame.contentWindow.print();
-            //        }
-            //    }
-            //}
-
-            var srcPDF = url;
-            document.getElementById('iframePDF').src = url + '?clearData=N';
-
-            SystemService.printPDF(url);
-            //printObjectPdf();
-
-            if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                setTimeout(function() {
-                    //document.getElementById('iframePDF').src = 'javascript:window.print();'
-                    printObjectPdf();
-                }, 2000);
-                setTimeout(function() {
-                    document.getElementById('iframePDF').src = srcPDF
-                }, 2500);
-            }
-
-
-        }, 500);
-
-
-    });
-}; $scope.isClickPrint = true; $scope.noneShopPrint = function() {
-    $scope.isClickPrint = true;
-    $scope.validateUI();
-};
-
-$scope.onModalCUG = function() {
-    //$scope.onCancelCUG();
-    $scope.isSelectCUGList = false;
-    $('.radioCUG').prop('checked', false);
-}
-
-$scope.onSetValueCUG = function() {
-    var s = $scope.selectCUG;
-    $scope.saveSelectCUG = s;
-    console.log($scope.saveSelectCUG);
-    $scope.saveDataCUG = {
-        name: $scope.saveSelectCUG['group-id'] + ' : ' + $scope.saveSelectCUG['group-name'],
-        id: $scope.saveSelectCUG['group-id']
-    };
-    setTimeout(function() {
-        $('#idModalCUG').blur();
-    }, 1200);
-}; $scope.onCancelCUG = function() {
-    $scope.isSelectCUGList = false;
-    $scope.saveDataCUG.filter = "";
-    $scope.saveDataCUG = {};
-    $scope.selectCUG = {};
-    $('.radioCUG').prop('checked', false);
-}; $scope.onFilterCUGId = function() {
-    $scope.isSelectCUGList = false;
-    if ($scope.saveDataCUG.filter) {
-        //$scope.onSearchCUG()
-        var list = $filter('filter')($scope.cugList, {
-            'group-id': $scope.saveDataCUG.filter
-        });
-        var list2 = $filter('filter')($scope.cugList, {
-            'group-name': $scope.saveDataCUG.filter
-        });
-        var l = list.length + list2.length;
-        //alert(list.length);
-        if (l == 1) {
-            if (list.length == 1) {
-                $scope.selectCUG = list[0];
-            }
-            if (list2.length == 1) {
-                $scope.selectCUG = list2[0];
-            }
-
-            $scope.onSetValueCUG();
-        } else if (l > 1) {
-            $('#idModalCUG').click();
-        } else {
-            SystemService.showAlert(ValidateMsgService.data.cugNotFound);
-        }
-
-    }
-}; $scope.onCheckFF = function() {
-    for (var i = 1; i <= $scope.ffData.max; i++) {
-        if ($scope.saveParamData["ff" + i]) {
-            if ($scope.saveParamData["ff" + i].length < 3) {
-                SystemService.showAlert(ValidateMsgService.data.isDigitSubNo);
-                $scope.saveParamData["ff" + i] = "";
-            }
-        }
-    }
-}; $scope.isNumberFF = false; $scope.onInputFF = function(charCode) {
-    //console.log(charCode);
-    var bool = SystemService.checkInputTel(charCode);
-    $scope.isNumberFF = !bool;
-    return bool;
-};
-
-
-$scope.isNumberVolume = false; $scope.onInputVolume = function(charCode) {
-    //console.log(charCode);
-    var bool = SystemService.checkInputTel(charCode);
-    $scope.isNumberVolume = !bool;
-    return bool;
-};
-
-$scope.isNumberMonetary = false; $scope.onInputMonetary = function(charCode) {
-    //console.log(charCode);
-    var bool = SystemService.checkInputTel(charCode);
-    $scope.isNumberMonetary = !bool;
-    return bool;
-};
-
-$scope.isNumberOccurrence = false; $scope.onInputOccurrence = function(charCode) {
-    //console.log(charCode);
-    var bool = SystemService.checkInputTel(charCode);
-    $scope.isNumberOccurrence = !bool;
-    return bool;
-};
-
-$scope.isNumberDuration = false; $scope.onInputDuration = function(charCode) {
-    //console.log(charCode);
-    var bool = SystemService.checkInputTel(charCode);
-    $scope.isNumberDuration = !bool;
-    return bool;
-};
-
-
-$scope.saveOrder = function() {
-    if ($('.dateManual').val()) {
-        $scope.saveData['EFFECTIVE-DATE'] = $('.dateManual').val();
-        $scope.saveData['EFFECTIVE-OPTION'] = 'FUTURE';
-    }
-
-
-
-    var headers = {
-        'WEB_METHOD_CHANNEL': 'WEBUI',
-        'E2E_REFID': $scope.orderId
-    };
-    //var data2 = {};
-    //var order = {};
-    //if ($scope.orderId){
-    //    order['order-id'] = $scope.orderId;
-    //}
-
-    var data = {
-        target: 'aftersales/order/submit',
-        "order": {
-            "order-id": $scope.orderId,
-            "creator": $scope.getAuthen["logInName"],
-            "customer": {
-                "title-code": $scope.data.customerProfile["title-code"],
-                "firstname": $scope.data.customerProfile["firstname"],
-                "lastname": $scope.data.customerProfile["lastname"],
-                "contact-number": $scope.data.customerProfile["contact-number"],
-                "id-type": $scope.data.customerProfile["id-type"],
-                "customer-id": $scope.data.customerProfile["customer-id"],
-                "id-number": $scope.data.customerProfile["id-number"] //,"birthdate":"2015-08-12T08:30:00+0700"//yyyy-MM-dd'T'HH:mm:ssZ
-            },
-            //จะสร้างโดย service JAVA
-            "sale-agent": {
-                "name": $scope.getAuthen["engName"],
-                "channel": $scope.getAuthen["channel"],
-                "partner-code": ($scope.getAuthen["partnerCodes"].length > 0 ? $scope.getAuthen["partnerCodes"][0] : null),
-                "partner-name": $scope.getAuthen["partnerName"],
-                "sale-code": $scope.getAuthen["saleCode"],
-                "sale-assist-code": "",
-                "partner-type": $scope.getAuthen["partnerType"]
-            },
-            "order-items": [{
-                "name": "CHANGE_PRICEPLAN",
-                "product-name": $scope.pricePlan.saveName,
-                "product-id-number": $scope.data.priceplan["product-id-number"],
-                "product-id-name": $scope.data.priceplan["product-id-name"],
-                "reason-code": $scope.selectReason.id,
-                "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
-                "order-data": {
-                    "SERVICE-LEVEL": $scope.data.priceplan["service-level"],
-                    "MOBILE-SERVICETYPE": $scope.data.priceplan["mobile-servicetype"],
-                    "OU-LEVEL": $scope.data.priceplan["ou-hierarchytype"],
-                    "CURRENT-PRICEPLAN": $scope.data.priceplan["product-id"],
-                    "CURRENT-PROPOSITIONS": $scope.currentPricePlan,
-                    "NEW-PROPOSITION": $scope.pricePlan.promotion,
-                    "NAS-PROPOSITION": $scope.selectProposition
-                },
-                "primary-order-data": {
-                    "OU-ID": $scope.data.priceplan["ouId"],
-                    "PARENT-OU-ID": $scope.data.priceplan["parent-ouId"],
-                    "BAN": $scope.data.priceplan["ban"],
-                    "COMPANY-CODE": $scope.data.priceplan["company-code"],
-                    "ACCOUNT-CATEGORY": $scope.data.priceplan["account-category"],
-                    "ACCOUNT-SUB-TYPE": $scope.data.priceplan["account-sub-type"],
-                    "EFFECTIVE-DATE": SystemService.convertDateToEng($scope.saveData['EFFECTIVE-DATE'], 'ENG'),
-                    "EFFECTIVE-OPTION": $scope.saveData['EFFECTIVE-OPTION']
-                },
-                "product-category": $scope.data.priceplan["product-category"],
-                "product-type": "PRICEPLAN",
-                "order-type": "CHANGE"
-            }]
-        },
-        "user-id": $scope.getAuthen["logInName"],
-        "ref-id": $scope.orderId
-
-    };
-    //approver
-    if ($scope.approver) {
-        data["approver"] = $scope.approver;
-    }
-
-    //authen
-    if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
-        var authenList = $('#authorizeFullName').val().split(" ");
-
-        data["order"]["customer"]["customer-agents"] = {
-            "AUTH_1": {
-                "id-number": $('#CitizenID2').val(),
-                "firstname": $('#authorizeFullName').val(),
-                "lastname": $('#authorizeFullName').val()
-            }
-        };
-    }
-    //SHARE_ALLOWANCE, FriendAndFamily, CUG, POOLED
-    var spList = $scope.offerDetail["csm-offer-details"]["csm-related-offer-details"];
-    //var spName = $scope.offerDetail["csm-offer-details"]["name"];
-    var spAll = "";
-    var spNameAll = "";
-    $scope.isValidateFF = true;
-    $scope.attModalVal = "modal";
-    var spArray = {
-        'SHARE_ALLOWANCE': [],
-        'POOLED': [],
-        'FriendAndFamily': [],
-        'CUG': [],
-        'POOLING': [],
-        'CAPMAX': []
-    };
-    for (var isp = 0; isp < spList.length; isp++) {
-        var sp = spList[isp]["special-offer-type"];
-        var spName = spList[isp]["name"];
-
-        if (sp == "SHARE_ALLOWANCE" || sp == "POOLED" || sp == 'POOLING' || sp == 'CAPMAX') {
-            spAll = spAll + (spAll ? "|" : "") + sp;
-            spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
-            if ($scope.capMaxParameterList['monetary-capmax']) {
-                spArray[sp].push("Monetary cap max|" + $scope.saveParamData.Monetary);
-            }
-            if ($scope.capMaxParameterList['occurrence-capmax']) {
-                spArray[sp].push("Occurrence cap max|" + $scope.saveParamData.Occurrence);
-            }
-            if ($scope.capMaxParameterList['duration-capmax']) {
-                spArray[sp].push("Duration cap max|" + $scope.saveParamData.Duration);
-                spArray[sp].push("Duration cap max UOM|" + $scope.capMaxParameterList['durationCapMaxUOM']);
-            }
-            if ($scope.capMaxParameterList['volume-capmax']) {
-                spArray[sp].push("Volume cap max|" + $scope.saveParamData.Volume);
-                spArray[sp].push("Volume cap max UOM|" + $scope.capMaxParameterList['volume-capmax-uom']);
-            }
-        }
-        if (sp == 'FriendAndFamily') {
-            spAll = spAll + (spAll ? "|" : "") + sp;
-            spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
-            var countFF = 0;
-            for (var i = 1; i <= $scope.ffData.max; i++) {
-                if ($scope.saveParamData["ff" + i]) {
-                    spArray[sp].push("Friend numbers offer level|" + $scope.saveParamData["ff" + i] + "|");
-                    countFF++;
-                }
-            }
-            if (countFF < $scope.ffData.min) {
-                SystemService.showAlert({
-                    "message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-                    "message-code": "",
-                    "message-type": "WARNING",
-                    "en-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-                    "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-                    "technical-message": "changePricePlanController"
                 });
-                $scope.isValidateFF = false;
-            } else {
 
-                $scope.isValidateFF = true;
-                $scope.attModalVal = "modal";
-            }
-        }
-        if (sp == 'CUG') {
-
-            spAll = spAll + (spAll ? "|" : "") + sp;
-            spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
-            spArray[sp].push("CUG ID|" + $scope.saveDataCUG.id + "|");
-        }
-
-
-        //create field JSON
-        var list = spAll.split("|");
-        var listName = spNameAll.split('|');
-        if (spAll) {
-            for (var i = 0; i < list.length; i++) {
-                data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-SIZE"] = spArray[list[i]].length;
-
-                data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-OFFER-NAME"] = listName[i];
-
-                var listValue = spArray[list[i]];
-                for (var ii = 0; ii < listValue.length; ii++) {
-                    data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-" + ii] = listValue[ii];
-                }
-
-            }
-        }
-
-
-    }
-    data["order"]["order-items"][0]["order-data"]["OFFERS-REQUIRE-PARAMETER"] = spAll;
-
-
-
-    console.log('saveOrder :::: ');
-    console.log(JSON.stringify(data));
-    console.log(data);
-    console.log($scope.selectReason);
-
-    if (SystemService.demo) {
-        if ($scope.isValidate && $scope.isValidateFF) {
-            SystemService.showBeforeClose({
-                "message": "รายการคำขอเลขที่ " + $scope.orderId,
-                "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
             });
+        } else {
+            $scope.isNonePartner = true;
+            $scope.manualInputReadCard();
         }
-    } else {
-        if ($scope.isValidate && $scope.isValidateFF) {
+    };
+    $scope.checkPartnet = function() {
+        //$('#btnSSO').hide();
+    };
+    $scope.manualInputReadCard = function() {
 
-            SystemService.callServicePost(data, headers, function(result) {
-                console.log(result);
-                if (result.status) {
-                	//save report to server
-                	SystemService.saveReportToServer({}, function(result){
-                		
-                	});
-                	
-                    SystemService.showBeforeClose({
-                        "message": result.data["display-messages"][0]["th-message"],
-                        "message2": ""
-                    });
-                } else {
-                    SystemService.showAlert({
-                        "message": result.error,
-                        "message-code": "",
-                        "message-type": "ERROR",
-                        "en-message": result.error,
-                        "th-message": result.error,
-                        "technical-message": "changePricePlanController"
-                    });
-                }
-            });
-        }
-    }
-}; $scope.confirmPrint = function() {
-    //confirm
-    //SystemService.showBeforeClose({
-    //    "message": "รายการคำขอเลขที่ " + $scope.orderId,
-    //    "message2": "ได้รับข้อมูลเรียบร้อยแล้ว",
-    //});
-    //SystemService.showConfirm().then(function (value) {
+        $('#loadingReadCard').hide();
+        $('#loadingReadCard2').hide();
+        $('#unMatch').hide();
+        $('#unMatch2').hide();
+        $('#CitizenID').prop('disabled', false);
 
-    //}, function (reason) {
-    //    //cancel
+        setTimeout(function() {
+            $('#CitizenID').val('');
+            $('#CitizenID').select();
+            $('#CitizenID').focus();
+        }, 1100);
 
-    //});
-}; $scope.ReadCardMockUp = function(personId) {
-    //var certificateID = smartCardReaderService.readCardMockUp(personId);
-    var certificateID = personId;
-
-    ChangePricePlanService.getChangePricePlan($scope.SubNo, $scope.OUID, function(result) {
-
-        document.getElementById('btnReadCardClose2').click();
+        $scope.isManualReadCard = false;
         $('input[type=submit]').show();
         $('input[type=reset]').show();
-        $scope.data = result.data;
-        if ($scope.data.offer.length != 0) {
-            $scope.saleList = $scope.data.offer[0]["product-name"];
-        }
-        $scope.isReadCardSuccess = true;
-    });
-}; $scope.SetCardValue = function(result) {
-    $('#loadingReadCard').hide();
-    $('#loadingReadCard2').hide();
-    $('#unMatch2').hide();
-    $scope.isReadCardSuccess = false;
 
-    $scope.cardInfo = eval(result);
-    console.log($scope.cardInfo.CitizenID);
-    $scope.CitizenID = $scope.cardInfo.CitizenID;
-    $('#CitizenID').val('' + $scope.cardInfo.CitizenID);
-
-
-    if ($scope.cardInfo.CitizenID == $scope.data2.customerProfile["id-number"]) {
-
-        $scope.isCardValueData = true;
-
-        $scope.isReadCardSuccess = true;
-        $scope.isCustomerProfile = true;
-        $.fancybox.close();
-
-        setTimeout(function() {
-            $('#idBindDataAgain').click();
-        }, 500);
-
-        $scope.data = $scope.data2;
-
-        $('.isCustomerProfile').prop('disabled', false);
-
-    } else {
-        $('#unMatch').show();
-        $scope.isMatch = false;
     }
-    ///$scope.ReadCardMockUp($scope.cardInfo.CitizenID);
-    //console.log(result);
-    //console.log(result.CitizenID);
 
-}
 
-$scope.onInputId2 = function() {
-    var cid = $('#CitizenID2').val();
-    if (cid.length == 13) {
-        if (SystemService.validatePID(cid)) {
+    var isFocus = false;
 
+    $scope.validateUI = function() {
+        var countFF = 0;
+        $scope.attModalVal = "";
+        for (var i = 1; i <= $scope.ffData.max; i++) {
+            if ($scope.saveParamData["ff" + i]) {
+                //spArray[sp].push("Friend numbers offer level|" + $scope.saveParamData["ff" + i] + "|");
+                countFF++;
+            }
+        }
+        var idFF = "txtFF1";
+        for (var i = 1; i <= 10; i++) {
+            if ($('#txtFF' + i).val()) {
+
+            } else {
+                idFF = "txtFF" + i;
+                break;
+            }
+        }
+
+        var errorFUTURE = false;
+        if ($scope.saveData['EFFECTIVE-OPTION'] == 'FUTURE') {
+            if ($('.dateManual').val()) {
+
+            } else {
+                errorFUTURE = true;
+            }
+        }
+        var errorCUG = false;
+        if ($scope.specialOfferType.CUG == true) {
+            if ($scope.saveDataCUG.name) {
+
+            } else {
+                errorCUG = true;
+            }
+        }
+        var errorAuthorizeID = false;
+        var errorAuthorizeName = false;
+        if ($('#authorize').prop('checked')) { //กดมอบอำนาจ:
+            if ($('#CitizenID2').val()) { // ไม่เป็นค่าว่าง
+
+            } else { // เป็นค่าว่าง
+                errorAuthorizeID = true;
+            }
+            if ($('#authorizeFullName').val()) { // ไม่เป็นค่าว่าง
+
+            } else { // เป็นค่าว่าง
+                errorAuthorizeName = true;
+            }
+        }
+
+        var showValidate = function(id, msg) {
+            if (isFocus) {
+                $('#' + id).focus();
+
+                //if (id.indexOf('select') >= 0) {
+                //    try {
+                //        $('#' + id).selectpicker();
+                //        setTimeout(function () {
+                //            $('#' + id).focus();
+                //            $('button[data-id=' + id + '').click();
+                //        }, 500);
+                //    } catch (e) {
+                //        $('#' + id).focus();
+                //    }
+                //}
+
+                isFocus = false;
+                return;
+            } else {
+                SystemService.showAlert(msg);
+                //$('#' + id).focus();
+            }
+        };
+        var checkCapmaxNull = function(val) {
+            if (val == '' || val == 'null') {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+
+        ///start validate capmax
+        var errorCapmax = "";
+        var errorCapmaxId = "";
+        var errorCapmaxMsg = "";
+        if ($scope.specialOfferType.POOL == true) {
+            if ($scope.parameter.Volume != 'hide' && checkCapmaxNull($scope.saveParamData.Volume)) {
+                errorCapmax = "Volume";
+                errorCapmaxId = $scope.parameter.Volume == 'null' ? "selectVolume" : "txtVolume";
+                errorCapmaxMsg = ValidateMsgService.data.volumeMsg;
+            } else if ($scope.parameter.Monetary != 'hide' && checkCapmaxNull($scope.saveParamData.Monetary)) {
+                errorCapmax = "Monetary";
+                errorCapmaxId = $scope.parameter.Monetary == 'null' ? "selectMonetary" : "txtMonetary";
+                errorCapmaxMsg = ValidateMsgService.data.monetaryMsg;
+            } else if ($scope.parameter.Occurrence != 'hide' && checkCapmaxNull($scope.saveParamData.Occurrence)) {
+                errorCapmax = "Occurrence";
+                errorCapmaxId = $scope.parameter.Occurrence == 'null' ? "selectOccurrence" : "txtOccurrence";
+                errorCapmaxMsg = ValidateMsgService.data.occurrenceMsg;
+            } else if ($scope.parameter.Duration != 'hide' && checkCapmaxNull($scope.saveParamData.Duration)) {
+                errorCapmax = "Duration";
+                errorCapmaxId = $scope.parameter.Duration == 'null' ? "selectDuration" : "txtDuration";
+                errorCapmaxMsg = ValidateMsgService.data.durationMsg;
+            }
+        }
+        ///end validate capmax
+
+
+        if (errorAuthorizeID) {
+            showValidate("CitizenID2", ValidateMsgService.data.authorizeIdMsg);
+            $scope.isValidateFF = false;
+        } else if (errorAuthorizeName) {
+            showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
+            $scope.isValidateFF = false;
+        } else if (errorCapmax != "") {
+            showValidate(errorCapmaxId, errorCapmaxMsg);
+            $scope.isValidateFF = false;
+        } else if (errorCUG) {
+            showValidate("txtSearchCUG", ValidateMsgService.data.cugMsg);
+            $scope.isValidateFF = false;
+        } else if ($scope.specialOfferType.FF && countFF < $scope.ffData.min) {
+            showValidate(idFF, {
+                "message": "",
+                "message-code": "",
+                "message-type": "WARNING",
+                "en-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                "technical-message": "changePricePlanController"
+            });
+            $scope.isValidateFF = false;
+        } else if (errorFUTURE) {
+            showValidate("txtDateManual", ValidateMsgService.data.effectiveDateMsg);
+            $scope.isValidateFF = false;
         } else {
-            $('#CitizenID2').val('');
+            if ($scope.isClickPrint) {
+                $scope.printOrder();
+            }
+
         }
+    };
+
+    $scope.printOrder = function() {
+
+        $scope.isValidateFF = true;
+        $scope.attModalVal = "modal";
+
+
+        var cardValueData = {
+            //NEW---
+            "photoIdCard": "",
+
+            //SC=Scan
+            //SN=Snap
+            "photoType": "SN",
+            "titleEn": "",
+            "firstnameEn": "",
+            "lastnameEn": "",
+            "expireDay": "",
+            "birthDay": "",
+            "issueDay": "",
+
+            "titleTh": "",
+            "firstnameTh": "",
+            "lastnameTh": "",
+
+            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+            "homeNumber": "",
+            "moo": "",
+            "trok": "",
+            "soi": "",
+            "road": "",
+            "district": "",
+            "amphur": "",
+            "province": ""
+                //NEW---
+        };
+        if ($scope.isCardValueData) {
+            cardValueData.photoType = "SC";
+            cardValueData.photoIdCard = $scope.cardInfo.CitizenID;
+            cardValueData = {
+                //NEW---
+                "photoIdCard": $scope.cardInfo.Photo,
+
+                //SC=Scan
+                //SN=Snap
+                "photoType": "SC",
+                "titleEn": $scope.cardInfo.PrefixEN,
+                "firstnameEn": $scope.cardInfo.FirstNameEN,
+                "lastnameEn": $scope.cardInfo.LastNameEN,
+                "expireDay": $scope.cardInfo.ExpireDay,
+                "birthDay": $scope.cardInfo.BirthDay,
+                "issueDay": $scope.cardInfo.IssueDay,
+
+                "titleTh": $scope.cardInfo.PrefixTH,
+                "firstnameTh": $scope.cardInfo.FirstNameTH,
+                "lastnameTh": $scope.cardInfo.LastNameTH,
+
+                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                "homeNumber": $scope.cardInfo.HomeNumber,
+                "moo": $scope.cardInfo.Moo,
+                "trok": $scope.cardInfo.Trok,
+                "soi": $scope.cardInfo.Soi,
+                "road": $scope.cardInfo.Road,
+                "district": $scope.cardInfo.District,
+                "amphur": $scope.cardInfo.Amphur,
+                "province": $scope.cardInfo.Province
+                    //NEW---
+            };
+
+        }
+        var customerType = "N";
+        if ($scope.data.priceplan['account-category'] == "B" || $scope.data.priceplan['account-category'] == "C") {
+            customerType = "Y";
+        }
+        var data = {
+            "func": "CPP",
+            "header": {
+                "title-code": customerType == 'Y' ? "" : $scope.data.customerProfile["title-code"],
+                "title": $scope.data.customerProfile["title"],
+                "firstname": $scope.data.customerProfile["firstname"],
+                "lastname": $scope.data.customerProfile["lastname"],
+                "customerType": customerType,
+                "authorizeFullName": $('#authorizeFullName').val(),
+                "id-number": $scope.data.customerProfile["id-number"],
+                "product-id-number": $scope.data.priceplan['product-id-number'],
+                "ouId": $scope.OUID,
+                "orderId": $scope.orderId,
+                "photo": $scope.varPhoto,
+
+
+
+                //NEW---
+                "photoIdCard": cardValueData["photoIdCard"],
+
+                //SC=Scan
+                //SN=Snap
+                "photoType": cardValueData["photoType"],
+                "titleEn": cardValueData["titleEn"],
+                "firstnameEn": cardValueData["firstnameEn"],
+                "lastnameEn": cardValueData["lastnameEn"],
+
+                "titleTh": cardValueData["titleTh"],
+                "firstnameTh": cardValueData["firstnameTh"],
+                "lastnameTh": cardValueData["lastnameTh"],
+
+                "expireDay": cardValueData["expireDay"],
+                "birthDay": cardValueData["birthDay"],
+                "issueDay": cardValueData["issueDay"],
+
+                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                "homeNumber": cardValueData["homeNumber"],
+                "moo": cardValueData["moo"],
+                "trok": cardValueData["trok"],
+                "soi": cardValueData["soi"],
+                "road": cardValueData["road"],
+                "district": cardValueData["district"],
+                "amphur": cardValueData["amphur"],
+                "province": cardValueData["province"]
+                    //NEW---
+
+
+            },
+            "body": {
+                "cppOldPricePlanData": {
+                    "name": $scope.data.priceplan["product-name"],
+                    "description": $scope.data.priceplan["product-description"],
+                    "soc": "10633511",
+                    "sale-period": {
+                        "start": "2015-01-16",
+                        "end": "2015-07-03"
+                    }
+                },
+                "cppNewPricePlanData": $scope.pricePlan2.priceplans
+            }
+        };
+        console.log($scope.data);
+        console.log(data);
+        //api generatePDF
+        var srcPDF = "";
+        SystemService.generatePDF(data, function(result) {
+            var url = result;
+            setTimeout(function() {
+
+                //var browser = navigator.appName;
+                //if (browser == "Microsoft Internet Explorer") {
+                //    var f = window.frames[0];
+                //    f.src = url;
+                //    if ($scope.shopType == "1") {
+                //        f.onload = function () {
+                //            f.focus();
+                //            //window.frames.print();
+                //            f.print();
+                //        }
+                //    }
+                //} else {//firefox, chorme     
+                //    var frame = document.getElementById("iframePDF")
+                //    frame.src = url;
+                //    if ($scope.shopType == "1") {
+                //        frame.onload = function () {
+                //            frame.focus();
+                //            frame.contentWindow.print();
+                //        }
+                //    }
+                //}
+
+                var srcPDF = url;
+                document.getElementById('iframePDF').src = url + '?clearData=N';
+
+                SystemService.printPDF(url);
+                //printObjectPdf();
+
+                if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                    setTimeout(function() {
+                        //document.getElementById('iframePDF').src = 'javascript:window.print();'
+                        printObjectPdf();
+                    }, 2000);
+                    setTimeout(function() {
+                        document.getElementById('iframePDF').src = srcPDF
+                    }, 2500);
+                }
+
+
+            }, 500);
+
+
+        });
+    };
+    $scope.isClickPrint = true;
+    $scope.noneShopPrint = function() {
+        $scope.isClickPrint = true;
+        $scope.validateUI();
+    };
+
+    $scope.onModalCUG = function() {
+        //$scope.onCancelCUG();
+        $scope.isSelectCUGList = false;
+        $('.radioCUG').prop('checked', false);
     }
-}; $scope.SetCardValue2 = function(result) {
-    $('#loadingReadCard2').hide();
 
-    $scope.cardInfo2 = eval(result);
-    console.log($scope.cardInfo2);
+    $scope.onSetValueCUG = function() {
+        var s = $scope.selectCUG;
+        $scope.saveSelectCUG = s;
+        console.log($scope.saveSelectCUG);
+        $scope.saveDataCUG = {
+            name: $scope.saveSelectCUG['group-id'] + ' : ' + $scope.saveSelectCUG['group-name'],
+            id: $scope.saveSelectCUG['group-id']
+        };
+        setTimeout(function() {
+            $('#idModalCUG').blur();
+        }, 1200);
+    };
+    $scope.onCancelCUG = function() {
+        $scope.isSelectCUGList = false;
+        $scope.saveDataCUG.filter = "";
+        $scope.saveDataCUG = {};
+        $scope.selectCUG = {};
+        $('.radioCUG').prop('checked', false);
+    };
+    $scope.onFilterCUGId = function() {
+        $scope.isSelectCUGList = false;
+        if ($scope.saveDataCUG.filter) {
+            //$scope.onSearchCUG()
+            var list = $filter('filter')($scope.cugList, {
+                'group-id': $scope.saveDataCUG.filter
+            });
+            var list2 = $filter('filter')($scope.cugList, {
+                'group-name': $scope.saveDataCUG.filter
+            });
+            var l = list.length + list2.length;
+            //alert(list.length);
+            if (l == 1) {
+                if (list.length == 1) {
+                    $scope.selectCUG = list[0];
+                }
+                if (list2.length == 1) {
+                    $scope.selectCUG = list2[0];
+                }
 
-    $('#CitizenID2').val($scope.cardInfo2.CitizenID);
-    $('#authorizeFullName').val($scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + " " + $scope.cardInfo2.LastNameTH);
+                $scope.onSetValueCUG();
+            } else if (l > 1) {
+                $('#idModalCUG').click();
+            } else {
+                SystemService.showAlert(ValidateMsgService.data.cugNotFound);
+            }
 
-    $scope.varCardInfo2.firstName = $scope.cardInfo2.FirstNameTH;
-    $scope.varCardInfo2.lastName = $scope.cardInfo2.LastNameTH;
+        }
+    };
+    $scope.onCheckFF = function() {
+        for (var i = 1; i <= $scope.ffData.max; i++) {
+            if ($scope.saveParamData["ff" + i]) {
+                if ($scope.saveParamData["ff" + i].length < 3) {
+                    SystemService.showAlert(ValidateMsgService.data.isDigitSubNo);
+                    $scope.saveParamData["ff" + i] = "";
+                }
+            }
+        }
+    };
+    $scope.isNumberFF = false;
+    $scope.onInputFF = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberFF = !bool;
+        return bool;
+    };
 
-    //$scope.CitizenID2 = $scope.cardInfo2.CitizenID;
-    //$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
-}
 
-$scope.isManualReadCard = true; $scope.onInputId = function() {
-    console.log($('#CitizenID').val().length);
-    var cid = $('#CitizenID').val();
+    $scope.isNumberVolume = false;
+    $scope.onInputVolume = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberVolume = !bool;
+        return bool;
+    };
 
-    if (cid.length >= 3) {
-        if (cid == $scope.data2.customerProfile["id-number"]) {
+    $scope.isNumberMonetary = false;
+    $scope.onInputMonetary = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberMonetary = !bool;
+        return bool;
+    };
 
-            //document.getElementById('btnReadCardClose2').click();
-            //$("#btnForm").fancybox().close();
+    $scope.isNumberOccurrence = false;
+    $scope.onInputOccurrence = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberOccurrence = !bool;
+        return bool;
+    };
+
+    $scope.isNumberDuration = false;
+    $scope.onInputDuration = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberDuration = !bool;
+        return bool;
+    };
+
+
+    $scope.saveOrder = function() {
+        if ($('.dateManual').val()) {
+            $scope.saveData['EFFECTIVE-DATE'] = $('.dateManual').val();
+            $scope.saveData['EFFECTIVE-OPTION'] = 'FUTURE';
+        }
+
+
+
+        var headers = {
+            'WEB_METHOD_CHANNEL': 'WEBUI',
+            'E2E_REFID': $scope.orderId
+        };
+        //var data2 = {};
+        //var order = {};
+        //if ($scope.orderId){
+        //    order['order-id'] = $scope.orderId;
+        //}
+
+        var data = {
+            target: 'aftersales/order/submit',
+            "order": {
+                "order-id": $scope.orderId,
+                "creator": $scope.getAuthen["logInName"],
+                "customer": {
+                    "title-code": $scope.data.customerProfile["title-code"],
+                    "firstname": $scope.data.customerProfile["firstname"],
+                    "lastname": $scope.data.customerProfile["lastname"],
+                    "contact-number": $scope.data.customerProfile["contact-number"],
+                    "id-type": $scope.data.customerProfile["id-type"],
+                    "customer-id": $scope.data.customerProfile["customer-id"],
+                    "id-number": $scope.data.customerProfile["id-number"] //,"birthdate":"2015-08-12T08:30:00+0700"//yyyy-MM-dd'T'HH:mm:ssZ
+                },
+                //จะสร้างโดย service JAVA
+                "sale-agent": {
+                    "name": $scope.getAuthen["engName"],
+                    "channel": $scope.getAuthen["channel"],
+                    "partner-code": ($scope.getAuthen["partnerCodes"].length > 0 ? $scope.getAuthen["partnerCodes"][0] : null),
+                    "partner-name": $scope.getAuthen["partnerName"],
+                    "sale-code": $scope.getAuthen["saleCode"],
+                    "sale-assist-code": "",
+                    "partner-type": $scope.getAuthen["partnerType"]
+                },
+                "order-items": [{
+                    "name": "CHANGE_PRICEPLAN",
+                    "product-name": $scope.pricePlan.saveName,
+                    "product-id-number": $scope.data.priceplan["product-id-number"],
+                    "product-id-name": $scope.data.priceplan["product-id-name"],
+                    "reason-code": $scope.selectReason.id,
+                    "user-memo": $scope.saveData.memo ? $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo : $scope.getAuthen.ssoEmployeePrincipal.loginName + "(" + $scope.getAuthen.ssoEmployeePrincipal.employeeId + ": " + $scope.getAuthen.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
+                    "order-data": {
+                        "SERVICE-LEVEL": $scope.data.priceplan["service-level"],
+                        "MOBILE-SERVICETYPE": $scope.data.priceplan["mobile-servicetype"],
+                        "OU-LEVEL": $scope.data.priceplan["ou-hierarchytype"],
+                        "CURRENT-PRICEPLAN": $scope.data.priceplan["product-id"],
+                        "CURRENT-PROPOSITIONS": $scope.currentPricePlan,
+                        "NEW-PROPOSITION": $scope.pricePlan.promotion,
+                        "NAS-PROPOSITION": $scope.selectProposition
+                    },
+                    "primary-order-data": {
+                        "OU-ID": $scope.data.priceplan["ouId"],
+                        "PARENT-OU-ID": $scope.data.priceplan["parent-ouId"],
+                        "BAN": $scope.data.priceplan["ban"],
+                        "COMPANY-CODE": $scope.data.priceplan["company-code"],
+                        "ACCOUNT-CATEGORY": $scope.data.priceplan["account-category"],
+                        "ACCOUNT-SUB-TYPE": $scope.data.priceplan["account-sub-type"],
+                        "EFFECTIVE-DATE": SystemService.convertDateToEng($scope.saveData['EFFECTIVE-DATE'], 'ENG'),
+                        "EFFECTIVE-OPTION": $scope.saveData['EFFECTIVE-OPTION']
+                    },
+                    "product-category": $scope.data.priceplan["product-category"],
+                    "product-type": "PRICEPLAN",
+                    "order-type": "CHANGE"
+                }]
+            },
+            "user-id": $scope.getAuthen["logInName"],
+            "ref-id": $scope.orderId
+
+        };
+        //approver
+        if ($scope.approver) {
+            data["approver"] = $scope.approver;
+        }
+
+        //authen
+        if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
+            var authenList = $('#authorizeFullName').val().split(" ");
+
+            data["order"]["customer"]["customer-agents"] = {
+                "AUTH_1": {
+                    "id-number": $('#CitizenID2').val(),
+                    "firstname": $('#authorizeFullName').val(),
+                    "lastname": $('#authorizeFullName').val()
+                }
+            };
+        }
+        //SHARE_ALLOWANCE, FriendAndFamily, CUG, POOLED
+        var spList = $scope.offerDetail["csm-offer-details"]["csm-related-offer-details"];
+        //var spName = $scope.offerDetail["csm-offer-details"]["name"];
+        var spAll = "";
+        var spNameAll = "";
+        $scope.isValidateFF = true;
+        $scope.attModalVal = "modal";
+        var spArray = {
+            'SHARE_ALLOWANCE': [],
+            'POOLED': [],
+            'FriendAndFamily': [],
+            'CUG': [],
+            'POOLING': [],
+            'CAPMAX': []
+        };
+        for (var isp = 0; isp < spList.length; isp++) {
+            var sp = spList[isp]["special-offer-type"];
+            var spName = spList[isp]["name"];
+
+            if (sp == "SHARE_ALLOWANCE" || sp == "POOLED" || sp == 'POOLING' || sp == 'CAPMAX') {
+                spAll = spAll + (spAll ? "|" : "") + sp;
+                spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                if ($scope.capMaxParameterList['monetary-capmax']) {
+                    spArray[sp].push("Monetary cap max|" + $scope.saveParamData.Monetary);
+                }
+                if ($scope.capMaxParameterList['occurrence-capmax']) {
+                    spArray[sp].push("Occurrence cap max|" + $scope.saveParamData.Occurrence);
+                }
+                if ($scope.capMaxParameterList['duration-capmax']) {
+                    spArray[sp].push("Duration cap max|" + $scope.saveParamData.Duration);
+                    spArray[sp].push("Duration cap max UOM|" + $scope.capMaxParameterList['durationCapMaxUOM']);
+                }
+                if ($scope.capMaxParameterList['volume-capmax']) {
+                    spArray[sp].push("Volume cap max|" + $scope.saveParamData.Volume);
+                    spArray[sp].push("Volume cap max UOM|" + $scope.capMaxParameterList['volume-capmax-uom']);
+                }
+            }
+            if (sp == 'FriendAndFamily') {
+                spAll = spAll + (spAll ? "|" : "") + sp;
+                spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                var countFF = 0;
+                for (var i = 1; i <= $scope.ffData.max; i++) {
+                    if ($scope.saveParamData["ff" + i]) {
+                        spArray[sp].push("Friend numbers offer level|" + $scope.saveParamData["ff" + i] + "|");
+                        countFF++;
+                    }
+                }
+                if (countFF < $scope.ffData.min) {
+                    SystemService.showAlert({
+                        "message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                        "message-code": "",
+                        "message-type": "WARNING",
+                        "en-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                        "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                        "technical-message": "changePricePlanController"
+                    });
+                    $scope.isValidateFF = false;
+                } else {
+
+                    $scope.isValidateFF = true;
+                    $scope.attModalVal = "modal";
+                }
+            }
+            if (sp == 'CUG') {
+
+                spAll = spAll + (spAll ? "|" : "") + sp;
+                spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                spArray[sp].push("CUG ID|" + $scope.saveDataCUG.id + "|");
+            }
+
+
+            //create field JSON
+            var list = spAll.split("|");
+            var listName = spNameAll.split('|');
+            if (spAll) {
+                for (var i = 0; i < list.length; i++) {
+                    data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-SIZE"] = spArray[list[i]].length;
+
+                    data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-OFFER-NAME"] = listName[i];
+
+                    var listValue = spArray[list[i]];
+                    for (var ii = 0; ii < listValue.length; ii++) {
+                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-" + ii] = listValue[ii];
+                    }
+
+                }
+            }
+
+
+        }
+        data["order"]["order-items"][0]["order-data"]["OFFERS-REQUIRE-PARAMETER"] = spAll;
+
+
+
+        console.log('saveOrder :::: ');
+        console.log(JSON.stringify(data));
+        console.log(data);
+        console.log($scope.selectReason);
+
+        if (SystemService.demo) {
+            if ($scope.isValidate && $scope.isValidateFF) {
+                SystemService.showBeforeClose({
+                    "message": "รายการคำขอเลขที่ " + $scope.orderId,
+                    "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
+                });
+            }
+        } else {
+            if ($scope.isValidate && $scope.isValidateFF) {
+
+                SystemService.callServicePost(data, headers, function(result) {
+                    console.log(result);
+                    if (result.status) {
+                        //save report to server
+                        SystemService.saveReportToServer({}, function(result) {
+
+                        });
+
+                        SystemService.showBeforeClose({
+                            "message": result.data["display-messages"][0]["th-message"],
+                            "message2": ""
+                        });
+                    } else {
+                        SystemService.showAlert({
+                            "message": result.error,
+                            "message-code": "",
+                            "message-type": "ERROR",
+                            "en-message": result.error,
+                            "th-message": result.error,
+                            "technical-message": "changePricePlanController"
+                        });
+                    }
+                });
+            }
+        }
+    };
+    $scope.confirmPrint = function() {
+        //confirm
+        //SystemService.showBeforeClose({
+        //    "message": "รายการคำขอเลขที่ " + $scope.orderId,
+        //    "message2": "ได้รับข้อมูลเรียบร้อยแล้ว",
+        //});
+        //SystemService.showConfirm().then(function (value) {
+
+        //}, function (reason) {
+        //    //cancel
+
+        //});
+    };
+    $scope.ReadCardMockUp = function(personId) {
+        //var certificateID = smartCardReaderService.readCardMockUp(personId);
+        var certificateID = personId;
+
+        ChangePricePlanService.getChangePricePlan($scope.SubNo, $scope.OUID, function(result) {
+
+            document.getElementById('btnReadCardClose2').click();
+            $('input[type=submit]').show();
+            $('input[type=reset]').show();
+            $scope.data = result.data;
+            if ($scope.data.offer.length != 0) {
+                $scope.saleList = $scope.data.offer[0]["product-name"];
+            }
+            $scope.isReadCardSuccess = true;
+        });
+    };
+    $scope.SetCardValue = function(result) {
+        $('#loadingReadCard').hide();
+        $('#loadingReadCard2').hide();
+        $('#unMatch2').hide();
+        $scope.isReadCardSuccess = false;
+
+        $scope.cardInfo = eval(result);
+        console.log($scope.cardInfo.CitizenID);
+        $scope.CitizenID = $scope.cardInfo.CitizenID;
+        $('#CitizenID').val('' + $scope.cardInfo.CitizenID);
+
+
+        if ($scope.cardInfo.CitizenID == $scope.data2.customerProfile["id-number"]) {
+
+            $scope.isCardValueData = true;
+
+            $scope.isReadCardSuccess = true;
             $scope.isCustomerProfile = true;
             $.fancybox.close();
-            $scope.isReadCardSuccess = false;
-            $scope.CitizenID = "";
+
+            setTimeout(function() {
+                $('#idBindDataAgain').click();
+            }, 500);
 
             $scope.data = $scope.data2;
+
+            $('.isCustomerProfile').prop('disabled', false);
+
         } else {
             $('#unMatch').show();
             $scope.isMatch = false;
         }
+        ///$scope.ReadCardMockUp($scope.cardInfo.CitizenID);
+        //console.log(result);
+        //console.log(result.CitizenID);
 
     }
-};
 
-$scope.datalsSale = {}; $scope.listPricePlan = [];
-var runTime = new Date().getTime(); $scope.runTime = runTime; $scope.template = {
-    "header": "app/views/header.html?" + runTime,
-    "customerprofile": "app/views/customerprofile.html?" + runTime,
-    "currentpriceplan": "app/views/currentpriceplan.html?" + runTime,
-    "newpriceplan": "app/views/newpriceplan.html?" + runTime,
-    "newparampriceplan": "app/views/newparampriceplan.html?" + runTime,
-    "effectivepriceplan": "app/views/effectivepriceplan.html?" + runTime,
-    "reasonmemo": "app/views/reasonmemo.html?" + runTime,
-    "modalPricePlan": "app/views/modalPricePlan.html?" + runTime
-}
-$scope.customDialogOptions = {
-    templateUrl: 'app/views/ngBootbox-template.html?v=' + runTime,
-    onEscape: function() {
-        console.log('Escape was pressed');
-    },
-    show: true,
-    backdrop: false,
-    closeButton: false,
-    animate: true
-};
+    $scope.onInputId2 = function() {
+        var cid = $('#CitizenID2').val();
+        if (cid.length == 13) {
+            if (SystemService.validatePID(cid)) {
 
-//Price plan list
-$scope.pricePlanFilter = {
-    value: ""
-};
+            } else {
+                $('#CitizenID2').val('');
+            }
+        }
+    };
+    $scope.SetCardValue2 = function(result) {
+        $('#loadingReadCard2').hide();
 
-$scope.pricePlan = {
-    name: "",
-    promotion: "",
-    rc: "",
-    code: ""
-}; $scope.pricePlan2 = {
-    name: "",
-    promotion: "",
-    rc: "",
-    pricePlanFilter: "",
-    priceplans: {},
-    code: ""
-};
+        $scope.cardInfo2 = eval(result);
+        console.log($scope.cardInfo2);
 
-$scope.isSelectedPricePlan = false; $scope.selectedPricePlan = function(pp) {
+        $('#CitizenID2').val($scope.cardInfo2.CitizenID);
+        $('#authorizeFullName').val($scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + " " + $scope.cardInfo2.LastNameTH);
 
-    $('#divPage').click(function() {
-        $scope.onBlurPricePlanItem();
-    });
-    //$('#ppfilter').val('');
-    //$scope.pricePlanFilter = "";
+        $scope.varCardInfo2.firstName = $scope.cardInfo2.FirstNameTH;
+        $scope.varCardInfo2.lastName = $scope.cardInfo2.LastNameTH;
+
+        //$scope.CitizenID2 = $scope.cardInfo2.CitizenID;
+        //$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
+    }
+
+    $scope.isManualReadCard = true;
+    $scope.onInputId = function() {
+        console.log($('#CitizenID').val().length);
+        var cid = $('#CitizenID').val();
+
+        if (cid.length >= 3) {
+            if (cid == $scope.data2.customerProfile["id-number"]) {
+
+                //document.getElementById('btnReadCardClose2').click();
+                //$("#btnForm").fancybox().close();
+                $scope.isCustomerProfile = true;
+                $.fancybox.close();
+                $scope.isReadCardSuccess = false;
+                $scope.CitizenID = "";
+
+                $scope.data = $scope.data2;
+            } else {
+                $('#unMatch').show();
+                $scope.isMatch = false;
+            }
+
+        }
+    };
+
+    $scope.datalsSale = {};
+    $scope.listPricePlan = [];
+    var runTime = new Date().getTime();
+    $scope.runTime = runTime;
+    $scope.template = {
+        "header": "app/views/header.html?" + runTime,
+        "customerprofile": "app/views/customerprofile.html?" + runTime,
+        "currentpriceplan": "app/views/currentpriceplan.html?" + runTime,
+        "newpriceplan": "app/views/newpriceplan.html?" + runTime,
+        "newparampriceplan": "app/views/newparampriceplan.html?" + runTime,
+        "effectivepriceplan": "app/views/effectivepriceplan.html?" + runTime,
+        "reasonmemo": "app/views/reasonmemo.html?" + runTime,
+        "modalPricePlan": "app/views/modalPricePlan.html?" + runTime
+    }
+    $scope.customDialogOptions = {
+        templateUrl: 'app/views/ngBootbox-template.html?v=' + runTime,
+        onEscape: function() {
+            console.log('Escape was pressed');
+        },
+        show: true,
+        backdrop: false,
+        closeButton: false,
+        animate: true
+    };
+
+    //Price plan list
+    $scope.pricePlanFilter = {
+        value: ""
+    };
+
+    $scope.pricePlan = {
+        name: "",
+        promotion: "",
+        rc: "",
+        code: ""
+    };
     $scope.pricePlan2 = {
-        name: pp.pricePlan,
-        promotion: pp.promotion,
-        rc: pp.rc,
-        priceplans: pp.priceplans,
-        code: pp["proposition-code"],
-        saveName: pp.saveName,
-        pp: pp
+        name: "",
+        promotion: "",
+        rc: "",
+        pricePlanFilter: "",
+        priceplans: {},
+        code: ""
     };
-    $scope.isSelectedPricePlan = true;
-    $scope.isSelectedPricePlan2 = true;
-    console.log(pp);
-}; $scope.isSelectedPricePlan2 = false; $scope.onBlurPricePlanItem = function() {
-    //alert('');
-    if ($scope.isSelectedPricePlan && $('input[name=pricelsx]:checked').val()) {
-        $scope.isSelectedPricePlan2 = true;
-    } else {
-        $scope.isSelectedPricePlan2 = false;
-    }
-    $('#idBindDataAgain').click();
-}; $scope.selectedPricePlan2 = function() {
-    paginationService.setCurrentPage('PPList', 1);
-    var setPPP = function() {
-        setTimeout(function() {
-            $('#selectProposition').focus();
-            //$('#selectProposition').val('null');
-        }, 1000);
-        setTimeout(function() {
-            //$('#selectProposition').val('null');
-        }, 500);
 
+    $scope.isSelectedPricePlan = false;
+    $scope.selectedPricePlan = function(pp) {
 
-        //selectProposition = $scope.pricePlan2.code;
-        //$scope.selectProposition = $scope.pricePlan2.code;
-
-        //selectProposition = "null";
-        //$scope.selectProposition = "null";
-
-        //$('#selectProposition').val($scope.selectProposition);
-        var newProposition = "";
-        if ($('#selectProposition').val() != 'null') {
-            newProposition = $scope.pricePlan2.promotion;
-        }
-
-        $scope.pricePlan = {
-            name: $scope.pricePlan2.name,
-            promotion: newProposition,
-            rc: $scope.pricePlan2.rc,
-            pricePlanFilter: "",
-            saveName: $scope.pricePlan2.saveName
+        $('#divPage').click(function() {
+            $scope.onBlurPricePlanItem();
+        });
+        //$('#ppfilter').val('');
+        //$scope.pricePlanFilter = "";
+        $scope.pricePlan2 = {
+            name: pp.pricePlan,
+            promotion: pp.promotion,
+            rc: pp.rc,
+            priceplans: pp.priceplans,
+            code: pp["proposition-code"],
+            saveName: pp.saveName,
+            pp: pp
         };
-
-        //alert($scope.pricePlan.saveName);
-
-        if ($scope.pricePlan2.name) {
-            $scope.isValidate = true;
-        }
-
-        $scope.getOfferDetail($scope.pricePlan2.priceplans.soc);
-
+        $scope.isSelectedPricePlan = true;
+        $scope.isSelectedPricePlan2 = true;
+        console.log(pp);
     };
-    //$('#ppfilter').val("");
-    //$('#ppfilter2').val("");
-    $scope.pricePlanFilter.value = "";
-    if ($scope.isSelectedPricePlan && $('input[name=pricelsx]:checked').val()) {
-        setPPP();
-    } else {
-        if ($scope.isEnterPP) {
+    $scope.isSelectedPricePlan2 = false;
+    $scope.onBlurPricePlanItem = function() {
+        //alert('');
+        if ($scope.isSelectedPricePlan && $('input[name=pricelsx]:checked').val()) {
+            $scope.isSelectedPricePlan2 = true;
+        } else {
+            $scope.isSelectedPricePlan2 = false;
+        }
+        $('#idBindDataAgain').click();
+    };
+    $scope.selectedPricePlan2 = function() {
+        paginationService.setCurrentPage('PPList', 1);
+        var setPPP = function() {
+            setTimeout(function() {
+                $('#selectProposition').focus();
+                //$('#selectProposition').val('null');
+            }, 1000);
+            setTimeout(function() {
+                //$('#selectProposition').val('null');
+            }, 500);
+
+
+            //selectProposition = $scope.pricePlan2.code;
+            //$scope.selectProposition = $scope.pricePlan2.code;
+
+            //selectProposition = "null";
+            //$scope.selectProposition = "null";
+
+            //$('#selectProposition').val($scope.selectProposition);
+            var newProposition = "";
+            if ($('#selectProposition').val() != 'null') {
+                newProposition = $scope.pricePlan2.promotion;
+            }
+
+            $scope.pricePlan = {
+                name: $scope.pricePlan2.name,
+                promotion: newProposition,
+                rc: $scope.pricePlan2.rc,
+                pricePlanFilter: "",
+                saveName: $scope.pricePlan2.saveName
+            };
+
+            //alert($scope.pricePlan.saveName);
+
+            if ($scope.pricePlan2.name) {
+                $scope.isValidate = true;
+            }
+
+            $scope.getOfferDetail($scope.pricePlan2.priceplans.soc);
+
+        };
+        //$('#ppfilter').val("");
+        //$('#ppfilter2').val("");
+        $scope.pricePlanFilter.value = "";
+        if ($scope.isSelectedPricePlan && $('input[name=pricelsx]:checked').val()) {
             setPPP();
         } else {
-            SystemService.showAlert(ValidateMsgService.data.pleaseSelectPP);
+            if ($scope.isEnterPP) {
+                setPPP();
+            } else {
+                SystemService.showAlert(ValidateMsgService.data.pleaseSelectPP);
+            }
+
         }
-
-    }
-};
-
-$scope.selectedPricePlan3 = function() {
-    $scope.isSelectedPricePlan2 = false;
-    if (!$scope.isLoadPricePlan) {
-        //call Priceplan
-        $scope.getPriceplan();
-    } else {
-        $scope.smartSearchPP($scope.pricePlanFilter.value);
-        //$scope.onClearPricePlan();
-        //var value = $('#selectProposition').val() == "null" ? "" : $('#selectProposition').val();
-        ////var value = $scope.selectProposition;
-        //$scope.propositionList = [];
-
-        //setTimeout(function () {
-        //    $scope.propositionList = $filter('filter')(valPricePlans, value);
-        //    $scope.currentPage = 1;
-        //    $('#idBindDataAgain').click();
-        //}, 2000);
-        //console.log(value, $scope.propositionList);
-
-    }
-    $scope.isSelectedPricePlan = false;
-    $('.radioPriceplan').prop('checked', false);
-
-}; $scope.focusPricePlanFilter = function() {
-    if (!$scope.isLoadPricePlan && $scope.isCustomerProfile) {
-        //call Priceplan
-        $scope.getPriceplan();
-    }
-}; $scope.selectedPricePlan4 = function() {
-    $scope.selectProposition = "null";
-
-    //$('#selectProposition').val($scope.selectProposition);
-    $scope.getPriceplan();
-    $scope.onClearPricePlan();
-    //$scope.pricePlanFilter = "";
-
-    console.log($scope.selectProposition);
-}; $scope.onCancelPricePlan = function() {
-    //$('#ppfilter').val("");
-    //$('#ppfilter2').val("");
-    $scope.pricePlanFilter.value = "";
-    console.log($scope.pricePlanFilter.value);
-    // $scope.onClearPricePlan();
-};
-
-$scope.getCapmaxParameter = function(soc) {
-    var checkValue = function(capmax) {
-        var value = "";
-        if (capmax == "0") {
-            //value = "0";
-            value = "-2";
-        } else if (capmax == "-2") {
-            //value = "-2";
-            value = "-2";
-        } else if (capmax == "") {
-            value = "hide";
-        } else {
-            value = "-2";
-        }
-        return value;
     };
-    var checkValueCapmax = function(capmax) {
-        var value = "";
-        if (capmax == "0") {
-            //value = "0";
-            value = "-2";
-        } else if (capmax == "-2") {
-            //value = "-2";
-            value = "-2";
-        } else if (capmax == "") {
-            value = "hide";
-        } else {
-            value = "";
-        }
-        return value;
-    };
-    ChangePricePlanService.getCapmaxParameter(soc, function(result) {
-        console.log(result.data);
-        $scope.capMaxParameterList = result.data['cap-max-parameter'];
 
-        $scope.parameter = {
-            Monetary: checkValue($scope.capMaxParameterList['monetary-capmax']),
-            Occurrence: checkValue($scope.capMaxParameterList['occurrence-capmax']),
-            Duration: checkValue($scope.capMaxParameterList['duration-capmax']),
-            Volume: checkValue($scope.capMaxParameterList['volume-capmax'])
+    $scope.selectedPricePlan3 = function() {
+        $scope.isSelectedPricePlan2 = false;
+        if (!$scope.isLoadPricePlan) {
+            //call Priceplan
+            $scope.getPriceplan();
+        } else {
+            $scope.smartSearchPP($scope.pricePlanFilter.value);
+            //$scope.onClearPricePlan();
+            //var value = $('#selectProposition').val() == "null" ? "" : $('#selectProposition').val();
+            ////var value = $scope.selectProposition;
+            //$scope.propositionList = [];
+
+            //setTimeout(function () {
+            //    $scope.propositionList = $filter('filter')(valPricePlans, value);
+            //    $scope.currentPage = 1;
+            //    $('#idBindDataAgain').click();
+            //}, 2000);
+            //console.log(value, $scope.propositionList);
+
+        }
+        $scope.isSelectedPricePlan = false;
+        $('.radioPriceplan').prop('checked', false);
+
+    };
+    $scope.focusPricePlanFilter = function() {
+        if (!$scope.isLoadPricePlan && $scope.isCustomerProfile) {
+            //call Priceplan
+            $scope.getPriceplan();
+        }
+    };
+    $scope.selectedPricePlan4 = function() {
+        $scope.selectProposition = "null";
+
+        //$('#selectProposition').val($scope.selectProposition);
+        $scope.getPriceplan();
+        $scope.onClearPricePlan();
+        //$scope.pricePlanFilter = "";
+
+        console.log($scope.selectProposition);
+    };
+    $scope.onCancelPricePlan = function() {
+        //$('#ppfilter').val("");
+        //$('#ppfilter2').val("");
+        $scope.pricePlanFilter.value = "";
+        console.log($scope.pricePlanFilter.value);
+        // $scope.onClearPricePlan();
+    };
+
+    $scope.getCapmaxParameter = function(soc) {
+        var checkValue = function(capmax) {
+            var value = "";
+            if (capmax == "0") {
+                //value = "0";
+                value = "-2";
+            } else if (capmax == "-2") {
+                //value = "-2";
+                value = "-2";
+            } else if (capmax == "") {
+                value = "hide";
+            } else {
+                value = "-2";
+            }
+            return value;
         };
-        $scope.saveParamData.Monetary = checkValueCapmax($scope.capMaxParameterList['monetary-capmax']);
-        $scope.saveParamData.Occurrence = checkValueCapmax($scope.capMaxParameterList['occurrence-capmax']);
-        $scope.saveParamData.Duration = checkValueCapmax($scope.capMaxParameterList['duration-capmax']);
-        $scope.saveParamData.Volume = checkValueCapmax($scope.capMaxParameterList['volume-capmax']);
+        var checkValueCapmax = function(capmax) {
+            var value = "";
+            if (capmax == "0") {
+                //value = "0";
+                value = "-2";
+            } else if (capmax == "-2") {
+                //value = "-2";
+                value = "-2";
+            } else if (capmax == "") {
+                value = "hide";
+            } else {
+                value = "";
+            }
+            return value;
+        };
+        ChangePricePlanService.getCapmaxParameter(soc, function(result) {
+            console.log(result.data);
+            $scope.capMaxParameterList = result.data['cap-max-parameter'];
 
-        $scope.capMaxParameterList['durationCapMaxUOMCombo'] = SystemService.convertArray($scope.capMaxParameterList['duration-capmax-uom-combo'], "=");
-        $scope.capMaxParameterList['volumeCapMaxUOMCombo'] = SystemService.convertArray($scope.capMaxParameterList['volume-capmax-uom-combo'], "=");
+            $scope.parameter = {
+                Monetary: checkValue($scope.capMaxParameterList['monetary-capmax']),
+                Occurrence: checkValue($scope.capMaxParameterList['occurrence-capmax']),
+                Duration: checkValue($scope.capMaxParameterList['duration-capmax']),
+                Volume: checkValue($scope.capMaxParameterList['volume-capmax'])
+            };
+            $scope.saveParamData.Monetary = checkValueCapmax($scope.capMaxParameterList['monetary-capmax']);
+            $scope.saveParamData.Occurrence = checkValueCapmax($scope.capMaxParameterList['occurrence-capmax']);
+            $scope.saveParamData.Duration = checkValueCapmax($scope.capMaxParameterList['duration-capmax']);
+            $scope.saveParamData.Volume = checkValueCapmax($scope.capMaxParameterList['volume-capmax']);
 
-        $scope.capMaxParameterList['durationCapMaxUOM'] = SystemService.searchIdArray($scope.capMaxParameterList['durationCapMaxUOMCombo'], $scope.capMaxParameterList['duration-capmax-uom']);
-        $scope.capMaxParameterList['volumeCapMaxUOM'] = SystemService.searchIdArray($scope.capMaxParameterList['volumeCapMaxUOMCombo'], $scope.capMaxParameterList['volume-capmax-uom']);
+            $scope.capMaxParameterList['durationCapMaxUOMCombo'] = SystemService.convertArray($scope.capMaxParameterList['duration-capmax-uom-combo'], "=");
+            $scope.capMaxParameterList['volumeCapMaxUOMCombo'] = SystemService.convertArray($scope.capMaxParameterList['volume-capmax-uom-combo'], "=");
+
+            $scope.capMaxParameterList['durationCapMaxUOM'] = SystemService.searchIdArray($scope.capMaxParameterList['durationCapMaxUOMCombo'], $scope.capMaxParameterList['duration-capmax-uom']);
+            $scope.capMaxParameterList['volumeCapMaxUOM'] = SystemService.searchIdArray($scope.capMaxParameterList['volumeCapMaxUOMCombo'], $scope.capMaxParameterList['volume-capmax-uom']);
+
+        });
+    };
+
+    $scope.promotion = "";
+    var selectProposition = '';
+    $scope.selectedPromotion = function() {
+
+        $scope.selectProposition = $('#selectProposition').val() == 'null' ? '' : $('#selectProposition').val();
+        //alert(selectProposition+":"+$scope.selectProposition);
+        // if (selectProposition == $scope.selectProposition) {} else {
+        //     selectProposition = $scope.selectProposition;
+        //     $scope.pricePlan = {};
+        //     $scope.isValidate = false;
+        //     $scope.specialOfferType = {
+        //         CUG: false,
+        //         FF: false,
+        //         SA: false,
+        //         POOL: false,
+        //         POOLING: false,
+        //         CAPMAX: false
+        //     };
+        // }
+        console.log($scope.selectProposition);
+        if ($scope.selectProposition) {
+            $scope.propositionList = $filter('filter')(valPricePlans, {
+                "proposition-code": $scope.selectProposition
+            });
+        } else {
+            $scope.propositionList = $filter('filter')(valPricePlansUnique, {
+                "proposition-code": $scope.selectProposition
+            });
+        }
+
+        console.log($scope.selectProposition, $scope.propositionList);
+    };
+
+    //End pricePlan
+
+    $scope.isAuthorize = false;
+    $scope.authorize = function() {
+        $scope.isAuthorize = true;
+    };
+
+    //Reasons
+    $scope.reasons = [];
+    $scope.reason = "";
+    $scope.selectReason = {};
+    ReasonService.list("84", function(result) {
+        // $scope.reasons = result;
+        // $scope.reason = $scope.reasons[86];
+        // $scope.selectReason = $scope.reasons[86];
+
+        //solution for none fix index
+        $scope.reasons = result;
+        var myArray = result;
+        var searchText = "CREQ",
+            index = -1;
+        for (var i = 0, len = myArray.length; i < len; i++) {
+            if (myArray[i].id === searchText) {
+                index = i;
+                break;
+            }
+        }
+
+        console.log(index);
+
+        $scope.reason = $scope.reasons[index];
+        $scope.selectReason = $scope.reasons[index];
+        //solution for none fix index
 
     });
-};
-
-$scope.promotion = "";
-var selectProposition = ''; $scope.selectedPromotion = function() {
-
-    $scope.selectProposition = $('#selectProposition').val() == 'null' ? '' : $('#selectProposition').val();
-    //alert(selectProposition+":"+$scope.selectProposition);
-    // if (selectProposition == $scope.selectProposition) {} else {
-    //     selectProposition = $scope.selectProposition;
-    //     $scope.pricePlan = {};
-    //     $scope.isValidate = false;
-    //     $scope.specialOfferType = {
-    //         CUG: false,
-    //         FF: false,
-    //         SA: false,
-    //         POOL: false,
-    //         POOLING: false,
-    //         CAPMAX: false
-    //     };
-    // }
-    console.log($scope.selectProposition);
-    if ($scope.selectProposition) {
-        $scope.propositionList = $filter('filter')(valPricePlans, {
-            "proposition-code": $scope.selectProposition
-        });
-    } else {
-        $scope.propositionList = $filter('filter')(valPricePlansUnique, {
-            "proposition-code": $scope.selectProposition
-        });
-    }
-
-    console.log($scope.selectProposition, $scope.propositionList);
-};
-
-//End pricePlan
-
-$scope.isAuthorize = false; $scope.authorize = function() {
-    $scope.isAuthorize = true;
-};
-
-//Reasons
-$scope.reasons = []; $scope.reason = ""; $scope.selectReason = {}; ReasonService.list("84", function(result) {
-    // $scope.reasons = result;
-    // $scope.reason = $scope.reasons[86];
-    // $scope.selectReason = $scope.reasons[86];
-
-    //solution for none fix index
-    $scope.reasons = result;
-    var myArray = result;
-    var searchText = "CREQ",
-        index = -1;
-    for (var i = 0, len = myArray.length; i < len; i++) {
-        if (myArray[i].id === searchText) {
-            index = i;
-            break;
-        }
-    }
-
-    console.log(index);
-
-    $scope.reason = $scope.reasons[index];
-    $scope.selectReason = $scope.reasons[index];
-    //solution for none fix index
-
-}); $scope.onReasonChange = function() {
-    $scope.selectReason = $scope.reasons[$('#selectReasonId').val()];
-    console.log($scope.selectReason);
-};
-//end reson
-$scope.cancelChanged = function() {
-    closeWP();
-    //$window.closed();
-}; $scope.propoCode = "null";
-//$scope.onChangePropo = function
-$scope.onClearPricePlan = function() {
-    paginationService.setCurrentPage('PPList', 1);
-    //$('#ppfilter').val('');
-    //$scope.pricePlanFilter.value = "";
-    $scope.pricePlan = {};
-    $scope.specialOfferType = {
-        CUG: false,
-        FF: false,
-        SA: false,
-        POOL: false,
-        POOLING: false,
-        CAPMAX: false
+    $scope.onReasonChange = function() {
+        $scope.selectReason = $scope.reasons[$('#selectReasonId').val()];
+        console.log($scope.selectReason);
     };
-    $scope.isValidate = false;
-    $scope.onCancelCUG();
-    //$scope.onCancelFF();
-    //$scope.onCancelPOOLED();
-    $scope.saveParamData = {};
-}; $scope.onCancelFF = function() {}; $scope.onCancelPOOLED = function() {}; $scope.clearSP = function() {
-    $scope.specialOfferType = {
-        CUG: false,
-        FF: false,
-        SA: false,
-        POOL: false,
-        POOLING: false,
-        CAPMAX: false
+    //end reson
+    $scope.cancelChanged = function() {
+        closeWP();
+        //$window.closed();
+    };
+    $scope.propoCode = "null";
+    //$scope.onChangePropo = function
+    $scope.onClearPricePlan = function() {
+        paginationService.setCurrentPage('PPList', 1);
+        //$('#ppfilter').val('');
+        //$scope.pricePlanFilter.value = "";
+        $scope.pricePlan = {};
+        $scope.specialOfferType = {
+            CUG: false,
+            FF: false,
+            SA: false,
+            POOL: false,
+            POOLING: false,
+            CAPMAX: false
+        };
+        $scope.isValidate = false;
+        $scope.onCancelCUG();
+        //$scope.onCancelFF();
+        //$scope.onCancelPOOLED();
+        $scope.saveParamData = {};
+    };
+    $scope.onCancelFF = function() {};
+    $scope.onCancelPOOLED = function() {};
+    $scope.clearSP = function() {
+        $scope.specialOfferType = {
+            CUG: false,
+            FF: false,
+            SA: false,
+            POOL: false,
+            POOLING: false,
+            CAPMAX: false
+        };
+
+        $scope.onCancelCUG();
+        //$scope.onCancelFF();
+        //$scope.onCancelPOOLED();
+        $scope.saveParamData = {};
     };
 
-    $scope.onCancelCUG();
-    //$scope.onCancelFF();
-    //$scope.onCancelPOOLED();
-    $scope.saveParamData = {};
-};
+    //----------- camera ----------------
+    $scope.initWebCam = function() {
 
-//----------- camera ----------------
-$scope.initWebCam = function() {
+        setTimeout(function() {
+            $('#btnSavePhoto').hide();
+            var html = webcam.get_html(320, 240);
+            $("#dataCamera").html(html);
 
-    setTimeout(function() {
-        $('#btnSavePhoto').hide();
-        var html = webcam.get_html(320, 240);
-        $("#dataCamera").html(html);
+            webcam.set_api_url(getURL('services/file/upload.service'));
+            webcam.set_quality(90); // JPEG quality (1 - 100)
+            webcam.set_shutter_sound(true); // play shutter click sound
+            webcam.set_hook('onComplete', onCompleteSnap);
 
-        webcam.set_api_url(getURL('services/file/upload.service'));
-        webcam.set_quality(90); // JPEG quality (1 - 100)
-        webcam.set_shutter_sound(true); // play shutter click sound
-        webcam.set_hook('onComplete', onCompleteSnap);
+        }, 500);
 
-    }, 500);
+    }
 
-}
+    function onCompleteSnap(msg) {
+        $scope.varPhoto = msg;
+        var ie_preview_image = $("#ie_preview_image")[0];
+        ie_preview_image.src = "data:image/png;base64," + msg;
 
-function onCompleteSnap(msg) {
-    $scope.varPhoto = msg;
-    var ie_preview_image = $("#ie_preview_image")[0];
-    ie_preview_image.src = "data:image/png;base64," + msg;
+        webcam.reset();
+        $('#btnSavePhoto').show();
+    }
 
-    webcam.reset();
-    $('#btnSavePhoto').show();
-}
-
-$scope.webcamSnap = function() {
-    webcam.snap();
-}
+    $scope.webcamSnap = function() {
+        webcam.snap();
+    }
 
 
-//bind data again
-$scope.onBindDataAgain = function() {
-    //alert('BindDataAgain');
-};
+    //bind data again
+    $scope.onBindDataAgain = function() {
+        //alert('BindDataAgain');
+    };
 
 
-$scope.onSearchCUG = function(item) {
-    if ($scope.saveDataCUG.filter) {
-        var groupName = item['group-name'].toUpperCase();
-        var groupId = item['group-id'].toUpperCase();
-        var searchValue = $scope.saveDataCUG.filter.toUpperCase();
+    $scope.onSearchCUG = function(item) {
+        if ($scope.saveDataCUG.filter) {
+            var groupName = item['group-name'].toUpperCase();
+            var groupId = item['group-id'].toUpperCase();
+            var searchValue = $scope.saveDataCUG.filter.toUpperCase();
 
-        if ((groupName.indexOf(searchValue) != -1) || (groupId.indexOf(searchValue) != -1)) {
+            if ((groupName.indexOf(searchValue) != -1) || (groupId.indexOf(searchValue) != -1)) {
+                return true;
+            }
+        } else {
             return true;
         }
-    } else {
-        return true;
-    }
-    return false;
-};
+        return false;
+    };
 
-$scope.onSearchPricePlan = function(item) {
-    if ($scope.pricePlanFilter.value) {
-        var groupName = item['group-name'].toUpperCase();
-        var groupId = item['group-id'].toUpperCase();
-        var searchValue = $scope.pricePlanFilter.value.toUpperCase();
+    $scope.onSearchPricePlan = function(item) {
+        if ($scope.pricePlanFilter.value) {
+            var groupName = item['group-name'].toUpperCase();
+            var groupId = item['group-id'].toUpperCase();
+            var searchValue = $scope.pricePlanFilter.value.toUpperCase();
 
-        if ((groupName.indexOf(searchValue) != -1) || (groupId.indexOf(searchValue) != -1)) {
+            if ((groupName.indexOf(searchValue) != -1) || (groupId.indexOf(searchValue) != -1)) {
+                return true;
+            }
+        } else {
             return true;
         }
-    } else {
-        return true;
-    }
-    return false;
-};
-// $scope.afterCloseWarning = function () {
-//     $scope.isClickPrint = false;
-//     isFocus = true;
-//     $scope.initModalReadCard();
-//     $scope.validateUI();
+        return false;
+    };
+    // $scope.afterCloseWarning = function () {
+    //     $scope.isClickPrint = false;
+    //     isFocus = true;
+    //     $scope.initModalReadCard();
+    //     $scope.validateUI();
 
 
-// };
+    // };
 
-$scope.smartSearchPP = function(txtSearch) {
+    $scope.smartSearchPP = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {
             var txtList = txtSearch.split(' ');
             var arr = valPricePlans;
@@ -2089,26 +2161,58 @@ $scope.smartSearchPP = function(txtSearch) {
             $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
         }
     };
-$scope.afterCloseWarning = function() {
-    if ($scope.SubNo === 'null') {
-        // $('#dataSubNo').val('');
-        setTimeout(function() {
-            $('#dataSubNo').focus();
-        }, 500);
+    $scope.validateDateFormat = function() {
+        $scope.dateValues = $scope.saveData['manualBillDate'].split('/');
+        console.log($scope.dateValues[0], $scope.dateValues[1], $scope.dateValues[2]);
+
+        if ($scope.dateValues[1] > 12) {
+            $scope.dateValues[1] = "";
+            if (!$scope.dateValues[2]) {
+                $scope.saveData['manualBillDate'] = $scope.dateValues[0] + "/" + $scope.dateValues[1];
+            } else {
+                $scope.saveData['manualBillDate'] = $scope.dateValues[0] + "/" + $scope.dateValues[1] + "/" + $scope.dateValues[2];
+            }
+            console.log($scope.dateValues);
+        } else if ($scope.dateValues[0] > 31) {
+
+            if ($scope.dateValues[0] && !$scope.dateValues[1] && !$scope.dateValues[2]) {
+                $scope.saveData['manualBillDate'] = "";
+            } else if ($scope.dateValues[0] && $scope.dateValues[1] && !$scope.dateValues[2]) {
+                $scope.saveData['manualBillDate'] = "" + "/" + $scope.dateValues[1];
+            } else if ($scope.dateValues[0] && !$scope.dateValues[1] && $scope.dateValues[2]) {
+                $scope.saveData['manualBillDate'] = "" + "/" + "" + "/" + $scope.dateValues[2];
+            } else if ($scope.dateValues[0] && $scope.dateValues[1] && $scope.dateValues[2]) {
+                $scope.saveData['manualBillDate'] = "" + "/" + $scope.dateValues[1] + "/" + $scope.dateValues[2];
+            }
+        } else if (($scope.dateValues[1] == 4 || $scope.dateValues[1] == 6 || $scope.dateValues[1] == 9 || $scope.dateValues[1] == 11) && $scope.dateValues[0] == 31) {
+            $scope.dateValues[0] = "30";
+            if (!$scope.dateValues[2]) {
+                $scope.saveData['manualBillDate'] = $scope.dateValues[0] + "/" + $scope.dateValues[1];
+            } else {
+                $scope.saveData['manualBillDate'] = $scope.dateValues[0] + "/" + $scope.dateValues[1] + "/" + $scope.dateValues[2];
+            }
+        }
     }
-    $scope.isClickPrint = false;
-    isFocus = true;
-    $scope.initModalReadCard();
-    $scope.validateUI();
-
-
-
-    if (idFocus) {
-        $('#' + idFocus).focus();
-        idFocus = "";
-    } else {
+    $scope.afterCloseWarning = function() {
+        if ($scope.SubNo === 'null') {
+            // $('#dataSubNo').val('');
+            setTimeout(function() {
+                $('#dataSubNo').focus();
+            }, 500);
+        }
+        $scope.isClickPrint = false;
+        isFocus = true;
+        $scope.initModalReadCard();
         $scope.validateUI();
-    }
-};
+
+
+
+        if (idFocus) {
+            $('#' + idFocus).focus();
+            idFocus = "";
+        } else {
+            $scope.validateUI();
+        }
+    };
 
 });
