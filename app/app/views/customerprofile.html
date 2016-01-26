@@ -1,4 +1,7 @@
-<h4 style="margin-top:-5px;">ข้อมูลลูกค้า</h4>
+
+<h4 style="margin-top:-5px;" ng-show="divID != 'changeMsisdnContent'">ข้อมูลลูกค้า</h4>
+<h4 style="margin-top:-5px;" ng-show="divID == 'changeMsisdnContent'">ข้อมูลผู้จดทะเบียน</h4>
+
 <div class="customer-info">
     <!-- <a href="#" class="btn btn-camera"><img src="images/user.png"> </a> -->
     <button type="button" class="hidden"
@@ -22,18 +25,7 @@
                         
                     </h4>
                     <span class="input-group-btn" style=" top: 8px;" ng-hide="shopType == '0' ">
-                        <!--<button title="อ่านจากการ์ด" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard');ReadCard('ReadP');" style="height:30px;" type="button" data-toggle="tooltip" class="btn credit_ie8">
-                            <i class="fa fa-credit-card"></i>
-                        </button>-->
-                        <!--<button href="#modal-ReadCard"
-                                title="อ่านจากการ์ด"
-                                ng-click="initModalReadCard()"
-                                style="height:30px;"
-                                type="button"
-                                data-toggle="modal"
-                                class="btn ">
-                            <i class="fa fa-credit-card"></i>
-                        </button>-->
+                        
                         <button href="#fancy-ReadCard"
                                 ng-click="initModalReadCard()"
                                 style="height:32px;"
@@ -42,8 +34,7 @@
                                 class="btn ">
                             <i class="fa fa-credit-card"></i>
                         </button>
-                        <!--<a href="#modal-ReadCard3" onclick="return false;" data-dismiss="modal" data-toggle="modal" class="btn btn-success">Ok</a>-->
-                        <!--<a href="#modal-SecoundAuthen" class="btn" onclick="return false;" data-toggle="modal"><i class="fa fa-credit-card"></i></a>-->
+                       
                     </span>
                 </div>
 
@@ -80,8 +71,7 @@
                     <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
                 </button>
             </div>
-            <!--<div ng-hide="shopType == '0' || Level == 'OU'"><a class="btn btn-camera" data-toggle="modal" ng-click="initModalReadCard()" onclick="return false;" href="#modal-ReadCard"> อ่านบัตร </a></div>-->
-
+           
         </div>
     </div>
     &nbsp;
@@ -99,30 +89,11 @@
         </div>
     </div>
     <div ng-hide="isAuthorize==false">
-        <!--<div class="row">
-            <div class="col-md-12">
-                <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                    <input type="checkbox" class="styled" id="authorize_02" ng-model="isAuthorize">
-                    <label for="authorize_02">กรณีมอบอำนาจ </label>
-                </div>
-            </div>
-        </div>-->
-
+        
         <input type="hidden" id="ReadAuthorize" value="false" />
 
         <div class="row">
-            <!--<div class="col-md-4">
-                <div class="input-group">
-                    <label>หมายเลขบัตรประชาชน / พาสปอร์ต ผู้รับมอบอำนาจ</label>
-                    <input type="text" placeholder="" id="CitizenID2" ng-model="CitizenID2" class="form-control">
-                    <span class="input-group-btn">
-                        <button title="อ่านจากการ์ด" onclick="$('#ReadAuthorize').val('true');ReadCard('ReadP');" class="btn credit_ie8" type="button" data-toggle="tooltip">
-                            <i class="fa fa-credit-card"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>-->
-
+            
             <div class="col-md-4">
                 <div class="form-group">
                     <label>หมายเลขบัตรประชาชน / พาสปอร์ต ผู้รับมอบอำนาจ <span style="color:red;">*</span></label>
@@ -160,15 +131,7 @@
                     <input type="text" name="ชื่อ" id="authorizeFullName" ng-model="authorizeFullName" class="form-control">
                 </div>
             </div>
-            <!--<div class="col-md-5">
-                <div class="form-group" style="float:left;">
-                    <a class="btn btn-camera" onclick="$('#ReadAuthorize').val('true');ReadCard('ReadP');">
-                        <i class="fa fa-spin fa-spinner" id="loadingReadCard2"></i>
-                        อ่านบัตร
-                    </a>
-
-                </div>
-            </div>-->
+            
         </div>
     </div>
 </div>
