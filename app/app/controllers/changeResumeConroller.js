@@ -614,27 +614,27 @@ smartApp.controller('ResumeController', function(
                             // if ($scope.customerType == 'B' || $scope.customerType == 'C') {
                             //     accountCat = $scope.customerType;
                             // }
-                            var data = {
-                                "accountCat": accountCat,
-                                "channel": "WEBUI",
-                                "companyCode": "AL",
-                                "idNumber": result.customerProfile['id-number'],
-                                //"language": null,
-                                "verifyType": "ALL"
-                            };
+                            if (result.status) {
+                                var data = {
+                                    "accountCat": accountCat,
+                                    "channel": "WEBUI",
+                                    "companyCode": "AL",
+                                    "idNumber": result.customerProfile['id-number'],
+                                    //"language": null,
+                                    "verifyType": "ALL"
+                                };
 
-                            SystemService.getCustomerPreverify(data, function(blackList) {
-                                var msg = utils.getObject(blackList, 'display-messages');
-                                if (msg && msg.length > 0) {
-                                    SystemService.showAlertMulti(msg,msgType);
-                                    $scope.SubNo = "null";
-                                    setTimeout(function() {
-                                        $('#btn_ngbOK').focus();
-                                    }, 1500);
-                                    
-                                    return;
-                                } else {
-                                    if (result.status) {
+                                SystemService.getCustomerPreverify(data, function(blackList) {
+                                    var msg = utils.getObject(blackList, 'display-messages');
+                                    if (msg && msg.length > 0) {
+                                        SystemService.showAlertMulti(msg, msgType);
+                                        $scope.SubNo = "null";
+                                        setTimeout(function() {
+                                            $('#btn_ngbOK').focus();
+                                        }, 1500);
+
+                                        return;
+                                    } else {
                                         $scope.data = result;
                                         console.log(result);
                                         console.log($scope.data.customerProfile['lastname']);
@@ -773,13 +773,12 @@ smartApp.controller('ResumeController', function(
                                         if (!$scope.isNonePartner && $scope.shopType == '1') {
                                             //$scope.data = {};
                                         }
-                                    } else {
-                                        $scope.SubNo = "null";
                                     }
-                                    // alert('OK');
-                                }
-                            });
+                                });
 
+                            } else {
+                                $scope.SubNo = "null";
+                            }
                         });
                     } else {
                         SystemService.hideLoading();
@@ -2301,7 +2300,7 @@ smartApp.controller('ResumeController', function(
 
                         "CHANGE-OPTION": $scope.statusChange,
                         "PRODUCT-STATUS-DESC": $scope.data.installedProducts["product-properties"]["PRODUCT-STATUS-DESC"],
-                        "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['lastname'],
+                        "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['id-number'],
                         "ORIGINAL-FIRSTNAME": $scope.data.customerProfile['firstname'],
                         "ORIGINAL-LASTNAME": $scope.data.customerProfile['lastname'],
                         "PREFER-CONTACT": $scope.billPayment.preferedContace == 'FIX' ? $scope.fixPreferedContact : $scope.billPayment.preferedContace
@@ -2483,9 +2482,9 @@ smartApp.controller('ResumeController', function(
             SystemService.callServicePost(data, headers, function(result) {
                 console.log(result);
                 if (result.status) {
-                	SystemService.saveReportToServer({}, function(result){
-                		
-                	});
+                    SystemService.saveReportToServer({}, function(result) {
+
+                    });
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
                         "message2": ""

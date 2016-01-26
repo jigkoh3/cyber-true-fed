@@ -1141,7 +1141,7 @@
                         <div class="form-group" ng-hide="blah=='E'||blah=='P'" ng-form="ngsmss">
                             <label class="col-md-5 control-label">SMS<span style="color:red;">*</span></label>
                             <div class="col-md-3">
-                                <input type="text" ng-number-only="smss" class="form-control telephoneZero" id="txtBillPaymentSmss" ng-model="billPayment.smss" ng-keyup="onInputTelZeroSms($event.keyCode); onInputTelSms($event.keyCode); onChkNumber();" ng-blur="onBlurTelSms()" maxlength="10" required/>                      
+                                <input type="text" ng-number-only="smss" class="form-control telephoneZero" id="txtBillPaymentSmss" ng-model="billPayment.smss" ng-keyup="onInputTelZeroSms($event.keyCode); onInputTelSms($event.keyCode); onChkNumber();" ng-blur="onBlurTelSms()" maxlength="10" required ng-disabled="true"/>                      
                             </div>
                              <div class="col-md-3">
                                 <span ng-show="isNumberTelSms || isNumberTelLengthSms || isNumberTelZeroSms " style="color:red;">

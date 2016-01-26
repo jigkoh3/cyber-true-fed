@@ -212,16 +212,16 @@ smartApp.controller('MigratePreToPostController', function(
         }
         if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
             if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
-                    
-                    setTimeout(function() {
-                        $('#CitizenID').prop('disabled', false);
-                        $('#CitizenID').focus();
-                    }, 500);
+
+                setTimeout(function() {
+                    $('#CitizenID').prop('disabled', false);
+                    $('#CitizenID').focus();
+                }, 500);
 
 
-                } else {
-                    $('#CitizenID').prop('disabled', true);
-                }
+            } else {
+                $('#CitizenID').prop('disabled', true);
+            }
 
             if ($scope.clickModalReadCard) {
                 $scope.clickModalReadCard = false;
@@ -716,27 +716,27 @@ smartApp.controller('MigratePreToPostController', function(
                         // if ($scope.customerType == 'B' || $scope.customerType == 'C') {
                         //     accountCat = $scope.customerType;
                         // }
-                        var data = {
-                            "accountCat": accountCat,
-                            "channel": "WEBUI",
-                            "companyCode": "AL",
-                            "idNumber": result.customerProfile['id-number'],
-                            //"language": null,
-                            "verifyType": "ALL"
-                        };
+                        if (result.status) {
+                            var data = {
+                                "accountCat": accountCat,
+                                "channel": "WEBUI",
+                                "companyCode": "AL",
+                                "idNumber": result.customerProfile['id-number'],
+                                //"language": null,
+                                "verifyType": "ALL"
+                            };
 
-                        SystemService.getCustomerPreverify(data, function(blackList) {
-                            var msg = utils.getObject(blackList, 'display-messages');
-                            if (msg && msg.length > 0) {
-                                SystemService.showAlertMulti(msg,msgType);
-                                $scope.SubNo = "null";
-                                setTimeout(function() {
-                                    $('#btn_ngbOK').focus();
-                                }, 1500);
+                            SystemService.getCustomerPreverify(data, function(blackList) {
+                                var msg = utils.getObject(blackList, 'display-messages');
+                                if (msg && msg.length > 0) {
+                                    SystemService.showAlertMulti(msg, msgType);
+                                    $scope.SubNo = "null";
+                                    setTimeout(function() {
+                                        $('#btn_ngbOK').focus();
+                                    }, 1500);
 
-                                return;
-                            } else {
-                                if (result.status) {
+                                    return;
+                                } else {
                                     $scope.data = result;
                                     $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
                                     $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
@@ -860,12 +860,11 @@ smartApp.controller('MigratePreToPostController', function(
                                     if (!$scope.isNonePartner && $scope.shopType == '1') {
                                         //$scope.data = {};
                                     }
-
-                                } else {
-                                    $scope.SubNo = "null";
                                 }
-                            }
-                        });
+                            });
+                        } else {
+                            $scope.SubNo = "null";
+                        }
                     });
                 } else {
                     SystemService.hideLoading();
@@ -2768,8 +2767,7 @@ smartApp.controller('MigratePreToPostController', function(
                         "message-type": "INFORMATION",
                         "en-message": "Order ORD150700000032 successful saved.",
                         "th-message": "รายการคำขอเลขที่ ORD150700000032 ได้รับข้อมูลเรียบร้อยแล้ว"
-                    },
-                    {
+                    }, {
                         "message": "",
                         "message-type": "",
                         "en-message": "",
@@ -2788,9 +2786,9 @@ smartApp.controller('MigratePreToPostController', function(
             SystemService.callServicePost(data, headers, function(result) {
                 console.log(result);
                 if (result.status) {
-                	SystemService.saveReportToServer({}, function(result){
-                		
-                	});
+                    SystemService.saveReportToServer({}, function(result) {
+
+                    });
 
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
@@ -3816,16 +3814,18 @@ smartApp.controller('MigratePreToPostController', function(
         }
     };
     $scope.smartSearchPP = function(txtSearch) {
-        if (txtSearch.indexOf(' ') > 0) {
-            var txtList = txtSearch.split(' ');
-            var arr = valPricePlans;
-            console.log(txtList);
-            for (var i = 0; i < txtList.length; i++) {
-                arr = $filter('filter')(arr, txtList[i]);
+        if (txtSearch) {
+            if (txtSearch.indexOf(' ') > 0) {
+                var txtList = txtSearch.split(' ');
+                var arr = valPricePlans;
+                console.log(txtList);
+                for (var i = 0; i < txtList.length; i++) {
+                    arr = $filter('filter')(arr, txtList[i]);
+                }
+                $scope.propositionList = arr;
+            } else {
+                $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
             }
-            $scope.propositionList = arr;
-        } else {
-            $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
         }
     };
     $scope.setDefaultSubType = function() {

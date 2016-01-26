@@ -48,7 +48,7 @@
 
     var isFocus = false;
     var idFocus = "";
-
+    var valPricePlans = [];
 
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the page
@@ -109,9 +109,20 @@
     };
 
     $scope.funcEvent = function() {
-        $('#modalnewpriceplan').click();
-    };
+        $scope.smartSearchPP($scope.pricePlanFilter);
+        if($scope.pricePlanList.length == 1){
+            $scope.selectedPricePlan = $scope.pricePlanList[0];
+            $scope.onCancelPricePlan();
+        }else{
+            $('#modalnewpriceplan').click();    
+        }
+        
 
+    };
+    $scope.onCancelPricePlan = function() {
+        $scope.pricePlanFilter = "";
+        $('.radioPriceplan').prop('checked',false);
+    };
     $scope.onChangeTitleOther = function() {
         console.log($scope.data.customerProfileNew['title']);
         var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
@@ -915,8 +926,10 @@
 
         }
         $scope.pricePlanList = [];
+        valPricePlans = [];
         var pricePlanList = utils.getObject(result, 'data.response-data');
         if (pricePlanList && pricePlanList.length) {
+            valPricePlans = $scope.pricePlanList.concat(pricePlanList);
             $scope.pricePlanList = $scope.pricePlanList.concat(pricePlanList);
         }
     };
@@ -946,6 +959,7 @@
     $scope.clearPP = function() {
         $scope.proPositionList = [];
         $scope.pricePlanList = [];
+        valPricePlans = [];
     };
 
     $scope.onChangeShop = function() {
@@ -1549,7 +1563,31 @@
             $scope.isChkShopcode = false;
         }
     };
-
+    $scope.smartSearchPP = function(txtSearch) {
+        if (txtSearch) {
+            if (txtSearch.indexOf(' ') > 0) {
+                var txtList = txtSearch.split(' ');
+                var arr = valPricePlans;
+                console.log(txtList);
+                for (var i = 0; i < txtList.length; i++) {
+                    arr = $filter('filter')(arr, txtList[i]);
+                }
+                $scope.pricePlanList = arr;
+            } else {
+                $scope.pricePlanList = $filter('filter')(valPricePlans, txtSearch);
+            }
+        } else {
+            $scope.pricePlanList = $filter('filter')(valPricePlans, txtSearch);
+        }
+        if($scope.pricePlanList.length == 0){
+            $scope.isSelectPP = false;
+        }
+    };
+    $scope.isSelectPP = false;
+    $scope.selectPP = function(pp){
+        $scope.dirty.selectedPricePlan = pp;
+        $scope.isSelectPP = true;
+    }
     $scope.onCheckShopCode = function() {
         SystemService.showLoading();
         var target = "profiles/partner/validatepartner?function-type=MIGRATE_POSTTOPRE&partner-code=" + $scope.partnerCode;
