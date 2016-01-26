@@ -1,0 +1,115 @@
+<div class="container" id="changeMsisdnContent">
+    <div class="content-top">
+    </div>
+    <div class="content m_content">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <div ng-include="template.header"></div>
+            <div class="clearfix"></div>
+            <h1 class="content-title">เปลียนหมายเลข</h1>
+            <div class="content-body">
+                <h4 style="margin-top:-5px;">ข้อมูลผู้จดทะเบียน</h4>
+                <div ng-include="template.customerprofile" scope="" onload=""></div>
+                <div ng-include="template.currentpriceplan" scope="" onload=""></div>
+            </div>
+            <h4 style="margin-top:-10px;">ข้อมูลหมายเลข</h4>
+            <div class="well">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"> รหัสร้านค้า<span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
+ 
+                            <!-- Case Dealer -->
+                            <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                            <!-- Case Normal -->
+                            <select class="form-control" ng-model="partnerCode" ng-change="onChangeShop(); onCheckInputForVerify()" >
+                                <option value="">-- กรุณาเลือก --</option>
+                                <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
+                                    {{item}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
+
+                            <!-- Case Dealer -->
+                            <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                            <!-- Case Normal -->
+                            <input type="text" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" ng-change="propositions=[];" class="form-control" ng-disabled="isChkShopcode || !isLastestUser" maxlength="8" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">รายการส่งเสริมการขาย</label>
+                        <div class="col-md-4">
+                            <select id="selectProposition" ng-disabled="!isCustomerProfile" class="form-control isCustomerProfile" ng-focus="selectedPricePlan3()" ng-blur="selectedPromotion()" ng-model="propoCode" ng-change="onClearPricePlan()">
+                                <option value="null">-- กรุณาเลือก --</option>
+                                <option value="null">[0022006] CVG000000000031 : CVG x-sell for Telesales</option>
+                                <option value="null">[0020069] RMV000000000674 : Nice Gold SIMOnly 12mths</option>
+                                <option value="null">[0019767] RMV000000000423 : MG Pre2Post Dis 50% SIM Only</option>         
+                                <option value="null">[0019602] RFT000000000003 : RF VIP_Nice number</option>
+                                <option value="null">[0020490] CVG000000000016 : RF_ATB8V2_SookX2Anywhere with Box</option>
+                                <option ng-repeat="item in propositions | orderBy: 'description'" value="{{item['proposition-code']}}">
+                                    [{{item["proposition-code"]}}] {{item["name"]}} : {{item["description"]}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"><b>หมายเลขใหม่ <span style="color:red;">*</span></b>
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" name="newMsisdn" ng-model="newMsisdn" maxlength="10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4>บันทึกและเหตุผล</h4>
+            <div class="well">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
+                        <div class="col-md-4">
+                            <select ng-options="option.dec for option in reasons" ng-model="statusReason" class=" form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">บันทึก</label>
+                        <div class="col-md-4">
+                            <textarea class="form-control" name="message" ng-model="statusReasonMemo" ng-disabled="!isCustomerProfile" style="width:100%;height:70px; resize:none;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="modal-pdf" tabindsex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog" style="width:85%">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>
+                                PDF
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </h4>
+                        </div>
+                        <div class="modal-body modalBodyDivStyle">
+                            <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
+                                <p>It appears your web browser doesn't support iframes.</p>
+                            </iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <span ng-show="shopType=='0'"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="printObjectPdf();" ng-click="confirmPrint()" class="btn btn-success"></span>
+                            <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-toggle="modal" ng-click="confirmPrint()" class="btn btn-success"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 form-buttons">
+                <div class="form-group">
+                    <!-- <input ng-click="logDataBeforeSubmit()" type="button" value="debug"/> -->
+                    <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!isCustomerProfile" />
+                    <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
+                    <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

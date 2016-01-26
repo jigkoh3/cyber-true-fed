@@ -2111,4 +2111,31 @@ $scope.afterCloseWarning = function() {
     }
 };
 
+$scope.validateDateFormat = function() {
+        $scope.dateValues = $scope.saveData['manualBillDate'].split('/');
+        console.log($scope.dateValues[0],$scope.dateValues[1],$scope.dateValues[2]);
+
+        if ($scope.dateValues[1] < 1 || $scope.dateValues[1] > 12){
+            $scope.dateValues[1] = '';
+            
+            $scope.saveData['manualBillDate'] = $scope.dateValues;
+            console.log($scope.dateValues[1]);
+            console.log($scope.dateValues);
+            return ;
+        }
+        else if ($scope.dateValues[0] < 1 || $scope.dateValues[0] > 31){
+            return false;
+        }
+        else if (($scope.dateValues[1] == 4 || $scope.dateValues[1] == 6 || $scope.dateValues[1] == 9 || $scope.dateValues[1] == 11) && $scope.dateValues[0] == 31){
+            return false;
+        }
+        else if ($scope.dateValues[1] == 2) {
+            var isleap = ($scope.dateValues[2] % 4 == 0 && ($scope.dateValues[2] % 100 != 0 || $scope.dateValues[2] % 400 == 0));
+            if ($scope.dateValues[0] > 29 || ($scope.dateValues[0] == 29 && !isleap))
+                return false;
+        }
+
+        return true;
+    }
+
 });
