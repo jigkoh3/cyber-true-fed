@@ -62,8 +62,12 @@
                         "is-childsim": false,
                         "is-softsuspend": false,
                         "sim-type": "",
+                        "product-properties": {
+                            "IS-LARGE-CUSTOMER-SIZE": "true"
+                        },
                         "next-priceplan-code": "",
-                        "next-priceplan-desc": ""
+                        "next-priceplan-desc": "",
+                        "ou-hierarchytype": "CHILD"
                     }]
                 },
                 "display-messages": [],

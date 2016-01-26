@@ -1048,6 +1048,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             $('#divEffer').addClass('divEffer');
             if (isCorporate == true) {
                 $('#divEffer').removeClass('divEffer');
+                $('#divEffer').addClass('divCorperate');
                 $('#efferNow').removeClass('hidden');
                 $('#efferManual').removeClass('hidden');
                 $('#efferNow').addClass('active');
