@@ -401,6 +401,9 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
     $scope.isAccount_root = false;
     $scope.isAccount_child = false;
+
+    $scope.showPPParentOU = false;
+
     $scope.onEnterAccountPreverify = function(level, id) {
         //alert('next day.'+level+":"+id+":"+$scope.getAccountCat());
         SystemService.showLoading();
@@ -428,7 +431,12 @@ smartApp.controller('changeOwnershipIBCController', function(
                 } else {
                     $scope.isAccount_root = true;
                 }
-
+                //check ParentOU Level & SelectedOU Level
+                if (id == "5555555555") {
+                    $scope.showPPParentOU = true;
+                } else {
+                    $scope.showPPParentOU = false;
+                }
                 console.log(result);
             }
         });
@@ -437,12 +445,12 @@ smartApp.controller('changeOwnershipIBCController', function(
         if (level == 'CHILD') {
             if ($scope.isAccount_child) {
                 $scope.isAccount_child = false;
-                $scope.accountID_child = "";
+                //$scope.accountID_child = "";
             }
         } else {
             if ($scope.isAccount_root) {
                 $scope.isAccount_root = false;
-                $scope.accountID_root = "";
+                //$scope.accountID_root = "";
             }
 
         }
@@ -452,6 +460,8 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.accountID_child = "";
         $scope.isAccount_root = false;
         $scope.accountID_root = "";
+
+        $scope.showPPParentOU = false;
     };
     $scope.onKeyUpAccountPreverify = function() {
         //if lenght == 5
@@ -3865,21 +3875,21 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
         } else if (isNull($scope.customer['id-number'])) {
             showValidate("citizenID3", ValidateMsgService.data.msgNewCusIDnoEmpty);
-        } else if (isNull($scope.newOwner.firstNameTH) && $scope.customerType=='N') {
+        } else if (isNull($scope.newOwner.firstNameTH) && $scope.customerType == 'N') {
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
-        } else if (isNull($scope.newOwner.lastNameTH) && $scope.customerType=='N') {
+        } else if (isNull($scope.newOwner.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
-        } else if (isNull($scope.customer['tax-id']) && $scope.customerType!='N' && $scope.isVerify) {
+        } else if (isNull($scope.customer['tax-id']) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("taxNumber", ValidateMsgService.data.msgTaxNumberEmpty);
-        } else if (isNull($scope.customer['branch-code']) && $scope.customerType!='N' && $scope.isVerify) {
+        } else if (isNull($scope.customer['branch-code']) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("branchCode", ValidateMsgService.data.msgBranchCodeEmpty);
-        } else if (isNull($scope.bcName) && $scope.customerType!='N' && $scope.isVerify) {
+        } else if (isNull($scope.bcName) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("bcName", ValidateMsgService.data.msgBcNameEmpty);
-        } else if (isNull($scope.auth_1['id-number']) && $scope.customerType!='N' && $scope.isVerify) {
+        } else if (isNull($scope.auth_1['id-number']) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("auth_1_id_number", ValidateMsgService.data.msgAuth_1_id_numberEmpty);
-        } else if (isNull($scope.auth_1['firstname']) && $scope.customerType!='N' && $scope.isVerify) {
+        } else if (isNull($scope.auth_1['firstname']) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("auth_1_firstName", ValidateMsgService.data.msgauth_1_firstNameEmpty);
-        } else if (isNull($scope.auth_1['lastname']) && $scope.customerType!='N' && $scope.isVerify) {
+        } else if (isNull($scope.auth_1['lastname']) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("auth_1_lastName", ValidateMsgService.data.msgauth_1_lastNamerEmpty);
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
@@ -3897,9 +3907,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             //    "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
             //    "technical-message": "changePricePlanController"
             //});
-        } else if (isNull($scope.newOwner2.firstNameTH) && $scope.customerType=='N') {
+        } else if (isNull($scope.newOwner2.firstNameTH) && $scope.customerType == 'N') {
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
-        } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType=='N') {
+        } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
         } else if (isNull($scope.mailAddress.postcode)) {
             showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
@@ -4024,6 +4034,6 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     };
 
-    $scope.changeType('B');
+    $scope.changeType('N'); // default Cus TYPE
 
 });
