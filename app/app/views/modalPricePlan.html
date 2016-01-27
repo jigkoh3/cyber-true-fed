@@ -49,7 +49,7 @@
                                         <div class="col-xs-1">&nbsp;</div>
                                         <div class="col-xs-6"><span style="color:green;"><h6>โปรโมชั่น</h6></span></div>
                                         <div class="col-xs-2" ng-show="Level=='OU'"><span style="color:green;text-align:center;"><h4>Service Level</h4></span></div>
-                                        <div class="col-xs-2" ng-show="Level=='Sub'"><span style="color:green;text-align:center;"><h4></h4></span></div>
+                                        <div class="col-xs-2" ng-hide="Level=='OU'"><span style="color:green;text-align:center;"><h4></h4></span></div>
                                         <div class="col-xs-3"><span style="color:green;text-align:center;"><h6>ค่าบริการรายเดือน</h6></span></div>
                                         <!-- <div class="col-xs-2"><span style="color:green;text-align:center;"><h6>รายการส่งเสริมการขาย</h6></span></div> -->
                                     </div>
@@ -64,7 +64,7 @@
                                             <input name="pricelsx" type="radio" ng-click="selectedPricePlan(pp)" ng-value="pp.pricePlan" class="radioPriceplan" />
                                         </div>
                                         <div class="col-xs-6" ng-show="Level=='OU'" title="{{pp.promotion}}">{{pp.pricePlan}}</div>
-                                        <div class="col-xs-8" ng-show="Level=='Sub'" title="{{pp.promotion}}">{{pp.pricePlan}}</div>
+                                        <div class="col-xs-8" ng-hide="Level=='OU'" title="{{pp.promotion}}">{{pp.pricePlan}}</div>
                                         <div class="col-xs-2 text-center" ng-show="Level=='OU'">{{pp.priceplans['service-level']}}</div>
                                         <div class="col-xs-3 text-center">{{pp.rc | number}}</div>
                                         <!-- <div class="col-xs-2" style="text-align:center;">{{pp.promotion}}</div> -->
