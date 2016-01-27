@@ -1,7 +1,7 @@
 ﻿smartApp.service('SystemService', function($ngBootbox, $filter, $http, ModalService, ValidateMsgService) {
     console.log('SystemService');
     var that = this;
-    this.demo = true;
+    this.demo = false;
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
@@ -1758,6 +1758,64 @@
                 /* Act on the event */
                 if (this.value) {
                     console.log(this.value, this.value.split('/').length);
+                    var dateValues = this.value.split('/');
+                    console.log(dateValues[0], dateValues[1], dateValues[2]);
+
+                    if (dateValues[1] > 12) {
+                        //dateValues[1] = "";
+                        if (!dateValues[2]) {
+                            this.value = dateValues[0] + "/" + "12";
+                        } else {
+                            this.value = dateValues[0] + "/" + "12" + "/" + dateValues[2];
+                        }
+                        console.log(dateValues);
+                    } else if (dateValues[0] > 31 && !(dateValues[1] == 4 || dateValues[1] == 2 || dateValues[1] == 6 || dateValues[1] == 9 || dateValues[1] == 11)) {
+
+                        if (dateValues[0] && !dateValues[1] && !dateValues[2]) {
+                            this.value = "31";
+                        } else if (dateValues[0] && dateValues[1] && !dateValues[2]) {
+                            this.value = "31" + "/" + dateValues[1];
+                        } else if (dateValues[0] && !dateValues[1] && dateValues[2]) {
+                            this.value = "31" + "/" + "" + "/" + dateValues[2];
+                        } else if (dateValues[0] && dateValues[1] && dateValues[2]) {
+                            this.value = "31" + "/" + dateValues[1] + "/" + dateValues[2];
+                        }
+                    } else if ((dateValues[1] == 4 || dateValues[1] == 6 || dateValues[1] == 9 || dateValues[1] == 11) && dateValues[0] > 30) {
+                        dateValues[0] = "30";
+                        if (!dateValues[2]) {
+                            this.value = dateValues[0] + "/" + dateValues[1];
+                        } else {
+                            this.value = dateValues[0] + "/" + dateValues[1] + "/" + dateValues[2];
+                        }
+                    } else if (dateValues[1] == 2) {
+                        var beYear = dateValues[2]
+                        if (dateValues[2] > 2500) {
+                            beYear = dateValues[2] - 543;
+                        }
+                        var isleap = (beYear % 4 == 0 && (beYear % 100 != 0 || beYear % 400 == 0));
+                        if (dateValues[0] >= 29 && !isleap) {
+                            if (dateValues[0] && !dateValues[1] && !dateValues[2]) {
+                                this.value = "28";
+                            } else if (dateValues[0] && dateValues[1] && !dateValues[2]) {
+                                this.value = "28" + "/" + dateValues[1];
+                            } else if (dateValues[0] && !dateValues[1] && dateValues[2]) {
+                                this.value = "28" + "/" + "" + "/" + dateValues[2];
+                            } else if (dateValues[0] && dateValues[1] && dateValues[2]) {
+                                this.value = "28" + "/" + dateValues[1] + "/" + dateValues[2];
+                            }
+                        } else if (dateValues[0] >= 29 && isleap) {
+                            if (dateValues[0] && !dateValues[1] && !dateValues[2]) {
+                                this.value = "29";
+                            } else if (dateValues[0] && dateValues[1] && !dateValues[2]) {
+                                this.value = "29" + "/" + dateValues[1];
+                            } else if (dateValues[0] && !dateValues[1] && dateValues[2]) {
+                                this.value = "29" + "/" + "" + "/" + dateValues[2];
+                            } else if (dateValues[0] && dateValues[1] && dateValues[2]) {
+                                this.value = "29" + "/" + dateValues[1] + "/" + dateValues[2];
+                            }
+                        }
+                    }
+
                     if (this.value.length == 2 && this.value.split('/').length == 1) {
                         this.value = this.value + "/";
                     }
@@ -1765,7 +1823,10 @@
                     if (this.value.length == 5 && this.value.split('/').length == 2) {
                         this.value = this.value + "/";
                     }
+
                 }
+
+
             })
             .keypress(function(e) {
                 //alert('press');

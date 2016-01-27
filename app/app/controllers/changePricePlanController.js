@@ -232,10 +232,10 @@ smartApp.controller('ChangePricePlanController', function(
 
                 $scope.lcsDate = $scope.largeCusSizeDate.getDate() + 1;
                 $scope.lcsMonth = $scope.largeCusSizeDate.getMonth() + 1;
-                $scope.lcsYear = $scope.largeCusSizeDate.getFullYear()+ 543;
-                $scope.saveData['manualBillDate'] = fillZero($scope.lcsDate) + "/" +  fillZero($scope.lcsMonth) + "/" + $scope.lcsYear;
+                $scope.lcsYear = $scope.largeCusSizeDate.getFullYear() + 543;
+                $scope.saveData['manualBillDate'] = fillZero($scope.lcsDate) + "/" + fillZero($scope.lcsMonth) + "/" + $scope.lcsYear;
                 $('#txtDateManual').val($scope.saveData['manualBillDate']);
-                $('#txtDateManual').datepicker("setDate", new Date($scope.lcsYear-543,$scope.lcsMonth-1,$scope.lcsDate) );
+                $('#txtDateManual').datepicker("setDate", new Date($scope.lcsYear - 543, $scope.lcsMonth - 1, $scope.lcsDate));
             } else {
                 $('#efferNow').removeClass('hidden');
                 $('#efferNext').removeClass('hidden');
@@ -2161,38 +2161,6 @@ smartApp.controller('ChangePricePlanController', function(
             $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
         }
     };
-    $scope.validateDateFormat = function() {
-        $scope.dateValues = $scope.saveData['manualBillDate'].split('/');
-        console.log($scope.dateValues[0], $scope.dateValues[1], $scope.dateValues[2]);
-
-        if ($scope.dateValues[1] > 12) {
-            $scope.dateValues[1] = "";
-            if (!$scope.dateValues[2]) {
-                $scope.saveData['manualBillDate'] = $scope.dateValues[0] + "/" + $scope.dateValues[1];
-            } else {
-                $scope.saveData['manualBillDate'] = $scope.dateValues[0] + "/" + $scope.dateValues[1] + "/" + $scope.dateValues[2];
-            }
-            console.log($scope.dateValues);
-        } else if ($scope.dateValues[0] > 31) {
-
-            if ($scope.dateValues[0] && !$scope.dateValues[1] && !$scope.dateValues[2]) {
-                $scope.saveData['manualBillDate'] = "";
-            } else if ($scope.dateValues[0] && $scope.dateValues[1] && !$scope.dateValues[2]) {
-                $scope.saveData['manualBillDate'] = "" + "/" + $scope.dateValues[1];
-            } else if ($scope.dateValues[0] && !$scope.dateValues[1] && $scope.dateValues[2]) {
-                $scope.saveData['manualBillDate'] = "" + "/" + "" + "/" + $scope.dateValues[2];
-            } else if ($scope.dateValues[0] && $scope.dateValues[1] && $scope.dateValues[2]) {
-                $scope.saveData['manualBillDate'] = "" + "/" + $scope.dateValues[1] + "/" + $scope.dateValues[2];
-            }
-        } else if (($scope.dateValues[1] == 4 || $scope.dateValues[1] == 6 || $scope.dateValues[1] == 9 || $scope.dateValues[1] == 11) && $scope.dateValues[0] == 31) {
-            $scope.dateValues[0] = "30";
-            if (!$scope.dateValues[2]) {
-                $scope.saveData['manualBillDate'] = $scope.dateValues[0] + "/" + $scope.dateValues[1];
-            } else {
-                $scope.saveData['manualBillDate'] = $scope.dateValues[0] + "/" + $scope.dateValues[1] + "/" + $scope.dateValues[2];
-            }
-        }
-    }
     $scope.afterCloseWarning = function() {
         if ($scope.SubNo === 'null') {
             // $('#dataSubNo').val('');
@@ -2214,32 +2182,4 @@ smartApp.controller('ChangePricePlanController', function(
             $scope.validateUI();
         }
     };
-
-$scope.validateDateFormat = function() {
-        $scope.dateValues = $scope.saveData['manualBillDate'].split('/');
-        console.log($scope.dateValues[0],$scope.dateValues[1],$scope.dateValues[2]);
-
-        if ($scope.dateValues[1] < 1 || $scope.dateValues[1] > 12){
-            $scope.dateValues[1] = '';
-            
-            $scope.saveData['manualBillDate'] = $scope.dateValues;
-            console.log($scope.dateValues[1]);
-            console.log($scope.dateValues);
-            return ;
-        }
-        else if ($scope.dateValues[0] < 1 || $scope.dateValues[0] > 31){
-            return false;
-        }
-        else if (($scope.dateValues[1] == 4 || $scope.dateValues[1] == 6 || $scope.dateValues[1] == 9 || $scope.dateValues[1] == 11) && $scope.dateValues[0] == 31){
-            return false;
-        }
-        else if ($scope.dateValues[1] == 2) {
-            var isleap = ($scope.dateValues[2] % 4 == 0 && ($scope.dateValues[2] % 100 != 0 || $scope.dateValues[2] % 400 == 0));
-            if ($scope.dateValues[0] > 29 || ($scope.dateValues[0] == 29 && !isleap))
-                return false;
-        }
-
-        return true;
-    }
-
 });
