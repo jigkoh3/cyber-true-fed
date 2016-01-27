@@ -9,7 +9,11 @@
     //for get by env
     this.secondAuthenURL = getSecondAuthenURL();
 
-
+    window.onresize = function(event) {
+        console.log($('#hModal').height());
+        $('#hModal').height(($( window ).height())-235);
+        console.log($('#hModal').height());
+    };
     this.printPDF = function(url) {
         divPDF2.innerHTML =
             '<object id="idPdfObject" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="' + url + '?clearData=N' + '">' +
