@@ -163,13 +163,13 @@
                 //กรณี error
                 fnCallback({
                     status: true,
-                    data: data3,
+                    data: data,
                     error: "",
                     msgErr: ""
                 });
             } else {
                 fnCallback({
-                    status: true,
+                    status: false,
                     data: data3,
                     error: "",
                     msgErr: ""
