@@ -129,6 +129,34 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {}
             };
+            var data3 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "Due to this Mobile Number is suspened, Please check status ,then try again",
+                    "message-code": "TMV-CHANGE-IRIDD-00002",
+                    "message-type": "ERROR",
+                    "en-message": "Due to this Mobile Number is suspened, Please check status ,then try again",
+                    "th-message": "เลขหมายถูกระงับสัญญาณ(Suspend) กรุณาตรวจสอบความถูกต้อง หรือเปลี่ยนสถานะของเลขหมายก่อน และกลับ เข้ามาทำรายการใหม่อีกครั้ง"
+                }],
+                "trx-id": "462G6ITMMRA6N",
+                "process-instance": "tmsapnpr1 (instance: SFF_node2)",
+                "response-data": {
+                    "customer": {
+                        "title": "",
+                        "firstname": "REGRESS-004",
+                        "lastname": "",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "",
+                        "id-number": "REGRESS-004",
+                        "require-approve-code": "Y",
+                        "customer-id": "34626",
+                        "customer-level": "NON-TOP",
+                        "cvss-process-request": "Y",
+                        "installed-products": []
+                    }
+                }
+            };
 
 
             if (msisdn == "0916961011") {
@@ -142,7 +170,7 @@
             } else {
                 fnCallback({
                     status: false,
-                    data: data2,
+                    data: data3,
                     error: "",
                     msgErr: ""
                 });
@@ -310,8 +338,30 @@
                     try {
                         var check = result.data["display-messages"][0]['message-type'];
 
-                        
-                        
+                        if ($routeParams.subno) {
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": result.data["display-messages"][0]["message"],
+                                    "message-code": result.data["display-messages"][0]["message-code"],
+                                    "message-type": result.data["display-messages"][0]["message-type"],
+                                    "en-message": result.data["display-messages"][0]["en-message"],
+                                    "th-message": result.data["display-messages"][0]["th-message"],
+                                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                                });
+                            }, 1200);
+                        } else {
+                            setTimeout(function() {
+                                SystemService.showAlert({
+                                    "message": result.data["display-messages"][0]["message"],
+                                    "message-code": result.data["display-messages"][0]["message-code"],
+                                    "message-type": "WARNING",
+                                    "en-message": result.data["display-messages"][0]["en-message"],
+                                    "th-message": result.data["display-messages"][0]["th-message"],
+                                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                                });
+                            }, 1200);
+                        }
+
 
                     } catch (e) {
 
@@ -478,35 +528,35 @@
 
                     }
 
-                }else{
+                } else {
                     fnCallback({
-                            data: {
-                                status: false
-                            }
-                        });
-                    if ($routeParams.subno) {
-                            setTimeout(function() {
-                                SystemService.showAlert({
-                                    "message": result.data["display-messages"][0]["message"],
-                                    "message-code": result.data["display-messages"][0]["message-code"],
-                                    "message-type": result.data["display-messages"][0]["message-type"],
-                                    "en-message": result.data["display-messages"][0]["en-message"],
-                                    "th-message": result.data["display-messages"][0]["th-message"],
-                                    "technical-message": result.data["display-messages"][0]["technical-message"]
-                                });
-                            }, 1200);
-                        } else {
-                            setTimeout(function() {
-                                SystemService.showAlert({
-                                    "message": result.data["display-messages"][0]["message"],
-                                    "message-code": result.data["display-messages"][0]["message-code"],
-                                    "message-type": "WARNING",
-                                    "en-message": result.data["display-messages"][0]["en-message"],
-                                    "th-message": result.data["display-messages"][0]["th-message"],
-                                    "technical-message": result.data["display-messages"][0]["technical-message"]
-                                });
-                            }, 1200);
+                        data: {
+                            status: false
                         }
+                    });
+                    if ($routeParams.subno) {
+                        setTimeout(function() {
+                            SystemService.showAlert({
+                                "message": result.data["display-messages"][0]["message"],
+                                "message-code": result.data["display-messages"][0]["message-code"],
+                                "message-type": result.data["display-messages"][0]["message-type"],
+                                "en-message": result.data["display-messages"][0]["en-message"],
+                                "th-message": result.data["display-messages"][0]["th-message"],
+                                "technical-message": result.data["display-messages"][0]["technical-message"]
+                            });
+                        }, 1200);
+                    } else {
+                        setTimeout(function() {
+                            SystemService.showAlert({
+                                "message": result.data["display-messages"][0]["message"],
+                                "message-code": result.data["display-messages"][0]["message-code"],
+                                "message-type": "WARNING",
+                                "en-message": result.data["display-messages"][0]["en-message"],
+                                "th-message": result.data["display-messages"][0]["th-message"],
+                                "technical-message": result.data["display-messages"][0]["technical-message"]
+                            });
+                        }, 1200);
+                    }
                 }
             });
 

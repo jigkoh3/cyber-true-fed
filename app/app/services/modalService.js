@@ -362,6 +362,54 @@
             "en-message": "Please specify Reason Code.",
             "th-message": "กรุณาระบุ เหตุผล",
             "technical-message": "FROM WEBUI"
+        },
+        "msgBranchCodeEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Branch Code.",
+            "th-message": "กรุณาระบุ สาขาที่",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgBcNameEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Corporate Name.",
+            "th-message": "กรุณาระบุ ชื่อบริษัท",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgTaxNumberEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Tax Number.",
+            "th-message": "กรุณาระบุ เลขที่ประจำตัวผู้เสียภาษี",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgAuth_1_id_numberEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify ID number / Passport.",
+            "th-message": "กรุณาระบุ หมายเลขบัตรประชาชน/พาสปอร์ต ผู้มีอำนาจลงนาม",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgauth_1_firstNameEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify First Name.",
+            "th-message": "กรุณาระบุ ชื่อ ผู้มีอำนาจลงนาม",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgauth_1_lastNamerEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Last Name.",
+            "th-message": "กรุณาระบุ นามสกุล ผู้มีอำนาจลงนาม",
+            "technical-message": "FROM WEBUI"
         }
     };
 });

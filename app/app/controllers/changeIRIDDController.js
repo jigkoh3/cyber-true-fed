@@ -1408,7 +1408,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             $scope.printOrder();
         }
 
-        if ($scope.isNullSubNo && !$scope.data.data.status) {
+        if ($scope.isNullSubNo && (!$scope.data.data || !$scope.data.data.status)) {
             $scope.SubNo = 'null';
             // $('#dataSubNo').val('');
             setTimeout(function() {

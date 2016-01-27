@@ -1,4 +1,4 @@
-<div class="container" id="changeOwnershipIBCContent" ng-init="onLoad()">
+<div class="container" id="changeOwnershipIBCContent" ng-init="SubNo=='null'?onLoadNull():onLoad()">
     <div class="content-top">
     </div>
     <div class="content m_content">
@@ -73,13 +73,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>เลขที่ประจำตัวผู้เสียภาษี<span style="color:red;">*</span></label>
-                                    <input type="text" disabled="!isCustomerPreverify" ng-disabled="!isCustomerPreverify" placeholder="" ng-model="customer['tax-id']" class="form-control numberic">
+                                    <input type="text" id="taxNumber" disabled="!isCustomerPreverify" ng-disabled="!isCustomerPreverify" placeholder="" ng-model="customer['tax-id']" class="form-control numberic">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>สาขาที่<span style="color:red;">*</span></label>
-                                    <input type="text" placeholder="00000" maxlength="5" ng-disabled="!isCustomerPreverify" ng-model="customer['branch-code']" class="form-control numberic">
+                                    <input type="text" id="branchCode" maxlength="5" ng-disabled="!isCustomerPreverify" ng-model="customer['branch-code']" class="form-control numberic">
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>ชื่อบริษัท<span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="bcName" ng-disabled="!isCustomerPreverify" class="form-control">
+                                    <input type="text" ng-model="bcName" id="bcName" ng-disabled="!isCustomerPreverify" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -135,13 +135,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ชื่อ<span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="auth_1['firstname']" ng-disabled="!isCustomerPreverify" class="form-control">
+                                    <input type="text" id="auth_1_firstName" ng-model="auth_1['firstname']" ng-disabled="!isCustomerPreverify" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>นามสกุล<span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="auth_1['lastname']" ng-disabled="!isCustomerPreverify" class="form-control">
+                                    <input type="text" id="auth_1_lastName" ng-model="auth_1['lastname']" ng-disabled="!isCustomerPreverify" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -392,7 +392,19 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" ng-change="isVerify=false;propositions=[];onCheckInputForVerify();" class="form-control" ng-disabled="isChkShopcode || !isLastestUser" maxlength="8" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                                <input type="text" id="txtPartnerCodeBC" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" ng-change="isVerify=false;propositions=[];onCheckInputForVerify();" class="form-control" ng-disabled="isChkShopcode || !isLastestUser" maxlength="8" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                            </div>
+                            <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
+                                <p></p>
+                                <!-- Case Dealer -->
+                                <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                <!-- Case Normal -->
+                                <select class="form-control" ng-model="partnerCode" ng-change="onChangeShop(); onCheckInputForVerify()" ng-disabled="!isLastestUser" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                    <option value="">-- กรุณาเลือก --</option>
+                                    <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
+                                        {{item}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                     </div>
