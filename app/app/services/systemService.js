@@ -1,7 +1,7 @@
 ﻿smartApp.service('SystemService', function($ngBootbox, $filter, $http, ModalService, ValidateMsgService) {
     console.log('SystemService');
     var that = this;
-    this.demo = false;
+    this.demo = true;
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
@@ -1768,7 +1768,24 @@
                         } else {
                             this.value = dateValues[0] + "/" + "12" + "/" + dateValues[2];
                         }
-                        console.log(dateValues);
+                    } else if (dateValues[1] == "00") {
+                        //dateValues[1] = "";
+                        if (!dateValues[2]) {
+                            this.value = dateValues[0] + "/" + "01";
+                        } else {
+                            this.value = dateValues[0] + "/" + "01" + "/" + dateValues[2];
+                        }
+                    } else if (dateValues[0] == "00") {
+
+                        if (dateValues[0] && !dateValues[1] && !dateValues[2]) {
+                            this.value = "01";
+                        } else if (dateValues[0] && dateValues[1] && !dateValues[2]) {
+                            this.value = "01" + "/" + dateValues[1];
+                        } else if (dateValues[0] && !dateValues[1] && dateValues[2]) {
+                            this.value = "01" + "/" + "" + "/" + dateValues[2];
+                        } else if (dateValues[0] && dateValues[1] && dateValues[2]) {
+                            this.value = "01" + "/" + dateValues[1] + "/" + dateValues[2];
+                        }
                     } else if (dateValues[0] > 31 && !(dateValues[1] == 4 || dateValues[1] == 2 || dateValues[1] == 6 || dateValues[1] == 9 || dateValues[1] == 11)) {
 
                         if (dateValues[0] && !dateValues[1] && !dateValues[2]) {
