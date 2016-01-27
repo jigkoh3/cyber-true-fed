@@ -110,18 +110,18 @@
 
     $scope.funcEvent = function() {
         $scope.smartSearchPP($scope.pricePlanFilter);
-        if($scope.pricePlanList.length == 1){
+        if ($scope.pricePlanList.length == 1) {
             $scope.selectedPricePlan = $scope.pricePlanList[0];
             $scope.onCancelPricePlan();
-        }else{
-            $('#modalnewpriceplan').click();    
+        } else {
+            $('#modalnewpriceplan').click();
         }
-        
+
 
     };
     $scope.onCancelPricePlan = function() {
         $scope.pricePlanFilter = "";
-        $('.radioPriceplan').prop('checked',false);
+        $('.radioPriceplan').prop('checked', false);
     };
     $scope.onChangeTitleOther = function() {
         console.log($scope.data.customerProfileNew['title']);
@@ -513,8 +513,6 @@
                                         setTimeout(function() {
                                             $('#CitizenID').focus();
                                         }, 500);
-                                    } else {
-                                        $('#CitizenID').prop('disabled', true);
                                     }
                                     $('#loadingReadCard').hide();
                                     $('#unMatch').hide();
@@ -530,6 +528,7 @@
                             $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
                         },
                         1000);
+
                 }
             });
         });
@@ -1579,12 +1578,12 @@
         } else {
             $scope.pricePlanList = $filter('filter')(valPricePlans, txtSearch);
         }
-        if($scope.pricePlanList.length == 0){
+        if ($scope.pricePlanList.length == 0) {
             $scope.isSelectPP = false;
         }
     };
     $scope.isSelectPP = false;
-    $scope.selectPP = function(pp){
+    $scope.selectPP = function(pp) {
         $scope.dirty.selectedPricePlan = pp;
         $scope.isSelectPP = true;
     }
