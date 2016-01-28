@@ -622,7 +622,7 @@
                             <label class="col-md-3 control-label priceplaneText">
                                 โปรโมชั่น 
                                 <span style="color:red;"
-                                        ng-show="dataAccountPreverify['price-plan-require'] == 'R' || dataAccountPreverify['price-plan-require'] == 'P'">*</span>
+                                        ng-hide="dataAccountPreverify['price-plan-require'] == 'O' || dataAccountPreverify['price-plan-require']">*</span>
                             </label>
                             <div class="col-md-6" id="priceplan_sl">
                                 <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
