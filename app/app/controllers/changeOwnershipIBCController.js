@@ -467,6 +467,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
     $scope.clearAccount = function() {
         $scope.isAccountPreverify = false;
+        $scope.onClearPricePlan();
 
         $scope.isAccount_child = false;
         $scope.accountID_child = "";
@@ -3923,20 +3924,20 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
-        } else if (isNull($scope.mailAddress.postcode)) {
-            showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
-        } else if (isNull($scope.mailAddress.province)) {
-            showValidate("txtmailAddressprovince", ValidateMsgService.data.msgBillProvinceEmpty);
-        } else if (isNull($scope.mailAddress.amphur)) {
-            showValidate("txtmailAddressamphur", ValidateMsgService.data.msgBillDistrictEmpty);
-        } else if (isNull($scope.mailAddress.district)) {
-            showValidate("txtMaillAddressDistrict", ValidateMsgService.data.msgBillSubDistrictEmpty);
         } else if (isNull($scope.mailAddress.homeNumber)) {
             showValidate("txtMailAdressHomeNumber", ValidateMsgService.data.msgBillHouseNoEmpty);
         } else if (isNull($scope.mailAddress.moo)) {
             showValidate("txtMailAddressMoo", ValidateMsgService.data.msgBillVillageNoEmpty);
         } else if (isNull($scope.mailAddress.road)) {
             showValidate("txtMailAddressRoad", ValidateMsgService.data.msgBillRoadEmpty);
+        } else if (isNull($scope.mailAddress.district)) {
+            showValidate("txtMaillAddressDistrict", ValidateMsgService.data.msgBillSubDistrictEmpty);
+        } else if (isNull($scope.mailAddress.amphur)) {
+            showValidate("txtmailAddressamphur", ValidateMsgService.data.msgBillDistrictEmpty);
+        } else if (isNull($scope.mailAddress.province)) {
+            showValidate("txtmailAddressprovince", ValidateMsgService.data.msgBillProvinceEmpty);
+        } else if (isNull($scope.mailAddress.postcode)) {
+            showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
         } else if ($scope.blah == 'E' && isNull($scope.billPayment.email)) {
             showValidate("idBillPaymentEmail", ValidateMsgService.data.msgBillEmailEmpty);
         } else if ($scope.blah == 'S' && isNull($scope.billPayment.smss)) {
