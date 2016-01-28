@@ -336,6 +336,8 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.isAuthorizeBC = false;
         $scope.isLastestUser = false;
         $scope.isVerify = false;
+
+        $scope.isAccountPreverify = false;
         //$scope.customer['id-number'] = "";
         $scope.customer['branch-code'] = "00000";
         $scope.customer['tax-id'] = "";
@@ -403,6 +405,8 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.isAccount_child = false;
 
     $scope.showPPParentOU = false;
+    $scope.dataAccountPreverify = {};
+    $scope.isAccountPreverify = false;
 
     $scope.onEnterAccountPreverify = function(level, id) {
         //alert('next day.'+level+":"+id+":"+$scope.getAccountCat());
@@ -412,6 +416,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             "level": level,
             "customerType": $scope.getAccountCat()
         };
+        $scope.isAccountPreverify = false;
         changeOwnershipIBCService.accountPreverifyCallback(data, function(result) {
             SystemService.hideLoading();
             var msg = utils.getObject(result, 'display-messages');
@@ -426,14 +431,17 @@ smartApp.controller('changeOwnershipIBCController', function(
                     "technical-message": msg[0]["technical-message"]
                 });
             } else {
+                $scope.dataAccountPreverify = result.data['response-data'][0];
+                $scope.isAccountPreverify = true;
                 if (level == 'CHILD') {
                     $scope.isAccount_child = true;
                 } else {
                     $scope.isAccount_root = true;
                 }
                 //check ParentOU Level & SelectedOU Level
-                if (id == "5555555555") {
+                if ($scope.dataAccountPreverify["price-plan-require"] == "P") {
                     $scope.showPPParentOU = true;
+                    $scope.pricePlan.name = $scope.dataAccountPreverify['display-priceplan'];
                 } else {
                     $scope.showPPParentOU = false;
                 }
@@ -442,6 +450,8 @@ smartApp.controller('changeOwnershipIBCController', function(
         });
     };
     $scope.onChangeAccountPreverify = function(level) {
+        $scope.isAccountPreverify = false;
+        $scope.onClearPricePlan();
         if (level == 'CHILD') {
             if ($scope.isAccount_child) {
                 $scope.isAccount_child = false;
@@ -456,6 +466,8 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     };
     $scope.clearAccount = function() {
+        $scope.isAccountPreverify = false;
+
         $scope.isAccount_child = false;
         $scope.accountID_child = "";
         $scope.isAccount_root = false;
@@ -4034,6 +4046,6 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     };
 
-    $scope.changeType('N'); // default Cus TYPE
+    $scope.changeType('B'); // default Cus TYPE
 
 });
