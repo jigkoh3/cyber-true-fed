@@ -451,6 +451,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
     $scope.onChangeAccountPreverify = function(level) {
         $scope.isAccountPreverify = false;
+        $scope.showPPParentOU = false;
         $scope.onClearPricePlan();
         if (level == 'CHILD') {
             if ($scope.isAccount_child) {
@@ -459,6 +460,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             }
         } else {
             if ($scope.isAccount_root) {
+                $scope.isAccount_child = false;
+                $scope.accountID_child = "";
+
                 $scope.isAccount_root = false;
                 //$scope.accountID_root = "";
             }

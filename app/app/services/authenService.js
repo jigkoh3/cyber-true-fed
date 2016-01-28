@@ -6,7 +6,7 @@
     };
     this.getAuthen = function(fnCallback) {
         var result = {
-            "shopType": "1",
+            "shopType": "0",
             "isSecondAuthen": true,
             "channel": "NONSHOP",
             "partnerCodes": [],
@@ -16,8 +16,8 @@
             "thaiName": null,
             "engName": "CMTEST48 CMSUR48",
             //"shopcodes": [],
-            // "shopcodes": ["12345678"],
-            "shopcodes": ["12345678", "12345677"],
+             "shopcodes": ["12345678"],
+            //"shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
             "isByPassSecondAuthen": true,

@@ -468,7 +468,7 @@
                         </div>
                     </div>
                     <div ng-show="isVerify && ((customerType=='B' || customerType=='C') && changOpenserviceBC != 'N')">
-                        <div class="row">
+                        <div class="row" style="margin-bottom: -25px;">
                             <div class="form-group">
                                 <div class="table-responsive">
                                     <table class="table" style="margin-bottom: 5px;">
@@ -628,10 +628,10 @@
                                 <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
                             </div>
                             <div class="col-md-2" ng-hide="showPPParentOU" ng-submit="openPricePlanDialog()">
-                                <input type="text" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog()" ng-focus="focusPricePlanFilter()" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
+                                <input type="text" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog()" ng-focus="focusPricePlanFilter()" ng-disabled="(isAccount_root==false && changOpenserviceBC=='S')" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
                             </div>
                             <div class="col-md-1" ng-hide="showPPParentOU">
-                                <button type="button" ng-click="selectedPricePlan3()" ng-disabled="!isCustomerProfile" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" class="btn isCustomerProfile" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c; ">
+                                <button type="button" ng-click="selectedPricePlan3()" ng-disabled="(isAccount_root==false && changOpenserviceBC=='S')" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" class="btn isCustomerProfile" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c; ">
                                     <span style="color:white;">...</span>
                                 </button>
                             </div>
@@ -712,7 +712,7 @@
                     <div ng-show="isVerify" class="row">
                         <div class="col-md-12">
                             <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                <input type="checkbox" id="changCheck" ng-click="onChangCheckno()" class="styled" ng-model="changCheckno">
+                                <input type="checkbox" ng-disabled="(isAccount_root==false && changOpenserviceBC=='S')" id="changCheck" ng-click="onChangCheckno()" class="styled" ng-model="changCheckno">
                                 <label for="changCheck"><b>ระบุผู้ใช้หมายเลข </b></label>
                             </div>
                         </div>
@@ -987,7 +987,7 @@
                     </div>
                 </div>
                 <div ng-show="isVerify && customerType!='N' && !isAccount_child" class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <div data-toggle="buttons" class="btn-group btn-group-justified">
                                 <label class="btn btn-default active" ng-click="slipchangeType('H')">
