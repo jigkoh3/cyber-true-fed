@@ -619,67 +619,67 @@
 
     };
 
-    this.submitCancel = function(payload, fnCallback) {
+    this.submitCreateCug = function(payload, fnCallback) {
 
         var request = {
             "target": "aftersales/order/submit",
             'order': {
-                "order-id": payload.orderData.orderId,
-                "creator": payload.saleAgent.logInName,
-                'create-date': moment().format('YYYY-MM-DDTHH:mm:ss+0700'),
-                'customer': {
-                    'title-code': payload.customerProfile['title-code'],
-                    'title': payload.customerProfile['title'],
-                    'firstname': payload.customerProfile['firstname'],
-                    'lastname': payload.customerProfile['lastname'],
-                    'id-number': payload.customerProfile['id-number'],
-                    'customer-id': payload.customerProfile['customer-id']
-                },
-                "sale-agent": {
-                    'name': payload.saleAgent['engName'],
-                    'channel': payload.saleAgent['channel'],
-                    'partner-code': (payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : payload.saleAgent["ssoEmployeePrincipal"]["employeeId"]),
-                    'partner-name': payload.saleAgent['partnerName'],
-                    'sale-code': payload.saleAgent['saleCode'],
-                    'partner-type': payload.saleAgent['partnerType']
-                },
-                'order-items': [{
-                    'name': 'CANCEL',
-                    'product-name': payload.productDetails['product-id'],
-                    'product-id-number': payload.productDetails['product-id-number'],
-                    'product-id-name': payload.productDetails['product-id-name'],
-                    // 'product-category': payload.productDetails['product-category'],
-                    'reason-code': payload.statusReason,
-                    'user-memo': payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": " + payload.statusReasonMemo,
-                    'order-data': {
-                        'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
-                        'SERVICE-LEVEL': "C",
-                        'SUBSCRIBER-ID': payload.customerProfile['subscriber-id'],
-                        "CHANGE-OPTION": payload.statusCancel,
-                        "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-DESC']
-                    },
-                    'primary-order-data': {
-                        'OU-ID': payload.productDetails['ouId'],
-                        'BAN': payload.productDetails['ban'],
-                        'ACCOUNT-CATEGORY': payload.productDetails['account-category'],
-                        'ACCOUNT-SUB-TYPE': payload.productDetails['account-sub-type'],
-                        'COMPANY-CODE': payload.productDetails['company-code'],
-                        'PRODUCT-CODE': payload.productDetails['productCodes'],
-                        // 'SIM': payload.productDetails['simSerial'],
-                        "EFFECTIVE-OPTION": "IMMEDIATE",
-                        "EFFECTIVE-DATE": moment().format('YYYY-MM-DDTHH:mm:ss+0700')
+            //     "order-id": payload.orderData.orderId,
+            //     "creator": payload.saleAgent.logInName,
+            //     'create-date': moment().format('YYYY-MM-DDTHH:mm:ss+0700'),
+            //     'customer': {
+            //         'title-code': payload.customerProfile['title-code'],
+            //         'title': payload.customerProfile['title'],
+            //         'firstname': payload.customerProfile['firstname'],
+            //         'lastname': payload.customerProfile['lastname'],
+            //         'id-number': payload.customerProfile['id-number'],
+            //         'customer-id': payload.customerProfile['customer-id']
+            //     },
+            //     "sale-agent": {
+            //         'name': payload.saleAgent['engName'],
+            //         'channel': payload.saleAgent['channel'],
+            //         'partner-code': (payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : payload.saleAgent["ssoEmployeePrincipal"]["employeeId"]),
+            //         'partner-name': payload.saleAgent['partnerName'],
+            //         'sale-code': payload.saleAgent['saleCode'],
+            //         'partner-type': payload.saleAgent['partnerType']
+            //     },
+            //     'order-items': [{
+            //         'name': 'CANCEL',
+            //         'product-name': payload.productDetails['product-id'],
+            //         'product-id-number': payload.productDetails['product-id-number'],
+            //         'product-id-name': payload.productDetails['product-id-name'],
+            //         // 'product-category': payload.productDetails['product-category'],
+            //         'reason-code': payload.statusReason,
+            //         'user-memo': payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": " + payload.statusReasonMemo,
+            //         'order-data': {
+            //             'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
+            //             'SERVICE-LEVEL': "C",
+            //             'SUBSCRIBER-ID': payload.customerProfile['subscriber-id'],
+            //             "CHANGE-OPTION": payload.statusCancel,
+            //             "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-DESC']
+            //         },
+            //         'primary-order-data': {
+            //             'OU-ID': payload.productDetails['ouId'],
+            //             'BAN': payload.productDetails['ban'],
+            //             'ACCOUNT-CATEGORY': payload.productDetails['account-category'],
+            //             'ACCOUNT-SUB-TYPE': payload.productDetails['account-sub-type'],
+            //             'COMPANY-CODE': payload.productDetails['company-code'],
+            //             'PRODUCT-CODE': payload.productDetails['productCodes'],
+            //             // 'SIM': payload.productDetails['simSerial'],
+            //             "EFFECTIVE-OPTION": "IMMEDIATE",
+            //             "EFFECTIVE-DATE": moment().format('YYYY-MM-DDTHH:mm:ss+0700')
 
-                    },
-                    'product-category': payload.productDetails['product-category'],
-                    'product-type': "PRICEPLAN",
-                    'order-type': "CHANGE"
+            //         },
+            //         'product-category': payload.productDetails['product-category'],
+            //         'product-type': "PRICEPLAN",
+            //         'order-type': "CHANGE"
 
-                }],
-                'last-modify-date': ''
-            },
-            'ref-id': payload.orderData.TrxID,
-            'user-id': payload.saleAgent.logInName,
-            'approver': payload.approver
+            //     }],
+            //     'last-modify-date': ''
+            }
+            // 'ref-id': payload.orderData.TrxID,
+            // 'user-id': payload.saleAgent.logInName,
+            // 'approver': payload.approver
         };
         console.log(request);
         var cb = function(result) {

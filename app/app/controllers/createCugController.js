@@ -87,7 +87,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
             changeOption: $scope.statusCancel
         };
 
-        CancelService.submitCancel(data, function(result) {
+        CancelService.submitCreateCug(data, function(result) {
             console.log(result);
             if (result.status === true && result.data.status === 'SUCCESSFUL') {
                 $('#modalPDFOpener').click();
@@ -193,13 +193,24 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
 
     }
 
+    $scope.isCustomerProfile = true;
+    $scope.groupName = '';
+    $scope.desc = '';
+    $scope.compName = '';
+
     $scope.onLoad = function() {
-        //call getCUGId
         CreateCugService.getCUGList(function(result) {
             $scope.cugList = result.data["cug-list"];
             valCug = result.data["cug-list"];
             console.log($scope.cugList);
+            $scope.validateCugGroup();
         });
+    }
+
+    $scope.validateCugGroup = function(){
+        if($scope.groupName != '' && $scope.desc != '' && $scope.compName != ''){
+            $scope.isCustomerProfile = false;
+        }
     }
 
     function onCompleteSnap(msg) {
@@ -290,7 +301,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     };
 
     var generateOrderRequest = function() {
-        $scope.data.customerProfile['language'] = "TH";
+        // $scope.data.customerProfile['language'] = "TH";
         return {
             customerProfile: $scope.data.customerProfile,
             customerAddress: $scope.data.customerAddress,
@@ -390,7 +401,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
         data['statusReason'] = $scope.statusReason.id;
         data['statusReasonMemo'] = $scope.statusReasonMemo;
 
-        CancelService.submitCancel(data, function(result) {
+        CreateCugService.submitCreateCug(data, function(result) {
             SystemService.hideLoading();
             console.log(result);
             setTimeout(function() {

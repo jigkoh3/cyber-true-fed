@@ -80,19 +80,19 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Group Name<span style="color:red;"> *</span></label>
                             <div class="col-md-4">
-                                <input class="form-control" name="gruopName" ng-model="gruopName">
+                                <input class="form-control" name="groupName" ng-model="groupName" ng-change="validateCugGroup()">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Description<span style="color:red;"> *</span></label>
                             <div class="col-md-4">
-                                <input class="form-control" name="description" ng-model="description">
+                                <input class="form-control" name="description" ng-model="desc" ng-change="validateCugGroup()">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Company Name<span style="color:red;"> *</span></label>
                             <div class="col-md-4">
-                                <input class="form-control" name="compName" ng-model="compName">
+                                <input class="form-control" name="compName" ng-model="compName" ng-change="validateCugGroup()">
                             </div>
                         </div>
                     </div>
@@ -116,31 +116,11 @@
                 </div>
             </div>
         </div>
-        <div id="modal-pdf" tabindsex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" style="width:85%">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>
-                                PDF
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </h4>
-                    </div>
-                    <div class="modal-body modalBodyDivStyle">
-                        <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
-                            <p>It appears your web browser doesn't support iframes.</p>
-                        </iframe>
-                    </div>
-                    <div class="modal-footer">
-                        <span ng-show="shopType=='0'"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="printObjectPdf();" ng-click="confirmPrint()" class="btn btn-success"></span>
-                        <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-toggle="modal" ng-click="confirmPrint()" class="btn btn-success"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         <div class="col-md-12 form-buttons">
             <div class="form-group">
-                <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!isCustomerProfile" />
-                <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
+                <input type="submit" value="บันทึก" class="btn btn-success" ng-click="confirmPrint()" ng-disabled="isCustomerProfile" />
+                <input type="hidden" href="#modal-pdf" data-toggle="modal" />
                 <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
             </div>
         </div>
