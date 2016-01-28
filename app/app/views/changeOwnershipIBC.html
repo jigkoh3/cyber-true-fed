@@ -16,10 +16,10 @@
                             <div class="form-group">
                                 <label>ประเภทลูกค้า<span style="color:red;">*</span></label>
                                 <div data-toggle="buttons" class="btn-group btn-group-justified">
-                                    <label class="btn btn-default active" ng-click="changeType('N');onChangeCusType()">
+                                    <label class="btn btn-default" ng-click="changeType('N');onChangeCusType()">
                                         <input type="radio" name="type" ng-model="customerType" value="N"> บุคคลธรรมดา
                                     </label>
-                                    <label class="btn btn-default" ng-click="changeType('B');onChangeCusType()">
+                                    <label class="btn btn-default active" ng-click="changeType('B');onChangeCusType()">
                                         <input type="radio" name="type" ng-model="customerType" value="B"> นิติบุคคล (B)
                                     </label>
                                     <label class="btn btn-default" ng-click="changeType('C');onChangeCusType()">
@@ -487,14 +487,7 @@
                                             </td>
                                             <td class="col-xs-2">
                                                 <span ng-show="changOpenserviceBC == 'L'">10448763</span>
-                                                <input ng-show="changOpenserviceBC == 'S'" 
-                                                        ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" 
-                                                        ng-model="accountID_root" 
-                                                        ng-change="onChangeAccountPreverify('ROOT')"
-                                                        type="text" 
-                                                        maxlength="10"
-                                                        style="height:30px; font-size: 12px;" 
-                                                        placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
+                                                <input ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" ng-change="onChangeAccountPreverify('ROOT')" type="text" maxlength="10" style="height:30px; font-size: 12px;" placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
                                             </td>
                                             <td class="col-md-5">
                                                 <div class="row">
@@ -504,11 +497,11 @@
                                                     </span>
                                                     </div>
                                                     <div ng-show="changOpenserviceBC == 'S' && isAccount_root" class="col-xs-1">
-                                                    <img src="images/icon/icon_active.png" alt="">
-                                                </div>
-                                                <div ng-show="changOpenserviceBC == 'S' && isAccount_root" class="col-xs-5">
-                                                    บริษัท aa จำกัด
-                                                </div>
+                                                        <img src="images/icon/icon_active.png" alt="">
+                                                    </div>
+                                                    <div ng-show="changOpenserviceBC == 'S' && isAccount_root" class="col-xs-5">
+                                                        บริษัท aa จำกัด
+                                                    </div>
                                                 </div>
                                             </td>
                                             <td class="col-xs-2">
@@ -527,12 +520,7 @@
                                                     <img src="images/icon/orangeLine.jpg" alt="">
                                                 </div>
                                                 <div ng-show="changOpenserviceBC == 'L'" class="col-xs-3">
-                                                    <input type="text" 
-                                                        style="height:30px; font-size: 12px;" 
-                                                        ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('CHILD', accountID_child)); onKeyUpAccountPreverify('CHILD', accountID_child);" maxlength="10"
-                                                        ng-model="accountID_child"
-                                                        ng-change="onChangeAccountPreverify('CHILD')" 
-                                                        placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
+                                                    <input type="text" style="height:30px; font-size: 12px;" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('CHILD', accountID_child)); onKeyUpAccountPreverify('CHILD', accountID_child);" maxlength="10" ng-model="accountID_child" ng-change="onChangeAccountPreverify('CHILD')" placeholder="ระบุเลขบัญชีลูกค้า" class="form-control">
                                                 </div>
                                                 <div ng-show="changOpenserviceBC == 'L' && isAccount_child" class="col-xs-1">
                                                     <img src="images/icon/icon_active.png" alt="">
@@ -542,7 +530,6 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        
                                     </table>
                                 </div>
                             </div>
@@ -615,6 +602,14 @@
                             </div>
                         </div>
                     </div>
+                    <div ng-show="dataAccountPreverify['price-plan-require'] != 'R' && isAccountPreverify" style="color:red;">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            TH : {{dataAccountPreverify['text-messages']['th-message']}}
+                            <br> 
+                            EN : {{dataAccountPreverify['text-messages']['en-message']}}
+                        </div>
+                    </div>
                     <br />
                     <!--Include-->
                     <style type="text/css">
@@ -624,7 +619,11 @@
                     </style>
                     <div class="row" ng-show="isVerify">
                         <div class="form-group">
-                            <label class="col-md-3 control-label priceplaneText">โปรโมชั่น <span style="color:red;">*</span></label>
+                            <label class="col-md-3 control-label priceplaneText">
+                                โปรโมชั่น 
+                                <span style="color:red;"
+                                        ng-show="dataAccountPreverify['price-plan-require'] == 'R' || dataAccountPreverify['price-plan-require'] == 'P'">*</span>
+                            </label>
                             <div class="col-md-6" id="priceplan_sl">
                                 <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
                             </div>

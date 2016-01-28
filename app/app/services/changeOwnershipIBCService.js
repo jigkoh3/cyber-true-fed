@@ -1,10 +1,10 @@
-﻿smartApp.service('changeOwnershipIBCService', function ($filter, SystemService, $routeParams) {
+﻿smartApp.service('changeOwnershipIBCService', function($filter, SystemService, $routeParams) {
     var demo = SystemService.demo;
-    var validateChangeOwnershipAPI = function (msisdn, fnCallback) {
+    var validateChangeOwnershipAPI = function(msisdn, fnCallback) {
 
         if (!demo) {
             var target = 'aftersales/tmv/changeownership/validatechangeownership?msisdn=' + msisdn;
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -141,11 +141,11 @@
 
         }
     };
-    var AccountSubtypeAPI = function (cust_type, company, service_type, fnCallback) {
+    var AccountSubtypeAPI = function(cust_type, company, service_type, fnCallback) {
 
         if (!demo) {
             var target = 'profiles/tmv/master/account-subtype?cust-type=' + cust_type + '&service-type=' + service_type + '&company=' + company;
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -160,7 +160,7 @@
                 }, {
                     "name": "SOL",
                     "description": "เจ้าของกิจการคนเดียว"
-                },{
+                }, {
                     "name": "FIN",
                     "description": "บุคคลธรรมดา"
                 }]
@@ -175,10 +175,10 @@
             });
         };
     };
-    var masterListAPI = function (param, fnCallback) {
+    var masterListAPI = function(param, fnCallback) {
         if (!demo) {
             var target = 'aftersales/configuration/master/' + param;
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -321,10 +321,10 @@
             });
         };
     };
-    var validateGradingAPI = function (company_id, fnCallback) {
+    var validateGradingAPI = function(company_id, fnCallback) {
         if (!demo) {
             var target = 'profiles/customer/company/grade?company-id=' + company_id;
-            SystemService.callServiceGetByPass(target, null, function (result) {
+            SystemService.callServiceGetByPass(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -351,15 +351,15 @@
             });
         }
     };
-    var getAccountSubTypeAPI = function (param, fnCallback) {
+    var getAccountSubTypeAPI = function(param, fnCallback) {
         var target = 'profiles/tmv/master/account-subtype?' +
-                'cust-type=' + param['cust-type'] +
-                '&company=' + param['company'] +
-                '&service-type=' + param['service-type'] +
-                //'&roles' + param['roles'] +
-                '&grade=' + param['grade'];
+            'cust-type=' + param['cust-type'] +
+            '&company=' + param['company'] +
+            '&service-type=' + param['service-type'] +
+            //'&roles' + param['roles'] +
+            '&grade=' + param['grade'];
         if (!demo) {
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -386,12 +386,12 @@
             });
         }
     };
-    var lastestCustomerAPI = function (certificateid, customertype, fnCallback) {
+    var lastestCustomerAPI = function(certificateid, customertype, fnCallback) {
         if (!demo) {
             var target = 'profiles/customer/getlastestcustomer?certificateid=' + certificateid + '&customertype=' + customertype;
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
-                
+
             });
         } else {
 
@@ -407,7 +407,7 @@
                         "firstname": "กอไก่",
                         "lastname": "ขอไข่",
                         'birthdate': '2015-07-20T00:00:00+0700',
-                        'id-expire-date' : '2020-07-20T00:00:00+0700',
+                        'id-expire-date': '2020-07-20T00:00:00+0700',
                         "contact-number": "029448849#123",
                         "contact-mobile-number": "444444444",
                         "id-type": "",
@@ -534,9 +534,9 @@
 
         };
     };
-    var salePriceplanAPI = function (target, fnCallback) {
+    var salePriceplanAPI = function(target, fnCallback) {
         if (!demo) {
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -615,9 +615,9 @@
             });
         }
     };
-    var validatePartnerAPI = function (target, fnCallback) {
+    var validatePartnerAPI = function(target, fnCallback) {
         if (!demo) {
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -679,7 +679,7 @@
 
         }
     };
-    var propositionAPI = function (param, fnCallback) {
+    var propositionAPI = function(param, fnCallback) {
         var target = "sales/catalog/product/tmv/proposition/search?" +
             "company-code=" + param['company-code'] +
             "&customer-type=" + param['customer-type'] +
@@ -689,7 +689,7 @@
             "&privilege=" + param['privilege'];
         console.log(target);
         if (!demo) {
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
@@ -714,65 +714,110 @@
             });
         }
     };
-    var accountPreverifyAPI = function (param, fnCallback) {
+    var accountPreverifyAPI = function(param, fnCallback) {
         var target = "sales/catalog/product/tmv/proposition/search";
         console.log(target);
         if (!demo) {
-            SystemService.callServiceGet(target, null, function (result) {
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
-            var data = {
+            var data1 = {
                 "status": "SUCCESSFUL",
                 "trx-id": "3X18RYBCFS9L9",
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": [{
-                    "name": "RMV000000000001",
-                    "description": "Proposition for TEST RF ",
-                    "soc": "45552",
-                    "rc": 0.0,
-                    "service-level": "C",
-                    "proposition-code": "0019537"
+                    "text-messages": {
+                        "th-message": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่",
+                        "en-message": "No need to select new Price Plan (Promotion)"
+                    },
+                    "parent-ou-level": "G",
+                    "selected-ou-level": "None",
+                    "price-plan-require": "P",
+                    "display-priceplan": "NETSVP89 : MG iNet 899, net 10 GB ULTD WiFi ULTD"
                 }]
             };
-            fnCallback({
-                status: true,
-                data: data,
-                error: "",
-                msgErr: ""
-            });
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "trx-id": "3X18RYBCFS9L9",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": [{
+                    "text-messages": {
+                        "th-message": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม",
+                        "en-message": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)"
+                    },
+                    "parent-ou-level": "G",
+                    "selected-ou-level": "G",
+                    "price-plan-require": "S"
+                }]
+            };
+            var data3 = {
+                "status": "SUCCESSFUL",
+                "trx-id": "3X18RYBCFS9L9",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": [{
+                    "parent-ou-level": "None",
+                    "selected-ou-level": "None",
+                    "price-plan-require": "R"
+                }]
+            };
+            if (param['accountId'] == "5555555555") {
+                fnCallback({
+                    status: true,
+                    data: data1,
+                    error: "",
+                    msgErr: ""
+                });
+            } else if (param['accountId'] == "8888888888") {
+                fnCallback({
+                    status: true,
+                    data: data2,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: true,
+                    data: data3,
+                    error: "",
+                    msgErr: ""
+                });
+            }
+
         }
     };
 
 
     return {
-        validateGradingCallback: function (company_id, fnCallback) {
-            validateGradingAPI(company_id, function (resultData) {
+        validateGradingCallback: function(company_id, fnCallback) {
+            validateGradingAPI(company_id, function(resultData) {
                 fnCallback(resultData);
             });
         },
-        getAccountSubTypeCallback: function (sendData, fnCallback) {
-            getAccountSubTypeAPI(sendData, function (resultData) {
+        getAccountSubTypeCallback: function(sendData, fnCallback) {
+            getAccountSubTypeAPI(sendData, function(resultData) {
                 fnCallback(resultData);
             });
         },
-        lastestCustomerCallback: function (certificateid, customertype, fnCallback) {
-            lastestCustomerAPI(certificateid, customertype, function (resultData) {
+        lastestCustomerCallback: function(certificateid, customertype, fnCallback) {
+            lastestCustomerAPI(certificateid, customertype, function(resultData) {
                 fnCallback(resultData);
             });
         },
-        validateChangeOwnershipCallback: function (msisdn, fnCallback) {
+        validateChangeOwnershipCallback: function(msisdn, fnCallback) {
             var res = {};
 
-            validateChangeOwnershipAPI(msisdn, function (result) {
+            validateChangeOwnershipAPI(msisdn, function(result) {
                 var data = result.data;
-                var normalFlow = function () {//SUCCESS
+                var normalFlow = function() { //SUCCESS
                     SystemService.hideLoading();
                     if (result.status) {
                         var dataCustomer = data["response-data"]["customer"];
                         var mobileServiceType = "ทรูมูฟเอช รายเดือน";
                         //var priceplan = dataCustomer["installed-products"][0];
-                        var priceplan = $filter('filter')(dataCustomer["installed-products"], { "product-type": "PRICEPLAN" })[0];
+                        var priceplan = $filter('filter')(dataCustomer["installed-products"], {
+                            "product-type": "PRICEPLAN"
+                        })[0];
                         var _header = {
                             "producttype": mobileServiceType,
                             "subscriberno": msisdn,
@@ -785,22 +830,16 @@
                         var _cardTypeList = [];
                         var _genderTypeList = [];
                         var _titleTypeList = [];
-                        if (priceplan["account-category"]
-                            , priceplan["company-code"]
-                            , priceplan["mobile-servicetype"]) {
+                        if (priceplan["account-category"], priceplan["company-code"], priceplan["mobile-servicetype"]) {
                             //ประเภทลูกค้าย่อย
-                            AccountSubtypeAPI(priceplan["account-category"]
-                                , priceplan["company-code"]
-                                , priceplan["mobile-servicetype"]
-                                , function (subtype) {
-                                    if (subtype.data["response-data"]) {
-                                        _accntSubtypeList = subtype.data["response-data"];
-                                    }
-                                    else {
-                                        console.debug("changeOwnershipService : account-sub-type not response data");
-                                    }
+                            AccountSubtypeAPI(priceplan["account-category"], priceplan["company-code"], priceplan["mobile-servicetype"], function(subtype) {
+                                if (subtype.data["response-data"]) {
+                                    _accntSubtypeList = subtype.data["response-data"];
+                                } else {
+                                    console.debug("changeOwnershipService : account-sub-type not response data");
+                                }
 
-                                });
+                            });
                             ////คำนำหน้าชื่อ
                             //masterListAPI("CUST-TITLE-TYPE", function (titleList) {
                             //    if (titleList.data["response-data"] && titleList.data["response-data"]["configuration-items"]) {
@@ -849,7 +888,7 @@
 
                         if (data["display-messages"].length > 0) {
 
-                            setTimeout(function () {
+                            setTimeout(function() {
                                 $.fancybox.close();
                                 var errorText = {
                                     "message": "",
@@ -873,7 +912,7 @@
                                     "technical-message": errorText["technical-message"]
                                 });
                                 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ยังไม่ได้ทำให้ multi alert
-                                setTimeout(function () {
+                                setTimeout(function() {
                                     $('.ngdMessage').html(errorText["message"]);
                                     $('.ngdEnMessage').html(errorText["en-message"]);
                                     $('.ngdThMessage').html(errorText["th-message"]);
@@ -884,7 +923,7 @@
 
                         }
                     } else {
-                        setTimeout(function () {
+                        setTimeout(function() {
                             SystemService.showAlert({
                                 "message": "Can not connect!",
                                 "message-code": "",
@@ -904,7 +943,7 @@
                         if (check == "WARNING") {
                             normalFlow();
                         } else {
-                            setTimeout(function () {
+                            setTimeout(function() {
                                 SystemService.showAlert({
                                     "message": result.data["display-messages"][0]["message"],
                                     "message-code": result.data["display-messages"][0]["message-code"],
@@ -925,7 +964,7 @@
                         if (check == "WARNING") {
                             normalFlow();
                         } else {
-                            setTimeout(function () {
+                            setTimeout(function() {
                                 SystemService.showAlert({
                                     "message": result.data["display-messages"][0]["message"],
                                     "message-code": result.data["display-messages"][0]["message-code"],
@@ -953,23 +992,23 @@
 
 
         },
-        salePriceplanCallback: function (target, fnCallback) {
-            salePriceplanAPI(target, function (result) {
+        salePriceplanCallback: function(target, fnCallback) {
+            salePriceplanAPI(target, function(result) {
                 fnCallback(result);
             });
         },
-        validatePartnerCallback: function (target, fnCallback) {
-            validatePartnerAPI(target, function (result) {
+        validatePartnerCallback: function(target, fnCallback) {
+            validatePartnerAPI(target, function(result) {
                 fnCallback(result);
             });
         },
-        propositionCallback: function (target, fnCallback) {
-            propositionAPI(target, function (result) {
+        propositionCallback: function(target, fnCallback) {
+            propositionAPI(target, function(result) {
                 fnCallback(result);
             });
         },
-        accountPreverifyCallback: function (target, fnCallback) {
-            accountPreverifyAPI(target, function (result) {
+        accountPreverifyCallback: function(target, fnCallback) {
+            accountPreverifyAPI(target, function(result) {
                 fnCallback(result);
             });
         }
