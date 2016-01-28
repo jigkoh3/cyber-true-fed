@@ -42,7 +42,8 @@
                             "service-level": "C",
                             "product-properties": {
                                 "IMSI": "520002081981781",
-                                "SIM": "896600331500001222"
+                                "SIM": "896600331500001222",
+                                "FIRST-CALL-DATE": "22102015"
                             },
                             "product-id-name": "MSISDN",
                             "product-id-number": "0957732665",
@@ -168,6 +169,39 @@
                     "name": "SOL",
                     "description": "เจ้าของกิจการคนเดียว"
                 }]
+            };
+
+
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
+        };
+    };
+    var validatePrivilege = function(nas_proposition, company_code, first_call_date, fnCallback) {
+
+        if (!demo) {
+            var target = 'aftersales/tmv/migratepretopost/validateprivilege?first-call-date=' + first_call_date + '&nas-proposition=' + nas_proposition + '&company-code=' + company_code;
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
+            });
+        } else {
+
+            var data = {
+                "status": "",
+                "trx-id": "3BDPN2HLK4TZ",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "display-messages": null,
+                "response-data": {
+                    "privilege": {
+                        "privilege-status": "0",
+                        "aging": "100",
+                        "campaign-code": "xxx"
+                    }
+                }
+
             };
 
 
