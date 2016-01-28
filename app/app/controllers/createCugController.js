@@ -70,6 +70,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     $scope.pageSize_cug = 10;
     $scope.totalCUG = 10;
     //end paging
+    var valCug = [];
 
 
     // Submit form
@@ -108,6 +109,20 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
         SystemService.showLoading();
         CancelService.getSIMData($scope.SubNo, onGetSIMData);
     }
+
+    $scope.smartSearchCug = function(txtSearch) {
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = valCug;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.cugList = arr;
+        } else {
+            $scope.cugList = $filter('filter')(valCug, txtSearch);
+        }
+    };
 
     $scope.onInputSubNo = function() {
         $scope.subNoInput = $('#dataSubNo').val();
@@ -182,6 +197,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
         //call getCUGId
         CreateCugService.getCUGList(function(result) {
             $scope.cugList = result.data["cug-list"];
+            valCug = result.data["cug-list"];
             console.log($scope.cugList);
         });
     }
