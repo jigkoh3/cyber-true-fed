@@ -155,6 +155,9 @@ smartApp.config(function($routeProvider, $httpProvider) {
     }).when('/changeMsisdn', {
         templateUrl: 'app/views/changeMsisdn.html?v=' + runTime,
         controller: 'ChangeMsisdnController'
+    }).when('/createCug', {
+        templateUrl: 'app/views/createCug.html?v=' + runTime,
+        controller: 'CreateCugController'
     });
 
     // $routeProvider.otherwise({
