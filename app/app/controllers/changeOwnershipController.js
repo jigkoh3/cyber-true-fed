@@ -2304,6 +2304,7 @@ smartApp.controller('changeOwnershipController', function(
     $scope.grade = {};
 
     $scope.saveOrder = function() {
+        SystemService.showLoading();
         if ($scope.shopType == '1') {
             $scope.selectReason.id = "COWN";
         }
