@@ -2202,6 +2202,7 @@ smartApp.controller('ResumeController', function(
     $scope.grade = {};
 
     $scope.saveOrder = function() {
+        SystemService.showLoading();
         console.log($scope.lastestCustomer);
         if ($scope.shopType == '1') {
             $scope.selectReason.id = "CREQ";
