@@ -68,6 +68,7 @@ smartApp.controller('ChangePricePlanController', function(
     };
     $scope.isEnterPP = false;
     $scope.openPricePlanDialog = function() {
+        $('#hModal').height(($( window ).height())-235);
         $scope.isEnterPP = false;
         if (!$scope.isLoadPricePlan) {
             //call Priceplan
@@ -221,6 +222,7 @@ smartApp.controller('ChangePricePlanController', function(
             if (isLargeCusSize && isLargeCusSize['IS-LARGE-CUSTOMER-SIZE'] == "true") {
                 //alert(isLargeCusSize['IS-LARGE-CUSTOMER-SIZE']);
                 //$scope.saveData['manualBillDate'] = $scope.largeCusSizeDate;
+                $('#divEffer').addClass('divCorperate');
                 $('#efferNext').removeClass('hidden');
                 $('#efferManual').removeClass('hidden');
                 $('#efferManual').addClass('active');
@@ -1855,6 +1857,7 @@ smartApp.controller('ChangePricePlanController', function(
     };
 
     $scope.selectedPricePlan3 = function() {
+        $('#hModal').height(($( window ).height())-235);
         $scope.isSelectedPricePlan2 = false;
         if (!$scope.isLoadPricePlan) {
             //call Priceplan
