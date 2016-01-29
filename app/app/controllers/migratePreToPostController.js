@@ -731,6 +731,7 @@ smartApp.controller('MigratePreToPostController', function(
                                 if (msg && msg.length > 0) {
                                     SystemService.showAlertMulti(msg, msgType);
                                     $scope.SubNo = "null";
+                                    $('#dataSubNo').val('');
                                     setTimeout(function() {
                                         $('#btn_ngbOK').focus();
                                     }, 1500);

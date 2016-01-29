@@ -248,11 +248,6 @@ smartApp.controller('ResumeController', function(
         //console.log(result.CitizenID);
 
     };
-
-    $scope.checkBlackList = function() {
-
-    };
-
     $scope.SetCardValue3 = function(result) {
         $('#loadingReadCard3').hide();
         $scope.isCardValueDataLastest = true;
@@ -629,6 +624,7 @@ smartApp.controller('ResumeController', function(
                                     if (msg && msg.length > 0) {
                                         SystemService.showAlertMulti(msg, msgType);
                                         $scope.SubNo = "null";
+                                        $('#dataSubNo').val('');
                                         setTimeout(function() {
                                             $('#btn_ngbOK').focus();
                                         }, 1500);

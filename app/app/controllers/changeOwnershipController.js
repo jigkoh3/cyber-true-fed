@@ -1034,9 +1034,9 @@ smartApp.controller('changeOwnershipController', function(
             var msg = utils.getObject(result, 'display-messages');
             if (msg && msg.length > 0) {
                 $scope.isCustomerPreverify = false;
-
                 SystemService.showAlertMulti(msg, "WARNING");
                 $scope.customer['id-number'] = "";
+                $('#CitizenIDLastest').val('');
                 return;
             } else {
                 //$scope.isCustomerPreverify = true;
