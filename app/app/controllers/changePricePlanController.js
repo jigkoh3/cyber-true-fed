@@ -512,7 +512,7 @@ smartApp.controller('ChangePricePlanController', function(
 
             for (var i = 0; i < propositionList.length; i++) {
                 try {
-                    if (Number(propositionList[i]["contract-fee"]) > 0) {
+                    if (Number(propositionList[i]["contract-term"]) > 0) {
                         currentPropositions = currentPropositions + (currentPropositions ? "," : "&current-propositions=") + propositionList[i]["product-id"];
                     }
                 } catch (e) {}
