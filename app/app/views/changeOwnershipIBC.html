@@ -12,7 +12,7 @@
                 <h4>ผู้จดทะเบียนใหม่</h4>
                 <div class="well" style="background-color:#ffffff;" ng-form="newcustomers">
                     <div class="row">
-                        <div class="col-md-6" ng-hide="showDataDealer">
+                        <div class="col-md-6" ng-hide="shopType == '1' && getAuthen['isSecondAuthen'] == false">
                             <div class="form-group">
                                 <label>ประเภทลูกค้า<span style="color:red;">*</span></label>
                                 <div data-toggle="buttons" class="btn-group btn-group-justified">
@@ -502,13 +502,18 @@
                                                     </div>
                                                     <div ng-show="changOpenserviceBC == 'S' && isAccount_root" class="col-xs-5">
                                                     &nbsp;
-                                                        บริษัท aa จำกัด
+                                                        {{validateCustomerIDData['title']}}{{validateCustomerIDData['firstname']}}&nbsp;&nbsp;{{validateCustomerIDData['lastname']}}
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="col-xs-2" ng-show="changOpenserviceBC == 'L'">
                                                 <span>
                                                     13/12
+                                                </span>
+                                            </td>
+                                            <td class="col-xs-2" ng-show="isAccount_root">
+                                                <span>
+                                                    {{validateCustomerIDData['customer-properties']['BILL-CYCLE-DESCRIPTION']}}
                                                 </span>
                                             </td>
                                             <th class="col-xs-1">&nbsp;</th>
@@ -526,7 +531,8 @@
                                                 </div>
                                                 <div ng-show="isAccount_child" class="col-xs-5" style="padding-left: 0px;">
                                                     <img src="images/icon/icon_active.png" alt=""> &nbsp;
-                                                    บริษัท aa จำกัด
+                                                    {{dataAccountPreverify['installed-products'][0]['ACCOUNT-FIRSTNMAE']}}
+                                                    {{dataAccountPreverify['installed-products'][0]['ACCOUNT-LASTNAME']}}
                                                 </div>
                                             </td>
                                         </tr>
@@ -592,24 +598,32 @@
                             <label class="col-md-3 control-label priceplaneText">ระดับของโปรโมชั่น <span style="color:red;">*</span></label>
                             <div class="col-md-4">
                                 <label style="cursor:pointer;">
-                                    <input type="radio" style="cursor:pointer;" name="promotionLevel" value="SUB" ng-model="promotionLevel"> ระดับหมายเลข
+                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="SUB" ng-model="promotionLevel"> ระดับหมายเลข
                                 </label>
                             </div>
                             <div class="col-md-5">
                                 <label style="cursor:pointer;">
-                                    <input type="radio" style="cursor:pointer;" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="changOpenserviceBC=='L' || changOpenserviceBC=='S'"> ระดับบัญชีลูกค้า (OU Level)
+                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="changOpenserviceBC=='L' || changOpenserviceBC=='S'"> ระดับบัญชีลูกค้า (OU Level)
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <div ng-show="dataAccountPreverify['price-plan-require'] != 'R' && isAccountPreverify" style="color:red;">
+                    <div ng-show="dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL' || dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='NOT REQUIRE'" style="color:red;">
                         <div class="col-md-3"></div>
                         <div class="col-md-9">
-                            TH : {{dataAccountPreverify['text-messages']['th-message']}}
+                            TH : {{dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN-MSG-EN']}}
                             <br> 
-                            EN : {{dataAccountPreverify['text-messages']['en-message']}}
+                            EN : {{dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN-MSG-TH']}}
                         </div>
                     </div>
+                    <div ng-show="dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL'" style="color:red;">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            โปรโมชั่นเดิม : {{dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN']}} :
+                                        {{dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN-DESCRIPTION']}}
+                        </div>
+                    </div>
+                    
                     <br />
                     <!--Include-->
                     <style type="text/css">
@@ -622,7 +636,7 @@
                             <label class="col-md-3 control-label priceplaneText">
                                 โปรโมชั่น 
                                 <span style="color:red;"
-                                        ng-hide="dataAccountPreverify['price-plan-require'] == 'O' || dataAccountPreverify['price-plan-require']">*</span>
+                                        ng-show="dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='REQUIRE' || dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='NOT REQUIRE'">*</span>
                             </label>
                             <div class="col-md-6" id="priceplan_sl">
                                 <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
@@ -1362,8 +1376,9 @@
                             <div ng-show="shopType=='0'">
                                 <label class="col-md-4 control-label">รอบบิล <span style="color:red;">*</span></label>
                                 <div class="col-md-4">
-                                    <select class="form-control">
-                                        <option>ระบุ </option>
+                                    <select class="form-control" ng-model="billCycleSelected">
+                                        <option value="null">ไม่ระบุ </option>
+                                        <option ng-repeat="option in billCycleList" value="{{option.name}}">{{option["description"]}}</option>
                                     </select>
                                 </div>
                             </div>

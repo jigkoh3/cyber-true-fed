@@ -70,12 +70,11 @@
             var data3 = {
                 "status": "SUCCESSFUL",
                 "display-messages": [{
-                    "message": "",
-                    "message-code": "2",
+                    "message": "Change Ownership IR/IDD will be canceled",
+                    "message-code": "TMV-CHANGE-OWNERSHIP-00008",
                     "message-type": "WARNING",
-                    "en-message": "; nested exception is: \n\torg.xml.sax.SAXException: Invalid element in th.co.truecorp.ads.sff.ext.services.ccbint.resourcemanagement.NiceNumberInfoM - dealerCode",
-                    "th-message": "; nested exception is: \n\torg.xml.sax.SAXException: Invalid element in th.co.truecorp.ads.sff.ext.services.ccbint.resourcemanagement.NiceNumberInfoM - dealerCode",
-                    "technical-message": "CCB_INT Method : checkNiceNumber, URL : http://172.19.194.63:8280/SubscriberWS/ResourceManagement"
+                    "en-message": "Change Ownership IR/IDD will be canceled",
+                    "th-message": "ลูกค้าโอนเปลี่ยนเจ้าของ การโทรทางไกลต่างประเทศและการโทรข้ามแดนระหว่างประเทศ จะถูกยกเลิกอัตโนมัติ กด OK เพื่อยืนยันการทารายการต่อ"
                 }],
                 "trx-id": "491045TMJELMZ",
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
@@ -714,8 +713,11 @@
             });
         }
     };
-    var accountPreverifyAPI = function(param, fnCallback) {
-        var target = "sales/catalog/product/tmv/proposition/search";
+    var validateCustomerIDAPI = function(param, fnCallback) {
+        var target = "profiles/customer/validateid?" +
+            "customer-type" + param['customer-type'] +
+            "certificate-id" + param['certificate-id'] +
+            "customer-id" + param['customer-id'];
         console.log(target);
         if (!demo) {
             SystemService.callServiceGet(target, null, function(result) {
@@ -724,54 +726,332 @@
         } else {
             var data1 = {
                 "status": "SUCCESSFUL",
-                "trx-id": "3X18RYBCFS9L9",
-                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
-                "response-data": [{
-                    "text-messages": {
-                        "th-message": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่",
-                        "en-message": "No need to select new Price Plan (Promotion)"
+                "trx-id": "2R1TMA1C40B1F",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "response-data": {
+                    "gender": "MALE",
+                    "title": "นาย",
+                    "title-code": "T0",
+                    "firstname": "มินิท",
+                    "lastname": "เงินติดล้อ",
+                    "birthdate": "1980-08-20T00:00:00+0700",
+                    "customer-type": "I",
+                    "contact-number": "027883838",
+                    "contact-mobile-number": "0870009987",
+                    "contact-email": "ss@gmail.com",
+                    "language": "",
+                    "id-type": "I",
+                    "id-number": "83838838",
+                    "tax-id": "888832883898709",
+                    "id-expire-date": "2018-06-30T00:00:00+0700",
+                    "branch-code": "branch1",
+                    "customer-level": "NON_TOP",
+                    "customer-sublevel": "NONE",
+                    "customer-sublevel-id": "1",
+                    "customer-id": "",
+                    "address-list": {
+                        "CUSTOMER_ADDRESS": {
+                            "number": "61/238",
+                            "moo": "8",
+                            "village": "moo ban",
+                            "street": "ratchada",
+                            "soi": "81",
+                            "district": "dindaeng",
+                            "province": "Bangkok",
+                            "building-name": "Pakin",
+                            "building-room": "22",
+                            "building-floor": "13",
+                            "sub-district": "Dindaeng",
+                            "zip": "10400",
+                            "household": "18"
+                        }
                     },
-                    "parent-ou-level": "G",
-                    "selected-ou-level": "None",
-                    "price-plan-require": "P",
-                    "display-priceplan": "NETSVP89 : MG iNet 899, net 10 GB ULTD WiFi ULTD"
-                }]
+                    "customer-properties": {
+                        "BILL-CYCLE": "10",
+                        "BILL-CYCLE-DESCRIPTION": "10/13"
+                    }
+                }
             };
             var data2 = {
                 "status": "SUCCESSFUL",
-                "trx-id": "3X18RYBCFS9L9",
-                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
-                "response-data": [{
-                    "text-messages": {
-                        "th-message": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม",
-                        "en-message": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)"
-                    },
-                    "parent-ou-level": "G",
-                    "selected-ou-level": "G",
-                    "price-plan-require": "S"
-                }]
+                "display-messages": [{
+                    "message": "",
+                    "message-code": "2",
+                    "message-type": "ERROR",
+                    "en-message": "Customer Id นี้ไม่มีในระบบ",
+                    "th-message": "Customer Id นี้ไม่มีในระบบ",
+                    "technical-message": ""
+                }],
+                "trx-id": "3ERTR5HRVF9L",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {}
             };
-            var data3 = {
-                "status": "SUCCESSFUL",
-                "trx-id": "3X18RYBCFS9L9",
-                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
-                "response-data": [{
-                    "parent-ou-level": "None",
-                    "selected-ou-level": "None",
-                    "price-plan-require": "R"
-                }]
-            };
-            if (param['accountId'] == "5555555555") {
+
+            if (param['customer-id'] == "5555555555") {
                 fnCallback({
                     status: true,
                     data: data1,
                     error: "",
                     msgErr: ""
                 });
-            } else if (param['accountId'] == "8888888888") {
+            } else {
                 fnCallback({
                     status: true,
                     data: data2,
+                    error: "",
+                    msgErr: ""
+                });
+            }
+
+        }
+
+    };
+    var validateAccountIDAPI = function(param, fnCallback) {
+        var target = "profiles/customer/validateaccount?" +
+            "customer-type" + param['customer-type'] +
+            "company-code" + param['company-code'] +
+            "account-sub-type" + param['account-sub-type'] +
+            "account-id" + param['account-id'] +
+            "customer-id" + param['customer-id'];
+        console.log(target);
+        if (!demo) {
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
+            });
+        } else {
+            var data1 = {
+                "status": "SUCCESSFUL",
+                "trx-id": "2R1TMA1C40B1F",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "response-data": {
+                    "customer-type": "",
+                    "customer-id": "",
+                    "installed-products": [{
+                        "ouId": "5010",
+                        "ban": "20009628",
+                        "account-category": "I",
+                        "account-sub-type": "FIN",
+                        "company-code": "RF",
+                        "product-category": "TMV",
+                        "mobile-servicetype": "POSTPAID",
+                        "ou-hierarchytype": "CHILD",
+                        "parent-ouId": "1234",
+
+                        "ACCOUNT-FIRSTNMAE": "NOT REQUIRE corporate",
+                        "ACCOUNT-LASTNAME": "",
+                        "ACCOUNT-STATUS": "",
+                        "AGREEMENT-ID": "",
+                        "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                        "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                        "ACCOUNT-SERVICE-LEVEL": "G",
+                        "REQUIRE-PRICEPLAN": "NOT REQUIRE",
+                        "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                        "REQUIRE-PRICEPLAN-MSG-EN": "No need to select new Price Plan (Promotion)",
+                        "REQUIRE-PRICEPLAN-MSG-TH": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่"
+                    }, {
+                        "address-list": {
+                            "BILLING_ADDRESS": {
+                                "number": "61/238",
+                                "moo": "8",
+                                "village": "moo ban",
+                                "street": "ratchada",
+                                "soi": "81",
+                                "district": "dindaeng",
+                                "province": "Bangkok",
+                                "building-name": "Pakin",
+                                "building-room": "22",
+                                "building-floor": "13",
+                                "sub-district": "Dindaeng",
+                                "zip": "10400",
+                                "household": "18"
+                            }
+                        }
+                    }]
+                }
+            };
+            var data3 = {
+                "status": "SUCCESSFUL",
+                "trx-id": "2R1TMA1C40B1F",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "response-data": {
+                    "customer-type": "",
+                    "customer-id": "",
+                    "installed-products": [{
+                        "ouId": "5010",
+                        "ban": "20009628",
+                        "account-category": "I",
+                        "account-sub-type": "FIN",
+                        "company-code": "RF",
+                        "product-category": "TMV",
+                        "mobile-servicetype": "POSTPAID",
+                        "ou-hierarchytype": "CHILD",
+                        "parent-ouId": "1234",
+
+                        "ACCOUNT-FIRSTNMAE": "REQUIRE corporate",
+                        "ACCOUNT-LASTNAME": "",
+                        "ACCOUNT-STATUS": "",
+                        "AGREEMENT-ID": "",
+                        "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                        "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                        "ACCOUNT-SERVICE-LEVEL": "G",
+                        "REQUIRE-PRICEPLAN": "REQUIRE",
+                        "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                        "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
+                        "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
+                    }, {
+                        "address-list": {
+                            "BILLING_ADDRESS": {
+                                "number": "61/238",
+                                "moo": "8",
+                                "village": "moo ban",
+                                "street": "ratchada",
+                                "soi": "81",
+                                "district": "dindaeng",
+                                "province": "Bangkok",
+                                "building-name": "Pakin",
+                                "building-room": "22",
+                                "building-floor": "13",
+                                "sub-district": "Dindaeng",
+                                "zip": "10400",
+                                "household": "18"
+                            }
+                        }
+                    }]
+                }
+            };
+            var data4 = {
+                "status": "SUCCESSFUL",
+                "trx-id": "2R1TMA1C40B1F",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "response-data": {
+                    "customer-type": "",
+                    "customer-id": "",
+                    "installed-products": [{
+                        "ouId": "5010",
+                        "ban": "20009628",
+                        "account-category": "I",
+                        "account-sub-type": "FIN",
+                        "company-code": "RF",
+                        "product-category": "TMV",
+                        "mobile-servicetype": "POSTPAID",
+                        "ou-hierarchytype": "CHILD",
+                        "parent-ouId": "1234",
+
+                        "ACCOUNT-FIRSTNMAE": "OPTIONAL corporate",
+                        "ACCOUNT-LASTNAME": "",
+                        "ACCOUNT-STATUS": "",
+                        "AGREEMENT-ID": "",
+                        "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                        "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                        "ACCOUNT-SERVICE-LEVEL": "G",
+                        "REQUIRE-PRICEPLAN": "OPTIONAL",
+                        "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                        "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
+                        "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
+                    }, {
+                        "address-list": {
+                            "BILLING_ADDRESS": {
+                                "number": "61/238",
+                                "moo": "8",
+                                "village": "moo ban",
+                                "street": "ratchada",
+                                "soi": "81",
+                                "district": "dindaeng",
+                                "province": "Bangkok",
+                                "building-name": "Pakin",
+                                "building-room": "22",
+                                "building-floor": "13",
+                                "sub-district": "Dindaeng",
+                                "zip": "10400",
+                                "household": "18"
+                            }
+                        }
+                    }]
+                }
+            };
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "",
+                    "message-code": "2",
+                    "message-type": "ERROR",
+                    "en-message": "Account Id นี้ไม่มีในระบบ",
+                    "th-message": "Account Id นี้ไม่มีในระบบ",
+                    "technical-message": ""
+                }],
+                "trx-id": "3ERTR5HRVF9L",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {}
+            };
+            if (param['account-id'] == "6666666666") {
+                fnCallback({
+                    status: true,
+                    data: data1,
+                    error: "",
+                    msgErr: ""
+                });
+            } else if (param['account-id'] == "7777777777") {
+                fnCallback({
+                    status: true,
+                    data: data3,
+                    error: "",
+                    msgErr: ""
+                });
+            } else if (param['account-id'] == "8888888888") {
+                fnCallback({
+                    status: true,
+                    data: data4,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: true,
+                    data: data2,
+                    error: "",
+                    msgErr: ""
+                });
+            }
+
+        }
+    };
+    var getBillCycleAPI = function(param, fnCallback) {
+        var target = param;
+        console.log(target);
+        if (!demo) {
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
+            });
+        } else {
+            var data1 = {
+                "status": "SUCCESSFUL",
+                "trx-id": "03V94EUARX80",
+                "process-instance": "tpx61.true.th (instance: sale)",
+                "response-data": [{
+                    "name": "2",
+                    "description": "Monthly Cycle close on the 1"
+                }, {
+                    "name": "10",
+                    "description": "Monthly Cycle close on the 9"
+                }]
+            };
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "trx-id": "03V94EUARX80",
+                "process-instance": "tpx61.true.th (instance: sale)",
+                "response-data": [{
+                    "name": "3",
+                    "description": "Monthly Cycle close on the 4"
+                }, {
+                    "name": "11",
+                    "description": "Monthly Cycle close on the 10"
+                }]
+            };
+
+            if (target == "profiles/master/billcycle?customer-type=B") {
+                fnCallback({
+                    status: true,
+                    data: data1,
                     error: "",
                     msgErr: ""
                 });
@@ -904,12 +1184,12 @@
                                     errorText["technical-message"] += errorList[i]["technical-message"] + "<br /> ";
                                 }
                                 SystemService.showAlert({
-                                    "message": errorText["message"],
+                                    "message": "...",
                                     "message-code": "",
                                     "message-type": "WARNING",
-                                    "en-message": errorText["en-message"],
-                                    "th-message": errorText["th-message"],
-                                    "technical-message": errorText["technical-message"]
+                                    "en-message": "...",
+                                    "th-message": "...",
+                                    "technical-message": "..."
                                 });
                                 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ยังไม่ได้ทำให้ multi alert
                                 setTimeout(function() {
@@ -1007,8 +1287,18 @@
                 fnCallback(result);
             });
         },
-        accountPreverifyCallback: function(target, fnCallback) {
-            accountPreverifyAPI(target, function(result) {
+        validateAccountIDCallback: function(target, fnCallback) {
+            validateAccountIDAPI(target, function(result) {
+                fnCallback(result);
+            });
+        },
+        validateCustomerIDCallback: function(target, fnCallback) {
+            validateCustomerIDAPI(target, function(result) {
+                fnCallback(result);
+            });
+        },
+        getBillCycleCallback: function(target, fnCallback) {
+            getBillCycleAPI(target, function(result) {
                 fnCallback(result);
             });
         }

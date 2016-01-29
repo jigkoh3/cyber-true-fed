@@ -310,6 +310,9 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.bcName2 = "";
     $scope.accountID_root = "";
     $scope.accountID_child = "";
+    $scope.billCycleList = [];
+    $scope.billCycleSelected = "null";
+
     $scope.auth_1 = {
         "contact": "0868836665",
         "id-number": "9988877688845",
@@ -407,47 +410,83 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.showPPParentOU = false;
     $scope.dataAccountPreverify = {};
     $scope.isAccountPreverify = false;
+    $scope.validateCustomerIDData = {};
 
     $scope.onEnterAccountPreverify = function(level, id) {
+        if(!id) return;
         //alert('next day.'+level+":"+id+":"+$scope.getAccountCat());
-        SystemService.showLoading();
-        var data = {
-            "accountId": id,
-            "level": level,
-            "customerType": $scope.getAccountCat()
-        };
-        $scope.isAccountPreverify = false;
-        changeOwnershipIBCService.accountPreverifyCallback(data, function(result) {
-            SystemService.hideLoading();
-            var msg = utils.getObject(result, 'display-messages');
-            if (msg && msg.length > 0) {
-                $scope.isCustomerPreverify = false;
-                SystemService.showAlert({
-                    "message": msg[0]["message"],
-                    "message-code": msg[0]["message-code"],
-                    "message-type": "WARNING",
-                    "en-message": msg[0]["en-message"],
-                    "th-message": msg[0]["th-message"],
-                    "technical-message": msg[0]["technical-message"]
-                });
-            } else {
-                $scope.dataAccountPreverify = result.data['response-data'][0];
-                $scope.isAccountPreverify = true;
-                if (level == 'CHILD') {
-                    $scope.isAccount_child = true;
+        if (level == 'ROOT') {
+            SystemService.showLoading();
+            var data = {
+                "customer-type": $scope.getAccountCat(),
+                "customer-id": id,
+                "certificate-id": $scope.data.installedProducts['company-code']
+
+            };
+            $scope.isAccountPreverify = false;
+            $scope.validateCustomerIDData = {};
+            changeOwnershipIBCService.validateCustomerIDCallback(data, function(result) {
+                SystemService.hideLoading();
+                console.log(result);
+                var msg = utils.getObject(result.data, 'display-messages');
+                if (msg && msg.length > 0) {
+                    $scope.isCustomerPreverify = false;
+                    SystemService.showAlert({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
                 } else {
+                    $scope.validateCustomerIDData = result.data['response-data'];
+                    $scope.isAccountPreverify = true;
                     $scope.isAccount_root = true;
                 }
-                //check ParentOU Level & SelectedOU Level
-                if ($scope.dataAccountPreverify["price-plan-require"] == "P") {
-                    $scope.showPPParentOU = true;
-                    $scope.pricePlan.name = $scope.dataAccountPreverify['display-priceplan'];
-                } else {
-                    $scope.showPPParentOU = false;
-                }
+            });
+        } else {
+            SystemService.showLoading();
+            var data = {
+                "customer-type": $scope.getAccountCat(),
+                "company-code": $scope.data.installedProducts['company-code'],
+                "account-sub-type": $scope.subCompanyType,
+                "account-id": id,
+                "customer-id": $scope.accountID_root
+            };
+            $scope.isAccountPreverify = false;
+            changeOwnershipIBCService.validateAccountIDCallback(data, function(result) {
+                SystemService.hideLoading();
                 console.log(result);
-            }
-        });
+                var msg = utils.getObject(result.data, 'display-messages');
+                if (msg && msg.length > 0) {
+                    $scope.isCustomerPreverify = false;
+                    SystemService.showAlert({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
+                } else {
+                    $scope.dataAccountPreverify = result.data['response-data'];
+                    $scope.isAccountPreverify = true;
+                    $scope.isAccount_child = true;
+                    //check ParentOU Level & SelectedOU Level
+                    if ($scope.dataAccountPreverify["installed-products"][0]["REQUIRE-PRICEPLAN"] == "NOT REQUIRE") {
+                        $scope.showPPParentOU = true;
+                        $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN']+
+                                                ": "+
+                                                $scope.dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN-DESCRIPTION'];
+                    } else {
+                        $scope.showPPParentOU = false;
+                    }
+
+                }
+            });
+        }
+
     };
     $scope.onChangeAccountPreverify = function(level) {
         $scope.isAccountPreverify = false;
@@ -571,6 +610,28 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.onInputIdBC();
         }
     };
+    $scope.getBillCycleList = function(cust_type) {
+        SystemService.showLoading();
+        var data = "profiles/master/billcycle?customer-type=" + $scope.getAccountCat();
+        changeOwnershipIBCService.getBillCycleCallback(data, function(result) {
+            SystemService.hideLoading();
+            var msg = utils.getObject(result.data, 'display-messages');
+            if (msg && msg.length > 0) {
+                $scope.isCustomerPreverify = false;
+                SystemService.showAlert({
+                    "message": msg[0]["message"],
+                    "message-code": msg[0]["message-code"],
+                    "message-type": "WARNING",
+                    "en-message": msg[0]["en-message"],
+                    "th-message": msg[0]["th-message"],
+                    "technical-message": msg[0]["technical-message"]
+                });
+            } else {
+                $scope.billCycleList = result.data['response-data'];
+                console.log(result);
+            }
+        });
+    };
     //END: CR02 
 
     $scope.changeType = function(customerType) {
@@ -584,6 +645,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         //ST: clear input
         $scope.clearInputIBC();
         //EN: clear input
+        $scope.getBillCycleList();
     };
 
     $scope.customerType = "N";
@@ -1211,9 +1273,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             SystemService.showLoading();
             var target = "sales/catalog/product/tmv/priceplan/search?" +
                 "company-code=" + $scope.data.installedProducts['company-code'] +
-                "&customer-type=I" +
+                "&customer-type=" + $scope.getAccountCat() +
                 "&customer-subtype=" + $scope.subCompanyType +
-                "&service-level=C" +
+                "&service-level=" + ($scope.promotionLevel == "SUB" ? "C" : "G") +
                 //"&proposition=" + $scope.promotion +
                 "&partner-code=" + $scope.partnerCode +
                 "&privilege=false";
@@ -2630,6 +2692,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.grade = {};
 
     $scope.saveOrder = function() {
+
         if ($scope.shopType == '1') {
             $scope.selectReason.id = "COWN";
         }
@@ -2833,7 +2896,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             };
         }
         //SHARE_ALLOWANCE, FriendAndFamily, CUG, POOLED
-        var spList = $scope.offerDetail["csm-offer-details"]["csm-related-offer-details"];
+
         //var spName = $scope.offerDetail["csm-offer-details"]["name"];
         var spAll = "";
         var spNameAll = "";
@@ -2846,75 +2909,78 @@ smartApp.controller('changeOwnershipIBCController', function(
             'POOLING': [],
             'CAPMAX': []
         };
-        for (var isp = 0; isp < spList.length; isp++) {
-            var sp = spList[isp]["special-offer-type"];
-            var spName = spList[isp]["name"];
+        if ($scope.showPPParentOU == false) {
+            var spList = $scope.offerDetail["csm-offer-details"]["csm-related-offer-details"];
+            for (var isp = 0; isp < spList.length; isp++) {
+                var sp = spList[isp]["special-offer-type"];
+                var spName = spList[isp]["name"];
 
-            if (sp == "SHARE_ALLOWANCE" || sp == "POOLED" || sp == 'POOLING' || sp == 'CAPMAX') {
-                spAll = spAll + (spAll ? "|" : "") + sp;
-                spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
-                if ($scope.capMaxParameterList['monetary-capmax']) {
-                    spArray[sp].push("Monetary cap max|" + $scope.saveParamData.Monetary + "|");
-                }
-                if ($scope.capMaxParameterList['occurrence-capmax']) {
-                    spArray[sp].push("Occurrence cap max|" + $scope.saveParamData.Occurrence + "|");
-                }
-                if ($scope.capMaxParameterList['duration-capmax']) {
-                    spArray[sp].push("Duration cap max|" + $scope.saveParamData.Duration + "|" + $scope.capMaxParameterList['durationCapMaxUOM']);
-                }
-                if ($scope.capMaxParameterList['volume-capmax']) {
-                    spArray[sp].push("Volume cap max|" + $scope.saveParamData.Volume + "|" + $scope.capMaxParameterList['volumeCapMaxUOM']);
-                }
-            }
-            if (sp == 'FriendAndFamily') {
-                spAll = spAll + (spAll ? "|" : "") + sp;
-                spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
-                var countFF = 0;
-                for (var i = 1; i <= $scope.ffData.max; i++) {
-                    if ($scope.saveParamData["ff" + i]) {
-                        spArray[sp].push("Friend numbers offer level|" + $scope.saveParamData["ff" + i] + "|");
-                        countFF++;
+                if (sp == "SHARE_ALLOWANCE" || sp == "POOLED" || sp == 'POOLING' || sp == 'CAPMAX') {
+                    spAll = spAll + (spAll ? "|" : "") + sp;
+                    spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                    if ($scope.capMaxParameterList['monetary-capmax']) {
+                        spArray[sp].push("Monetary cap max|" + $scope.saveParamData.Monetary + "|");
+                    }
+                    if ($scope.capMaxParameterList['occurrence-capmax']) {
+                        spArray[sp].push("Occurrence cap max|" + $scope.saveParamData.Occurrence + "|");
+                    }
+                    if ($scope.capMaxParameterList['duration-capmax']) {
+                        spArray[sp].push("Duration cap max|" + $scope.saveParamData.Duration + "|" + $scope.capMaxParameterList['durationCapMaxUOM']);
+                    }
+                    if ($scope.capMaxParameterList['volume-capmax']) {
+                        spArray[sp].push("Volume cap max|" + $scope.saveParamData.Volume + "|" + $scope.capMaxParameterList['volumeCapMaxUOM']);
                     }
                 }
-                if (countFF < $scope.ffData.min) {
-                    SystemService.showAlert({
-                        "message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-                        "message-code": "",
-                        "message-type": "WARNING",
-                        "en-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-                        "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-                        "technical-message": "changePricePlanController"
-                    });
-                } else {
-                    $scope.attModalVal = "modal";
-                }
-            }
-            if (sp == 'CUG') {
-
-                spAll = spAll + (spAll ? "|" : "") + sp;
-                spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
-                spArray[sp].push("CUG ID|" + $scope.saveDataCUG.id + "|");
-            }
-
-
-            //create field JSON
-            var list = spAll.split("|");
-            var listName = spNameAll.split('|');
-            if (spAll) {
-                for (var i = 0; i < list.length; i++) {
-                    data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-SIZE"] = spArray[list[i]].length;
-
-                    data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-OFFER-NAME"] = listName[i];
-
-                    var listValue = spArray[list[i]];
-                    for (var ii = 0; ii < listValue.length; ii++) {
-                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-" + ii] = listValue[ii];
+                if (sp == 'FriendAndFamily') {
+                    spAll = spAll + (spAll ? "|" : "") + sp;
+                    spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                    var countFF = 0;
+                    for (var i = 1; i <= $scope.ffData.max; i++) {
+                        if ($scope.saveParamData["ff" + i]) {
+                            spArray[sp].push("Friend numbers offer level|" + $scope.saveParamData["ff" + i] + "|");
+                            countFF++;
+                        }
                     }
-
+                    if (countFF < $scope.ffData.min) {
+                        SystemService.showAlert({
+                            "message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                            "message-code": "",
+                            "message-type": "WARNING",
+                            "en-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                            "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                            "technical-message": "changePricePlanController"
+                        });
+                    } else {
+                        $scope.attModalVal = "modal";
+                    }
                 }
+                if (sp == 'CUG') {
+
+                    spAll = spAll + (spAll ? "|" : "") + sp;
+                    spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                    spArray[sp].push("CUG ID|" + $scope.saveDataCUG.id + "|");
+                }
+
+
+                //create field JSON
+                var list = spAll.split("|");
+                var listName = spNameAll.split('|');
+                if (spAll) {
+                    for (var i = 0; i < list.length; i++) {
+                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-SIZE"] = spArray[list[i]].length;
+
+                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-OFFER-NAME"] = listName[i];
+
+                        var listValue = spArray[list[i]];
+                        for (var ii = 0; ii < listValue.length; ii++) {
+                            data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-" + ii] = listValue[ii];
+                        }
+
+                    }
+                }
+
+
             }
-
-
         }
         data["order"]["order-items"][0]["order-data"]["OFFERS-REQUIRE-PARAMETER"] = spAll;
 
@@ -2940,13 +3006,16 @@ smartApp.controller('changeOwnershipIBCController', function(
             'E2E_REFID': $scope.orderId
         };
         console.log(data);
+        SystemService.showLoading();
         if (SystemService.demo) {
+            SystemService.hideLoading();
             SystemService.showBeforeClose({
                 "message": "รายการคำขอเลขที่ " + $scope.orderId,
                 "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
             });
         } else {
             SystemService.callServicePost(data, headers, function(result) {
+                SystemService.hideLoading();
                 console.log(result);
                 if (result.status) {
                     SystemService.showBeforeClose({
@@ -3305,6 +3374,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
 
     $scope.onVerify = function() {
+        $scope.isVerify = false;
         SystemService.showLoading();
         var checkMaxAllow = function(result) {
             SystemService.hideLoading();
@@ -3930,25 +4000,25 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
-        } else if (isNull($scope.mailAddress.homeNumber)) {
+        } else if (isNull($scope.mailAddress.homeNumber) && $scope.isAccount_child == false) {
             showValidate("txtMailAdressHomeNumber", ValidateMsgService.data.msgBillHouseNoEmpty);
-        } else if (isNull($scope.mailAddress.moo)) {
+        } else if (isNull($scope.mailAddress.moo) && $scope.isAccount_child == false) {
             showValidate("txtMailAddressMoo", ValidateMsgService.data.msgBillVillageNoEmpty);
-        } else if (isNull($scope.mailAddress.road)) {
+        } else if (isNull($scope.mailAddress.road) && $scope.isAccount_child == false) {
             showValidate("txtMailAddressRoad", ValidateMsgService.data.msgBillRoadEmpty);
-        } else if (isNull($scope.mailAddress.district)) {
+        } else if (isNull($scope.mailAddress.district) && $scope.isAccount_child == false) {
             showValidate("txtMaillAddressDistrict", ValidateMsgService.data.msgBillSubDistrictEmpty);
-        } else if (isNull($scope.mailAddress.amphur)) {
+        } else if (isNull($scope.mailAddress.amphur) && $scope.isAccount_child == false) {
             showValidate("txtmailAddressamphur", ValidateMsgService.data.msgBillDistrictEmpty);
-        } else if (isNull($scope.mailAddress.province)) {
+        } else if (isNull($scope.mailAddress.province) && $scope.isAccount_child == false) {
             showValidate("txtmailAddressprovince", ValidateMsgService.data.msgBillProvinceEmpty);
-        } else if (isNull($scope.mailAddress.postcode)) {
+        } else if (isNull($scope.mailAddress.postcode) && $scope.isAccount_child == false) {
             showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
         } else if ($scope.blah == 'E' && isNull($scope.billPayment.email)) {
             showValidate("idBillPaymentEmail", ValidateMsgService.data.msgBillEmailEmpty);
         } else if ($scope.blah == 'S' && isNull($scope.billPayment.smss)) {
             showValidate("txtBillPaymentSmss", ValidateMsgService.data.msgBillSmsNoEmpty);
-        } else if (isNull($scope.contactNo.number)) {
+        } else if (isNull($scope.contactNo.number) && $scope.isAccount_child == false) {
             showValidate("txtcontactNonumber", ValidateMsgService.data.msgCusContractNoEmpty);
         } else if (errorFUTURE) {
             showValidate("txtDateManual", ValidateMsgService.data.effectiveDateMsg);
