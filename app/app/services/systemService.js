@@ -10,9 +10,9 @@
     this.secondAuthenURL = getSecondAuthenURL();
 
     window.onresize = function(event) {
-        console.log($('#hModal').height());
+        //console.log($('#hModal').height());
         $('#hModal').height(($( window ).height())-235);
-        console.log($('#hModal').height());
+        //console.log($('#hModal').height());
     };
     this.printPDF = function(url) {
         divPDF2.innerHTML =
