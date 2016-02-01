@@ -158,6 +158,9 @@ smartApp.config(function($routeProvider, $httpProvider) {
     }).when('/createCug', {
         templateUrl: 'app/views/createCug.html?v=' + runTime,
         controller: 'CreateCugController'
+    }).when('/addDeleteEditOffer', {
+        templateUrl: 'app/views/addDeleteEditOffer.html?v=' + runTime,
+        controller: 'AddDeleteEditOfferController'
     });
 
     // $routeProvider.otherwise({
