@@ -210,18 +210,19 @@ smartApp.controller('MigratePreToPostController', function(
                 }
             }
         }
+        if ($scope.getAuthen["shopType"] == "1" && $scope.getAuthen["isByPassSecondAuthen"] == true) {
+
+            setTimeout(function() {
+                $('#CitizenID').prop('disabled', false);
+                $('#CitizenID').focus();
+            }, 500);
+
+
+        } else {
+            $('#CitizenID').prop('disabled', true);
+        }
         if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
-            if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
 
-                setTimeout(function() {
-                    $('#CitizenID').prop('disabled', false);
-                    $('#CitizenID').focus();
-                }, 500);
-
-
-            } else {
-                $('#CitizenID').prop('disabled', true);
-            }
 
             if ($scope.clickModalReadCard) {
                 $scope.clickModalReadCard = false;
