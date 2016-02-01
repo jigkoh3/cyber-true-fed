@@ -357,6 +357,9 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         $scope.unUseAddressMailBC();
         $scope.unUseAddressAsCard();
+
+        $scope.dataAccountPreverify = {};
+        $scope.subCompanyType = "";
     };
     $scope.getAccountCat = function() {
         var accountCat = 'I';

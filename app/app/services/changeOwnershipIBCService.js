@@ -1058,7 +1058,7 @@
             } else {
                 fnCallback({
                     status: true,
-                    data: data3,
+                    data: data2,
                     error: "",
                     msgErr: ""
                 });
