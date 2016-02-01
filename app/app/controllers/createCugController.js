@@ -210,6 +210,8 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     $scope.validateCugGroup = function(){
         if($scope.groupName != '' && $scope.desc != '' && $scope.compName != ''){
             $scope.isCustomerProfile = false;
+        }else{
+            $scope.isCustomerProfile = true;
         }
     }
 
