@@ -412,6 +412,13 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.isAccountPreverify = false;
     $scope.validateCustomerIDData = {};
 
+    $scope.showRequirePP = true;
+    $scope.PPTypeId = "SH";
+
+    $scope.onChangePPTypeId = function(){
+        console.log($scope.PPTypeId);
+    };
+
     $scope.onEnterAccountPreverify = function(level, id) {
         if(!id) return;
         //alert('next day.'+level+":"+id+":"+$scope.getAccountCat());
@@ -445,7 +452,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                     $scope.isAccount_root = true;
                 }
             });
-        } else {
+        } else { // CHILD
             SystemService.showLoading();
             var data = {
                 "customer-type": $scope.getAccountCat(),
@@ -481,6 +488,11 @@ smartApp.controller('changeOwnershipIBCController', function(
                                                 $scope.dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN-DESCRIPTION'];
                     } else {
                         $scope.showPPParentOU = false;
+                    }
+                    if ($scope.dataAccountPreverify["installed-products"][0]["REQUIRE-PRICEPLAN"] == "NOT REQUIRE" || $scope.dataAccountPreverify["installed-products"][0]["REQUIRE-PRICEPLAN"] == "REQUIRE") {
+                        $scope.showRequirePP = true;
+                    } else {
+                        $scope.showRequirePP = false;
                     }
 
                 }
@@ -520,6 +532,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.accountID_root = "";
 
         $scope.showPPParentOU = false;
+        $scope.showRequirePP = true;
     };
     $scope.onKeyUpAccountPreverify = function() {
         //if lenght == 5

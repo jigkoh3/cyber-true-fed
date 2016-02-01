@@ -715,9 +715,9 @@
     };
     var validateCustomerIDAPI = function(param, fnCallback) {
         var target = "profiles/customer/validateid?" +
-            "customer-type" + param['customer-type'] +
-            "certificate-id" + param['certificate-id'] +
-            "customer-id" + param['customer-id'];
+            "customer-type=" + param['customer-type'] +"&"+
+            "certificate-id=" + param['certificate-id'] +"&"+
+            "customer-id=" + param['customer-id'];
         console.log(target);
         if (!demo) {
             SystemService.callServiceGet(target, null, function(result) {
@@ -808,11 +808,11 @@
     };
     var validateAccountIDAPI = function(param, fnCallback) {
         var target = "profiles/customer/validateaccount?" +
-            "customer-type" + param['customer-type'] +
-            "company-code" + param['company-code'] +
-            "account-sub-type" + param['account-sub-type'] +
-            "account-id" + param['account-id'] +
-            "customer-id" + param['customer-id'];
+            "customer-type=" + param['customer-type'] +"&"+
+            "company-code=" + param['company-code'] +"&"+
+            "account-sub-type=" + param['account-sub-type'] +"&"+
+            "account-id=" + param['account-id'] +"&"+
+            "customer-id=" + param['customer-id'];
         console.log(target);
         if (!demo) {
             SystemService.callServiceGet(target, null, function(result) {
