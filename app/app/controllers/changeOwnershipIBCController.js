@@ -1577,8 +1577,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         }
                                     }, 1000);
                                     $scope.isAddressList = {};
+                                    $scope.changOpenserviceBC = "S";
                                 } else {
-
+                                    $scope.changOpenserviceBC = "L";
                                     var customer = lastestCustomer.data["response-data"]["customer"];
 
                                     $scope.lastestCustomer = customer;
@@ -1602,8 +1603,11 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $("#birthDayRegisterd").datepicker("update", $scope.newOwner.birthDay);
 
                                         //BC--------------
-                                        $scope.bcName = customer["firstname"] + " " + customer["lastname"];
-                                        $scope.bcName2 = customer["firstname"] + " " + customer["lastname"];
+                                        // $scope.bcName = customer["firstname"] + " " + customer["lastname"];
+                                        // $scope.bcName2 = customer["firstname"] + " " + customer["lastname"];
+
+                                        $scope.bcName = customer["firstname"];
+                                        $scope.bcName2 = customer["firstname"];
 
                                     }
 

@@ -768,7 +768,7 @@
                     },
                     "customer-properties": {
                         "BILL-CYCLE": "10",
-                        "BILL-CYCLE-DESCRIPTION": "10/13"
+                        "BILL-CYCLE-DESCRIPTION": "xxxxxx 10/13"
                     }
                 }
             };

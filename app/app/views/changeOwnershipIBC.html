@@ -450,7 +450,7 @@
                                     <p></p>
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount()" checked="checked"> ลูกค้าล่าสุด
+                                            <input type="radio" ng-disabled="!isLastestAdress" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount()" checked="checked"> ลูกค้าล่าสุด
                                         </label>
                                     </div>
                                     <div class="col-md-4">
@@ -488,7 +488,7 @@
                                             </td>
                                             <td class="col-xs-2">
                                                 <span ng-show="changOpenserviceBC == 'L'">
-                                                ยังไม่รู้ที่มา???
+                                                {{lastestCustomer['installed-products'][0]['ban']}}
                                                 </span>
                                                 <input ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" ng-change="onChangeAccountPreverify('ROOT')" type="text" maxlength="10" style="height:30px; font-size: 12px;" placeholder="ระบุเลขที่ลูกค้า" class="form-control">
                                             </td>
@@ -496,7 +496,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12" ng-show="changOpenserviceBC == 'L'">
                                                         <span>
-                                                    บริษัท aa จำกัด
+                                                    {{lastestCustomer['firstname']}}
                                                     </span>
                                                     </div>
                                                     <div ng-show="changOpenserviceBC == 'S' && isAccount_root" class="col-xs-1">
@@ -509,12 +509,14 @@
                                             </td>
                                             <td class="col-xs-2" ng-show="changOpenserviceBC == 'L'">
                                                 <span>
-                                                    13/12
+                                                    {{lastestCustomer['installed-products'][0]['bill-cycle']}} / {{lastestCustomer['installed-products'][0]['bill-cycle']-1}}
                                                 </span>
                                             </td>
                                             <td class="col-xs-2" ng-show="isAccount_root">
                                                 <span>
-                                                    {{validateCustomerIDData['customer-properties']['BILL-CYCLE-DESCRIPTION']}}
+                                                    {{validateCustomerIDData['customer-properties']['BILL-CYCLE']}}
+                                                    /
+                                                    {{Number(validateCustomerIDData['customer-properties']['BILL-CYCLE'])-1}}
                                                 </span>
                                             </td>
                                             <th class="col-xs-1">&nbsp;</th>
@@ -624,11 +626,15 @@
                     <div ng-show="(dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL' || dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='NOT REQUIRE') && isVerify" style="color:red;">
                         <div class="col-md-3"></div>
                         <div class="col-md-9">
-                            TH : {{dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN-MSG-EN']}}
-                            <br> EN : {{dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN-MSG-TH']}}
+                            TH : {{dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN-MSG-TH']}}
+                            <br> EN : {{dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN-MSG-EN']}}
                         </div>
                     </div>
                     <div ng-show="dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL' && isVerify" style="color:red;">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">&nbsp;</div>
+                    </div>
+                    <div ng-show="dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL' && isVerify" style="color:green;">
                         <div class="col-md-3"></div>
                         <div class="col-md-9">
                             โปรโมชั่นเดิม : {{dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN']}} : {{dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN-DESCRIPTION']}}
