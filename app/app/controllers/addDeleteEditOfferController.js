@@ -30,7 +30,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope, $routeParam
 
     $scope.data = {};
     $scope.isReadCardSuccess = false;
-
+    $scope.offerType = "C"
     $scope.statusReason = '';
     $scope.statusReasonMemo = '';
 
@@ -250,7 +250,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope, $routeParam
 
                 return date;
             }
-           
+
         }
     };
 
@@ -620,13 +620,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope, $routeParam
 
         $('#CitizenID2').val($scope.cardInfo2.CitizenID);
         $('#authorizeFullName').val($scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH);
-        
+
     };
 
     $scope.customerType = "N";
     $scope.isAuthorize = false;
     $scope.authorize = function() {
         $scope.isAuthorize = true;
+    };
+
+    $scope.changeType = function(offerType) {
+        $scope.offerType = offerType;
     };
 
     $scope.afterCloseWarning = function() {

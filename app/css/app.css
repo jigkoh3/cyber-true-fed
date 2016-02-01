@@ -14673,3 +14673,9 @@ textarea.remark-message {
 .pagination {
     margin: 0;
 }
+.divOfferTypeWidth {
+    width: 50%;
+}
+.divParameterOfferButton{
+    height:20px;
+}
