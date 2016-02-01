@@ -621,14 +621,14 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL' || dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='NOT REQUIRE'" style="color:red;">
+                    <div ng-show="(dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL' || dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='NOT REQUIRE') && isVerify" style="color:red;">
                         <div class="col-md-3"></div>
                         <div class="col-md-9">
                             TH : {{dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN-MSG-EN']}}
                             <br> EN : {{dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN-MSG-TH']}}
                         </div>
                     </div>
-                    <div ng-show="dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL'" style="color:red;">
+                    <div ng-show="dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL' && isVerify" style="color:red;">
                         <div class="col-md-3"></div>
                         <div class="col-md-9">
                             โปรโมชั่นเดิม : {{dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN']}} : {{dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN-DESCRIPTION']}}

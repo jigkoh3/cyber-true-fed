@@ -1,7 +1,7 @@
 ﻿smartApp.service('SystemService', function($ngBootbox, $filter, $http, ModalService, ValidateMsgService) {
     console.log('SystemService');
     var that = this;
-    this.demo = false;
+    this.demo = true;
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
