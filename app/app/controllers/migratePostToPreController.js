@@ -897,6 +897,20 @@
     };
 
     var onGetProPosition = function(result) {
+        var displayMsg = utils.getObject(result.data, 'display-messages.0');
+        if (displayMsg && result.data["display-messages"].length > 0) {
+            setTimeout(function() {
+                SystemService.showAlert({
+                    "message": result.data["display-messages"][0]["message"],
+                    "message-code": result.data["display-messages"][0]["message-code"],
+                    "message-type": "WARNING",
+                    "en-message": result.data["display-messages"][0]["en-message"],
+                    "th-message": result.data["display-messages"][0]["th-message"],
+                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                });
+                //$ngBootbox.customDialog($scope.customDialogOptions);
+            }, 1200);
+        }
         $scope.proPositionList = result.data['response-data'];
 
         if ($scope.proPositionList && $scope.proPositionList.length) {

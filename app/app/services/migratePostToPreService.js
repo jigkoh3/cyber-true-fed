@@ -283,41 +283,61 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
         };
 
         if (!demo) {
-            var target = '/sales/catalog/product/tmv/proposition/search?' + params;
-
-            SystemService.callServiceGetByPass(target, null, function(result) {
-                cb(result);
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
             });
         } else {
             var data = {
-                'status': 'SUCCESSFUL',
-                'trx-id': '3BYUAFJC01W8',
-                'process-instance': 'tmsapnpr1 (instance: SFF_node1)',
-                'response-data': [{
-                    'name': 'P00000000000211',
-                    'description': 'SIM Koo Kan',
-                    'soc': null,
-                    'rc': 0.0,
-                    'service-level': null,
-                    'proposition-code': '0019087'
+                "status": "SUCCESSFUL",
+                "trx-id": "4AR3P1G9VBLD",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": [{
+                    "name": "RMV000000000001",
+                    "description": "New Sim Only",
+                    "soc": "45552",
+                    "rc": 0.0,
+                    "service-level": "C",
+                    "proposition-code": "0019123"
                 }, {
-                    'name': 'RMV000000000001',
-                    'description': 'New Sim Only',
-                    'soc': null,
-                    'rc': 0.0,
-                    'service-level': null,
-                    'proposition-code': '0019123'
+                    "name": "RMV000000000211",
+                    "description": "iPhone5 MNP",
+                    "soc": "81592",
+                    "rc": 0.0,
+                    "service-level": "C",
+                    "proposition-code": "0019460"
+                }, {
+                    "name": "RMV000000000215",
+                    "description": "iPhone5 MNP 1,000bt",
+                    "soc": "81612",
+                    "rc": 0.0,
+                    "service-level": "C",
+                    "proposition-code": "0019447"
                 }]
             };
-
-            $timeout(function() {
-                cb({
-                    status: true,
-                    data: data,
-                    error: '',
-                    msgErr: ''
-                });
-            }, 1000);
+            var data2 = {
+                "trx-id": "62TSNI7WEJFH",
+                "status": "SUCCESSFUL",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "fault": {
+                    "name": "th.co.truecorp.ads.api.persistent.jdbc.DataNotFoundException",
+                    "code": "PROFILE-404",
+                    "message": "Not found proposition with specific criteria.",
+                    "detailed-message": "DataNotFoundException Not found proposition with specific criteria.. "
+                },
+                "display-messages": [{
+                    "message": "Not found proposition with specific criteria.",
+                    "message-type": "WARNING",
+                    "en-message": "Not found proposition with specific criteria.",
+                    "th-message": "Not found proposition with specific criteria.",
+                    "technical-message": "tmsapnpr1 (instance: SFF_node3) DataNotFoundException Not found proposition with specific criteria.. "
+                }]
+            };
+            fnCallback({
+                status: true,
+                data: data2,
+                error: "",
+                msgErr: ""
+            });
         }
     };
 
@@ -652,7 +672,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     "product-type": payload.productDetails['product-type'],
                     "order-type": "CHANGE",
                     "reason-code": "CREQ",
-                    'user-memo': payload.memo ? payload.saleAgent.loginName + "(" + payload.saleAgent.saleCode + ": " + payload.saleAgent.engName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": "  + payload.memo : payload.loginName + "(" + payload.saleAgent.saleCode + ": " + payload.saleAgent.engName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": ",
+                    'user-memo': payload.memo ? payload.saleAgent.loginName + "(" + payload.saleAgent.saleCode + ": " + payload.saleAgent.engName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": " + payload.memo : payload.loginName + "(" + payload.saleAgent.saleCode + ": " + payload.saleAgent.engName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": ",
                     "address-list": {
                         "BILLING_ADDRESS": payload.customerAddress,
                         "TAX_ADDRESS": payload.customerAddress
@@ -694,11 +714,11 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             request['target'] = '/aftersales/order/submit';
 
             SystemService.callServicePost(request, null, function(result) {
-            	//save report to server
-            	SystemService.saveReportToServer({}, function(result){
-            		
-            	});
-                
+                //save report to server
+                SystemService.saveReportToServer({}, function(result) {
+
+                });
+
                 cb(result);
             });
         } else {
@@ -727,9 +747,9 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
     };
 
     this.validatePartnerCallback = function(target, fnCallback) {
-            validatePartnerAPI(target, function(result) {
-                fnCallback(result);
-            });
-        };
+        validatePartnerAPI(target, function(result) {
+            fnCallback(result);
+        });
+    };
 
 });
