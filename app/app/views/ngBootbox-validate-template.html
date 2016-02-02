@@ -29,7 +29,7 @@
     </div>
     <div style="text-align:center;">
         &nbsp;&nbsp;
-        <input type="button" ng-show="ngDialogData['message-type']=='ERROR' || ngDialogData['message-type']=='ERROR_CALL_SERVICE'" onclick="bootbox.hideAll();" value=" Close " class="btn btn-danger">
+        <input type="button" ng-show="ngDialogData['message-type']=='ERROR' || ngDialogData['message-type']=='ERROR_CALL_SERVICE'" onclick="window.close();" value=" Close " class="btn btn-danger">
         <input type="button" ng-hide="(ngDialogData['message-type']=='ERROR') || (ngDialogData['message-type']=='ERROR_CALL_SERVICE')" onclick="bootbox.hideAll();" value="OK" id="btn_ngbOK" class="btn btn-success">
     </div>
     <div class="ngdialog-buttons">
