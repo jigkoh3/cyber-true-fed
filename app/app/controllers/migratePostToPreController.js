@@ -897,6 +897,7 @@
     };
 
     var onGetProPosition = function(result) {
+        SystemService.hideLoading();
         var displayMsg = utils.getObject(result.data, 'display-messages.0');
         if (displayMsg && result.data["display-messages"].length > 0) {
             setTimeout(function() {
