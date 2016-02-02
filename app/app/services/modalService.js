@@ -395,7 +395,7 @@
             "th-message": "กรุณาระบุ หมายเลขบัตรประชาชน/พาสปอร์ต ผู้มีอำนาจลงนาม",
             "technical-message": "FROM WEBUI"
         },
-        "msgauth_1_firstNameEmpty": {
+        "msgAuth_1_firstNameEmpty": {
             "message": "",
             "message-code": "",
             "message-type": "WARNING",
@@ -403,12 +403,36 @@
             "th-message": "กรุณาระบุ ชื่อ ผู้มีอำนาจลงนาม",
             "technical-message": "FROM WEBUI"
         },
-        "msgauth_1_lastNamerEmpty": {
+        "msgAuth_1_lastNamerEmpty": {
             "message": "",
             "message-code": "",
             "message-type": "WARNING",
             "en-message": "Please specify Last Name.",
             "th-message": "กรุณาระบุ นามสกุล ผู้มีอำนาจลงนาม",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgPoa_1_id_numberEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify ID number / Passport.",
+            "th-message": "กรุณาระบุ หมายเลขบัตรประชาชน/พาสปอร์ต ผู้รับมอบอำนาจ",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgPoa_1_firstnameEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify First Name.",
+            "th-message": "กรุณาระบุ ชื่อ ผู้รับมอบอำนาจ",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgPoa_1_lastnameEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Last Name.",
+            "th-message": "กรุณาระบุ นามสกุล ผู้รับมอบอำนาจ",
             "technical-message": "FROM WEBUI"
         }
     };

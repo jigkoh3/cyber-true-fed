@@ -360,6 +360,8 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         $scope.dataAccountPreverify = {};
         $scope.subCompanyType = "";
+
+        $scope.billPayment.preferedContace = "*";
     };
     $scope.getAccountCat = function() {
         var accountCat = 'I';
@@ -369,6 +371,9 @@ smartApp.controller('changeOwnershipIBCController', function(
         return accountCat;
     };
     $scope.onInputIdBC = function() {
+        if($scope.isCustomerPreverify==true){
+            $scope.clearInputIBC();
+        }
         var data = {
             "accountCat": $scope.getAccountCat(),
             "channel": "WEBUI",
@@ -418,12 +423,12 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.showRequirePP = true;
     $scope.PPTypeId = "SH";
 
-    $scope.onChangePPTypeId = function(){
+    $scope.onChangePPTypeId = function() {
         console.log($scope.PPTypeId);
     };
 
     $scope.onEnterAccountPreverify = function(level, id) {
-        if(!id) return;
+        if (!id) return;
         //alert('next day.'+level+":"+id+":"+$scope.getAccountCat());
         if (level == 'ROOT') {
             SystemService.showLoading();
@@ -486,9 +491,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                     //check ParentOU Level & SelectedOU Level
                     if ($scope.dataAccountPreverify["installed-products"][0]["REQUIRE-PRICEPLAN"] == "NOT REQUIRE") {
                         $scope.showPPParentOU = true;
-                        $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN']+
-                                                ": "+
-                                                $scope.dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN-DESCRIPTION'];
+                        $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN'] +
+                            ": " +
+                            $scope.dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN-DESCRIPTION'];
                     } else {
                         $scope.showPPParentOU = false;
                     }
@@ -657,11 +662,12 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         if (customerType == 'B' || customerType == 'C') {
             $scope.blah = "P";
+            $scope.getBillCycleList();
         }
         //ST: clear input
         $scope.clearInputIBC();
         //EN: clear input
-        $scope.getBillCycleList();
+        
     };
 
     $scope.customerType = "N";
@@ -1577,7 +1583,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         }
                                     }, 1000);
                                     $scope.isAddressList = {};
-                                    $scope.changOpenserviceBC = "S";
+                                    $scope.changOpenserviceBC = "N";
                                 } else {
                                     $scope.changOpenserviceBC = "L";
                                     var customer = lastestCustomer.data["response-data"]["customer"];
@@ -2903,18 +2909,43 @@ smartApp.controller('changeOwnershipIBCController', function(
             data["approver"] = $scope.approver;
         }
 
-        //authen
+        //
+        data["order"]["customer"]["customer-agents"] = {
+            "AUTH_1": {},
+            "POA": {},
+            "AUTH_2": {}
+        };
+        //authen 1
         if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
-            var authenList = $('#authorizeFullName').val().split(" ");
-
-            data["order"]["customer"]["customer-agents"] = {
-                "AUTH_1": {
-                    "id-number": $('#CitizenID2').val(),
-                    "firstname": $('#authorizeFullName').val(),
-                    "lastname": $('#authorizeFullName').val()
-                }
+            data["order"]["customer"]["customer-agents"]["AUTH_1"] = {
+                "id-number": $('#CitizenID2').val(),
+                "firstname": $('#authorizeFullName').val(),
+                "lastname": $('#authorizeFullName').val()
             };
+        } else {
+            delete data["order"]["customer"]["customer-agents"]["AUTH_1"];
         }
+        //POA - ผู้มีอำนาจลงนาม 1
+        if ($scope.customerType != 'N') {
+            data["order"]["customer"]["customer-agents"]["POA"] = {
+                "id-number": $('#auth_1_id_number').val(),
+                "firstname": $('#auth_1_firstName').val(),
+                "lastname": $('#auth_1_lastName').val()
+            };
+        } else {
+            delete data["order"]["customer"]["customer-agents"]["POA"];
+        }
+        //authen 2
+        if ($('#poa_1_id_number').val() && $('#poa_1_firstname').val() && $('#poa_1_lastname').val()) {
+            data["order"]["customer"]["customer-agents"]["AUTH_2"] = {
+                "id-number": $('#poa_1_id_number').val(),
+                "firstname": $('#poa_1_firstname').val(),
+                "lastname": $('#poa_1_lastname').val()
+            }
+        } else {
+            delete data["order"]["customer"]["customer-agents"]["AUTH_2"];
+        }
+
         //SHARE_ALLOWANCE, FriendAndFamily, CUG, POOLED
 
         //var spName = $scope.offerDetail["csm-offer-details"]["name"];
@@ -3997,9 +4028,15 @@ smartApp.controller('changeOwnershipIBCController', function(
         } else if (isNull($scope.auth_1['id-number']) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("auth_1_id_number", ValidateMsgService.data.msgAuth_1_id_numberEmpty);
         } else if (isNull($scope.auth_1['firstname']) && $scope.customerType != 'N' && $scope.isVerify) {
-            showValidate("auth_1_firstName", ValidateMsgService.data.msgauth_1_firstNameEmpty);
+            showValidate("auth_1_firstName", ValidateMsgService.data.msgAuth_1_firstNameEmpty);
         } else if (isNull($scope.auth_1['lastname']) && $scope.customerType != 'N' && $scope.isVerify) {
-            showValidate("auth_1_lastName", ValidateMsgService.data.msgauth_1_lastNamerEmpty);
+            showValidate("auth_1_lastName", ValidateMsgService.data.msgAuth_1_lastNamerEmpty);
+        } else if (isNull($scope.poa_1['id-number']) && $scope.customerType != 'N' && $scope.isVerify && $scope.isAuthorizeBC) {
+            showValidate("poa_1_id_number", ValidateMsgService.data.msgPoa_1_id_numberEmpty);
+        } else if (isNull($scope.poa_1['firstname']) && $scope.customerType != 'N' && $scope.isVerify && $scope.isAuthorizeBC) {
+            showValidate("poa_1_firstname", ValidateMsgService.data.msgPoa_1_firstnameEmpty);
+        } else if (isNull($scope.poa_1['lastname']) && $scope.customerType != 'N' && $scope.isVerify && $scope.isAuthorizeBC) {
+            showValidate("poa_1_lastname", ValidateMsgService.data.msgPoa_1_lastnameEmpty);
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
         } else if (errorCapmax != "") {

@@ -159,7 +159,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                    <input type="checkbox" class="styled" id="authorize_03" ng-disabled="!isCustomerPreverify" ng-model="isAuthorizeBC">
+                                    <input type="checkbox" class="styled" id="authorize_03" ng-disabled="!isCustomerPreverify" ng-model="isAuthorizeBC" ng-change="poa_1 = {};">
                                     <label for="authorize_03">กรณีมอบอำนาจ </label>
                                 </div>
                             </div>
@@ -193,13 +193,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>ชื่อ<span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="poa_1['firstname']" class="form-control">
+                                        <input type="text" ng-model="poa_1['firstname']" id="poa_1_firstname" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>นามสกุล<span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="poa_1['lastname']" class="form-control">
+                                        <input type="text" ng-model="poa_1['lastname']" id="poa_1_lastname" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -455,7 +455,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="customBC" value="S" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount()"> ระบุลูกค้า
+                                            <input type="radio" ng-disabled="!isLastestAdress" style="cursor:pointer;" name="customBC" value="S" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount()"> ระบุลูกค้า
                                         </label>
                                     </div>
                                     <div class="col-md-4">
@@ -516,7 +516,7 @@
                                                 <span>
                                                     {{validateCustomerIDData['customer-properties']['BILL-CYCLE']}}
                                                     /
-                                                    {{Number(validateCustomerIDData['customer-properties']['BILL-CYCLE'])-1}}
+                                                    {{validateCustomerIDData['customer-properties']['BILL-CYCLE']-1}}
                                                 </span>
                                             </td>
                                             <th class="col-xs-1">&nbsp;</th>
@@ -1390,8 +1390,8 @@
                             </div>
                             <span style="color:red" class="hide" ng-span-telephone-number-multi="fixPreferedContact">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
                         </div>
-                        <div class="form-group" ng-show="(customerType=='B' || customerType=='C')">
-                            <div ng-show="shopType=='0'">
+                        <div class="form-group" ng-show="(customerType=='B' || customerType=='C') && shopType=='0' && changOpenserviceBC == 'N'">
+                            <div>
                                 <label class="col-md-4 control-label">รอบบิล <span style="color:red;">*</span></label>
                                 <div class="col-md-4">
                                     <select class="form-control" ng-model="billCycleSelected">
