@@ -11,7 +11,7 @@
 
     window.onresize = function(event) {
         //console.log($('#hModal').height());
-        $('#hModal').height(($( window ).height())-235);
+        $('#hModal').height(($(window).height()) - 235);
         //console.log($('#hModal').height());
     };
     this.printPDF = function(url) {
@@ -1824,25 +1824,30 @@
                             } else if (dateValues[0] && dateValues[1] && dateValues[2]) {
                                 this.value = "28" + "/" + dateValues[1] + "/" + dateValues[2];
                             }
-                        } else if (dateValues[0] >= 29 && isleap) {
-                            if (dateValues[0] && !dateValues[1] && !dateValues[2]) {
-                                this.value = "29";
-                            } else if (dateValues[0] && dateValues[1] && !dateValues[2]) {
-                                this.value = "29" + "/" + dateValues[1];
-                            } else if (dateValues[0] && !dateValues[1] && dateValues[2]) {
-                                this.value = "29" + "/" + "" + "/" + dateValues[2];
-                            } else if (dateValues[0] && dateValues[1] && dateValues[2]) {
-                                this.value = "29" + "/" + dateValues[1] + "/" + dateValues[2];
-                            }
                         }
+                        // else if (dateValues[0] >= 29 && isleap) {
+                        //     if (dateValues[0] && !dateValues[1] && !dateValues[2]) {
+                        //         this.value = "29";
+                        //     } else if (dateValues[0] && dateValues[1] && !dateValues[2]) {
+                        //         this.value = "29" + "/" + dateValues[1];
+                        //     } else if (dateValues[0] && !dateValues[1] && dateValues[2]) {
+                        //         this.value = "29" + "/" + "" + "/" + dateValues[2];
+                        //     } else if (dateValues[0] && dateValues[1] && dateValues[2]) {
+                        //         this.value = "29" + "/" + dateValues[1] + "/" + dateValues[2];
+                        //     }
+                        // }
                     }
 
-                    if (this.value.length == 2 && this.value.split('/').length == 1) {
-                        this.value = this.value + "/";
-                    }
+                    var key = event.keyCode || event.charCode;
+                    console.log(key);
+                    if (key != 8 && key != 46) {
+                        if (this.value.length == 2 && this.value.split('/').length == 1) {
+                            this.value = this.value + "/";
+                        }
 
-                    if (this.value.length == 5 && this.value.split('/').length == 2) {
-                        this.value = this.value + "/";
+                        if (this.value.length == 5 && this.value.split('/').length == 2) {
+                            this.value = this.value + "/";
+                        }
                     }
 
                 }

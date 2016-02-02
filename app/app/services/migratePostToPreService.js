@@ -652,7 +652,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     "product-type": payload.productDetails['product-type'],
                     "order-type": "CHANGE",
                     "reason-code": "CREQ",
-                    'user-memo': payload.memo ? payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": "  + payload.memo : payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": ",
+                    'user-memo': payload.memo ? payload.saleAgent.loginName + "(" + payload.saleAgent.saleCode + ": " + payload.saleAgent.engName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": "  + payload.memo : payload.loginName + "(" + payload.saleAgent.saleCode + ": " + payload.saleAgent.engName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": ",
                     "address-list": {
                         "BILLING_ADDRESS": payload.customerAddress,
                         "TAX_ADDRESS": payload.customerAddress
