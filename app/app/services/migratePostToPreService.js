@@ -283,6 +283,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
         };
 
         if (!demo) {
+            var target = '/sales/catalog/product/tmv/proposition/search?' + params;
             SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
