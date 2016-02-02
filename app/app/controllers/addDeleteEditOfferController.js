@@ -1,5 +1,13 @@
 // ---------------------- ChangeOwnershipController.js ----------------------
-smartApp.controller('AddDeleteEditOfferController', function($scope, $routeParams, AuthenService, CancelService, ChangePricePlanService, DeviceService, ReasonService, SystemService) {
+smartApp.controller('AddDeleteEditOfferController', function($scope, 
+    $routeParams, 
+    $filter,
+    ValidateMsgService,
+    AuthenService, 
+    AddDeleteEditOfferService, 
+    DeviceService, 
+    ReasonService, 
+    SystemService) {
 
     // Templates
     var runTime = new Date().getTime();
@@ -79,7 +87,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope, $routeParam
             changeOption: $scope.statusCancel
         };
 
-        CancelService.submitCancel(data, function(result) {
+        AddDeleteEditOfferServiceService.submitAddDeleteEditOffer(data, function(result) {
             console.log(result);
             if (result.status === true && result.data.status === 'SUCCESSFUL') {
                 $('#modalPDFOpener').click();
@@ -153,7 +161,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope, $routeParam
 
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
-        CancelService.getSIMData($scope.SubNo, onGetSIMData);
+        AddDeleteEditOfferService.getSIMData($scope.SubNo, onGetSIMData);
+        SystemService.calendarDatePicker();
     }
 
     $scope.onInputSubNo = function() {
@@ -162,7 +171,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope, $routeParam
         if ($scope.subNoInput && $scope.subNoInput.length === 10) {
             SystemService.showLoading();
             $scope.SubNo = $('#dataSubNo').val();
-            CancelService.getSIMData($scope.subNoInput, onGetSIMData);
+            AddDeleteEditOfferService.getSIMData($scope.subNoInput, onGetSIMData);
         }
     };
     // (End) Get current SIM data ----------------------
@@ -389,7 +398,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope, $routeParam
         data['statusReason'] = $scope.statusReason.id;
         data['statusReasonMemo'] = $scope.statusReasonMemo;
 
-        CancelService.submitCancel(data, function(result) {
+        AddDeleteEditOfferService.submitAddDeleteEditOffer(data, function(result) {
             SystemService.hideLoading();
             console.log(result);
             setTimeout(function() {
@@ -650,5 +659,4 @@ smartApp.controller('AddDeleteEditOfferController', function($scope, $routeParam
             idFocus = "";
         }
     };
-
 });

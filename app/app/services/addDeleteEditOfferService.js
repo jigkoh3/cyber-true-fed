@@ -281,7 +281,7 @@
         }
     };
 
-    this.submitCancel = function(payload, fnCallback) {
+    this.submitAddDeleteEditOffer = function(payload, fnCallback) {
 
         var request = {
             "target": "aftersales/order/submit",
@@ -333,7 +333,7 @@
                     'partner-type': payload.saleAgent['partnerType']
                 },
                 'order-items': [{
-                    'name': 'CANCEL',
+                    'name': 'AddDeleteEditOffer',
                     'product-name': payload.productDetails['product-id'],
                     'product-id-number': payload.productDetails['product-id-number'],
                     'product-id-name': payload.productDetails['product-id-name'],
