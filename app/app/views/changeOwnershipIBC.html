@@ -1019,10 +1019,10 @@
                     <div class="col-md-5">
                         <div class="form-group">
                             <div data-toggle="buttons" class="btn-group btn-group-justified">
-                                <label class="btn btn-default active" ng-click="slipchangeType('H')">
+                                <label class="btn btn-default active" id="slipTypeH" ng-click="slipchangeType('H')">
                                     <input type="radio" name="type" ng-model="slipType" value="H"> ที่อยู่ออกใบกำกับภาษี
                                 </label>
-                                <label class="btn btn-default" ng-click="slipchangeType('B')">
+                                <label class="btn btn-default" id="slipTypeB" ng-click="slipchangeType('B')">
                                     <input type="radio" name="type" ng-model="slipType" value="B"> ที่อยู่จัดส่งเอกสาร
                                 </label>
                             </div>
@@ -1214,7 +1214,7 @@
                                                 <input type="checkbox" id="bantypeMailBC" ng-model="bantypeMailBC" ng-change="bantypeMailBC?mailAddressBC.homeNumber='-':mailAddressBC.homeNumber=''" class="styled">
                                                 <label for="bantypeMailBC" style=" padding-left: 5px;">ไม่มีบ้านเลขที่ </label>
                                             </div>
-                                            <input type="text" ng-model="mailAddressBC.homeNumber" ng-disabled="bantypeMailBC" name="codebans" class="form-control" required>
+                                            <input type="text" id="txtMailAdressHomeNumberBC" ng-model="mailAddressBC.homeNumber" ng-disabled="bantypeMailBC" name="codebans" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -1224,7 +1224,7 @@
                                                 <input type="checkbox" id="mootypeMailBC" ng-model="mootypeMailBC" ng-change="mootypeMailBC?mailAddressBC.moo='-':mailAddressBC.moo=''" class="styled">
                                                 <label for="mootypeMailBC" style=" padding-left: 5px;">ไม่มีหมู่ที่ </label>
                                             </div>
-                                            <input type="text" ng-model="mailAddressBC.moo" ng-disabled="mootypeMailBC" name="moonos" class="form-control" required>
+                                            <input type="text" id="txtMailAddressMooBC" ng-model="mailAddressBC.moo" ng-disabled="mootypeMailBC" name="moonos" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -1262,7 +1262,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group" ng-form="roads">
                                             <label>ถนน<span style="color:red;">*</span></label>
-                                            <input type="text" ng-model="mailAddressBC.road" name="road" class="form-control" required>
+                                            <input type="text" id="txtMailAddressRoadBC" ng-model="mailAddressBC.road" name="road" class="form-control" required>
                                             <!--<span class="error" style="color:red;" ng-show="roads.road.$error.required">
                                                 Required.
                                             </span>-->
