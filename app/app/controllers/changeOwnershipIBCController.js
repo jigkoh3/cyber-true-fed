@@ -663,7 +663,9 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         if (customerType == 'B' || customerType == 'C') {
             $scope.blah = "P";
-            $scope.getBillCycleList();
+            if($scope.getAuthen['shopType']=='0'){
+                $scope.getBillCycleList();
+            }
         }
         //ST: clear input
         $scope.clearInputIBC();
@@ -1702,6 +1704,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.partnerCode = "";
     $scope.isCheckInputForVerify = false;
     $scope.onCheckInputForVerify = function() {
+        $scope.showApprovCode = false;
         setTimeout(function() {
             $scope.isCheckInputForVerify = false;
             $scope.newOwner.birthDay = $('#birthDay').val();
@@ -2931,17 +2934,27 @@ smartApp.controller('changeOwnershipIBCController', function(
         } else {
             delete data["order"]["customer"]["customer-agents"]["AUTH_1"];
         }
-        //POA - ผู้มีอำนาจลงนาม 1
+
+        //build DATA : BUSINESS/CORPORATE
         if ($scope.customerType == 'B' || $scope.customerType == 'C') {
+            //POA - ผู้มีอำนาจลงนาม 1
             data["order"]["customer"]["customer-agents"]["POA"] = {
                 "id-number": $('#auth_1_id_number').val(),
                 "firstname": $('#auth_1_firstName').val(),
                 "lastname": $('#auth_1_lastName').val()
             };
+            if($scope.isAccount_child==true){
+                //case: BUSINESS/CORPORATE : EXISTING-CUSTOMER : EXISTING ACCOUNT
+                delete data["order"]["order-items"][0]["address-list"]["BILLING_ADDRESS"];
+                delete data["order"]["order-items"][0]["address-list"]["TAX_ADDRESS"];
+            }
         } else {
+            //case: INDIVIDUAL
             delete data["order"]["customer"]["customer-agents"]["POA"];
             delete data["order"]["order-items"][0]["address-list"]["TAX_ADDRESS"];
         }
+        //end build
+
         //authen 2
         if ($('#poa_1_id_number').val() && $('#poa_1_firstname').val() && $('#poa_1_lastname').val()) {
             data["order"]["customer"]["customer-agents"]["AUTH_2"] = {
