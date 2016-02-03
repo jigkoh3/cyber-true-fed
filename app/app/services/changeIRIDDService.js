@@ -452,7 +452,7 @@
                                         "reason-code": "xxxxxxxxxxxxxxxxxxxxxOK",
                                         "user-memo": "",
                                         "order-data": {
-                                            "CUSTOMER-ID": data["customer"]["id-number"],
+                                            "CUSTOMER-ID": data["customer"]["customer-id"],
                                             "MOBILE-SERVICETYPE": priceplan["mobile-servicetype"],
                                             "SERVICE-LEVEL": priceplan["service-level"],
                                             //"IR-APPROVE-CODE": "",

@@ -109,6 +109,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     var onGetSIMData = function(result) {
 
         if (result.data == false) {
+            SystemService.calendarDatePicker();
             console.log(result);
             $scope.SubNo = 'null';
             // $('#dataSubNo').val("");
@@ -178,6 +179,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.TrxID = '';
     $scope.orderId = '';
     var authenticate = function() {
+        SystemService.calendarDatePicker();
         AuthenService.getAuthen(function(authResult) {
 
             $scope.getAuthen = authResult;
