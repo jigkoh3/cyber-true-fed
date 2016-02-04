@@ -455,7 +455,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                         "technical-message": msg[0]["technical-message"]
                     });
                 } else {
-                    $scope.validateCustomerIDData = result.data['response-data'];
+                    $scope.validateCustomerIDData = result.data['response-data']['customer'];
                     $scope.isAccountPreverify = true;
                     $scope.isAccount_root = true;
                 }
@@ -485,7 +485,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                         "technical-message": msg[0]["technical-message"]
                     });
                 } else {
-                    $scope.dataAccountPreverify = result.data['response-data'];
+                    $scope.dataAccountPreverify = result.data['response-data']['customer'];
                     $scope.isAccountPreverify = true;
                     $scope.isAccount_child = true;
                     //check ParentOU Level & SelectedOU Level

@@ -714,9 +714,9 @@
         }
     };
     var validateCustomerIDAPI = function(param, fnCallback) {
-        var target = "profiles/customer/validateid?" +
-            "customer-type=" + param['customer-type'] +"&"+
-            "certificate-id=" + param['certificate-id'] +"&"+
+        var target = "profiles/customer/validatecustomerid?" +
+            "customer-type=" + param['customer-type'] + "&" +
+            "certificate-id=" + param['certificate-id'] + "&" +
             "customer-id=" + param['customer-id'];
         console.log(target);
         if (!demo) {
@@ -729,46 +729,48 @@
                 "trx-id": "2R1TMA1C40B1F",
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
                 "response-data": {
-                    "gender": "MALE",
-                    "title": "นาย",
-                    "title-code": "T0",
-                    "firstname": "มินิท",
-                    "lastname": "เงินติดล้อ",
-                    "birthdate": "1980-08-20T00:00:00+0700",
-                    "customer-type": "I",
-                    "contact-number": "027883838",
-                    "contact-mobile-number": "0870009987",
-                    "contact-email": "ss@gmail.com",
-                    "language": "",
-                    "id-type": "I",
-                    "id-number": "83838838",
-                    "tax-id": "888832883898709",
-                    "id-expire-date": "2018-06-30T00:00:00+0700",
-                    "branch-code": "branch1",
-                    "customer-level": "NON_TOP",
-                    "customer-sublevel": "NONE",
-                    "customer-sublevel-id": "1",
-                    "customer-id": "",
-                    "address-list": {
-                        "CUSTOMER_ADDRESS": {
-                            "number": "61/238",
-                            "moo": "8",
-                            "village": "moo ban",
-                            "street": "ratchada",
-                            "soi": "81",
-                            "district": "dindaeng",
-                            "province": "Bangkok",
-                            "building-name": "Pakin",
-                            "building-room": "22",
-                            "building-floor": "13",
-                            "sub-district": "Dindaeng",
-                            "zip": "10400",
-                            "household": "18"
+                    "customer": {
+                        "gender": "MALE",
+                        "title": "นาย",
+                        "title-code": "T0",
+                        "firstname": "มินิท",
+                        "lastname": "เงินติดล้อ",
+                        "birthdate": "1980-08-20T00:00:00+0700",
+                        "customer-type": "I",
+                        "contact-number": "027883838",
+                        "contact-mobile-number": "0870009987",
+                        "contact-email": "ss@gmail.com",
+                        "language": "",
+                        "id-type": "I",
+                        "id-number": "83838838",
+                        "tax-id": "888832883898709",
+                        "id-expire-date": "2018-06-30T00:00:00+0700",
+                        "branch-code": "branch1",
+                        "customer-level": "NON_TOP",
+                        "customer-sublevel": "NONE",
+                        "customer-sublevel-id": "1",
+                        "customer-id": "",
+                        "address-list": {
+                            "CUSTOMER_ADDRESS": {
+                                "number": "61/238",
+                                "moo": "8",
+                                "village": "moo ban",
+                                "street": "ratchada",
+                                "soi": "81",
+                                "district": "dindaeng",
+                                "province": "Bangkok",
+                                "building-name": "Pakin",
+                                "building-room": "22",
+                                "building-floor": "13",
+                                "sub-district": "Dindaeng",
+                                "zip": "10400",
+                                "household": "18"
+                            }
+                        },
+                        "customer-properties": {
+                            "BILL-CYCLE": "10",
+                            "BILL-CYCLE-DESCRIPTION": "xxxxxx 10/13"
                         }
-                    },
-                    "customer-properties": {
-                        "BILL-CYCLE": "10",
-                        "BILL-CYCLE-DESCRIPTION": "xxxxxx 10/13"
                     }
                 }
             };
@@ -807,11 +809,11 @@
 
     };
     var validateAccountIDAPI = function(param, fnCallback) {
-        var target = "profiles/customer/validateaccount?" +
-            "customer-type=" + param['customer-type'] +"&"+
-            "company-code=" + param['company-code'] +"&"+
-            "account-sub-type=" + param['account-sub-type'] +"&"+
-            "account-id=" + param['account-id'] +"&"+
+        var target = "profiles/customer/validateaccountid?" +
+            "customer-type=" + param['customer-type'] + "&" +
+            "company-code=" + param['company-code'] + "&" +
+            "account-sub-type=" + param['account-sub-type'] + "&" +
+            "account-id=" + param['account-id'] + "&" +
             "customer-id=" + param['customer-id'];
         console.log(target);
         if (!demo) {
@@ -824,49 +826,51 @@
                 "trx-id": "2R1TMA1C40B1F",
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
                 "response-data": {
-                    "customer-type": "",
-                    "customer-id": "",
-                    "installed-products": [{
-                        "ouId": "5010",
-                        "ban": "20009628",
-                        "account-category": "I",
-                        "account-sub-type": "FIN",
-                        "company-code": "RF",
-                        "product-category": "TMV",
-                        "mobile-servicetype": "POSTPAID",
-                        "ou-hierarchytype": "CHILD",
-                        "parent-ouId": "1234",
+                    "customer": {
+                        "customer-type": "",
+                        "customer-id": "",
+                        "installed-products": [{
+                            "ouId": "5010",
+                            "ban": "20009628",
+                            "account-category": "I",
+                            "account-sub-type": "FIN",
+                            "company-code": "RF",
+                            "product-category": "TMV",
+                            "mobile-servicetype": "POSTPAID",
+                            "ou-hierarchytype": "CHILD",
+                            "parent-ouId": "1234",
 
-                        "ACCOUNT-FIRSTNMAE": "NOT REQUIRE corporate",
-                        "ACCOUNT-LASTNAME": "",
-                        "ACCOUNT-STATUS": "",
-                        "AGREEMENT-ID": "",
-                        "ACCOUNT-PRICEPLAN": "RFSMTP01",
-                        "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
-                        "ACCOUNT-SERVICE-LEVEL": "G",
-                        "REQUIRE-PRICEPLAN": "NOT REQUIRE",
-                        "REQUIRE-PRICEPLAN-MSG-CODE": "",
-                        "REQUIRE-PRICEPLAN-MSG-EN": "No need to select new Price Plan (Promotion)",
-                        "REQUIRE-PRICEPLAN-MSG-TH": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่"
-                    }, {
-                        "address-list": {
-                            "BILLING_ADDRESS": {
-                                "number": "61/238",
-                                "moo": "8",
-                                "village": "moo ban",
-                                "street": "ratchada",
-                                "soi": "81",
-                                "district": "dindaeng",
-                                "province": "Bangkok",
-                                "building-name": "Pakin",
-                                "building-room": "22",
-                                "building-floor": "13",
-                                "sub-district": "Dindaeng",
-                                "zip": "10400",
-                                "household": "18"
+                            "ACCOUNT-FIRSTNMAE": "NOT REQUIRE corporate",
+                            "ACCOUNT-LASTNAME": "",
+                            "ACCOUNT-STATUS": "",
+                            "AGREEMENT-ID": "",
+                            "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                            "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                            "ACCOUNT-SERVICE-LEVEL": "G",
+                            "REQUIRE-PRICEPLAN": "NOT REQUIRE",
+                            "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                            "REQUIRE-PRICEPLAN-MSG-EN": "No need to select new Price Plan (Promotion)",
+                            "REQUIRE-PRICEPLAN-MSG-TH": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่"
+                        }, {
+                            "address-list": {
+                                "BILLING_ADDRESS": {
+                                    "number": "61/238",
+                                    "moo": "8",
+                                    "village": "moo ban",
+                                    "street": "ratchada",
+                                    "soi": "81",
+                                    "district": "dindaeng",
+                                    "province": "Bangkok",
+                                    "building-name": "Pakin",
+                                    "building-room": "22",
+                                    "building-floor": "13",
+                                    "sub-district": "Dindaeng",
+                                    "zip": "10400",
+                                    "household": "18"
+                                }
                             }
-                        }
-                    }]
+                        }]
+                    }
                 }
             };
             var data3 = {
@@ -874,49 +878,51 @@
                 "trx-id": "2R1TMA1C40B1F",
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
                 "response-data": {
-                    "customer-type": "",
-                    "customer-id": "",
-                    "installed-products": [{
-                        "ouId": "5010",
-                        "ban": "20009628",
-                        "account-category": "I",
-                        "account-sub-type": "FIN",
-                        "company-code": "RF",
-                        "product-category": "TMV",
-                        "mobile-servicetype": "POSTPAID",
-                        "ou-hierarchytype": "CHILD",
-                        "parent-ouId": "1234",
+                    "customer": {
+                        "customer-type": "",
+                        "customer-id": "",
+                        "installed-products": [{
+                            "ouId": "5010",
+                            "ban": "20009628",
+                            "account-category": "I",
+                            "account-sub-type": "FIN",
+                            "company-code": "RF",
+                            "product-category": "TMV",
+                            "mobile-servicetype": "POSTPAID",
+                            "ou-hierarchytype": "CHILD",
+                            "parent-ouId": "1234",
 
-                        "ACCOUNT-FIRSTNMAE": "REQUIRE corporate",
-                        "ACCOUNT-LASTNAME": "",
-                        "ACCOUNT-STATUS": "",
-                        "AGREEMENT-ID": "",
-                        "ACCOUNT-PRICEPLAN": "RFSMTP01",
-                        "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
-                        "ACCOUNT-SERVICE-LEVEL": "G",
-                        "REQUIRE-PRICEPLAN": "REQUIRE",
-                        "REQUIRE-PRICEPLAN-MSG-CODE": "",
-                        "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
-                        "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
-                    }, {
-                        "address-list": {
-                            "BILLING_ADDRESS": {
-                                "number": "61/238",
-                                "moo": "8",
-                                "village": "moo ban",
-                                "street": "ratchada",
-                                "soi": "81",
-                                "district": "dindaeng",
-                                "province": "Bangkok",
-                                "building-name": "Pakin",
-                                "building-room": "22",
-                                "building-floor": "13",
-                                "sub-district": "Dindaeng",
-                                "zip": "10400",
-                                "household": "18"
+                            "ACCOUNT-FIRSTNMAE": "REQUIRE corporate",
+                            "ACCOUNT-LASTNAME": "",
+                            "ACCOUNT-STATUS": "",
+                            "AGREEMENT-ID": "",
+                            "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                            "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                            "ACCOUNT-SERVICE-LEVEL": "G",
+                            "REQUIRE-PRICEPLAN": "REQUIRE",
+                            "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                            "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
+                            "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
+                        }, {
+                            "address-list": {
+                                "BILLING_ADDRESS": {
+                                    "number": "61/238",
+                                    "moo": "8",
+                                    "village": "moo ban",
+                                    "street": "ratchada",
+                                    "soi": "81",
+                                    "district": "dindaeng",
+                                    "province": "Bangkok",
+                                    "building-name": "Pakin",
+                                    "building-room": "22",
+                                    "building-floor": "13",
+                                    "sub-district": "Dindaeng",
+                                    "zip": "10400",
+                                    "household": "18"
+                                }
                             }
-                        }
-                    }]
+                        }]
+                    }
                 }
             };
             var data4 = {
@@ -924,49 +930,51 @@
                 "trx-id": "2R1TMA1C40B1F",
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
                 "response-data": {
-                    "customer-type": "",
-                    "customer-id": "",
-                    "installed-products": [{
-                        "ouId": "5010",
-                        "ban": "20009628",
-                        "account-category": "I",
-                        "account-sub-type": "FIN",
-                        "company-code": "RF",
-                        "product-category": "TMV",
-                        "mobile-servicetype": "POSTPAID",
-                        "ou-hierarchytype": "CHILD",
-                        "parent-ouId": "1234",
+                    "customer": {
+                        "customer-type": "",
+                        "customer-id": "",
+                        "installed-products": [{
+                            "ouId": "5010",
+                            "ban": "20009628",
+                            "account-category": "I",
+                            "account-sub-type": "FIN",
+                            "company-code": "RF",
+                            "product-category": "TMV",
+                            "mobile-servicetype": "POSTPAID",
+                            "ou-hierarchytype": "CHILD",
+                            "parent-ouId": "1234",
 
-                        "ACCOUNT-FIRSTNMAE": "OPTIONAL corporate",
-                        "ACCOUNT-LASTNAME": "",
-                        "ACCOUNT-STATUS": "",
-                        "AGREEMENT-ID": "",
-                        "ACCOUNT-PRICEPLAN": "RFSMTP01",
-                        "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
-                        "ACCOUNT-SERVICE-LEVEL": "G",
-                        "REQUIRE-PRICEPLAN": "OPTIONAL",
-                        "REQUIRE-PRICEPLAN-MSG-CODE": "",
-                        "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
-                        "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
-                    }, {
-                        "address-list": {
-                            "BILLING_ADDRESS": {
-                                "number": "61/238",
-                                "moo": "8",
-                                "village": "moo ban",
-                                "street": "ratchada",
-                                "soi": "81",
-                                "district": "dindaeng",
-                                "province": "Bangkok",
-                                "building-name": "Pakin",
-                                "building-room": "22",
-                                "building-floor": "13",
-                                "sub-district": "Dindaeng",
-                                "zip": "10400",
-                                "household": "18"
+                            "ACCOUNT-FIRSTNMAE": "OPTIONAL corporate",
+                            "ACCOUNT-LASTNAME": "",
+                            "ACCOUNT-STATUS": "",
+                            "AGREEMENT-ID": "",
+                            "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                            "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                            "ACCOUNT-SERVICE-LEVEL": "G",
+                            "REQUIRE-PRICEPLAN": "OPTIONAL",
+                            "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                            "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
+                            "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
+                        }, {
+                            "address-list": {
+                                "BILLING_ADDRESS": {
+                                    "number": "61/238",
+                                    "moo": "8",
+                                    "village": "moo ban",
+                                    "street": "ratchada",
+                                    "soi": "81",
+                                    "district": "dindaeng",
+                                    "province": "Bangkok",
+                                    "building-name": "Pakin",
+                                    "building-room": "22",
+                                    "building-floor": "13",
+                                    "sub-district": "Dindaeng",
+                                    "zip": "10400",
+                                    "household": "18"
+                                }
                             }
-                        }
-                    }]
+                        }]
+                    }
                 }
             };
             var data2 = {
