@@ -48,39 +48,41 @@
                                 </th>
                             </tr>
                         </table>
-                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                            <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
-                                    <h>Related Offer</h>
-                                </th>
-                            </tr>
-                        </table>
-                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                            <tr>
-                                <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
-                                    {{RelateOffer-Name}}
-                                </td>
-                                <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
-                                    {{RelateOffer-Description}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{RelateEffective-Date}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{RelateExpiration-Date}}
-                                </td>
-                                <td class="col-xs-2" style=";text-align:left;vertical-align: middle;">
-                                    {{RelateType}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    <div align="center" class="">
-                                        <button type="button" id="modalnewpriceplan" class="btn isCustomerProfile divParameterOfferButton" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
-                                            <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                        <div>
+                            <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                                <tr>
+                                    <th class="col-xs-12" style="vertical-align: middle;">
+                                        <h>Related Offer</h>
+                                    </th>
+                                </tr>
+                            </table>
+                            <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                                <tr ng-repeat="item in offerList | filter:{'offer-group': 'Related Offer'}">
+                                    <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
+                                        {{item['offer-name']}}
+                                    </td>
+                                    <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
+                                        {{item['offer-description']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        {{item['effective-date']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        {{item['expiration-date']}}
+                                    </td>
+                                    <td class="col-xs-2" style=";text-align:center;vertical-align: middle;">
+                                        {{item['type']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
+                                            <button type="button" id="modalnewpriceplan" class="btn isCustomerProfile divParameterOfferButton" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                                <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
                                 <th class="col-xs-12" style="vertical-align: middle;">
@@ -89,26 +91,30 @@
                             </tr>
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                            <tr>
-                                <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
-                                    {{RegularOffer-Name}}
-                                </td>
-                                <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
-                                    {{RegularOffer-Description}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{RegularEffective-Date}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{RegularExpiration-Date}}
-                                </td>
-                                <td class="col-xs-2" style=";text-align:left;vertical-align: middle;">
-                                    {{RegularType}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{RegularParameter}}
-                                </td>
-                            </tr>
+                            <tr ng-repeat="item in offerList | filter:{'offer-group': 'Related Offer'}">
+                                    <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
+                                        {{item['offer-name']}}
+                                    </td>
+                                    <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
+                                        {{item['offer-description']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        {{item['effective-date']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        {{item['expiration-date']}}
+                                    </td>
+                                    <td class="col-xs-2" style=";text-align:center;vertical-align: middle;">
+                                        {{item['type']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
+                                            <button type="button" id="modalnewpriceplan" class="btn isCustomerProfile divParameterOfferButton" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                                <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
@@ -118,26 +124,30 @@
                             </tr>
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                            <tr>
-                                <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
-                                    {{ContractPropOffer-Name}}
-                                </td>
-                                <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
-                                    {{ContractPropOffer-Description}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{ContractPropEffective-Date}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{ContractPropExpiration-Date}}
-                                </td>
-                                <td class="col-xs-2" style=";text-align:left;vertical-align: middle;">
-                                    {{ContractPropType}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{ContractPropParameter}}
-                                </td>
-                            </tr>
+                            <tr ng-repeat="item in offerList | filter:{'offer-group': 'Contract & Prop'}">
+                                    <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
+                                        {{item['offer-name']}}
+                                    </td>
+                                    <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
+                                        {{item['offer-description']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        {{item['effective-date']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        {{item['expiration-date']}}
+                                    </td>
+                                    <td class="col-xs-2" style=";text-align:center;vertical-align: middle;">
+                                        {{item['type']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
+                                            <button type="button" id="modalnewpriceplan" class="btn isCustomerProfile divParameterOfferButton" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                                <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
@@ -147,26 +157,30 @@
                             </tr>
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                            <tr>
-                                <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
-                                    {{DiscountOffer-Name}}
-                                </td>
-                                <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
-                                    {{DiscountOffer-Description}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{DiscountEffective-Date}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{DiscountExpiration-Date}}
-                                </td>
-                                <td class="col-xs-2" style=";text-align:left;vertical-align: middle;">
-                                    {{DiscountType}}
-                                </td>
-                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
-                                    {{DiscountParameter}}
-                                </td>
-                            </tr>
+                            <tr ng-repeat="item in offerList | filter:{'offer-group': 'Discount'}">
+                                    <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
+                                        {{item['offer-name']}}
+                                    </td>
+                                    <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
+                                        {{item['offer-description']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        {{item['effective-date']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        {{item['expiration-date']}}
+                                    </td>
+                                    <td class="col-xs-2" style=";text-align:center;vertical-align: middle;">
+                                        {{item['type']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                        <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
+                                            <button type="button" id="modalnewpriceplan" class="btn isCustomerProfile divParameterOfferButton" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                                <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
                         </table>
                     </div>
                     <h4>ข้อมูลบริการใหม่</h4>
@@ -189,31 +203,27 @@
                                 <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
                                     <h>Parameter</h>
                                 </th>
-                                <th class="col-xs-1 " style="color:green;text-align:center;vertical-align: middle;">
-                                    <h></h>
-                                </th>
+                                
                             </tr>
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                            <tr>
+                            <tr ng-repeat="item in releteOfferList">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
                                     <input type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xs-3" style="text-align:center;vertical-align: middle;">
-                                    <h>Relate Offer Name</h>
+                                    <h>{{item['offer-name']}}</h>
                                 </td>
                                 <td class="col-xs-4" style="text-align:center;vertical-align: middle;">
-                                    <h>Offer Description</h>
+                                    <h>{{item['offer-description']}}</h>
                                 </td>
                                 <td class="col-xs-2" style="text-align:center;vertical-align: middle;">
-                                    <h>Type</h>
+                                    <h>{{item['type']}}</h>
                                 </td>
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <h>Parameter</h>
+                                    <a ng-click="" ng-hide="item['type']=='Additional Offer'"><span><i class="fa fa-star fa-1x" style="color: #ffa620;"></i></span></a>
                                 </td>
-                                <td class="col-xs-1 " style="text-align:center;vertical-align: middle;">
-                                    <h></h>
-                                </td>
+                                
                             </tr>
                         </table>
                         <h4>Regular Offer</h4>
@@ -246,24 +256,24 @@
                             </tr>
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                            <tr>
+                            <tr ng-repeat="item in regulaOfferList">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
                                     <a ng-click=""><span><i class="fa fa-trash-o fa-1x"></i></span></a>
                                 </td>
                                 <td class="col-xs-3" style="text-align:center;vertical-align: middle;">
-                                    <h>Regular Offer Name</h>
+                                    <h>{{item['offer-name']}}</h>
                                 </td>
                                 <td class="col-xs-4" style="text-align:center;vertical-align: middle;">
-                                    <h>Offer Description</h>
+                                    <h>{{item['offer-description']}}</h>
                                 </td>
                                 <td class="col-xs-2" style="text-align:center;vertical-align: middle;">
-                                    <h>Type</h>
+                                    <h>{{item['type']}}</h>
                                 </td>
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <a ng-click=""><span><i class="fa fa-star fa-1x" style="color: #ffa620;"></i></span></a>
+                                    <a ng-click="" ng-hide="item['type']=='Additional Offer'"><span><i class="fa fa-star fa-1x" style="color: #ffa620;"></i></span></a>
                                 </td>
                                 <td class="col-xs-1 " style="text-align:center;vertical-align: middle;">
-                                    <h>Level</h>
+                                    <h>{{item['service-level']}}</h>
                                 </td>
                             </tr>
                         </table>

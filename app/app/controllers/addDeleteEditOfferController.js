@@ -1,12 +1,12 @@
 // ---------------------- ChangeOwnershipController.js ----------------------
-smartApp.controller('AddDeleteEditOfferController', function($scope, 
-    $routeParams, 
+smartApp.controller('AddDeleteEditOfferController', function($scope,
+    $routeParams,
     $filter,
     ValidateMsgService,
-    AuthenService, 
-    AddDeleteEditOfferService, 
-    DeviceService, 
-    ReasonService, 
+    AuthenService,
+    AddDeleteEditOfferService,
+    DeviceService,
+    ReasonService,
     SystemService) {
 
     // Templates
@@ -48,30 +48,314 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.reasons = [];
     $scope.statusReason = "";
 
-    ReasonService.list("119", function(result) {
-        //$scope.reasons = result;
-        //$scope.statusReason = $scope.reasons[86];
-        //solution for none fix index
-        $scope.reasons = result;
-        var myArray = result;
-        var searchText = "CREQ",
-            index = -1;
-        for (var i = 0, len = myArray.length; i < len; i++) {
-            if (myArray[i].id === searchText) {
-                index = i;
-                break;
-            }
-        }
+    // ReasonService.list("119", function(result) {
+    //     //$scope.reasons = result;
+    //     //$scope.statusReason = $scope.reasons[86];
+    //     //solution for none fix index
+    //     $scope.reasons = result;
+    //     var myArray = result;
+    //     var searchText = "CREQ",
+    //         index = -1;
+    //     for (var i = 0, len = myArray.length; i < len; i++) {
+    //         if (myArray[i].id === searchText) {
+    //             index = i;
+    //             break;
+    //         }
+    //     }
 
-        console.log(index);
+    //     console.log(index);
 
-        $scope.reason = $scope.reasons[index];
-        $scope.selectReason = $scope.reasons[index];
-        $scope.statusReason = $scope.reasons[index];
-        //solution for none fix index
-    });
+    //     $scope.reason = $scope.reasons[index];
+    //     $scope.selectReason = $scope.reasons[index];
+    //     $scope.statusReason = $scope.reasons[index];
+    //     //solution for none fix index
+    // });
 
     //end reson
+
+    //get offerList
+    $scope.offerList = [];
+    $scope.releteOfferList = [];
+    $scope.regulaOfferList = [];
+    $scope.getOfferList = function() {
+        var result = {
+            "offer-lists": [{
+                        "offer-name": "PROSTDA1",
+                        "offer-description": "Standard Provisioning Services for Post Pay # 1",
+                        "effective-date": "19/12/2013",
+                        "expiration-date": "",
+                        "type": "Additional Offer",
+                        "parameter": "",
+                        "offer-group": "Related Offer"
+                    },{
+                        "offer-name": "INTSPS01",
+                        "offer-description": "Internation Call Special Rate",
+                        "effective-date": "19/12/2013",
+                        "expiration-date": "",
+                        "type": "Additional Offer",
+                        "parameter": "",
+                        "offer-group": "Related Offer"
+                    },{
+                        "offer-name": "RMGPSS01",
+                        "offer-description": "GPRS Unlimited",
+                        "effective-date": "19/12/2013",
+                        "expiration-date": "",
+                        "type": "Additional Offer",
+                        "parameter": "",
+                        "offer-group": "Related Offer"
+                    },{
+                        "offer-name": "RMHSPS04",
+                        "offer-description": "Hi-Speed 3G/EDGE/GPRS 42.0 Mbps - PostPay",
+                        "effective-date": "19/12/2013",
+                        "expiration-date": "",
+                        "type": "Additional Offer",
+                        "parameter": "",
+                        "offer-group": "Related Offer"
+                    },{
+                        "offer-name": "BARNRS01",
+                        "offer-description": "Bar National Roaming1800 RMV/RFT",
+                        "effective-date": "04/01/2016",
+                        "expiration-date": "",
+                        "type": "Additional Offer",
+                        "parameter": "",
+                        "offer-group": "Regular Offer"
+                    },{
+                        "offer-name": "1331SS01",
+                        "offer-description": "Free of Charge for 1331",
+                        "effective-date": "04/01/2016",
+                        "expiration-date": "",
+                        "type": "Additional Offer",
+                        "parameter": "",
+                        "offer-group": "Regular Offer"
+                    },{
+                        "offer-name": "CREDITLIMIT",
+                        "offer-description": "Credit Limit offer",
+                        "effective-date": "19/12/2013",
+                        "expiration-date": "",
+                        "type": "Additional Offer",
+                        "parameter": "",
+                        "offer-group": "Regular Offer"
+                    },{
+                        "offer-name": "PROCRBT1",
+                        "offer-description": "Color Ring Service Post Pay",
+                        "effective-date": "27/07/2015",
+                        "expiration-date": "",
+                        "type": "Additional Offer",
+                        "parameter": "",
+                        "offer-group": "Regular Offer"
+                    },{
+                        "offer-name": "PROVM21",
+                        "offer-description": "VoiceMail-TH, SMS-TH",
+                        "effective-date": "11/02/2014",
+                        "expiration-date": "",
+                        "type": "Additional Offer",
+                        "parameter": "",
+                        "offer-group": "Regular Offer"
+                    },{
+                        "offer-name": "Dummy IMEI offer",
+                        "offer-description": "Dummy IMEI offer",
+                        "effective-date": "19/12/2013",
+                        "expiration-date": "",
+                        "type": "Additional Offer",
+                        "parameter": "",
+                        "offer-group": "Regular Offer"
+                    },{
+                        "offer-name": "CFF01S02",
+                        "offer-description": "Friend and Family Service-FL Prefix(1.8Bt/Call)",
+                        "effective-date": "11/02/2014",
+                        "expiration-date": "",
+                        "type": "F&F",
+                        "parameter": "",
+                        "offer-group": "Regular Offer"
+                    },{
+                        "offer-name": "CCUGAS01",
+                        "offer-description": "CUG On/Off Net (Package level)",
+                        "effective-date": "11/02/2014",
+                        "expiration-date": "",
+                        "type": "CUG",
+                        "parameter": "",
+                        "offer-group": "Regular Offer"
+                    },{
+                        "offer-name": "M00M0S03D",
+                        "offer-description": "B&E_ShPool299 get V299min,S40,M5,50MB,Wifi ULTD",
+                        "effective-date": "11/02/2014",
+                        "expiration-date": "",
+                        "type": "Pooled",
+                        "parameter": "",
+                        "offer-group": "Regular Offer"
+                    },{
+                        "offer-name": "RMV000000000030",
+                        "offer-description": "MNP TMH (Employee)",
+                        "effective-date": "27/07/2015",
+                        "expiration-date": "",
+                        "type": "Contract & Prop.",
+                        "parameter": "",
+                        "offer-group": "Contract & Prop."
+                    },{
+                        "offer-name": "RMV000000000711",
+                        "offer-description": "Existing Device Disc 1,000 or 2,000 Bt.",
+                        "effective-date": "11/02/2014",
+                        "expiration-date": "",
+                        "type": "Contract & Prop.",
+                        "parameter": "",
+                        "offer-group": "Contract & Prop."
+                    },{
+                        "offer-name": "DIR007",
+                        "offer-description": "Discount Ring Back Tone Fee",
+                        "effective-date": "26/11/2015",
+                        "expiration-date": "26/03/2016",
+                        "type": "Discount",
+                        "parameter": "",
+                        "offer-group": "Discount"
+                    },{
+                        "offer-name": "DGT024",
+                        "offer-description": "Discount True Group Employee",
+                        "effective-date": "25/12/2013",
+                        "expiration-date": "",
+                        "type": "Discount",
+                        "parameter": "",
+                        "offer-group": "Discount"
+                    }]
+        };
+        $scope.offerList = result['offer-lists'];
+        // var data = "";
+        // AddDeleteEditOfferService.getOfferList(data, function(){
+        // });
+    };
+    $scope.getReleteOfferList = function(){
+        var result = [{
+            "offer-name": "FCVBAR",
+            "offer-description": "First Call Verification. Barring",
+            "type": "Additional Offer",
+            "parameter": "",
+            "offer-group": "Related Offer"
+        }, {
+            "offer-name": "FTALKS25",
+            "offer-description": "Talk 1F&F - O2True",
+            "type": "F&F",
+            "parameter": "",
+            "offer-group": "Related Offer"
+        }, {
+            "offer-name": "RMPGPS01",
+            "offer-description": "GPRS Unlimited",
+            "type": "Additional Offer",
+            "parameter": "",
+            "offer-group": "Related Offer"
+        }];
+        $scope.releteOfferList = result;
+    };
+    $scope.getRegulaOfferList = function(){
+        var result = [{
+            "offer-name": "FCVBAR",
+            "offer-description": "First Call Verification. Barring",
+            "type": "Additional Offer",
+            "parameter": "",
+            "service-level": "C",
+            "offer-group": "Related Offer"
+        }, {
+            "offer-name": "FTALKS25",
+            "offer-description": "Talk 1F&F - O2True",
+            "type": "F&F",
+            "parameter": "",
+            "service-level": "G",
+            "offer-group": "Related Offer"
+        }, {
+            "offer-name": "RMPGPS01",
+            "offer-description": "GPRS Unlimited",
+            "type": "Additional Offer",
+            "parameter": "",
+            "service-level": "C",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "FCVBAR",
+            "offer-description": "First Call Verification. Barring",
+            "type": "Additional Offer",
+            "parameter": "",
+            "service-level": "C",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "FTALKS25",
+            "offer-description": "Talk 1F&F - O2True",
+            "type": "F&F",
+            "parameter": "",
+            "service-level": "G",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "RMPGPS01",
+            "offer-description": "GPRS Unlimited",
+            "type": "Additional Offer",
+            "parameter": "",
+            "service-level": "C",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "FCVBAR",
+            "offer-description": "First Call Verification. Barring",
+            "type": "Additional Offer",
+            "parameter": "",
+            "service-level": "C",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "FTALKS25",
+            "offer-description": "Talk 1F&F - O2True",
+            "type": "F&F",
+            "parameter": "",
+            "service-level": "G",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "RMPGPS01",
+            "offer-description": "GPRS Unlimited",
+            "type": "Additional Offer",
+            "parameter": "",
+            "service-level": "C",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "FCVBAR",
+            "offer-description": "First Call Verification. Barring",
+            "type": "Additional Offer",
+            "parameter": "",
+            "service-level": "C",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "FTALKS25",
+            "offer-description": "Talk 1F&F - O2True",
+            "type": "F&F",
+            "parameter": "",
+            "service-level": "G",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "RMPGPS01",
+            "offer-description": "GPRS Unlimited",
+            "type": "Additional Offer",
+            "parameter": "",
+            "service-level": "C",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "FCVBAR",
+            "offer-description": "First Call Verification. Barring",
+            "type": "Additional Offer",
+            "parameter": "",
+            "service-level": "C",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "FTALKS25",
+            "offer-description": "Talk 1F&F - O2True",
+            "type": "F&F",
+            "parameter": "",
+            "service-level": "G",
+            "offer-group": "Related Offer"
+        },{
+            "offer-name": "RMPGPS01",
+            "offer-description": "GPRS Unlimited",
+            "type": "Additional Offer",
+            "parameter": "",
+            "service-level": "C",
+            "offer-group": "Related Offer"
+        }];
+        $scope.regulaOfferList = result;
+    };
+    $scope.getOfferList();
+    $scope.getReleteOfferList();
+    $scope.getRegulaOfferList();
 
     // Submit form
     $scope.submit = function() {
