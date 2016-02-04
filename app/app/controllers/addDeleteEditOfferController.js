@@ -80,6 +80,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.ffData = {
         max: 4
     };
+    $scope.radioOffer = "";
     //STR: get offerList
     $scope.offerList = [];
     $scope.releteOfferList = [];
@@ -466,6 +467,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.regulaOfferList = result;
     };
     $scope.smartSearchOffer = function(txtSearch){
+        $scope.radioOffer = "";
         if (txtSearch.indexOf(' ') > 0) {
             var txtList = txtSearch.split(' ');
             var arr = popUpOfferList;
@@ -478,7 +480,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.popUpOfferList = $filter('filter')(popUpOfferList, txtSearch);
         }
     }
+    $scope.onChangeRadioOffer = function(){
+        $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+        console.log($scope.radioOffer);
+    };
     $scope.onRegularOfferTypeId = function(){
+        $scope.radioOffer = "";
         $scope.txtSearchOffer = "";
         //$scope.popUpOfferList = popUpOfferList;
         $scope.popUpOfferList = $filter('filter')(popUpOfferList, {'type': $scope.regularOfferTypeId});

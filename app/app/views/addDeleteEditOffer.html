@@ -780,7 +780,7 @@
                             </tr>
                             <tr dir-paginate="item in popUpOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="radio" name="radioOffer" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input type="radio" name="radioOffer" ng-model="radioOffer" ng-change="onChangeRadioOffer()" value="{{item['offer-code']}}" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xs-2" style="text-align:center;vertical-align: middle;">
                                     <h>{{item['offer-code']}}</h>
@@ -803,7 +803,7 @@
                                     <div dir-pagination-controls pagination-id="offerList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
                                 </td>
                             </tr>
-                            <tr ng-show="regularOfferTypeId=='POOLED'">
+                            <tr ng-show="regularOfferTypeId=='POOLED' && radioOffer">
                                 <td colspan="6" class="text-center">
                                     <div ng-show="regularOfferTypeId=='POOLED'">
                                         <div ng-show="parameter.Volume != 'hide'">
@@ -1045,7 +1045,7 @@
                 </div>
             </div>
             <div class="modal-footer" style=" padding-top: 0;">
-                <button class="btn btn-success" data-dismiss="modal" ng-disabled="!isSelectedPricePlan2" ng-click="selectedPricePlan2()">เลือก</button>
+                <button class="btn btn-success" data-dismiss="modal" ng-disabled="!isSelectedPricePlan2" ng-click="selectedPricePlan2()">ตกลง</button>
                 <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
             </div>
         </div>
