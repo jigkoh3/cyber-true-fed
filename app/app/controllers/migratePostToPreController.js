@@ -508,12 +508,16 @@
                                 },
 
                                 beforeShow: function() {
+
                                     if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
                                         $('#CitizenID').prop('disabled', false);
                                         setTimeout(function() {
                                             $('#CitizenID').focus();
                                         }, 500);
+                                    } else {
+                                        $('#CitizenID').prop('disabled', true);
                                     }
+                                    
                                     $('#loadingReadCard').hide();
                                     $('#unMatch').hide();
                                 },
