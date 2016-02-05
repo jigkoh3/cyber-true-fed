@@ -2623,11 +2623,10 @@ smartApp.controller('changeOwnershipController', function(
         } else {
             SystemService.callServicePost(data, headers, function(result) {
                 console.log(result);
+                //save report to server
+                SystemService.saveReportToServer({}, function(resultSaveReport) {});
                 if (result.status) {
-                	SystemService.saveReportToServer({}, function(result){
-                		
-                	});
-                    SystemService.showBeforeClose({
+                	SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
                         "message2": ""
                     });

@@ -3088,6 +3088,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             SystemService.callServicePost(data, headers, function(result) {
                 SystemService.hideLoading();
                 console.log(result);
+                //save report to server
+                SystemService.saveReportToServer({}, function(resultSaveReport) {});
                 if (result.status) {
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],

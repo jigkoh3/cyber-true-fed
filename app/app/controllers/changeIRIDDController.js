@@ -102,7 +102,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             'WEB_METHOD_CHANNEL': 'WEBUI',
             'E2E_REFID': $scope.data.orderRequest["order"]["order-id"]
         };
-        $scope.data.orderRequest['order']['order-items'][0]['user-memo'] = $scope.getAuthen['logInName'] + "(" + $scope.getAuthen['saleCode'] + ": " + $scope.getAuthen['engName'] + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": "  + $scope.data.orderRequest['order']['order-items'][0]['user-memo'];
+        $scope.data.orderRequest['order']['order-items'][0]['user-memo'] = $scope.getAuthen['logInName'] + "(" + $scope.getAuthen['saleCode'] + ": " + $scope.getAuthen['engName'] + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.data.orderRequest['order']['order-items'][0]['user-memo'];
         //console.log(headers);
         if (SystemService.demo) {
             SystemService.showBeforeClose({
@@ -112,11 +112,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         } else {
             SystemService.callServicePost($scope.data.orderRequest, headers, function(result) {
                 //console.log(result);
+                //save report to server
+                SystemService.saveReportToServer({}, function(resultSaveReport) {});
                 if (result.status) {
-                	SystemService.saveReportToServer({}, function(result){
-                		
-                	});
-                	
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
                         "message2": ""
@@ -257,9 +255,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
                         $('#CitizenID').prop('disabled', false);
                         setTimeout(function() {
-                        $('#CitizenID').focus();
-                    }, 500);
-                        
+                            $('#CitizenID').focus();
+                        }, 500);
+
 
                     } else {
                         $('#CitizenID').prop('disabled', true);
@@ -983,7 +981,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                         //$('#idPdfObject').load(url);
 
                         if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                            
+
 
                             setTimeout(function() {
                                 //document.getElementById('iframePDF').focus();

@@ -68,7 +68,7 @@ smartApp.controller('ChangePricePlanController', function(
     };
     $scope.isEnterPP = false;
     $scope.openPricePlanDialog = function() {
-        $('#hModal').height(($( window ).height())-235);
+        $('#hModal').height(($(window).height()) - 235);
         $scope.isEnterPP = false;
         if (!$scope.isLoadPricePlan) {
             //call Priceplan
@@ -1583,12 +1583,9 @@ smartApp.controller('ChangePricePlanController', function(
 
                 SystemService.callServicePost(data, headers, function(result) {
                     console.log(result);
+                    //save report to server
+                    SystemService.saveReportToServer({}, function(resultSaveReport) {});
                     if (result.status) {
-                        //save report to server
-                        SystemService.saveReportToServer({}, function(result) {
-
-                        });
-
                         SystemService.showBeforeClose({
                             "message": result.data["display-messages"][0]["th-message"],
                             "message2": ""
@@ -1857,7 +1854,7 @@ smartApp.controller('ChangePricePlanController', function(
     };
 
     $scope.selectedPricePlan3 = function() {
-        $('#hModal').height(($( window ).height())-235);
+        $('#hModal').height(($(window).height()) - 235);
         $scope.isSelectedPricePlan2 = false;
         if (!$scope.isLoadPricePlan) {
             //call Priceplan

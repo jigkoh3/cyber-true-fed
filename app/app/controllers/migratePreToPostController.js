@@ -2788,11 +2788,9 @@ smartApp.controller('MigratePreToPostController', function(
         } else {
             SystemService.callServicePost(data, headers, function(result) {
                 console.log(result);
+                //save report to server
+                SystemService.saveReportToServer({}, function(resultSaveReport) {});
                 if (result.status) {
-                    SystemService.saveReportToServer({}, function(result) {
-
-                    });
-
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
                         "message2": result.data["display-messages"].length > 1 ? result.data["display-messages"][1]["th-message"] : ""
