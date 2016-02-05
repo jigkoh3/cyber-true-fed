@@ -338,7 +338,7 @@
                     'product-id-name': payload.productDetails['product-id-name'],
                     // 'product-category': payload.productDetails['product-category'],
                     'reason-code': payload.statusReason,
-                    'user-memo': payload.saleAgent.loginName + "(" + payload.saleAgent.saleCode + ": " + payload.saleAgent.engName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": "  + payload.statusReasonMemo,
+                    'user-memo': payload.saleAgent.logInName + "(" + payload.saleAgent.saleCode + ": " + payload.saleAgent.engName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": "  + payload.statusReasonMemo,
                     'order-data': {
                         'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
                         'SERVICE-LEVEL': "C",
