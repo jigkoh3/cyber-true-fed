@@ -180,10 +180,10 @@
             });
         };
     };
-    var validatePrivilege = function(nas_proposition, company_code, first_call_date, fnCallback) {
-
+    var validatePrivilegeAPI = function(target, fnCallback) {
+        //var target = 'aftersales/tmv/migratepretopost/validateprivilege?first-call-date=' + first_call_date + '&nas-proposition=' + nas_proposition + '&company-code=' + company_code;
+        var target = 'aftersales/tmv/migratepretopost/validateprivilege?'+target;
         if (!demo) {
-            var target = 'aftersales/tmv/migratepretopost/validateprivilege?first-call-date=' + first_call_date + '&nas-proposition=' + nas_proposition + '&company-code=' + company_code;
             SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
@@ -1182,6 +1182,11 @@
         },
         propositionCallback: function(target, fnCallback) {
             propositionAPI(target, function(result) {
+                fnCallback(result);
+            });
+        },
+        validatePrivilegeCallback: function(target, fnCallback) {
+            validatePrivilegeAPI(target, function(result) {
                 fnCallback(result);
             });
         }

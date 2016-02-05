@@ -879,6 +879,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
             }
+            if($scope.getAuthen['shopType']=='0'){
+                $scope.getBillCycleList();
+            }
 
             setTimeout(function() {
                 if ($scope.SubNo == 'null') {

@@ -87,6 +87,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.regulaOfferList = [];
     $scope.popUpOfferList = [];
     var popUpOfferList = [];
+    $scope.showDetail = {};
     $scope.getPopUpOfferList = function(){
         var result = [{
             "offer-code": "PKSMSS30",
@@ -491,6 +492,16 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.popUpOfferList = $filter('filter')(popUpOfferList, {'type': $scope.regularOfferTypeId});
         $('#hModal').height(($(window).height()) - 235);
         //$('.modal-backdrop').css('height', '200%');
+    };
+    $scope.showDetail = function(item){
+        console.log(item);
+        $scope.showDetail['offer-name'] = item['offer-name'];
+        $scope.showDetail['offer-description'] = item['offer-description'];
+        $scope.showDetail['effective-date'] = item['effective-date'];
+        $scope.showDetail['expiration-date'] = item['expiration-date'];
+        $scope.showDetail['type'] = item['type'];
+
+        $scope.showDetail['typed'] = "AD";
     };
     $scope.getOfferList();
     $scope.getReleteOfferList();
@@ -1069,6 +1080,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.offerType = offerType;
     };
 
+    SystemService.calendarDatePicker();
     $scope.afterCloseWarning = function() {
         if ($scope.SubNo === 'null') {
             setTimeout(function() {

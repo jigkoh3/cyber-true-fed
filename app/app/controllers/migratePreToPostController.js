@@ -2143,6 +2143,12 @@ smartApp.controller('MigratePreToPostController', function(
 
         $scope.callSalePricePlanList();
     };
+    $scope.getValidatePrivilege = function(){
+        var target = "";
+        migratePreToPostService.validatePrivilegeCallback(target, function(resultVP){
+            //
+        });
+    };
     $scope.getOfferDetail = function(soc) {
         $scope.clearSP()
         SystemService.showLoading();

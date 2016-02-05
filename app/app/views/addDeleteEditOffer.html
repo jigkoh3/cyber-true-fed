@@ -1,4 +1,73 @@
 <div class="container" id="addDeleteEditOfferContent">
+    <div id="modal-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                <h4>Details</h4>
+                    <div class="row">
+                        <div class="col-xs-3 text-right">
+                            Offer Name
+                        </div>
+                        <div class="col-xs-3">
+                            <input type="text" class="form-control" ng-model="showDetail['offer-name']">
+                        </div>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="col-xs-3 text-right">
+                            Offer Description
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control" ng-model="showDetail['offer-description']">
+                        </div>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="col-xs-3 text-right">
+                            Effective Date
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group has-feedback">
+                                <input name="birthDay" type="text" ng-model="showDetail['effective-date']" class="form-control date-picker dateFormat" maxlength="10" required>
+                                <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="col-xs-3 text-right">
+                            Expiration Date
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group has-feedback">
+                                <input name="birthDay" type="text" ng-model="showDetail['expiration-date']" class="form-control date-picker dateFormat" maxlength="10" required>
+                                <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                            </div>  
+                        </div>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="col-xs-3 text-right">
+                            Type
+                        </div>
+                        <div class="col-xs-3">
+                            <select class="form-control" ng-model="showDetail['typed']">
+                                <option value="AD">Additional Offer</option>
+                                <option value="DIS">Discount</option>
+                                <option value="CUG">CUG</option>
+                                <option value="FF">F&F</option>
+                                <option value="POOLED">Pooled</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style=" padding-top: 0;">
+                    <button class="btn btn-success" data-dismiss="modal" ng-disabled="!isSelectedPricePlan2" ng-click="selectedPricePlan2()">ตกลง</button>
+                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="content-top">
     </div>
     <div class="content m_content">
@@ -75,9 +144,9 @@
                                     </td>
                                     <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                         <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                            <button type="button" id="modalnewpriceplan" class="btn isCustomerProfile divParameterOfferButton" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                            <a type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
                                                 <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
-                                            </button>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -91,7 +160,7 @@
                             </tr>
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                            <tr ng-repeat="item in offerList | filter:{'offer-group': 'Related Offer'}">
+                            <tr ng-repeat="item in offerList | filter:{'offer-group': 'Regular Offer'}">
                                 <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
                                 </td>
@@ -109,9 +178,9 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" id="modalnewpriceplan" class="btn isCustomerProfile divParameterOfferButton" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                        <a type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
                                             <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
-                                        </button>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -142,9 +211,9 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" id="modalnewpriceplan" class="btn isCustomerProfile divParameterOfferButton" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                        <a type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
                                             <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
-                                        </button>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -175,9 +244,9 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" id="modalnewpriceplan" class="btn isCustomerProfile divParameterOfferButton" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                        <a type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
                                             <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
-                                        </button>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -720,6 +789,7 @@
         </div>
     </div>
 </div>
+<!-- modal -->
 <div id="modalPricePlan" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
