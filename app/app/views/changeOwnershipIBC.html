@@ -112,7 +112,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>ชื่อบริษัท<span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="bcName" id="bcName" ng-disabled="!isCustomerPreverify" class="form-control">
+                                    <input type="text" ng-model="bcName" ng-change="setSendName()" id="bcName" ng-disabled="!isCustomerPreverify" class="form-control">
                                 </div>
                             </div>
                         </div>
