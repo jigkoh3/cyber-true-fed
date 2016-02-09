@@ -1445,6 +1445,7 @@ smartApp.controller('MigratePreToPostController', function(
         setTimeout(function() {
             $scope.validatePrivilegeData = {};
             $scope.isCheckInputForVerify = false;
+            $scope.isValidatePrivilege = false;
             $scope.isVerify = false;
             $scope.approveCode = "";
             $scope.newOwner.birthDay = $('#birthDay').val();
@@ -2148,8 +2149,9 @@ smartApp.controller('MigratePreToPostController', function(
         //$scope.getValidatePrivilege();
     };
     $scope.validatePrivilegeData = {};
+    $scope.isValidatePrivilege = false;
     $scope.getValidatePrivilege = function() {
-        if ($scope.isCheckInputForVerify == false) {
+        if ($scope.isValidatePrivilege == false) {
             if ($scope.promotion) {
                 SystemService.showLoading();
                 var target = 'first-call-date=' + $scope.data.priceplan['product-properties']['FIRST-CALL-DATE'] +
@@ -2158,6 +2160,7 @@ smartApp.controller('MigratePreToPostController', function(
                     'msisdn=' + $scope.subNo;
                 migratePreToPostService.validatePrivilegeCallback(target, function(resultVP) {
                     SystemService.hideLoading();
+                    $scope.isValidatePrivilege = true;
                     console.log(resultVP.data);
                     var msg = utils.getObject(resultVP.data, 'display-messages');
                     if (msg && msg.length > 0 && resultVP.data['response-data']['privilege']['privilege-status'] == "1") {
