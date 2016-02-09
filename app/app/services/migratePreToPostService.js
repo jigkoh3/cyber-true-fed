@@ -182,7 +182,7 @@
     };
     var validatePrivilegeAPI = function(target, fnCallback) {
         //var target = 'aftersales/tmv/migratepretopost/validateprivilege?first-call-date=' + first_call_date + '&nas-proposition=' + nas_proposition + '&company-code=' + company_code;
-        var target = 'aftersales/tmv/migratepretopost/validateprivilege?'+target;
+        var target = 'aftersales/tmv/migratepretopost/validateprivilege?' + target;
         if (!demo) {
             SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
@@ -190,24 +190,65 @@
         } else {
 
             var data = {
-                "status": "",
-                "trx-id": "3BDPN2HLK4TZ",
-                "process-instance": "psaapdv1 (instance: SFF_node1)",
-                "display-messages": null,
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "No Campaign",
+                    "message-code": "TMV-MIGRATE-PRE-TO-POST-00010",
+                    "message-type": "WARNING",
+                    "en-message": "Not have Campaign",
+                    "th-message": "ไม่ได้รับสิทธิ์"
+                }],
+                "trx-id": "3X2RA3BRRDA7X",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {
                     "privilege": {
-                        "privilege-status": "0",
-                        "aging": "100",
-                        "campaign-code": "xxx"
+                        "aging": "110",
+                        "privilege-status": "1"
                     }
                 }
-
+            };
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "No Campaign",
+                    "message-code": "TMV-MIGRATE-PRE-TO-POST-00010",
+                    "message-type": "WARNING",
+                    "en-message": "No Campaign",
+                    "th-message": "ไม่พบรายการ"
+                }],
+                "trx-id": "3X2RA3BRRDA7X",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "privilege": {
+                        "aging": "110",
+                        "privilege-status": "2"
+                    }
+                }
+            };
+            var data3 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "Has Privilege",
+                    "message-code": "TMV-MIGRATE-PRE-TO-POST-00008",
+                    "message-type": "WARNING",
+                    "en-message": "Has Privilege",
+                    "th-message": "ได้รับสิทธิ์"
+                }],
+                "trx-id": "3X2RAAW8WT377",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "privilege": {
+                        "aging": "110",
+                        "privilege-status": "0",
+                        "campaign-code": "TP235"
+                    }
+                }
             };
 
 
             fnCallback({
                 status: true,
-                data: data,
+                data: data2,
                 error: "",
                 msgErr: ""
             });
