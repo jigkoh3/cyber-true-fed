@@ -2127,6 +2127,7 @@ smartApp.controller('MigratePreToPostController', function(
         $scope.pricePlan = {};
         $scope.onCheckInputForVerify();
         $scope.isValidate = false;
+        $scope.showApprovCode = false;
         $scope.specialOfferType = {
             CUG: false,
             FF: false,
