@@ -4092,6 +4092,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
             //BILLING_ADDRESS
             //BILLING_ADDRESS
+        } else if (isNull($scope.mailAddress.sendName) && $scope.isAccount_child == false) {
+            setTab('H');
+            showValidate("txtMailAddressSendName", ValidateMsgService.data.msgTaxAddress_ContactNameEmpty);
         } else if (isNull($scope.mailAddress.homeNumber) && $scope.isAccount_child == false) {
             setTab('H');
             showValidate("txtMailAdressHomeNumber", ValidateMsgService.data.msgBillHouseNoEmpty);
@@ -4115,6 +4118,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
             //TAX_ADDRESS
             //TAX_ADDRESS
+        } else if (isNull($scope.mailAddressBC.sendName) && $scope.isAccount_child == false && $scope.customerType != 'N') {
+            setTab('B');
+            showValidate("txtMailAddressBCSendName", ValidateMsgService.data.msgAddressList_ContactNameEmpty);
         } else if (isNull($scope.mailAddressBC.homeNumber) && $scope.isAccount_child == false && $scope.customerType != 'N') {
             setTab('B');
             showValidate("txtMailAdressHomeNumberBC", ValidateMsgService.data.msgBillHouseNoEmpty);

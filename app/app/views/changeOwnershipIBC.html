@@ -1053,8 +1053,8 @@
                                 <div class="row" ng-show="customerType!='N'">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>ชื่อสำหรับออกใบกำกับภาษี</label>
-                                            <input type="text" ng-model="mailAddress.sendName" class="form-control">
+                                            <label>ชื่อสำหรับออกใบกำกับภาษี <span style="color:red;">*</span></label>
+                                            <input type="text" ng-model="mailAddress.sendName" class="form-control" id="txtMailAddressSendName">
                                         </div>
                                     </div>
                                 </div>
@@ -1201,8 +1201,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>ชื่อผู้รับเอกสาร</label>
-                                            <input type="text" ng-model="mailAddressBC.sendName" class="form-control">
+                                            <label>ชื่อผู้รับเอกสาร <span style="color:red;">*</span></label>
+                                            <input type="text" ng-model="mailAddressBC.sendName" class="form-control" id="txtMailAddressBCSendName">
                                         </div>
                                     </div>
                                 </div>

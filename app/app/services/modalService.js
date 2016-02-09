@@ -434,6 +434,22 @@
             "en-message": "Please specify Last Name.",
             "th-message": "กรุณาระบุ นามสกุล ผู้รับมอบอำนาจ",
             "technical-message": "FROM WEBUI"
+        },
+        "msgTaxAddress_ContactNameEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Contact Name from Tax Address.",
+            "th-message": "กรุณาระบุ ชื่อสำหรับออกใบกำกับภาษี",
+            "technical-message": "FROM WEBUI"
+        },
+        "msgAddressList_ContactNameEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Contact Name from Address List.",
+            "th-message": "กรุณาระบุ ชื่อผู้รับเอกสาร",
+            "technical-message": "FROM WEBUI"
         }
     };
 });
