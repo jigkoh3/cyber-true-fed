@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-body">
-                <h4>Details</h4>
+                    <h4>Details</h4>
                     <div class="row">
                         <div class="col-xs-3 text-right">
                             Offer Name
@@ -42,7 +42,7 @@
                             <div class="form-group has-feedback">
                                 <input name="birthDay" type="text" ng-model="showDetail['expiration-date']" class="form-control date-picker dateFormat" maxlength="10" required>
                                 <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     &nbsp;
@@ -144,9 +144,9 @@
                                     </td>
                                     <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                         <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                            <a type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                            <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
                                                 <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
-                                            </a>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -178,9 +178,9 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <a type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
                                             <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
-                                        </a>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -211,9 +211,9 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <a type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
                                             <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
-                                        </a>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -244,9 +244,9 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <a type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
                                             <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
-                                        </a>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -295,10 +295,10 @@
                         </table>
                         <h4>Regular Offer</h4>
                         <div class="btn-group" style="bottom:10px;">
-                            <a href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success">
+                            <button href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success" type="button">
                                 <i class="fa fa-plus-circle fa-lg">
                                     </i> เพิ่มบริการ Regular Offer
-                            </a>
+                            </button>
                         </div>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
@@ -898,8 +898,8 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <span ng-span-numeric="isNumberVolume" class="hide" style="color:red;">
-                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                        </span>
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -932,8 +932,8 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <span ng-span-numeric="isNumberMonetary" class="hide" style="color:red;">
-                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                        </span>
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -966,8 +966,8 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <span ng-span-numeric="isNumberOccurrence" class="hide" style="color:red;">
-                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                        </span>
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -1000,8 +1000,8 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <span ng-span-numeric="isNumberDuration" class="hide" style="color:red;">
-                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                        </span>
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -1043,14 +1043,13 @@
                             </div>
                         </div>
                         <div ng-show="regularOfferTypeId=='FF'" style="padding: 20px;">
-                        <div class="form-group row">
+                            <div class="form-group row">
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3">
-                                    F&F <span style="color:red;">*</span> 
+                                    F&F <span style="color:red;">*</span>
                                 </div>
                                 <div class="col-md-3">
-                                    
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -1108,26 +1107,125 @@
                                 </div>
                                 <div class="col-md-3">
                                     <span ng-span-number-only="ifff" class="hide" style="color:red;">
-                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                        </span>
+                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                    </span>
                                     <span ng-show="isNumberTelLengthFF" style="color:red;">
-                            กรุณากรอกหมายเลข9-10ตัว
-                        </span>
+                                        กรุณากรอกหมายเลข9-10ตัว
+                                    </span>
                                     <span ng-show="isNumberTelZeroFF" style="color:red;">
-                            กรุณากรอก 0 เป็นตัวแรก
-                        </span>
+                                        กรุณากรอก 0 เป็นตัวแรก
+                                    </span>
                                 </div>
                                 <div class="col-md-3">
                                 </div>
                             </div>
                         </div>
+                        <div ng-show="regularOfferTypeId=='AD'" style="padding: 20px;">
+                            <div class="form-group">
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                        <label>TR_ACTUAL_CONTRACT_START_DATE</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group has-feedback">
+                                            <input name="birthDay" type="text" ng-model="trActualContractStartDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                            <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                        <label>TR_ORIG_CONTRACT_EXPIRE_DATE</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group has-feedback">
+                                            <input name="birthDay" type="text" ng-model="trOrigContractExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                            <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                        <label>TR_CONTRACT_FEE</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input type="text" ng-model="trContractFee" class="form-control">
+                                    </div>
+                                    <div class="col-xs-2">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                        <label>TR_CONTRACT_NUMBER</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input type="text" ng-model="trContractNumber" class="form-control">
+                                    </div>
+                                    <div class="col-xs-2">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                        <label>TR_GENERATE_CHARGE_YES_NO</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <select type="text" ng-model="trGenerateChargeYesNo" class="form-control" id="trGenerateChargeYesNo" ng-init="trGenerateChargeYesNo ='' ">
+                                            <option value="">--กรุณาเลือก--</option>
+                                            <option value="Y">Y</option>
+                                            <option value="N">N</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-2">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                        <label>TR_CONTRACT_TERM</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input type="text" ng-model="trContractTerm" class="form-control">
+                                    </div>
+                                    <div class="col-xs-2">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                        <label>TR_CONTRACT_REMARK</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input type="text" ng-model="trContractRemark" class="form-control">
+                                    </div>
+                                    <div class="col-xs-2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="div_event">
+                        </div>
                     </div>
-                    <div id="div_event"></div>
                 </div>
-            </div>
-            <div class="modal-footer" style=" padding-top: 0;">
-                <button class="btn btn-success" data-dismiss="modal" ng-disabled="!isSelectedPricePlan2" ng-click="selectedPricePlan2()">ตกลง</button>
-                <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
+                <div class="modal-footer" style=" padding-top: 0;">
+                    <button class="btn btn-success" data-dismiss="modal" ng-disabled="!isSelectedPricePlan2" ng-click="selectedPricePlan2()">ตกลง</button>
+                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
+                </div>
             </div>
         </div>
     </div>
