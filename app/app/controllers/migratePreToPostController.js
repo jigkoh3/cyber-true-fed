@@ -1446,6 +1446,7 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.validatePrivilegeData = {};
             $scope.isCheckInputForVerify = false;
             $scope.isValidatePrivilege = false;
+            $scope.isLoadPricePlan = false;
             $scope.isVerify = false;
             $scope.approveCode = "";
             $scope.newOwner.birthDay = $('#birthDay').val();
@@ -2157,6 +2158,7 @@ smartApp.controller('MigratePreToPostController', function(
                 var target = 'first-call-date=' + $scope.data.priceplan['product-properties']['FIRST-CALL-DATE'] +
                     '&nas-proposition=' + $scope.promotion +
                     '&company-code=' + $scope.data.priceplan['company-code'];
+                    console.log(target);
                 migratePreToPostService.validatePrivilegeCallback(target, function(resultVP) {
                     SystemService.hideLoading();
                     $scope.isValidatePrivilege = true;
