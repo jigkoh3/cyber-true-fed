@@ -1101,6 +1101,18 @@ smartApp.controller('MigratePreToPostController', function(
                             }
                         }
                     };
+                    var msg = utils.getObject(resultGetPriceplan.data, 'display-messages');
+                    if (msg && msg.length > 0) {
+                        SystemService.showAlert({
+                            "message": msg[0]["message"],
+                            "message-code": msg[0]["message-code"],
+                            "message-type": "WARNING",
+                            "en-message": msg[0]["en-message"],
+                            "th-message": msg[0]["th-message"],
+                            "technical-message": msg[0]["technical-message"]
+                        });
+                    }
+
                     var listProp = $filter('filter')($scope.propositions, {
                         'proposition-code': $scope.promotion
                     });

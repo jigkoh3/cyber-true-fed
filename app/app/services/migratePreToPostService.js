@@ -866,6 +866,25 @@
                     "priceplan-type": "N"
                 }]
             };
+
+            var data2 = {
+                "trx-id": "4A2REUHMMUPIC",
+                "status": "SUCCESSFUL",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "fault": {
+                    "name": "th.co.truecorp.ads.api.persistent.jdbc.DataNotFoundException",
+                    "code": "PROFILE-404",
+                    "message": "Not found priceplan mapped with proposition 0020867",
+                    "detailed-message": "DataNotFoundException Not found priceplan mapped with proposition 0020867. "
+                },
+                "display-messages": [{
+                    "message": "Not found priceplan mapped with proposition 0020867",
+                    "message-type": "WARNING",
+                    "en-message": "Not found priceplan mapped with proposition 0020867",
+                    "th-message": "Not found priceplan mapped with proposition 0020867",
+                    "technical-message": "tmsapnpr1 (instance: SFF_node3) DataNotFoundException Not found priceplan mapped with proposition 0020867. "
+                }]
+            };
             fnCallback({
                 status: true,
                 data: data,
