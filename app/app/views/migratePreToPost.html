@@ -457,14 +457,14 @@
                                            ng-click="onVerify()"
                                            value="Verify"
                                            class="btn btn-success">-->
-                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCheckInputForVerify " ng-click="onVerify()" value="ตรวจสอบลูกค้า" class="btn btn-success">
+                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCheckInputForVerify " ng-click="getValidatePrivilege()" value="ตรวจสอบลูกค้า" class="btn btn-success">
                                 </label>
                             </div>
                             <div class="col-md-3">
                                 <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span>
                             </div>
-                            <div class="col-md-2" ng-form="onVerify()">
-                                <input type="text" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
+                            <div class="col-md-2">
+                                <input type="text" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="($event.keyCode==13 && onVerify())" class="form-control" maxlength="10" style="width:150px" required>
                             </div>
                         </div>
                     </div>

@@ -1443,6 +1443,7 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.isCheckInputForVerify = false;
     $scope.onCheckInputForVerify = function() {
         setTimeout(function() {
+            $scope.validatePrivilegeData = {};
             $scope.isCheckInputForVerify = false;
             $scope.isVerify = false;
             $scope.approveCode = "";
@@ -2141,13 +2142,46 @@ smartApp.controller('MigratePreToPostController', function(
         console.log(propositionSocList[0].soc);
         $scope.propositionSoc = propositionSocList[0].soc;
 
-        $scope.callSalePricePlanList();
+        //$scope.callSalePricePlanList();
+
+        //$scope.getValidatePrivilege();
     };
-    $scope.getValidatePrivilege = function(){
-        var target = "";
-        migratePreToPostService.validatePrivilegeCallback(target, function(resultVP){
-            //
-        });
+    $scope.validatePrivilegeData = {};
+    $scope.getValidatePrivilege = function() {
+        if ($scope.isCheckInputForVerify == false) {
+            if ($scope.promotion) {
+                SystemService.showLoading();
+                var target = 'first-call-date=' + $scope.data.priceplan['product-properties']['FIRST-CALL-DATE'] +
+                    '&nas-proposition=' + $scope.promotion +
+                    '&company-code=' + $scope.data.priceplan['company-code'] +
+                    'msisdn=' + $scope.subNo;
+                migratePreToPostService.validatePrivilegeCallback(target, function(resultVP) {
+                    SystemService.hideLoading();
+                    console.log(resultVP.data);
+                    var msg = utils.getObject(resultVP.data, 'display-messages');
+                    if (msg && msg.length > 0 && resultVP.data['response-data']['privilege']['privilege-status'] == "1") {
+                        $scope.promotion = "";
+                        $scope.isCheckInputForVerify = false;
+                        $scope.onCheckInputForVerify();
+                        SystemService.showAlert({
+                            "message": msg[0]["message"],
+                            "message-code": msg[0]["message-code"],
+                            "message-type": "WARNING",
+                            "en-message": msg[0]["en-message"],
+                            "th-message": msg[0]["th-message"],
+                            "technical-message": msg[0]["technical-message"]
+                        });
+                    }
+                    if (resultVP.data['response-data']['privilege']['privilege-status'] == "0" || resultVP.data['response-data']['privilege']['privilege-status'] == "2") {
+                        $scope.onVerify();
+                    }
+                    $scope.validatePrivilegeData = resultVP.data['response-data']['privilege'];
+                });
+            }
+        }else{
+            //case :: รหัสอนุมัติ
+            $scope.onVerify();
+        }
     };
     $scope.getOfferDetail = function(soc) {
         $scope.clearSP()
@@ -2745,6 +2779,14 @@ smartApp.controller('MigratePreToPostController', function(
         }
         data["order"]["order-items"][0]["order-data"]["OFFERS-REQUIRE-PARAMETER"] = spAll;
 
+        //case Privilage
+        data["order"]["order-items"][0]["order-data"]["PRIVILEGE-STATUS"] = $scope.validatePrivilegeData['privilege-status'];
+        if ($scope.validatePrivilegeData['privilege-status'] == "0") {
+            data["order"]["order-items"][0]["order-data"]["CAMPAIGN-CODE"] = $scope.validatePrivilegeData['campaign-code'];
+            data["order"]["order-items"][0]["order-data"]["AGING"] = $scope.validatePrivilegeData['aging'];
+            data["order"]["order-items"][0]["order-data"]["FIRST-CALL-DATE"] = $scope.data.priceplan['product-properties']['FIRST-CALL-DATE'];
+        }
+
         ////address list
         if ($scope.isAddressList) {
             //data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"] = $scope.isAddressList;
@@ -3159,6 +3201,7 @@ smartApp.controller('MigratePreToPostController', function(
 
     $scope.onVerify = function() {
         SystemService.showLoading();
+        //=========================checkMaxAllow====================
         var checkMaxAllow = function(result) {
             SystemService.hideLoading();
             console.log(result);
@@ -3195,9 +3238,6 @@ smartApp.controller('MigratePreToPostController', function(
                 $scope.showApprovCode = false;
             }
         };
-
-
-
 
         var headers = {
             'WEB_METHOD_CHANNEL': 'WEBUI',
