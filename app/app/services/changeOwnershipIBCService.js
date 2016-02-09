@@ -45,7 +45,8 @@
                             "mobile-servicetype": "POSTPAID",
                             "has-splitcharge": false,
                             "is-childsim": false,
-                            "is-softsuspend": false
+                            "is-softsuspend": false,
+                            "ou-hierarchytype": "CHILD"
                         }]
                     }
                 },
@@ -716,7 +717,7 @@
     var validateCustomerIDAPI = function(param, fnCallback) {
         var target = "profiles/customer/validatecustomerid?" +
             "customer-type=" + param['customer-type'] + "&" +
-            "certificate-id=" + param['certificate-id'] + "&" +
+            "id-number=" + param['id-number'] + "&" +
             "customer-id=" + param['customer-id'];
         console.log(target);
         if (!demo) {

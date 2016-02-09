@@ -826,7 +826,7 @@
                         <div class="col-md-4"></div>
                     </div>
                     &nbsp;
-                    <div class="row">
+                    <div class="row" style="padding: 20px;">
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
                                 <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
@@ -1042,9 +1042,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-show="regularOfferTypeId=='FF'">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">F&F <span style="color:red;">*</span> </label>
+                        <div ng-show="regularOfferTypeId=='FF'" style="padding: 20px;">
+                        <div class="form-group row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3">
+                                    F&F <span style="color:red;">*</span> 
+                                </div>
+                                <div class="col-md-3">
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                </div>
                                 <div class="col-md-3" ng-show="ffData.max >= 1">
                                     <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF1" ng-model="saveParamData.ff1" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                                 </div>
@@ -1052,7 +1063,7 @@
                                     <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF2" ng-model="saveParamData.ff2" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                                 </div>
                             </div>
-                            <div class="form-group" ng-show="ffData.max >= 3">
+                            <div class="form-group row" ng-show="ffData.max >= 3">
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3" ng-show="ffData.max >= 3">
@@ -1062,7 +1073,7 @@
                                     <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF4" ng-model="saveParamData.ff4" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                                 </div>
                             </div>
-                            <div class="form-group" ng-show="ffData.max >= 5">
+                            <div class="form-group row" ng-show="ffData.max >= 5">
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3" ng-show="ffData.max >= 5">
@@ -1072,7 +1083,7 @@
                                     <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF6" ng-model="saveParamData.ff6" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                                 </div>
                             </div>
-                            <div class="form-group" ng-show="ffData.max >= 7">
+                            <div class="form-group row" ng-show="ffData.max >= 7">
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3" ng-show="ffData.max >= 7">
@@ -1082,7 +1093,7 @@
                                     <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF8" ng-model="saveParamData.ff8" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                                 </div>
                             </div>
-                            <div class="form-group" ng-show="ffData.max >= 9">
+                            <div class="form-group row" ng-show="ffData.max >= 9">
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3" ng-show="ffData.max >= 9">

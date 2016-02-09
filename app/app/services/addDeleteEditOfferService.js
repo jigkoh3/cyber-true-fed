@@ -414,5 +414,38 @@
             }, 1000);
         }
     };
+    this.getCapmaxParameter = function(offerCode, fnCallback) {
+        var data = {};
+        if (demo) {
+            data = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "3D13KQS6QT7VC",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "status-code": "0",
+                "cap-max-parameter": {
+                    "monetary-capmax": "-2",
+                    "occurrence-capmax": "-2",
+                    "duration-capmax": "-2",
+                    "duration-capmax-uom": "Minutes",
+                    "volume-capmax": "-2",
+                    "volume-capmax-uom": "MB",
+                    "duration-capmax-uom-combo": ["Seconds=Seconds", "Minutes=Minutes", "Hours=Hours"],
+                    "volume-capmax-uom-combo": ["B=Bytes", "KB=KiloBytes", "MB=MegaBytes", "GB=GigaBytes", "TB=TeraBytes"]
+                }
+            };
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
+        } else {
+            var target = 'aftersales/tmv/offer/listcapmaxparameter?offer-code=' + offerCode;
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
+            });
+        }
+    };
 
 });

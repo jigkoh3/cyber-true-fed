@@ -435,7 +435,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             var data = {
                 "customer-type": $scope.getAccountCat(),
                 "customer-id": id,
-                "certificate-id": $scope.data.installedProducts['company-code']
+                "id-number": $('#idNumberBC').val()
 
             };
             $scope.isAccountPreverify = false;
@@ -1308,6 +1308,18 @@ smartApp.controller('changeOwnershipIBCController', function(
                 "&partner-code=" + $scope.partnerCode +
                 "&privilege=false";
 
+            //case :: ou-hierarchytype
+            if($scope.data.installedProducts['ou-hierarchytype']=='CHILD'){
+                target = target+"&ou-level=C";
+            }else if($scope.data.installedProducts['ou-hierarchytype']=='ROOT'){
+                target = target+"&ou-level=R";
+            }else{
+
+            }
+            //case :: ou
+            if($scope.promotionLevel=='OU'){
+                target = target+"&priceplan-type="+$scope.PPTypeId;
+            }
 
             changeOwnershipIBCService.salePriceplanCallback(target, function(resultGetPriceplan) {
                 if (resultGetPriceplan.status) {
