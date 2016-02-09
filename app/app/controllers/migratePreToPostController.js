@@ -2156,8 +2156,7 @@ smartApp.controller('MigratePreToPostController', function(
                 SystemService.showLoading();
                 var target = 'first-call-date=' + $scope.data.priceplan['product-properties']['FIRST-CALL-DATE'] +
                     '&nas-proposition=' + $scope.promotion +
-                    '&company-code=' + $scope.data.priceplan['company-code'] +
-                    'msisdn=' + $scope.subNo;
+                    '&company-code=' + $scope.data.priceplan['company-code'];
                 migratePreToPostService.validatePrivilegeCallback(target, function(resultVP) {
                     SystemService.hideLoading();
                     $scope.isValidatePrivilege = true;
