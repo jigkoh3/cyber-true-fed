@@ -356,7 +356,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.addressList = [];
 
         $scope.unUseAddressMailBC();
-        $scope.unUseAddressAsCard();
+        $scope.unUseAddressAsCard('H');
 
         $scope.dataAccountPreverify = {};
         $scope.subCompanyType = "";
@@ -2534,6 +2534,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         if (type == 'H') {
             $scope.bantypeMail = false;
             $scope.mootypeMail = false;
+
             $scope.mailAddress = {};
             $('#ulAddressList').hide();
             $scope.addressList = [];
@@ -2542,8 +2543,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     };
     $scope.unUseAddressMailBC = function() {
-        $scope.bantypeMail = false;
-        $scope.mootypeMail = false;
+        
 
         $scope.bantypeMailBC = false;
         $scope.mootypeMailBC = false;
@@ -2756,6 +2756,12 @@ smartApp.controller('changeOwnershipIBCController', function(
         if ($scope.shopType == '1') {
             $scope.selectReason.id = "COWN";
         }
+        var cardTypeIBC = "";
+        if($scope.customerType != 'N'){
+            cardTypeIBC = $scope.cardTypeBC.value;
+        }else{
+            cardTypeIBC = $scope.cardType.value
+        }
         $scope.saveData.memo = $scope.saveData.memo ? $scope.saveData.memo : ""
         $scope.saveData.memo = $scope.getAuthen.logInName + "(" + $scope.getAuthen.saleCode + ": " + $scope.getAuthen.engName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo;
         var data = {
@@ -2770,7 +2776,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                     "firstname": $scope.newOwner.firstNameTH,
                     "lastname": $scope.newOwner.lastNameTH,
                     "gender": $scope.newOwner.sex,
-                    "id-type": $scope.cardType.value,
+                    "id-type": cardTypeIBC,
                     "id-number": $('#citizenID3').val(),
                     "birthdate": SystemService.convertDataThToLongDate($('#birthDay').val()),
                     "id-expire-date": SystemService.convertDataThToLongDate($('#expireDay').val()),
@@ -3512,7 +3518,12 @@ smartApp.controller('changeOwnershipIBCController', function(
                 $scope.showApprovCode = false;
             }
         };
-
+        var cardTypeIBC = "";
+        if($scope.customerType != 'N'){
+            cardTypeIBC = $scope.cardTypeBC.value;
+        }else{
+            cardTypeIBC = $scope.cardType.value
+        }
 
 
 
@@ -3536,7 +3547,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             "dealerCode": $scope.partnerCode,
             //"functionType": null,
             "idNumber": $scope.customer['id-number'],
-            "idType": $scope.cardType.value,
+            "idType": cardTypeIBC,
             //"isTrueMobile": null,
             //"language": null,
             "propositionId": $scope.promotion,

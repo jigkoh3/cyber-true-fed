@@ -42,22 +42,28 @@ smartApp.controller('ChangePricePlanController', function(
         //$ngBootbox.customDialog($scope.customDialogOptions);
     };
     $scope.filterAndOpen = function() {
+        console.log($scope.firstSearch);
         $scope.smartSearchPP($scope.pricePlanFilter.value);
         var list = $scope.propositionList;
         console.log(list.length, $scope.pricePlanFilter.value);
         if (list.length == 1) {
-            if ($scope.firstSearch == false) {
+            //if ($scope.firstSearch == false) {
                 $scope.isEnterPP = true;
                 $scope.selectedPricePlan(list[0]);
                 $scope.selectedPricePlan2();
-            }
+            //} else {
+               // $scope.firstSearch = false;
+            //}
 
         }
         if (list.length > 1 && $scope.pricePlanFilter.value) {
             if ($scope.firstSearch == false) {
                 //setTimeout(function() {
                 $('#modalnewpriceplan').click();
-                //}, 1100);
+                //}, 5100);
+
+            } else {
+                $scope.firstSearch = false;
             }
         }
         if (list.length == 0) {
@@ -1854,6 +1860,7 @@ smartApp.controller('ChangePricePlanController', function(
     };
 
     $scope.selectedPricePlan3 = function() {
+        $scope.firstSearch = true;
         $('#hModal').height(($(window).height()) - 235);
         $scope.isSelectedPricePlan2 = false;
         if (!$scope.isLoadPricePlan) {
