@@ -490,7 +490,7 @@
                                                 <span ng-show="changOpenserviceBC == 'L'">
                                                 {{lastestCustomer['installed-products'][0]['ban']}}
                                                 </span>
-                                                <input ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" ng-change="onChangeAccountPreverify('ROOT')" type="text" maxlength="10" style="height:30px; font-size: 12px;" placeholder="ระบุเลขที่ลูกค้า" class="form-control">
+                                                <input id="accountID_root" ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" ng-change="onChangeAccountPreverify('ROOT')" type="text" maxlength="10" style="height:30px; font-size: 12px;" placeholder="ระบุเลขที่ลูกค้า" class="form-control">
                                             </td>
                                             <td class="col-md-5">
                                                 <div class="row">
@@ -544,8 +544,8 @@
                         </div>
                     </div>
                 </div>
-                <h4>ข้อมูลหมายเลข</h4>
-                <div class="well">
+                <h4 ng-hide="isVerify==false && customerType!='N'">ข้อมูลหมายเลข</h4>
+                <div ng-hide="isVerify==false && customerType!='N'" class="well">
                     <div class="row" ng-show="customerType=='N'">
                         <div class="col-md-12" ng-hide="shopType=='1' && getAuthen['isSecondAuthen'] == true && getAuthen.shopcodes.length == 1">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
