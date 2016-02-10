@@ -2759,6 +2759,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         var cardTypeIBC = "";
         if($scope.customerType != 'N'){
             cardTypeIBC = $scope.cardTypeBC.value;
+            $scope.newOwner.firstNameTH = $scope.bcName;
         }else{
             cardTypeIBC = $scope.cardType.value
         }
@@ -2870,7 +2871,8 @@ smartApp.controller('changeOwnershipIBCController', function(
                                 "building-floor": $scope.mailAddress.buildingFloor,
                                 "sub-district": $scope.mailAddress.district,
                                 "zip": $scope.mailAddress.postcode,
-                                "household": ""
+                                "household": "",
+                                "contact-name": $scope.mailAddress.sendName
                             },
                             "TAX_ADDRESS": {
                                 "number": $scope.mailAddressBC.homeNumber,
@@ -2885,7 +2887,8 @@ smartApp.controller('changeOwnershipIBCController', function(
                                 "building-floor": $scope.mailAddressBC.buildingFloor,
                                 "sub-district": $scope.mailAddressBC.district,
                                 "zip": $scope.mailAddressBC.postcode,
-                                "household": ""
+                                "household": "",
+                                "contact-name": $scope.mailAddressBC.sendName
                             }
                         },
                         "order-data": {
@@ -2981,6 +2984,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                 delete data["order"]["order-items"][0]["address-list"]["BILLING_ADDRESS"];
                 delete data["order"]["order-items"][0]["address-list"]["TAX_ADDRESS"];
             }
+            //DELETE FOR BUSINESS/CORPORATE :::
+            //DELETE FOR BUSINESS/CORPORATE :::
+            delete data["order"]["customer"]["lastname"];
         } else {
             //case: INDIVIDUAL
             delete data["order"]["customer"]["customer-agents"]["POA"];
@@ -3099,8 +3105,6 @@ smartApp.controller('changeOwnershipIBCController', function(
         if ($scope.customerStatusN == 'O') {
             data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
         }
-
-
 
 
 
