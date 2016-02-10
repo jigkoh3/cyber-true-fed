@@ -1,6 +1,11 @@
-﻿smartApp.service('SystemService', function($ngBootbox, $filter, $http, ModalService, ValidateMsgService) {
+﻿smartApp.service('SystemService', function($routeParams, $ngBootbox, $filter, $http, ModalService, ValidateMsgService) {
     console.log('SystemService');
     var that = this;
+
+    //10/02/2016 fix
+    var _WEB_METHOD_CHANNEL = "AFTERSALE_SMARTUI_WEB";
+    var _REF_WEB_CHANNEL = $routeParams.channel ? $routeParams.channel : '';
+
     this.demo = false;
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
@@ -93,8 +98,9 @@
         }
         if (localStorage.getItem('orderId')) {
             httpRequest.headers = {
-                'WEB_METHOD_CHANNEL': 'WEBUI',
-                'E2E_REFID': localStorage.getItem('orderId')
+                'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
+                'E2E_REFID': localStorage.getItem('orderId'),
+                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL
             };
         }
         $http(httpRequest).success(function(data) {
@@ -156,8 +162,9 @@
         }
         if (localStorage.getItem('orderId')) {
             httpRequest.headers = {
-                'WEB_METHOD_CHANNEL': 'WEBUI',
-                'E2E_REFID': localStorage.getItem('orderId')
+                'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
+                'E2E_REFID': localStorage.getItem('orderId'),
+                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL
             };
         }
         //console.log(httpRequest);
@@ -227,8 +234,9 @@
         }
         if (localStorage.getItem('orderId')) {
             httpRequest.headers = {
-                'WEB_METHOD_CHANNEL': 'WEBUI',
-                'E2E_REFID': localStorage.getItem('orderId')
+                'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
+                'E2E_REFID': localStorage.getItem('orderId'),
+                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL
             };
         }
         $http(httpRequest).success(function(data) {
@@ -280,30 +288,6 @@
 
         });
     };
-
-    this.saveReportToServer = function(data, fnCallback) {
-        var httpRequest = {
-            method: "POST",
-            url: getURL('/services/report/saveFile.service'),
-            data: data,
-            timeout: 30000
-        };
-
-        httpRequest.headers = {
-            'WEB_METHOD_CHANNEL': 'WEBUI',
-            'E2E_REFID': localStorage.getItem('orderId')
-        };
-
-        $http(httpRequest).success(function(response) {
-            fnCallback({
-                status: true,
-                data: data,
-                error: "",
-                msgErr: ""
-            });
-        });
-    };
-
     this.callServicePostByPass = function(data, headers, fnCallback) {
         console.log(data);
         var httpRequest = {
@@ -318,8 +302,9 @@
         }
         if (localStorage.getItem('orderId')) {
             httpRequest.headers = {
-                'WEB_METHOD_CHANNEL': 'WEBUI',
-                'E2E_REFID': localStorage.getItem('orderId')
+                'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
+                'E2E_REFID': localStorage.getItem('orderId'),
+                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL
             };
         }
         $http(httpRequest).success(function(data) {
@@ -362,6 +347,31 @@
         });
     };
 
+    this.saveReportToServer = function(data, fnCallback) {
+        var httpRequest = {
+            method: "POST",
+            url: getURL('/services/report/saveFile.service'),
+            data: data,
+            timeout: 30000
+        };
+
+        httpRequest.headers = {
+            'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
+            'E2E_REFID': localStorage.getItem('orderId'),
+            'REF_WEB_CHANNEL': _REF_WEB_CHANNEL
+        };
+
+        $http(httpRequest).success(function(response) {
+            fnCallback({
+                status: true,
+                data: data,
+                error: "",
+                msgErr: ""
+            });
+        });
+    };
+
+
     //CR02 ------------
     this.showAlertMulti = function(msgArray, msgType) {
         var errorText = {
@@ -396,12 +406,12 @@
     this.getCustomerPreverify = function(data, fnCallback) {
 
         //var target = 'aftersales/order/generate-id?channel=WEBUI&dealer=80000011';
-        var headers = {
-            'WEB_METHOD_CHANNEL': 'WEBUI'
-        };
+        // var headers = {
+        //     'WEB_METHOD_CHANNEL': 'WEBUI'
+        // };
         data['target'] = 'profiles/customer/customer-preverify';
         if (!that.demo) {
-            that.callServicePostByPass(data, headers, function(result) {
+            that.callServicePostByPass(data, null, function(result) {
                 fnCallback(result.data);
             });
         } else {
@@ -455,11 +465,11 @@
     this.generateOrderId = function(parameter, fnCallback) {
         //var target = 'aftersales/order/generate-id?channel=WEBUI&dealer=80000011';
         var target = 'aftersales/order/generate-id' + parameter;
-        var headers = {
-            'WEB_METHOD_CHANNEL': 'WEBUI'
-        };
+        // var headers = {
+        //     'WEB_METHOD_CHANNEL': 'WEBUI'
+        // };
         if (!that.demo) {
-            that.callServiceGet(target, headers, function(result) {
+            that.callServiceGet(target, null, function(result) {
                 fnCallback(result.data);
             });
         } else {
@@ -474,11 +484,11 @@
     };
     this.second_authen = function(trx_id, fnCallback) {
         var target = 'security/identity/second_authen?trx_id=' + trx_id + '&app_id=WEBUI';
-        var headers = {
-            'WEB_METHOD_CHANNEL': 'WEBUI'
-        };
+        // var headers = {
+        //     'WEB_METHOD_CHANNEL': 'WEBUI'
+        // };
         if (!that.demo) {
-            that.callServiceGetByPass(target, headers, function(result) {
+            that.callServiceGetByPass(target, null, function(result) {
                 fnCallback(result.data);
             });
         } else {

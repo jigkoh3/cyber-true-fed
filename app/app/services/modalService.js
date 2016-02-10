@@ -450,6 +450,14 @@
             "en-message": "Please specify Contact Name from Address List.",
             "th-message": "กรุณาระบุ ชื่อผู้รับเอกสาร",
             "technical-message": "FROM WEBUI"
+        },
+        "msgAccountID_rootEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Customer ID.",
+            "th-message": "กรุณาระบุ เลขที่ลูกค้า",
+            "technical-message": "FROM WEBUI"
         }
     };
 });
