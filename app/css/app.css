@@ -2128,7 +2128,8 @@ pre code {
 .col-xw-1,
 .col-xw-2,
 .col-xw-3,
-.col-xw-4 {
+.col-xw-4,
+.col-wx-5 {
     float: left;
 }
 
@@ -2146,6 +2147,10 @@ pre code {
 
 .col-xw-4 {
     width: 20%;
+}
+
+.col-xw-5 {
+    width: 25%;
 }
 
 
