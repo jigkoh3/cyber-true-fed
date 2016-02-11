@@ -48,11 +48,11 @@ smartApp.controller('ChangePricePlanController', function(
         console.log(list.length, $scope.pricePlanFilter.value);
         if (list.length == 1) {
             //if ($scope.firstSearch == false) {
-                $scope.isEnterPP = true;
-                $scope.selectedPricePlan(list[0]);
-                $scope.selectedPricePlan2();
+            $scope.isEnterPP = true;
+            $scope.selectedPricePlan(list[0]);
+            $scope.selectedPricePlan2();
             //} else {
-               // $scope.firstSearch = false;
+            // $scope.firstSearch = false;
             //}
 
         }
@@ -1860,6 +1860,7 @@ smartApp.controller('ChangePricePlanController', function(
     };
 
     $scope.selectedPricePlan3 = function() {
+
         $scope.firstSearch = true;
         $('#hModal').height(($(window).height()) - 235);
         $scope.isSelectedPricePlan2 = false;
@@ -1884,6 +1885,7 @@ smartApp.controller('ChangePricePlanController', function(
         $scope.isSelectedPricePlan = false;
         $('.radioPriceplan').prop('checked', false);
 
+
     };
     $scope.focusPricePlanFilter = function() {
         if (!$scope.isLoadPricePlan && $scope.isCustomerProfile) {
@@ -1907,6 +1909,9 @@ smartApp.controller('ChangePricePlanController', function(
         $scope.pricePlanFilter.value = "";
         console.log($scope.pricePlanFilter.value);
         // $scope.onClearPricePlan();
+        setTimeout(function(){
+            paginationService.setCurrentPage('PPList', 1);
+        }, 500);
     };
 
     $scope.getCapmaxParameter = function(soc) {
@@ -2156,16 +2161,33 @@ smartApp.controller('ChangePricePlanController', function(
     // };
 
     $scope.smartSearchPP = function(txtSearch) {
-        if (txtSearch.indexOf(' ') > 0) {
-            var txtList = txtSearch.split(' ');
+        if ($scope.isLoadPricePlan) {
             var arr = valPricePlans;
-            console.log(txtList);
-            for (var i = 0; i < txtList.length; i++) {
-                arr = $filter('filter')(arr, txtList[i]);
+            if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
+                if ($scope.selectProposition) {
+                    arr = $filter('filter')(valPricePlans, {
+                        "proposition-code": $scope.selectProposition
+                    });
+                } else {
+                    arr = $filter('filter')(valPricePlansUnique, {
+                        "proposition-code": $scope.selectProposition
+                    });
+                }
+            }
+
+            if (txtSearch.indexOf(' ') > 0) {
+                var txtList = txtSearch.split(' ');
+                console.log(txtList);
+                for (var i = 0; i < txtList.length; i++) {
+                    arr = $filter('filter')(arr, txtList[i]);
+                }
+            } else {
+                //if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
+                    arr = $filter('filter')(arr, txtSearch);
+                //}
             }
             $scope.propositionList = arr;
-        } else {
-            $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
+            console.log($scope.propositionList.length);
         }
     };
     $scope.afterCloseWarning = function() {
