@@ -1909,7 +1909,7 @@ smartApp.controller('ChangePricePlanController', function(
         $scope.pricePlanFilter.value = "";
         console.log($scope.pricePlanFilter.value);
         // $scope.onClearPricePlan();
-        setTimeout(function(){
+        setTimeout(function() {
             paginationService.setCurrentPage('PPList', 1);
         }, 500);
     };
@@ -2164,15 +2164,11 @@ smartApp.controller('ChangePricePlanController', function(
         if ($scope.isLoadPricePlan) {
             var arr = valPricePlans;
             if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
-                if ($scope.selectProposition) {
-                    arr = $filter('filter')(valPricePlans, {
-                        "proposition-code": $scope.selectProposition
-                    });
-                } else {
-                    arr = $filter('filter')(valPricePlansUnique, {
-                        "proposition-code": $scope.selectProposition
-                    });
-                }
+                arr = $filter('filter')(valPricePlans, {
+                    "proposition-code": $scope.selectProposition
+                });
+            } else {
+                arr = valPricePlansUnique;
             }
 
             if (txtSearch.indexOf(' ') > 0) {
@@ -2183,7 +2179,7 @@ smartApp.controller('ChangePricePlanController', function(
                 }
             } else {
                 //if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
-                    arr = $filter('filter')(arr, txtSearch);
+                arr = $filter('filter')(arr, txtSearch);
                 //}
             }
             $scope.propositionList = arr;
