@@ -104,7 +104,7 @@
                 $('#CitizenID').prop('disabled', false);
                 $('#CitizenID').focus();
                 $('#btnSSO').hide();
-            }, 500);
+            }, 1100);
         }
     };
 
