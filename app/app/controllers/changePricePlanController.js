@@ -48,11 +48,11 @@ smartApp.controller('ChangePricePlanController', function(
         console.log(list.length, $scope.pricePlanFilter.value);
         if (list.length == 1) {
             //if ($scope.firstSearch == false) {
-                $scope.isEnterPP = true;
-                $scope.selectedPricePlan(list[0]);
-                $scope.selectedPricePlan2();
+            $scope.isEnterPP = true;
+            $scope.selectedPricePlan(list[0]);
+            $scope.selectedPricePlan2();
             //} else {
-               // $scope.firstSearch = false;
+            // $scope.firstSearch = false;
             //}
 
         }
@@ -2156,16 +2156,33 @@ smartApp.controller('ChangePricePlanController', function(
     // };
 
     $scope.smartSearchPP = function(txtSearch) {
-        if (txtSearch.indexOf(' ') > 0) {
-            var txtList = txtSearch.split(' ');
+        if ($scope.isLoadPricePlan) {
             var arr = valPricePlans;
-            console.log(txtList);
-            for (var i = 0; i < txtList.length; i++) {
-                arr = $filter('filter')(arr, txtList[i]);
+            if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
+                if ($scope.selectProposition) {
+                    arr = $filter('filter')(valPricePlans, {
+                        "proposition-code": $scope.selectProposition
+                    });
+                } else {
+                    arr = $filter('filter')(valPricePlansUnique, {
+                        "proposition-code": $scope.selectProposition
+                    });
+                }
+            }
+
+            if (txtSearch.indexOf(' ') > 0) {
+                var txtList = txtSearch.split(' ');
+                console.log(txtList);
+                for (var i = 0; i < txtList.length; i++) {
+                    arr = $filter('filter')(arr, txtList[i]);
+                }
+            } else {
+                if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
+                    arr = $filter('filter')(arr, txtSearch);
+                }
             }
             $scope.propositionList = arr;
-        } else {
-            $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
+            console.log($scope.propositionList.length);
         }
     };
     $scope.afterCloseWarning = function() {

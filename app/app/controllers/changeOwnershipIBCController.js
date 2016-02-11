@@ -340,6 +340,9 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.isLastestUser = false;
         $scope.isVerify = false;
 
+        $scope.isAccount_child = false;
+        $scope.isAccount_root = false;
+
         $scope.isAccountPreverify = false;
         //$scope.customer['id-number'] = "";
         $scope.customer['branch-code'] = "00000";
@@ -489,19 +492,20 @@ smartApp.controller('changeOwnershipIBCController', function(
                     $scope.isAccountPreverify = true;
                     $scope.isAccount_child = true;
                     //check ParentOU Level & SelectedOU Level
-                    if ($scope.dataAccountPreverify["installed-products"][0]["REQUIRE-PRICEPLAN"] == "NOT REQUIRE") {
+                    if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "NOT REQUIRE") {
                         $scope.showPPParentOU = true;
-                        $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN'] +
+                        $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'] +
                             ": " +
-                            $scope.dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN-DESCRIPTION'];
+                            $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION'];
                     } else {
                         $scope.showPPParentOU = false;
                     }
-                    if ($scope.dataAccountPreverify["installed-products"][0]["REQUIRE-PRICEPLAN"] == "NOT REQUIRE" || $scope.dataAccountPreverify["installed-products"][0]["REQUIRE-PRICEPLAN"] == "REQUIRE") {
+                    if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "NOT REQUIRE" || $scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "REQUIRE") {
                         $scope.showRequirePP = true;
                     } else {
                         $scope.showRequirePP = false;
                     }
+                    //build BILLING_ADDRESS here ::
 
                 }
             });
@@ -635,10 +639,10 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     };
     $scope.getBillCycleList = function(cust_type) {
-        SystemService.showLoading();
+        //SystemService.showLoading();
         var data = "profiles/master/billcycle?customer-type=" + $scope.getAccountCat();
         changeOwnershipIBCService.getBillCycleCallback(data, function(result) {
-            SystemService.hideLoading();
+            //SystemService.hideLoading();
             var msg = utils.getObject(result.data, 'display-messages');
             if (msg && msg.length > 0) {
                 $scope.isCustomerPreverify = false;
@@ -3319,6 +3323,11 @@ smartApp.controller('changeOwnershipIBCController', function(
             newTitle = newTitle[0]['th-description'];
         } else {
             newTitle = "";
+        }
+
+        if ($scope.customerType != 'N') {
+            $scope.newOwner.firstNameTH = $scope.bcName;
+        } else {
         }
 
 

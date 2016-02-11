@@ -534,7 +534,7 @@
                                                 </div>
                                                 <span ng-span-number-only="accountID_child" class="hide" style="color:red;">กรุณากรอกเฉพาะตัวเลข</span>
                                                 <div ng-show="isAccount_child" class="col-xs-5" style="padding-left: 0px;">
-                                                    <img src="images/icon/icon_active.png" alt=""> &nbsp; {{dataAccountPreverify['installed-products'][0]['ACCOUNT-FIRSTNMAE']}} {{dataAccountPreverify['installed-products'][0]['ACCOUNT-LASTNAME']}}
+                                                    <img src="images/icon/icon_active.png" alt=""> &nbsp; {{dataAccountPreverify['installed-products'][0]['product-properties']['ACCOUNT-FIRSTNMAE']}} {{dataAccountPreverify['installed-products'][0]['product-properties']['ACCOUNT-LASTNAME']}}
                                                 </div>
                                             </td>
                                         </tr>
@@ -623,21 +623,21 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="(dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL' || dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='NOT REQUIRE') && isVerify" style="color:red;">
+                    <div ng-show="(dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN']=='OPTIONAL' || dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN']=='NOT REQUIRE') && isVerify" style="color:red;">
                         <div class="col-md-3"></div>
                         <div class="col-md-9">
-                            TH : {{dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN-MSG-TH']}}
-                            <br> EN : {{dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN-MSG-EN']}}
+                            TH : {{dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN-MSG-TH']}}
+                            <br> EN : {{dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN-MSG-EN']}}
                         </div>
                     </div>
-                    <div ng-show="dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL' && isVerify" style="color:red;">
+                    <div ng-show="dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN']=='OPTIONAL' && isVerify" style="color:red;">
                         <div class="col-md-3"></div>
                         <div class="col-md-9">&nbsp;</div>
                     </div>
-                    <div ng-show="dataAccountPreverify['installed-products'][0]['REQUIRE-PRICEPLAN']=='OPTIONAL' && isVerify" style="color:green;">
+                    <div ng-show="dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN']=='OPTIONAL' && isVerify" style="color:green;">
                         <div class="col-md-3"></div>
                         <div class="col-md-9">
-                            โปรโมชั่นเดิม : {{dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN']}} : {{dataAccountPreverify["installed-products"][0]['ACCOUNT-PRICEPLAN-DESCRIPTION']}}
+                            โปรโมชั่นเดิม : {{dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN']}} : {{dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION']}}
                         </div>
                     </div>
                     <br />

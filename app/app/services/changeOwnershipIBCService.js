@@ -840,19 +840,19 @@
                             "mobile-servicetype": "POSTPAID",
                             "ou-hierarchytype": "CHILD",
                             "parent-ouId": "1234",
-
-                            "ACCOUNT-FIRSTNMAE": "NOT REQUIRE corporate",
-                            "ACCOUNT-LASTNAME": "",
-                            "ACCOUNT-STATUS": "",
-                            "AGREEMENT-ID": "",
-                            "ACCOUNT-PRICEPLAN": "RFSMTP01",
-                            "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
-                            "ACCOUNT-SERVICE-LEVEL": "G",
-                            "REQUIRE-PRICEPLAN": "NOT REQUIRE",
-                            "REQUIRE-PRICEPLAN-MSG-CODE": "",
-                            "REQUIRE-PRICEPLAN-MSG-EN": "No need to select new Price Plan (Promotion)",
-                            "REQUIRE-PRICEPLAN-MSG-TH": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่"
-                        }, {
+                            "product-properties": {
+                                "ACCOUNT-FIRSTNMAE": "NOT REQUIRE corporate",
+                                "ACCOUNT-LASTNAME": "",
+                                "ACCOUNT-STATUS": "",
+                                "AGREEMENT-ID": "",
+                                "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                                "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                                "ACCOUNT-SERVICE-LEVEL": "G",
+                                "REQUIRE-PRICEPLAN": "NOT REQUIRE",
+                                "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                                "REQUIRE-PRICEPLAN-MSG-EN": "No need to select new Price Plan (Promotion)",
+                                "REQUIRE-PRICEPLAN-MSG-TH": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่"
+                            },
                             "address-list": {
                                 "BILLING_ADDRESS": {
                                     "number": "61/238",
@@ -892,19 +892,19 @@
                             "mobile-servicetype": "POSTPAID",
                             "ou-hierarchytype": "CHILD",
                             "parent-ouId": "1234",
-
-                            "ACCOUNT-FIRSTNMAE": "REQUIRE corporate",
-                            "ACCOUNT-LASTNAME": "",
-                            "ACCOUNT-STATUS": "",
-                            "AGREEMENT-ID": "",
-                            "ACCOUNT-PRICEPLAN": "RFSMTP01",
-                            "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
-                            "ACCOUNT-SERVICE-LEVEL": "G",
-                            "REQUIRE-PRICEPLAN": "REQUIRE",
-                            "REQUIRE-PRICEPLAN-MSG-CODE": "",
-                            "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
-                            "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
-                        }, {
+                            "product-properties": {
+                                "ACCOUNT-FIRSTNMAE": "REQUIRE corporate",
+                                "ACCOUNT-LASTNAME": "",
+                                "ACCOUNT-STATUS": "",
+                                "AGREEMENT-ID": "",
+                                "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                                "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                                "ACCOUNT-SERVICE-LEVEL": "G",
+                                "REQUIRE-PRICEPLAN": "REQUIRE",
+                                "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                                "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
+                                "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
+                            },
                             "address-list": {
                                 "BILLING_ADDRESS": {
                                     "number": "61/238",
@@ -944,19 +944,19 @@
                             "mobile-servicetype": "POSTPAID",
                             "ou-hierarchytype": "CHILD",
                             "parent-ouId": "1234",
-
-                            "ACCOUNT-FIRSTNMAE": "OPTIONAL corporate",
-                            "ACCOUNT-LASTNAME": "",
-                            "ACCOUNT-STATUS": "",
-                            "AGREEMENT-ID": "",
-                            "ACCOUNT-PRICEPLAN": "RFSMTP01",
-                            "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
-                            "ACCOUNT-SERVICE-LEVEL": "G",
-                            "REQUIRE-PRICEPLAN": "OPTIONAL",
-                            "REQUIRE-PRICEPLAN-MSG-CODE": "",
-                            "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
-                            "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
-                        }, {
+                            "product-properties": {
+                                "ACCOUNT-FIRSTNMAE": "OPTIONAL corporate",
+                                "ACCOUNT-LASTNAME": "",
+                                "ACCOUNT-STATUS": "",
+                                "AGREEMENT-ID": "",
+                                "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                                "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                                "ACCOUNT-SERVICE-LEVEL": "G",
+                                "REQUIRE-PRICEPLAN": "OPTIONAL",
+                                "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                                "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
+                                "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
+                            },
                             "address-list": {
                                 "BILLING_ADDRESS": {
                                     "number": "61/238",
