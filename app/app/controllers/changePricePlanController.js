@@ -1860,6 +1860,7 @@ smartApp.controller('ChangePricePlanController', function(
     };
 
     $scope.selectedPricePlan3 = function() {
+
         $scope.firstSearch = true;
         $('#hModal').height(($(window).height()) - 235);
         $scope.isSelectedPricePlan2 = false;
@@ -1884,6 +1885,7 @@ smartApp.controller('ChangePricePlanController', function(
         $scope.isSelectedPricePlan = false;
         $('.radioPriceplan').prop('checked', false);
 
+
     };
     $scope.focusPricePlanFilter = function() {
         if (!$scope.isLoadPricePlan && $scope.isCustomerProfile) {
@@ -1907,6 +1909,9 @@ smartApp.controller('ChangePricePlanController', function(
         $scope.pricePlanFilter.value = "";
         console.log($scope.pricePlanFilter.value);
         // $scope.onClearPricePlan();
+        setTimeout(function(){
+            paginationService.setCurrentPage('PPList', 1);
+        }, 500);
     };
 
     $scope.getCapmaxParameter = function(soc) {
@@ -2177,9 +2182,9 @@ smartApp.controller('ChangePricePlanController', function(
                     arr = $filter('filter')(arr, txtList[i]);
                 }
             } else {
-                if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
+                //if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
                     arr = $filter('filter')(arr, txtSearch);
-                }
+                //}
             }
             $scope.propositionList = arr;
             console.log($scope.propositionList.length);
