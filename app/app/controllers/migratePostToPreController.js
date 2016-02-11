@@ -104,7 +104,7 @@
                 $('#CitizenID').prop('disabled', false);
                 $('#CitizenID').focus();
                 $('#btnSSO').hide();
-            }, 500);
+            }, 1100);
         }
     };
 
@@ -471,9 +471,12 @@
 
             if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == false) {
                 setTimeout(function() {
-                    $('#CitizenID').prop('disabled', false);
                     $('#CitizenID').focus();
                     $('#btnSSO').hide();
+                    setTimeout(function() {
+                        $('#CitizenID').prop('disabled', false);
+                        $('#CitizenID').focus();
+                    }, 1500);
                 }, 1100);
             }
 
@@ -517,7 +520,7 @@
                                     } else {
                                         $('#CitizenID').prop('disabled', true);
                                     }
-                                    
+
                                     $('#loadingReadCard').hide();
                                     $('#unMatch').hide();
                                 },
