@@ -1259,7 +1259,9 @@ smartApp.controller('changeOwnershipIBCController', function(
         //    size: 'large'
         //});
         //$scope.pricePlanFilter = $('#ppfilter').val();
-        var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
+        //var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
+        $scope.smartSearchPP($scope.pricePlanFilter.value);
+        var list = $scope.propositionList;
         console.log(list.length, $scope.pricePlanFilter.value);
         if (list.length == 1) {
             $scope.isEnterPP = true;
@@ -1276,6 +1278,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
 
         }
+
     };
 
     //proposition
@@ -2774,7 +2777,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         if ($scope.customerType != 'N') {
             
             $scope.titleOther = "";
-            $scope.newOwner.prefixTH = "";
+            $scope.newOwner.prefixTH = "T1";
             $scope.newOwner.sex = "MALE";
 
             cardTypeIBC = $scope.cardTypeBC.value;
