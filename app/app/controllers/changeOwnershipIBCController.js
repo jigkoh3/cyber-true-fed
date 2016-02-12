@@ -2775,7 +2775,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             
             $scope.titleOther = "";
             $scope.newOwner.prefixTH = "";
-            $scope.newOwner.sex = "";
+            $scope.newOwner.sex = "MALE";
 
             cardTypeIBC = $scope.cardTypeBC.value;
             if ($scope.changOpenserviceBC == 'L' && $scope.isAccount_child == false) {
