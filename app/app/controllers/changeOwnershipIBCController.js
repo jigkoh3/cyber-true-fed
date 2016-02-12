@@ -3351,7 +3351,6 @@ smartApp.controller('changeOwnershipIBCController', function(
                 "firstname": $scope.data.customerProfile["firstname"],
                 "lastname": $scope.data.customerProfile["lastname"],
                 "customerType": customerType,
-                "isBC": isBC,
                 "authorizeFullName": $('#authorizeFullName').val(),
                 "id-number": $scope.data.customerProfile["id-number"],
                 "product-id-number": $scope.SubNo,
@@ -3392,6 +3391,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                     "lastname": $scope.data.customerProfile['lastname']
                 },
                 "cosNewOwnerData": {
+                    "isBC": isBC,
                     "title": newTitle,
                     "firstname": $scope.newOwner.firstNameTH,
                     "lastname": $scope.newOwner.lastNameTH,
