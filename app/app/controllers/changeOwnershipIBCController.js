@@ -343,6 +343,8 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.isAccount_child = false;
         $scope.isAccount_root = false;
 
+        $scope.isLoadPricePlan = false;
+
         $scope.isAccountPreverify = false;
         //$scope.customer['id-number'] = "";
         $scope.customer['branch-code'] = "00000";
@@ -1373,6 +1375,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                     console.log($scope.propositionList);
                     $scope.isLoadPricePlan = true;
                     SystemService.hideLoading();
+                    setTimeout(function(){
+                        $('#ppfilter').focus();
+                    }, 1200);
 
                 } else {
                     $scope.propositionList = [];
@@ -2767,6 +2772,11 @@ smartApp.controller('changeOwnershipIBCController', function(
         var cardTypeIBC = "";
         var changeOption = "xxx";
         if ($scope.customerType != 'N') {
+            
+            $scope.titleOther = "";
+            $scope.newOwner.prefixTH = "";
+            $scope.newOwner.sex = "";
+
             cardTypeIBC = $scope.cardTypeBC.value;
             if ($scope.changOpenserviceBC == 'L' && $scope.isAccount_child == false) {
                 changeOption = "EXISTING";
@@ -3014,7 +3024,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             }
             //DELETE FOR BUSINESS/CORPORATE :::
             //DELETE FOR BUSINESS/CORPORATE :::
-            delete data["order"]["customer"]["lastname"];
+            //delete data["order"]["customer"]["lastname"];
         } else {
             //case: INDIVIDUAL
             delete data["order"]["customer"]["customer-agents"]["POA"];
@@ -3324,10 +3334,14 @@ smartApp.controller('changeOwnershipIBCController', function(
         } else {
             newTitle = "";
         }
+        var isBC = 'N';
 
         if ($scope.customerType != 'N') {
             $scope.newOwner.firstNameTH = $scope.bcName;
+            isBC = 'Y';
+            newTitle = "";
         } else {
+            isBC = 'N';
         }
 
 
@@ -3379,6 +3393,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                     "lastname": $scope.data.customerProfile['lastname']
                 },
                 "cosNewOwnerData": {
+                    "isBC": isBC,
                     "title": newTitle,
                     "firstname": $scope.newOwner.firstNameTH,
                     "lastname": $scope.newOwner.lastNameTH,
