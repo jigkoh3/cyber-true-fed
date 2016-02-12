@@ -1373,6 +1373,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                     console.log($scope.propositionList);
                     $scope.isLoadPricePlan = true;
                     SystemService.hideLoading();
+                    setTimeout(function(){
+                        $('#ppfilter').focus();
+                    }, 1200);
 
                 } else {
                     $scope.propositionList = [];
@@ -2767,6 +2770,11 @@ smartApp.controller('changeOwnershipIBCController', function(
         var cardTypeIBC = "";
         var changeOption = "xxx";
         if ($scope.customerType != 'N') {
+            
+            $scope.titleOther = "";
+            $scope.newOwner.prefixTH = "";
+            $scope.newOwner.sex = "";
+
             cardTypeIBC = $scope.cardTypeBC.value;
             if ($scope.changOpenserviceBC == 'L' && $scope.isAccount_child == false) {
                 changeOption = "EXISTING";
@@ -3014,7 +3022,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             }
             //DELETE FOR BUSINESS/CORPORATE :::
             //DELETE FOR BUSINESS/CORPORATE :::
-            delete data["order"]["customer"]["lastname"];
+            //delete data["order"]["customer"]["lastname"];
         } else {
             //case: INDIVIDUAL
             delete data["order"]["customer"]["customer-agents"]["POA"];
@@ -3324,10 +3332,14 @@ smartApp.controller('changeOwnershipIBCController', function(
         } else {
             newTitle = "";
         }
+        var isBC = 'N';
 
         if ($scope.customerType != 'N') {
             $scope.newOwner.firstNameTH = $scope.bcName;
+            isBC = 'Y';
+            newTitle = "";
         } else {
+            isBC = 'N';
         }
 
 
@@ -3339,6 +3351,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                 "firstname": $scope.data.customerProfile["firstname"],
                 "lastname": $scope.data.customerProfile["lastname"],
                 "customerType": customerType,
+                "isBC": isBC,
                 "authorizeFullName": $('#authorizeFullName').val(),
                 "id-number": $scope.data.customerProfile["id-number"],
                 "product-id-number": $scope.SubNo,
