@@ -14,7 +14,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     $scope.Id = "";
     $scope.shopType = '1';
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null'; //$routeParams.SubNo;
-
+    $scope.isLoadCug = false;
 
     // Initialize variables
     $scope.divID = 'createCugContent';
@@ -111,10 +111,11 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     }
 
     $scope.smartSearchCug = function(txtSearch) {
-        if (txtSearch) {
+        if ($scope.isLoadCug) {
+            var arr = valCug;
             if (txtSearch.indexOf(' ') > 0) {
                 var txtList = txtSearch.split(' ');
-                var arr = valCug;
+                
                 console.log(txtList);
                 for (var i = 0; i < txtList.length; i++) {
                     arr = $filter('filter')(arr, txtList[i]);
@@ -203,6 +204,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     $scope.onLoad = function() {
         SystemService.showLoading();
         CreateCugService.getCUGList(function(result) {
+            $scope.isLoadCug = true;
             SystemService.hideLoading();
             $scope.cugList = result.data["cug-list"];
             valCug = result.data["cug-list"];
