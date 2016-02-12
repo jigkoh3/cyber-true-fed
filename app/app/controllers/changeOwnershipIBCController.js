@@ -343,6 +343,8 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.isAccount_child = false;
         $scope.isAccount_root = false;
 
+        $scope.isLoadPricePlan = false;
+
         $scope.isAccountPreverify = false;
         //$scope.customer['id-number'] = "";
         $scope.customer['branch-code'] = "00000";
