@@ -53,7 +53,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         console.log(result.data);
         $scope.capMaxParameterList = result.data['cap-max-parameter'];
 
-        
+
         // $scope.capMaxParameterList['durationCapMaxUOMCombo'] = SystemService.convertArray($scope.capMaxParameterList['duration-capmax-uom-combo'], "=");
         // $scope.capMaxParameterList['volumeCapMaxUOMCombo'] = SystemService.convertArray($scope.capMaxParameterList['volume-capmax-uom-combo'], "=");
 
@@ -104,182 +104,182 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.showDetail = {};
     $scope.getPopUpOfferList = function() {
         var result = [{
-            "offer-code": "PKSMSS30",
-            "offer-name": "SMS package 50THB 60sms 30 Days",
-            "type": "Additional offer",
+            "offer-name": "PKSMSS30",
+            "offer-description": "SMS package 50THB 60sms 30 Days",
+            "type": "Additional Offer",
             "offer-level": "C",
             "sale-eff": "19/11/2015",
             "sale-exp": "31/01/2017"
         }, {
-            "offer-code": "MNP006",
-            "offer-name": "Diacount 50% on RC 12mth",
+            "offer-name": "MNP006",
+            "offer-description": "Diacount 50% on RC 12mth",
             "offer-level": "C",
             "type": "Discount",
             "sale-eff": "13/11/2014",
             "sale-exp": "08/08/2250"
         }, {
-            "offer-code": "RMV000000001314",
-            "offer-name": "MNP Gen Y",
+            "offer-name": "RMV000000001314",
+            "offer-description": "MNP Gen Y",
             "offer-level": "C",
             "type": "Contract & Proposition",
             "sale-eff": "24/03/2015",
             "sale-exp": "05/07/2016"
         }, {
-            "offer-code": "CCUGA501",
-            "offer-name": "CUG on/off Net(Package Level)",
+            "offer-name": "CCUGA501",
+            "offer-description": "CUG on/off Net(Package Level)",
             "offer-level": "C",
             "type": "CUG",
             "sale-eff": "27/03/2015",
             "sale-exp": "31/12/2016"
         }, {
-            "offer-code": "CFF05501",
-            "offer-name": "F&F service-FL 5 Full Math(0 Bt)_Sub",
+            "offer-name": "CFF05501",
+            "offer-description": "F&F service-FL 5 Full Math(0 Bt)_Sub",
             "offer-level": "C",
             "type": "CUG",
             "sale-eff": "27/03/2015",
             "sale-exp": "31/12/2016"
         }, {
-            "offer-code": "M00M0S03D",
-            "offer-name": "B&E_ShPool299 getV299min.S40.M5 50MB Wifi ULT",
+            "offer-name": "M00M0S03D",
+            "offer-description": "B&E_ShPool299 getV299min.S40.M5 50MB Wifi ULT",
             "offer-level": "G",
             "type": "Pooled",
             "sale-eff": "27/03/2015",
             "sale-exp": "31/12/2016"
         }, {
-            "offer-code": "RMV000000001536",
-            "offer-name": "AllianceCP_4G_Extra",
+            "offer-name": "RMV000000001536",
+            "offer-description": "AllianceCP_4G_Extra",
             "offer-level": "C",
-            "type": "Additional offer",
+            "type": "Additional Offer",
             "sale-eff": "19/11/2015",
             "sale-exp": "31/01/2017"
         }, {
-            "offer-code": "RMV000000000223",
-            "offer-name": "Biz(MNP O2R)_True Smart 4.0_12mths_Penalty 1,000",
+            "offer-name": "RMV000000000223",
+            "offer-description": "Biz(MNP O2R)_True Smart 4.0_12mths_Penalty 1,000",
             "offer-level": "C",
-            "type": "Additional offer",
+            "type": "Additional Offer",
             "sale-eff": "13/11/2014",
             "sale-exp": "08/08/2250"
         }, {
-            "offer-code": "RMV000000001022",
-            "offer-name": "New Galaxy SIM only",
+            "offer-name": "RMV000000001022",
+            "offer-description": "New Galaxy SIM only",
             "offer-level": "C",
-            "type": "Additional offer",
+            "type": "Additional Offer",
             "sale-eff": "24/03/2015",
             "sale-exp": "05/07/2016"
         }, {
-            "offer-code": "RMVC00000000032",
-            "offer-name": "GOV_Caesar3_TrueSamrt4.0+SIM",
+            "offer-name": "RMVC00000000032",
+            "offer-description": "GOV_Caesar3_TrueSamrt4.0+SIM",
             "offer-level": "C",
-            "type": "Additional offer",
+            "type": "Additional Offer",
             "sale-eff": "27/03/2015",
             "sale-exp": "31/12/2016"
         }, {
-            "offer-code": "RMVC00000000071",
-            "offer-name": "Non Shop_EDU_Puenkru2_True Lenevo+SIM",
+            "offer-name": "RMVC00000000071",
+            "offer-description": "Non Shop_EDU_Puenkru2_True Lenevo+SIM",
             "offer-level": "C",
             "type": "CUG",
             "sale-eff": "30/06/2015",
             "sale-exp": "31/12/2016"
         }, {
-            "offer-code": "RMV000000001073",
-            "offer-name": "iPhone 6 discount 7500",
+            "offer-name": "RMV000000001073",
+            "offer-description": "iPhone 6 discount 7500",
             "offer-level": "C",
             "type": "CUG",
             "sale-eff": "23/04/2015",
             "sale-exp": "04/02/2016"
         }, {
-            "offer-code": "RMV000000001520",
-            "offer-name": "MG_4G Cele. iPhone 5s_Airtime",
+            "offer-name": "RMV000000001520",
+            "offer-description": "MG_4G Cele. iPhone 5s_Airtime",
             "offer-level": "C",
             "type": "CUG",
             "sale-eff": "17/11/2015",
             "sale-exp": "17/11/2016"
         }, {
-            "offer-code": "RMV000000001225",
-            "offer-name": "Samsung TradeIN_3,000_Jmart",
+            "offer-name": "RMV000000001225",
+            "offer-description": "Samsung TradeIN_3,000_Jmart",
             "offer-level": "C",
             "type": "Discount",
             "sale-eff": "16/07/2015",
             "sale-exp": "31/07/2020"
         }, {
-            "offer-code": "RMVC00000000091",
-            "offer-name": "GOV_Caesar_Plus_4_SIM_only_Hea",
+            "offer-name": "RMVC00000000091",
+            "offer-description": "GOV_Caesar_Plus_4_SIM_only_Hea",
             "offer-level": "G",
             "type": "Discount",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
-            "offer-code": "RMVB00000000266",
-            "offer-name": "Dongle Bundling For Business Solution_12mths_Panalty",
+            "offer-name": "RMVB00000000266",
+            "offer-description": "Dongle Bundling For Business Solution_12mths_Panalty",
             "offer-level": "C",
             "type": "Discount",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
-            "offer-code": "RMV000000000400",
-            "offer-name": "Biz_True Smart 4.0_12mths_Penalty 1,500",
+            "offer-name": "RMV000000000400",
+            "offer-description": "Biz_True Smart 4.0_12mths_Penalty 1,500",
             "offer-level": "G",
             "type": "Discount",
             "sale-eff": "10/01/2014",
             "sale-exp": "08/08/2018"
         }, {
-            "offer-code": "RMV000000000322",
-            "offer-name": "New Galaxy SIM only",
+            "offer-name": "RMV000000000322",
+            "offer-description": "New Galaxy SIM only",
             "offer-level": "C",
             "sale-eff": "01/01/2015",
             "sale-exp": "05/07/2016"
         }, {
-            "offer-code": "RMV000000001010",
-            "offer-name": "GOV_Caesar5_TrueSamrt4.0",
+            "offer-name": "RMV000000001010",
+            "offer-description": "GOV_Caesar5_TrueSamrt4.0",
             "offer-level": "G",
             "type": "Pooled",
             "sale-eff": "01/01/2015",
             "sale-exp": "31/12/2016"
         }, {
-            "offer-code": "RMVC00000000101",
-            "offer-name": "Non Shop_EDU_Puenkru2_True",
+            "offer-name": "RMVC00000000101",
+            "offer-description": "Non Shop_EDU_Puenkru2_True",
             "offer-level": "C",
             "type": "Pooled",
             "sale-eff": "05/06/2014",
             "sale-exp": "31/12/2015"
         }, {
-            "offer-code": "RMVB00000000555",
-            "offer-name": "Dongle Bundling For Business Solution_15mths",
+            "offer-name": "RMVB00000000555",
+            "offer-description": "Dongle Bundling For Business Solution_15mths",
             "offer-level": "C",
             "type": "CUG",
             "sale-eff": "01/01/2015",
             "sale-exp": "31/12/2016"
         }, {
-            "offer-code": "RMVC00000001073",
-            "offer-name": "iPhone 6 discount 8500",
+            "offer-name": "RMVC00000001073",
+            "offer-description": "iPhone 6 discount 8500",
             "offer-level": "G",
             "type": "Pooled",
             "sale-eff": "13/02/2015",
             "sale-exp": "04/02/2016"
         }, {
-            "offer-code": "RMV000000001220",
-            "offer-name": "MG_4G Cele. iPhone 6s_Airtime",
+            "offer-name": "RMV000000001220",
+            "offer-description": "MG_4G Cele. iPhone 6s_Airtime",
             "offer-level": "C",
             "type": "Contract & Proposition",
             "sale-eff": "15/01/2015",
             "sale-exp": "01/12/2017"
         }, {
-            "offer-code": "RMVC00000001225",
-            "offer-name": "Samsung TradeIN_5,000_Jmart",
+            "offer-name": "RMVC00000001225",
+            "offer-description": "Samsung TradeIN_5,000_Jmart",
             "offer-level": "C",
             "type": "Contract & Proposition",
             "sale-eff": "16/07/2015",
             "sale-exp": "31/07/2020"
         }, {
-            "offer-code": "RMVC00000000100",
-            "offer-name": "GOV_Caesar_Plus_4_SIM_only",
+            "offer-name": "RMVC00000000100",
+            "offer-description": "GOV_Caesar_Plus_4_SIM_only",
             "offer-level": "C",
             "type": "Contract & Proposition",
             "sale-eff": "28/02/2015",
             "sale-exp": "31/12/2016"
         }, {
-            "offer-code": "RMVB00000000211",
-            "offer-name": "Dongle Bundling For Business Solution_12mths_Panalty",
+            "offer-name": "RMVB00000000211",
+            "offer-description": "Dongle Bundling For Business Solution_12mths_Panalty",
             "offer-level": "G",
             "type": "Contract & Proposition",
             "sale-eff": "01/07/2015",
@@ -436,6 +436,30 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         // AddDeleteEditOfferService.getOfferList(data, function(){
         // });
     };
+    $scope.deleteRegulaOfferList = function(item) {
+        for (var i = 0; i < $scope.regulaOfferList.length; i++) {
+            if (item['offer-name'] == $scope.regulaOfferList[i]['offer-name']) {
+                $scope.regulaOfferList.splice(i, 1);
+                break;
+            }
+        }
+    }
+    $scope.addRegulaOffer = {
+        "offer-name": "",
+        "offer-description": "",
+        "type": "",
+        "parameter": "",
+        "service-level": "",
+        "offer-group": ""
+    };
+    $scope.addRegulaOfferList = function() {
+        var list = $filter('filter')($scope.regulaOfferList, {
+            'offer-name': $scope.addRegulaOffer['offer-name']
+        });
+        if (list.length == 0) {
+            $scope.regulaOfferList.push($scope.addRegulaOffer);
+        }
+    }
     $scope.getReleteOfferList = function() {
         var result = [{
             "offer-name": "FCVBAR",
@@ -497,9 +521,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.popUpOfferList = $filter('filter')(popUpOfferList, txtSearch);
         }
     }
-    $scope.onChangeRadioOffer = function() {
+    $scope.onChangeRadioOffer = function(item) {
         $scope.radioOffer = $('input[name=radioOffer]:checked').val();
         console.log($scope.radioOffer);
+        $scope.addRegulaOffer = {
+            "offer-name": item['offer-name'],
+            "offer-description": item['offer-description'],
+            "type": item['type'],
+            "parameter": "",
+            "service-level": item['offer-level'],
+            "offer-group": "Regular Offer"
+        };
     };
     $scope.onRegularOfferTypeId = function() {
         $scope.radioOffer = "";

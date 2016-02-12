@@ -201,7 +201,9 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     $scope.compName = '';
 
     $scope.onLoad = function() {
+        SystemService.showLoading();
         CreateCugService.getCUGList(function(result) {
+            SystemService.hideLoading();
             $scope.cugList = result.data["cug-list"];
             valCug = result.data["cug-list"];
             console.log($scope.cugList);
