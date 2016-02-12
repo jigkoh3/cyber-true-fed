@@ -626,7 +626,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in regulaOfferList">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <a ng-click=""><span><i class="fa fa-trash-o fa-1x"></i></span></a>
+                                    <a style="cursor:pointer;" type="button" ng-click="deleteRegulaOfferList(item)"><span><i class="fa fa-trash-o fa-1x"></i></span></a>
                                 </td>
                                 <td class="col-xs-3" style="text-align:center;vertical-align: middle;">
                                     <h>{{item['offer-name']}}</h>
@@ -1183,13 +1183,13 @@
                             </tr>
                             <tr dir-paginate="item in popUpOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="radio" name="radioOffer" ng-model="radioOffer" ng-change="onChangeRadioOffer()" value="{{item['offer-code']}}" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input type="radio" name="radioOffer" ng-model="radioOffer" ng-change="onChangeRadioOffer(item)" value="{{item['offer-name']}}" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xs-2" style="text-align:center;vertical-align: middle;">
-                                    <h>{{item['offer-code']}}</h>
+                                    <h>{{item['offer-name']}}</h>
                                 </td>
                                 <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
-                                    <h>{{item['offer-name']}}</h>
+                                    <h>{{item['offer-description']}}</h>
                                 </td>
                                 <td class="col-xs-2" style="text-align:center;vertical-align: middle;">
                                     <h>{{item['offer-level']}}</h>
@@ -1556,7 +1556,7 @@
                     </div>
                 </div>
                 <div class="modal-footer" style=" padding-top: 0;">
-                    <button class="btn btn-success" data-dismiss="modal" ng-disabled="!isSelectedPricePlan2" ng-click="selectedPricePlan2()">ตกลง</button>
+                    <button class="btn btn-success" data-dismiss="modal" ng-disabled="" ng-click="addRegulaOfferList(item)">ตกลง</button>
                     <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
                 </div>
             </div>
