@@ -64,6 +64,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
     var isFocus = false;
     var idFocus = "";
+    var valPricePlans = [];
 
 
     $scope.secondAuthenData = {};
@@ -345,6 +346,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         $scope.isLoadPricePlan = false;
         $scope.propositionList = [];
+        valPricePlans = [];
 
         $scope.isAccountPreverify = false;
         //$scope.customer['id-number'] = "";
