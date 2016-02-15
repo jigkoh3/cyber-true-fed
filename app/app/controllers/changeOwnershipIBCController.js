@@ -64,6 +64,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
     var isFocus = false;
     var idFocus = "";
+    var valPricePlans = [];
 
 
     $scope.secondAuthenData = {};
@@ -344,6 +345,8 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.isAccount_root = false;
 
         $scope.isLoadPricePlan = false;
+        $scope.propositionList = [];
+        valPricePlans = [];
 
         $scope.isAccountPreverify = false;
         //$scope.customer['id-number'] = "";
@@ -1309,7 +1312,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.isLoadPricePlan = false;
     $scope.callSalePricePlanList = function() {
         if ($scope.isVerify) {
-            SystemService.showLoading();
+            
             var target = "sales/catalog/product/tmv/priceplan/search?" +
                 "company-code=" + $scope.data.installedProducts['company-code'] +
                 "&customer-type=" + $scope.getAccountCat() +
@@ -1331,8 +1334,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             if ($scope.promotionLevel == 'OU') {
                 target = target + "&priceplan-type=" + $scope.PPTypeId;
             }
-
+            SystemService.showLoading();
             changeOwnershipIBCService.salePriceplanCallback(target, function(resultGetPriceplan) {
+                SystemService.hideLoading();
                 if (resultGetPriceplan.status) {
                     if (SystemService.checkObj(resultGetPriceplan.data, ["display-messages"]) && resultGetPriceplan.data["display-messages"].length > 0) {
                         //error
@@ -1377,7 +1381,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
                     console.log($scope.propositionList);
                     $scope.isLoadPricePlan = true;
-                    SystemService.hideLoading();
+                    
                     setTimeout(function(){
                         $('#ppfilter').focus();
                     }, 1200);
@@ -3536,6 +3540,10 @@ smartApp.controller('changeOwnershipIBCController', function(
 
     $scope.onVerify = function() {
         $scope.isVerify = false;
+        $scope.isLoadPricePlan = false;
+        $scope.propositionList = [];
+        valPricePlans = [];
+
         SystemService.showLoading();
         var checkMaxAllow = function(result) {
             SystemService.hideLoading();
