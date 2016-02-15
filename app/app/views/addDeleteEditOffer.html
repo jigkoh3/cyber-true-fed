@@ -371,6 +371,378 @@
         </div>
     </div>
     <!-- End modal-offerDetail -->
+    <!-- Start modal-edit-offerDetail -->
+    <div id="modal-edit-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4>Details</h4>
+                    <br>
+                    <br>
+                    <div ng-show="showDetail['type']=='F&F'">
+                        <div class="form-group row">
+                            <div class="col-md-3" style="text-align: right;top: 5px;">
+                                F&F
+                            </div>
+                            <div class="col-md-3" ng-show="ffData.max >= 1">
+                                <input ng-disabled="readOnlyOffer" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF1" ng-model="detailEditOffer.ff1" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                            </div>
+                            <div class="col-md-3" ng-show="ffData.max >= 2">
+                                <input ng-disabled="readOnlyOffer" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF2" ng-model="detailEditOffer.ff2" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                            </div>
+                        </div>
+                        <div class="form-group row" ng-show="ffData.max >= 3">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-3" ng-show="ffData.max >= 3">
+                                <input ng-disabled="readOnlyOffer" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF3" ng-model="detailEditOffer.ff3" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                            </div>
+                            <div class="col-md-3" ng-show="ffData.max >= 4">
+                                <input ng-disabled="readOnlyOffer" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF4" ng-model="detailEditOffer.ff4" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                            </div>
+                        </div>
+                        <div class="form-group row" ng-show="ffData.max >= 5">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-3" ng-show="ffData.max >= 5">
+                                <input ng-disabled="readOnlyOffer" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF5" ng-model="detailEditOffer.ff5" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                            </div>
+                            <div class="col-md-3" ng-show="ffData.max >= 6">
+                                <input ng-disabled="readOnlyOffer" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF6" ng-model="detailEditOffer.ff6" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                            </div>
+                        </div>
+                        <div class="form-group row" ng-show="ffData.max >= 7">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-3" ng-show="ffData.max >= 7">
+                                <input ng-disabled="readOnlyOffer" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF7" ng-model="detailEditOffer.ff7" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                            </div>
+                            <div class="col-md-3" ng-show="ffData.max >= 8">
+                                <input ng-disabled="readOnlyOffer" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF8" ng-model="detailEditOffer.ff8" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                            </div>
+                        </div>
+                        <div class="form-group row" ng-show="ffData.max >= 9">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-3" ng-show="ffData.max >= 9">
+                                <input ng-disabled="readOnlyOffer" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF9" ng-model="detailEditOffer.ff9" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                            </div>
+                            <div class="col-md-3" ng-show="ffData.max >= 10">
+                                <input ng-disabled="readOnlyOffer" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF10" ng-model="detailEditOffer.ff10" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-3">
+                                <span ng-span-number-only="ifff" class="hide" style="color:red;">
+                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                    </span>
+                                <span ng-show="isNumberTelLengthFF" style="color:red;">
+                                        กรุณากรอกหมายเลข9-10ตัว
+                                    </span>
+                                <span ng-show="isNumberTelZeroFF" style="color:red;">
+                                        กรุณากรอก 0 เป็นตัวแรก
+                                    </span>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="showDetail['type']=='CUG'">
+                        <div calss="form-group row">
+                            <div class="col-xs-2"></div>
+                            <div class="col-xs-3" style=" text-align: left; top: 5px;">
+                                <label>CUG Group : CUG Name</label>
+                            </div>
+                            <div class="col-xs-5">
+                                <input type="text" ng-model="detailEditOfferCUG.name" ng-disabled="readOnlyOffer" class="form-control">
+                            </div>
+                            <div class="col-xs-2"></div>
+                        </div> &nbsp;
+                        <p></p>
+                        <br>
+                        <br>
+                    </div>
+                    <div ng-show="showDetail['type']=='Pooled'">
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Volume cap max</label>
+                                        <div class="col-md-6" style="width:auto">
+                                            <select ng-disabled="readOnlyOffer" class="form-control" id="selectVolume" ng-init="saveParamData.Volume=parameter.Volume" ng-model="parameter.EditVolume" ng-change="saveParamData.Volume=parameter.Volume">
+                                                <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                                <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                                <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
+                                                <option value="0">Not Allow</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input ng-disabled="readOnlyOffer" type="text" id="txtVolume" ng-show="parameter.Volume>=1 || parameter.Volume == ''" ng-model="saveParamData.EditVolume" ng-numeric="isNumberVolume" placeholder="" maxlength="10" class="form-control" style="width:110px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3 hidden-sm">
+                                        </div>
+                                        <div class="col-md-5 hidden-sm">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span ng-span-numeric="isNumberVolume" class="hide" style="color:red;">
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Volume cap max UOM</label>
+                                        <div class="col-md-3">
+                                            <select ng-disabled="readOnlyOffer" class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['volumeCapMaxUOMCombo']" ng-model="capMaxEditParameterList['volume-capmax-uom']" ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2' || parameter.Volume=='-1'"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                &nbsp;
+                                <div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Monetary cap max</label>
+                                        <div class="col-md-6" style="width:auto">
+                                            <select ng-disabled="readOnlyOffer" class="form-control" id="selectMonetary" ng-init="saveParamData.Monetary=parameter.Monetary" ng-model="parameter.EditMonetary" ng-change="saveParamData.Monetary=parameter.Monetary">
+                                                <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                                <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                                <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
+                                                <option value="0">Not Allow</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input ng-disabled="readOnlyOffer" type="text" id="txtMonetary" ng-show="parameter.Monetary>=1 || parameter.Monetary==''" ng-model="saveParamData.EditMonetary" placeholder="" maxlength="10" class="form-control " style="width:110px;" ng-numeric="isNumberMonetary">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3 hidden-sm">
+                                        </div>
+                                        <div class="col-md-5 hidden-sm">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span ng-span-numeric="isNumberMonetary" class="hide" style="color:red;">
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Monetary cap max UOM</label>
+                                        <div class="col-md-3">
+                                            <input readonly type="text" class="form-control" readonly="readonly" value="Baht" />
+                                        </div>
+                                    </div>
+                                </div>
+                                &nbsp;
+                                <div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Occurrence cap max</label>
+                                        <div class="col-md-6" style="width:auto">
+                                            <select ng-disabled="readOnlyOffer" class="form-control" id="selectOccurrence" ng-init="saveParamData.Occurrence=parameter.Occurrence" ng-model="parameter.EditOccurrence" ng-change="saveParamData.Occurrence=parameter.Occurrence">
+                                                <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                                <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                                <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
+                                                <option value="0">Not Allow</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input ng-disabled="readOnlyOffer" type="text" id="txtOccurrence" ng-show="parameter.Occurrence>=1 || parameter.Occurrence == ''" ng-model="saveParamData.EditOccurrence" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberOccurrence">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3 hidden-sm">
+                                        </div>
+                                        <div class="col-md-5 hidden-sm">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span ng-span-numeric="isNumberOccurrence" class="hide" style="color:red;">
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Occurrence cap max UOM</label>
+                                        <div class="col-md-3">
+                                            <input readonly type="text" class="form-control" readonly="readonly" value="Occurrence" />
+                                        </div>
+                                    </div>
+                                </div>
+                                &nbsp;
+                                <div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Duration cap max</label>
+                                        <div class="col-md-6" style="width:auto">
+                                            <select ng-disabled="readOnlyOffer" class="form-control" id="selectDuration" ng-init="saveParamData.Duration=parameter.Duration" ng-model="parameter.EditDuration" ng-change="saveParamData.Duration=parameter.Duration">
+                                                <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                                <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                                <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
+                                                <option value="0">Not Allow</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input ng-disabled="readOnlyOffer" type="text" id="txtDuration" ng-show="parameter.Duration>=1 || parameter.Duration == ''" ng-model="saveParamData.EditDuration" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberDuration">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3 hidden-sm">
+                                        </div>
+                                        <div class="col-md-5 hidden-sm">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span ng-span-numeric="isNumberDuration" class="hide" style="color:red;">
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Duration cap max UOM</label>
+                                        <div class="col-md-3">
+                                            <select ng-disabled="readOnlyOffer" class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['durationCapMaxUOMCombo']" ng-model="capMaxEditParameterList['duration-capmax-uom']" ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'  || parameter.Duration=='-1'"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </div>
+                    <div ng-show="showDetail['type']=='Contract & Prop.'">
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <label>Contract Number</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber" ng-disabled="readOnlyOffer" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <label>Proposition Code</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber" ng-disabled="readOnlyOffer" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-3" style="text-align:right;top: 5px;">
+                                    <label>Propsition Description</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber" ng-disabled="readOnlyOffer" class="form-control">
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <label>Term</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber" ng-disabled="readOnlyOffer" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <label>Fee</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber" ng-disabled="readOnlyOffer" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <label>Start Date</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber" ng-disabled="readOnlyOffer" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <label>Expire Date</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber" ng-disabled="readOnlyOffer" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <label>Terminate Date</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber" ng-disabled="readOnlyOffer" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <label>Remark</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber" ng-disabled="readOnlyOffer" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="modal-footer" style=" padding-top: 0;">
+                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();">ปิด</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End modal-edit-offerDetail -->
     <div class="content-top">
     </div>
     <div class="content m_content">
@@ -899,7 +1271,7 @@
                                 </td>
                                 <td class="col-xw-1" style="vertical-align: middle;">
                                     <div align="center" ng-show="relatedOfferChk == true">
-                                        <button href="#modal-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
+                                        <button href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -936,7 +1308,7 @@
                                 </td>
                                 <td class="col-xw-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                        <button type="button" href="#modal-edit-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
                                             <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
                                         </button>
                                     </div>
@@ -980,7 +1352,7 @@
                                 </td>
                                 <td class="col-xw-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
+                                        <button type="button" href="#modal-edit-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c;">
                                             <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
                                         </button>
                                     </div>
@@ -1031,7 +1403,7 @@
                                 </td>
                                 <td class="col-xw-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" ng-show="discountChk==true">
-                                        <button href="#modal-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item)" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
+                                        <button href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item)" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
                                     </div>
                                 </td>
                             </tr>
