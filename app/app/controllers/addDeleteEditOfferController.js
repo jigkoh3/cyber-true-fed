@@ -41,6 +41,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.offerType = "C"
     $scope.statusReason = '';
     $scope.statusReasonMemo = '';
+    $scope.readOnlyOffer = true;
 
     var orderData = {};
 
@@ -1147,5 +1148,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $('#' + idFocus).focus();
             idFocus = "";
         }
+    };
+    
+    $scope.disableEditOffer = function(){
+        $scope.readOnlyOffer = true;
+    };
+
+    $scope.enableEditOffer = function(){
+        $scope.readOnlyOffer = false;
     };
 });
