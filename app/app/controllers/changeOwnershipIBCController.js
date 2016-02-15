@@ -3539,6 +3539,10 @@ smartApp.controller('changeOwnershipIBCController', function(
 
     $scope.onVerify = function() {
         $scope.isVerify = false;
+        $scope.isLoadPricePlan = false;
+        $scope.propositionList = [];
+        valPricePlans = [];
+        
         SystemService.showLoading();
         var checkMaxAllow = function(result) {
             SystemService.hideLoading();
