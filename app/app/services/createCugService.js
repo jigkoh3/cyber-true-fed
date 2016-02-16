@@ -622,7 +622,7 @@
     this.submitCreateCug = function(payload, fnCallback) {
 
         var request = {
-            "target": "aftersales/order/submit",
+            "target": "aftersales/order/save",
             'order': {
                 "order-id": payload.orderData.orderId,
                 "creator": payload.saleAgent.logInName,
@@ -674,15 +674,15 @@
             //             "EFFECTIVE-OPTION": "IMMEDIATE",
             //             "EFFECTIVE-DATE": moment().format('YYYY-MM-DDTHH:mm:ss+0700')
 
-                    },
+                    }
             //         'product-category': payload.productDetails['product-category'],
             //         'product-type': "PRICEPLAN",
             //         'order-type': "CHANGE"
 
-                }],
+                ],
             //     'last-modify-date': ''
             },
-            'ref-id': payload.orderData.TrxID,
+            'ref-id': payload.orderData.orderId,
             'user-id': payload.saleAgent.logInName,
             'approver': payload.approver
         };
@@ -692,14 +692,11 @@
         };
 
         if (!demo) {
-            var target = '/aftersales/order/submit';
-
             SystemService.callServicePost(request, null, function(result) {
                 //save report to server
                 SystemService.saveReportToServer({}, function(result) {
 
                 });
-
                 cb(result);
             });
         } else {
