@@ -61,7 +61,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.totalCUG = 10;
     //end paging
 
-    $scope.hideReadCardForMobile = function(){
+    $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
 
@@ -1316,7 +1316,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.isLoadPricePlan = false;
     $scope.callSalePricePlanList = function() {
         if ($scope.isVerify) {
-            
+
             var target = "sales/catalog/product/tmv/priceplan/search?" +
                 "company-code=" + $scope.data.installedProducts['company-code'] +
                 "&customer-type=" + $scope.getAccountCat() +
@@ -1385,8 +1385,8 @@ smartApp.controller('changeOwnershipIBCController', function(
 
                     console.log($scope.propositionList);
                     $scope.isLoadPricePlan = true;
-                    
-                    setTimeout(function(){
+
+                    setTimeout(function() {
                         $('#ppfilter').focus();
                     }, 1200);
 
@@ -2782,8 +2782,10 @@ smartApp.controller('changeOwnershipIBCController', function(
         //check IBC
         var cardTypeIBC = "";
         var changeOption = "xxx";
+        var BILLING_ADDRESS = {};
+        var TAX_ADDRESS = {};
         if ($scope.customerType != 'N') {
-            
+
             $scope.titleOther = "";
             $scope.newOwner.prefixTH = "T1";
             $scope.newOwner.sex = "MALE";
@@ -2801,7 +2803,55 @@ smartApp.controller('changeOwnershipIBCController', function(
                 changeOption = "NEW";
             }
             $scope.newOwner.firstNameTH = $scope.bcName;
+            BILLING_ADDRESS = {
+                "number": $scope.mailAddressBC.homeNumber,
+                "moo": $scope.mailAddressBC.moo,
+                "village": $scope.mailAddressBC.village,
+                "street": $scope.mailAddressBC.road,
+                "soi": $scope.mailAddressBC.soi,
+                "district": $scope.mailAddressBC.amphur,
+                "province": $scope.mailAddressBC.province,
+                "building-name": $scope.mailAddressBC.buildingName,
+                "building-room": $scope.mailAddressBC.buildingRoom,
+                "building-floor": $scope.mailAddressBC.buildingFloor,
+                "sub-district": $scope.mailAddressBC.district,
+                "zip": $scope.mailAddressBC.postcode,
+                "household": "",
+                "contact-name": $scope.mailAddressBC.sendName
+            };
+            TAX_ADDRESS = {
+                "number": $scope.mailAddress.homeNumber,
+                "moo": $scope.mailAddress.moo,
+                "village": $scope.mailAddress.village,
+                "street": $scope.mailAddress.road,
+                "soi": $scope.mailAddress.soi,
+                "district": $scope.mailAddress.amphur,
+                "province": $scope.mailAddress.province,
+                "building-name": $scope.mailAddress.buildingName,
+                "building-room": $scope.mailAddress.buildingRoom,
+                "building-floor": $scope.mailAddress.buildingFloor,
+                "sub-district": $scope.mailAddress.district,
+                "zip": $scope.mailAddress.postcode,
+                "household": "",
+                "contact-name": $scope.mailAddress.sendName
+            };
         } else {
+            BILLING_ADDRESS = {
+                "number": $scope.mailAddress.homeNumber,
+                "moo": $scope.mailAddress.moo,
+                "village": $scope.mailAddress.village,
+                "street": $scope.mailAddress.road,
+                "soi": $scope.mailAddress.soi,
+                "district": $scope.mailAddress.amphur,
+                "province": $scope.mailAddress.province,
+                "building-name": $scope.mailAddress.buildingName,
+                "building-room": $scope.mailAddress.buildingRoom,
+                "building-floor": $scope.mailAddress.buildingFloor,
+                "sub-district": $scope.mailAddress.district,
+                "zip": $scope.mailAddress.postcode,
+                "household": "",
+                "contact-name": $scope.mailAddress.sendName
+            };
             cardTypeIBC = $scope.cardType.value;
             changeOption = $scope.isLastestAdress ? "EXISTING" : "NEW";
         }
@@ -2901,38 +2951,8 @@ smartApp.controller('changeOwnershipIBCController', function(
                         "reason-code": "COWN",
                         "user-memo": $scope.saveData.memo ? $scope.saveData.memo : "",
                         "address-list": {
-                            "BILLING_ADDRESS": {
-                                "number": $scope.mailAddress.homeNumber,
-                                "moo": $scope.mailAddress.moo,
-                                "village": $scope.mailAddress.village,
-                                "street": $scope.mailAddress.road,
-                                "soi": $scope.mailAddress.soi,
-                                "district": $scope.mailAddress.amphur,
-                                "province": $scope.mailAddress.province,
-                                "building-name": $scope.mailAddress.buildingName,
-                                "building-room": $scope.mailAddress.buildingRoom,
-                                "building-floor": $scope.mailAddress.buildingFloor,
-                                "sub-district": $scope.mailAddress.district,
-                                "zip": $scope.mailAddress.postcode,
-                                "household": "",
-                                "contact-name": $scope.mailAddress.sendName
-                            },
-                            "TAX_ADDRESS": {
-                                "number": $scope.mailAddressBC.homeNumber,
-                                "moo": $scope.mailAddressBC.moo,
-                                "village": $scope.mailAddressBC.village,
-                                "street": $scope.mailAddressBC.road,
-                                "soi": $scope.mailAddressBC.soi,
-                                "district": $scope.mailAddressBC.amphur,
-                                "province": $scope.mailAddressBC.province,
-                                "building-name": $scope.mailAddressBC.buildingName,
-                                "building-room": $scope.mailAddressBC.buildingRoom,
-                                "building-floor": $scope.mailAddressBC.buildingFloor,
-                                "sub-district": $scope.mailAddressBC.district,
-                                "zip": $scope.mailAddressBC.postcode,
-                                "household": "",
-                                "contact-name": $scope.mailAddressBC.sendName
-                            }
+                            "BILLING_ADDRESS": BILLING_ADDRESS,
+                            "TAX_ADDRESS": TAX_ADDRESS
                         },
                         "order-data": {
                             //"IMSI": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
