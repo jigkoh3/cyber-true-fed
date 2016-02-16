@@ -645,9 +645,6 @@
                 },
                 'order-items': [{
                     'name': 'CREATE_CUG',
-            //         'product-name': payload.productDetails['product-id'],
-            //         'product-id-number': payload.productDetails['product-id-number'],
-            //         'product-id-name': payload.productDetails['product-id-name'],
                     'product-category': 'TMV',
                     'product-type': 'CUG',
                     'order-type': 'NEW',
@@ -664,22 +661,12 @@
                         'GROUP-NAME': payload.newCUGData.groupName,
                         'DESCRIPTION': payload.newCUGData.desc,
                         'COMPANY-NAME': payload.newCUGData.compName
-            //             'OU-ID': payload.productDetails['ouId'],
-            //             'BAN': payload.productDetails['ban'],
-            //             'ACCOUNT-CATEGORY': payload.productDetails['account-category'],
-            //             'ACCOUNT-SUB-TYPE': payload.productDetails['account-sub-type'],
-            //             'COMPANY-CODE': payload.productDetails['company-code'],
-            //             'PRODUCT-CODE': payload.productDetails['productCodes'],
-            //             // 'SIM': payload.productDetails['simSerial'],
-            //             "EFFECTIVE-OPTION": "IMMEDIATE",
-            //             "EFFECTIVE-DATE": moment().format('YYYY-MM-DDTHH:mm:ss+0700')
-
                     }
             //         'product-category': payload.productDetails['product-category'],
             //         'product-type': "PRICEPLAN",
             //         'order-type': "CHANGE"
 
-                ],
+                }]
             //     'last-modify-date': ''
             },
             'ref-id': payload.orderData.orderId,

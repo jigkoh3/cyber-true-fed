@@ -44,7 +44,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.readOnlyOffer = true;
 
     var orderData = {};
-
+    $scope.editOffers = [];
     //Reasons
     $scope.reasons = [];
     $scope.statusReason = "";
@@ -433,6 +433,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }]
         };
         $scope.offerList = result['offer-lists'];
+        for(var i = 0; i < $scope.offerList.length; i++){
+            $scope.editOffers.push();
+        }
         // var data = "";
         // AddDeleteEditOfferService.getOfferList(data, function(){
         // });
