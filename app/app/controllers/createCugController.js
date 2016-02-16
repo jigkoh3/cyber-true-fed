@@ -42,7 +42,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     //Reasons
     $scope.reasons = [];
     $scope.statusReason = "";
-
+    $scope.createCugData={};
     $scope.pricePlanFilter = {
         value: ""
     };
@@ -74,26 +74,27 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
 
 
     // Submit form
-    $scope.submit = function() {
-        $scope.hasSubmitted = true;
+    // $scope.submit = function() {
+    //     $scope.hasSubmitted = true;
 
-        var data = {
-            customerProfile: $scope.data.customerProfile,
-            simData: $scope.data.simData,
-            newSIMData: {
-                productCodes: $scope.productCodes,
-                simSerial: $scope.simSerial
-            },
-            changeOption: $scope.statusCancel
-        };
-
-        CancelService.submitCreateCug(data, function(result) {
-            console.log(result);
-            if (result.status === true && result.data.status === 'SUCCESSFUL') {
-                $('#modalPDFOpener').click();
-            }
-        });
-    };
+    //     var data = {
+    //         customerProfile: $scope.data.customerProfile,
+    //         simData: $scope.data.simData,
+    //         newCUGData: {
+    //             groupName: $scope.groupName,
+    //             desc: $scope.desc,
+    //             compName: $scope.compName
+    //         },
+    //         changeOption: $scope.statusCancel
+    //     };
+    //     $scope.createCugData = newCUGData;
+    //     CreateCugService.submitCreateCug(data, function(result) {
+    //         console.log(result);
+    //         if (result.status === true && result.data.status === 'SUCCESSFUL') {
+    //             $('#modalPDFOpener').click();
+    //         }
+    //     });
+    // };
 
     $scope.logDataBeforeSubmit = function() {
         console.log($scope.data);
@@ -141,7 +142,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     $scope.orderId = '';
     var authenticate = function() {
         AuthenService.getAuthen(function(authResult) {
-
+            console.log(authResult);
             $scope.getAuthen = authResult;
             $scope.shopType = $scope.getAuthen['shopType'];
 
@@ -174,7 +175,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
                 $scope.orderId = order.orderId;
                 localStorage.setItem('orderId', order.orderId);
 
-                $scope.initModalReadCard();
+                // $scope.initModalReadCard();
             });
         });
     };
@@ -203,6 +204,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
 
     $scope.onLoad = function() {
         SystemService.showLoading();
+        authenticate();
         CreateCugService.getCUGList(function(result) {
             $scope.isLoadCug = true;
             SystemService.hideLoading();
@@ -311,9 +313,14 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     var generateOrderRequest = function() {
         // $scope.data.customerProfile['language'] = "TH";
         return {
-            customerProfile: $scope.data.customerProfile,
-            customerAddress: $scope.data.customerAddress,
-            productDetails: $scope.data.simData,
+            newCUGData: {
+                groupName: $scope.groupName,
+                desc: $scope.desc,
+                compName: $scope.compName
+            },
+            // customerProfile: $scope.data.customerProfile,
+            // customerAddress: $scope.data.customerAddress,
+            // productDetails: $scope.data.simData,
             orderData: orderData,
             saleAgent: $scope.getAuthen,
             reason: $scope.statusReason,
@@ -338,35 +345,35 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
         var data = {
             'func': 'CMS',
             'header': {
-                'title-code': customerType == 'Y' ? "" : $scope.data.customerProfile['title-code'],
-                'title': $scope.data.customerProfile['title'],
+                // 'title-code': customerType == 'Y' ? "" : $scope.data.customerProfile['title-code'],
+                // 'title': $scope.data.customerProfile['title'],
                 'firstname': $scope.data.customerProfile['firstname'],
-                'lastname': $scope.data.customerProfile['lastname'],
-                'customerType': customerType,
-                'authorizeFullName': $('#authorizeFullName').val(),
-                'id-number': $scope.data.customerProfile['id-number'],
-                'product-id-number': $scope.SubNo,
-                'ouId': $scope.data.simData['ouId'],
-                'orderId': orderData.orderId,
-                'photo': $scope.varPhoto,
+                // 'lastname': $scope.data.customerProfile['lastname'],
+                // 'customerType': customerType,
+                // 'authorizeFullName': $('#authorizeFullName').val(),
+                // 'id-number': $scope.data.customerProfile['id-number'],
+                // 'product-id-number': $scope.SubNo,
+                // 'ouId': $scope.data.simData['ouId'],
+                // 'orderId': orderData.orderId,
+                // 'photo': $scope.varPhoto,
 
-                'photoIdCard': '',
-                'photoType': 'SN',
-                'titleEn': '',
-                'firstnameEn': '',
-                'lastnameEn': '',
-                'expireDay': $scope.data.customerProfile['id-expire-date'],
-                'birthDay': $scope.data.customerProfile['birthdate'],
-                'issueDay': '',
+                // 'photoIdCard': '',
+                // 'photoType': 'SN',
+                // 'titleEn': '',
+                // 'firstnameEn': '',
+                // 'lastnameEn': '',
+                // 'expireDay': $scope.data.customerProfile['id-expire-date'],
+                // 'birthDay': $scope.data.customerProfile['birthdate'],
+                // 'issueDay': '',
 
-                'homeNumber': '',
-                'moo': '',
-                'trok': '',
-                'soi': '',
-                'road': '',
-                'district': '',
-                'amphur': '',
-                'province': ''
+                // 'homeNumber': '',
+                // 'moo': '',
+                // 'trok': '',
+                // 'soi': '',
+                // 'road': '',
+                // 'district': '',
+                // 'amphur': '',
+                // 'province': ''
             },
             'body': generateOrderRequest()
         };

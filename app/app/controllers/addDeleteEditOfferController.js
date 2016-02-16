@@ -143,7 +143,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "offer-name": "M00M0S03D",
             "offer-description": "B&E_ShPool299 getV299min.S40.M5 50MB Wifi ULT",
             "offer-level": "G",
-            "type": "Pooled",
+            "type": "Pooling",
             "sale-eff": "27/03/2015",
             "sale-exp": "31/12/2016"
         }, {
@@ -233,14 +233,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "offer-name": "RMV000000001010",
             "offer-description": "GOV_Caesar5_TrueSamrt4.0",
             "offer-level": "G",
-            "type": "Pooled",
+            "type": "Pooling",
             "sale-eff": "01/01/2015",
             "sale-exp": "31/12/2016"
         }, {
             "offer-name": "RMVC00000000101",
             "offer-description": "Non Shop_EDU_Puenkru2_True",
             "offer-level": "C",
-            "type": "Pooled",
+            "type": "Pooling",
             "sale-eff": "05/06/2014",
             "sale-exp": "31/12/2015"
         }, {
@@ -254,7 +254,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "offer-name": "RMVC00000001073",
             "offer-description": "iPhone 6 discount 8500",
             "offer-level": "G",
-            "type": "Pooled",
+            "type": "Pooling",
             "sale-eff": "13/02/2015",
             "sale-exp": "04/02/2016"
         }, {
@@ -395,7 +395,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 "offer-description": "B&E_ShPool299 get V299min,S40,M5,50MB,Wifi ULTD",
                 "effective-date": "11/02/2014",
                 "expiration-date": "",
-                "type": "Pooled",
+                "type": "Pooling",
                 "parameter": "",
                 "offer-group": "Regular Offer"
             }, {
@@ -596,7 +596,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     var onGetSIMData = function(result) {
 
         if (result.data == false) {
-            SystemService.calendarDatePicker();
+            // SystemService.calendarDatePicker();
             console.log(result);
             $scope.SubNo = 'null';
             // $('#dataSubNo').val("");
@@ -650,7 +650,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     if ($scope.SubNo !== 'null') {
         SystemService.showLoading();
         AddDeleteEditOfferService.getSIMData($scope.SubNo, onGetSIMData);
-        SystemService.calendarDatePicker();
+        // SystemService.calendarDatePicker();
     }
 
     $scope.onInputSubNo = function() {
@@ -666,7 +666,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.TrxID = '';
     $scope.orderId = '';
     var authenticate = function() {
-        SystemService.calendarDatePicker();
+        // SystemService.calendarDatePicker();
         AuthenService.getAuthen(function(authResult) {
 
             $scope.getAuthen = authResult;
@@ -1132,6 +1132,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     SystemService.calendarDatePicker();
+    $scope.genCalendar = function(){
+        SystemService.calendarDatePicker();
+    };
     $scope.afterCloseWarning = function() {
         if ($scope.SubNo === 'null') {
             setTimeout(function() {
