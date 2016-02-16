@@ -232,7 +232,7 @@
             <div class="col-md-4">
                 <input type="hidden" id="divID" value="{{divID}}" />
                 <!--<input type="submit" value="อ่านบัตร" class="btn btn-danger" ng-click="ReadCardMockUp('3389225969739')">-->
-                <input type="submit" value="อ่านบัตร" class="btn btn-danger idBtnReadCard" onclick="$('#ReadAuthorize').val('false'); ReadCard('ReadP');">
+                <input type="submit" value="อ่านบัตร" ng-init="hideReadCardForMobile()" class="btn btn-danger idBtnReadCard" onclick="$('#ReadAuthorize').val('false'); ReadCard('ReadP');">
                 <input type="submit" value="ใส่ข้อมูล" class="btn btn-danger" id="btnSSO" ng-click="openSSO()">
 
 

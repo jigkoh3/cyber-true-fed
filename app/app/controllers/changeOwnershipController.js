@@ -61,6 +61,10 @@ smartApp.controller('changeOwnershipController', function(
     $scope.totalCUG = 10;
     //end paging
 
+    $scope.hideReadCardForMobile = function(){
+        SystemService.hideReadCardForMobile();
+    };
+
 
     var isFocus = false;
     var idFocus = "";

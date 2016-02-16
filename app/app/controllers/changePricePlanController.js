@@ -41,6 +41,9 @@ smartApp.controller('ChangePricePlanController', function(
         //$ngBootbox.alert('xxxxxxxxxxx');
         //$ngBootbox.customDialog($scope.customDialogOptions);
     };
+    $scope.hideReadCardForMobile = function(){
+        SystemService.hideReadCardForMobile();
+    };
     $scope.filterAndOpen = function() {
         console.log($scope.firstSearch);
         $scope.smartSearchPP($scope.pricePlanFilter.value);
