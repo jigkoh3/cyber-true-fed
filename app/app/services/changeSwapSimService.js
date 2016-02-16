@@ -344,7 +344,7 @@
                         'product-type': 'PRICEPLAN',
                         'order-type': 'CHANGE',
                         'reason-code': 'CREQ',
-                        //'user-memo': 'Customer want to request .',
+                        'user-memo': payload.saleAgent['logInName'] + "(" + payload.saleAgent['saleCode'] + ": " + payload.saleAgent['engName'] + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": ",
                         'order-data': {
                             'OU-ID': payload.simData['ouId'],
                             'BAN': payload.simData['ban'],
