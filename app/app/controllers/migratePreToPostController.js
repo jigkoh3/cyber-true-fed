@@ -82,6 +82,10 @@ smartApp.controller('MigratePreToPostController', function(
         value: "I"
     };
 
+    $scope.hideReadCardForMobile = function(){
+        SystemService.hideReadCardForMobile();
+    };
+
     setTimeout(function() {
         SystemService.validateNummeric();
 

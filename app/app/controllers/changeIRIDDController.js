@@ -41,6 +41,10 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     //};
     //$scope.promoType = "3";
 
+    $scope.hideReadCardForMobile = function(){
+        SystemService.hideReadCardForMobile();
+    };
+
 
     //Reasons
     $scope.reasons = [];

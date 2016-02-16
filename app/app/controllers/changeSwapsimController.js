@@ -25,6 +25,9 @@
 
     var idFocus = "";
 
+    $scope.hideReadCardForMobile = function(){
+        SystemService.hideReadCardForMobile();
+    };
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the SwapSIM page
     $scope.onCustomerProfileTemplateLoaded = function() {

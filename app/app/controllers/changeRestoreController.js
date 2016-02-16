@@ -64,6 +64,10 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
 
     //end reson
 
+    $scope.hideReadCardForMobile = function(){
+        SystemService.hideReadCardForMobile();
+    };
+
     // Submit form
     $scope.submit = function() {
         $scope.hasSubmitted = true;

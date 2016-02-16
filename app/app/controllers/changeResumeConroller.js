@@ -82,6 +82,10 @@ smartApp.controller('ResumeController', function(
         value: "I"
     };
 
+    $scope.hideReadCardForMobile = function(){
+        SystemService.hideReadCardForMobile();
+    };
+
     setTimeout(function() {
         SystemService.validateNummeric();
         //set effectDate

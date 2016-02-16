@@ -50,6 +50,9 @@
     var idFocus = "";
     var valPricePlans = [];
 
+    $scope.hideReadCardForMobile = function(){
+        SystemService.hideReadCardForMobile();
+    };
 
     // Initalize states of the UI controls in the CustomerProfile template to display properly in the page
     $scope.onCustomerProfileTemplateLoaded = function() {
