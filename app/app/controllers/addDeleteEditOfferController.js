@@ -537,6 +537,18 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "offer-group": "Regular Offer"
         };
     };
+    $scope.onChkEditOffer = function(item){
+        // console.log(item);
+        $scope.addeditOffers = {
+            "offer-name": item['offer-name'],
+            "offer-description": item['offer-description'],
+            "type": item['type'],
+            "parameter": "",
+            "service-level": item['offer-level'],
+            "offer-group": "Regular Offer"
+        };
+        console.log($scope.addeditOffers);
+    }
     $scope.onRegularOfferTypeId = function() {
         $scope.radioOffer = "";
         $scope.txtSearchOffer = "";

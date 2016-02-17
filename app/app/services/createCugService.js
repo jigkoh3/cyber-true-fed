@@ -622,7 +622,7 @@
     this.submitCreateCug = function(payload, fnCallback) {
 
         var request = {
-            "target": "aftersales/order/save",
+            "target": "aftersales/order/submit",
             'order': {
                 "order-id": payload.orderData.orderId,
                 "creator": payload.saleAgent.logInName,
