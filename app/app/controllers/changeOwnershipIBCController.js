@@ -2807,6 +2807,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             } else {
                 changeOption = "NEW";
             }
+            if($scope.useNumberType == 'I'){
+                $scope.titleOther2 = $("#titleRegisterdBC option:selected").text();
+            }
             $scope.newOwner.firstNameTH = $scope.bcName;
             BILLING_ADDRESS = {
                 "number": $scope.mailAddressBC.homeNumber,
@@ -4383,5 +4386,4 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
 
     $scope.changeType('N'); // default Cus TYPE
-
 });
