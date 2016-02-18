@@ -1645,7 +1645,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                                             $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                             $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
                                         }else{
-                                            $scope.accountID_root = $scope.lastestCustomer['installed-products'][0]['ban'];
+                                            $scope.accountID_root = customer['customer-id'];
                                         }
 
                                         $("#birthDay").datepicker("update", $scope.newOwner.birthDay);

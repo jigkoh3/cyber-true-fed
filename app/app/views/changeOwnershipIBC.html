@@ -488,7 +488,7 @@
                                             </td>
                                             <td class="col-xs-2">
                                                 <span ng-show="changOpenserviceBC == 'L'">
-                                                {{lastestCustomer['installed-products'][0]['ban']}}
+                                                {{lastestCustomer['customer-id']}}
                                                 </span>
                                                 <input id="accountID_root" ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" ng-change="onChangeAccountPreverify('ROOT')" type="text" maxlength="10" style="height:30px; font-size: 12px;" placeholder="ระบุเลขที่ลูกค้า" class="form-control">
                                             </td>
