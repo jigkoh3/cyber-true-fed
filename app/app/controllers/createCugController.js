@@ -169,7 +169,6 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
             }
 
             SystemService.getOrderId($scope.getAuthen.channel, $scope.partnerCode, function(order) {
-
                 SystemService.hideLoading();
                 orderData = order;
                 $scope.TrxID = order.TrxID;
@@ -206,7 +205,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     $scope.onLoad = function() {
         SystemService.showLoading();
         CreateCugService.getCUGList(function(result) {
-            systemService.hideLoading();
+            SystemService.hideLoading();
             $scope.isLoadCug = true;
             SystemService.hideLoading();
             $scope.cugList = result.data["cug-list"];
