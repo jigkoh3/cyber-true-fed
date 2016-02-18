@@ -1511,7 +1511,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             }
         }
         if (cid.length >= 3) {
-            SystemService.showLoading();
+            //SystemService.showLoading();
             if (1 == 1) {
                 changeOwnershipIBCService.validateGradingCallback(cid, function(resultData) {
                     console.log(resultData);
@@ -1545,9 +1545,9 @@ smartApp.controller('changeOwnershipIBCController', function(
 
                         if (0 == 0) {
 
-
+                            SystemService.showLoading();
                             changeOwnershipIBCService.lastestCustomerCallback(cid, $scope.getAccountCat(), function(lastestCustomer) {
-
+                                SystemService.hideLoading();
                                 //CR02
                                 var dateNow = new Date();
                                 var fillZero = function(i) {
@@ -1570,7 +1570,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                                 $.fancybox.close();
 
 
-                                SystemService.hideLoading();
+                                
                                 if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
                                     //ผู้จดทะเบียนใหม่
                                     //$scope.customer = customer;
@@ -1644,6 +1644,8 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         if($scope.customerType=='N'){
                                             $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                             $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+                                        }else{
+                                            $scope.accountID_root = $scope.lastestCustomer['installed-products'][0]['ban'];
                                         }
 
                                         $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
@@ -4378,6 +4380,6 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     };
 
-    $scope.changeType('B'); // default Cus TYPE
+    $scope.changeType('N'); // default Cus TYPE
 
 });

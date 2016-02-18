@@ -16,10 +16,10 @@
                             <div class="form-group">
                                 <label>ประเภทลูกค้า<span style="color:red;">*</span></label>
                                 <div data-toggle="buttons" class="btn-group btn-group-justified">
-                                    <label class="btn btn-default" ng-click="changeType('N');onChangeCusType()">
+                                    <label class="btn btn-default active" ng-click="changeType('N');onChangeCusType()">
                                         <input type="radio" name="type" ng-model="customerType" value="N"> บุคคลธรรมดา
                                     </label>
-                                    <label class="btn btn-default active" ng-click="changeType('B');onChangeCusType()">
+                                    <label class="btn btn-default" ng-click="changeType('B');onChangeCusType()">
                                         <input type="radio" name="type" ng-model="customerType" value="B"> นิติบุคคล (B)
                                     </label>
                                     <label class="btn btn-default" ng-click="changeType('C');onChangeCusType()">
