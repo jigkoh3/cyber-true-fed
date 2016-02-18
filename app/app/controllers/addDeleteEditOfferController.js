@@ -433,7 +433,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }]
         };
         $scope.offerList = result['offer-lists'];
-        for(var i = 0; i < $scope.offerList.length; i++){
+        for (var i = 0; i < $scope.offerList.length; i++) {
             $scope.editOffers.push();
         }
         // var data = "";
@@ -537,18 +537,29 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "offer-group": "Regular Offer"
         };
     };
-    $scope.onChkEditOffer = function(item){
-        // console.log(item);
-        $scope.addeditOffers = {
-            "offer-name": item['offer-name'],
-            "offer-description": item['offer-description'],
-            "type": item['type'],
-            "parameter": "",
-            "service-level": item['offer-level'],
-            "offer-group": "Regular Offer"
-        };
-        console.log($scope.addeditOffers);
+    $scope.relatedOfferChk == false;
+    $scope.onChkEditOffer = function() {
+        if($scope.relatedOfferChk == true){
+        alert('Hello');
     }
+        // console.log(item);
+        // for (var i = 0; i < $scope.offerList.length; I++) {
+        //     if (item['offer-name'] == $scope.offerList[i]['offer-name']) {
+        //        alert($scope.offerList[i]['offer-name']);
+        //     }
+        //      $scope.editOffers = $scope.editOffers + $scope.addeditOffers;
+        // }
+        //     $scope.addeditOffers = {
+        //         "offer-name": item['offer-name'],
+        //         "offer-description": item['offer-description'],
+        //         "type": item['type'],
+        //         "parameter": "",
+        //         "service-level": item['offer-level'],
+        //         "offer-group": "Regular Offer"
+        //     };
+        //     console.log($scope.addeditOffers);
+
+    };
     $scope.onRegularOfferTypeId = function() {
         $scope.radioOffer = "";
         $scope.txtSearchOffer = "";
@@ -1147,7 +1158,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     SystemService.calendarDatePicker();
-    $scope.genCalendar = function(){
+    $scope.genCalendar = function() {
         SystemService.calendarDatePicker();
     };
     $scope.afterCloseWarning = function() {
@@ -1167,12 +1178,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             idFocus = "";
         }
     };
-    
-    $scope.disableEditOffer = function(){
+
+    $scope.disableEditOffer = function() {
         $scope.readOnlyOffer = true;
     };
 
-    $scope.enableEditOffer = function(){
+    $scope.enableEditOffer = function() {
         $scope.readOnlyOffer = false;
     };
 });
