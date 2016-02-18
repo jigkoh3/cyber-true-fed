@@ -1641,8 +1641,10 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $scope.newOwner.prefixTH = customer["title-code"];
                                         $scope.newOwner2.prefixTH = customer["title-code"];
 
-                                        $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
-                                        $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+                                        if($scope.customerType=='N'){
+                                            $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
+                                            $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+                                        }
 
                                         $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
                                         $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
