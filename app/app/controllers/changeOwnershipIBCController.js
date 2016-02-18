@@ -1646,6 +1646,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                                             $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
                                         }else{
                                             $scope.accountID_root = customer['customer-id'];
+                                            $scope.newOwner2.prefixTH = "T1";
                                         }
 
                                         $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
@@ -3060,6 +3061,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             //DELETE FOR BUSINESS/CORPORATE :::
             //DELETE FOR BUSINESS/CORPORATE :::
             //delete data["order"]["customer"]["lastname"];
+            delete data["order"]["customer"]["title-code"];
         } else {
             //case: INDIVIDUAL
             delete data["order"]["customer"]["customer-agents"]["POA"];
