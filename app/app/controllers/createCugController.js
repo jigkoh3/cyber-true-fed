@@ -141,6 +141,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     $scope.TrxID = '';
     $scope.orderId = '';
     var authenticate = function() {
+        SystemService.showLoading();
         AuthenService.getAuthen(function(authResult) {
             console.log(authResult);
             $scope.getAuthen = authResult;
@@ -204,14 +205,15 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
 
     $scope.onLoad = function() {
         SystemService.showLoading();
-        authenticate();
         CreateCugService.getCUGList(function(result) {
+            systemService.hideLoading();
             $scope.isLoadCug = true;
             SystemService.hideLoading();
             $scope.cugList = result.data["cug-list"];
             valCug = result.data["cug-list"];
             console.log($scope.cugList);
             $scope.validateCugGroup();
+            authenticate();
         });
     }
 

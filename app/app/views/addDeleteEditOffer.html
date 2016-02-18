@@ -1243,7 +1243,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Related Offer'}">
                                 <td class="col-xw-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" id="relatedOfferChkID" ng-model="relatedOfferChk" class="styled" class="checkbox checkbox-circle2 checkbox-inline" ng-checked="onChkEditOffer(item)">
+                                    <input type="checkbox" id="relatedOfferChkID" ng-model="relatedOfferChk" class="styled" class="checkbox checkbox-circle2 checkbox-inline" ng-change="onChkEditOffer()">
                                 </td>
                                 <td class="col-xw-3" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
