@@ -1570,7 +1570,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                                 $.fancybox.close();
 
 
-                                
+
                                 if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
                                     //ผู้จดทะเบียนใหม่
                                     //$scope.customer = customer;
@@ -1641,10 +1641,10 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $scope.newOwner.prefixTH = customer["title-code"];
                                         $scope.newOwner2.prefixTH = customer["title-code"];
 
-                                        if($scope.customerType=='N'){
+                                        if ($scope.customerType == 'N') {
                                             $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                             $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
-                                        }else{
+                                        } else {
                                             $scope.accountID_root = customer['customer-id'];
                                             $scope.newOwner2.prefixTH = "T1";
                                         }
@@ -1669,7 +1669,14 @@ smartApp.controller('changeOwnershipIBCController', function(
 
 
 
-                                    $scope.customer['tax-id'] = customer["id-number"];
+                                    //$scope.customer['tax-id'] = customer["id-number"];
+                                    if ($scope.customerType == 'N') {
+                                        $scope.customer['tax-id'] = $scope.customer['id-number'];
+                                    } else {
+                                        if ($scope.customer['id-number'] && $scope.customer['id-number'].length == 13) {
+                                            $scope.customer['tax-id'] = $scope.customer['id-number'];
+                                        }
+                                    }
 
                                     $scope.customer['contact-mobile-number'] = customer['contact-mobile-number'];
                                     $scope.customer['contact-email'] = customer['contact-email'];
@@ -2807,7 +2814,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             } else {
                 changeOption = "NEW";
             }
-            if($scope.useNumberType == 'I'){
+            if ($scope.useNumberType == 'I') {
                 $scope.titleOther2 = $("#titleRegisterdBC option:selected").text();
             }
             $scope.newOwner.firstNameTH = $scope.bcName;
