@@ -29,7 +29,7 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.isVerify = false; //for demo ============ true
     $scope.isSelectedPricePlan2 = false;
     $scope.clickButtonAddress = false;
-
+    $scope.notLastestCus = true;
     $scope.demo = SystemService.demo;
 
     $scope.showApprovCode = false;
@@ -1229,6 +1229,7 @@ smartApp.controller('MigratePreToPostController', function(
                             if (lastestCustomer.data['display-messages'].length > 0 || !SystemService.checkObj(lastestCustomer.data["response-data"], ["customer"])) {
                                 //ผู้จดทะเบียนใหม่
                                 //$scope.customer = customer;
+                                $scope.notLastestCus = false;
                                 $scope.clickButtonAddress = false;
                                 if (!$scope.isCardValueDataLastest) {
                                     $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
