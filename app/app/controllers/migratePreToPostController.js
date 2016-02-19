@@ -760,8 +760,8 @@ smartApp.controller('MigratePreToPostController', function(
                                     $('#citizenID3').val($scope.data.customerProfile['id-number']);
 
                                     // $scope.onInputIdLastest3();
-                                    $scope.checkValueExpireDate();
-                                    $scope.checkValueDate();
+                                    // $scope.checkValueExpireDate();
+                                    // $scope.checkValueDate();
                                     $scope.valueIdType();
                                     $scope.checkUserDealer();
                                     $scope.chkShopcode();
