@@ -426,7 +426,7 @@
             $('.ngdEnMessage').html(errorText["en-message"]);
             $('.ngdThMessage').html(errorText["th-message"]);
             $('.ngdTechnicalMessage').html(errorText["technical-message"]);
-        }, 200);
+        }, 1200);
     };
     this.getCustomerPreverify = function(data, fnCallback) {
 
