@@ -289,6 +289,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
 
         setTimeout(function() {
             $('#btnSavePhoto').hide();
+            $('#btnSavePhoto_Mobile').hide();
             var html = webcam.get_html(320, 240);
             $("#dataCamera").html(html);
 
@@ -309,10 +310,18 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
         webcam.reset();
         $('#btnSavePhoto').show();
     }
-
+    $scope.mobileCamSnap = function(){
+        var msg = $('#varMobileCam').val();
+        msg = msg.replace('data:image/png;base64,', '');
+        msg = msg.replace('data:image/jpeg;base64,', '');
+        //console.log(msg); 
+        // $('#btnSavePhoto_Mobile').hide();
+        $scope.varPhoto = msg;
+    };
     $scope.webcamSnap = function() {
         webcam.snap();
     }
+    
 
     var formatActiveDate = function(date) {
         if (date) {

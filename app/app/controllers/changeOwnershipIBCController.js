@@ -4055,7 +4055,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         webcam.reset();
         $('#btnSavePhoto').show();
-        $('#btnSavePhoto_Mobile').show();
+        
     }
     $scope.mobileCamSnap = function(){
         var msg = $('#varMobileCam').val();
