@@ -4023,6 +4023,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.initWebCamNext = function() {
         setTimeout(function() {
             $('#btnSavePhoto').hide();
+            $('#btnSavePhoto_Mobile').hide();
             var html = webcam.get_html(320, 240);
             $("#dataCamera").html(html);
 
@@ -4054,8 +4055,19 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         webcam.reset();
         $('#btnSavePhoto').show();
+        $('#btnSavePhoto_Mobile').show();
     }
-
+    $scope.mobileCamSnap = function(){
+        var msg = $('#varMobileCam').val();
+        msg = msg.replace('data:image/png;base64,', '');
+        msg = msg.replace('data:image/jpeg;base64,', '');
+        //console.log(msg);
+        if ($scope.isCameraLastest) {
+            $scope.varPhotoLastest = msg;
+        } else {
+            $scope.varPhoto = msg;
+        }
+    };
     $scope.webcamSnap = function() {
             webcam.snap();
         }

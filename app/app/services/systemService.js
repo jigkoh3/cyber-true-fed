@@ -35,7 +35,12 @@
     var hideReadCardForMobile = function() {
         if (window.mobilecheck()) {
             $('.idBtnReadCard').addClass('hide');
-            $('.btn-camera').addClass('hide');
+            //$('.btn-camera').addClass('hide');
+            $('#divWebCam').hide();
+            $('#divMobileCam').show();
+        }else{
+            $('#divWebCam').show();
+            $('#divMobileCam').hide();
         }
     };
 
