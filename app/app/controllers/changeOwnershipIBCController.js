@@ -94,6 +94,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         $('#CitizenID2').val($scope.cardInfo2.CitizenID);
         $('#authorizeFullName').val($scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + " " + $scope.cardInfo2.LastNameTH);
 
+
         //$scope.varCardInfo2.firstName = $scope.cardInfo2.FirstNameTH;
         //$scope.varCardInfo2.lastName = $scope.cardInfo2.LastNameTH;
 
@@ -423,6 +424,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.poa_1['firstname'] = cardInfo.FirstNameTH;
             $scope.poa_1['lastname'] = cardInfo.LastNameTH;
         }
+        setTimeout(function() {
+                $('#idBindDataAgain').click();
+            }, 500);
     };
     $scope.isAccount_root = false;
     $scope.isAccount_child = false;
@@ -884,7 +888,9 @@ smartApp.controller('changeOwnershipIBCController', function(
 
 
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
-    $scope.onLoadNull = function() {};
+    $scope.onLoadNull = function() {
+        $('#loadingReadCard3').hide();
+    };
     $scope.onLoad = function() {
         $('#loadingReadCard3').hide();
         AuthenService.getAuthen(function(result) {
