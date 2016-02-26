@@ -220,11 +220,10 @@ smartApp.controller('MigratePreToPostController', function(
                 $('#CitizenID').prop('disabled', false);
                 $('#CitizenID').focus();
             }, 500);
-
-
-        } else {
-            $('#CitizenID').prop('disabled', true);
-        }
+        } 
+        // else {
+        //     $('#CitizenID').prop('disabled', true);
+        // }
         if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
 
 
