@@ -2902,7 +2902,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                     "branch-code": $scope.customer["branch-code"],
                     "tax-id": $scope.customer["tax-id"],
                     "customer-level": $scope.grade["grade-name"],
-                    //"customer-id": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['customer-id'] : "",
+                    "customer-id": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['customer-id'] : "",
                     "customer-sublevel_id": $scope.grade["grade-id"],
                     "customer-sublevel": $scope.grade["grade-sub-name"]
                         ///check lastest or billadress
@@ -2991,7 +2991,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                             "ACCOUNT-SMS-NUMBER": $scope.billPayment.smss,
                             "ACCOUNT-PAYMENT-METHOD": "CA",
                             "ACCOUNT-LANG": $scope.billPayment.accountLang,
-                            //"ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
                             "CHANGE-OPTION": changeOption
                         },
@@ -3193,8 +3193,24 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
 
         data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"] = data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
+        //check :: customer-id
         if ($scope.customerStatusN == 'O') {
             data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
+        }else{
+            delete data['order']["customer"]["customer-id"];
+        }
+        //check :: ACCOUNT-BILL-CYCLE
+        if($scope.getAuthen["shopType"] == "0"){
+            data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"] = $scope.billCycleSelected;
+        }else{
+            delete data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"];
+        }
+        //check :: SUBSCRIBER TYPE
+        if($scope.useNumberType == "BC"){
+            delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE-CODE"];
+            delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE"];
+            delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-GENDER"];
+            data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-LASTNAME"] = "";
         }
 
 
@@ -3205,6 +3221,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             'E2E_REFID': $scope.orderId
         };
         console.log(data);
+        console.log(JSON.stringify(data));
         SystemService.showLoading();
         if (SystemService.demo) {
             SystemService.hideLoading();
