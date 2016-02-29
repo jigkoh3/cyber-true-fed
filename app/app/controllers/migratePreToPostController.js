@@ -807,7 +807,7 @@ smartApp.controller('MigratePreToPostController', function(
                                                 },
 
                                                 beforeShow: function() {
-                                                    $('#CitizenID').prop('disabled', true);
+                                                    // $('#CitizenID').prop('disabled', true);
                                                     $('#loadingReadCard').hide();
                                                     $('#unMatch').hide();
                                                 },
