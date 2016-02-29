@@ -2802,6 +2802,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         var changeOption = "xxx";
         var BILLING_ADDRESS = {};
         var TAX_ADDRESS = {};
+        $scope.titleOther = $("#prefixTH3 option:selected").text();
         if ($scope.customerType != 'N') {
 
             $scope.titleOther = "";
@@ -3193,6 +3194,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
 
         data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"] = data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
+        //data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"]["contact-name"] = "xxxxxx";
         //check :: customer-id
         if ($scope.customerStatusN == 'O') {
             data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
@@ -3206,7 +3208,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             delete data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"];
         }
         //check :: SUBSCRIBER TYPE
-        if($scope.useNumberType == "BC"){
+        if($scope.useNumberType == "BC" && $scope.customerType!='N'){
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE-CODE"];
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE"];
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-GENDER"];
