@@ -33,7 +33,7 @@
         }
         //STR: Solution detecting MOBILE 16/02/2016
     var hideReadCardForMobile = function() {
-        if (!window.mobilecheck()) {
+        if (window.mobilecheck()) {
             $('.idBtnReadCard').addClass('hide');
             //$('.btn-camera').addClass('hide');
             $('#divWebCam').hide();
