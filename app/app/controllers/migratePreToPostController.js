@@ -82,7 +82,7 @@ smartApp.controller('MigratePreToPostController', function(
         value: "I"
     };
 
-    $scope.hideReadCardForMobile = function(){
+    $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
 
@@ -201,26 +201,23 @@ smartApp.controller('MigratePreToPostController', function(
                     $('#btnSSO').hide();
                 }, 100);
 
+            } else if ($scope.getAuthen["isSecondAuthen"] == true && $scope.getAuthen["shopType"] == "1" && $scope.getAuthen["isByPassSecondAuthen"] == true) {
+                $('#CitizenID').prop('disabled', false);
+                setTimeout(function() {
+                    $('#CitizenID').focus();
+                }, 500);
             } else {
-                if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
-                    $('#CitizenID').prop('disabled', false);
-                    setTimeout(function() {
-                        $('#CitizenID').focus();
-                    }, 500);
-
-
-                } else {
-                    $('#CitizenID').prop('disabled', true);
-                }
+                $('#CitizenID').prop('disabled', true);
             }
+
         }
-        if ($scope.getAuthen["shopType"] == "1" && $scope.getAuthen["isByPassSecondAuthen"] == true) {
+        if ($scope.getAuthen["shopType"] == "1" && ($scope.getAuthen["isByPassSecondAuthen"] == true && $scope.getAuthen["isSecondAuthen"] == true) || ($scope.getAuthen["isSecondAuthen"] == false)) {
 
             setTimeout(function() {
                 $('#CitizenID').prop('disabled', false);
                 $('#CitizenID').focus();
             }, 500);
-        } 
+        }
         // else {
         //     $('#CitizenID').prop('disabled', true);
         // }
@@ -2176,7 +2173,7 @@ smartApp.controller('MigratePreToPostController', function(
                 var target = 'first-call-date=' + $scope.data.priceplan['product-properties']['FIRST-CALL-DATE'] +
                     '&nas-proposition=' + $scope.promotion +
                     '&company-code=' + $scope.data.priceplan['company-code'];
-                    console.log(target);
+                console.log(target);
                 migratePreToPostService.validatePrivilegeCallback(target, function(resultVP) {
                     SystemService.hideLoading();
                     $scope.isValidatePrivilege = true;
@@ -2201,7 +2198,7 @@ smartApp.controller('MigratePreToPostController', function(
                     $scope.validatePrivilegeData = resultVP.data['response-data']['privilege'];
                 });
             }
-        }else{
+        } else {
             //case :: รหัสอนุมัติ
             $scope.onVerify();
         }
@@ -3582,9 +3579,9 @@ smartApp.controller('MigratePreToPostController', function(
     }
 
     $scope.webcamSnap = function() {
-            webcam.snap();
-        }
-    $scope.mobileCamSnap = function(){
+        webcam.snap();
+    }
+    $scope.mobileCamSnap = function() {
         var msg = $('#varMobileCam').val();
         msg = msg.replace('data:image/png;base64,', '');
         msg = msg.replace('data:image/jpeg;base64,', '');
@@ -3592,7 +3589,7 @@ smartApp.controller('MigratePreToPostController', function(
         // $('#btnSavePhoto_Mobile').hide();
         $scope.varPhoto = msg;
     };
-        //end----------- camera ----------------
+    //end----------- camera ----------------
     $scope.initWebCamLastest = function() {
         $scope.isCameraLastest = true;
         $scope.initWebCamNext();
