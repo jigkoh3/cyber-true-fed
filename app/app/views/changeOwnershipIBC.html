@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3" ng-show="showDataDealer">
+                        <div class="col-md-3" ng-show="shopType == '1' && getAuthen['isSecondAuthen'] == false">
                             <div class="form-group">
                                 <label>ประเภทลูกค้า<span style="color:red;">*</span></label>
                                 <div data-toggle="buttons" class="btn-group btn-group-justified">
@@ -220,11 +220,12 @@
                                         <span class="input-group-btn">
                                             <button ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true"
                                                     style="height:30px;"
-                                                    onclick="$('#unMatchLastest').hide(); $('#loadingReadCardLastest').hide(); $('#CitizenIDLastest').val(''); $('#CitizenIDLastest').prop('disabled', true);"
+                                                    onclick="$('#unMatchLastest').hide(); $('#loadingReadCardLastest').hide(); $('#CitizenIDLastest').val('');"
                                                     type="button"
                                                     href="#fancy-ReadCardLastest"
                                                     id="btn-fancy-ReadCardLastest"
                                                     ng-disabled="!isCustomerProfile"
+                                                    ng-click="checkUserDealerForNewUser()"
                                                     data-toggle="tooltip"
                                                     class="btn credit_ie8">
                                                 <i class="fa fa-credit-card"></i>

@@ -425,8 +425,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.poa_1['lastname'] = cardInfo.LastNameTH;
         }
         setTimeout(function() {
-                $('#idBindDataAgain').click();
-            }, 500);
+            $('#idBindDataAgain').click();
+        }, 500);
     };
     $scope.isAccount_root = false;
     $scope.isAccount_child = false;
@@ -885,11 +885,32 @@ smartApp.controller('changeOwnershipIBCController', function(
             }, 1000);
         }
     }
+    $scope.checkUserDealerForNewUser = function() {
+        setTimeout(function() {
+            if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == false) {
+                $('#CitizenIDLastest').prop('disabled', true);
+            } else {
+                $('#CitizenIDLastest').prop('disabled', false);
+                $('#CitizenIDLastest').focus();
+            }
+        }, 500);
+    };
 
 
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.onLoadNull = function() {
         $('#loadingReadCard3').hide();
+        AuthenService.getAuthen(function(result) {
+            if (result == "ERROR") return;
+            $scope.getAuthen = result;
+            $scope.chkShopcode();
+            if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
+                $scope.isNonePartner = false;
+                //$scope.showDataDealer = true;
+            }
+            $scope.shopType = $scope.getAuthen["shopType"];
+            //$scope.checkUserDealer();
+        });
     };
     $scope.onLoad = function() {
         $('#loadingReadCard3').hide();
@@ -1284,6 +1305,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
         if (list.length > 1 && $scope.pricePlanFilter.value) {
             $('#modalnewpriceplan').click();
+            $('.radioPriceplan').prop('checked', false);
         }
         if (list.length == 0) {
             idFocus = "ppfilter";
@@ -1347,6 +1369,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             SystemService.showLoading();
             changeOwnershipIBCService.salePriceplanCallback(target, function(resultGetPriceplan) {
                 SystemService.hideLoading();
+                
                 if (resultGetPriceplan.status) {
                     if (SystemService.checkObj(resultGetPriceplan.data, ["display-messages"]) && resultGetPriceplan.data["display-messages"].length > 0) {
                         //error
@@ -1368,16 +1391,20 @@ smartApp.controller('changeOwnershipIBCController', function(
                     var makeDataPriceplan = function(arr, proName, proCode) {
                         if (arr && arr != undefined && arr != null) {
                             for (var i = 0; i < arr.length; i++) {
-                                var item = {
-                                    "proposition-code": proCode,
-                                    "pricePlan": arr[i]["name"] + " : " + arr[i]["description"],
-                                    "promotion": proName,
-                                    "rc": arr[i]["rc"],
-                                    "priceplans": arr[i],
-                                    "saveName": arr[i]["name"]
-                                };
-                                $scope.propositionList.push(item);
-                                valPricePlans.push(item);
+                                if (arr[i]) {
+                                    var item = {
+                                        "proposition-code": proCode,
+                                        "pricePlan": arr[i]["name"] + " : " + arr[i]["description"],
+                                        "promotion": proName,
+                                        "rc": arr[i]["rc"],
+                                        "priceplans": arr[i],
+                                        "saveName": arr[i]["name"]
+                                    };
+                                    $scope.propositionList.push(item);
+                                    valPricePlans.push(item);
+                                }else{
+                                    //alert('pp = null');
+                                }
                             }
                         }
                     };
@@ -2992,7 +3019,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                             "ACCOUNT-SMS-NUMBER": $scope.billPayment.smss,
                             "ACCOUNT-PAYMENT-METHOD": "CA",
                             "ACCOUNT-LANG": $scope.billPayment.accountLang,
-                            "ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "ACCOUNT-BILL-CYCLE": "", //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
                             "CHANGE-OPTION": changeOption
                         },
@@ -3198,17 +3225,17 @@ smartApp.controller('changeOwnershipIBCController', function(
         //check :: customer-id
         if ($scope.customerStatusN == 'O') {
             data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
-        }else{
+        } else {
             delete data['order']["customer"]["customer-id"];
         }
         //check :: ACCOUNT-BILL-CYCLE
-        if($scope.getAuthen["shopType"] == "0"){
+        if ($scope.getAuthen["shopType"] == "0") {
             data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"] = $scope.billCycleSelected;
-        }else{
+        } else {
             delete data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"];
         }
         //check :: SUBSCRIBER TYPE
-        if($scope.useNumberType == "BC" && $scope.customerType!='N'){
+        if ($scope.useNumberType == "BC" && $scope.customerType != 'N') {
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE-CODE"];
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE"];
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-GENDER"];
@@ -4080,9 +4107,9 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         webcam.reset();
         $('#btnSavePhoto').show();
-        
+
     }
-    $scope.mobileCamSnap = function(){
+    $scope.mobileCamSnap = function() {
         var msg = $('#varMobileCam').val();
         msg = msg.replace('data:image/png;base64,', '');
         msg = msg.replace('data:image/jpeg;base64,', '');
