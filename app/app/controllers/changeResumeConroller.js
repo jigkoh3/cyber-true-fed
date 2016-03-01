@@ -1779,6 +1779,7 @@ smartApp.controller('ResumeController', function(
         }
 
         $scope.getOfferDetail($scope.pricePlan2.priceplans.soc);
+        $scope.pricePlanFilter.value = "";
         //$scope.getCapmaxParameter($scope.pricePlan2.priceplans.soc);
 
     };
