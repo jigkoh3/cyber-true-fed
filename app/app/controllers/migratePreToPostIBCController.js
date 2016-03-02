@@ -611,12 +611,390 @@ smartApp.controller('MigratePreToPostIBCController', function(
         return bool;
     }
 
+    //START: CR02 -- 18/01/2016
+    $scope.promotionLevel = "SUB";
+    $scope.isCustomerPreverify = false;
+    $scope.isAuthorizeBC = false;
+    $scope.bcName = "";
+    $scope.bcName2 = "";
+    $scope.accountID_root = "";
+    $scope.accountID_child = "";
+    $scope.billCycleList = [];
+    $scope.billCycleSelected = "null";
+
+    $scope.auth_1 = {
+        "contact": "0868836665",
+        "id-number": "9988877688845",
+        "id-type": "I",
+        "firstname": "สมคิด",
+        "lastname": "คิดมากไป",
+        "birthdate": "2015-07-20T00:00:00+0700"
+    };
+    $scope.poa_1 = {
+        "contact": "0868836665",
+        "id-number": "9988877688845",
+        "id-type": "I",
+        "firstname": "สมคิด",
+        "lastname": "คิดมากไป",
+        "birthdate": "2015-07-20T00:00:00+0700"
+    };
+    $scope.clearInputIBC = function() {
+        $scope.ClearTxt();
+        $scope.auth_1 = {};
+        $scope.poa_1 = {};
+        $scope.isCustomerPreverify = false;
+        $scope.isCheckInputForVerify = false;
+        $scope.showApprovCode = false;
+        $scope.isAuthorizeBC = false;
+        $scope.isLastestUser = false;
+        $scope.isVerify = false;
+
+        $scope.isAccount_child = false;
+        $scope.isAccount_root = false;
+
+        $scope.isLoadPricePlan = false;
+        $scope.propositionList = [];
+        valPricePlans = [];
+
+        $scope.isAccountPreverify = false;
+        //$scope.customer['id-number'] = "";
+        $scope.customer['branch-code'] = "00000";
+        $scope.customer['tax-id'] = "";
+        $scope.bcName = "";
+        $scope.bcName2 = "";
+
+        $scope.slipType = 'H';
+
+        // clear searchAddress
+        $scope.pauseAddress = false;
+        $scope.isLoadAddress = false;
+        $('#ulAddressList').hide();
+        $scope.addressList = [];
+
+        $scope.unUseAddressMailBC();
+        $scope.unUseAddressAsCard('H');
+
+        $scope.dataAccountPreverify = {};
+        $scope.subCompanyType = "";
+
+        $scope.billPayment.preferedContace = "*";
+    };
+    $scope.getAccountCat = function() {
+        var accountCat = 'I';
+        if ($scope.customerType == 'B' || $scope.customerType == 'C') {
+            accountCat = $scope.customerType;
+        }
+        return accountCat;
+    };
+    $scope.onInputIdBC = function() {
+        if ($scope.isCustomerPreverify == true) {
+            $scope.clearInputIBC();
+        }
+        var data = {
+            "accountCat": $scope.getAccountCat(),
+            "channel": "WEBUI",
+            "companyCode": "AL",
+            "idNumber": $scope.customer['id-number'],
+            //"language": null,
+            "verifyType": "ALL"
+        };
+        SystemService.showLoading();
+        SystemService.getCustomerPreverify(data, function(result) {
+            SystemService.hideLoading();
+            var msg = utils.getObject(result, 'display-messages');
+            if (msg && msg.length > 0) {
+                $scope.isCustomerPreverify = false;
+
+                SystemService.showAlertMulti(msg, "WARNING");
+
+            } else {
+                //$scope.isCustomerPreverify = true;
+                $scope.onInputCitizenID3();
+            }
+        });
+    };
+    $scope.setFreeReadCard = '';
+    $scope.freeReadCard = function(result) {
+        var cardInfo = eval(result);
+
+        if ($scope.setFreeReadCard == 'auth_1') {
+            $scope.auth_1['id-number'] = cardInfo.CitizenID;
+            $scope.auth_1['firstname'] = cardInfo.FirstNameTH;
+            $scope.auth_1['lastname'] = cardInfo.LastNameTH;
+        }
+        if ($scope.setFreeReadCard == 'poa_1') {
+            $scope.poa_1['id-number'] = cardInfo.CitizenID;
+            $scope.poa_1['firstname'] = cardInfo.FirstNameTH;
+            $scope.poa_1['lastname'] = cardInfo.LastNameTH;
+        }
+        setTimeout(function() {
+            $('#idBindDataAgain').click();
+        }, 500);
+    };
+    $scope.isAccount_root = false;
+    $scope.isAccount_child = false;
+
+    $scope.showPPParentOU = false;
+    $scope.dataAccountPreverify = {};
+    $scope.isAccountPreverify = false;
+    $scope.validateCustomerIDData = {};
+
+    $scope.showRequirePP = true;
+    $scope.PPTypeId = "SH";
+
+    $scope.onChangePPTypeId = function() {
+        console.log($scope.PPTypeId);
+    };
+
+    $scope.onEnterAccountPreverify = function(level, id) {
+        if (!id) return;
+        //alert('next day.'+level+":"+id+":"+$scope.getAccountCat());
+        if (level == 'ROOT') {
+            SystemService.showLoading();
+            var data = {
+                "customer-type": $scope.getAccountCat(),
+                "customer-id": id,
+                "id-number": $('#idNumberBC').val()
+
+            };
+            $scope.isAccountPreverify = false;
+            $scope.validateCustomerIDData = {};
+            changeOwnershipIBCService.validateCustomerIDCallback(data, function(result) {
+                SystemService.hideLoading();
+                console.log(result);
+                var msg = utils.getObject(result.data, 'display-messages');
+                if (msg && msg.length > 0) {
+                    $scope.isCustomerPreverify = false;
+                    SystemService.showAlert({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
+                } else {
+                    $scope.validateCustomerIDData = result.data['response-data']['customer'];
+                    $scope.isAccountPreverify = true;
+                    $scope.isAccount_root = true;
+                }
+            });
+        } else { // CHILD
+            SystemService.showLoading();
+            var data = {
+                "customer-type": $scope.getAccountCat(),
+                "company-code": $scope.data.installedProducts['company-code'],
+                "account-sub-type": $scope.subCompanyType,
+                "account-id": id,
+                "customer-id": $scope.accountID_root
+            };
+            $scope.isAccountPreverify = false;
+            changeOwnershipIBCService.validateAccountIDCallback(data, function(result) {
+                SystemService.hideLoading();
+                console.log(result);
+                var msg = utils.getObject(result.data, 'display-messages');
+                if (msg && msg.length > 0) {
+                    $scope.isCustomerPreverify = false;
+                    SystemService.showAlert({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
+                } else {
+                    $scope.dataAccountPreverify = result.data['response-data']['customer'];
+                    $scope.isAccountPreverify = true;
+                    $scope.isAccount_child = true;
+                    //check ParentOU Level & SelectedOU Level
+                    if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "NOT REQUIRE") {
+                        $scope.showPPParentOU = true;
+                        $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'] +
+                            ": " +
+                            $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION'];
+                    } else {
+                        $scope.showPPParentOU = false;
+                    }
+                    if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "NOT REQUIRE" || $scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "REQUIRE") {
+                        $scope.showRequirePP = true;
+                    } else {
+                        $scope.showRequirePP = false;
+                    }
+                    //build BILLING_ADDRESS here ::
+
+                }
+            });
+        }
+
+    };
+    $scope.onChangeAccountPreverify = function(level) {
+        $scope.isAccountPreverify = false;
+        $scope.showPPParentOU = false;
+        $scope.dataAccountPreverify = {};
+        $scope.onClearPricePlan();
+        if (level == 'CHILD') {
+            if ($scope.isAccount_child) {
+                $scope.isAccount_child = false;
+                //$scope.accountID_child = "";
+            }
+        } else {
+            if ($scope.isAccount_root) {
+                $scope.isAccount_child = false;
+                $scope.accountID_child = "";
+
+                $scope.isAccount_root = false;
+                //$scope.accountID_root = "";
+            }
+
+        }
+    };
+    $scope.clearAccount = function() {
+        $scope.isAccountPreverify = false;
+        $scope.onClearPricePlan();
+        $scope.dataAccountPreverify = {};
+
+        $scope.isAccount_child = false;
+        $scope.accountID_child = "";
+        $scope.isAccount_root = false;
+        $scope.accountID_root = "";
+
+        $scope.showPPParentOU = false;
+        $scope.showRequirePP = true;
+    };
+    $scope.onKeyUpAccountPreverify = function() {
+        //if lenght == 5
+    };
+    $scope.smartSearchPP = function(txtSearch) {
+        $scope.isSelectedPricePlan2 = false;
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = valPricePlans;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.propositionList = arr;
+        } else {
+            $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
+        }
+    };
+    $scope.onChangeCusType = function() {
+        //alert($scope.getAccountCat());
+        //ประเภทของบัตร
+        SystemService.getMaster_list("CUST-ID-TYPE-" + $scope.getAccountCat(), function(result) {
+            var result2 = {
+                "status": "SUCCESSFUL",
+                "trx-id": "4W2BY78EMBJWR",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "id": "CUST-ID-TYPE-B",
+                    "name": "Customer ID type for business customer",
+                    "description": "LIst of id types for business customer",
+                    "configuration-items": [{
+                        "key": "I",
+                        "value": "I",
+                        "description": "บัตรประชาชน"
+                    }, {
+                        "key": "B",
+                        "value": "B",
+                        "description": "บัญชีมูลนิธิ"
+                    }, {
+                        "key": "J",
+                        "value": "J",
+                        "description": "หนังสือรับรองการจัดตั้งสมาคม"
+                    }, {
+                        "key": "C",
+                        "value": "C",
+                        "description": "หนังสือรับรองบริษัท/ห้างฯ"
+                    }, {
+                        "key": "O",
+                        "value": "O",
+                        "description": "ทะเบียนพาณิชย์"
+                    }, {
+                        "key": "P",
+                        "value": "P",
+                        "description": "หนังสือเดินทาง"
+                    }, {
+                        "key": "M",
+                        "value": "M",
+                        "description": "ใบสุทธิ"
+                    }, {
+                        "key": "A",
+                        "value": "A",
+                        "description": "บัตรประจำตัวคนต่างด้าว"
+                    }, {
+                        "key": "T",
+                        "value": "T",
+                        "description": "ทะเบียนวัด"
+                    }, {
+                        "key": "H",
+                        "value": "H",
+                        "description": "อื่นๆ"
+                    }]
+                }
+            };
+            if ($scope.getAccountCat() == 'I') {
+                $scope.cardTypeOptions = result;
+            } else {
+                $scope.cardTypeOptions = result2["response-data"]["configuration-items"];
+            }
+        });
+    };
+    $scope.onKeyUpIdBC = function() {
+        if ($scope.customer['id-number'] != $scope.customer['tax-id']) {
+            if ($scope.customer['id-number'] && $scope.customer['id-number'].length == 13) {
+                $('#idNumberBC').blur();
+                $scope.onInputIdBC();
+            }
+        }
+    };
+    $scope.onEnterIdBC = function() {
+        if ($scope.customer['id-number'] && $scope.customer['id-number'].length >= 3) {
+            $scope.onInputIdBC();
+        }
+    };
+    $scope.getBillCycleList = function(cust_type) {
+        //SystemService.showLoading();
+        var data = "profiles/master/billcycle?customer-type=" + $scope.getAccountCat();
+        changeOwnershipIBCService.getBillCycleCallback(data, function(result) {
+            //SystemService.hideLoading();
+            var msg = utils.getObject(result.data, 'display-messages');
+            if (msg && msg.length > 0) {
+                $scope.isCustomerPreverify = false;
+                SystemService.showAlert({
+                    "message": msg[0]["message"],
+                    "message-code": msg[0]["message-code"],
+                    "message-type": "WARNING",
+                    "en-message": msg[0]["en-message"],
+                    "th-message": msg[0]["th-message"],
+                    "technical-message": msg[0]["technical-message"]
+                });
+            } else {
+                $scope.billCycleList = result.data['response-data'];
+                console.log(result);
+            }
+        });
+    };
+    //END: CR02 
+
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.onLoadSubNoNull = function() {
         setTimeout(function() {
             $('#divShowAuthorize').hide();
             $('#loadingReadCard3').hide();
         }, 1000);
+        AuthenService.getAuthen(function(result) {
+            if (result == "ERROR") return;
+            $scope.getAuthen = result;
+            $scope.chkShopcode();
+            if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
+                $scope.isNonePartner = false;
+                //$scope.showDataDealer = true;
+            }
+            $scope.shopType = $scope.getAuthen["shopType"];
+            //$scope.checkUserDealer();
+        });
     };
     $scope.onLoad = function() {
         if (!$routeParams.subno) {
