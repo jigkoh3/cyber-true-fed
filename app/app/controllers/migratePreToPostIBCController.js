@@ -81,6 +81,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.cardType = {
         value: "I"
     };
+    $scope.cardTypeBC = {
+        value: "C"
+    };
 
     $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
@@ -1598,6 +1601,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
                         migratePreToPostIBCService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
                             $scope.isLastestUser = true;
+                            $scope.isCustomerPreverify = true;
                             //$.fancybox.close();
 
 
@@ -1835,6 +1839,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.partnerCode = "";
     $scope.isCheckInputForVerify = false;
     $scope.onCheckInputForVerify = function() {
+        $scope.showApprovCode = false;
+        $scope.isVerify = false;
         setTimeout(function() {
             $scope.validatePrivilegeData = {};
             $scope.isCheckInputForVerify = false;
@@ -2684,6 +2690,17 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.billAddress = {};
         }
 
+    };
+    $scope.unUseAddressMailBC = function() {
+
+
+        $scope.bantypeMailBC = false;
+        $scope.mootypeMailBC = false;
+
+        $scope.mailAddressBC = {};
+        $scope.mailAddressBC.accountLang = "TH";
+        $('#ulAddressListBC').hide();
+        $scope.addressListBC = [];
     };
 
 

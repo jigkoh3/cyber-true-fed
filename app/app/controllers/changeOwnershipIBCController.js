@@ -443,6 +443,14 @@ smartApp.controller('changeOwnershipIBCController', function(
         console.log($scope.PPTypeId);
     };
 
+    $scope.onBlurAccountPreverify = function(){
+        if($scope.isAccountPreverify == false){
+            $scope.accountID_child = "";
+            //$("input[ng-number-only='accountID_child']").focus();
+            idFocus = "accountID_child";
+        }
+        
+    };
     $scope.onEnterAccountPreverify = function(level, id) {
         if (!id) return;
         //alert('next day.'+level+":"+id+":"+$scope.getAccountCat());
@@ -492,6 +500,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                 var msg = utils.getObject(result.data, 'display-messages');
                 if (msg && msg.length > 0) {
                     $scope.isCustomerPreverify = false;
+                    $scope.onBlurAccountPreverify();
                     SystemService.showAlert({
                         "message": msg[0]["message"],
                         "message-code": msg[0]["message-code"],
@@ -1790,6 +1799,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.isCheckInputForVerify = false;
     $scope.onCheckInputForVerify = function() {
         $scope.showApprovCode = false;
+        $scope.isVerify = false;
         setTimeout(function() {
             $scope.isCheckInputForVerify = false;
             $scope.newOwner.birthDay = $('#birthDay').val();
@@ -1904,7 +1914,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     };
     $scope.onChangeShop = function() {
-
+        $scope.pricePlanFilter.value = "";
         $scope.callPropositionList();
     };
 
@@ -2236,6 +2246,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         } else {
             //resume list
             $scope.propositionList = valPricePlans;
+            $scope.smartSearchPP($scope.pricePlanFilter.value);
         }
         $scope.isSelectedPricePlan = false;
         $('.radioPriceplan').prop('checked', false);
