@@ -3027,6 +3027,9 @@ smartApp.controller('MigratePreToPostController', function(
         } else {
             newTitle = "";
         }
+        var firstname = "xxx";
+        var lastname = "xxx";
+        //if(){}
 
 
         var data = {
@@ -3034,8 +3037,8 @@ smartApp.controller('MigratePreToPostController', function(
             "header": {
                 "title-code": customerType == 'Y' ? "" : $scope.newOwner.prefixTH,
                 "title": $scope.newOwner.prefixTH == 'T4' ? "ดร." : $scope.titleOther,
-                "firstname": $scope.data.customerProfile["firstname"],
-                "lastname": $scope.data.customerProfile["lastname"],
+                "firstname": $scope.newOwner.firstNameTH,
+                "lastname": $scope.newOwner.lastNameTH,
                 "customerType": customerType,
                 "authorizeFullName": $('#authorizeFullName').val(),
                 "id-number": $scope.data.customerProfile["id-number"],
