@@ -7425,6 +7425,11 @@ button.close {
     padding: 15px;
     min-height: 61px;
 }
+.modalOffer-header {
+    padding: 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
 
 .modal-header .close {
     margin-top: -2px;

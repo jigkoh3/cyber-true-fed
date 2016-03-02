@@ -3,8 +3,10 @@
     <div id="modal-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-body">
-                    <h4>Details</h4>
+                <div class="modalOffer-header" style="background: #FF0000">
+                        <div style="font-size: 1.5em; color:white">Details</div>
+                </div>
+                    <div class="modal-body">
                     <br>
                     <br>
                     <div ng-show="showDetail['type']=='F&F'">
@@ -385,50 +387,50 @@
                                 F&F
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 1">
-                                <input  type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF1" ng-model="detailEditOffer.ff1" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF1" ng-model="detailEditOffer.ff1" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 2">
-                                <input  type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF2" ng-model="detailEditOffer.ff2" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF2" ng-model="detailEditOffer.ff2" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
                         </div>
                         <div class="form-group row" ng-show="ffData.max >= 3">
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 3">
-                                <input  type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF3" ng-model="detailEditOffer.ff3" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF3" ng-model="detailEditOffer.ff3" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 4">
-                                <input  type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF4" ng-model="detailEditOffer.ff4" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF4" ng-model="detailEditOffer.ff4" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
                         </div>
                         <div class="form-group row" ng-show="ffData.max >= 5">
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 5">
-                                <input  type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF5" ng-model="detailEditOffer.ff5" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF5" ng-model="detailEditOffer.ff5" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 6">
-                                <input  type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF6" ng-model="detailEditOffer.ff6" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF6" ng-model="detailEditOffer.ff6" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
                         </div>
                         <div class="form-group row" ng-show="ffData.max >= 7">
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 7">
-                                <input  type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF7" ng-model="detailEditOffer.ff7" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF7" ng-model="detailEditOffer.ff7" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 8">
-                                <input  type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF8" ng-model="detailEditOffer.ff8" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF8" ng-model="detailEditOffer.ff8" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
                         </div>
                         <div class="form-group row" ng-show="ffData.max >= 9">
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 9">
-                                <input  type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF9" ng-model="detailEditOffer.ff9" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF9" ng-model="detailEditOffer.ff9" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 10">
-                                <input  type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF10" ng-model="detailEditOffer.ff10" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF10" ng-model="detailEditOffer.ff10" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
                         </div>
                         <div class="row">
@@ -456,7 +458,7 @@
                                 <label>CUG Group : CUG Name</label>
                             </div>
                             <div class="col-xs-5">
-                                <input type="text" ng-model="detailEditOfferCUG.name"  class="form-control">
+                                <input type="text" ng-model="detailEditOfferCUG.name" class="form-control">
                             </div>
                             <div class="col-xs-2"></div>
                         </div> &nbsp;
@@ -471,7 +473,7 @@
                                     <div class="form-group row">
                                         <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Volume cap max</label>
                                         <div class="col-md-6" style="width:auto">
-                                            <select  class="form-control" id="selectVolume" ng-init="saveParamData.Volume=parameter.Volume" ng-model="parameter.EditVolume" ng-change="saveParamData.Volume=parameter.Volume">
+                                            <select class="form-control" id="selectVolume" ng-init="saveParamData.Volume=parameter.Volume" ng-model="parameter.EditVolume" ng-change="saveParamData.Volume=parameter.Volume">
                                                 <option value="-2">ใช้ค่า Default จากระบบ</option>
                                                 <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
                                                 <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
@@ -479,7 +481,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <input  type="text" id="txtVolume" ng-show="parameter.Volume>=1 || parameter.Volume == ''" ng-model="saveParamData.EditVolume" ng-numeric="isNumberVolume" placeholder="" maxlength="10" class="form-control" style="width:110px;">
+                                            <input type="text" id="txtVolume" ng-show="parameter.Volume>=1 || parameter.Volume == ''" ng-model="saveParamData.EditVolume" ng-numeric="isNumberVolume" placeholder="" maxlength="10" class="form-control" style="width:110px;">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -496,7 +498,7 @@
                                     <div class="form-group row">
                                         <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Volume cap max UOM</label>
                                         <div class="col-md-3">
-                                            <select  class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['volumeCapMaxUOMCombo']" ng-model="capMaxEditParameterList['volume-capmax-uom']" ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2' || parameter.Volume=='-1'"></select>
+                                            <select class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['volumeCapMaxUOMCombo']" ng-model="capMaxEditParameterList['volume-capmax-uom']" ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2' || parameter.Volume=='-1'"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -505,7 +507,7 @@
                                     <div class="form-group row">
                                         <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Monetary cap max</label>
                                         <div class="col-md-6" style="width:auto">
-                                            <select  class="form-control" id="selectMonetary" ng-init="saveParamData.Monetary=parameter.Monetary" ng-model="parameter.EditMonetary" ng-change="saveParamData.Monetary=parameter.Monetary">
+                                            <select class="form-control" id="selectMonetary" ng-init="saveParamData.Monetary=parameter.Monetary" ng-model="parameter.EditMonetary" ng-change="saveParamData.Monetary=parameter.Monetary">
                                                 <option value="-2">ใช้ค่า Default จากระบบ</option>
                                                 <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
                                                 <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
@@ -513,7 +515,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <input  type="text" id="txtMonetary" ng-show="parameter.Monetary>=1 || parameter.Monetary==''" ng-model="saveParamData.EditMonetary" placeholder="" maxlength="10" class="form-control " style="width:110px;" ng-numeric="isNumberMonetary">
+                                            <input type="text" id="txtMonetary" ng-show="parameter.Monetary>=1 || parameter.Monetary==''" ng-model="saveParamData.EditMonetary" placeholder="" maxlength="10" class="form-control " style="width:110px;" ng-numeric="isNumberMonetary">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -539,7 +541,7 @@
                                     <div class="form-group row">
                                         <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Occurrence cap max</label>
                                         <div class="col-md-6" style="width:auto">
-                                            <select  class="form-control" id="selectOccurrence" ng-init="saveParamData.Occurrence=parameter.Occurrence" ng-model="parameter.EditOccurrence" ng-change="saveParamData.Occurrence=parameter.Occurrence">
+                                            <select class="form-control" id="selectOccurrence" ng-init="saveParamData.Occurrence=parameter.Occurrence" ng-model="parameter.EditOccurrence" ng-change="saveParamData.Occurrence=parameter.Occurrence">
                                                 <option value="-2">ใช้ค่า Default จากระบบ</option>
                                                 <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
                                                 <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
@@ -547,7 +549,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <input  type="text" id="txtOccurrence" ng-show="parameter.Occurrence>=1 || parameter.Occurrence == ''" ng-model="saveParamData.EditOccurrence" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberOccurrence">
+                                            <input type="text" id="txtOccurrence" ng-show="parameter.Occurrence>=1 || parameter.Occurrence == ''" ng-model="saveParamData.EditOccurrence" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberOccurrence">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -573,7 +575,7 @@
                                     <div class="form-group row">
                                         <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Duration cap max</label>
                                         <div class="col-md-6" style="width:auto">
-                                            <select  class="form-control" id="selectDuration" ng-init="saveParamData.Duration=parameter.Duration" ng-model="parameter.EditDuration" ng-change="saveParamData.Duration=parameter.Duration">
+                                            <select class="form-control" id="selectDuration" ng-init="saveParamData.Duration=parameter.Duration" ng-model="parameter.EditDuration" ng-change="saveParamData.Duration=parameter.Duration">
                                                 <option value="-2">ใช้ค่า Default จากระบบ</option>
                                                 <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
                                                 <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
@@ -581,7 +583,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <input  type="text" id="txtDuration" ng-show="parameter.Duration>=1 || parameter.Duration == ''" ng-model="saveParamData.EditDuration" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberDuration">
+                                            <input type="text" id="txtDuration" ng-show="parameter.Duration>=1 || parameter.Duration == ''" ng-model="saveParamData.EditDuration" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberDuration">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -598,7 +600,7 @@
                                     <div class="form-group row">
                                         <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Duration cap max UOM</label>
                                         <div class="col-md-3">
-                                            <select  class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['durationCapMaxUOMCombo']" ng-model="capMaxEditParameterList['duration-capmax-uom']" ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'  || parameter.Duration=='-1'"></select>
+                                            <select class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['durationCapMaxUOMCombo']" ng-model="capMaxEditParameterList['duration-capmax-uom']" ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'  || parameter.Duration=='-1'"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -615,7 +617,7 @@
                                     <label>Contract Number</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber"  class="form-control">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditContractNumber" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -629,7 +631,7 @@
                                     <label>Proposition Code</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditPropCode"  class="form-control">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditPropCode" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -643,7 +645,7 @@
                                     <label>Propsition Description</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditPropDesc"  class="form-control">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditPropDesc" class="form-control">
                                 </div>
                                 <div class="col-md-1">
                                 </div>
@@ -657,7 +659,7 @@
                                     <label>Term</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditTerm"  class="form-control">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditTerm" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -671,7 +673,7 @@
                                     <label>Fee</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditFee"  class="form-control">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditFee" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -685,7 +687,7 @@
                                     <label>Start Date</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditStartDate"  class="form-control">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditStartDate" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -699,7 +701,7 @@
                                     <label>Expire Date</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditExpireDate"  class="form-control">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditExpireDate" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -713,7 +715,7 @@
                                     <label>Terminate Date</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditTeminateDate"  class="form-control">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditTeminateDate" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -727,7 +729,7 @@
                                     <label>Remark</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditRemark"  class="form-control">
+                                    <input type="text" id="contractProp.ContractNumber" ng-model="contractProp.EditRemark" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -773,22 +775,28 @@
                     <div class="well">
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Offer Name</h>
                                 </th>
-                                <th class="col-xs-5" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-4" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Offer Description</h>
                                 </th>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
+                                    <h>Level</h>
+                                </th>
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
+                                    <h>Parent</h>
+                                </th>
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Effective Date</h>
                                 </th>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Expiration Date</h>
                                 </th>
-                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Type</h>
                                 </th>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Parameter</h>
                                 </th>
                             </tr>
@@ -796,7 +804,7 @@
                         <div>
                             <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                                 <tr>
-                                    <th class="col-xs-12" style="vertical-align: middle;">
+                                    <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                         <h>Related Offer</h>
                                     </th>
                                 </tr>
@@ -806,8 +814,12 @@
                                     <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
                                         {{item['offer-name']}}
                                     </td>
-                                    <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
+                                    <td class="col-xs-4" style="text-align:left;vertical-align: middle;">
                                         {{item['offer-description']}}
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                    </td>
+                                    <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     </td>
                                     <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                         {{item['effective-date']}}
@@ -815,7 +827,7 @@
                                     <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                         {{item['expiration-date']}}
                                     </td>
-                                    <td class="col-xs-2" style=";text-align:center;vertical-align: middle;">
+                                    <td class="col-xs-1" style=";text-align:center;vertical-align: middle;">
                                         {{item['type']}}
                                     </td>
                                     <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
@@ -830,7 +842,7 @@
                         </div>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Regular Offer</h>
                                 </th>
                             </tr>
@@ -840,8 +852,12 @@
                                 <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
                                 </td>
-                                <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
+                                <td class="col-xs-4" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-description']}}
+                                </td>
+                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                </td>
+                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     {{item['effective-date']}}
@@ -849,7 +865,7 @@
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     {{item['expiration-date']}}
                                 </td>
-                                <td class="col-xs-2" style=";text-align:center;vertical-align: middle;">
+                                <td class="col-xs-1" style=";text-align:center;vertical-align: middle;">
                                     {{item['type']}}
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
@@ -863,7 +879,7 @@
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Contract & Prop</h>
                                 </th>
                             </tr>
@@ -873,8 +889,12 @@
                                 <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
                                 </td>
-                                <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
+                                <td class="col-xs-4" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-description']}}
+                                </td>
+                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                </td>
+                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     {{item['effective-date']}}
@@ -882,7 +902,7 @@
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     {{item['expiration-date']}}
                                 </td>
-                                <td class="col-xs-2" style=";text-align:center;vertical-align: middle;">
+                                <td class="col-xs-1" style=";text-align:center;vertical-align: middle;">
                                     {{item['type']}}
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
@@ -896,7 +916,7 @@
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Discount</h>
                                 </th>
                             </tr>
@@ -906,8 +926,12 @@
                                 <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
                                 </td>
-                                <td class="col-xs-5" style="text-align:left;vertical-align: middle;">
+                                <td class="col-xs-4" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-description']}}
+                                </td>
+                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
+                                </td>
+                                <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     {{item['effective-date']}}
@@ -915,7 +939,7 @@
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     {{item['expiration-date']}}
                                 </td>
-                                <td class="col-xs-2" style=";text-align:center;vertical-align: middle;">
+                                <td class="col-xs-1" style=";text-align:center;vertical-align: middle;">
                                     {{item['type']}}
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
@@ -933,19 +957,19 @@
                         <h4>Relate Offer</h4>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>สมัคร</h>
                                 </th>
-                                <th class="col-xs-3" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-3" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Relate Offer Name</h>
                                 </th>
-                                <th class="col-xs-4" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-4" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Offer Description</h>
                                 </th>
-                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Type</h>
                                 </th>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Parameter</h>
                                 </th>
                             </tr>
@@ -978,22 +1002,22 @@
                         </div>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>ลบ</h>
                                 </th>
-                                <th class="col-xs-3" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-3" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Regular Offer Name</h>
                                 </th>
-                                <th class="col-xs-4" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-4" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Offer Description</h>
                                 </th>
-                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Type</h>
                                 </th>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Parameter</h>
                                 </th>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Level</h>
                                 </th>
                             </tr>
@@ -1028,32 +1052,32 @@
                     <div class="well">
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>ยกเลิก</h>
                                 </th>
-                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Offer Name</h>
                                 </th>
-                                <th class="col-xs-4" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-4" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Offer Description</h>
                                 </th>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Effective Date</h>
                                 </th>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Expiration Date</h>
                                 </th>
-                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-2" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Type</h>
                                 </th>
-                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xs-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Parameter</h>
                                 </th>
                             </tr>
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Related Offer</h>
                                 </th>
                             </tr>
@@ -1089,7 +1113,7 @@
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Regular Offer</h>
                                 </th>
                             </tr>
@@ -1125,7 +1149,7 @@
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Contract & Prop</h>
                                 </th>
                             </tr>
@@ -1161,7 +1185,7 @@
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Discount</h>
                                 </th>
                             </tr>
@@ -1204,38 +1228,38 @@
                     <div class="well">
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xw-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xw-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>แก้ไข</h>
                                 </th>
-                                <th class="col-xw-3" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xw-3" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Offer Name</h>
                                 </th>
-                                <th class="col-xw-5" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xw-5" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Offer Description</h>
                                 </th>
-                                <th class="col-xw-2" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xw-2" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Effective Date</h>
                                 </th>
-                                <th class="col-xw-2" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xw-2" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Expiration Date</h>
                                 </th>
-                                <th class="col-xw-3" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xw-3" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>New Expiration Date</h>
                                 </th>
-                                <th class="col-xw-2" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xw-2" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Type</h>
                                 </th>
-                                <th class="col-xw-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xw-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>Param</h>
                                 </th>
-                                <th class="col-xw-1" style="color:green;text-align:center;vertical-align: middle;">
+                                <th class="col-xw-1" style="color:green;text-align:center;vertical-align: middle; background:#D1D0CE;">
                                     <h>New Param</h>
                                 </th>
                             </tr>
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Related Offer</h>
                                 </th>
                             </tr>
@@ -1282,7 +1306,7 @@
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Regular Offer</h>
                                 </th>
                             </tr>
@@ -1329,7 +1353,7 @@
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Contract & Prop</h>
                                 </th>
                             </tr>
@@ -1376,7 +1400,7 @@
                         </table>
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-12" style="vertical-align: middle;">
+                                <th class="col-xs-12" style="vertical-align: middle; background: #FFE87C;">
                                     <h>Discount</h>
                                 </th>
                             </tr>
