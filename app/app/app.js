@@ -152,6 +152,9 @@ smartApp.config(function($routeProvider, $httpProvider) {
     }).when('/migratePreToPost/:id/:subno/:shopType', {
         templateUrl: 'app/views/migratePreToPost.html?v=' + runTime,
         controller: 'MigratePreToPostController'
+    }).when('/migratePreToPostIBC', {
+        templateUrl: 'app/views/migratePreToPostIBC.html?v=' + runTime,
+        controller: 'MigratePreToPostIBCController'
     }).when('/migratePreToPost', {
         templateUrl: 'app/views/migratePreToPost.html?v=' + runTime,
         controller: 'MigratePreToPostController'
