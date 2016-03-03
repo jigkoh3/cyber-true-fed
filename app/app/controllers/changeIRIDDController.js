@@ -1145,7 +1145,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                             $scope.data.orderRequest['order']['sale-agent'] = {
                                 "name": $scope.getAuthen["engName"],
                                 "channel": $scope.getAuthen["channel"],
-                                "partner-code": ($scope.getAuthen["partnerCodes"].length > 0 ? $scope.getAuthen["partnerCodes"][0] : null),
+                                "partner-code": ($scope.getAuthen["partnerCodes"].length > 0 ? $scope.getAuthen["partnerCodes"][0] : $scope.getAuthen['saleCode']),
                                 "partner-name": $scope.getAuthen["partnerName"],
                                 "sale-code": $scope.getAuthen["saleCode"],
                                 "sale-assist-code": "",
