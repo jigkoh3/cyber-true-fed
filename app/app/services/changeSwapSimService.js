@@ -329,7 +329,7 @@
                 'sale-agent': {
                     'name': payload.saleAgent['engName'],
                     'channel': payload.saleAgent['channel'],
-                    'partner-code': (payload.saleAgent["partnerCodes"].length > 0 ? payload.saleAgent["partnerCodes"][0] : null),
+                    'partner-code': payload.shopcode,
                     'partner-name': payload.saleAgent['partnerName'],
                     'sale-code': payload.saleAgent['saleCode'],
                     'sale-assist-code': "",

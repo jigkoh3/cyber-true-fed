@@ -2486,7 +2486,7 @@ smartApp.controller('changeOwnershipController', function(
         data['order']['sale-agent'] = {
             "name": $scope.getAuthen["engName"],
             "channel": $scope.getAuthen["channel"],
-            "partner-code": $scope.getAuthen["partnerCodes"].length > 0 ? $scope.getAuthen["partnerCodes"][0] : $scope.partnerCode,
+            "partner-code": $scope.partnerCode,
             "partner-name": $scope.getAuthen["partnerName"],
             "sale-code": $scope.getAuthen["saleCode"],
             "sale-assist-code": "",
