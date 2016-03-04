@@ -1677,18 +1677,22 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $scope.newOwner.firstNameTH = customer["firstname"];
                                         $scope.newOwner.lastNameTH = customer["lastname"];
 
-                                        $scope.newOwner2.firstNameTH = customer["firstname"];
-                                        $scope.newOwner2.lastNameTH = customer["lastname"];
+                                        if($scope.customerType == 'N'){
+                                            $scope.newOwner2.firstNameTH = customer["firstname"];
+                                            $scope.newOwner2.lastNameTH = customer["lastname"];
+                                            $scope.newOwner2.prefixTH = customer["title-code"];
+                                        }
 
                                         $scope.newOwner.prefixTH = customer["title-code"];
-                                        $scope.newOwner2.prefixTH = customer["title-code"];
+                                        
 
                                         if ($scope.customerType == 'N') {
                                             $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                             $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
                                         } else {
                                             $scope.accountID_root = customer['customer-id'];
-                                            $scope.newOwner2.prefixTH = "T1";
+                                            $scope.newOwner2.prefixTH = "T5";
+                                            $scope.onselectPrefix2();
                                         }
 
                                         $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
@@ -1823,7 +1827,9 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
     //end check input for verify
     $scope.setBirthDateOwner2 = function() {
-        $scope.newOwner2.birthDay = $scope.newOwner.birthDay;
+        if($scope.customerType == 'N'){
+            $scope.newOwner2.birthDay = $scope.newOwner.birthDay;
+        }
     };
 
 
@@ -2125,7 +2131,9 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.titleOtherTypeList = [];
     $scope.onselectPrefix = function() {
         console.log($scope.newOwner.prefixTH);
-        $scope.newOwner2.prefixTH = $scope.newOwner.prefixTH;
+        if($scope.customerType == 'N'){
+            $scope.newOwner2.prefixTH = $scope.newOwner.prefixTH;
+        }
         if ($scope.newOwner.prefixTH == 'MR.' || $scope.newOwner.prefixTH == 'T1') {
             $scope.newOwner.sex = "MALE";
             $scope.newOwner2.sex = "MALE";
@@ -4301,6 +4309,14 @@ smartApp.controller('changeOwnershipIBCController', function(
             //    "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
             //    "technical-message": "changePricePlanController"
             //});
+        } else if (isNull($scope.newOwner2.firstNameTH) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType=='I') {
+            showValidate("firstNameRegisterdBC", ValidateMsgService.data.msgSubFirstNameEmpty);
+        } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType=='I') {
+            showValidate("lastNameRegisterdBC", ValidateMsgService.data.msgSubLastNameEmpty);
+        } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType=='I') {
+            showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
+        } else if (isNull($scope.bcName2) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType=='BC') {
+            showValidate("bcName2", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.firstNameTH) && $scope.customerType == 'N') {
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType == 'N') {
