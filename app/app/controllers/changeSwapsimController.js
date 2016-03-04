@@ -56,6 +56,7 @@
                 simSerial: $scope.simSerial
             },
             saleAgent: $scope.getAuthen,
+            shopcode: $scope.dealerCode,
             simDetail: $scope.data.simDetails
         };
     };
