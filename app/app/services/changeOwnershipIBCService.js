@@ -734,7 +734,7 @@
                         "gender": "MALE",
                         "title": "นาย",
                         "title-code": "T0",
-                        "firstname": "มินิท",
+                        "firstname": "บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
                         "lastname": "เงินติดล้อ",
                         "birthdate": "1980-08-20T00:00:00+0700",
                         "customer-type": "I",
@@ -750,7 +750,7 @@
                         "customer-level": "NON_TOP",
                         "customer-sublevel": "NONE",
                         "customer-sublevel-id": "1",
-                        "customer-id": "",
+                        "customer-id": "2842",
                         "address-list": {
                             "CUSTOMER_ADDRESS": {
                                 "number": "61/238",
@@ -815,7 +815,8 @@
             "company-code=" + param['company-code'] + "&" +
             "account-sub-type=" + param['account-sub-type'] + "&" +
             "account-id=" + param['account-id'] + "&" +
-            "customer-id=" + param['customer-id'];
+            "customer-id=" + param['customer-id'] + "&" +
+            "id-number=" + param['id-number'];
         console.log(target);
         if (!demo) {
             SystemService.callServiceGet(target, null, function(result) {
@@ -824,157 +825,256 @@
         } else {
             var data1 = {
                 "status": "SUCCESSFUL",
-                "trx-id": "2R1TMA1C40B1F",
-                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "display-messages": [],
+                "trx-id": "3K3BX74TCHAKR",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {
                     "customer": {
-                        "customer-type": "",
-                        "customer-id": "",
+                        "title": "",
+                        "title-code": "",
+                        "firstname": "บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
+                        "lastname": "",
+                        "customer-type": "C",
+                        "contact-number": "021123565",
+                        "contact-mobile-number": "021123565",
+                        "id-type": "C",
+                        "id-number": "0107535000206",
+                        "id-expire-date": "2016-12-31T00:00:00+0700",
+                        "customer-id": "2482",
                         "installed-products": [{
-                            "ouId": "5010",
-                            "ban": "20009628",
-                            "account-category": "I",
-                            "account-sub-type": "FIN",
-                            "company-code": "RF",
+                            "ouId": "1374",
+                            "ban": "10000819",
                             "product-category": "TMV",
-                            "mobile-servicetype": "POSTPAID",
-                            "ou-hierarchytype": "CHILD",
-                            "parent-ouId": "1234",
+                            "account-category": "",
+                            "account-sub-type": "RPA",
+                            "product-id": "",
+                            "company-code": "RF",
                             "product-properties": {
-                                "ACCOUNT-FIRSTNMAE": "NOT REQUIRE corporate",
-                                "ACCOUNT-LASTNAME": "",
-                                "ACCOUNT-STATUS": "",
-                                "AGREEMENT-ID": "",
-                                "ACCOUNT-PRICEPLAN": "RFSMTP01",
-                                "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
-                                "ACCOUNT-SERVICE-LEVEL": "G",
-                                "REQUIRE-PRICEPLAN": "NOT REQUIRE",
-                                "REQUIRE-PRICEPLAN-MSG-CODE": "",
                                 "REQUIRE-PRICEPLAN-MSG-EN": "No need to select new Price Plan (Promotion)",
-                                "REQUIRE-PRICEPLAN-MSG-TH": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่"
+                                "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                                "AGREEMENT-ID": "1890",
+                                "ACCOUNT-STATUS": "Active",
+                                "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                                "ACCOUNT-LASTNAME": "",
+                                "ACCOUNT-SERVICE-LEVEL": "G",
+                                "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง",
+                                "REQUIRE-PRICEPLAN-MSG-TH": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่",
+                                "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                                "REQUIRE-PRICEPLAN": "NOT REQUIRE"
                             },
                             "address-list": {
-                                "BILLING_ADDRESS": {
-                                    "number": "61/238",
-                                    "moo": "8",
-                                    "village": "moo ban",
-                                    "street": "ratchada",
-                                    "soi": "81",
-                                    "district": "dindaeng",
-                                    "province": "Bangkok",
-                                    "building-name": "Pakin",
-                                    "building-room": "22",
-                                    "building-floor": "13",
-                                    "sub-district": "Dindaeng",
-                                    "zip": "10400",
-                                    "household": "18"
+                                "TAX_ADDRESS": {
+                                    "number": "221",
+                                    "moo": "",
+                                    "street": "พระประแดง 10",
+                                    "soi": "",
+                                    "district": "พระประแดง",
+                                    "province": "สมุทรปราการ",
+                                    "building-name": "PPT",
+                                    "building-room": "",
+                                    "building-floor": "",
+                                    "sub-district": "สำโรงใต้",
+                                    "zip": "10130",
+                                    "household": "221"
                                 }
+                            },
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "ou-hierarchytype": "NORMAL",
+                            "parent-ouId": ""
+                        }],
+                        "address-list": {
+                            "CUSTOMER_ADDRESS": {
+                                "number": "221",
+                                "moo": "",
+                                "street": "พระประแดง 10",
+                                "soi": "",
+                                "district": "พระประแดง",
+                                "province": "สมุทรปราการ",
+                                "building-name": "PPT",
+                                "building-room": "",
+                                "building-floor": "",
+                                "sub-district": "สำโรงใต้",
+                                "zip": "10130",
+                                "household": "221"
                             }
-                        }]
+                        },
+                        "customer-properties": {
+                            "BILL-CYCLE": "2",
+                            "BILL-CYCLE-DESCRIPTION": "Monthly Cycle close on the 1"
+                        }
                     }
                 }
             };
             var data3 = {
                 "status": "SUCCESSFUL",
-                "trx-id": "2R1TMA1C40B1F",
-                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "display-messages": [],
+                "trx-id": "3K3BX74TCHAKR",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {
                     "customer": {
-                        "customer-type": "",
-                        "customer-id": "",
+                        "title": "",
+                        "title-code": "",
+                        "firstname": "บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
+                        "lastname": "",
+                        "customer-type": "C",
+                        "contact-number": "021123565",
+                        "contact-mobile-number": "021123565",
+                        "id-type": "C",
+                        "id-number": "0107535000206",
+                        "id-expire-date": "2016-12-31T00:00:00+0700",
+                        "customer-id": "2482",
                         "installed-products": [{
-                            "ouId": "5010",
-                            "ban": "20009628",
-                            "account-category": "I",
-                            "account-sub-type": "FIN",
-                            "company-code": "RF",
+                            "ouId": "1374",
+                            "ban": "10000819",
                             "product-category": "TMV",
-                            "mobile-servicetype": "POSTPAID",
-                            "ou-hierarchytype": "CHILD",
-                            "parent-ouId": "1234",
+                            "account-category": "",
+                            "account-sub-type": "RPA",
+                            "product-id": "",
+                            "company-code": "RF",
                             "product-properties": {
-                                "ACCOUNT-FIRSTNMAE": "REQUIRE corporate",
-                                "ACCOUNT-LASTNAME": "",
-                                "ACCOUNT-STATUS": "",
-                                "AGREEMENT-ID": "",
-                                "ACCOUNT-PRICEPLAN": "RFSMTP01",
-                                "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
-                                "ACCOUNT-SERVICE-LEVEL": "G",
-                                "REQUIRE-PRICEPLAN": "REQUIRE",
-                                "REQUIRE-PRICEPLAN-MSG-CODE": "",
                                 "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
-                                "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
+                                "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                                "AGREEMENT-ID": "1890",
+                                "ACCOUNT-STATUS": "Active",
+                                "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                                "ACCOUNT-LASTNAME": "",
+                                "ACCOUNT-SERVICE-LEVEL": "G",
+                                "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง",
+                                "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม",
+                                "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                                "REQUIRE-PRICEPLAN": "REQUIRE"
                             },
                             "address-list": {
-                                "BILLING_ADDRESS": {
-                                    "number": "61/238",
-                                    "moo": "8",
-                                    "village": "moo ban",
-                                    "street": "ratchada",
-                                    "soi": "81",
-                                    "district": "dindaeng",
-                                    "province": "Bangkok",
-                                    "building-name": "Pakin",
-                                    "building-room": "22",
-                                    "building-floor": "13",
-                                    "sub-district": "Dindaeng",
-                                    "zip": "10400",
-                                    "household": "18"
+                                "TAX_ADDRESS": {
+                                    "number": "221",
+                                    "moo": "",
+                                    "street": "พระประแดง 10",
+                                    "soi": "",
+                                    "district": "พระประแดง",
+                                    "province": "สมุทรปราการ",
+                                    "building-name": "PPT",
+                                    "building-room": "",
+                                    "building-floor": "",
+                                    "sub-district": "สำโรงใต้",
+                                    "zip": "10130",
+                                    "household": "221"
                                 }
+                            },
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "ou-hierarchytype": "NORMAL",
+                            "parent-ouId": ""
+                        }],
+                        "address-list": {
+                            "CUSTOMER_ADDRESS": {
+                                "number": "221",
+                                "moo": "",
+                                "street": "พระประแดง 10",
+                                "soi": "",
+                                "district": "พระประแดง",
+                                "province": "สมุทรปราการ",
+                                "building-name": "PPT",
+                                "building-room": "",
+                                "building-floor": "",
+                                "sub-district": "สำโรงใต้",
+                                "zip": "10130",
+                                "household": "221"
                             }
-                        }]
+                        },
+                        "customer-properties": {
+                            "BILL-CYCLE": "2",
+                            "BILL-CYCLE-DESCRIPTION": "Monthly Cycle close on the 1"
+                        }
                     }
                 }
             };
             var data4 = {
                 "status": "SUCCESSFUL",
-                "trx-id": "2R1TMA1C40B1F",
-                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "display-messages": [],
+                "trx-id": "3K3BX74TCHAKR",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {
                     "customer": {
-                        "customer-type": "",
-                        "customer-id": "",
+                        "title": "",
+                        "title-code": "",
+                        "firstname": "บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
+                        "lastname": "",
+                        "customer-type": "C",
+                        "contact-number": "021123565",
+                        "contact-mobile-number": "021123565",
+                        "id-type": "C",
+                        "id-number": "0107535000206",
+                        "id-expire-date": "2016-12-31T00:00:00+0700",
+                        "customer-id": "2482",
                         "installed-products": [{
-                            "ouId": "5010",
-                            "ban": "20009628",
-                            "account-category": "I",
-                            "account-sub-type": "FIN",
-                            "company-code": "RF",
+                            "ouId": "1374",
+                            "ban": "10000819",
                             "product-category": "TMV",
-                            "mobile-servicetype": "POSTPAID",
-                            "ou-hierarchytype": "CHILD",
-                            "parent-ouId": "1234",
+                            "account-category": "",
+                            "account-sub-type": "RPA",
+                            "product-id": "",
+                            "company-code": "RF",
                             "product-properties": {
-                                "ACCOUNT-FIRSTNMAE": "OPTIONAL corporate",
-                                "ACCOUNT-LASTNAME": "",
-                                "ACCOUNT-STATUS": "",
-                                "AGREEMENT-ID": "",
-                                "ACCOUNT-PRICEPLAN": "RFSMTP01",
-                                "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
-                                "ACCOUNT-SERVICE-LEVEL": "G",
-                                "REQUIRE-PRICEPLAN": "OPTIONAL",
-                                "REQUIRE-PRICEPLAN-MSG-CODE": "",
                                 "REQUIRE-PRICEPLAN-MSG-EN": "Ability to select New Price Plan (Promotion) or use existing Price plan (Promotion)",
-                                "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม"
+                                "ACCOUNT-PRICEPLAN": "RFSMTP01",
+                                "AGREEMENT-ID": "1890",
+                                "ACCOUNT-STATUS": "Active",
+                                "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
+                                "ACCOUNT-LASTNAME": "",
+                                "ACCOUNT-SERVICE-LEVEL": "",
+                                "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง",
+                                "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม",
+                                "REQUIRE-PRICEPLAN-MSG-CODE": "",
+                                "REQUIRE-PRICEPLAN": "OPTIONAL"
                             },
                             "address-list": {
-                                "BILLING_ADDRESS": {
-                                    "number": "61/238",
-                                    "moo": "8",
-                                    "village": "moo ban",
-                                    "street": "ratchada",
-                                    "soi": "81",
-                                    "district": "dindaeng",
-                                    "province": "Bangkok",
-                                    "building-name": "Pakin",
-                                    "building-room": "22",
-                                    "building-floor": "13",
-                                    "sub-district": "Dindaeng",
-                                    "zip": "10400",
-                                    "household": "18"
+                                "TAX_ADDRESS": {
+                                    "number": "221",
+                                    "moo": "",
+                                    "street": "พระประแดง 10",
+                                    "soi": "",
+                                    "district": "พระประแดง",
+                                    "province": "สมุทรปราการ",
+                                    "building-name": "PPT",
+                                    "building-room": "",
+                                    "building-floor": "",
+                                    "sub-district": "สำโรงใต้",
+                                    "zip": "10130",
+                                    "household": "221"
                                 }
+                            },
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "ou-hierarchytype": "NORMAL",
+                            "parent-ouId": ""
+                        }],
+                        "address-list": {
+                            "CUSTOMER_ADDRESS": {
+                                "number": "221",
+                                "moo": "",
+                                "street": "พระประแดง 10",
+                                "soi": "",
+                                "district": "พระประแดง",
+                                "province": "สมุทรปราการ",
+                                "building-name": "PPT",
+                                "building-room": "",
+                                "building-floor": "",
+                                "sub-district": "สำโรงใต้",
+                                "zip": "10130",
+                                "household": "221"
                             }
-                        }]
+                        },
+                        "customer-properties": {
+                            "BILL-CYCLE": "2",
+                            "BILL-CYCLE-DESCRIPTION": "Monthly Cycle close on the 1"
+                        }
                     }
                 }
             };

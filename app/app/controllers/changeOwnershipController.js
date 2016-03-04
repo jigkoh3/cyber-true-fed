@@ -2821,9 +2821,15 @@ smartApp.controller('changeOwnershipController', function(
                 //SC=Scan
                 //SN=Snap
                 "photoType": cardValueData["photoType"],
+
                 "titleEn": cardValueData["titleEn"],
                 "firstnameEn": cardValueData["firstnameEn"],
                 "lastnameEn": cardValueData["lastnameEn"],
+
+                "titleTh": cardValueData["titleTh"],
+                "firstnameTh": cardValueData["firstnameTh"],
+                "lastnameTh": cardValueData["lastnameTh"],
+                
                 "expireDay": cardValueData["expireDay"],
                 "birthDay": cardValueData["birthDay"],
                 "issueDay": cardValueData["issueDay"],
