@@ -1848,6 +1848,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.isCheckInputForVerify = false;
     $scope.onCheckInputForVerify = function() {
         $scope.showApprovCode = false;
+        $scope.approveCode = "";
         $scope.isVerify = false;
         setTimeout(function() {
             $scope.isCheckInputForVerify = false;
