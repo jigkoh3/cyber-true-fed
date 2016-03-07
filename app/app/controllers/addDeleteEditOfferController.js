@@ -3,6 +3,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $routeParams,
     $filter,
     ValidateMsgService,
+    $routeParams,
     AuthenService,
     AddDeleteEditOfferService,
     DeviceService,
@@ -103,6 +104,64 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.popUpOfferList = [];
     var popUpOfferList = [];
     $scope.showDetail = {};
+
+    $scope.onload = function() {
+        AuthenService.getAuthen(function(result) {
+            $scope.getAuthen = result;
+            $scope.shopType = result.shopType;
+            if (!$scope.getAuthen["isSecondAuthen"]) {
+                $scope.isNonePartner = false;
+            }
+            if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == '1') {
+                $scope.approver = $scope.getAuthen['logInName'];
+            }
+            if ($scope.SubNo != 'null') {
+                $scope.onloadNext();
+            }
+            setTimeout(function() {
+                if ($scope.SubNo == 'null') {
+                    $('#dataSubNo').focus();
+                }
+            }, 1000);
+
+        });
+    }
+
+    $scope.onInputSubNo_reset = function() {
+        $scope.isInputSubNo = false;
+        $scope.onInputSubNo();
+    };
+    $scope.isInputSubNo = false;
+    $scope.onInputSubNo = function() {
+        console.log($('#dataSubNo').val().length, $scope.isInputSubNo);
+        var dataSubNo = $('#dataSubNo').val();
+        if (dataSubNo.length == 10) {
+            if ($scope.isInputSubNo == false) {
+                $scope.SubNo = $('#dataSubNo').val();
+                $scope.isInputSubNo = true;
+                $scope.onloadNext();
+            }
+        } else {
+            $scope.isInputSubNo = false;
+        }
+    };
+    $scope.isNumberSubNo = false;
+    $scope.onKeyUpSubNo = function(charCode) {
+        //console.log(charCode);
+        var bool = SystemService.checkInputTel(charCode);
+        $scope.isNumberSubNo = !bool;
+        //setTimeout(function () {
+        //    $scope.isNumberSubNo = false;
+        //    $('#idBindDataAgain').click();
+        //}, 3000);
+        $scope.autoHideNumberSubNo = false;
+        return bool;
+    }
+
+    setTimeout(function() {
+        SystemService.validateNummeric();
+    }, 1000);
+
     $scope.getPopUpOfferList = function() {
         var result = [{
             "offer-name": "PKSMSS30",
