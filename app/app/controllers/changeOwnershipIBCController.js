@@ -669,7 +669,11 @@ smartApp.controller('changeOwnershipIBCController', function(
             if ($scope.getAccountCat() == 'I') {
                 $scope.cardTypeOptions = result;
             } else {
-                $scope.cardTypeOptions = result2["response-data"]["configuration-items"];
+                if(SystemService.demo == true){
+                    $scope.cardTypeOptions = result2["response-data"]["configuration-items"];
+                }else{
+                    $scope.cardTypeOptions = result;
+                }
             }
         });
     };

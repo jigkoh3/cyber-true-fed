@@ -450,14 +450,14 @@
                             <div ng-show="(customerType=='B' || customerType=='C')">
                                 <div class="col-md-3" style="padding-right: 0px; margin-right: -20px;">
                                     <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                        <input type="checkbox" class="styled" id="isNewCustomer" ng-model="isNewCustomer">
-                                        <label for="isNewCustomer">สำหรับการผูกบิลเพิ่มเติม </label>
+                                        <input type="checkbox" class="styled" id="isNewCustomer" ng-click="promotionLevel='SUB'; clearAccount();changOpenserviceBC='L';" ng-model="isNewCustomer">
+                                        <label for="isNewCustomer"><b>สำหรับการผูกบิลเพิ่มเติม</b> </label>
                                     </div>
                                 </div>
                                 <div class="col-md-9" ng-show="isNewCustomer" style="padding: 0;">
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" ng-disabled="!isLastestAdress" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount()" checked="checked"> ใช้รอบบิลเดียวกับเบอร์ล่าสุด <br />(BAN ใหม่)
+                                            <input type="radio" ng-disabled="!isLastestAdress" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount();" checked="checked"> ใช้รอบบิลเดียวกับเบอร์ล่าสุด <br />(BAN ใหม่)
                                             <br />ของผู้จดทะเบียนใหม่
                                         </label>
                                     </div>
@@ -1013,7 +1013,7 @@
                             <div class="col-md-3">
                                 <div class="checkbox checkbox-circle2 checkbox-inline authorize">
                                         <input type="checkbox" class="styled" id="isNewCustomerI" ng-click="changecusStatusN('O'); changOpenserviceN=true;" ng-model="isNewCustomerI">
-                                        <label for="isNewCustomerI">สำหรับการผูกบิลเพิ่มเติม </label>
+                                        <label for="isNewCustomerI"><b>สำหรับการผูกบิลเพิ่มเติม</b> </label>
                                     </div>
                             </div>
                             <!-- บุคคลธรรมดา -->

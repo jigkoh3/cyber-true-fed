@@ -419,7 +419,14 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         if (customerType == 'B' || customerType == 'C') {
             $scope.blah = "P";
+            //CR02
+            if ($scope.getAuthen['shopType'] == '0') {
+                $scope.getBillCycleList();
+            }
         }
+        //ST: clear input
+        $scope.clearInputIBC();
+        //EN: clear input
     };
 
     $scope.customerType = "N";
@@ -625,20 +632,24 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.billCycleList = [];
     $scope.billCycleSelected = "null";
 
+    $scope.isNewCustomer = false;
+    $scope.isNewCustomerI = false;
+    $scope.customSelectBC = "CUSTOMER";
+
     $scope.auth_1 = {
         "contact": "0868836665",
         "id-number": "9988877688845",
         "id-type": "I",
-        "firstname": "สมคิด",
-        "lastname": "คิดมากไป",
+        "firstname": "DEMO",
+        "lastname": "DEMO",
         "birthdate": "2015-07-20T00:00:00+0700"
     };
     $scope.poa_1 = {
         "contact": "0868836665",
         "id-number": "9988877688845",
         "id-type": "I",
-        "firstname": "สมคิด",
-        "lastname": "คิดมากไป",
+        "firstname": "DEMO",
+        "lastname": "DEMO",
         "birthdate": "2015-07-20T00:00:00+0700"
     };
     $scope.clearInputIBC = function() {
@@ -762,7 +773,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             };
             $scope.isAccountPreverify = false;
             $scope.validateCustomerIDData = {};
-            changeOwnershipIBCService.validateCustomerIDCallback(data, function(result) {
+            migratePreToPostIBCService.validateCustomerIDCallback(data, function(result) {
                 SystemService.hideLoading();
                 console.log(result);
                 var msg = utils.getObject(result.data, 'display-messages');
@@ -792,7 +803,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "customer-id": $scope.accountID_root
             };
             $scope.isAccountPreverify = false;
-            changeOwnershipIBCService.validateAccountIDCallback(data, function(result) {
+            migratePreToPostIBCService.validateAccountIDCallback(data, function(result) {
                 SystemService.hideLoading();
                 console.log(result);
                 var msg = utils.getObject(result.data, 'display-messages');
@@ -939,8 +950,18 @@ smartApp.controller('MigratePreToPostIBCController', function(
             };
             if ($scope.getAccountCat() == 'I') {
                 $scope.cardTypeOptions = result;
+                setTimeout(function() {
+                    $('#cardType').val($scope.cardType.value);
+                }, 500);
             } else {
-                $scope.cardTypeOptions = result2["response-data"]["configuration-items"];
+                if (SystemService.demo == true) {
+                    $scope.cardTypeOptions = result2["response-data"]["configuration-items"];
+                } else {
+                    $scope.cardTypeOptions = result;
+                }
+                setTimeout(function() {
+                    $('#cardTypeBC').val($scope.cardTypeBC.value);
+                }, 500);
             }
         });
     };
@@ -960,7 +981,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.getBillCycleList = function(cust_type) {
         //SystemService.showLoading();
         var data = "profiles/master/billcycle?customer-type=" + $scope.getAccountCat();
-        changeOwnershipIBCService.getBillCycleCallback(data, function(result) {
+        migratePreToPostIBCService.getBillCycleCallback(data, function(result) {
             //SystemService.hideLoading();
             var msg = utils.getObject(result.data, 'display-messages');
             if (msg && msg.length > 0) {
@@ -1161,7 +1182,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
                                             $('#divShowAuthorize').hide();
                                         }
+
                                         $('#cardType').val($scope.cardType.value);
+
+
                                         $scope.onChangeCardTypes();
                                         $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                         $scope.onselectPrefix();
@@ -1594,10 +1618,13 @@ smartApp.controller('MigratePreToPostIBCController', function(
                         });
 
 
-                        $('#cardType').val($scope.cardType.value);
+
+
                         $scope.onChangeCardTypes();
                         $scope.callPropositionList();
                         $scope.isLastestUser = false; // jigkoh3 mockup
+
+
 
                         migratePreToPostIBCService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
                             $scope.isLastestUser = true;
@@ -1748,6 +1775,28 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     $scope.disableTaxID = false;
                                     $scope.customer['tax-id'] = "0000000000000";
                                 }
+
+                                //CR02
+                                var dateNow = new Date();
+                                var fillZero = function(i) {
+                                    return i < 10 ? ("0" + i) : i;
+                                }
+
+                                var birthDate = (dateNow.getFullYear() - 20) + "-" + fillZero(dateNow.getMonth() + 1) + "-" + fillZero(dateNow.getDate()) + "T00:00:00+0700";
+                                var expireDate = (dateNow.getFullYear() + 1) + "-" + fillZero(dateNow.getMonth() + 1) + "-" + fillZero(dateNow.getDate()) + "T00:00:00+0700";
+                                //alert(birthDate+":::"+expireDate);
+                                if ($scope.getAccountCat() != 'I') {
+                                    $scope.newOwner.birthDay = formatDate(birthDate);
+                                    $scope.newOwner.expireDay = formatDate(expireDate);
+
+                                    $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
+                                    $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
+
+                                    $scope.onCheckInputForVerify();
+                                }
+                                $scope.bcName = customer["firstname"];
+                                $scope.bcName2 = customer["firstname"];
+
                                 //setTimeout(function() {
                                 // $('#divShowAuthorize').hide();
                                 $('#cardType').val($scope.cardType.value);
