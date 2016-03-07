@@ -1498,6 +1498,20 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.mailAddress.district = address['sub-district'];
         $scope.mailAddress.postcode = address['zip'];
     };
+    $scope.setAddressBC = function(address) {
+        $scope.mailAddressBC.homeNumber = address['number'];
+        $scope.mailAddressBC.moo = address['moo'];
+        $scope.mailAddressBC.village = address['village'];
+        $scope.mailAddressBC.road = address['street'];
+        $scope.mailAddressBC.soi = address['soi'];
+        $scope.mailAddressBC.amphur = address['district'];
+        $scope.mailAddressBC.province = address['province'];
+        $scope.mailAddressBC.buildingName = address['building-name'];
+        $scope.mailAddressBC.buildingRoom = address['building-room'];
+        $scope.mailAddressBC.buildingFloor = address['building-floor'];
+        $scope.mailAddressBC.district = address['sub-district'];
+        $scope.mailAddressBC.postcode = address['zip'];
+    };
 
 
     //start check input 
@@ -1782,9 +1796,14 @@ smartApp.controller('changeOwnershipIBCController', function(
                                     // }
 
 
-
-                                    //ที่อยู่จัดส่งเอกสาร
-                                    $scope.setAddress(customer['address-list']['CUSTOMER_ADDRESS']);
+                                    if($scope.customerType!='N'){
+                                        //ที่อยู่ BC
+                                        $scope.setAddress(customer['address-list']['TAX_ADDRESS']);
+                                        $scope.setAddressBC(customer['address-list']['BILLING_ADDRESS']);
+                                    }else{
+                                        //ที่อยู่จัดส่งเอกสาร I
+                                        $scope.setAddress(customer['address-list']['CUSTOMER_ADDRESS']);
+                                    }
 
                                     //disable ที่อยู่ลูกค้าเก่า
                                     $scope.isLastestAdress = true;

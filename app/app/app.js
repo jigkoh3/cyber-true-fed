@@ -24,10 +24,10 @@ smartApp.config(function($routeProvider, $httpProvider) {
     }).when('/changePricePlan/:id/:oulevel/:ouid/:subno/:shopType', {
         templateUrl: 'app/views/changePricePlan.html?v=' + runTime,
         controller: 'ChangePricePlanController'
-    }).when('/changeOwnership', {
+    }).when('/changeOwnershipI', {
         templateUrl: 'app/views/changeOwnership.html?v=' + runTime,
         controller: 'changeOwnershipController'
-    }).when('/changeOwnershipBC', {
+    }).when('/changeOwnership', {
         templateUrl: 'app/views/changeOwnershipIBC.html?v=' + runTime,
         controller: 'changeOwnershipIBCController'
     }).when('/changeOwnershipIBC', {
