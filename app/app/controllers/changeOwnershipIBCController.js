@@ -320,6 +320,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.billCycleSelected = "null";
 
     $scope.isNewCustomer = false;
+    $scope.isNewCustomerI = false;
     $scope.customSelectBC = "CUSTOMER";
 
     $scope.auth_1 = {
