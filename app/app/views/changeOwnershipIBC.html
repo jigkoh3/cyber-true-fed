@@ -1007,33 +1007,36 @@
                     </div>
                 </div>
                 <h4></h4>
-                <div class="well" ng-show="isVerify && customerType == 'N'" style="background-color:#ffffff;">
+                <div class="well" ng-show="isVerify && customerType == 'N' && isLastestAdress" style="background-color:#ffffff;">
                     <div class="row">
                         <div class="form-group">
-                            <label class="col-md-3">
-                                <h4>โอนเปลียนเจ้าของไปที่ <span style="color:red;">*</span></h4>
-                            </label>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-circle2 checkbox-inline authorize">
+                                        <input type="checkbox" class="styled" id="isNewCustomerI" ng-click="changecusStatusN('O'); changOpenserviceN=true;" ng-model="isNewCustomerI">
+                                        <label for="isNewCustomerI">สำหรับการผูกบิลเพิ่มเติม </label>
+                                    </div>
+                            </div>
                             <!-- บุคคลธรรมดา -->
-                            <div ng-show="customerType == 'N'">
+                            <div ng-show="customerType == 'N' && isNewCustomerI">
                                 <div class="col-md-5">
                                     <p></p>
-                                    <div class="col-md-4">
+                                    <div class="col-md-12">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="custom" ng-disabled="!isLastestAdress" ng-change="changecusStatusN('O')" value="O" ng-model="customerStatusN"> ลูกค้าเก่า
+                                            <input type="radio" style="cursor:pointer;" name="custom" ng-disabled="!isLastestAdress" ng-change="changecusStatusN('O'); changOpenserviceN=true;" value="O" ng-model="customerStatusN"> ใช้รอบบิลเดียวกับเบอร์ล่าสุด (BAN ใหม่)<br />ของผู้จดทะเบียนใหม่
                                         </label>
                                     </div>
-                                    <div class="col-md-8" ng-hide="customerStatusN =='N'">
+                                    <div class="col-md-8" ng-hide="customerStatusN =='N' || true">
                                         <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                            <input type="checkbox" class="styled" id="openService" ng-model="changOpenserviceN">
+                                            <input type="checkbox" class="styled" id="openService" ng-init="changOpenserviceN=true;" ng-model="changOpenserviceN">
                                             <label for="openService">ระบุลูกค้าในการเปิดบริการ</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <p></p>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="custom" ng-change="changecusStatusN('N')" value="N" ng-model="customerStatusN"> ลูกค้าใหม่
+                                            <input type="radio" style="cursor:pointer;" name="custom" ng-change="changecusStatusN('N')" value="N" ng-model="customerStatusN"> รอบบิลใหม่ (BAN ใหม่)
                                         </label>
                                     </div>
                                     <!--<div class="col-md-8"></div>-->
@@ -1041,7 +1044,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" ng-show="(customerType=='N' && changOpenserviceN==true)">
+                    <div class="row" ng-show="(customerType=='N' && changOpenserviceN==true && isNewCustomerI)">
                         <div class="form-group">
                             <div class="table-responsive">
                                 <table class="table">
@@ -1051,18 +1054,18 @@
                                         <th><span style="color:green;"> คำนำหน้า</span></th>
                                         <th><span style="color:green;"> ชื่อ</span></th>
                                         <th><span style="color:green;"> นามสกุล</span></th>
-                                        <th><span style="color:green;"> วันที่สร้างข้อมูลลูกค้า</span></th>
+                                        <th ng-hide="true"><span style="color:green;"> วันที่สร้างข้อมูลลูกค้า</span></th>
                                         <th><span style="color:green;"> รอบบิล</span></th>
                                     </tr>
                                     <tr>
                                         <th>
-                                            <input type="radio" name="owner" ng-change="updateMailAddress('1')" value="1" ng-model="rowNoSelected" checked="checked" />
+                                            <input type="radio" ng-hide="true" name="owner" ng-change="updateMailAddress('1')" value="1" ng-model="rowNoSelected" checked="checked" />
                                         </th>
                                         <th>{{lastestCustomer['installed-products'][0]['ban']}}</th>
                                         <th>{{lastestCustomer['title']}}</th>
                                         <th>{{lastestCustomer['firstname']}}</th>
                                         <th>{{lastestCustomer['lastname']}}</th>
-                                        <th>&nbsp;</th>
+                                        <th ng-hide="true">&nbsp;</th>
                                         <th>
                                             {{lastestCustomer['installed-products'][0]['bill-cycle']}} / {{lastestCustomer['installed-products'][0]['bill-cycle']-1}}
                                         </th>
