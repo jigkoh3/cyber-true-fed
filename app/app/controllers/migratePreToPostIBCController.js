@@ -1587,7 +1587,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             $scope.isCustomerPreverify = true;
                             //$.fancybox.close();
 
-                            if($scope.customerType!='N'){
+                            if ($scope.customerType != 'N') {
                                 //CR02
                                 var dateNow = new Date();
                                 var fillZero = function(i) {
@@ -1764,7 +1764,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     $scope.customer['tax-id'] = "0000000000000";
                                 }
 
-                                
+
                                 $scope.bcName = customer["firstname"];
                                 $scope.bcName2 = customer["firstname"];
 
@@ -1866,7 +1866,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
     };
     //end check input for verify
     $scope.setBirthDateOwner2 = function() {
-        $scope.newOwner2.birthDay = $scope.newOwner.birthDay;
+        if ($scope.customerType == 'N') {
+            $scope.newOwner2.birthDay = $scope.newOwner.birthDay;
+        }
     };
 
 
@@ -3846,23 +3848,24 @@ smartApp.controller('MigratePreToPostIBCController', function(
         //$window.closed();
     };
 
-
+    $scope.useNumberType = "BC";
     $scope.onChangCheckno = function() {
-        //alert($scope.changCheckno);
-        $('#titleRegisterd').val($('#prefixTH3').val());
-        $('#sex32').val($('#sex3').val());
-        //$('#sex32').val($scope.newOwner2.sex);
-        $scope.onselectPrefix2();
-        if ($scope.customerType != 'N' && $scope.useNumberType == 'I') {
-            $('#titleOtherRegisterdBC').val('คุณ');
-            $scope.newOwner2.birthDay = "";
-            $scope.newOwner2.firstNameTH = "";
-            $scope.newOwner2.lastNameTH = "";
-        } else {
-            $('#titleOtherRegisterd').val($('#titleOther').val());
-        }
-
-
+        setTimeout(function() {
+            if ($scope.customerType != 'N' && $scope.useNumberType == 'I') {
+                $scope.newOwner2.birthDay = "";
+                $scope.newOwner2.firstNameTH = "";
+                $scope.newOwner2.lastNameTH = "";
+                $('#idBindDataAgain').click();
+                $('#titleOtherRegisterdBC').val('คุณ');
+            } else {
+                if ($scope.customerType == 'N') {
+                    $('#titleOtherRegisterd').val($('#titleOther').val());
+                    $('#titleRegisterd').val($('#prefixTH3').val());
+                    $('#sex32').val($('#sex3').val());
+                }
+            }
+            $scope.onselectPrefix2();
+        }, 500);
 
     };
 
