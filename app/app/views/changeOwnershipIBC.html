@@ -1010,7 +1010,7 @@
                 <div class="well" ng-show="isVerify && customerType == 'N' && isLastestAdress" style="background-color:#ffffff;">
                     <div class="row">
                         <div class="form-group">
-                            <div class="col-md-3">
+                            <div class="col-md-3" style="padding-right: 0;">
                                 <div class="checkbox checkbox-circle2 checkbox-inline authorize">
                                         <input type="checkbox" class="styled" id="isNewCustomerI" ng-click="changecusStatusN('O'); changOpenserviceN=true;" ng-model="isNewCustomerI">
                                         <label for="isNewCustomerI"><b>สำหรับการผูกบิลเพิ่มเติม</b> </label>
@@ -1047,7 +1047,7 @@
                     <div class="row" ng-show="(customerType=='N' && changOpenserviceN==true && isNewCustomerI)">
                         <div class="form-group">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table" style="margin-bottom: 0px;">
                                     <tr>
                                         <th></th>
                                         <th><span style="color:green;"> เลขที่ลูกค้า</span></th>
