@@ -655,7 +655,7 @@
                                     </div>
                                     <div class="col-md-5">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="useNumberType" value="I" ng-model="useNumberType"> บุคคลธรรมดา
+                                            <input type="radio" style="cursor:pointer;" ng-click="onChangCheckno()" name="useNumberType" value="I" ng-model="useNumberType"> บุคคลธรรมดา
                                         </label>
                                     </div>
                                 </div>
@@ -1103,8 +1103,7 @@
                                         <div class="col-md-3">
                                             <button ng-hide="!isCardValueDataLastest" type="button" ng-click="useAddressAsCard('H')" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button>
                                         </div>
-                                        <div class="col-md-1"></div>
-                                        <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
+                                        <label class="col-md-3 control-label" style="top:5px;padding-right: 0;text-align: right;">ภาษาในการออกใบกำกับภาษี <span style="color:red;">*</span></label>
                                         <div class="col-md-3">
                                             <select class="form-control" ng-change="onChangeBillPaymentAccountLang()" ng-model="billPayment.accountLang">
                                                 <option value="TH">ไทย</option>
@@ -1251,8 +1250,7 @@
                                         <div class="col-md-3">
                                             <button type="button" ng-click="useAddressMailAsBillBC()" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับใบกำกับภาษี</button>
                                         </div>
-                                        <div class="col-md-1"></div>
-                                        <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
+                                        <label class="col-md-3 control-label" style="top:5px;padding-right: 0;text-align: right;">ภาษาในการส่งเอกสาร <span style="color:red;">*</span></label>
                                         <div class="col-md-3">
                                             <select class="form-control" ng-change="onChangeBillPaymentAccountLangBC()" ng-model="mailAddressBC.accountLang">
                                                 <option value="TH">ไทย</option>
