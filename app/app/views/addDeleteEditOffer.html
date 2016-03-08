@@ -85,7 +85,7 @@
                                     </td>
                                     <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                         <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                            <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                            <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                                 <div style="margin-top: -10px;"><span style="color:white;">...</span></div>
                                             </button>
                                         </div>
@@ -123,7 +123,7 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
@@ -160,7 +160,7 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
@@ -197,7 +197,7 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
@@ -230,7 +230,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in releteOfferList">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input ng-disabled="!isCustomerProfile" type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xs-3" style="text-align:left;vertical-align: middle;">
                                     <h>{{item['offer-name']}}</h>
@@ -276,7 +276,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in releteOfferList">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input ng-disabled="!isCustomerProfile" type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xs-3" style="text-align:left;vertical-align: middle;">
                                     <h>{{item['offer-name']}}</h>
@@ -294,7 +294,7 @@
                         </table>
                         <h4>Regular Offer</h4>
                         <div class="btn-group" style="bottom:10px;">
-                            <button href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success" type="button" style="border-radius:20px">
+                            <button ng-disabled="!isCustomerProfile" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success" type="button" style="border-radius:20px">
                                 <i class="fa fa-plus-circle fa-lg-plus">
                                     </i> เพิ่มบริการ Regular Offer
                             </button>
@@ -384,7 +384,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Related Offer'}">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input ng-disabled="!isCustomerProfile" type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
@@ -403,7 +403,7 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
@@ -420,7 +420,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Regular Offer'}">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input ng-disabled="!isCustomerProfile" type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
@@ -439,7 +439,7 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
@@ -456,7 +456,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Contract & Prop'}">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input ng-disabled="!isCustomerProfile" type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
@@ -475,7 +475,7 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
@@ -492,7 +492,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Discount'}">
                                 <td class="col-xs-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input ng-disabled="!isCustomerProfile" type="checkbox" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xs-2" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
@@ -511,7 +511,7 @@
                                 </td>
                                 <td class="col-xs-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item)" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
@@ -566,7 +566,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Related Offer'}">
                                 <td class="col-xw-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" id="relatedOfferChkID" ng-model="relatedOfferChk" class="styled" class="checkbox checkbox-circle2 checkbox-inline" ng-change="onChkEditOffer()">
+                                    <input ng-disabled="!isCustomerProfile" type="checkbox" id="relatedOfferChkID" ng-model="relatedOfferChk" class="styled" class="checkbox checkbox-circle2 checkbox-inline" ng-change="onChkEditOffer()">
                                 </td>
                                 <td class="col-xw-3" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
@@ -582,7 +582,7 @@
                                 </td>
                                 <td class="col-xw-3" style="text-align:left;vertical-align: middle;">
                                     <div class="form-group has-feedback" style="top:5px;" ng-show="relatedOfferChk == true">
-                                        <input type="text" ng-change="changeValueDatePicker()" ng-model="relateOfferEditNewExpire" id="txtManualExpire" class="form-control dateManual date-picker-start dateFormat" style="height:30px;" maxlength="10">
+                                        <input ng-disabled="!isCustomerProfile" type="text" ng-change="changeValueDatePicker()" ng-model="relateOfferEditNewExpire" id="txtManualExpire" class="form-control dateManual date-picker-start dateFormat" style="height:30px;" maxlength="10">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </td>
@@ -591,14 +591,14 @@
                                 </td>
                                 <td class="col-xw-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
                                 </td>
                                 <td class="col-xw-1" style="vertical-align: middle;">
                                     <div align="center" ng-show="relatedOfferChk == true">
-                                        <button href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -613,7 +613,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Regular Offer'}">
                                 <td class="col-xw-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" ng-model="regularOfferChk" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input ng-disabled="!isCustomerProfile" type="checkbox" ng-model="regularOfferChk" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xw-3" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
@@ -629,7 +629,7 @@
                                 </td>
                                 <td class="col-xw-3" style="text-align:left;vertical-align: middle;">
                                     <div class="form-group has-feedback" style="top:5px;" ng-show="regularOfferChk == true">
-                                        <input type="text" ng-change="changeValueDatePicker()" ng-model="regularOfferEditNewExpire" id="txtManualExpire" class="form-control dateManual date-picker-start dateFormat" style="height:30px;" maxlength="10">
+                                        <input ng-disabled="!isCustomerProfile" type="text" ng-change="changeValueDatePicker()" ng-model="regularOfferEditNewExpire" id="txtManualExpire" class="form-control dateManual date-picker-start dateFormat" style="height:30px;" maxlength="10">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </td>
@@ -638,14 +638,14 @@
                                 </td>
                                 <td class="col-xw-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
                                 </td>
                                 <td class="col-xw-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" ng-show="regularOfferChk==true">
-                                        <button href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); enableEditOffer();" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); enableEditOffer();" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -660,7 +660,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Contract & Prop'}">
                                 <td class="col-xw-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" ng-model="contractPropChk" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input ng-disabled="!isCustomerProfile" type="checkbox" ng-model="contractPropChk" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xw-3" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
@@ -676,7 +676,7 @@
                                 </td>
                                 <td class="col-xw-3" style="text-align:left;vertical-align: middle;">
                                     <div class="form-group has-feedback" style="top:5px;" ng-show="contractPropChk == true">
-                                        <input type="text" ng-change="changeValueDatePicker()" ng-model="contractPropEditNewExpire" id="txtManualExpire" class="form-control dateManual date-picker-start dateFormat" style="height:30px;" maxlength="10">
+                                        <input ng-disabled="!isCustomerProfile" type="text" ng-change="changeValueDatePicker()" ng-model="contractPropEditNewExpire" id="txtManualExpire" class="form-control dateManual date-picker-start dateFormat" style="height:30px;" maxlength="10">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </td>
@@ -685,14 +685,14 @@
                                 </td>
                                 <td class="col-xw-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
                                 </td>
                                 <td class="col-xw-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" ng-show="contractPropChk==true">
-                                        <button href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item)" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item)" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -707,7 +707,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Discount'}">
                                 <td class="col-xw-1" style="text-align:center;vertical-align: middle;">
-                                    <input type="checkbox" ng-model="discountChk" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input ng-disabled="!isCustomerProfile" type="checkbox" ng-model="discountChk" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
                                 </td>
                                 <td class="col-xw-3" style="text-align:left;vertical-align: middle;">
                                     {{item['offer-name']}}
@@ -723,7 +723,7 @@
                                 </td>
                                 <td class="col-xw-3" style="text-align:left;vertical-align: middle;">
                                     <div class="form-group has-feedback" style="top:5px;" ng-show="discountChk == true">
-                                        <input type="text" ng-change="changeValueDatePicker()" ng-model="discountEditNewExpire" id="txtManualExpire" class="form-control dateManual date-picker-start dateFormat" style="height:30px;" maxlength="10">
+                                        <input ng-disabled="!isCustomerProfile" type="text" ng-change="changeValueDatePicker()" ng-model="discountEditNewExpire" id="txtManualExpire" class="form-control dateManual date-picker-start dateFormat" style="height:30px;" maxlength="10">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </td>
@@ -732,14 +732,14 @@
                                 </td>
                                 <td class="col-xw-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" class="" ng-hide="item['type']=='Additional Offer'">
-                                        <button type="button" href="#modal-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
+                                        <button ng-disabled="!isCustomerProfile" type="button" href="#modal-offerDetail" ng-click="showDetail(item);disableEditOffer();" class="btn divParameterOfferButton" data-toggle="modal" onclick="return false;" style="background-color: #0099dc;">
                                             <div style="margin-top: -6.45px;color:white;"><span>...</span></div>
                                         </button>
                                     </div>
                                 </td>
                                 <td class="col-xw-1" style="text-align:left;vertical-align: middle;">
                                     <div align="center" ng-show="discountChk==true">
-                                        <button href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item)" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item)" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-edit fa-1x"></i></span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -752,10 +752,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div data-toggle="buttons" id="divEffer" class="btn-group btn-group-justified ">
-                                <label id="efferNow" class="btn btn-default active" onclick="$('.date-picker-start').val('');" ng-click="onEffectiveDate('IMMEDIATE')">
+                                <label ng-disabled="!isCustomerProfile" id="efferNow" class="btn btn-default active" onclick="$('.date-picker-start').val('');" ng-click="onEffectiveDate('IMMEDIATE')">
                                     <input type="radio" name="date" autocomplete="off" class="radio_ck" checked> ทันที
                                 </label>
-                                <label id="efferManual" class="btn btn-default form-group has-feedback " ng-click="onEffectiveDate('FUTURE')">
+                                <label ng-disabled="!isCustomerProfile" id="efferManual" class="btn btn-default form-group has-feedback " ng-click="onEffectiveDate('FUTURE')">
                                     <div class="form-group has-feedback">
                                         <div class="col-xs-3">
                                             <span class="col-xs-2" style="float: right; top: 14px; margin-top:-8px;">ระบุวันที่ </span>
@@ -778,10 +778,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div data-toggle="buttons" id="divExpire" class="btn-group btn-group-justified ">
-                                <label id="noExpire" class="btn btn-default active" onclick="$('.date-picker-start').val('');" ng-click="onEffectiveDate('noExpire')">
+                                <label ng-disabled="!isCustomerProfile" id="noExpire" class="btn btn-default active" onclick="$('.date-picker-start').val('');" ng-click="onEffectiveDate('noExpire')">
                                     <input type="radio" name="date" autocomplete="off" class="radio_ck" checked> ไม่มีกำหนด
                                 </label>
-                                <label id="manualExpire" class="btn btn-default form-group has-feedback " ng-click="onEffectiveDate('manualExpire')">
+                                <label ng-disabled="!isCustomerProfile" id="manualExpire" class="btn btn-default form-group has-feedback " ng-click="onEffectiveDate('manualExpire')">
                                     <div class="form-group has-feedback">
                                         <div class="col-xs-3">
                                             <span class="col-xs-2" style="float: right; top: 14px; margin-top:-8px;">ระบุวันที่ </span>

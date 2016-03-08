@@ -57,7 +57,7 @@
                         "service-level": "C",
                         "product-id-name": "MSISDN",
                         "product-id-number": "0870100002",
-                        "mobile-servicetype": "POSTPAID",
+                        "mobile-servicetype": "HYBRID",
                         "has-splitcharge": false,
                         "is-childsim": false,
                         "is-softsuspend": false,

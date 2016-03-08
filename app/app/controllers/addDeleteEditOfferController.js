@@ -28,7 +28,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.divID = 'addDeleteEditOfferContent';
     $scope.subNoLength = 10;
     $scope.simSerialLength = 18;
-
+    $scope.isCustomerProfile = false;
     $scope.dealerCodes = [];
     $scope.dealerCode = '';
     $scope.approver = "";
@@ -161,6 +161,58 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     setTimeout(function() {
         SystemService.validateNummeric();
     }, 1000);
+
+    $scope.onloadNext = function() {
+        //if ($scope.isNonePartner) {
+        SystemService.showLoading();
+
+
+        var generateOrder_target = "?channel=" + ($scope.getAuthen["channel"] ? $scope.getAuthen["channel"] : "") + "&dealer=" + ($scope.getAuthen["shopcodes"] ? $scope.getAuthen["shopcodes"] : "");
+        //generateOrder_target = "";
+
+        if (generateOrder_target == "") {
+            if ($scope.getAuthen["channel"]) {
+                generateOrder_target = "?channel=" + $scope.getAuthen["channel"];
+            }
+            if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length > 0) {
+                if (generateOrder_target) {
+                    generateOrder_target = "?dealer=" + $scope.getAuthen["shopcodes"][0];
+                } else {
+                    generateOrder_target += "&dealer=" + $scope.getAuthen["shopcodes"][0];
+                }
+            }
+        }
+        //alert(generateOrder_target);
+        //call generate-order-id
+        SystemService.generateOrderId(generateOrder_target, function(data) {
+            localStorage.setItem('orderId', data["response-data"]);
+            $scope.TrxID = data["trx-id"];
+            $scope.orderId = data["response-data"];
+
+            if ($scope.OUID == "null") {
+                $scope.OUID = "";
+            }
+
+            //call validateOffer
+            if ($scope.SubNo !== 'null') {
+                SystemService.showLoading();
+                AddDeleteEditOfferService.getSIMData($scope.SubNo, onGetSIMData);
+                $scope.getOfferList();
+                $scope.getReleteOfferList();
+                $scope.getRegulaOfferList();
+                $scope.getPopUpOfferList();
+                if(onGetSIMData){
+                    $scope.initModalReadCard();
+                }
+                //END: get offerList
+                // SystemService.calendarDatePicker();
+            }
+
+        });
+
+
+        //}
+    };
 
     $scope.getPopUpOfferList = function() {
         var result = [{
@@ -598,9 +650,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
     $scope.relatedOfferChk == false;
     $scope.onChkEditOffer = function() {
-        if($scope.relatedOfferChk == true){
-        alert('Hello');
-    }
+        if ($scope.relatedOfferChk == true) {
+            alert('Hello');
+        }
         // console.log(item);
         // for (var i = 0; i < $scope.offerList.length; I++) {
         //     if (item['offer-name'] == $scope.offerList[i]['offer-name']) {
@@ -639,11 +691,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
         $scope.showDetail['typed'] = "AD";
     };
-    $scope.getOfferList();
-    $scope.getReleteOfferList();
-    $scope.getRegulaOfferList();
-    $scope.getPopUpOfferList();
-    //END: get offerList
+
 
     // Submit form
     $scope.submit = function() {
@@ -732,12 +780,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         });
     };
 
-    if ($scope.SubNo !== 'null') {
-        SystemService.showLoading();
-        AddDeleteEditOfferService.getSIMData($scope.SubNo, onGetSIMData);
-        // SystemService.calendarDatePicker();
-    }
-
     $scope.onInputSubNo = function() {
         $scope.subNoInput = $('#dataSubNo').val();
 
@@ -745,6 +787,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             SystemService.showLoading();
             $scope.SubNo = $('#dataSubNo').val();
             AddDeleteEditOfferService.getSIMData($scope.subNoInput, onGetSIMData);
+            if(onGetSIMData){
+                $scope.getOfferList();
+                $scope.getReleteOfferList();
+                $scope.getRegulaOfferList();
+                $scope.getPopUpOfferList();
+            }
         }
     };
     // (End) Get current SIM data ----------------------
@@ -1069,68 +1117,57 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         });
     };
     $scope.initModalReadCard = function() {
-        $("#btnReadCardClose").click(function() {
-            $('input[type=submit]').hide();
-            $('input[type=reset]').hide();
-        });
-        $('#loadingReadCard').hide();
-        $('#loadingReadCard2').hide();
-        $('#unMatch').hide();
-        $('#unMatch2').hide();
-        $('#CitizenID').val('');
-        document.getElementById("CitizenID").disabled = true;
-        $('input[type=submit]').show();
-        $('input[type=reset]').show();
-
-        if ($scope.shopType == "1") {
-            if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
-                $("#btn-fancy-ReadCard").fancybox().trigger('click');
-            }
-            $('#loadingReadCard').hide();
-            $('#unMatch').hide();
-            setTimeout(function() {
-
-                $('#CitizenID').val('');
-                if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
-                    $('#CitizenID').prop('disabled', false);
-                    $('#btnSSO').hide();
-                    setTimeout(function() {
-                        $('#CitizenID').focus();
-                    }, 1000);
-
-                } else {
-                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
-                        $('#CitizenID').prop('disabled', false);
-                        setTimeout(function() {
-                            $('#CitizenID').focus();
-                        }, 1000);
-
-
-                    } else {
-                        $('#CitizenID').prop('disabled', true);
-                    }
-                }
-            }, 100);
-
+        if ($scope.shopType == "1" && !$scope.isCustomerProfile && $scope.SubNo != 'null') {
+            $("#btn-fancy-ReadCard").fancybox().trigger('click');
         }
-
         setTimeout(function() {
+            $('#loadingReadCard').hide();
             $('#loadingReadCard2').hide();
             $('#unMatch2').hide();
-        }, 1000);
+            $('#unMatch').hide();
+
+            $('#CitizenID').val('');
+            $('#CitizenID').focus();
+
+            if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                $('#CitizenID').prop('disabled', false);
+                setTimeout(function() {
+                    $('#CitizenID').focus();
+                    $('#btnSSO').hide();
+                }, 100);
+
+            } else {
+                if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
+                    $('#CitizenID').prop('disabled', false);
+                    $('#CitizenID').focus();
+                } else {
+                    $('#CitizenID').prop('disabled', true);
+                }
+            }
+
+
+            $('input[type=submit]').show();
+            $('input[type=reset]').show();
+        }, 200);
     }
     $scope.manualInputReadCard = function() {
+
         $('#loadingReadCard').hide();
         $('#loadingReadCard2').hide();
         $('#unMatch').hide();
         $('#unMatch2').hide();
-        //document.getElementById("CitizenID").disabled = false;
         $('#CitizenID').prop('disabled', false);
 
         setTimeout(function() {
             $('#CitizenID').val('');
-        }, 0);
+            $('#CitizenID').select();
+            $('#CitizenID').focus();
+        }, 1100);
+
         $scope.isManualReadCard = false;
+        $('input[type=submit]').show();
+        $('input[type=reset]').show();
+
     }
 
     // Get device list
