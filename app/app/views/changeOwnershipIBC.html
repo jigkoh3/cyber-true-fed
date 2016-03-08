@@ -1010,7 +1010,7 @@
                 <div class="well" ng-show="isVerify && customerType == 'N' && isLastestAdress" style="background-color:#ffffff;">
                     <div class="row">
                         <div class="form-group">
-                            <div class="col-md-3">
+                            <div class="col-md-3" style="padding-right: 0;">
                                 <div class="checkbox checkbox-circle2 checkbox-inline authorize">
                                         <input type="checkbox" class="styled" id="isNewCustomerI" ng-click="changecusStatusN('O'); changOpenserviceN=true;" ng-model="isNewCustomerI">
                                         <label for="isNewCustomerI"><b>สำหรับการผูกบิลเพิ่มเติม</b> </label>
@@ -1047,7 +1047,7 @@
                     <div class="row" ng-show="(customerType=='N' && changOpenserviceN==true && isNewCustomerI)">
                         <div class="form-group">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table" style="margin-bottom: 0px;">
                                     <tr>
                                         <th></th>
                                         <th><span style="color:green;"> เลขที่ลูกค้า</span></th>
@@ -1110,8 +1110,7 @@
                                         <div class="col-md-3">
                                             <button ng-hide="!isCardValueDataLastest" type="button" ng-click="useAddressAsCard('H')" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับที่อยู่ตามบัตร</button>
                                         </div>
-                                        <div class="col-md-1"></div>
-                                        <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
+                                        <label class="col-md-3 control-label" style="top:5px;padding-right: 0;text-align: right;">ภาษาในการออกใบกำกับภาษี <span style="color:red;">*</span></label>
                                         <div class="col-md-3">
                                             <select class="form-control" ng-change="onChangeBillPaymentAccountLang()" ng-model="billPayment.accountLang">
                                                 <option value="TH">ไทย</option>
@@ -1258,8 +1257,7 @@
                                         <div class="col-md-3">
                                             <button type="button" ng-click="useAddressMailAsBillBC()" class="btn btn-default btn_address">ใช้ที่อยู่เดียวกับใบกำกับภาษี</button>
                                         </div>
-                                        <div class="col-md-1"></div>
-                                        <label class="col-md-2 control-label" style="top:5px;">ภาษาในการส่งบิล <span style="color:red;">*</span></label>
+                                        <label class="col-md-3 control-label" style="top:5px;padding-right: 0;text-align: right;">ภาษาในการส่งเอกสาร <span style="color:red;">*</span></label>
                                         <div class="col-md-3">
                                             <select class="form-control" ng-change="onChangeBillPaymentAccountLangBC()" ng-model="mailAddressBC.accountLang">
                                                 <option value="TH">ไทย</option>
