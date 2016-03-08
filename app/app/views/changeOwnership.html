@@ -739,14 +739,14 @@
                             <div ng-hide="customerType != 'N'">
                                 <div class="col-md-5">
                                     <p></p>
-                                    <div class="col-md-4">
+                                    <div class="col-md-12">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="custom" ng-disabled="!isLastestAdress" ng-change="changecusStatusN('O')" value="O" ng-model="customerStatusN"> ลูกค้าเก่า
+                                            <input type="radio" style="cursor:pointer;" name="custom" ng-disabled="!isLastestAdress" ng-change="changecusStatusN('O')" ng-click="changOpenserviceN=true;" value="O" ng-model="customerStatusN"> ลูกค้าล่าสุด
                                         </label>
                                     </div>
-                                    <div class="col-md-8" ng-hide="customerStatusN =='N'">
+                                    <div class="col-md-8" ng-hide="customerStatusN =='N' || true">
                                         <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                            <input type="checkbox" class="styled" id="openService" ng-model="changOpenserviceN">
+                                            <input type="checkbox" class="styled" id="openService" ng-init="changOpenserviceN=true;" ng-model="changOpenserviceN">
                                             <label for="openService">ระบุลูกค้าในการเปิดบริการ</label>
                                         </div>
                                     </div>
@@ -765,8 +765,8 @@
                             <div ng-hide="customerType=='N'">
                                 <div class="col-md-5">
                                     <p></p>
-                                    <div class="col-md-4">
-                                        <input type="radio" name="custom2" ng-change="changecusStatusBC('O')" value="O" ng-model="customerStatusBC"> ลูกค้าเก่า
+                                    <div class="col-md-12">
+                                        <input type="radio" name="custom2" ng-change="changecusStatusBC('O')" value="O" ng-model="customerStatusBC"> ลูกค้าล่าสุด
                                     </div>
                                     <div class="col-md-8" ng-hide="customerStatusBC=='N'">
                                         <div class="checkbox checkbox-circle2 checkbox-inline authorize">
@@ -778,7 +778,7 @@
                                 <div class="col-md-4">
                                     <p></p>
                                     <div class="col-md-4">
-                                        <input type="radio" name="custom2" ng-change="changecusStatusBC('N')" value="N" ng-model="customerStatusBC"> ลูกค้าใหม่
+                                        <input type="radio" name="custom2"  ng-change="changecusStatusBC('N')" value="N" ng-model="customerStatusBC"> ลูกค้าใหม่
                                     </div>
                                     <div class="col-md-8"></div>
                                 </div>
@@ -791,22 +791,22 @@
                                 <table class="table">
                                     <tr>
                                         <th></th>
-                                        <th><span style="color:green;"> เลขที่ลูกค้า</span></th>
-                                        <th><span style="color:green;"> คำนำหน้า</span></th>
+                                        <th style="width:120px;"><span style="color:green;"> เลขที่ลูกค้า</span></th>
+                                        <th style="width:120px;"><span style="color:green;"> คำนำหน้า</span></th>
                                         <th><span style="color:green;"> ชื่อ</span></th>
                                         <th><span style="color:green;"> นามสกุล</span></th>
-                                        <th><span style="color:green;"> วันที่สร้างข้อมูลลูกค้า</span></th>
+                                        <th ng-hide="true"><span style="color:green;"> วันที่สร้างข้อมูลลูกค้า</span></th>
                                         <th><span style="color:green;"> รอบบิล</span></th>
                                     </tr>
                                     <tr>
                                         <th>
-                                            <input type="radio" name="owner" ng-change="updateMailAddress('1')" value="1" ng-model="rowNoSelected" checked="checked" />
+                                            <input type="radio" name="owner" ng-hide="true" ng-change="updateMailAddress('1')" value="1" ng-model="rowNoSelected" checked="checked" />
                                         </th>
                                         <th>{{lastestCustomer['installed-products'][0]['ban']}}</th>
                                         <th>{{lastestCustomer['title']}}</th>
                                         <th>{{lastestCustomer['firstname']}}</th>
                                         <th>{{lastestCustomer['lastname']}}</th>
-                                        <th>&nbsp;</th>
+                                        <th ng-hide="true">&nbsp;</th>
                                         <th>
                                             {{lastestCustomer['installed-products'][0]['bill-cycle']}} / {{lastestCustomer['installed-products'][0]['bill-cycle']-1}}
                                         </th>

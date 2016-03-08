@@ -759,10 +759,16 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.onChangePPTypeId = function() {
         console.log($scope.PPTypeId);
     };
-
+    var testID = "";
+    var testLevel = "";
     $scope.onEnterAccountPreverify = function(level, id) {
         if (!id) return;
-        //alert('next day.'+level+":"+id+":"+$scope.getAccountCat());
+        if (testID == id && testLevel == level) {
+            return;
+        } else {
+            testID = id;
+            testLevel = level;
+        }
         if (level == 'ROOT') {
             SystemService.showLoading();
             var data = {
@@ -779,6 +785,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 var msg = utils.getObject(result.data, 'display-messages');
                 if (msg && msg.length > 0) {
                     $scope.isCustomerPreverify = false;
+                    $scope.accountID_root = "";
+                    idFocus = "accountID_root";
                     SystemService.showAlert({
                         "message": msg[0]["message"],
                         "message-code": msg[0]["message-code"],
@@ -809,6 +817,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 var msg = utils.getObject(result.data, 'display-messages');
                 if (msg && msg.length > 0) {
                     $scope.isCustomerPreverify = false;
+                    $scope.accountID_child = "";
+                    idFocus = "accountID_child";
                     SystemService.showAlert({
                         "message": msg[0]["message"],
                         "message-code": msg[0]["message-code"],
@@ -875,6 +885,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         $scope.showPPParentOU = false;
         $scope.showRequirePP = true;
+
+        testID = "";
+        testLevel = "";
     };
     $scope.onKeyUpAccountPreverify = function() {
         //if lenght == 5
@@ -1030,6 +1043,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         $('#loadingReadCard3').hide();
         AuthenService.getAuthen(function(result) {
+            if (result == "ERROR") return;
             $scope.getAuthen = result;
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
@@ -1577,6 +1591,20 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.mailAddress.district = address['sub-district'];
         $scope.mailAddress.postcode = address['zip'];
     };
+    $scope.setAddressBC = function(address) {
+        $scope.mailAddressBC.homeNumber = address['number'];
+        $scope.mailAddressBC.moo = address['moo'];
+        $scope.mailAddressBC.village = address['village'];
+        $scope.mailAddressBC.road = address['street'];
+        $scope.mailAddressBC.soi = address['soi'];
+        $scope.mailAddressBC.amphur = address['district'];
+        $scope.mailAddressBC.province = address['province'];
+        $scope.mailAddressBC.buildingName = address['building-name'];
+        $scope.mailAddressBC.buildingRoom = address['building-room'];
+        $scope.mailAddressBC.buildingFloor = address['building-floor'];
+        $scope.mailAddressBC.district = address['sub-district'];
+        $scope.mailAddressBC.postcode = address['zip'];
+    };
 
 
     //start check input 
@@ -1708,15 +1736,19 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     $scope.newOwner.firstNameTH = customer["firstname"];
                                     $scope.newOwner.lastNameTH = customer["lastname"];
 
-                                    $scope.newOwner2.firstNameTH = customer["firstname"];
-                                    $scope.newOwner2.lastNameTH = customer["lastname"];
                                     $scope.titleOther = customer["title"];
+
+                                    if ($scope.customerType == 'N') {
+                                        $scope.newOwner2.firstNameTH = customer["firstname"];
+                                        $scope.newOwner2.lastNameTH = customer["lastname"];
+                                        $scope.newOwner2.prefixTH = customer["title-code"];
+                                    }
 
                                     setTimeout(function() {
                                         $scope.newOwner.prefixTH = customer["title-code"];
                                         $('#prefixTH3').val(customer["title-code"]);
                                         //$('#titleOther').val(customer["title"]);
-                                        $scope.newOwner2.prefixTH = customer["title-code"];
+                                        //$scope.newOwner2.prefixTH = customer["title-code"];
                                         $('#titleRegisterd').val(customer["title-code"]);
                                     }, 1000);
 
@@ -1752,8 +1784,19 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                 // $scope.subCompanyType = customer["installed-products"][0]["account-sub-type"];
 
 
-                                //ที่อยู่จัดส่งเอกสาร
-                                $scope.setAddress(customer['address-list']['CUSTOMER_ADDRESS']);
+                                // //ที่อยู่จัดส่งเอกสาร
+                                // $scope.setAddress(customer['address-list']['CUSTOMER_ADDRESS']);
+                                if ($scope.customerType != 'N') {
+                                    //ที่อยู่ BC
+                                    $scope.setAddress(customer['address-list']['TAX_ADDRESS']);
+                                    $scope.setAddressBC(customer['address-list']['BILLING_ADDRESS']);
+
+                                    $scope.mailAddress.sendName = customer["firstname"];
+                                    $scope.mailAddressBC.sendName = customer["firstname"];
+                                } else {
+                                    //ที่อยู่จัดส่งเอกสาร I
+                                    $scope.setAddress(customer['address-list']['CUSTOMER_ADDRESS']);
+                                }
 
                                 //disable ที่อยู่ลูกค้าเก่า
                                 $scope.isLastestAdress = true;
@@ -1817,7 +1860,14 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
                                 // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
 
-
+                                if ($scope.customerType == 'N') {
+                                    //$scope.newOwner.birthDay = formatDate(customer["birthdate"]);
+                                    //$scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+                                } else {
+                                    $scope.accountID_root = customer['customer-id'];
+                                    $scope.newOwner2.prefixTH = "T5";
+                                    $scope.onselectPrefix2();
+                                }
                                 //$scope.onselectPrefix();
                                 setTimeout(function() {
                                     $scope.onselectPrefix();
@@ -2701,7 +2751,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
 
     //$scope.titleOther = "0";
-    $scope.titleOther2 = "";
+    $scope.titleOther2 = "คุณ";
     ////End title
 
 
@@ -2729,9 +2779,35 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.billAddress = $scope.tempCardAddress;
         }
     };
+    $scope.useAddressMailAsBillBC = function(type) {
+
+        $scope.mailAddressBC.sendName = $scope.mailAddress.sendName;
+
+        $scope.bantypeMailBC = $scope.bantypeMail;
+        $scope.mootypeMailBC = $scope.mootypeMail;
+
+        $scope.mailAddressBC.accountLang = $scope.billPayment.accountLang;
+
+        $scope.mailAddressBC.province = $scope.mailAddress.province;
+        $scope.mailAddressBC.amphur = $scope.mailAddress.amphur;
+        $scope.mailAddressBC.district = $scope.mailAddress.district;
+        $scope.mailAddressBC.homeNumber = $scope.mailAddress.homeNumber;
+        $scope.mailAddressBC.moo = $scope.mailAddress.moo;
+        $scope.mailAddressBC.road = $scope.mailAddress.road;
+        $scope.mailAddressBC.soi = $scope.mailAddress.soi;
+        $scope.mailAddressBC.trok = $scope.mailAddress.trok;
+        $scope.mailAddressBC.postcode = $scope.mailAddress.postcode;
+        $scope.mailAddressBC.village = $scope.mailAddress.village;
+        $scope.mailAddressBC.buildingName = $scope.mailAddress.buildingName;
+        $scope.mailAddressBC.buildingRoom = $scope.mailAddress.buildingRoom;
+        $scope.mailAddressBC.buildingFloor = $scope.mailAddress.buildingFloor;
+    };
 
     $scope.unUseAddressAsCard = function(type) {
         if (type == 'H') {
+            $scope.bantypeMail = false;
+            $scope.mootypeMail = false;
+
             $scope.mailAddress = {};
             $('#ulAddressList').hide();
             $scope.addressList = [];
@@ -3852,13 +3928,29 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.onInputAddress();
         }
     };
+    $scope.onEnterAddressBC = function() {
+        if ($scope.addressListBC.length == 1) {
+            $scope.setSearchAddressBC($scope.addressListBC[0]);
+        }
+        if ($scope.addressListBC.length == 0 && $scope.txtSearchAddressBC) {
+            $scope.onInputAddressBC();
+        }
+    };
     $scope.onFocusAddress = function() {
         if ($scope.addressList.length > 0) {
             $('#ulAddressList').show();
         }
     };
+    $scope.onFocusAddressBC = function() {
+        if ($scope.addressListBC.length > 0) {
+            $('#ulAddressListBC').show();
+        }
+    };
     $scope.onBlurAddress = function() {
         $('#ulAddressList').hide();
+    };
+    $scope.onBlurAddressBC = function() {
+        $('#ulAddressListBC').hide();
     };
     var filterAddressList = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {
@@ -3884,8 +3976,30 @@ smartApp.controller('MigratePreToPostIBCController', function(
             }
         }, 0);
     };
+    var filterAddressListBC = function(txtSearch) {
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = tempAddressListBC;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.addressListBC = arr;
+        } else {
+            $scope.addressListBC = $filter('filter')(tempAddressListBC, txtSearch);
+        }
+        setTimeout(function() {
+            if ($scope.addressListBC.length == 0) {
+                $('#ulAddressListBC').hide();
+            } else {
+                $('#ulAddressListBC').show();
+            }
+        }, 0);
+    };
     $scope.txtSearchAddress = "";
+    $scope.txtSearchAddressBC = "";
     var accountLang = "TH";
+    var accountLangBC = "TH";
     $scope.onInputAddress = function() {
         $scope.txtSearchAddress = "";
         $scope.txtSearchAddress += checkNull($scope.txtSearchAddress, $scope.mailAddress.postcode);
@@ -3929,8 +4043,56 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.addressList = [];
         }
     };
+    $scope.onInputAddressBC = function() {
+        $scope.txtSearchAddressBC = "";
+        $scope.txtSearchAddressBC += checkNull($scope.txtSearchAddressBC, $scope.mailAddressBC.postcode);
+        $scope.txtSearchAddressBC += checkNull($scope.txtSearchAddressBC, $scope.mailAddressBC.province);
+        $scope.txtSearchAddressBC += checkNull($scope.txtSearchAddressBC, $scope.mailAddressBC.amphur);
+        $scope.txtSearchAddressBC += checkNull($scope.txtSearchAddressBC, $scope.mailAddressBC.district);
+        var target = "profiles/master/address/search?keyword=" + $scope.txtSearchAddressBC + "&lang=" + $scope.mailAddressBC.accountLang;
+        console.log($scope.txtSearchAddress.length, target);
+        if ($scope.txtSearchAddressBC.length >= 3) {
+            if (accountLangBC != $scope.mailAddressBC.accountLang) {
+                $scope.pauseAddressBC = false;
+                $scope.isLoadAddressBC = false;
+                accountLangBC = $scope.mailAddressBC.accountLang;
+            }
+            if (!$scope.isLoadAddressBC) {
+                //SystemService.showLoading();
+
+                if (!$scope.pauseAddressBC) {
+                    SystemService.getAddressMaster(target, function(result) {
+                        //SystemService.hideLoading();
+
+                        if (result.status) {
+                            $scope.isLoadAddressBC = true;
+                            $scope.addressListBC = result.data['response-data'];
+                            tempAddressListBC = result.data['response-data'];
+
+                            if ($scope.addressListBC.length == 1) {
+                                $scope.setSearchAddressBC($scope.addressListBC[0]);
+                            }
+
+                            filterAddressListBC($scope.txtSearchAddressBC);
+                        }
+                    });
+                }
+                $scope.pauseAddressBC = true;
+            } else {
+                filterAddressListBC($scope.txtSearchAddressBC);
+            }
+        } else {
+            $scope.pauseAddressBC = false;
+            $scope.isLoadAddressBC = false;
+            $('#ulAddressListBC').hide();
+            $scope.addressListBC = [];
+        }
+    };
     $scope.onChangeBillPaymentAccountLang = function() {
         $scope.onInputAddress();
+    };
+    $scope.onChangeBillPaymentAccountLangBC = function() {
+        $scope.onInputAddressBC();
     };
     $scope.setSearchAddress = function(address) {
         console.log(address);
@@ -3940,9 +4102,24 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.mailAddress.postcode = address['zipcode'];
         $('#ulAddressList').hide();
     };
+    $scope.setSearchAddressBC = function(address) {
+        console.log(address);
+        $scope.mailAddressBC.province = address['province'];
+        $scope.mailAddressBC.amphur = address['district'];
+        $scope.mailAddressBC.district = address['subdistrict'];
+        $scope.mailAddressBC.postcode = address['zipcode'];
+        $('#ulAddressListBC').hide();
+    };
     $scope.onSelectedAddress = function(e) {
 
         $scope.setSearchAddress($scope.addressList[e]);
+        setTimeout(function() {
+            $('#idBindDataAgain').click();
+        }, 0);
+    };
+    $scope.onSelectedAddressBC = function(e) {
+
+        $scope.setSearchAddressBC($scope.addressListBC[e]);
         setTimeout(function() {
             $('#idBindDataAgain').click();
         }, 0);
