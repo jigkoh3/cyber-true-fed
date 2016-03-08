@@ -217,10 +217,11 @@ smartApp.controller('ChangePricePlanController', function(
             } else if ($scope.Level == "OU") {
                 $scope.checkOULargeCusSize();
             } else {
+                $scope.onEffectiveDate('NEXTBILL');
                 $('#efferNow').removeClass('hidden');
                 $('#efferNext').removeClass('hidden');
                 $('#efferManual').removeClass('hidden');
-                $('#efferNow').addClass('active');
+                $('#efferNext').addClass('active');
             }
         }, 1000);
     };
@@ -248,10 +249,11 @@ smartApp.controller('ChangePricePlanController', function(
                 $('#txtDateManual').val($scope.saveData['manualBillDate']);
                 $('#txtDateManual').datepicker("setDate", new Date($scope.lcsYear - 543, $scope.lcsMonth - 1, $scope.lcsDate));
             } else {
+                $scope.onEffectiveDate('NEXTBILL');
                 $('#efferNow').removeClass('hidden');
                 $('#efferNext').removeClass('hidden');
                 $('#efferManual').removeClass('hidden');
-                $('#efferNow').addClass('active');
+                $('#efferNext').addClass('active');
             }
         }
     };
