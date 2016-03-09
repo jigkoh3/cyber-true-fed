@@ -1837,6 +1837,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.partnerCode = "";
     $scope.isCheckInputForVerify = false;
     $scope.onCheckInputForVerify = function() {
+        if($scope.customerType!='N'){
+            $scope.cardType.value = $scope.cardTypeBC.value;
+        }
         $scope.showApprovCode = false;
         $scope.isVerify = false;
         setTimeout(function() {
@@ -3390,18 +3393,37 @@ smartApp.controller('MigratePreToPostIBCController', function(
         } else {
             newTitle = "";
         }
-        var firstname = "xxx";
-        var lastname = "xxx";
-        //if(){}
+        //IBC
+        var firstname = "";
+        var lastname = "";
+        var title = "";
+        var titlecode = "";
+        var isBC = false;
+
+        if($scope.customerType=='N'){
+            //I
+            firstname = $scope.newOwner.firstNameTH;
+            lastname = $scope.newOwner.lastNameTH;
+            title = $scope.newOwner.prefixTH == 'T4' ? "ดร." : $scope.titleOther;
+            titlecode = customerType == 'Y' ? "" : $scope.newOwner.prefixTH;
+            isBC = false;
+        }else{
+            //BC
+            firstname = $scope.data.customerProfile["firstname"];
+            lastname = $scope.data.customerProfile["lastname"];
+            title = $scope.data.customerProfile["title"];
+            titlecode = customerType == 'Y' ? "" : $scope.data.customerProfile["title-code"];
+            isBC = true;
+        }
 
 
         var data = {
             "func": "PEP",
             "header": {
-                "title-code": customerType == 'Y' ? "" : $scope.newOwner.prefixTH,
-                "title": $scope.newOwner.prefixTH == 'T4' ? "ดร." : $scope.titleOther,
-                "firstname": $scope.newOwner.firstNameTH,
-                "lastname": $scope.newOwner.lastNameTH,
+                "title-code": titlecode,
+                "title": title,
+                "firstname": firstname,
+                "lastname": lastname,
                 "customerType": customerType,
                 "authorizeFullName": $('#authorizeFullName').val(),
                 "id-number": $scope.data.customerProfile["id-number"],
@@ -3440,6 +3462,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     //NEW---
             },
             "body": {
+                "isBC": isBC,
+                "oldOwner": "",
+                "newOwner": $scope.bcName
                 // "cosOldOwnerData": {
                 //     "title": $scope.data.customerProfile['title'],
                 //     "firstname": $scope.data.customerProfile['firstname'],
@@ -3479,6 +3504,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         };
         console.log($scope.data);
         console.log(data);
+        console.log(JSON.stringify(data));
         //api generatePDF
         var srcPDF = "";
         SystemService.generatePDF(data, function(result) {

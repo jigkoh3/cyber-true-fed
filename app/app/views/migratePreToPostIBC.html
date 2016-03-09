@@ -118,7 +118,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>ชื่อบริษัท<span style="color:red;">*</span></label>
-                                    <input type="text" ng-model="bcName" ng-change="setSendName()" id="bcName" ng-disabled="!isCustomerPreverify" class="form-control">
+                                    <input type="text" ng-model="bcName" ng-change="setSendName(); bcName2=bcName;" id="bcName" ng-disabled="!isCustomerPreverify" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -626,7 +626,7 @@
                     <div ng-show="isVerify" class="row">
                         <div class="col-md-12">
                             <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                <input type="checkbox" id="changCheck" ng-click="onChangCheckno()" class="styled" ng-model="changCheckno">
+                                <input type="checkbox" id="changCheck" ng-click="onChangCheckno(); useNumberType='BC';" class="styled" ng-model="changCheckno">
                                 <label for="changCheck"><b>ระบุผู้ใช้หมายเลข </b></label>
                             </div>
                         </div>
