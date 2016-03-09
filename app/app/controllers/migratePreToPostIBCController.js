@@ -3398,7 +3398,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         var lastname = "";
         var title = "";
         var titlecode = "";
-        var isBC = false;
+        var isBC = 'N';
 
         if($scope.customerType=='N'){
             //I
@@ -3406,14 +3406,14 @@ smartApp.controller('MigratePreToPostIBCController', function(
             lastname = $scope.newOwner.lastNameTH;
             title = $scope.newOwner.prefixTH == 'T4' ? "ดร." : $scope.titleOther;
             titlecode = customerType == 'Y' ? "" : $scope.newOwner.prefixTH;
-            isBC = false;
+            isBC = 'N';
         }else{
             //BC
             firstname = $scope.data.customerProfile["firstname"];
             lastname = $scope.data.customerProfile["lastname"];
             title = $scope.data.customerProfile["title"];
             titlecode = customerType == 'Y' ? "" : $scope.data.customerProfile["title-code"];
-            isBC = true;
+            isBC = 'Y';
         }
 
 
