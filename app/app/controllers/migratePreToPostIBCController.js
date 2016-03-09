@@ -793,6 +793,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     $scope.dataAccountPreverify = result.data['response-data']['customer'];
                     $scope.isAccountPreverify = true;
                     $scope.isAccount_child = true;
+                    if($scope.accountID_root == ""){
+                        $scope.accountID_root = $scope.lastestCustomer['installed-products'][0]['ban'];
+                    }
                     //check ParentOU Level & SelectedOU Level
                     if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "NOT REQUIRE") {
                         $scope.showPPParentOU = true;
@@ -2632,6 +2635,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.mailAddress = {
         newss: ''
     };
+    $scope.mailAddressBC = {
+        newss: '',
+        accountLang: "TH"
+    };
     $scope.tempCardAddress = {
         newss: ''
     };
@@ -2701,6 +2708,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $('#ulAddressListBC').hide();
         $scope.addressListBC = [];
     };
+    $scope.setSendName = function() {
+        $scope.mailAddress.sendName = $scope.bcName;
+        $scope.mailAddressBC.sendName = $scope.bcName;
+    };
 
 
     $scope.manualInputReadCard = function() {
@@ -2734,6 +2745,90 @@ smartApp.controller('MigratePreToPostIBCController', function(
         if ($scope.shopType == '1') {
             $scope.selectReason.id = "CREQ";
         }
+        //check IBC
+        var cardTypeIBC = "";
+        var changeOption = "xxx";
+        var BILLING_ADDRESS = {};
+        var TAX_ADDRESS = {};
+        $scope.titleOther = $("#prefixTH3 option:selected").text();
+        if ($scope.customerType != 'N') {
+
+            $scope.titleOther = "";
+            $scope.newOwner.prefixTH = "T1";
+            $scope.newOwner.sex = "MALE";
+
+            cardTypeIBC = $scope.cardTypeBC.value;
+            if ($scope.changOpenserviceBC == 'L' && $scope.isAccount_child == false) {
+                changeOption = "EXISTING";
+            } else if ($scope.changOpenserviceBC == 'L' && $scope.isAccount_child == true) {
+                changeOption = "EXISTING-ACCOUNT";
+            } else if ($scope.changOpenserviceBC == 'S' && $scope.isAccount_root == true && $scope.isAccount_child == false) {
+                changeOption = "EXISTING";
+            } else if ($scope.changOpenserviceBC == 'S' && $scope.isAccount_root == true && $scope.isAccount_child == true) {
+                changeOption = "EXISTING-ACCOUNT";
+            } else {
+                changeOption = "NEW";
+            }
+            if ($scope.useNumberType == 'I') {
+                $scope.titleOther2 = $("#titleRegisterdBC option:selected").text();
+            }
+            $scope.newOwner.firstNameTH = $scope.bcName;
+            BILLING_ADDRESS = {
+                "number": $scope.mailAddressBC.homeNumber,
+                "moo": $scope.mailAddressBC.moo,
+                "village": $scope.mailAddressBC.village,
+                "street": $scope.mailAddressBC.road,
+                "soi": $scope.mailAddressBC.soi,
+                "district": $scope.mailAddressBC.amphur,
+                "province": $scope.mailAddressBC.province,
+                "building-name": $scope.mailAddressBC.buildingName,
+                "building-room": $scope.mailAddressBC.buildingRoom,
+                "building-floor": $scope.mailAddressBC.buildingFloor,
+                "sub-district": $scope.mailAddressBC.district,
+                "zip": $scope.mailAddressBC.postcode,
+                "household": "",
+                "contact-name": $scope.mailAddressBC.sendName
+            };
+            TAX_ADDRESS = {
+                "number": $scope.mailAddress.homeNumber,
+                "moo": $scope.mailAddress.moo,
+                "village": $scope.mailAddress.village,
+                "street": $scope.mailAddress.road,
+                "soi": $scope.mailAddress.soi,
+                "district": $scope.mailAddress.amphur,
+                "province": $scope.mailAddress.province,
+                "building-name": $scope.mailAddress.buildingName,
+                "building-room": $scope.mailAddress.buildingRoom,
+                "building-floor": $scope.mailAddress.buildingFloor,
+                "sub-district": $scope.mailAddress.district,
+                "zip": $scope.mailAddress.postcode,
+                "household": "",
+                "contact-name": $scope.mailAddress.sendName
+            };
+        } else {
+            BILLING_ADDRESS = {
+                "number": $scope.mailAddress.homeNumber,
+                "moo": $scope.mailAddress.moo,
+                "village": $scope.mailAddress.village,
+                "street": $scope.mailAddress.road,
+                "soi": $scope.mailAddress.soi,
+                "district": $scope.mailAddress.amphur,
+                "province": $scope.mailAddress.province,
+                "building-name": $scope.mailAddress.buildingName,
+                "building-room": $scope.mailAddress.buildingRoom,
+                "building-floor": $scope.mailAddress.buildingFloor,
+                "sub-district": $scope.mailAddress.district,
+                "zip": $scope.mailAddress.postcode,
+                "household": "",
+                "contact-name": $scope.mailAddress.sendName
+            };
+            cardTypeIBC = $scope.cardType.value;
+            changeOption = $scope.isLastestAdress ? "EXISTING" : "NEW";
+        }
+
+        $scope.saveData.memo = $scope.saveData.memo ? $scope.saveData.memo : ""
+        $scope.saveData.memo = $scope.getAuthen.logInName + "(" + $scope.getAuthen.saleCode + ": " + $scope.getAuthen.engName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo;
+        
         var data = {
             "target": "aftersales/order/submit",
             "order": {
@@ -2746,7 +2841,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     "firstname": $scope.newOwner.firstNameTH,
                     "lastname": $scope.newOwner.lastNameTH,
                     "gender": $scope.newOwner.sex,
-                    "id-type": $scope.getAccountCat(),
+                    "id-type": cardTypeIBC,
                     "id-number": $('#citizenID3').val(),
                     "birthdate": SystemService.convertDataThToLongDate($('#birthDay').val()),
                     "id-expire-date": SystemService.convertDataThToLongDate($('#expireDay').val()),
@@ -2758,7 +2853,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     "tax-id": $scope.customer["tax-id"],
                     "customer-id": $scope.isLastestUser = true ? $scope.customer["customer-id"] : "",
                     "customer-level": $scope.grade["grade-name"],
-                    "customer-id": $scope.data.customerProfile["customer-id"],
+                    //"customer-id": $scope.data.customerProfile["customer-id"],
                     "customer-sublevel_id": $scope.grade["grade-id"],
                     "customer-sublevel": $scope.grade["grade-sub-name"]
                         ///check lastest or billadress
@@ -2826,38 +2921,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
                         "order-type": "CHANGE",
                         //"reason-code": $scope.selectReason.id,
                         "reason-code": "CREQ",
-                        "user-memo": $scope.saveData.memo ? $scope.getAuthen.logInName + "(" + $scope.getAuthen.saleCode + ": " + $scope.getAuthen.engName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo : $scope.getAuthen.logInName + "(" + $scope.getAuthen.saleCode + ": " + $scope.getAuthen.engName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": ",
+                        "user-memo": $scope.saveData.memo ? $scope.saveData.memo : "",
                         "address-list": {
-                            "BILLING_ADDRESS": {
-                                "number": $scope.mailAddress.homeNumber,
-                                "moo": $scope.mailAddress.moo,
-                                "village": $scope.mailAddress.village,
-                                "street": $scope.mailAddress.road,
-                                "soi": $scope.mailAddress.soi,
-                                "district": $scope.mailAddress.amphur,
-                                "province": $scope.mailAddress.province,
-                                "building-name": $scope.mailAddress.buildingName,
-                                "building-room": $scope.mailAddress.buildingRoom,
-                                "building-floor": $scope.mailAddress.buildingFloor,
-                                "sub-district": $scope.mailAddress.district,
-                                "zip": $scope.mailAddress.postcode,
-                                // "household": ""
-                            }
-                            //,"TAX_ADDRESS": {
-                            //    "number": "61/268",
-                            //    "moo": "8",
-                            //    "village": "moo ban",
-                            //    "street": "ratchada",
-                            //    "soi": "8",
-                            //    "district": "dindaeng",
-                            //    "province": "Pathumthani",
-                            //    "building-name": "Pakin",
-                            //    "building-room": "22",
-                            //    "building-floor": "13",
-                            //    "sub-district": "Dindaeng",
-                            //    "zip": "22222",
-                            //    "household": "18"
-                            //}
+                            "BILLING_ADDRESS": BILLING_ADDRESS,
+                            "TAX_ADDRESS": TAX_ADDRESS
                         },
                         "order-data": {
                             //"IMSI": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
@@ -2875,9 +2942,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             "ACCOUNT-SMS-NUMBER": $scope.billPayment.smss,
                             "ACCOUNT-PAYMENT-METHOD": "CA",
                             "ACCOUNT-LANG": $scope.billPayment.accountLang,
-                            //"ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
-                            "CHANGE-OPTION": $scope.isLastestAdress ? "EXISTING" : "NEW",
+                            "CHANGE-OPTION": changeOption,
                             "PRICEPLAN-SOC-CODE": $scope.pricePlan2.priceplans.soc,
                             "CCBS-PROPOSITION-SOC-CODE": $scope.propositionSoc,
                             "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['id-number'],
@@ -2928,10 +2995,14 @@ smartApp.controller('MigratePreToPostIBCController', function(
             data["approver"] = $scope.approver;
         }
 
+        //
+        data["order"]["customer"]["customer-agents"] = {
+            "AUTH_1": {},
+            "POA": {},
+            "AUTH_2": {}
+        };
         //authen
         if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
-            var authenList = $('#authorizeFullName').val().split(" ");
-
             data["order"]["customer"]["customer-agents"] = {
                 "AUTH_1": {
                     "id-number": $('#CitizenID2').val(),
@@ -2939,7 +3010,51 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     "lastname": $('#authorizeFullName').val()
                 }
             };
+        } else {
+            delete data["order"]["customer"]["customer-agents"]["AUTH_1"];
         }
+
+        //build DATA : BUSINESS/CORPORATE
+        if ($scope.customerType == 'B' || $scope.customerType == 'C') {
+            //POA - ผู้มีอำนาจลงนาม 1
+            data["order"]["customer"]["customer-agents"]["POA"] = {
+                "id-number": $('#auth_1_id_number').val(),
+                "firstname": $('#auth_1_firstName').val(),
+                "lastname": $('#auth_1_lastName').val()
+            };
+            if ($scope.isAccount_child == true) {
+                //case: BUSINESS/CORPORATE : EXISTING-CUSTOMER : EXISTING ACCOUNT
+                delete data["order"]["order-items"][0]["address-list"]["BILLING_ADDRESS"];
+                delete data["order"]["order-items"][0]["address-list"]["TAX_ADDRESS"];
+            }
+            //check :: PREFER-CONTACT
+            if ($scope.billPayment.preferedContace == "FIX") {
+                data["order"]["order-items"][0]["order-data"]["PREFER-CONTACT"] = $scope.fixPreferedContact;
+            } else {
+                data["order"]["order-items"][0]["order-data"]["PREFER-CONTACT"] = $scope.billPayment.preferedContace;
+            }
+            //DELETE FOR BUSINESS/CORPORATE :::
+            //DELETE FOR BUSINESS/CORPORATE :::
+            //delete data["order"]["customer"]["lastname"];
+            delete data["order"]["customer"]["title-code"];
+        } else {
+            //case: INDIVIDUAL
+            delete data["order"]["customer"]["customer-agents"]["POA"];
+            delete data["order"]["order-items"][0]["address-list"]["TAX_ADDRESS"];
+        }
+        //end build
+
+        //authen 2
+        if ($('#poa_1_id_number').val() && $('#poa_1_firstname').val() && $('#poa_1_lastname').val()) {
+            data["order"]["customer"]["customer-agents"]["AUTH_2"] = {
+                "id-number": $('#poa_1_id_number').val(),
+                "firstname": $('#poa_1_firstname').val(),
+                "lastname": $('#poa_1_lastname').val()
+            }
+        } else {
+            delete data["order"]["customer"]["customer-agents"]["AUTH_2"];
+        }
+
         //SHARE_ALLOWANCE, FriendAndFamily, CUG, POOLED
         var spList = $scope.offerDetail["csm-offer-details"]["csm-related-offer-details"];
         //var spName = $scope.offerDetail["csm-offer-details"]["name"];
@@ -3046,6 +3161,26 @@ smartApp.controller('MigratePreToPostIBCController', function(
             data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
         }
 
+        //check :: customer-id
+        if ($scope.customerStatusN == 'O') {
+            data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
+        } else {
+            delete data['order']["customer"]["customer-id"];
+        }
+        //check :: ACCOUNT-BILL-CYCLE
+        if ($scope.getAuthen["shopType"] == "0") {
+            data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"] = $scope.billCycleSelected;
+        } else {
+            delete data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"];
+        }
+        //check :: SUBSCRIBER TYPE
+        if ($scope.useNumberType == "BC" && $scope.customerType != 'N') {
+            delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE-CODE"];
+            delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE"];
+            delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-GENDER"];
+            data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-LASTNAME"] = "";
+        }
+
 
 
 
@@ -3056,6 +3191,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             'E2E_REFID': $scope.orderId
         };
         console.log(data);
+        console.log(JSON.stringify(data));
         if (SystemService.demo) {
             var result = {
                 data: {
@@ -4016,6 +4152,14 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 return false;
             }
         };
+        var setTab = function(tabId) {
+            if ($scope.customerType != 'N') {
+                $scope.slipType = tabId;
+                $('#slipTypeH').removeClass('active');
+                $('#slipTypeB').removeClass('active');
+                $('#slipType' + tabId).addClass('active');
+            }
+        };
 
 
         ///start validate capmax
@@ -4052,10 +4196,30 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("titleOther", ValidateMsgService.data.msgNewPosCusPrefixEmpty);
         } else if (isNull($scope.customer['id-number'])) {
             showValidate("citizenID3", ValidateMsgService.data.msgNewCusIDnoEmpty);
-        } else if (isNull($scope.newOwner.firstNameTH)) {
+        } else if (isNull($scope.newOwner.firstNameTH) && $scope.customerType == 'N') {
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
-        } else if (isNull($scope.newOwner.lastNameTH)) {
+        } else if (isNull($scope.newOwner.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
+        } else if (isNull($scope.customer['tax-id']) && $scope.customerType != 'N' && $scope.isVerify) {
+            showValidate("taxNumber", ValidateMsgService.data.msgTaxNumberEmpty);
+        } else if (isNull($scope.customer['branch-code']) && $scope.customerType != 'N' && $scope.isVerify) {
+            showValidate("branchCode", ValidateMsgService.data.msgBranchCodeEmpty);
+        } else if (isNull($scope.bcName) && $scope.customerType != 'N' && $scope.isVerify) {
+            showValidate("bcName", ValidateMsgService.data.msgBcNameEmpty);
+        } else if (isNull($scope.auth_1['id-number']) && $scope.customerType != 'N' && $scope.isVerify) {
+            showValidate("auth_1_id_number", ValidateMsgService.data.msgAuth_1_id_numberEmpty);
+        } else if (isNull($scope.auth_1['firstname']) && $scope.customerType != 'N' && $scope.isVerify) {
+            showValidate("auth_1_firstName", ValidateMsgService.data.msgAuth_1_firstNameEmpty);
+        } else if (isNull($scope.auth_1['lastname']) && $scope.customerType != 'N' && $scope.isVerify) {
+            showValidate("auth_1_lastName", ValidateMsgService.data.msgAuth_1_lastNamerEmpty);
+        } else if (isNull($scope.poa_1['id-number']) && $scope.customerType != 'N' && $scope.isVerify && $scope.isAuthorizeBC) {
+            showValidate("poa_1_id_number", ValidateMsgService.data.msgPoa_1_id_numberEmpty);
+        } else if (isNull($scope.poa_1['firstname']) && $scope.customerType != 'N' && $scope.isVerify && $scope.isAuthorizeBC) {
+            showValidate("poa_1_firstname", ValidateMsgService.data.msgPoa_1_firstnameEmpty);
+        } else if (isNull($scope.poa_1['lastname']) && $scope.customerType != 'N' && $scope.isVerify && $scope.isAuthorizeBC) {
+            showValidate("poa_1_lastname", ValidateMsgService.data.msgPoa_1_lastnameEmpty);
+        } else if (isNull($scope.accountID_root) && $scope.customerType != 'N' && $scope.changOpenserviceBC == 'S') {
+            showValidate("accountID_root", ValidateMsgService.data.msgAccountID_rootEmpty);
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
         } else if (errorCapmax != "") {
@@ -4072,24 +4236,71 @@ smartApp.controller('MigratePreToPostIBCController', function(
             //    "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
             //    "technical-message": "changePricePlanController"
             //});
-        } else if (isNull($scope.newOwner2.firstNameTH)) {
+        } else if (isNull($scope.newOwner2.firstNameTH) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
+            showValidate("firstNameRegisterdBC", ValidateMsgService.data.msgSubFirstNameEmpty);
+        } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
+            showValidate("lastNameRegisterdBC", ValidateMsgService.data.msgSubLastNameEmpty);
+        } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
+            showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
+        } else if (isNull($scope.bcName2) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'BC') {
+            showValidate("bcName2", ValidateMsgService.data.msgSubFirstNameEmpty);
+        } else if (isNull($scope.newOwner2.firstNameTH) && $scope.customerType == 'N') {
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
-        } else if (isNull($scope.newOwner2.lastNameTH)) {
+        } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
-        } else if (isNull($scope.mailAddress.postcode)) {
-            showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
-        } else if (isNull($scope.mailAddress.province)) {
-            showValidate("txtmailAddressprovince", ValidateMsgService.data.msgBillProvinceEmpty);
-        } else if (isNull($scope.mailAddress.amphur)) {
-            showValidate("txtmailAddressamphur", ValidateMsgService.data.msgBillDistrictEmpty);
-        } else if (isNull($scope.mailAddress.district)) {
-            showValidate("txtMaillAddressDistrict", ValidateMsgService.data.msgBillSubDistrictEmpty);
-        } else if (isNull($scope.mailAddress.homeNumber)) {
+            //BILLING_ADDRESS
+            //BILLING_ADDRESS
+        } else if (isNull($scope.mailAddress.sendName) && $scope.isAccount_child == false && $scope.customerType != 'N') {
+            setTab('H');
+            showValidate("txtMailAddressSendName", ValidateMsgService.data.msgTaxAddress_ContactNameEmpty);
+        } else if (isNull($scope.mailAddress.homeNumber) && $scope.isAccount_child == false) {
+            setTab('H');
             showValidate("txtMailAdressHomeNumber", ValidateMsgService.data.msgBillHouseNoEmpty);
-        } else if (isNull($scope.mailAddress.moo)) {
+        } else if (isNull($scope.mailAddress.moo) && $scope.isAccount_child == false) {
+            setTab('H');
             showValidate("txtMailAddressMoo", ValidateMsgService.data.msgBillVillageNoEmpty);
-        } else if (isNull($scope.mailAddress.road)) {
+        } else if (isNull($scope.mailAddress.road) && $scope.isAccount_child == false) {
+            setTab('H');
             showValidate("txtMailAddressRoad", ValidateMsgService.data.msgBillRoadEmpty);
+        } else if (isNull($scope.mailAddress.district) && $scope.isAccount_child == false) {
+            setTab('H');
+            showValidate("txtMaillAddressDistrict", ValidateMsgService.data.msgBillSubDistrictEmpty);
+        } else if (isNull($scope.mailAddress.amphur) && $scope.isAccount_child == false) {
+            setTab('H');
+            showValidate("txtmailAddressamphur", ValidateMsgService.data.msgBillDistrictEmpty);
+        } else if (isNull($scope.mailAddress.province) && $scope.isAccount_child == false) {
+            setTab('H');
+            showValidate("txtmailAddressprovince", ValidateMsgService.data.msgBillProvinceEmpty);
+        } else if (isNull($scope.mailAddress.postcode) && $scope.isAccount_child == false) {
+            setTab('H');
+            showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
+            //TAX_ADDRESS
+            //TAX_ADDRESS
+        } else if (isNull($scope.mailAddressBC.sendName) && $scope.isAccount_child == false && $scope.customerType != 'N') {
+            setTab('B');
+            showValidate("txtMailAddressBCSendName", ValidateMsgService.data.msgAddressList_ContactNameEmpty);
+        } else if (isNull($scope.mailAddressBC.homeNumber) && $scope.isAccount_child == false && $scope.customerType != 'N') {
+            setTab('B');
+            showValidate("txtMailAdressHomeNumberBC", ValidateMsgService.data.msgBillHouseNoEmpty);
+        } else if (isNull($scope.mailAddressBC.moo) && $scope.isAccount_child == false && $scope.customerType != 'N') {
+            setTab('B');
+            showValidate("txtMailAddressMooBC", ValidateMsgService.data.msgBillVillageNoEmpty);
+        } else if (isNull($scope.mailAddressBC.road) && $scope.isAccount_child == false && $scope.customerType != 'N') {
+            setTab('B');
+            showValidate("txtMailAddressRoadBC", ValidateMsgService.data.msgBillRoadEmpty);
+        } else if (isNull($scope.mailAddressBC.district) && $scope.isAccount_child == false && $scope.customerType != 'N') {
+            setTab('B');
+            showValidate("txtMaillAddressDistrictBC", ValidateMsgService.data.msgBillSubDistrictEmpty);
+        } else if (isNull($scope.mailAddressBC.amphur) && $scope.isAccount_child == false && $scope.customerType != 'N') {
+            setTab('B');
+            showValidate("txtmailAddressamphurBC", ValidateMsgService.data.msgBillDistrictEmpty);
+        } else if (isNull($scope.mailAddressBC.province) && $scope.isAccount_child == false && $scope.customerType != 'N') {
+            setTab('B');
+            showValidate("txtmailAddressprovinceBC", ValidateMsgService.data.msgBillProvinceEmpty);
+        } else if (isNull($scope.mailAddressBC.postcode) && $scope.isAccount_child == false && $scope.customerType != 'N') {
+            setTab('B');
+            showValidate("txtmailAddresspostcodeBC", ValidateMsgService.data.msgBillZipcodeEmpty);
+            //
         } else if ($scope.blah == 'E' && isNull($scope.billPayment.email)) {
             showValidate("idBillPaymentEmail", ValidateMsgService.data.msgBillEmailEmpty);
         } else if ($scope.blah == 'S' && isNull($scope.billPayment.smss)) {
