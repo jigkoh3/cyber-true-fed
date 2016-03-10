@@ -458,6 +458,14 @@
             "en-message": "Please specify Customer ID.",
             "th-message": "กรุณาระบุ เลขที่ลูกค้า",
             "technical-message": "FROM WEBUI"
+        },
+        "msgAccountID_childEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify BAN ID.",
+            "th-message": "กรุณาระบุ BAN",
+            "technical-message": "FROM WEBUI"
         }
     };
 });

@@ -538,6 +538,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                     $scope.dataAccountPreverify = result.data['response-data']['customer'];
                     $scope.isAccountPreverify = true;
                     $scope.isAccount_child = true;
+                    //$scope.accountID_root = $scope.dataAccountPreverify['customer-id'];
                     //check ParentOU Level & SelectedOU Level
                     if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "NOT REQUIRE") {
                         $scope.showPPParentOU = true;
@@ -4348,8 +4349,10 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("poa_1_firstname", ValidateMsgService.data.msgPoa_1_firstnameEmpty);
         } else if (isNull($scope.poa_1['lastname']) && $scope.customerType != 'N' && $scope.isVerify && $scope.isAuthorizeBC) {
             showValidate("poa_1_lastname", ValidateMsgService.data.msgPoa_1_lastnameEmpty);
-        } else if (isNull($scope.accountID_root) && $scope.customerType != 'N' && $scope.changOpenserviceBC == 'S') {
+        } else if (isNull($scope.accountID_root) && $scope.customerType != 'N' && $scope.changOpenserviceBC == 'S' && $scope.customSelectBC == 'CUSTOMER') {
             showValidate("accountID_root", ValidateMsgService.data.msgAccountID_rootEmpty);
+        } else if (isNull($scope.accountID_child) && $scope.customerType != 'N' && $scope.changOpenserviceBC == 'S' && $scope.customSelectBC == 'ACCOUNT') {
+            showValidate("accountID_child", ValidateMsgService.data.msgAccountID_childEmpty);
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
         } else if (errorCapmax != "") {
