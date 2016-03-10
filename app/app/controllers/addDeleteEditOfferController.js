@@ -201,7 +201,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.getReleteOfferList();
                 $scope.getRegulaOfferList();
                 $scope.getPopUpOfferList();
-                if(onGetSIMData){
+                if (onGetSIMData) {
                     $scope.initModalReadCard();
                 }
                 //END: get offerList
@@ -648,28 +648,26 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "offer-group": "Regular Offer"
         };
     };
-    $scope.relatedOfferChk == false;
+    $scope.relatedOfferChk = "";
+    $scope.relateOfferEditNewExpire = "";
+    $scope.chkForEdit = [];
     $scope.onChkEditOffer = function() {
-        if ($scope.relatedOfferChk == true) {
-            alert('Hello');
-        }
-        // console.log(item);
-        // for (var i = 0; i < $scope.offerList.length; I++) {
-        //     if (item['offer-name'] == $scope.offerList[i]['offer-name']) {
-        //        alert($scope.offerList[i]['offer-name']);
-        //     }
-        //      $scope.editOffers = $scope.editOffers + $scope.addeditOffers;
-        // }
-        //     $scope.addeditOffers = {
-        //         "offer-name": item['offer-name'],
-        //         "offer-description": item['offer-description'],
-        //         "type": item['type'],
-        //         "parameter": "",
-        //         "service-level": item['offer-level'],
-        //         "offer-group": "Regular Offer"
-        //     };
-        //     console.log($scope.addeditOffers);
-
+        console.log($scope.relatedOfferChk , $scope.relateOfferEditNewExpire)
+        $scope.chkForEdit = [];
+        $("input:checkbox[name=editOfferChk]:checked").each(function() {
+            // alert($(this).val());
+            var chkItem = $filter('filter')($scope.offerList, {
+                'offer-name': $(this).val()
+                // 'offer-group': "Related Offer"
+            });
+            var item = {
+                'item': chkItem[0],
+                'new-expiration-date': $(".txt"+$(this).val()).val()
+        };
+            $scope.chkForEdit.push(item);
+            // yourArray.push($(this).val());
+        });
+        console.log($scope.chkForEdit);
     };
     $scope.onRegularOfferTypeId = function() {
         $scope.radioOffer = "";
@@ -787,7 +785,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             SystemService.showLoading();
             $scope.SubNo = $('#dataSubNo').val();
             AddDeleteEditOfferService.getSIMData($scope.subNoInput, onGetSIMData);
-            if(onGetSIMData){
+            if (onGetSIMData) {
                 $scope.getOfferList();
                 $scope.getReleteOfferList();
                 $scope.getRegulaOfferList();
@@ -906,15 +904,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     }
 
     var validateInput = function() {
-        if (!$scope.statusCancel) {
-            alert('กรุณาเลือกสถานะหมายเลขใหม่');
-            return false;
-        }
+        // if (!$scope.statusCancel) {
+        //     alert('กรุณาเลือกสถานะหมายเลขใหม่');
+        //     return false;
+        // }
 
-        if (!$scope.statusReason) {
-            alert('กรุณาเลือกเหตุผล');
-            return false;
-        }
+        // if (!$scope.statusReason) {
+        //     alert('กรุณาเลือกเหตุผล');
+        //     return false;
+        // }
 
         return true;
     };
