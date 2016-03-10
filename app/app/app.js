@@ -291,7 +291,7 @@ smartApp
                     }
                     $(element)
                         .keypress(function(e) {
-                            //alert('press');
+                            //alert(this.value);
                             var charCode = (e.which) ? e.which : e.keyCode;
                             // if (this.value.indexOf(".") >= 0) {
                             //     if (charCode == 46) {
@@ -306,6 +306,16 @@ smartApp
                                 return false;
                             } else {
                                 hideSpan();
+                            }
+                        })
+                        .keyup(function(e) {
+                            if (isNaN(this.value)) {
+                                // show msg
+                                showSpan();
+                                //this.value = "";
+                                scope[''+attrs.ngNumberOnly] = "";
+                            } else {
+                                //hideSpan();
                             }
                         })
                         .blur(function(event) {
