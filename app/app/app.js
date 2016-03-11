@@ -320,7 +320,17 @@ smartApp
                         })
                         .blur(function(event) {
                             /* Act on the event */
-                            hideSpan();
+                            if (isNaN(this.value)) {
+                                // show msg
+                                showSpan();
+                                //this.value = "";
+                                scope[''+attrs.ngNumberOnly] = "";
+                                setTimeout(function(){
+                                    hideSpan();
+                                }, 10000);
+                            } else {
+                                hideSpan();
+                            }
                         })
                         .keydown(function(event) {
                             /* Act on the event */
