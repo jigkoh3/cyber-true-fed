@@ -648,7 +648,7 @@
                     'product-category': 'TMV',
                     'product-type': 'CUG',
                     'order-type': 'NEW',
-                    'reason-code': payload.statusReason,
+                    'reason-code': 'CREQ',
                     'user-memo': payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": " + payload.statusReasonMemo,
             //         'order-data': {
             //             'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],

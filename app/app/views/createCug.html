@@ -8,18 +8,17 @@
                 <div class="well">
                     <div class="form-horizontal">
                         <div class="table-responsive" id="hModal">
-                        <div class="col-xs-12">
-                                    <div class="col-xs-1">
-                                    </div>
-                                    <div class="col-xs-10">
-                                        <input type="text" placeholder="ค้นหา" ng-model="cugFilter.value" id="ppfilter2" class="form-control pricePlanFilter" ng-keyup="smartSearchCug(cugFilter.value)">
-                                    </div>
-                                    <div class="col-xs-1">
-                                    </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-1">
                                 </div>
-                                &nbsp;
+                                <div class="col-xs-10">
+                                    <input type="text" placeholder="ค้นหา" ng-model="cugFilter.value" id="ppfilter2" class="form-control pricePlanFilter" ng-keyup="smartSearchCug(cugFilter.value)">
+                                </div>
+                                <div class="col-xs-1">
+                                </div>
+                            </div>
+                            &nbsp;
                             <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px; height=400px;">
-                                
                                 <tr colspan="5" style="padding: 0px;">
                                     <th class="col-xs-3" style="color:green;text-align:center;">
                                         <h4>Company Name</h4>
@@ -103,7 +102,9 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
                             <div class="col-md-4">
-                                <select ng-options="option.dec for option in reasons" ng-model="statusReason" class=" form-control"></select>
+                                <select class=" form-control">
+                                    <option>CREQ: Customer request</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -116,7 +117,6 @@
                 </div>
             </div>
         </div>
-       
         <div class="col-md-12 form-buttons">
             <div class="form-group">
                 <input type="submit" value="บันทึก" class="btn btn-success" ng-click="confirmPrint()" ng-disabled="isCustomerProfile" />
