@@ -18,7 +18,7 @@
                     "group-type": "GAS",
                     "group-id": "290",
                     "group-name": "Test bucket discount",
-                    "group-description": "Test bucket discount5555555555555555555555555555555555555555555555555555555555",
+                    "group-description": "Testbucketdiscount555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555",
                     "group-identifier": ""
                 }, {
                     "group-type": "GAS",
