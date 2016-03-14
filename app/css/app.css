@@ -298,7 +298,10 @@ th {
         border: 1px solid #ddd !important;
     }
 }
-
+.divWrapTextIE{
+    word-wrap: break-word;
+    -ms-word-wrap: break-word;
+}
 @font-face {
     font-family: 'Glyphicons Halflings';
     src: url('../fonts/bootstrap/glyphicons-halflings-regular.eot');
