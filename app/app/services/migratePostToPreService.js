@@ -694,7 +694,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                 }],
                 "last-modify-date": ""
             },
-            'ref-id': payload.orderData.TrxID,
+            'ref-id': payload.orderData.orderId,
             'user-id': payload.saleAgent.logInName,
             'approver': payload.approver
         };

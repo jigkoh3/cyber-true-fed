@@ -364,7 +364,7 @@
                     }]
                     //,'last-modify-date': ''
             },
-            'ref-id': payload.orderData.TrxID,
+            'ref-id': payload.orderData.orderId,
             'user-id': payload.saleAgent['logInName'],
             'approver': payload.orderData.approver,
             'target': '/aftersales/order/submit'
