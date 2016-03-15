@@ -146,6 +146,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
                     break;
                 } else {
                     $scope.dupGroupName = false;
+                    $scope.isCustomerProfile = false;
                 }
             }
         } else {
