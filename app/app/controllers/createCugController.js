@@ -29,6 +29,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
 
     $scope.cugList = [];
     $scope.selectCUG = {};
+    $scope.groupNameList = [];
 
     $scope.CitizenID = "";
 
@@ -42,7 +43,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
     //Reasons
     $scope.reasons = [];
     $scope.statusReason = "";
-    $scope.createCugData={};
+    $scope.createCugData = {};
     $scope.pricePlanFilter = {
         value: ""
     };
@@ -116,7 +117,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
             var arr = valCug;
             if (txtSearch.indexOf(' ') > 0) {
                 var txtList = txtSearch.split(' ');
-                
+
                 console.log(txtList);
                 for (var i = 0; i < txtList.length; i++) {
                     arr = $filter('filter')(arr, txtList[i]);
@@ -127,7 +128,28 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
             }
         }
     };
-
+    $scope.dupGroupName = false;
+    $scope.smartSearchGroupName = function(txtSearch) {
+        $scope.dupGroupName = false;
+        if ($scope.isLoadCug && txtSearch) {
+            var arr = valCug;
+            console.log(txtSearch);
+            arr = $filter('filter')(arr, { 'group-name': txtSearch });
+            console.log(arr);
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i]['group-name'].toUpperCase() == txtSearch.toUpperCase()) {
+                    $scope.dupGroupName = true;
+                    $scope.isCustomerProfile = true;
+                    break;
+                } else {
+                    $scope.dupGroupName = false;
+                    $scope.isCustomerProfile = false;
+                }
+            }
+        } else {
+            $scope.dupGroupName = false;
+        }
+    };
     $scope.onInputSubNo = function() {
         $scope.subNoInput = $('#dataSubNo').val();
 
@@ -209,15 +231,17 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
             $scope.isLoadCug = true;
             SystemService.hideLoading();
             $scope.cugList = result.data["cug-list"];
-            valCug = result.data["cug-list"];
+            $scope.groupNameList =
+                valCug = result.data["cug-list"];
             console.log($scope.cugList);
+            console.log($scope.cugList['group-name']);
             $scope.validateCugGroup();
             authenticate();
         });
     }
 
     $scope.validateCugGroup = function() {
-        if ($scope.groupName != '' && $scope.desc != '' && $scope.compName != '') {
+        if ($scope.groupName != '' && $scope.desc != '' && $scope.compName != '' && $scope.dupGroupName == false) {
             $scope.isCustomerProfile = false;
         } else {
             $scope.isCustomerProfile = true;
