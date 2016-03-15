@@ -136,6 +136,9 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
             console.log(txtSearch);
             arr = $filter('filter')(arr, { 'group-name': txtSearch });
             console.log(arr);
+            if(arr.length == 0){
+                $scope.isCustomerProfile = false;
+            }
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i]['group-name'].toUpperCase() == txtSearch.toUpperCase()) {
                     $scope.dupGroupName = true;
@@ -143,7 +146,6 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
                     break;
                 } else {
                     $scope.dupGroupName = false;
-                    $scope.isCustomerProfile = false;
                 }
             }
         } else {
