@@ -2693,6 +2693,8 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.setSendName = function() {
         $scope.mailAddress.sendName = $scope.bcName;
         $scope.mailAddressBC.sendName = $scope.bcName;
+
+        $scope.bcName2 = $scope.bcName;
     };
 
 
@@ -2977,6 +2979,11 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         $scope.saveData.memo = $scope.saveData.memo ? $scope.saveData.memo : ""
         $scope.saveData.memo = $scope.getAuthen.logInName + "(" + $scope.getAuthen.saleCode + ": " + $scope.getAuthen.engName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo;
+
+        if($scope.customerType!='N' && $scope.useNumberType == 'BC'){
+            $scope.newOwner2.firstNameTH = $scope.bcName2;
+        }
+
         var data = {
             "target": "aftersales/order/submit",
             "order": {
@@ -4125,14 +4132,34 @@ smartApp.controller('changeOwnershipIBCController', function(
         //$window.closed();
     };
 
-
+    $scope.useNumberType = "BC";
     $scope.onChangCheckno = function() {
-        //alert($scope.changCheckno);
-        $('#titleRegisterd').val($('#prefixTH3').val());
-        $('#sex32').val($('#sex3').val());
-        //$('#sex32').val($scope.newOwner2.sex);
-        $scope.onselectPrefix2();
+        setTimeout(function() {
+            if ($scope.customerType != 'N') {
+                $scope.newOwner2.birthDay = "";
+                $scope.newOwner2.firstNameTH = "";
+                $scope.newOwner2.lastNameTH = "";
 
+                $scope.newOwner2.prefixTH = "T5";
+
+                $scope.bcName2 = $scope.bcName;
+
+                if ($scope.changCheckno == false) {
+                    $scope.useNumberType = "BC";
+                }
+                
+                $('#titleOtherRegisterdBC').val('คุณ');
+                $('#birthDayRegisterdBC').val('');
+                $('#idBindDataAgain').click();
+            } else {
+                if ($scope.customerType == 'N') {
+                    $('#titleOtherRegisterd').val($('#titleOther').val());
+                    $('#titleRegisterd').val($('#prefixTH3').val());
+                    $('#sex32').val($('#sex3').val());
+                }
+            }
+            $scope.onselectPrefix2();
+        }, 500);
     };
 
     $scope.openService = function() {

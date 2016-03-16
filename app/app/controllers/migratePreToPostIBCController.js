@@ -793,7 +793,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     $scope.dataAccountPreverify = result.data['response-data']['customer'];
                     $scope.isAccountPreverify = true;
                     $scope.isAccount_child = true;
-                    if($scope.accountID_root == ""){
+                    if ($scope.accountID_root == "") {
                         $scope.accountID_root = $scope.lastestCustomer['installed-products'][0]['ban'];
                     }
                     //check ParentOU Level & SelectedOU Level
@@ -1837,7 +1837,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.partnerCode = "";
     $scope.isCheckInputForVerify = false;
     $scope.onCheckInputForVerify = function() {
-        if($scope.customerType!='N'){
+        if ($scope.customerType != 'N') {
             $scope.cardType.value = $scope.cardTypeBC.value;
         }
         $scope.showApprovCode = false;
@@ -2831,6 +2831,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         $scope.saveData.memo = $scope.saveData.memo ? $scope.saveData.memo : ""
         $scope.saveData.memo = $scope.getAuthen.logInName + "(" + $scope.getAuthen.saleCode + ": " + $scope.getAuthen.engName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo;
+
+        if($scope.customerType!='N' && $scope.useNumberType == 'BC'){
+            $scope.newOwner2.firstNameTH = $scope.bcName2;
+        }
         
         var data = {
             "target": "aftersales/order/submit",
@@ -2945,7 +2949,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             "ACCOUNT-SMS-NUMBER": $scope.billPayment.smss,
                             "ACCOUNT-PAYMENT-METHOD": "CA",
                             "ACCOUNT-LANG": $scope.billPayment.accountLang,
-                            "ACCOUNT-BILL-CYCLE": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "ACCOUNT-BILL-CYCLE": "", //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
                             "CHANGE-OPTION": changeOption,
                             "PRICEPLAN-SOC-CODE": $scope.pricePlan2.priceplans.soc,
@@ -3400,14 +3404,14 @@ smartApp.controller('MigratePreToPostIBCController', function(
         var titlecode = "";
         var isBC = 'N';
 
-        if($scope.customerType=='N'){
+        if ($scope.customerType == 'N') {
             //I
             firstname = $scope.newOwner.firstNameTH;
             lastname = $scope.newOwner.lastNameTH;
             title = $scope.newOwner.prefixTH == 'T4' ? "ดร." : $scope.titleOther;
             titlecode = customerType == 'Y' ? "" : $scope.newOwner.prefixTH;
             isBC = 'N';
-        }else{
+        } else {
             //BC
             firstname = $scope.data.customerProfile["firstname"];
             lastname = $scope.data.customerProfile["lastname"];
@@ -3465,19 +3469,19 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "isBC": isBC,
                 "oldOwner": "",
                 "newOwner": $scope.bcName
-                // "cosOldOwnerData": {
-                //     "title": $scope.data.customerProfile['title'],
-                //     "firstname": $scope.data.customerProfile['firstname'],
-                //     "lastname": $scope.data.customerProfile['lastname']
-                // },
-                // "cosNewOwnerData": {
-                //     "title": newTitle,
-                //     "firstname": $scope.newOwner.firstNameTH,
-                //     "lastname": $scope.newOwner.lastNameTH,
-                //     "photo": $scope.varPhotoLastest,
-                //     "id-number": $scope.customer['id-number'],
-                //NEW---
-                // "photoIdCard": cardValueDataNew["photoIdCard"],
+                    // "cosOldOwnerData": {
+                    //     "title": $scope.data.customerProfile['title'],
+                    //     "firstname": $scope.data.customerProfile['firstname'],
+                    //     "lastname": $scope.data.customerProfile['lastname']
+                    // },
+                    // "cosNewOwnerData": {
+                    //     "title": newTitle,
+                    //     "firstname": $scope.newOwner.firstNameTH,
+                    //     "lastname": $scope.newOwner.lastNameTH,
+                    //     "photo": $scope.varPhotoLastest,
+                    //     "id-number": $scope.customer['id-number'],
+                    //NEW---
+                    // "photoIdCard": cardValueDataNew["photoIdCard"],
 
                 //SC=Scan
                 //SN=Snap
@@ -4013,12 +4017,22 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.useNumberType = "BC";
     $scope.onChangCheckno = function() {
         setTimeout(function() {
-            if ($scope.customerType != 'N' && $scope.useNumberType == 'I') {
+            if ($scope.customerType != 'N') {
                 $scope.newOwner2.birthDay = "";
                 $scope.newOwner2.firstNameTH = "";
                 $scope.newOwner2.lastNameTH = "";
-                $('#idBindDataAgain').click();
+
+                $scope.newOwner2.prefixTH = "T5";
+
+                $scope.bcName2 = $scope.bcName;
+
+                if ($scope.changCheckno == false) {
+                    $scope.useNumberType = "BC";
+                }
+
                 $('#titleOtherRegisterdBC').val('คุณ');
+                $('#birthDayRegisterdBC').val('');
+                $('#idBindDataAgain').click();
             } else {
                 if ($scope.customerType == 'N') {
                     $('#titleOtherRegisterd').val($('#titleOther').val());

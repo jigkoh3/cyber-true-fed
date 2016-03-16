@@ -840,12 +840,12 @@
                                 <div class="form-group">
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="useNumberType" value="BC" ng-model="useNumberType" ng-init="useNumberType='BC'"> บริษัท/ที่ทำงาน
+                                            <input type="radio" style="cursor:pointer;" name="useNumberType" value="BC" ng-model="useNumberType" ng-change="onChangCheckno()" ng-init="useNumberType='BC'"> บริษัท/ที่ทำงาน
                                         </label>
                                     </div>
                                     <div class="col-md-5">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="useNumberType" value="I" ng-model="useNumberType"> บุคคลธรรมดา
+                                            <input type="radio" ng-change="onChangCheckno()" style="cursor:pointer;" name="useNumberType" value="I" ng-model="useNumberType"> บุคคลธรรมดา
                                         </label>
                                     </div>
                                 </div>
@@ -944,7 +944,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-show="useNumberType=='I'">
+                        <div ng-show="useNumberType=='I' && customerType!='N'">
                             <div class="row">
                                 <div ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
                                     <div ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
