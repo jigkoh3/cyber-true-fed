@@ -2952,6 +2952,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             "ACCOUNT-BILL-CYCLE": "", //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
                             "CHANGE-OPTION": changeOption,
+                            "OU-HIERARCHYTYPE" : "xxxxxxxxxxxxxxxxxxxADD",
+                            "PARENT-OUID" : "xxxxxxxxxxxxxxxxxxxADD",
+
                             "PRICEPLAN-SOC-CODE": $scope.pricePlan2.priceplans.soc,
                             "CCBS-PROPOSITION-SOC-CODE": $scope.propositionSoc,
                             "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['id-number'],
@@ -3179,6 +3182,18 @@ smartApp.controller('MigratePreToPostIBCController', function(
             data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"] = $scope.billCycleSelected;
         } else {
             delete data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"];
+        }
+        //check :: ROOT/CHILD/NORMAL
+        if($scope.isAccount_child == true){
+            data["order"]["order-items"][0]["order-data"]["OU-HIERARCHYTYPE"] = $scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"];
+            if($scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"] == "ROOT"){
+                data["order"]["order-items"][0]["order-data"]["PARENT-OUID"] = $scope.dataAccountPreverify["installed-products"][0]["parent-ouId"];
+            }else{
+                delete data["order"]["order-items"][0]["order-data"]["PARENT-OUID"];
+            }
+        } else {
+            delete data["order"]["order-items"][0]["order-data"]["OU-HIERARCHYTYPE"];
+            delete data["order"]["order-items"][0]["order-data"]["PARENT-OUID"];
         }
         //check :: SUBSCRIBER TYPE
         if ($scope.useNumberType == "BC" && $scope.customerType != 'N') {

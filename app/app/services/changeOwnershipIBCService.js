@@ -883,7 +883,7 @@
                             "is-childsim": false,
                             "is-softsuspend": false,
                             "ou-hierarchytype": "NORMAL",
-                            "parent-ouId": ""
+                            "parent-ouId": "1234"
                         }],
                         "address-list": {
                             "CUSTOMER_ADDRESS": {
@@ -968,7 +968,7 @@
                             "is-childsim": false,
                             "is-softsuspend": false,
                             "ou-hierarchytype": "NORMAL",
-                            "parent-ouId": ""
+                            "parent-ouId": "30051"
                         }],
                         "address-list": {
                             "CUSTOMER_ADDRESS": {
@@ -1052,8 +1052,8 @@
                             "has-splitcharge": false,
                             "is-childsim": false,
                             "is-softsuspend": false,
-                            "ou-hierarchytype": "NORMAL",
-                            "parent-ouId": ""
+                            "ou-hierarchytype": "ROOT",
+                            "parent-ouId": "30059"
                         }],
                         "address-list": {
                             "CUSTOMER_ADDRESS": {

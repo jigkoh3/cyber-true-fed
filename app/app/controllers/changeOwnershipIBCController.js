@@ -3099,7 +3099,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                             "ACCOUNT-LANG": $scope.billPayment.accountLang,
                             "ACCOUNT-BILL-CYCLE": "", //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
-                            "CHANGE-OPTION": changeOption
+                            "CHANGE-OPTION": changeOption,
+                            "OU-HIERARCHYTYPE" : "xxxxxxxxxxxxxxxxxxxADD",
+                            "PARENT-OUID" : "xxxxxxxxxxxxxxxxxxxADD"
                         },
                         "primary-order-data": {
                             //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
@@ -3311,6 +3313,18 @@ smartApp.controller('changeOwnershipIBCController', function(
             data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"] = $scope.billCycleSelected;
         } else {
             delete data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"];
+        }
+        //check :: ROOT/CHILD/NORMAL
+        if($scope.isAccount_child == true){
+            data["order"]["order-items"][0]["order-data"]["OU-HIERARCHYTYPE"] = $scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"];
+            if($scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"] == "ROOT"){
+                data["order"]["order-items"][0]["order-data"]["PARENT-OUID"] = $scope.dataAccountPreverify["installed-products"][0]["parent-ouId"];
+            }else{
+                delete data["order"]["order-items"][0]["order-data"]["PARENT-OUID"];
+            }
+        } else {
+            delete data["order"]["order-items"][0]["order-data"]["OU-HIERARCHYTYPE"];
+            delete data["order"]["order-items"][0]["order-data"]["PARENT-OUID"];
         }
         //check :: SUBSCRIBER TYPE
         if ($scope.useNumberType == "BC" && $scope.customerType != 'N') {
