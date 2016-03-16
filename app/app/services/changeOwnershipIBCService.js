@@ -790,7 +790,7 @@
                 "response-data": {}
             };
 
-            if (param['customer-id'] == "5555555555") {
+            if (param['customer-id'] == "555555555") {
                 fnCallback({
                     status: true,
                     data: data1,
@@ -1092,21 +1092,21 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {}
             };
-            if (param['account-id'] == "6666666666") {
+            if (param['account-id'] == "666666666") {
                 fnCallback({
                     status: true,
                     data: data1,
                     error: "",
                     msgErr: ""
                 });
-            } else if (param['account-id'] == "7777777777") {
+            } else if (param['account-id'] == "777777777") {
                 fnCallback({
                     status: true,
                     data: data3,
                     error: "",
                     msgErr: ""
                 });
-            } else if (param['account-id'] == "8888888888") {
+            } else if (param['account-id'] == "888888888") {
                 fnCallback({
                     status: true,
                     data: data4,

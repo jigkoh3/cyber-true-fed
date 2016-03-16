@@ -2765,9 +2765,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 changeOption = "EXISTING";
             } else if ($scope.changOpenserviceBC == 'L' && $scope.isAccount_child == true) {
                 changeOption = "EXISTING-ACCOUNT";
-            } else if ($scope.changOpenserviceBC == 'S' && $scope.isAccount_root == true && $scope.isAccount_child == false) {
+            } else if ($scope.changOpenserviceBC == 'S' && $scope.isAccount_root == true) {
                 changeOption = "EXISTING";
-            } else if ($scope.changOpenserviceBC == 'S' && $scope.isAccount_root == true && $scope.isAccount_child == true) {
+            } else if ($scope.changOpenserviceBC == 'S' && $scope.isAccount_child == true) {
                 changeOption = "EXISTING-ACCOUNT";
             } else {
                 changeOption = "NEW";
