@@ -670,9 +670,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             if ($scope.getAccountCat() == 'I') {
                 $scope.cardTypeOptions = result;
             } else {
-                if(SystemService.demo == true){
+                if (SystemService.demo == true) {
                     $scope.cardTypeOptions = result2["response-data"]["configuration-items"];
-                }else{
+                } else {
                     $scope.cardTypeOptions = result;
                 }
             }
@@ -1802,11 +1802,11 @@ smartApp.controller('changeOwnershipIBCController', function(
                                     // }
 
 
-                                    if($scope.customerType!='N'){
+                                    if ($scope.customerType != 'N') {
                                         //ที่อยู่ BC
                                         $scope.setAddress(customer['address-list']['TAX_ADDRESS']);
                                         $scope.setAddressBC(customer['address-list']['BILLING_ADDRESS']);
-                                    }else{
+                                    } else {
                                         //ที่อยู่จัดส่งเอกสาร I
                                         $scope.setAddress(customer['address-list']['CUSTOMER_ADDRESS']);
                                     }
@@ -2901,7 +2901,12 @@ smartApp.controller('changeOwnershipIBCController', function(
         var changeOption = "xxx";
         var BILLING_ADDRESS = {};
         var TAX_ADDRESS = {};
-        $scope.titleOther = $("#prefixTH3 option:selected").text();
+        if ($("#prefixTH3").val() == "T5") {
+            $scope.titleOther = $("#title5 option:selected").val();
+        } else {
+            $scope.titleOther = $("#prefixTH3 option:selected").text();
+        }
+
         if ($scope.customerType != 'N') {
 
             $scope.titleOther = "";
@@ -2980,7 +2985,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.saveData.memo = $scope.saveData.memo ? $scope.saveData.memo : ""
         $scope.saveData.memo = $scope.getAuthen.logInName + "(" + $scope.getAuthen.saleCode + ": " + $scope.getAuthen.engName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo;
 
-        if($scope.customerType!='N' && $scope.useNumberType == 'BC'){
+        if ($scope.customerType != 'N' && $scope.useNumberType == 'BC') {
             $scope.newOwner2.firstNameTH = $scope.bcName2;
         }
 
@@ -3100,8 +3105,8 @@ smartApp.controller('changeOwnershipIBCController', function(
                             "ACCOUNT-BILL-CYCLE": "", //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
                             "CHANGE-OPTION": changeOption,
-                            "OU-HIERARCHYTYPE" : "xxxxxxxxxxxxxxxxxxxADD",
-                            "PARENT-OUID" : "xxxxxxxxxxxxxxxxxxxADD"
+                            "OU-HIERARCHYTYPE": "xxxxxxxxxxxxxxxxxxxADD",
+                            "PARENT-OUID": "xxxxxxxxxxxxxxxxxxxADD"
                         },
                         "primary-order-data": {
                             //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
@@ -3315,11 +3320,11 @@ smartApp.controller('changeOwnershipIBCController', function(
             delete data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"];
         }
         //check :: ROOT/CHILD/NORMAL
-        if($scope.isAccount_child == true){
+        if ($scope.isAccount_child == true) {
             data["order"]["order-items"][0]["order-data"]["OU-HIERARCHYTYPE"] = $scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"];
-            if($scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"] == "CHILD"){
+            if ($scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"] == "CHILD") {
                 data["order"]["order-items"][0]["order-data"]["PARENT-OUID"] = $scope.dataAccountPreverify["installed-products"][0]["parent-ouId"];
-            }else{
+            } else {
                 delete data["order"]["order-items"][0]["order-data"]["PARENT-OUID"];
             }
         } else {
@@ -3522,6 +3527,11 @@ smartApp.controller('changeOwnershipIBCController', function(
         });
         if (newTitle.length > 0) {
             newTitle = newTitle[0]['th-description'];
+            if ($("#prefixTH3").val() == "T5") {
+                newTitle = $("#title5 option:selected").val();
+            } else {
+                newTitle = $("#prefixTH3 option:selected").text();
+            }
         } else {
             newTitle = "";
         }
@@ -4161,7 +4171,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                 if ($scope.changCheckno == false) {
                     $scope.useNumberType = "BC";
                 }
-                
+
                 $('#titleOtherRegisterdBC').val('คุณ');
                 $('#birthDayRegisterdBC').val('');
                 $('#idBindDataAgain').click();
@@ -4372,7 +4382,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
         } else if (isNull($scope.newOwner.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
-        } else if ((isNull($scope.customer['tax-id']) || $scope.customer['tax-id'].length!=13) && $scope.customerType != 'N' && $scope.isVerify) {
+        } else if ((isNull($scope.customer['tax-id']) || $scope.customer['tax-id'].length != 13) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("taxNumber", ValidateMsgService.data.msgTaxNumberEmpty);
         } else if (isNull($scope.customer['branch-code']) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("branchCode", ValidateMsgService.data.msgBranchCodeEmpty);
