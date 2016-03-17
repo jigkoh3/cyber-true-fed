@@ -4372,7 +4372,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
         } else if (isNull($scope.newOwner.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
-        } else if (isNull($scope.customer['tax-id']) && $scope.customerType != 'N' && $scope.isVerify) {
+        } else if ((isNull($scope.customer['tax-id']) || $scope.customer['tax-id'].length!=13) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("taxNumber", ValidateMsgService.data.msgTaxNumberEmpty);
         } else if (isNull($scope.customer['branch-code']) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("branchCode", ValidateMsgService.data.msgBranchCodeEmpty);

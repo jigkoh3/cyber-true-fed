@@ -383,8 +383,8 @@
             "message": "",
             "message-code": "",
             "message-type": "WARNING",
-            "en-message": "Please specify Tax Number.",
-            "th-message": "กรุณาระบุ เลขที่ประจำตัวผู้เสียภาษี",
+            "en-message": "Please specify Tax Number. 13 digits.",
+            "th-message": "กรุณาระบุ เลขที่ประจำตัวผู้เสียภาษี 13 หลัก",
             "technical-message": "FROM WEBUI"
         },
         "msgAuth_1_id_numberEmpty": {

@@ -1293,11 +1293,11 @@
                                     errorText["technical-message"] += errorList[i]["technical-message"] + "<br /> ";
                                 }
                                 SystemService.showAlert({
-                                    "message": "...",
+                                    "message": "_",
                                     "message-code": "",
                                     "message-type": "WARNING",
-                                    "en-message": "...",
-                                    "th-message": "...",
+                                    "en-message": "_",
+                                    "th-message": "_",
                                     "technical-message": "..."
                                 });
                                 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ยังไม่ได้ทำให้ multi alert
@@ -1307,6 +1307,13 @@
                                     $('.ngdThMessage').html(errorText["th-message"]);
                                     $('.ngdTechnicalMessage').html(errorText["technical-message"]);
                                 }, 200);
+                                //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ยังไม่ได้ทำให้ multi alert
+                                setTimeout(function() {
+                                    $('.ngdMessage').html(errorText["message"]);
+                                    $('.ngdEnMessage').html(errorText["en-message"]);
+                                    $('.ngdThMessage').html(errorText["th-message"]);
+                                    $('.ngdTechnicalMessage').html(errorText["technical-message"]);
+                                }, 1200);
 
                             }, 1000);
 
