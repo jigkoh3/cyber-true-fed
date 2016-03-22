@@ -654,6 +654,17 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.subCompanyType = "";
 
         $scope.billPayment.preferedContace = "*";
+
+        $scope.billPayment.email = "";
+        $scope.billPayment.smss = "";
+        $scope.billPayment.accountLang = "TH";
+
+        $scope.contactNo = {
+            number: "",
+            continued: ""
+        };
+
+        $scope.customer['contact-mobile-number'] = "";
     };
     $scope.getAccountCat = function() {
         var accountCat = 'I';
@@ -1267,6 +1278,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
         } else {
             $scope.disableTaxID = false;
             $scope.customer['tax-id'] = "0000000000000";
+        }
+
+        if ($scope.customer['id-number'].length == 13 && $scope.customerType != 'N') {
+            $scope.customer['tax-id'] = $scope.customer['id-number'];
         }
     }
     $scope.onInputShopCode = function() {
@@ -2832,10 +2847,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.saveData.memo = $scope.saveData.memo ? $scope.saveData.memo : ""
         $scope.saveData.memo = $scope.getAuthen.logInName + "(" + $scope.getAuthen.saleCode + ": " + $scope.getAuthen.engName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo;
 
-        if($scope.customerType!='N' && $scope.useNumberType == 'BC'){
+        if ($scope.customerType != 'N' && $scope.useNumberType == 'BC') {
             $scope.newOwner2.firstNameTH = $scope.bcName2;
         }
-        
+
         var data = {
             "target": "aftersales/order/submit",
             "order": {
@@ -2952,8 +2967,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             "ACCOUNT-BILL-CYCLE": "", //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
 
                             "CHANGE-OPTION": changeOption,
-                            "OU-HIERARCHYTYPE" : "xxxxxxxxxxxxxxxxxxxADD",
-                            "PARENT-OUID" : "xxxxxxxxxxxxxxxxxxxADD",
+                            "OU-HIERARCHYTYPE": "xxxxxxxxxxxxxxxxxxxADD",
+                            "PARENT-OUID": "xxxxxxxxxxxxxxxxxxxADD",
+                            "PRICEPLAN-SERVICE-LEVEL": "xxxxxxxxxxxxxxxxxxxADD",
 
                             "PRICEPLAN-SOC-CODE": $scope.pricePlan2.priceplans.soc,
                             "CCBS-PROPOSITION-SOC-CODE": $scope.propositionSoc,
@@ -3184,11 +3200,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
             delete data["order"]["order-items"][0]["order-data"]["ACCOUNT-BILL-CYCLE"];
         }
         //check :: ROOT/CHILD/NORMAL
-        if($scope.isAccount_child == true){
+        if ($scope.isAccount_child == true) {
             data["order"]["order-items"][0]["order-data"]["OU-HIERARCHYTYPE"] = $scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"];
-            if($scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"] == "CHILD"){
+            if ($scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"] == "CHILD") {
                 data["order"]["order-items"][0]["order-data"]["PARENT-OUID"] = $scope.dataAccountPreverify["installed-products"][0]["parent-ouId"];
-            }else{
+            } else {
                 delete data["order"]["order-items"][0]["order-data"]["PARENT-OUID"];
             }
         } else {
@@ -3201,6 +3217,12 @@ smartApp.controller('MigratePreToPostIBCController', function(
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE"];
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-GENDER"];
             data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-LASTNAME"] = "";
+        }
+        //check :: SUB/OU
+        if ($scope.isAccount_child == true || $scope.customerType == 'N') {
+            delete data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"];
+        } else {
+            data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"] = $scope.promotionLevel == "OU" ? "OU" : "SUBSCRIBER";
         }
 
 
@@ -3560,7 +3582,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.customerType = "N";
     $scope.changCheckno = false;
     $scope.changOpenserviceN = false;
-    $scope.changOpenserviceBC = false;
+    $scope.changOpenserviceBC = "L";
     $scope.customerStatusN = "O";
     $scope.customerStatusBC = "O";
     $scope.slipType = "H";
