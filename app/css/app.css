@@ -14788,7 +14788,7 @@ textarea.remark-message {
     background: #c72230 !important; 
     border-color: #c72230 !important;
 }
-.btnOfferRed:hover,.btnAddOffer:hover{
+.btnOfferRed:hover,.btnOfferRed:focus,.btnAddOffer:hover,.btnAddOffer:focus{
     background-color: #971a24 !important;
 }
 .effectiveOffer{
