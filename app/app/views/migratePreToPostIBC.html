@@ -418,6 +418,182 @@
                         </div>
                     </div>
                 </div>
+                
+                <div ng-show="isVerify && (customerType=='B' || customerType=='C') && isLastestAdress==true" class="well" style="background-color:#ffffff;">
+                    <div class="row">
+                        <div class="form-group">
+                            <!-- <label class="col-md-3">
+
+                                <h4>โอนเปลียนเจ้าของไปที่ <span style="color:red;">*</span></h4>
+                            </label> -->
+                            <!-- นิติบุคคล -->
+                            <div ng-show="(customerType=='B' || customerType=='C')">
+                                <div class="col-md-3" style="padding-right: 0px; margin-right: -20px;">
+                                    <div class="checkbox checkbox-circle2 checkbox-inline authorize">
+                                        <input type="checkbox" class="styled" id="isNewCustomer" ng-click="promotionLevel='SUB'; clearAccount();changOpenserviceBC='L';" ng-model="isNewCustomer">
+                                        <label for="isNewCustomer"><b>สำหรับการผูกบิลเพิ่มเติม</b> </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-9" ng-show="isNewCustomer" style="padding: 0;">
+                                    <div class="col-md-4">
+                                        <label style="cursor:pointer;">
+                                            <input type="radio" ng-disabled="!isLastestAdress" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount();" checked="checked"> ใช้รอบบิลเดียวกับเบอร์ล่าสุด <br />(BAN ใหม่)
+                                            <br />ของผู้จดทะเบียนใหม่
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label style="cursor:pointer;">
+                                            <input type="radio" ng-disabled="!isLastestAdress" style="cursor:pointer;" name="customBC" value="S" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount(); customSelectBC='CUSTOMER'"> ระบุลูกค้า หรือ BAN ที่มีอยู่แล้ว
+                                            <br />ของผู้จดทะเบียนใหม่
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label style="cursor:pointer;">
+                                            <input type="radio" style="cursor:pointer;" name="customBC" value="N" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount()"> รอบบิลใหม่ (BAN ใหม่)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="isVerify && ((customerType=='B' || customerType=='C') && changOpenserviceBC != 'N') && isNewCustomer">
+                        <div class="row" style="margin-bottom: -25px;">
+                            <div class="form-group">
+                                <div class="table-responsive">
+                                    <table class="table" style="margin-bottom: 5px;">
+                                        <tr class="row" ng-show="changOpenserviceBC == 'L'">
+                                            <th class="col-xs-1">&nbsp;</th>
+                                            <th class="col-xs-1">&nbsp;</th>
+                                            <th class="col-xs-2"><span style="color:green;"> เลขที่ลูกค้า</span></th>
+                                            <th class="col-xs-5"><span style="color:green;"> ชื่อบริษัท</span></th>
+                                            <th class="col-xs-2"><span style="color:green;"> รอบบิล</span></th>
+                                            <th class="col-xs-1">&nbsp;</th>
+                                            <th class="col-xs-1">&nbsp;</th>
+                                        </tr>
+                                        <tr class="row" ng-show="changOpenserviceBC == 'L'">
+                                            <th class="col-xs-1" style="border: none; padding-top: 0;">&nbsp;</th>
+                                            <td class="col-xs-1" style="border: none; padding-top: 0;">
+                                                <input type="radio" ng-hide="true" ng-change="selectCompany('1')" value="1" name="rdoCompany" ng-model="selectedCompany" checked="checked" />
+                                            </td>
+                                            <td class="col-xs-2" style="border: none; padding-top: 0;">
+                                                <span ng-show="changOpenserviceBC == 'L'">
+                                                {{lastestCustomer['customer-id']}}
+                                                </span>
+                                            </td>
+                                            <td class="col-md-5" style="border: none; padding-top: 0;">
+                                                <div class="row">
+                                                    <div class="col-md-12" ng-show="changOpenserviceBC == 'L'">
+                                                        <span>
+                                                    {{lastestCustomer['firstname']}}
+                                                    </span>
+                                                    </div>
+                                                    <div ng-show="changOpenserviceBC == 'S' && isAccount_root" class="col-xs-1">
+                                                        <img src="images/icon/icon_active.png" alt="">
+                                                    </div>
+                                                    <div ng-show="changOpenserviceBC == 'S' && isAccount_root" class="col-xs-5">
+                                                        &nbsp; {{validateCustomerIDData['title']}}{{validateCustomerIDData['firstname']}}&nbsp;&nbsp;{{validateCustomerIDData['lastname']}}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="col-xs-2" style="border: none; padding-top: 0;" ng-show="changOpenserviceBC == 'L'">
+                                                <span>
+                                                    {{lastestCustomer['installed-products'][0]['bill-cycle']}} / {{lastestCustomer['installed-products'][0]['bill-cycle']-1}}
+                                                </span>
+                                            </td>
+                                            <td class="col-xs-2" style="border: none;" ng-show="isAccount_root">
+                                                <span>
+                                                    {{validateCustomerIDData['customer-properties']['BILL-CYCLE']}}
+                                                    /
+                                                    {{validateCustomerIDData['customer-properties']['BILL-CYCLE']-1}}
+                                                </span>
+                                            </td>
+                                            <th class="col-xs-1" style="border: none; padding-top: 0;">&nbsp;</th>
+                                        </tr>
+                                        <tr class="row" ng-show="changOpenserviceBC == 'X'">
+                                            <td class="col-xs-12">&nbsp;</td>
+                                            <td class="col-xs-1">&nbsp;</td>
+                                            <td class="col-xs-5" colspan="4">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <div ng-show="changOpenserviceBC == 'X' || isAccount_root" class="col-xs-1">
+                                                    <img src="images/icon/orangeLine.jpg" alt="">
+                                                </div>
+                                                <div ng-show="changOpenserviceBC == 'X' || isAccount_root" class="col-xs-3">
+                                                </div>
+                                                <span ng-span-number-only="accountID_child" class="hide" style="color:red;">กรุณากรอกเฉพาะตัวเลข</span>
+                                                <div ng-show="isAccount_child" class="col-xs-5" style="padding-left: 0px;">
+                                                    <img src="images/icon/icon_active.png" alt=""> &nbsp; {{dataAccountPreverify['installed-products'][0]['product-properties']['ACCOUNT-FIRSTNMAE']}} {{dataAccountPreverify['installed-products'][0]['product-properties']['ACCOUNT-LASTNAME']}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="row" ng-show="changOpenserviceBC == 'S'">
+                                            <td class="col-xs-1">&nbsp;</td>
+                                            <td class="col-xs-10">
+                                                <div class="row">
+                                                    <div class="col-xs-5">
+                                                        <label style="cursor:pointer;">
+                                                            <input type="radio" style="cursor:pointer;" name="customSelectBC" value="CUSTOMER" ng-model="customSelectBC" ng-change="clearCustomerSelectBC(); clearAccount();"> ระบุเลขที่ลูกค้า ที่ต้องการรอบบิลเดียวกัน
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-xs-3">
+                                                        <input ng-disabled="customSelectBC=='ACCOUNT'" id="accountID_root" ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" ng-change="onChangeAccountPreverify('ROOT'); onChangeCUSACC();" ng-blur="onEnterAccountPreverify('ROOT', accountID_root)" type="text" maxlength="9" style="height:30px; font-size: 12px;" placeholder="ระบุเลขที่ลูกค้า" class="form-control">
+                                                    </div>
+                                                    <div class="col-xs-3" ng-show="isAccount_root"><img src="images/icon/icon_active.png" alt=""></div>
+                                                </div>
+                                                <div class="row" style="padding-top: 10px;" ng-show="isAccount_root">
+                                                    <div class="col-xs-1"></div>
+                                                    <div class="col-xs-3"><b style="color:green;">เลขที่ลูกค้า</b></div>
+                                                    <div class="col-xs-6"><b style="color:green;">ชื่อบริษัท</b></div>
+                                                    <div class="col-xs-2"><b style="color:green;">รอบบิล</b></div>
+                                                </div>
+                                                <div class="row" style="padding-top: 10px;" ng-show="isAccount_root">
+                                                    <div class="col-xs-1"></div>
+                                                    <div class="col-xs-3">{{validateCustomerIDData['customer-id']}}</div>
+                                                    <div class="col-xs-6">{{validateCustomerIDData['firstname']}}</div>
+                                                    <div class="col-xs-2">
+                                                        {{validateCustomerIDData['customer-properties']['BILL-CYCLE']}} / {{validateCustomerIDData['customer-properties']['BILL-CYCLE']-1}}
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-top: 10px;">
+                                                    <div class="col-xs-5">
+                                                        <label style="cursor:pointer;">
+                                                            <input type="radio" style="cursor:pointer;" name="customSelectBC" value="ACCOUNT" ng-model="customSelectBC" ng-change="clearCustomerSelectBC(); clearAccount();"> ระบุ BAN ที่ต้องการ (รวมบิล)
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-xs-3">
+                                                        <input ng-disabled="customSelectBC=='CUSTOMER'" type="text" style="height:30px; font-size: 12px;" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('CHILD', accountID_child)); onKeyUpAccountPreverify('CHILD', accountID_child);" maxlength="9" ng-model="accountID_child" ng-change="onChangeAccountPreverify('CHILD'); onChangeCUSACC();" placeholder="ระบุเลขบัญชีลูกค้า" id="accountID_child" ng-blur="onEnterAccountPreverify('CHILD', accountID_child)" ng-number-only="accountID_child" class="form-control">
+                                                    </div>
+                                                    <div class="col-xs-3" ng-show="isAccount_child"><img src="images/icon/icon_active.png" alt=""></div>
+                                                </div>
+                                                <div class="row" style="padding-top: 10px;" ng-show="isAccount_child">
+                                                    <div class="col-xs-1"></div>
+                                                    <div class="col-xs-3"><b style="color:green;">เลขที่ลูกค้า</b></div>
+                                                    <div class="col-xs-6"><b style="color:green;">ชื่อบริษัท</b></div>
+                                                    <div class="col-xs-2"><b style="color:green;">รอบบิล</b></div>
+                                                </div>
+                                                <div class="row" style="padding-top: 10px;" ng-show="isAccount_child">
+                                                    <div class="col-xs-1"></div>
+                                                    <div class="col-xs-3">{{dataAccountPreverify['customer-id']}}</div>
+                                                    <div class="col-xs-6">{{dataAccountPreverify['firstname']}}</div>
+                                                    <div class="col-xs-2">
+                                                        {{dataAccountPreverify['customer-properties']['BILL-CYCLE']}} / {{dataAccountPreverify['customer-properties']['BILL-CYCLE']-1}}
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-top: 10px;" ng-show="isAccount_child">
+                                                    <div class="col-xs-1"></div>
+                                                    <div class="col-xs-5" style="">
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <img src="images/icon/orangeLine.jpg" alt=""> {{dataAccountPreverify['installed-products'][0]['ban']}} - {{dataAccountPreverify['installed-products'][0]['product-properties']['ACCOUNT-FIRSTNMAE']}}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h4>ข้อมูลหมายเลข</h4>
                 <div class="well">
                     <div class="row">
@@ -509,12 +685,32 @@
                             </div>
                         </div>
                     </div>-->
+
                     <!--Include-->
                     <style type="text/css">
                     .priceplaneText {
                         text-align: right !important;
                     }
                     </style>
+
+                    <!-- CR02 -->
+                    <div ng-show="isVerify && (customerType=='B' || customerType=='C')" style="padding-bottom: 10px;">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label priceplaneText">ระดับของโปรโมชั่น <span style="color:red;">*</span></label>
+                            <div class="col-md-4">
+                                <label style="cursor:pointer;">
+                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="SUB" ng-model="promotionLevel"> ระดับหมายเลข
+                                </label>
+                            </div>
+                            <div class="col-md-5">
+                                <label style="cursor:pointer;">
+                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="changOpenserviceBC=='L' || changOpenserviceBC=='S'"> ระดับบัญชีลูกค้า (OU Level)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
                     <div ng-show="isVerify">
                         <div class="form-group">
                             <label class="col-md-3 control-label priceplaneText">โปรโมชั่น <span style="color:red;">*</span></label>
@@ -894,180 +1090,7 @@
                         </div>
                     </div>
                 </div>
-                <div ng-show="isVerify && (customerType=='B' || customerType=='C') && isLastestAdress==true" class="well" style="background-color:#ffffff;">
-                    <div class="row">
-                        <div class="form-group">
-                            <!-- <label class="col-md-3">
-
-                                <h4>โอนเปลียนเจ้าของไปที่ <span style="color:red;">*</span></h4>
-                            </label> -->
-                            <!-- นิติบุคคล -->
-                            <div ng-show="(customerType=='B' || customerType=='C')">
-                                <div class="col-md-3" style="padding-right: 0px; margin-right: -20px;">
-                                    <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                        <input type="checkbox" class="styled" id="isNewCustomer" ng-click="promotionLevel='SUB'; clearAccount();changOpenserviceBC='L';" ng-model="isNewCustomer">
-                                        <label for="isNewCustomer"><b>สำหรับการผูกบิลเพิ่มเติม</b> </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-9" ng-show="isNewCustomer" style="padding: 0;">
-                                    <div class="col-md-4">
-                                        <label style="cursor:pointer;">
-                                            <input type="radio" ng-disabled="!isLastestAdress" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount();" checked="checked"> ใช้รอบบิลเดียวกับเบอร์ล่าสุด <br />(BAN ใหม่)
-                                            <br />ของผู้จดทะเบียนใหม่
-                                        </label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label style="cursor:pointer;">
-                                            <input type="radio" ng-disabled="!isLastestAdress" style="cursor:pointer;" name="customBC" value="S" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount(); customSelectBC='CUSTOMER'"> ระบุลูกค้า หรือ BAN ที่มีอยู่แล้ว
-                                            <br />ของผู้จดทะเบียนใหม่
-                                        </label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="customBC" value="N" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount()"> รอบบิลใหม่ (BAN ใหม่)
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-show="isVerify && ((customerType=='B' || customerType=='C') && changOpenserviceBC != 'N') && isNewCustomer">
-                        <div class="row" style="margin-bottom: -25px;">
-                            <div class="form-group">
-                                <div class="table-responsive">
-                                    <table class="table" style="margin-bottom: 5px;">
-                                        <tr class="row" ng-show="changOpenserviceBC == 'L'">
-                                            <th class="col-xs-1">&nbsp;</th>
-                                            <th class="col-xs-1">&nbsp;</th>
-                                            <th class="col-xs-2"><span style="color:green;"> เลขที่ลูกค้า</span></th>
-                                            <th class="col-xs-5"><span style="color:green;"> ชื่อบริษัท</span></th>
-                                            <th class="col-xs-2"><span style="color:green;"> รอบบิล</span></th>
-                                            <th class="col-xs-1">&nbsp;</th>
-                                            <th class="col-xs-1">&nbsp;</th>
-                                        </tr>
-                                        <tr class="row" ng-show="changOpenserviceBC == 'L'">
-                                            <th class="col-xs-1" style="border: none; padding-top: 0;">&nbsp;</th>
-                                            <td class="col-xs-1" style="border: none; padding-top: 0;">
-                                                <input type="radio" ng-hide="true" ng-change="selectCompany('1')" value="1" name="rdoCompany" ng-model="selectedCompany" checked="checked" />
-                                            </td>
-                                            <td class="col-xs-2" style="border: none; padding-top: 0;">
-                                                <span ng-show="changOpenserviceBC == 'L'">
-                                                {{lastestCustomer['customer-id']}}
-                                                </span>
-                                            </td>
-                                            <td class="col-md-5" style="border: none; padding-top: 0;">
-                                                <div class="row">
-                                                    <div class="col-md-12" ng-show="changOpenserviceBC == 'L'">
-                                                        <span>
-                                                    {{lastestCustomer['firstname']}}
-                                                    </span>
-                                                    </div>
-                                                    <div ng-show="changOpenserviceBC == 'S' && isAccount_root" class="col-xs-1">
-                                                        <img src="images/icon/icon_active.png" alt="">
-                                                    </div>
-                                                    <div ng-show="changOpenserviceBC == 'S' && isAccount_root" class="col-xs-5">
-                                                        &nbsp; {{validateCustomerIDData['title']}}{{validateCustomerIDData['firstname']}}&nbsp;&nbsp;{{validateCustomerIDData['lastname']}}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="col-xs-2" style="border: none; padding-top: 0;" ng-show="changOpenserviceBC == 'L'">
-                                                <span>
-                                                    {{lastestCustomer['installed-products'][0]['bill-cycle']}} / {{lastestCustomer['installed-products'][0]['bill-cycle']-1}}
-                                                </span>
-                                            </td>
-                                            <td class="col-xs-2" style="border: none;" ng-show="isAccount_root">
-                                                <span>
-                                                    {{validateCustomerIDData['customer-properties']['BILL-CYCLE']}}
-                                                    /
-                                                    {{validateCustomerIDData['customer-properties']['BILL-CYCLE']-1}}
-                                                </span>
-                                            </td>
-                                            <th class="col-xs-1" style="border: none; padding-top: 0;">&nbsp;</th>
-                                        </tr>
-                                        <tr class="row" ng-show="changOpenserviceBC == 'X'">
-                                            <td class="col-xs-12">&nbsp;</td>
-                                            <td class="col-xs-1">&nbsp;</td>
-                                            <td class="col-xs-5" colspan="4">
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <div ng-show="changOpenserviceBC == 'X' || isAccount_root" class="col-xs-1">
-                                                    <img src="images/icon/orangeLine.jpg" alt="">
-                                                </div>
-                                                <div ng-show="changOpenserviceBC == 'X' || isAccount_root" class="col-xs-3">
-                                                </div>
-                                                <span ng-span-number-only="accountID_child" class="hide" style="color:red;">กรุณากรอกเฉพาะตัวเลข</span>
-                                                <div ng-show="isAccount_child" class="col-xs-5" style="padding-left: 0px;">
-                                                    <img src="images/icon/icon_active.png" alt=""> &nbsp; {{dataAccountPreverify['installed-products'][0]['product-properties']['ACCOUNT-FIRSTNMAE']}} {{dataAccountPreverify['installed-products'][0]['product-properties']['ACCOUNT-LASTNAME']}}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="row" ng-show="changOpenserviceBC == 'S'">
-                                            <td class="col-xs-1">&nbsp;</td>
-                                            <td class="col-xs-10">
-                                                <div class="row">
-                                                    <div class="col-xs-5">
-                                                        <label style="cursor:pointer;">
-                                                            <input type="radio" style="cursor:pointer;" name="customSelectBC" value="CUSTOMER" ng-model="customSelectBC" ng-change="clearCustomerSelectBC(); clearAccount();"> ระบุเลขที่ลูกค้า ที่ต้องการรอบบิลเดียวกัน
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-xs-3">
-                                                        <input ng-disabled="customSelectBC=='ACCOUNT'" id="accountID_root" ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" ng-change="onChangeAccountPreverify('ROOT'); onChangeCUSACC();" ng-blur="onEnterAccountPreverify('ROOT', accountID_root)" type="text" maxlength="9" style="height:30px; font-size: 12px;" placeholder="ระบุเลขที่ลูกค้า" class="form-control">
-                                                    </div>
-                                                    <div class="col-xs-3" ng-show="isAccount_root"><img src="images/icon/icon_active.png" alt=""></div>
-                                                </div>
-                                                <div class="row" style="padding-top: 10px;" ng-show="isAccount_root">
-                                                    <div class="col-xs-1"></div>
-                                                    <div class="col-xs-3"><b style="color:green;">เลขที่ลูกค้า</b></div>
-                                                    <div class="col-xs-6"><b style="color:green;">ชื่อบริษัท</b></div>
-                                                    <div class="col-xs-2"><b style="color:green;">รอบบิล</b></div>
-                                                </div>
-                                                <div class="row" style="padding-top: 10px;" ng-show="isAccount_root">
-                                                    <div class="col-xs-1"></div>
-                                                    <div class="col-xs-3">{{validateCustomerIDData['customer-id']}}</div>
-                                                    <div class="col-xs-6">{{validateCustomerIDData['firstname']}}</div>
-                                                    <div class="col-xs-2">
-                                                        {{validateCustomerIDData['customer-properties']['BILL-CYCLE']}} / {{validateCustomerIDData['customer-properties']['BILL-CYCLE']-1}}
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="padding-top: 10px;">
-                                                    <div class="col-xs-5">
-                                                        <label style="cursor:pointer;">
-                                                            <input type="radio" style="cursor:pointer;" name="customSelectBC" value="ACCOUNT" ng-model="customSelectBC" ng-change="clearCustomerSelectBC(); clearAccount();"> ระบุ BAN ที่ต้องการ (รวมบิล)
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-xs-3">
-                                                        <input ng-disabled="customSelectBC=='CUSTOMER'" type="text" style="height:30px; font-size: 12px;" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('CHILD', accountID_child)); onKeyUpAccountPreverify('CHILD', accountID_child);" maxlength="9" ng-model="accountID_child" ng-change="onChangeAccountPreverify('CHILD'); onChangeCUSACC();" placeholder="ระบุเลขบัญชีลูกค้า" id="accountID_child" ng-blur="onEnterAccountPreverify('CHILD', accountID_child)" ng-number-only="accountID_child" class="form-control">
-                                                    </div>
-                                                    <div class="col-xs-3" ng-show="isAccount_child"><img src="images/icon/icon_active.png" alt=""></div>
-                                                </div>
-                                                <div class="row" style="padding-top: 10px;" ng-show="isAccount_child">
-                                                    <div class="col-xs-1"></div>
-                                                    <div class="col-xs-3"><b style="color:green;">เลขที่ลูกค้า</b></div>
-                                                    <div class="col-xs-6"><b style="color:green;">ชื่อบริษัท</b></div>
-                                                    <div class="col-xs-2"><b style="color:green;">รอบบิล</b></div>
-                                                </div>
-                                                <div class="row" style="padding-top: 10px;" ng-show="isAccount_child">
-                                                    <div class="col-xs-1"></div>
-                                                    <div class="col-xs-3">{{dataAccountPreverify['customer-id']}}</div>
-                                                    <div class="col-xs-6">{{dataAccountPreverify['firstname']}}</div>
-                                                    <div class="col-xs-2">
-                                                        {{dataAccountPreverify['customer-properties']['BILL-CYCLE']}} / {{dataAccountPreverify['customer-properties']['BILL-CYCLE']-1}}
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="padding-top: 10px;" ng-show="isAccount_child">
-                                                    <div class="col-xs-1"></div>
-                                                    <div class="col-xs-5" style="">
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <img src="images/icon/orangeLine.jpg" alt=""> {{dataAccountPreverify['installed-products'][0]['ban']}} - {{dataAccountPreverify['installed-products'][0]['product-properties']['ACCOUNT-FIRSTNMAE']}}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <h4></h4>
                 <div ng-show="isVerify && customerType=='N'" class="row">
                     <div class="col-md-4">
@@ -1396,7 +1419,7 @@
                                 </span>-->
                             </div>
                         </div>
-                        <div class="form-group" ng-hide="blah=='S'||blah=='P'" ng-form="email">
+                        <div class="form-group" ng-hide="blah=='S'||blah=='P'||blah=='PS'" ng-form="email">
                             <label class="col-md-5 control-label">E-mail <span style="color:red;">*</span></label>
                             <div class="col-md-3">
                                 <input type="text" id="idBillPaymentEmail" name="emails" ng-model="billPayment.email" ng-blur="onCheckEmail()" class="form-control" required>
@@ -1405,7 +1428,7 @@
                                 </span>-->
                             </div>
                         </div>
-                        <div class="form-group" ng-hide="blah=='E'||blah=='P'" ng-form="ngsmss">
+                        <div class="form-group" ng-hide="blah=='E'||blah=='P'||blah=='PS'" ng-form="ngsmss">
                             <label class="col-md-5 control-label">SMS <span style="color:red;">*</span></label>
                             <div class="col-md-3">
                                 <input type="text" ng-number-only="smss" ng-disabled="true" class="form-control telephoneZero" id="txtBillPaymentSmss" ng-model="billPayment.smss" ng-keyup="onInputTelZeroSms($event.keyCode); onInputTelSms($event.keyCode); onChkNumber();" ng-blur="onBlurTelSms()" maxlength="10" required/>

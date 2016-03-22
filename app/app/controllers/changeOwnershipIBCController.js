@@ -3106,7 +3106,8 @@ smartApp.controller('changeOwnershipIBCController', function(
 
                             "CHANGE-OPTION": changeOption,
                             "OU-HIERARCHYTYPE": "xxxxxxxxxxxxxxxxxxxADD",
-                            "PARENT-OUID": "xxxxxxxxxxxxxxxxxxxADD"
+                            "PARENT-OUID": "xxxxxxxxxxxxxxxxxxxADD",
+                            "PRICEPLAN-SERVICE-LEVEL": "xxxxxxxxxxxxxxxxxxxADD"
                         },
                         "primary-order-data": {
                             //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
@@ -3337,6 +3338,12 @@ smartApp.controller('changeOwnershipIBCController', function(
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE"];
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-GENDER"];
             data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-LASTNAME"] = "";
+        }
+        //check :: SUB/OU
+        if ($scope.isAccount_child == true || $scope.customerType == 'N') {
+            delete data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"];
+        } else {
+            data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"] = $scope.promotionLevel == "OU" ? "OU" : "SUBSCRIBER";
         }
 
 
