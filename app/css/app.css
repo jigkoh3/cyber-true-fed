@@ -7430,7 +7430,7 @@ button.close {
 }
 
 .modalOffer-header {
-    padding: 15px;
+    padding: 10px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
@@ -7452,6 +7452,12 @@ button.close {
 
 .modal-footer {
     padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+
+.modalOffer-footer {
+    padding: 12px;
     text-align: right;
     border-top: 1px solid #e5e5e5;
 }
@@ -8360,8 +8366,17 @@ button.close {
     vertical-align: middle;
 }
 
+.fa-plus {
+    font-size: 2.0em;
+    vertical-align: middle;
+}
+
 .fa-1x {
     font-size: 1.7em;
+}
+
+.editIcon-1x {
+    font-size: 1.2em;
 }
 
 .fa-2x {
@@ -14739,4 +14754,67 @@ textarea.remark-message {
     .divInputSubno {
         width: 100%;
     }
+}
+
+.headColor {
+    vertical-align: middle; 
+    background: #c72230; 
+    color: #ffffff;
+
+}
+
+.contentTb{
+    text-align:left;
+    vertical-align: middle !important;
+}
+.contentTbCenter{
+    text-align:center;
+    vertical-align: middle !important;
+}
+.contentTbHeader{
+    text-align:center;
+    vertical-align: middle !important;
+    color:#c72230; 
+    background:#D1D0CE;
+    font-size: 1.25em !important;
+}
+.btnOfferRed{
+    border-radius:20px !important; 
+    width:195px !important; 
+    background: #c72230 !important;
+    border-color: #c72230 !important;
+}
+.btnAddOffer{
+    background: #c72230 !important; 
+    border-color: #c72230 !important;
+}
+.btnOfferRed:hover,.btnAddOffer:hover{
+    background-color: #971a24 !important;
+}
+.effectiveOffer{
+
+}
+.effectiveOffer.active{
+    background-color: #c72230 !important;
+}
+
+.btnPrintOffer{
+    background: #fff !important; 
+    border-color: #c72230 !important;
+    color: #333 !important;
+    font-weight: bold;
+}
+
+.btnPrintOffer:hover{
+    background: #c72230 !important; 
+    border-color: #c72230 !important;
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.btnPrintOffer:focus{
+    background: #971a24 !important; 
+    border-color: #c72230 !important;
+    color: #cfa8aa !important;
+    font-weight: bold;
 }

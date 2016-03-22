@@ -167,6 +167,9 @@ smartApp.config(function($routeProvider, $httpProvider) {
     }).when('/addDeleteEditOffer', {
         templateUrl: 'app/views/addDeleteEditOffer.html?v=' + runTime,
         controller: 'AddDeleteEditOfferController'
+    }).when('/addDeleteEditOfferNew', {
+        templateUrl: 'app/views/addDeleteEditOfferNew.html?v=' + runTime,
+        controller: 'AddDeleteEditOfferNewController'
     });
 
     // $routeProvider.otherwise({
