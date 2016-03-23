@@ -43,8 +43,11 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
     $scope.statusReason = '';
     $scope.statusReasonMemo = '';
     $scope.readOnlyOffer = true;
-    $scope.enableAddOffer = false
-    $scope.disableAddBtn = false
+    $scope.enableAddOffer = false;
+    $scope.disableAddBtn = false;
+    $scope.disableAddOffer = false;
+    $scope.disableAddCp = false;
+    $scope.disableAddDiscount = false;
     var orderData = {};
     $scope.editOffers = [];
     //Reasons
@@ -104,9 +107,11 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
     $scope.releteOfferList = [];
     $scope.regulaOfferList = [];
     $scope.popUpOfferList = [];
-    $scope.cpOfferList = [];
     var popUpOfferList = [];
+    $scope.cpOfferList = [];
     var cpOfferList = [];
+    $scope.disOfferList = [];
+    var disOfferList = [];
     $scope.showDetail = {};
 
     $scope.onload = function() {
@@ -228,7 +233,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "sale-exp": "31/01/2017"
         }, {
             "offer-name": "MNP006",
-            "offer-description": "Diacount 50% on RC 12mth",
+            "offer-description": "Test Discpunt 001",
             "offer-level": "C",
             "type": "Discount",
             "sale-eff": "13/11/2014",
@@ -312,28 +317,56 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "sale-exp": "17/11/2016"
         }, {
             "offer-name": "RMV000000001225",
-            "offer-description": "Samsung TradeIN_3,000_Jmart",
+            "offer-description": "Test Discpunt 002",
             "offer-level": "C",
             "type": "Discount",
             "sale-eff": "16/07/2015",
             "sale-exp": "31/07/2020"
         }, {
             "offer-name": "RMVC00000000091",
-            "offer-description": "GOV_Caesar_Plus_4_SIM_only_Hea",
+            "offer-description": "Test Discpunt 003",
             "offer-level": "G",
             "type": "Discount",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
             "offer-name": "RMVB00000000266",
-            "offer-description": "Dongle Bundling For Business Solution_12mths_Panalty",
+            "offer-description": "Test Discpunt 004",
+            "offer-level": "C",
+            "type": "Discount",
+            "sale-eff": "28/07/2015",
+            "sale-exp": "31/12/2016"
+        }, {
+            "offer-name": "RMVB00000000267",
+            "offer-description": "Test Discpunt 005",
+            "offer-level": "C",
+            "type": "Discount",
+            "sale-eff": "28/07/2015",
+            "sale-exp": "31/12/2016"
+        }, {
+            "offer-name": "RMVB00000000268",
+            "offer-description": "Test Discpunt 006",
+            "offer-level": "C",
+            "type": "Discount",
+            "sale-eff": "28/07/2015",
+            "sale-exp": "31/12/2016"
+        }, {
+            "offer-name": "RMVB00000000269",
+            "offer-description": "Test Discpunt 007",
+            "offer-level": "C",
+            "type": "Discount",
+            "sale-eff": "28/07/2015",
+            "sale-exp": "31/12/2016"
+        }, {
+            "offer-name": "RMVB00000000210",
+            "offer-description": "Test Discpunt 008",
             "offer-level": "C",
             "type": "Discount",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
             "offer-name": "RMV000000000400",
-            "offer-description": "Biz_True Smart 4.0_12mths_Penalty 1,500",
+            "offer-description": "Test Discpunt 009",
             "offer-level": "G",
             "type": "Discount",
             "sale-eff": "10/01/2014",
@@ -412,6 +445,12 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         });
         $scope.cpOfferList = $filter('filter')(popUpOfferList, {
             'type': 'Contract & Proposition'
+        });
+        $scope.disOfferList = $filter('filter')(popUpOfferList, {
+            'type': 'Discount'
+        });
+        disOfferList = $filter('filter')(popUpOfferList, {
+            'type': 'Discount'
         });
     };
     $scope.getOfferList = function() {
@@ -661,9 +700,24 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             $scope.cpOfferList = $filter('filter')(cpOfferList, txtSearch);
         }
     }
+    $scope.smartSearchDisOffer = function(txtSearch) {
+        $scope.radioCpOffer = "";
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = disOfferList;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.disOfferList = arr;
+        } else {
+            $scope.disOfferList = $filter('filter')(disOfferList, txtSearch);
+        }
+    }
     $scope.onChangeRadioOffer = function(item) {
         $scope.radioOffer = $('input[name=radioOffer]:checked').val();
         $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+        $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
         console.log($scope.radioOffer);
         $('.modal-backdrop').css('height', '200%');
         $scope.addRegulaOffer = {
@@ -815,7 +869,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             if (onGetSIMData) {
                 $scope.getOfferList();
                 $scope.getReleteOfferList();
-                $scope.getRegulaOfferList();
+                // $scope.getRegulaOfferList();
                 $scope.getPopUpOfferList();
             }
         }

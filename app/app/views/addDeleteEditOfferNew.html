@@ -6,7 +6,7 @@
         <div class="col-md-11">
             <div ng-include="template.header"></div>
             <div class="clearfix"></div>
-            <h1 class="content-title">สมัคร/ยกเลิก/แก้ไข บริการ : {{(Level == 'OU') ? 'ระดับแอคเคาท์ (OU LEVEL)' : 'ระดับเลขหมาย'}}</h1>
+            <h1 class="content-title" style="color: #c72230;">สมัคร/ยกเลิก/แก้ไข บริการ : {{(Level == 'OU') ? 'ระดับแอคเคาท์ (OU LEVEL)' : 'ระดับเลขหมาย'}}</h1>
             <div class="content-body">
                 <div ng-include="template.customerprofile" scope="" onload=""></div>
                 <div ng-include="template.currentpriceplan" scope="" onload=""></div>
@@ -51,7 +51,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Related Offer'}">
                                 <td class="col-xs-2 contentTb">
-                                    {{item['offer-name']}}
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; font-weight: bold; font-size: 12px;" type="button">{{item['offer-name']}}</button>
                                 </td>
                                 <td class="col-xs-4 contentTb">
                                     {{item['offer-description']}}
@@ -87,7 +87,7 @@
                     <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                         <tr ng-repeat="item in offerList | filter:{'offer-group': 'Regular Offer'}">
                             <td class="col-xs-2 contentTb">
-                                {{item['offer-name']}}
+                                <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; font-weight: bold; font-size: 12px;" type="button">{{item['offer-name']}}</button>
                             </td>
                             <td class="col-xs-4 contentTb">
                                 {{item['offer-description']}}
@@ -122,7 +122,7 @@
                     <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                         <tr ng-repeat="item in offerList | filter:{'offer-group': 'Contract & Prop'}">
                             <td class="col-xs-2 contentTb">
-                                {{item['offer-name']}}
+                                <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; font-weight: bold; font-size: 12px;" type="button">{{item['offer-name']}}</button>
                             </td>
                             <td class="col-xs-4 contentTb">
                                 {{item['offer-description']}}
@@ -157,7 +157,7 @@
                     <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                         <tr ng-repeat="item in offerList | filter:{'offer-group': 'Discount'}">
                             <td class="col-xs-2 contentTb">
-                                {{item['offer-name']}}
+                                <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none;font-weight: bold; font-size: 12px;" type="button">{{item['offer-name']}}</button>
                             </td>
                             <td class="col-xs-4 contentTb">
                                 {{item['offer-description']}}
@@ -239,21 +239,21 @@
                     <br>
                     <br>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
+                        <button ng-disabled="!isCustomerProfile || disableAddOffer" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
                                     </i>
                             <div style="padding-top: 3px; padding-right: 20px">เพิ่มบริการ Offer</div>
                         </button>
                     </div>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile" href="#modalAddContractProp" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
+                        <button ng-disabled="!isCustomerProfile || disableAddCp" href="#modalAddContractProp" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
                                     </i>
                             <div style="padding-top: 3px; padding-right: 10px">เพิ่ม Contract & Prop</div>
                         </button>
                     </div>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
+                        <button ng-disabled="!isCustomerProfile || disableAddDiscount" href="#modalAddDiscount" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
                                     </i>
                             <div style="padding-top: 3px; padding-right: 20px"> เพิ่ม Discount</div>
@@ -1235,6 +1235,55 @@
                     </div>
                     &nbsp;
                 </div>
+                <div ng-show="showDetail['type']=='Discount'">
+                    <div class="form-group">
+                        <div class="form-group row">
+                            <div class="col-xs-2">
+                            </div>
+                            <div class="col-xs-2" style=" text-align: left; top: 5px;">
+                                <label>Effective Date</label><span style="color:red;">*</span>
+                            </div>
+                            <div class="col-xs-7">
+                                <div data-toggle="buttons" id="divEffer" class="btn-group btn-group-justified effectiveOffer">
+                                    <label ng-disabled="!isCustomerProfile" id="efferNow" class="btn btn-default effectiveOffer active" onclick="$('.date-picker-start').val('');" ng-click="onEffectiveDate('IMMEDIATE')">
+                                        <input type="radio" name="date" autocomplete="off" class="radio_ck" checked> ทันที
+                                    </label>
+                                    <label ng-disabled="!isCustomerProfile" id="efferManual" class="btn btn-default form-group has-feedback effectiveOffer" ng-click="onEffectiveDate('FUTURE')">
+                                        <div class="form-group has-feedback">
+                                            <div class="col-xs-3">
+                                                <span class="col-xs-2" style="float: right; top: 14px; margin-top:-8px;">ระบุวันที่ </span>
+                                                <input type="radio" name="date" autocomplete="off" class="enable_tb col-xs-8" value="specify">
+                                            </div>
+                                            <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;">
+                                                <div class="form-group has-feedback imp" style="top:5px;">
+                                                    <input type="text" ng-model="editEffectiveOffer['manualBillDate']" id="txtDateManual" class="form-control dateManual date-picker-start dateFormat" style="height:30px;width:130%;" maxlength="10">
+                                                    <span class="form-control-feedback is-bound" style="right: -30%;"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-2">
+                            </div>
+                            <div class="col-xs-2" style=" text-align: left; top: 5px;">
+                                <label>Expire Date</label><span style="color:red;">*</span>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group has-feedback">
+                                    <input name="birthDay" type="text" ng-model="editDisExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modalOffer-footer" style="">
                 <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
@@ -1244,6 +1293,461 @@
     </div>
 </div>
 <!-- End modal-edit-offerDetail -->
+<!-- Start modal view offer  -->
+<div id="modal-view-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modalOffer-header" style="background: #c72230">
+                <div style="font-size: 1.5em; color:white">รายละเอียด Parameter</div>
+            </div>
+            <div class="modal-body">
+                <br>
+                <br>
+                <div ng-show="showDetail['type']=='Additional Offer'">
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                                <label>Parameter Name1</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input ng-disabled="true" type="text" id="adOffer.paramName1" ng-model="adViewOffer.paramName1" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                                <label>Parameter Name2</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input ng-disabled="true" type="text" id="adOffer.paramName2" ng-model="adViewOffer.paramName2" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div> &nbsp;
+                    <p></p>
+                </div>
+                <div ng-show="showDetail['type']=='F&F'">
+                    <div class="form-group row">
+                        <div class="col-md-3" style="text-align: right;top: 5px;">
+                            F&F
+                        </div>
+                        <div class="col-md-3" ng-show="ffData.max >= 1">
+                            <input ng-disabled="true" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF1" ng-model="detailViewOffer.ff1" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                        </div>
+                        <div class="col-md-3" ng-show="ffData.max >= 2">
+                            <input ng-disabled="true" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF2" ng-model="detailViewOffer.ff2" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-show="ffData.max >= 3">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-3" ng-show="ffData.max >= 3">
+                            <input ng-disabled="true" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF3" ng-model="detailViewOffer.ff3" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                        </div>
+                        <div class="col-md-3" ng-show="ffData.max >= 4">
+                            <input ng-disabled="true" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF4" ng-model="detailViewOffer.ff4" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-show="ffData.max >= 5">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-3" ng-show="ffData.max >= 5">
+                            <input ng-disabled="true" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF5" ng-model="detailViewOffer.ff5" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                        </div>
+                        <div class="col-md-3" ng-show="ffData.max >= 6">
+                            <input ng-disabled="true" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF6" ng-model="detailViewOffer.ff6" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-show="ffData.max >= 7">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-3" ng-show="ffData.max >= 7">
+                            <input ng-disabled="true" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF7" ng-model="detailViewOffer.ff7" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                        </div>
+                        <div class="col-md-3" ng-show="ffData.max >= 8">
+                            <input ng-disabled="true" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF8" ng-model="detailViewOffer.ff8" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-show="ffData.max >= 9">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-3" ng-show="ffData.max >= 9">
+                            <input ng-disabled="true" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF9" ng-model="detailViewOffer.ff9" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                        </div>
+                        <div class="col-md-3" ng-show="ffData.max >= 10">
+                            <input ng-disabled="true" type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtdetailOfferFF10" ng-model="detailViewOffer.ff10" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-3">
+                            <span ng-span-number-only="ifff" class="hide" style="color:red;">
+                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                    </span>
+                            <span ng-show="isNumberTelLengthFF" style="color:red;">
+                                        กรุณากรอกหมายเลข9-10ตัว
+                                    </span>
+                            <span ng-show="isNumberTelZeroFF" style="color:red;">
+                                        กรุณากรอก 0 เป็นตัวแรก
+                                    </span>
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="showDetail['type']=='CUG'">
+                    <div calss="form-group row">
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-3" style=" text-align: left; top: 5px;">
+                            <label>CUG Group : CUG Name</label>
+                        </div>
+                        <div class="col-xs-5">
+                            <input ng-disabled="true" type="text" ng-model="detailViewOfferCUG.name" class="form-control">
+                        </div>
+                        <div class="col-xs-2"></div>
+                    </div> &nbsp;
+                    <p></p>
+                    <br>
+                    <br>
+                </div>
+                <div ng-show="showDetail['type']=='Pooling'">
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Volume cap max</label>
+                                    <div class="col-md-6" style="width:auto">
+                                        <select ng-disabled="true" class="form-control" id="selectVolume" ng-init="saveParamData.Volume=parameter.Volume" ng-model="parameter.ViewVolume" ng-change="saveParamData.Volume=parameter.Volume">
+                                            <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                            <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                            <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
+                                            <option value="0">Not Allow</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input ng-disabled="true" type="text" id="txtVolume" ng-show="parameter.Volume>=1 || parameter.Volume == ''" ng-model="saveParamData.ViewVolume" ng-numeric="isNumberVolume" placeholder="" maxlength="10" class="form-control" style="width:110px;">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3 hidden-sm">
+                                    </div>
+                                    <div class="col-md-5 hidden-sm">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span ng-span-numeric="isNumberVolume" class="hide" style="color:red;">
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Volume cap max UOM</label>
+                                    <div class="col-md-3">
+                                        <select ng-disabled="true" class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['volumeCapMaxUOMCombo']" ng-model="capMaxViewParameterList['volume-capmax-uom']" ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2' || parameter.Volume=='-1'"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            &nbsp;
+                            <div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Monetary cap max</label>
+                                    <div class="col-md-6" style="width:auto">
+                                        <select ng-disabled="true" class="form-control" id="selectMonetary" ng-init="saveParamData.Monetary=parameter.Monetary" ng-model="parameter.ViewMonetary" ng-change="saveParamData.Monetary=parameter.Monetary">
+                                            <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                            <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                            <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
+                                            <option value="0">Not Allow</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input ng-disabled="true" type="text" id="txtMonetary" ng-show="parameter.Monetary>=1 || parameter.Monetary==''" ng-model="saveParamData.ViewMonetary" placeholder="" maxlength="10" class="form-control " style="width:110px;" ng-numeric="isNumberMonetary">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3 hidden-sm">
+                                    </div>
+                                    <div class="col-md-5 hidden-sm">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span ng-span-numeric="isNumberMonetary" class="hide" style="color:red;">
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                    </span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Monetary cap max UOM</label>
+                                    <div class="col-md-3">
+                                        <input ng-disabled="true" readonly type="text" class="form-control" readonly="readonly" value="Baht" />
+                                    </div>
+                                </div>
+                            </div>
+                            &nbsp;
+                            <div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Occurrence cap max</label>
+                                    <div class="col-md-6" style="width:auto">
+                                        <select ng-disabled="true" class="form-control" id="selectOccurrence" ng-init="saveParamData.Occurrence=parameter.Occurrence" ng-model="parameter.ViewOccurrence" ng-change="saveParamData.Occurrence=parameter.Occurrence">
+                                            <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                            <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                            <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
+                                            <option value="0">Not Allow</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input ng-disabled="true" type="text" id="txtOccurrence" ng-show="parameter.Occurrence>=1 || parameter.Occurrence == ''" ng-model="saveParamData.ViewOccurrence" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberOccurrence">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3 hidden-sm">
+                                    </div>
+                                    <div class="col-md-5 hidden-sm">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span ng-span-numeric="isNumberOccurrence" class="hide" style="color:red;">
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Occurrence cap max UOM</label>
+                                    <div class="col-md-3">
+                                        <input ng-disabled="true" readonly type="text" class="form-control" readonly="readonly" value="Occurrence" />
+                                    </div>
+                                </div>
+                            </div>
+                            &nbsp;
+                            <div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Duration cap max</label>
+                                    <div class="col-md-6" style="width:auto">
+                                        <select ng-disabled="true" class="form-control" id="selectDuration" ng-init="saveParamData.Duration=parameter.Duration" ng-model="parameter.ViewDuration" ng-change="saveParamData.Duration=parameter.Duration">
+                                            <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                            <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                            <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
+                                            <option value="0">Not Allow</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input ng-disabled="true" type="text" id="txtDuration" ng-show="parameter.Duration>=1 || parameter.Duration == ''" ng-model="saveParamData.ViewDuration" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberDuration">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3 hidden-sm">
+                                    </div>
+                                    <div class="col-md-5 hidden-sm">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span ng-span-numeric="isNumberDuration" class="hide" style="color:red;">
+                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                    </span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Duration cap max UOM</label>
+                                    <div class="col-md-3">
+                                        <select ng-disabled="true" class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['durationCapMaxUOMCombo']" ng-model="capMaxViewParameterList['duration-capmax-uom']" ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'  || parameter.Duration=='-1'"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </div>
+                <div ng-show="showDetail['type']=='Contract & Prop.'">
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                                <label>Contract Number</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input ng-disabled="true" type="text" id="contractProp.ContractNumber" ng-model="contractProp.ViewContractNumber" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                                <label>Proposition Code</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input ng-disabled="true" type="text" id="contractProp.ContractNumber" ng-model="contractProp.ViewPropCode" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-3" style="text-align:right;top: 5px;">
+                                <label>Propsition Description</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input ng-disabled="true" type="text" id="contractProp.ContractNumber" ng-model="contractProp.ViewPropDesc" class="form-control">
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                                <label>Term</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input ng-disabled="true" type="text" id="contractProp.ContractNumber" ng-model="contractProp.ViewTerm" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                                <label>Fee</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input ng-disabled="true" type="text" id="contractProp.ContractNumber" ng-model="contractProp.ViewFee" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                                <label>Start Date</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input ng-disabled="true" type="text" id="contractProp.ContractNumber" ng-model="contractProp.ViewStartDate" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                                <label>Expire Date</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input ng-disabled="true" type="text" id="contractProp.ContractNumber" ng-model="contractProp.ViewExpireDate" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                                <label>Terminate Date</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input ng-disabled="true" type="text" id="contractProp.ContractNumber" ng-model="contractProp.ViewTeminateDate" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                                <label>Remark</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input ng-disabled="true" type="text" id="contractProp.ContractNumber" ng-model="contractProp.ViewRemark" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    &nbsp;
+                </div>
+                <div ng-show="showDetail['type']=='Discount'">
+                    <div class="form-group">
+                        <div class="form-group row">
+                            <div class="col-xs-2">
+                            </div>
+                            <div class="col-xs-2" style=" text-align: left; top: 5px;">
+                                <label>Effective Date</label><span style="color:red;">*</span>
+                            </div>
+                            <div class="col-xs-7">
+                                <div data-toggle="buttons" id="divEffer" class="btn-group btn-group-justified effectiveOffer">
+                                    <label  ng-disabled="true" id="efferNow" class="btn btn-default effectiveOffer active" onclick="$('.date-picker-start').val('');" ng-click="onEffectiveDate('IMMEDIATE')">
+                                        <input type="radio" name="date" autocomplete="off" class="radio_ck" checked> ทันที
+                                    </label>
+                                    <label  ng-disabled="true" id="efferManual" class="btn btn-default form-group has-feedback effectiveOffer" ng-click="onEffectiveDate('FUTURE')">
+                                        <div class="form-group has-feedback">
+                                            <div class="col-xs-3">
+                                                <span class="col-xs-2" style="float: right; top: 14px; margin-top:-8px;">ระบุวันที่ </span>
+                                                <input type="radio" name="date" autocomplete="off" class="enable_tb col-xs-8" value="specify">
+                                            </div>
+                                            <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;">
+                                                <div class="form-group has-feedback imp" style="top:5px;">
+                                                    <input type="text" ng-model="viewEffectiveOffer['manualBillDate']" id="txtDateManual" class="form-control dateManual date-picker-start dateFormat" style="height:30px;width:130%;" maxlength="10">
+                                                    <span class="form-control-feedback is-bound" style="right: -30%;"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-2">
+                            </div>
+                            <div class="col-xs-2" style=" text-align: left; top: 5px;">
+                                <label>Expire Date</label><span style="color:red;">*</span>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group has-feedback">
+                                    <input  ng-disabled="true" name="birthDay" type="text" ng-model="viewDisExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modalOffer-footer" style="">
+                <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
+                <button class="btn btn-cancel" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End modal view offer -->
 <!-- Start Contract & Prop Modal -->
 <div id="modalAddContractProp" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
@@ -1317,7 +1821,6 @@
                                     <div dir-pagination-controls pagination-id="offerList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
                                 </td>
                             </tr>
-                            
                         </table>
                         <br>
                         <div ng-show="radioCpOffer" style="padding: 20px;">
@@ -1435,11 +1938,146 @@
                 </div>
             </div>
             <div class="modal-footer" style=" padding-top: 0;">
-                <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="" ng-click="addRegulaOfferList(item)">ตกลง</button>
+                <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="" ng-click="addRegulaOfferList(item);">ตกลง</button>
                 <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
             </div>
         </div>
     </div>
 </div>
-</div>
 <!-- End Contract & Prop Modal -->
+<!-- Start Discount Modal -->
+<div id="modalAddDiscount" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modalOffer-header" style="background: #c72230">
+                <div style="font-size: 1.5em; color:white">Discount</div>
+            </div>
+            &nbsp;&nbsp;
+            <!--<div class="modal-header">
+                <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
+                <h5>Price Plan</h5>
+
+            </div>-->
+            <div class="modal-body">
+                <div class="table-responsive" style="overflow-x:hidden;" id="hModal">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4 text-right">
+                            <div style="padding-top: 10px; font-weight: bold;"> ค้นหา Offer Name/Offer Description</div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="ค้นหา" ng-model="txtSearchDisOffer" class="form-control" ng-keyup="smartSearchDisOffer(txtSearchDisOffer)">
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    &nbsp;
+                    <div class="row" style="padding: 20px;">
+                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                            <tr>
+                                <th class="col-xs-1 contentTbHeader">
+                                    <h>เลือก</h>
+                                </th>
+                                <th class="col-xs-2 contentTbHeader">
+                                    <h>Offer Name</h>
+                                </th>
+                                <th class="col-xs-4 contentTbHeader">
+                                    <h>Offer Description</h>
+                                </th>
+                                <th class="col-xs-1 contentTbHeader">
+                                    <h>Level</h>
+                                </th>
+                                <th class="col-xs-2 contentTbHeader">
+                                    <h>Sale Effective Date</h>
+                                </th>
+                                <th class="col-xs-2 contentTbHeader">
+                                    <h>Sale Expiration Date</h>
+                                </th>
+                            </tr>
+                            <tr dir-paginate="item in disOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage">
+                                <td class="col-xs-1 contentTbCenter">
+                                    <input type="radio" name="radioDisOffer" ng-model="radioDisOffer" ng-change="onChangeRadioOffer(item)" value="{{item['offer-name']}}" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                </td>
+                                <td class="col-xs-2 contentTbCenter">
+                                    <h>{{item['offer-name']}}</h>
+                                </td>
+                                <td class="col-xs-4 contentTb">
+                                    <h>{{item['offer-description']}}</h>
+                                </td>
+                                <td class="col-xs-1 contentTbCenter">
+                                    <h>{{item['offer-level']}}</h>
+                                </td>
+                                <td class="col-xs-2 contentTbCenter">
+                                    <h>{{item['sale-eff']}}</h>
+                                </td>
+                                <td class="col-xs-2 contentTbCenter">
+                                    <h>{{item['sale-exp']}}</h>
+                                </td>
+                            </tr>
+                            <tr ng-show="disOfferList.length>=pageSize">
+                                <td colspan="6" class="text-center">
+                                    <div dir-pagination-controls pagination-id="offerList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div ng-show="radioDisOffer" style="padding: 20px;">
+                            <div class="form-group">
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-2" style=" text-align: left; top: 5px;">
+                                        <label>Effective Date</label><span style="color:red;">*</span>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div data-toggle="buttons" id="divEffer" class="btn-group btn-group-justified effectiveOffer">
+                                            <label ng-disabled="!isCustomerProfile" id="efferNow" class="btn btn-default effectiveOffer active" onclick="$('.date-picker-start').val('');" ng-click="onEffectiveDate('IMMEDIATE')">
+                                                <input type="radio" name="date" autocomplete="off" class="radio_ck" checked> ทันที
+                                            </label>
+                                            <label ng-disabled="!isCustomerProfile" id="efferManual" class="btn btn-default form-group has-feedback effectiveOffer" ng-click="onEffectiveDate('FUTURE')">
+                                                <div class="form-group has-feedback">
+                                                    <div class="col-xs-3">
+                                                        <span class="col-xs-2" style="float: right; top: 14px; margin-top:-8px;">ระบุวันที่ </span>
+                                                        <input type="radio" name="date" autocomplete="off" class="enable_tb col-xs-8" value="specify">
+                                                    </div>
+                                                    <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;">
+                                                        <div class="form-group has-feedback imp" style="top:5px;">
+                                                            <input type="text" ng-model="disEffectiveOffer['manualBillDate']" id="txtDateManual" class="form-control dateManual date-picker-start dateFormat" style="height:30px;width:130%;" maxlength="10">
+                                                            <span class="form-control-feedback is-bound" style="right: -30%;"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-1">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-2" style=" text-align: left; top: 5px;">
+                                        <label>Expire Date</label><span style="color:red;">*</span>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="form-group has-feedback">
+                                            <input name="birthDay" type="text" ng-model="trOrigContractExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                            <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="div_event">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style=" padding-top: 0;">
+                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="" ng-click="addRegulaOfferList(item)">ตกลง</button>
+                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Discount Modal -->
