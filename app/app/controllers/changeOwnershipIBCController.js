@@ -594,6 +594,8 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         $scope.showPPParentOU = false;
         $scope.showRequirePP = true;
+
+        $scope.promotionLevel = "SUB";
     };
     $scope.onKeyUpAccountPreverify = function() {
         //if lenght == 5

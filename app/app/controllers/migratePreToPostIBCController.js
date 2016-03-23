@@ -862,6 +862,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.showPPParentOU = false;
         $scope.showRequirePP = true;
 
+        $scope.promotionLevel = "SUB";
+
         testID = "";
         testLevel = "";
     };
