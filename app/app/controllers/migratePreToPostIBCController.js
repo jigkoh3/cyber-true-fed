@@ -2855,9 +2855,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
         var bcBAN = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "";
         if($scope.isAccount_child == true){
             //bcOUID = $scope.dataAccountPreverify['customer-id'];
+            bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
             bcBAN = $scope.accountID_child;
         }else if($scope.isAccount_root == true){
             //bcOUID = $scope.dataAccountPreverify['customer-id'];
+            bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
             bcBAN = "";
         }else{
             //
