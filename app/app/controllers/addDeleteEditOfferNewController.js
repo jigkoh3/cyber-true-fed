@@ -98,12 +98,15 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         max: 4
     };
     $scope.radioOffer = "";
+    $scope.radioCpOffer = "";
     //STR: get offerList
     $scope.offerList = [];
     $scope.releteOfferList = [];
     $scope.regulaOfferList = [];
     $scope.popUpOfferList = [];
+    $scope.cpOfferList = [];
     var popUpOfferList = [];
+    var cpOfferList = [];
     $scope.showDetail = {};
 
     $scope.onload = function() {
@@ -403,6 +406,13 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         $scope.popUpOfferList = $filter('filter')(popUpOfferList, {
             'type': $scope.regularOfferTypeId
         });
+        // $scope.cpOfferList = result;
+        cpOfferList = $filter('filter')(popUpOfferList, {
+            'type': 'Contract & Proposition'
+        });
+        $scope.cpOfferList = $filter('filter')(popUpOfferList, {
+            'type': 'Contract & Proposition'
+        });
     };
     $scope.getOfferList = function() {
         var result = {
@@ -637,9 +647,25 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             $scope.popUpOfferList = $filter('filter')(popUpOfferList, txtSearch);
         }
     }
+    $scope.smartSearchCpOffer = function(txtSearch) {
+        $scope.radioCpOffer = "";
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = cpOfferList;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.cpOfferList = arr;
+        } else {
+            $scope.cpOfferList = $filter('filter')(cpOfferList, txtSearch);
+        }
+    }
     $scope.onChangeRadioOffer = function(item) {
         $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+        $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
         console.log($scope.radioOffer);
+        $('.modal-backdrop').css('height', '200%');
         $scope.addRegulaOffer = {
             "offer-name": item['offer-name'],
             "offer-description": item['offer-description'],

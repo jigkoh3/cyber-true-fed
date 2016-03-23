@@ -89,13 +89,14 @@
             callback(result);
         };
 
-        if (!demo) {
-            var target = '/aftersales/tmv/cancel/validatecancel?msisdn=' + msisdn;
+        // if (!demo) {
+        //     var target = '/aftersales/tmv/cancel/validatecancel?msisdn=' + msisdn;
 
-            SystemService.callServiceGet(target, null, function(result) {
-                cb(result);
-            });
-        } else {
+        //     SystemService.callServiceGet(target, null, function(result) {
+        //         cb(result);
+        //     });
+        // } 
+        // else {
             var data = {
                 'status': 'SUCCESSFUL',
                 "trx-id": "3BDPN2HLK4TZ",
@@ -278,7 +279,7 @@
                     msgErr: ''
                 });
             }, 1000);
-        }
+        // }
     };
 
     this.submitAddDeleteEditOfferNew = function(payload, fnCallback) {
