@@ -862,6 +862,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.showPPParentOU = false;
         $scope.showRequirePP = true;
 
+        $scope.promotionLevel = "SUB";
+
         testID = "";
         testLevel = "";
     };
@@ -2851,6 +2853,17 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.newOwner2.firstNameTH = $scope.bcName2;
         }
 
+        var bcOUID = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "";
+        var bcBAN = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "";
+        if($scope.isAccount_child == true){
+            //bcOUID = $scope.dataAccountPreverify['customer-id'];
+            bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
+            bcBAN = $scope.accountID_child;
+        }else{
+            bcOUID = "";
+            bcBAN = "";
+        }
+
         var data = {
             "target": "aftersales/order/submit",
             "order": {
@@ -2864,7 +2877,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     "lastname": $scope.newOwner.lastNameTH,
                     "gender": $scope.newOwner.sex,
                     "id-type": cardTypeIBC,
-                    "id-number": $('#citizenID3').val(),
+                    "id-number": $scope.customer['id-number'],
                     "birthdate": SystemService.convertDataThToLongDate($('#birthDay').val()),
                     "id-expire-date": SystemService.convertDataThToLongDate($('#expireDay').val()),
                     "contact-number": $scope.contactNo.number + ($scope.contactNo.continued ? ("#" + $scope.contactNo.continued) : ""),
@@ -2980,8 +2993,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                         },
                         "primary-order-data": {
                             //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
-                            "OU-ID": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "",
-                            "BAN": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "",
+                            "OU-ID": bcOUID,
+                            "BAN": bcBAN,
                             "ACCOUNT-CATEGORY": $scope.getAccountCat(),
                             "ACCOUNT-SUB-TYPE": $scope.subCompanyType,
                             "COMPANY-CODE": $scope.data.installedProducts["company-code"],
