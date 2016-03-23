@@ -241,19 +241,22 @@
                     <div class="btn-group" style="bottom:10px;">
                         <button ng-disabled="!isCustomerProfile" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
-                                    </i> <div style="padding-top: 3px; padding-right: 20px">เพิ่มบริการ Offer</div>
+                                    </i>
+                            <div style="padding-top: 3px; padding-right: 20px">เพิ่มบริการ Offer</div>
+                        </button>
+                    </div>
+                    <div class="btn-group" style="bottom:10px;">
+                        <button ng-disabled="!isCustomerProfile" href="#modalAddContractProp" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
+                            <i class="fa fa-plus-circle pull-left fa-lg-plus ">
+                                    </i>
+                            <div style="padding-top: 3px; padding-right: 10px">เพิ่ม Contract & Prop</div>
                         </button>
                     </div>
                     <div class="btn-group" style="bottom:10px;">
                         <button ng-disabled="!isCustomerProfile" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
-                                    </i> <div style="padding-top: 3px; padding-right: 10px">เพิ่ม Contract & Prop</div>
-                        </button>
-                    </div>
-                    <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
-                            <i class="fa fa-plus-circle pull-left fa-lg-plus ">
-                                    </i> <div style="padding-top: 3px; padding-right: 20px"> เพิ่ม Discount</div>
+                                    </i>
+                            <div style="padding-top: 3px; padding-right: 20px"> เพิ่ม Discount</div>
                         </button>
                     </div>
                     <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
@@ -353,7 +356,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div><br><br>
+                    </div>
+                    <br>
+                    <br>
                 </div>
                 <div id="modal-pdf" tabindsex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog" style="width:85%">
@@ -370,8 +375,8 @@
                                 </iframe>
                             </div>
                             <div class="modal-footer">
-                                <span ng-show="shopType=='0'"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="printObjectPdf();" ng-click="confirmPrint()" class="btn btn-success"></span>
-                                <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-toggle="modal" ng-click="confirmPrint()" class="btn btn-success"></span>
+                                <span ng-show="shopType=='0'"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="printObjectPdf();" ng-click="confirmPrint()" class="btn btn-success btnPrintOffer"></span>
+                                <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-toggle="modal" ng-click="confirmPrint()" class="btn btn-success btnPrintOffer"></span>
                             </div>
                         </div>
                     </div>
@@ -432,23 +437,23 @@
                     <div class="row" style="padding: 20px;">
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <tr>
-                                <th class="col-xs-1 contentTbCenter" style="color:green;">
+                                <th class="col-xs-1 contentTbHeader">
                                     <h>เลือก</h>
                                 </th>
-                                <th class="col-xs-2 contentTbCenter" style="color:green;">
-                                    <h>Offer Code</h>
-                                </th>
-                                <th class="col-xs-5 contentTbCenter" style="color:green;">
+                                <th class="col-xs-2 contentTbHeader">
                                     <h>Offer Name</h>
                                 </th>
-                                <th class="col-xs-2 contentTbCenter" style="color:green;">
+                                <th class="col-xs-4 contentTbHeader">
+                                    <h>Offer Description</h>
+                                </th>
+                                <th class="col-xs-1 contentTbHeader">
                                     <h>Level</h>
                                 </th>
-                                <th class="col-xs-1 contentTbCenter" style="color:green;">
-                                    <h>Sale Eff.</h>
+                                <th class="col-xs-2 contentTbHeader">
+                                    <h>Sale Effective Date</h>
                                 </th>
-                                <th class="col-xs-1 contentTbCenter" style="color:green;">
-                                    <h>Sale Exp.</h>
+                                <th class="col-xs-2 contentTbHeader">
+                                    <h>Sale Expiration Date</h>
                                 </th>
                             </tr>
                             <tr dir-paginate="item in popUpOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage">
@@ -458,16 +463,16 @@
                                 <td class="col-xs-2 contentTbCenter">
                                     <h>{{item['offer-name']}}</h>
                                 </td>
-                                <td class="col-xs-5 contentTb">
+                                <td class="col-xs-4 contentTb">
                                     <h>{{item['offer-description']}}</h>
                                 </td>
-                                <td class="col-xs-2 contentTbCenter">
+                                <td class="col-xs-1 contentTbCenter">
                                     <h>{{item['offer-level']}}</h>
                                 </td>
-                                <td class="col-xs-1 contentTbCenter">
+                                <td class="col-xs-2 contentTbCenter">
                                     <h>{{item['sale-eff']}}</h>
                                 </td>
-                                <td class="col-xs-1 contentTbCenter">
+                                <td class="col-xs-2 contentTbCenter">
                                     <h>{{item['sale-exp']}}</h>
                                 </td>
                             </tr>
@@ -638,8 +643,8 @@
                                onclick="return false;" 
                                data-toggle="modal">
                             <span style="color:white;">...</span></a>-->
-                                    <button ng-click="onModalCUG()" ng-disabled="!isCustomerProfile" href="#modalCUG" class="btn" id="idModalCUG" onclick="return false;" data-toggle="modal" style="background-color: #5cb85c; border-color: #4cae4c; ">
-                                        <span style="color:white;">...</span>
+                                    <button ng-click="onModalCUG()" ng-disabled="!isCustomerProfile" href="#modalCUG" class="btn btnAddOffer" id="idModalCUG" onclick="return false;" data-toggle="modal">
+                                        <span style="color: #fff">...</span>
                                     </button>
                                     </span>
                                 </div>
@@ -826,7 +831,7 @@
                     </div>
                 </div>
                 <div class="modal-footer" style=" padding-top: 0;">
-                    <button class="btn btn-success" data-dismiss="modal" ng-disabled="" ng-click="addRegulaOfferList(item)">ตกลง</button>
+                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="" ng-click="addRegulaOfferList(item)">ตกลง</button>
                     <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
                 </div>
             </div>
@@ -1232,10 +1237,209 @@
                 </div>
             </div>
             <div class="modalOffer-footer" style="">
-                <button class="btn btn-success" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
+                <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
                 <button class="btn btn-cancel" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ปิด</button>
             </div>
         </div>
     </div>
 </div>
 <!-- End modal-edit-offerDetail -->
+<!-- Start Contract & Prop Modal -->
+<div id="modalAddContractProp" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modalOffer-header" style="background: #c72230">
+                <div style="font-size: 1.5em; color:white">Contract & Proposition</div>
+            </div>
+            &nbsp;&nbsp;
+            <!--<div class="modal-header">
+                <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
+                <h5>Price Plan</h5>
+
+            </div>-->
+            <div class="modal-body">
+                <div class="table-responsive" style="overflow-x:hidden;" id="hModal">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4 text-right">
+                            <div style="padding-top: 10px; font-weight: bold;"> ค้นหา Offer Name/Offer Description</div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="ค้นหา" ng-model="txtSearchCpOffer" class="form-control" ng-keyup="smartSearchCpOffer(txtSearchCpOffer)">
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    &nbsp;
+                    <div class="row" style="padding: 20px;">
+                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                            <tr>
+                                <th class="col-xs-1 contentTbHeader">
+                                    <h>เลือก</h>
+                                </th>
+                                <th class="col-xs-2 contentTbHeader">
+                                    <h>Offer Name</h>
+                                </th>
+                                <th class="col-xs-4 contentTbHeader">
+                                    <h>Offer Description</h>
+                                </th>
+                                <th class="col-xs-1 contentTbHeader">
+                                    <h>Level</h>
+                                </th>
+                                <th class="col-xs-2 contentTbHeader">
+                                    <h>Sale Effective Date</h>
+                                </th>
+                                <th class="col-xs-2 contentTbHeader">
+                                    <h>Sale Expiration Date</h>
+                                </th>
+                            </tr>
+                            <tr dir-paginate="item in cpOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage">
+                                <td class="col-xs-1 contentTbCenter">
+                                    <input type="radio" name="radioCpOffer" ng-model="radioCpOffer" ng-change="onChangeRadioOffer(item);" value="{{item['offer-name']}}" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                </td>
+                                <td class="col-xs-2 contentTbCenter">
+                                    <h>{{item['offer-name']}}</h>
+                                </td>
+                                <td class="col-xs-4 contentTb">
+                                    <h>{{item['offer-description']}}</h>
+                                </td>
+                                <td class="col-xs-1 contentTbCenter">
+                                    <h>{{item['offer-level']}}</h>
+                                </td>
+                                <td class="col-xs-2 contentTbCenter">
+                                    <h>{{item['sale-eff']}}</h>
+                                </td>
+                                <td class="col-xs-2 contentTbCenter">
+                                    <h>{{item['sale-exp']}}</h>
+                                </td>
+                            </tr>
+                            <tr ng-show="cpOfferList.length>=pageSize">
+                                <td colspan="6" class="text-center">
+                                    <div dir-pagination-controls pagination-id="offerList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        <br>
+                        <div ng-show="radioCpOffer" style="padding: 20px;">
+                            <div class="form-group">
+                                <div style="font-size: 1.23em; font-weight: bold; padding-left: 100px;">Offer Parameter</div>
+                            </div>
+                            &nbsp;
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Proposition Code</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" ng-model="cpPropCode" class="form-control">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Proposition Description</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" ng-model="cpPropDesc" class="form-control">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Contract Number</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" ng-model="cpContractNumber" class="form-control">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Term</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" ng-model="cpTerm" class="form-control">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Fee</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" ng-model="cpFee" class="form-control" id="cpFee">
+                                    </input>
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Start Date</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group has-feedback">
+                                        <input name="birthDay" type="text" ng-model="cpStartDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Expire Date</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group has-feedback">
+                                        <input name="birthDay" type="text" ng-model="cpExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Remark</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input name="cpRemark" type="text" ng-model="cpRemark" class="form-control">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div_event">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style=" padding-top: 0;">
+                <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="" ng-click="addRegulaOfferList(item)">ตกลง</button>
+                <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- End Contract & Prop Modal -->
