@@ -2993,11 +2993,9 @@ smartApp.controller('changeOwnershipIBCController', function(
         if($scope.isAccount_child == true){
             bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
             bcBAN = $scope.accountID_child;
-        }else if($scope.isAccount_root == true){
-            bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
-            bcBAN = "";
         }else{
-            //
+            bcOUID = "";
+            bcBAN = "";
         }
 
         var data = {
