@@ -198,13 +198,6 @@
                         <th class="col-xs-4 contentTbHeader">
                             <h>Offer Description</h>
                         </th>
-                        <!-- <th class="col-xs-1 contentTbHeader">
-                                <h>Level</h>
-                            </th>
- -->
-                        <!-- <th class="col-xs-1 contentTbHeader">
-                                <h>Parent</h>
-                            </th> -->
                         <th class="col-xs-2 contentTbHeader">
                             <h>Create Date</h>
                         </th>
@@ -300,7 +293,9 @@
                                 <h>{{item['type']}}</h>
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                <a ng-click="" ng-hide="item['type']=='Additional Offer'"><span><i class="fa fa-star fa-1x" style="color: green;"></i></span></a>
+                                <div align="center" class="">
+                                        <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    </div>
                             </td>
                         </tr>
                     </table>
@@ -364,7 +359,9 @@
                                 <h>{{item['type']}}</h>
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                <a ng-click="" ng-hide="item['type']=='Additional Offer'"><span><i class="fa fa-star fa-1x" style="color: green;"></i></span></a>
+                                <div align="center" class="">
+                                        <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    </div>
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 <h>{{item['service-level']}}</h>
@@ -482,8 +479,8 @@
                         </div>
                         <div class="col-md-4">
                             <select class="form-control" ng-model="regularOfferTypeId" id="regularOfferTypeId" ng-change="onRegularOfferTypeId()">
+                                <option value="">All</option>
                                 <option value="AD">Additional Offer</option>
-                                <!-- <option value="DIS">Discount</option> -->
                                 <option value="CUG">CUG</option>
                                 <option value="FF">F&F</option>
                                 <option value="POOLING">Pooled</option>
