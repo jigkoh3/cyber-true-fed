@@ -619,7 +619,7 @@
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
                                 <p></p>
                                 <!-- Case Dealer -->
-                                <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile)">
                                 <!-- Case Normal -->
                                 <input type="text" id="txtPartnerCode" ng-change="onCheckInputForVerify()" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="!isCustomerProfile || isChkShopcode " maxlength="8" required>
                             </div>
