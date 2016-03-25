@@ -614,6 +614,12 @@ smartApp.controller('MigratePreToPostIBCController', function(
         "lastname": "DEMO",
         "birthdate": "2015-07-20T00:00:00+0700"
     };
+    $scope.clearDataAccount = function(){
+        $scope.promotionLevel='SUB'; 
+        $scope.clearAccount();
+        $scope.changOpenserviceBC='L';
+        $scope.isNewCustomer = false;
+    };
     $scope.clearInputIBC = function() {
         $scope.ClearTxt();
         $scope.auth_1 = {};
@@ -3669,6 +3675,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
     };
 
     $scope.onVerify = function() {
+        $scope.clearDataAccount();
+        
         SystemService.showLoading();
         //=========================checkMaxAllow====================
         var checkMaxAllow = function(result) {
