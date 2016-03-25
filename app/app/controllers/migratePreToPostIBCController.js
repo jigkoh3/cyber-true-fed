@@ -1566,10 +1566,13 @@ smartApp.controller('MigratePreToPostIBCController', function(
         };
         var cid = "";
         if ($scope.customerType == 'N') {
-            cid = $('#citizenID3').val();
+            //cid = $('#citizenID3').val();
+            cid = $scope.data.customerProfile['id-number'];
+            $('#citizenID3').val(cid);
         } else {
             cid = $('#idNumberBC').val();
         }
+        console.log("cid = "+cid);
         if (cid.length >= 3) {
             SystemService.showLoading();
             if (1 == 1) {
