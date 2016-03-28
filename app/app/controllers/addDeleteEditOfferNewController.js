@@ -59,7 +59,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
     };
 
     $scope.detailViewOfferCUG = {
-        "name": "828 : Siam Dnan"  
+        "name": "828 : Siam Dnan"
     };
 
     $scope.contractProp = {
@@ -260,7 +260,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "offer-description": "Test Discpunt 001",
             "offer-level": "C",
             "type": "Discount",
-            "group":"Other",
+            "group": "Other",
             "sale-eff": "13/11/2014",
             "sale-exp": "08/08/2250"
         }, {
@@ -345,7 +345,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "offer-description": "Test Discpunt 002",
             "offer-level": "C",
             "type": "Discount",
-            "group":"Other",
+            "group": "Other",
             "sale-eff": "16/07/2015",
             "sale-exp": "31/07/2020"
         }, {
@@ -353,7 +353,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "offer-description": "Test Discpunt 003",
             "offer-level": "G",
             "type": "Discount",
-            "group":"Retention",
+            "group": "Retention",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
@@ -361,7 +361,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "offer-description": "Test Discpunt 004",
             "offer-level": "C",
             "type": "Discount",
-            "group":"Other",
+            "group": "Other",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
@@ -369,7 +369,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "offer-description": "Test Discpunt 005",
             "offer-level": "C",
             "type": "Discount",
-            "group":"New",
+            "group": "New",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
@@ -377,7 +377,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "offer-description": "Test Discpunt 006",
             "offer-level": "C",
             "type": "Discount",
-            "group":"Special",
+            "group": "Special",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
@@ -385,7 +385,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "offer-description": "Test Discpunt 007",
             "offer-level": "C",
             "type": "Discount",
-            "group":"Special",
+            "group": "Special",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
@@ -393,7 +393,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "offer-description": "Test Discpunt 008",
             "offer-level": "C",
             "type": "Employee",
-            "group":"Other",
+            "group": "Other",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
@@ -401,7 +401,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
             "offer-description": "Test Discpunt 009",
             "offer-level": "G",
             "type": "Discount",
-            "group":"Convergence",
+            "group": "Convergence",
             "sale-eff": "10/01/2014",
             "sale-exp": "08/08/2018"
         }, {
@@ -850,10 +850,11 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         }
     }
     $scope.onChangeRadioOffer = function(item) {
+        console.log(item);
         $scope.radioOffer = $('input[name=radioOffer]:checked').val();
         $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
         $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
-        console.log($scope.radioOffer);
+        console.log($scope.radioDisOffer);
         $('.modal-backdrop').css('height', '200%');
         $scope.addRegulaOffer = {
             "offer-name": item['offer-name'],
@@ -1501,5 +1502,19 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
     $scope.addOffer = function() {
         $scope.enableAddOffer = true
         $scope.disableAddBtn = true
+    }
+    $scope.tableAddOffer = 'tableAddOffer';
+    $scope.radioRowClick = function(tableID) {
+        $('#' + tableID + ' tr').click(function() {
+            $(this).find('td input:radio').prop('checked', true);
+        })
+        
+        setTimeout(function() {
+        $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+        $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+        $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+        console.log($scope.radioDisOffer);
+            $('#idBindDataAgain').click();
+        }, 50);
     }
 });

@@ -294,8 +294,8 @@
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 <div align="center" class="">
-                                        <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
-                                    </div>
+                                    <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -360,8 +360,8 @@
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 <div align="center" class="">
-                                        <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
-                                    </div>
+                                    <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                </div>
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 <h>{{item['service-level']}}</h>
@@ -500,7 +500,7 @@
                     </div>
                     &nbsp;
                     <div class="row" style="padding: 20px;">
-                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddOffer" ng-model="tableAddOffer">
                             <tr>
                                 <th class="col-xs-1 contentTbHeader">
                                     <h>เลือก</h>
@@ -521,25 +521,29 @@
                                     <h>Sale Expiration Date</h>
                                 </th>
                             </tr>
-                            <tr dir-paginate="item in popUpOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage">
-                                <td class="col-xs-1 contentTbCenter">
-                                    <input type="radio" name="radioOffer" ng-model="radioOffer" ng-change="onChangeRadioOffer(item)" value="{{item['offer-name']}}" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
-                                </td>
-                                <td class="col-xs-2 contentTbCenter">
-                                    <h>{{item['offer-name']}}</h>
-                                </td>
-                                <td class="col-xs-4 contentTb">
-                                    <h>{{item['offer-description']}}</h>
-                                </td>
-                                <td class="col-xs-1 contentTbCenter">
-                                    <h>{{item['offer-level']}}</h>
-                                </td>
-                                <td class="col-xs-2 contentTbCenter">
-                                    <h>{{item['sale-eff']}}</h>
-                                </td>
-                                <td class="col-xs-2 contentTbCenter">
-                                    <h>{{item['sale-exp']}}</h>
-                                </td>
+                            <tr dir-paginate="item in popUpOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage" style="cursor:pointer;">
+                                <label class="col-xs-12">
+                                    <div class="row">
+                                        <td class="col-xs-1 contentTbCenter">
+                                            <input type="radio" name="radioOffer" ng-model="radioOffer" ng-change="onChangeRadioOffer(item)" value="{{item['offer-name']}}" class="checkbox checkbox-circle2 checkbox-inline" style="cursor:pointer;">
+                                        </td>
+                                        <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer)">
+                                            <h>{{item['offer-name']}}</h>
+                                        </td>
+                                        <td class="col-xs-4 contentTb" ng-click="radioRowClick(tableAddOffer)">
+                                            <h>{{item['offer-description']}}</h>
+                                        </td>
+                                        <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick(tableAddOffer)">
+                                            <h>{{item['offer-level']}}</h>
+                                        </td>
+                                        <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer)">
+                                            <h>{{item['sale-eff']}}</h>
+                                        </td>
+                                        <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer)">
+                                            <h>{{item['sale-exp']}}</h>
+                                        </td>
+                                    </div>
+                                </label>
                             </tr>
                             <tr ng-show="popUpOfferList.length>=pageSize">
                                 <td colspan="6" class="text-center">
@@ -1429,14 +1433,15 @@
             </div>
             <div class="modalOffer-footer" style="">
                 <!-- <div class="row" style="width: 99%;"> -->
-                    <div class="col-xs-6" style="text-align: left; padding-left: 60px;">
+                <div class="col-xs-6" style="text-align: left; padding-left: 60px;">
                     <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="" style="margin-top: -0px;"><span><i class="fa fa-trash-o fa-lg"></i></span> ลบ Offer</button>
-                    </div>
-                    <div class="col-xs-6">
+                </div>
+                <div class="col-xs-6">
                     <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
                     <button class="btn btn-cancel" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ปิด</button>
-                    </div>
-                    <br><br>
+                </div>
+                <br>
+                <br>
                 <!-- </div> -->
             </div>
         </div>
@@ -1931,7 +1936,7 @@
                     </div>
                     &nbsp;
                     <div class="row" style="padding: 20px;">
-                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddContractProp" ng-model="tableAddContractProp">
                             <tr>
                                 <th class="col-xs-1 contentTbHeader">
                                     <h>เลือก</h>
@@ -1952,23 +1957,23 @@
                                     <h>Sale Expiration Date</h>
                                 </th>
                             </tr>
-                            <tr dir-paginate="item in cpOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage">
+                            <tr dir-paginate="item in cpOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage" style="cursor:pointer;">
                                 <td class="col-xs-1 contentTbCenter">
-                                    <input type="radio" name="radioCpOffer" ng-model="radioCpOffer" ng-change="onChangeRadioOffer(item);" value="{{item['offer-name']}}" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input type="radio" name="radioCpOffer" ng-model="radioCpOffer" ng-change="onChangeRadioOffer(item);" value="{{item['offer-name']}}" class="checkbox checkbox-circle2 checkbox-inline" style="cursor:pointer;">
                                 </td>
-                                <td class="col-xs-2 contentTbCenter">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddContractProp')">
                                     <h>{{item['offer-name']}}</h>
                                 </td>
-                                <td class="col-xs-4 contentTb">
+                                <td class="col-xs-4 contentTb" ng-click="radioRowClick('tableAddContractProp')">
                                     <h>{{item['offer-description']}}</h>
                                 </td>
-                                <td class="col-xs-1 contentTbCenter">
+                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick('tableAddContractProp')">
                                     <h>{{item['offer-level']}}</h>
                                 </td>
-                                <td class="col-xs-2 contentTbCenter">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddContractProp')">
                                     <h>{{item['sale-eff']}}</h>
                                 </td>
-                                <td class="col-xs-2 contentTbCenter">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddContractProp')">
                                     <h>{{item['sale-exp']}}</h>
                                 </td>
                             </tr>
@@ -2128,7 +2133,7 @@
                     </div>
                     &nbsp;
                     <div class="row" style="padding: 20px;">
-                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddDis">
                             <tr>
                                 <th class="col-xs-1 contentTbHeader">
                                     <h>เลือก</h>
@@ -2152,26 +2157,26 @@
                                     <h>Type</h>
                                 </th>
                             </tr>
-                            <tr dir-paginate="item in disOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage">
+                            <tr dir-paginate="item in disOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage" style="cursor:pointer;">
                                 <td class="col-xs-1 contentTbCenter">
-                                    <input type="radio" name="radioDisOffer" ng-model="radioDisOffer" ng-change="onChangeRadioOffer(item)" value="{{item['offer-name']}}" class="styled" class="checkbox checkbox-circle2 checkbox-inline">
+                                    <input type="radio" name="radioDisOffer" ng-model="radioDisOffer" ng-change="onChangeRadioOffer(item)" value="{{item['offer-name']}}" class="styled" class="checkbox checkbox-circle2 checkbox-inline" style="cursor:pointer;">
                                 </td>
-                                <td class="col-xs-2 contentTbCenter">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddDis',item);">
                                     <h>{{item['offer-name']}}</h>
                                 </td>
-                                <td class="col-xs-3ontentTb">
+                                <td class="col-xs-3ontentTb" ng-click="radioRowClick('tableAddDis');">
                                     <h>{{item['offer-description']}}</h>
                                 </td>
-                                <td class="col-xs-1 contentTbCenter">
+                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick('tableAddDis');">
                                     <h>{{item['offer-level']}}</h>
                                 </td>
-                                <td class="col-xs-2 contentTbCenter">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddDis');">
                                     <h>{{item['sale-eff']}}</h>
                                 </td>
-                                <td class="col-xs-2 contentTbCenter">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddDis');">
                                     <h>{{item['sale-exp']}}</h>
                                 </td>
-                                <td class="col-xs-1contentTbCenter">
+                                <td class="col-xs-1contentTbCenter" ng-click="radioRowClick('tableAddDis');">
                                     <h>{{item['group']}}</h>
                                 </td>
                             </tr>
