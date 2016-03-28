@@ -223,7 +223,6 @@
                                         <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                         <!-- Case Normal -->
                                         <input type="text" id="citizenID3" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-disabled="customer['id-number'] || !isCustomerProfile" ng-keyup="($event.keyCode==13 && onInputIdLastest3()); onInputIdLastestKeyUp3();" ng-blur="onCheckInputForVerify()" ng-model="customer['id-number']" placeholder="" class="form-control" maxlength="13" ng-change="ClearTxt()" name="personnalids" required>
-                                        
                                     </div>
                                     <div id="loadingReadCard3">
                                         <i class="fa fa-spin fa-spinner"></i>
@@ -253,7 +252,7 @@
                                 <div class="form-group">
                                     <label>เลขที่ประจำตัวผู้เสียภาษี<span style="color:red;">*</span> </label>
                                     <!-- Case Dealer -->
-                                    <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
+                                    <input type="text" ng-disabled="true" class="form-control" required ng-show="userDealer && !isCustomerProfile">
                                     <!-- Case Normal -->
                                     <input name="taxIds" ng-hide="userDealer && !isCustomerProfile" type="text" ng-model="customer['tax-id']" ng-disabled="disableTaxID || !isCustomerProfile" id="taxId3" placeholder="" class="form-control numberic" maxlength="13" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.taxIds.$error.required">
@@ -265,7 +264,7 @@
                                 <div class="form-group">
                                     <label>สาขาที่<span style="color:red;">*</span> </label>
                                     <!-- Case Dealer -->
-                                    <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                    <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                     <!-- Case Normal -->
                                     <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-disabled="customer['branch-code'] || !isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.branchid.$error.required">
@@ -289,51 +288,49 @@
                             </div>
                         </div>
                         <div class="row">
-                        <div  ng-class="newOwner.prefixTH=='T5'?'col-md-4':'col-md-2'">
-                            <div  ng-class="newOwner.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
-                                <div class="form-group">
-                                    <label>คำนำหน้า<span style="color:red;">*</span></label>
-                                    <div id="placeholders">
-                                    <!-- Case Dealer -->
-                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
-                                    <!-- Case Normal -->
-                                        <select name="prefixTHs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.prefixTH" required>
-                                            <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
-                                        </select>
-                                    </div>
-                                    <!--<span class="error" style="color:red;" ng-show="newcustomers.prefixTHs.$error.required">
+                            <div ng-class="newOwner.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                                <div ng-class="newOwner.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
+                                    <div class="form-group">
+                                        <label>คำนำหน้า<span style="color:red;">*</span></label>
+                                        <div id="placeholders">
+                                            <!-- Case Dealer -->
+                                            <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                            <!-- Case Normal -->
+                                            <select name="prefixTHs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-change="onselectPrefix()" ng-blur="onselectPrefix()" id="prefixTH3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.prefixTH" required>
+                                                <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
+                                            </select>
+                                        </div>
+                                        <!--<span class="error" style="color:red;" ng-show="newcustomers.prefixTHs.$error.required">
                                         Required.
                                     </span>-->
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-7" ng-show="newOwner.prefixTH=='T5'" style="padding: 0;">
-                                <label>
-                                    <p></p>
-                                </label>
-                                <select class="form-control" id="titleOther" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" ng-change="onChangeTitleOther()" 
-                                ng-disabled="!isCustomerProfile" onchange="$(this).attr('title',$('#titleOther option:selected').text());" >
-                                    <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["description"]}}</option>
-                                </select>
-                            </div>
+                                <div class="col-xs-7" ng-show="newOwner.prefixTH=='T5'" style="padding: 0;">
+                                    <label>
+                                        <p></p>
+                                    </label>
+                                    <select class="form-control" id="titleOther" ng-show="newOwner.prefixTH=='T5'" ng-model="titleOther" ng-change="onChangeTitleOther()" ng-disabled="!isCustomerProfile" onchange="$(this).attr('title',$('#titleOther option:selected').text());">
+                                        <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["description"]}}</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ชื่อ<span style="color:red;">*</span> </label>
-                                <!-- Case Dealer -->
-                                <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
-                                <!-- Case Normal -->
+                                    <!-- Case Dealer -->
+                                    <input type="text" ng-disabled="true" class="form-control" required ng-show="userDealer && !isCustomerProfile">
+                                    <!-- Case Normal -->
                                     <input type="text" ng-hide="userDealer && !isCustomerProfile" ng-disabled="(isCardValueData || !isCustomerProfile || notLastestCus) && newOwner.firstNameTH" name="firstNameTH3" id="firstNameTH3" ng-change="newOwner2.firstNameTH=newOwner.firstNameTH" ng-model="newOwner.firstNameTH" class="form-control" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.firstNameTH3.$error.required">
                                         Required.
                                     </span>-->
                                 </div>
                             </div>
-                            
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>นามสกุล<span style="color:red;">*</span></label>
                                     <!-- Case Dealer -->
-                                    <input type="text" ng-disabled="true"  class="form-control" required ng-show="userDealer && !isCustomerProfile">
+                                    <input type="text" ng-disabled="true" class="form-control" required ng-show="userDealer && !isCustomerProfile">
                                     <!-- Case Normal -->
                                     <input type="text" ng-hide="userDealer && !isCustomerProfile" ng-disabled="(isCardValueData || !isCustomerProfile || notLastestCus) && newOwner.lastNameTH" id="lastNameTH3" ng-change="newOwner2.lastNameTH=newOwner.lastNameTH" ng-model="newOwner.lastNameTH" name="lastNameTH" class="form-control" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.lastNameTH.$error.required">
@@ -343,45 +340,32 @@
                             </div>
                         </div>
                         <div class="row">
-                        <div ng-class="newOwner.prefixTH=='T5'?'col-md-4':'col-md-2'">
-                            <div ng-class="newOwner.prefixTH=='T5'?'col-xs-5':'col-xs-12'"style="padding-left:0px;">
-                                <div class="form-group">
-                                    <label>เพศ<span style="color:red;">*</span></label>
-                                    <div id="placeholders">
-                                    <!-- Case Dealer -->
-                                    <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
-                                    <!-- Case Normal -->
-                                        <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.sex"  required>
-                                            <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
-                                        </select>
-                                    </div>
-                                    <!--<span class="error" style="color:red;" ng-show="newcustomers.sexs.$error.required">
+                            <div ng-class="newOwner.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                                <div ng-class="newOwner.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
+                                    <div class="form-group">
+                                        <label>เพศ<span style="color:red;">*</span></label>
+                                        <div id="placeholders">
+                                            <!-- Case Dealer -->
+                                            <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                            <!-- Case Normal -->
+                                            <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.sex" required>
+                                                <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                                            </select>
+                                        </div>
+                                        <!--<span class="error" style="color:red;" ng-show="newcustomers.sexs.$error.required">
                                         Required.
                                     </span>-->
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                             <div class="col-md-4">
                                 <div ng-show="showEnableNewOwnerBirthday" class="form-group has-feedback">
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
                                     <!-- Case Dealer -->
-                                    <input type="text" ng-disabled="true"  class="form-control" required  ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                    <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                     <!-- Case Normal -->
-                                    <input name="birthDay" 
-                                        ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" 
-                                        type="text" 
-                                        onchange="$('#birthDayRegisterd').val(this.value);" 
-                                        ng-blur="onCheckInputForVerify();" 
-                                        ng-model="newOwner.birthDay" 
-                                        ng-disabled="!isCustomerProfile || isUseCardValueData || checkBirthDate"  
-                                        class="form-control date-picker-birthdate dateFormat" 
-                                        id="birthDay"
-                                        maxlength="10" 
-                                        required>
+                                    <input name="birthDay" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="!isCustomerProfile || isUseCardValueData || checkBirthDate" class="form-control date-picker-birthdate dateFormat" id="birthDay" maxlength="10" required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-
-
-
                                     <!-- <input name="birthDay" ng-hide="(userDealer && !isCustomerProfile) || (!checkBirthDate && isCustomerProfile)" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="newOwner.birthDay || !isCustomerProfile" readonly class="form-control date-picker" id="birthDay" required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span> -->
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
@@ -392,7 +376,7 @@
                                     <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
                                     <input id="disableNewOwnerBirthday" ng-hide="userDealer && !isCustomerProfile" name="birthDay" type="text" onchange="$('#birthDayRegisterd').val(this.value);" ng-blur="onCheckInputForVerify();" ng-model="newOwner.birthDay" ng-disabled="isCardValueData || !isCustomerProfile" readonly class="form-control " required>
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span> -->
-                                    <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
+                                <!--<span class="error" style="color:red;" ng-show="newcustomers.birthDay.$error.required">
                                         Required.
                                     </span>-->
                                 <!-- </div> -->
@@ -401,11 +385,9 @@
                                 <div ng-show="showEnableNewOwnerExpireDay" class="form-group has-feedback">
                                     <label>วันหมดอายุบัตร <span style="color:red;">*</span></label>
                                     <!-- Case Dealer -->
-                                    <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                    <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                     <!-- Case Normal -->
                                     <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()" placeholder="" ng-disabled="!isCustomerProfile || isUseCardValueData || cardExpire" class="form-control date-picker-start dateFormat" id="expireDay" maxlength="10">
-
-
                                     <!-- <input type="text" ng-hide="(userDealer && !isCustomerProfile) || (!checkExpireDate && isCustomerProfile)" ng-model="newOwner.expireDay" ng-blur="onCheckInputForVerify()"  placeholder="" ng-disabled="!isCustomerProfile || isUseCardValueData || !checkExpireDate" class="form-control date-picker-start " id="expireDay"> -->
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -418,7 +400,92 @@
                         </div>
                     </div>
                 </div>
-                
+                <h4 ng-show="customerType=='B' || customerType=='C'">ตรวจสอบลูกค้า</h4>
+                <div class="well" ng-show="customerType=='B' || customerType=='C'">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3" style=" text-align: right; top: 5px;">
+                                <p></p>
+                                <label>
+                                    รหัสร้านค้า
+                                    <span style="color:red;">*</span></label>
+                            </div>
+                            <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
+                                <p></p>
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                <!-- Case Normal -->
+                                <input type="text" id="txtPartnerCodeBC" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" ng-change="isVerify=false;propositions=[];onCheckInputForVerify();" class="form-control" ng-disabled="isChkShopcode || !isLastestUser" maxlength="8" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                            </div>
+                            <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
+                                <p></p>
+                                <!-- Case Dealer -->
+                                <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                <!-- Case Normal -->
+                                <select class="form-control" ng-model="partnerCode" ng-change="onChangeShop(); onCheckInputForVerify()" ng-disabled="!isLastestUser" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
+                                    <option value="">-- กรุณาเลือก --</option>
+                                    <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
+                                        {{item}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-hide="customerType=='N'">
+                        <div class="col-md-12">
+                            <div class="col-md-3" style=" text-align: right; top: 5px;">
+                                <p></p>
+                                <label>รายการส่งเสริมการขาย <span style="color:red;">*</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <p></p>
+                                <!-- Case Dealer -->
+                                <select class="form-control" ng-disabled="true" ng-show="userDealer && !isCustomerProfile"></select>
+                                <!-- Case Normal -->
+                                <select class="form-control" ng-hide="userDealer && !isCustomerProfile" ng-change="onCheckInputForVerify(); selectedPromotion();" ng-disabled="false || !isCustomerProfile " ng-model="promotion">
+                                    <option value="">-- กรุณาเลือก --</option>
+                                    <option ng-repeat="item in propositions" value="{{item['proposition-code']}}">
+                                        {{item["proposition-code"]}} : {{item["description"]}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label>
+                                    <!--<input type="button"
+                                           ng-click="onVerify()"
+                                           value="Verify"
+                                           class="btn btn-success">-->
+                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCheckInputForVerify " ng-click="getValidatePrivilege()" value="ตรวจสอบลูกค้า" class="btn btn-success">
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="($event.keyCode==13 && onVerify())" class="form-control" maxlength="10" style="width:150px" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row" ng-hide="isVerify">
+                        <div class="col-md-12" ng-show="customerType=='B' || customerType=='C'">
+                            <div class="col-md-3" style=" text-align: right; top: 5px;">
+                            </div>
+                            <div class="col-md-2">
+                                <label>
+                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCheckInputForVerify" ng-click="onVerify()" value="ตรวจสอบลูกค้า" class="btn btn-success">
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                            <div class="col-md-2" style="left: 15px;" ng-form="onVerify()">
+                                <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span>
+                                <br />
+                                <input type="text" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
                 <div ng-show="isVerify && (customerType=='B' || customerType=='C') && isLastestAdress==true" class="well" style="background-color:#ffffff;">
                     <div class="row">
                         <div class="form-group">
@@ -437,7 +504,8 @@
                                 <div class="col-md-9" ng-show="isNewCustomer" style="padding: 0;">
                                     <div class="col-md-4">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" ng-disabled="!isLastestAdress" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount();" checked="checked"> ใช้รอบบิลเดียวกับเบอร์ล่าสุด <br />(BAN ใหม่)
+                                            <input type="radio" ng-disabled="!isLastestAdress" style="cursor:pointer;" name="customBC" value="L" ng-model="changOpenserviceBC" ng-change="promotionLevel='SUB'; clearAccount();" checked="checked"> ใช้รอบบิลเดียวกับเบอร์ล่าสุด
+                                            <br />(BAN ใหม่)
                                             <br />ของผู้จดทะเบียนใหม่
                                         </label>
                                     </div>
@@ -593,10 +661,9 @@
                         </div>
                     </div>
                 </div>
-
-                <h4>ข้อมูลหมายเลข</h4>
-                <div class="well">
-                    <div class="row">
+                <h4 ng-hide="isVerify==false && customerType!='N'">ข้อมูลหมายเลข</h4>
+                <div ng-hide="isVerify==false && customerType!='N'" class="well">
+                    <div class="row" ng-show="customerType=='N'">
                         <div class="col-md-12" ng-hide="shopType=='1' && getAuthen['isSecondAuthen'] == true && getAuthen.shopcodes.length == 1">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
@@ -610,7 +677,7 @@
                                 <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                 <!-- Case Normal -->
                                 <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="partnerCode" ng-change="callPropositionList()" ng-blur="onCheckInputForVerify()" ng-disabled="!isCustomerProfile">
-                                <option value="">-- กรุณาเลือก --</option>
+                                    <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}
                                     </option>
@@ -619,13 +686,13 @@
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
                                 <p></p>
                                 <!-- Case Dealer -->
-                                <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile)">
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile)">
                                 <!-- Case Normal -->
                                 <input type="text" id="txtPartnerCode" ng-change="onCheckInputForVerify()" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="!isCustomerProfile || isChkShopcode " maxlength="8" required>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-show="customerType=='N'">
                         <div class="col-md-12">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
@@ -660,6 +727,53 @@
                             </div>
                         </div>
                     </div>
+                    <!-- CR02 -->
+                    <div class="row" ng-show="isVerify && (customerType=='B' || customerType=='C')">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label priceplaneText">ระดับของโปรโมชั่น <span style="color:red;">*</span></label>
+                            <div class="col-md-4">
+                                <label style="cursor:pointer;">
+                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="SUB" ng-model="promotionLevel"> ระดับหมายเลข
+                                </label>
+                            </div>
+                            <div class="col-md-5">
+                                <label style="cursor:pointer;">
+                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="(changOpenserviceBC=='L' || changOpenserviceBC=='S') && isAccount_root == false"> ระดับบัญชีลูกค้า (OU Level)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="isVerify && (customerType=='B' || customerType=='C') && promotionLevel=='OU'">
+                        <div class="form-group" style="margin-top: 10px;">
+                            <label class="col-md-3 control-label priceplaneText">ประเภทของโปรโมชั่น <span style="color:red;">*</span></label>
+                            <div class="col-md-4">
+                                <select class="form-control" ng-disabled="!isCustomerProfile" ng-model="PPTypeId" id="PPTypeId" ng-change="onChangePPTypeId()">
+                                    <!-- <option value="">-- กรุณเลือก --</option> -->
+                                    <option value="N">Normal</option>
+                                    <option value="SH">Share Allowance</option>
+                                    <option value="PD">Pooled</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="(dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN']=='OPTIONAL' || dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN']=='NOT REQUIRE') && isVerify" style="color:red;">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            TH : {{dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN-MSG-TH']}}
+                            <br> EN : {{dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN-MSG-EN']}}
+                        </div>
+                    </div>
+                    <div ng-show="dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN']=='OPTIONAL' && isVerify" style="color:red;">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">&nbsp;</div>
+                    </div>
+                    <div ng-show="dataAccountPreverify['installed-products'][0]['product-properties']['REQUIRE-PRICEPLAN']=='OPTIONAL' && isVerify" style="color:green;">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            โปรโมชั่นเดิม : {{dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN']}} : {{dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION']}}
+                        </div>
+                    </div>
+                    <br />
                     <!--<div ng-show="isVerify" class="row">
                         <div class="col-md-12">
                             <div ng-include="template.modalPricePlan"></div>
@@ -685,33 +799,14 @@
                             </div>
                         </div>
                     </div>-->
-
                     <!--Include-->
                     <style type="text/css">
                     .priceplaneText {
                         text-align: right !important;
                     }
                     </style>
-
-                    <!-- CR02 -->
-                    <div ng-show="isVerify && (customerType=='B' || customerType=='C')" style="padding-bottom: 10px;">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label priceplaneText">ระดับของโปรโมชั่น <span style="color:red;">*</span></label>
-                            <div class="col-md-4">
-                                <label style="cursor:pointer;">
-                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="SUB" ng-model="promotionLevel"> ระดับหมายเลข
-                                </label>
-                            </div>
-                            <div class="col-md-5">
-                                <label style="cursor:pointer;">
-                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="(changOpenserviceBC=='L' || changOpenserviceBC=='S') && isAccount_root == false"> ระดับบัญชีลูกค้า (OU Level)
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-
-                    <div ng-show="isVerify">
+                    
+                    <div class="row" ng-show="isVerify">
                         <div class="form-group">
                             <label class="col-md-3 control-label priceplaneText">โปรโมชั่น <span style="color:red;">*</span></label>
                             <div class="col-md-6" id="priceplan_sl">
@@ -875,96 +970,96 @@
                                 </div>
                             </div>
                             <div ng-show="useNumberType=='I'">
+                                <div class="row">
+                                    <div ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                                        <div ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
+                                            <div class="form-group" ng-form="titlename">
+                                                <label>คำนำหน้า<span style="color:red;">*</span></label>
+                                                <div>
+                                                    <select name="prefixsThs" class="form-control" id="titleRegisterdBC" ng-change="onselectPrefix2()" ng-model="newOwner2.prefixTH" required>
+                                                        <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-7" ng-show="newOwner2.prefixTH=='T5'" style="padding: 0;">
+                                            <label>
+                                                <p></p>
+                                            </label>
+                                            <select class="form-control" id="titleOtherRegisterdBC" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
+                                                <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" ng-form="firstname">
+                                            <label>ชื่อ<span style="color:red;">*</span></label>
+                                            <input type="text" ng-model="newOwner2.firstNameTH" id="firstNameRegisterdBC" name="firstNamesTHs" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" ng-form="lastname">
+                                            <label>นามสกุล<span style="color:red;">*</span></label>
+                                            <input type="text" ng-model="newOwner2.lastNameTH" id="lastNameRegisterdBC" name="lastNamesTHs" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                                        <div ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
+                                            <div class="form-group">
+                                                <label>เพศ<span style="color:red;">*</span></label>
+                                                <div>
+                                                    <select name="sexs2" class="form-control" id="sex32" ng-model="newOwner2.sex" required>
+                                                        <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-feedback">
+                                            <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
+                                            <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterdBC" class=" form-control date-picker dateFormat">
+                                            <span class="form-control-feedback is-bound" maxlength="10"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-feedback">
+                                            <label>SMS Language<span style="color:red;">*</span></label>
+                                            <select ng-model="newOwner2.smsLanguage" id="smsLanguageRegisterdBC" class="form-control">
+                                                <option value="TH">ไทย</option>
+                                                <option value="EN">อังกฤษ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="(customerType=='N') || (businessType=='P')">
                             <div class="row">
                                 <div ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
                                     <div ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
                                         <div class="form-group" ng-form="titlename">
                                             <label>คำนำหน้า<span style="color:red;">*</span></label>
-                                            <div>
-                                                <select name="prefixsThs" class="form-control" id="titleRegisterdBC" ng-change="onselectPrefix2()" ng-model="newOwner2.prefixTH" required>
+                                            <div id="placeholders">
+                                                <select name="prefixsThs" class="form-control" id="titleRegisterd" ng-change="onselectPrefix2()" ng-model="newOwner2.prefixTH" required>
                                                     <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                                 </select>
                                             </div>
+                                            <!--<span class="error" style="color:red;" ng-show="titlename.prefixsThs.$error.required">
+                            Required.
+                        </span>-->
                                         </div>
                                     </div>
                                     <div class="col-xs-7" ng-show="newOwner2.prefixTH=='T5'" style="padding: 0;">
                                         <label>
                                             <p></p>
                                         </label>
-                                        <select class="form-control" id="titleOtherRegisterdBC" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
+                                        <select class="form-control" id="titleOtherRegisterd" ng-change="onChangeTitleOther2()" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
                                             <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group" ng-form="firstname">
-                                        <label>ชื่อ<span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="newOwner2.firstNameTH" id="firstNameRegisterdBC" name="firstNamesTHs" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group" ng-form="lastname">
-                                        <label>นามสกุล<span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="newOwner2.lastNameTH" id="lastNameRegisterdBC" name="lastNamesTHs" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
-                                    <div ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
-                                        <div class="form-group">
-                                            <label>เพศ<span style="color:red;">*</span></label>
-                                            <div>
-                                                <select name="sexs2" class="form-control" id="sex32" ng-model="newOwner2.sex" required>
-                                                    <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group has-feedback">
-                                        <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterdBC" class=" form-control date-picker dateFormat">
-                                        <span class="form-control-feedback is-bound" maxlength="10"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group has-feedback">
-                                        <label>SMS Language<span style="color:red;">*</span></label>
-                                        <select ng-model="newOwner2.smsLanguage" id="smsLanguageRegisterdBC" class="form-control">
-                                            <option value="TH">ไทย</option>
-                                            <option value="EN">อังกฤษ</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div ng-show="(customerType=='N') || (businessType=='P')">
-                            <div class="row">
-                            <div  ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
-                                <div  ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
-                                    <div class="form-group" ng-form="titlename">
-                                        <label>คำนำหน้า<span style="color:red;">*</span></label>
-                                        <div id="placeholders">
-                                            <select name="prefixsThs" class="form-control" id="titleRegisterd" ng-change="onselectPrefix2()" ng-model="newOwner2.prefixTH" required>
-                                                <option ng-repeat="option in titleTypeListx"  value="{{option.value}}">{{option["th-description"]}}</option>
-                                            </select>
-                                        </div>
-                                        <!--<span class="error" style="color:red;" ng-show="titlename.prefixsThs.$error.required">
-                            Required.
-                        </span>-->
-                                    </div>
-                                </div>
-                                <div class="col-xs-7" ng-show="newOwner2.prefixTH=='T5'" style="padding: 0;">
-                                    <label>
-                                        <p></p>
-                                    </label>
-                                    <select class="form-control" id="titleOtherRegisterd" ng-change = "onChangeTitleOther2()" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
-                                        <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
-                                    </select>
-                                </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group" ng-form="firstname">
@@ -986,25 +1081,25 @@
                                 </div>
                             </div>
                             <div class="row">
-                            <div ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
-                                <div ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'"style="padding-left:0px;">
-                                    <div class="form-group">
-                                        <label>เพศ<span style="color:red;">*</span></label>
-                                        <div id="placeholders">
-                                            <select name="sexs2" class="form-control" id="sex32" ng-model="newOwner2.sex"  required>
-                                                <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
-                                            </select>
-                                        </div>
-                                        <!--<span class="error" style="color:red;" ng-show="newcustomers.sexs.$error.required">
+                                <div ng-class="newOwner2.prefixTH=='T5'?'col-md-4':'col-md-2'">
+                                    <div ng-class="newOwner2.prefixTH=='T5'?'col-xs-5':'col-xs-12'" style="padding-left:0px;">
+                                        <div class="form-group">
+                                            <label>เพศ<span style="color:red;">*</span></label>
+                                            <div id="placeholders">
+                                                <select name="sexs2" class="form-control" id="sex32" ng-model="newOwner2.sex" required>
+                                                    <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
+                                                </select>
+                                            </div>
+                                            <!--<span class="error" style="color:red;" ng-show="newcustomers.sexs.$error.required">
                             Required.
                         </span>-->
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
-                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd"  style="background:white" class=" form-control date-picker-birthdate dateFormat">
+                                        <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd" style="background:white" class=" form-control date-picker-birthdate dateFormat">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1027,9 +1122,9 @@
                         <div class="form-group">
                             <div class="col-md-3" style="padding-right: 0;">
                                 <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                                        <input type="checkbox" class="styled" id="isNewCustomerI" ng-click="changecusStatusN('O'); changOpenserviceN=true;" ng-model="isNewCustomerI">
-                                        <label for="isNewCustomerI"><b>สำหรับการผูกบิลเพิ่มเติม</b> </label>
-                                    </div>
+                                    <input type="checkbox" class="styled" id="isNewCustomerI" ng-click="changecusStatusN('O'); changOpenserviceN=true;" ng-model="isNewCustomerI">
+                                    <label for="isNewCustomerI"><b>สำหรับการผูกบิลเพิ่มเติม</b> </label>
+                                </div>
                             </div>
                             <!-- บุคคลธรรมดา -->
                             <div ng-show="customerType == 'N' && isNewCustomerI">
@@ -1037,7 +1132,8 @@
                                     <p></p>
                                     <div class="col-md-12">
                                         <label style="cursor:pointer;">
-                                            <input type="radio" style="cursor:pointer;" name="custom" ng-disabled="!isLastestAdress" ng-change="changecusStatusN('O'); changOpenserviceN=true;" value="O" ng-model="customerStatusN"> ใช้รอบบิลเดียวกับเบอร์ล่าสุด (BAN ใหม่)<br />ของผู้จดทะเบียนใหม่
+                                            <input type="radio" style="cursor:pointer;" name="custom" ng-disabled="!isLastestAdress" ng-change="changecusStatusN('O'); changOpenserviceN=true;" value="O" ng-model="customerStatusN"> ใช้รอบบิลเดียวกับเบอร์ล่าสุด (BAN ใหม่)
+                                            <br />ของผู้จดทะเบียนใหม่
                                         </label>
                                     </div>
                                     <div class="col-md-8" ng-hide="customerStatusN =='N' || true">
@@ -1090,7 +1186,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <h4></h4>
                 <div ng-show="isVerify && customerType=='N'" class="row">
                     <div class="col-md-4">
@@ -1583,8 +1678,8 @@
                                 <!-- <select class=" form-control">
                                 <option>MGP2P: Migrate Pre to Post</option> -->
                                 <select class=" form-control">
-                                <option>CREQ: Customer request</option>
-                            </select>
+                                    <option>CREQ: Customer request</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -1604,12 +1699,11 @@
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </h4>
                             </div>
-                            
-                             <div class="modal-body modalBodyDivStyle">
-							    <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
-							        <p>It appears your web browser doesn't support iframes.</p>
-							    </iframe>
-							</div>
+                            <div class="modal-body modalBodyDivStyle">
+                                <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
+                                    <p>It appears your web browser doesn't support iframes.</p>
+                                </iframe>
+                            </div>
                             <div class="modal-footer">
                                 <span ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์" data-dismiss="modal" ng-click="saveOrder()" onclick="printObjectPdf();" class="btn btn-success"></span>
                                 <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-dismiss="modal" ng-click="saveOrder()" class="btn btn-success"></span>

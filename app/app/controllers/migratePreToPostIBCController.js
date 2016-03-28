@@ -614,6 +614,12 @@ smartApp.controller('MigratePreToPostIBCController', function(
         "lastname": "DEMO",
         "birthdate": "2015-07-20T00:00:00+0700"
     };
+    $scope.clearDataAccount = function(){
+        $scope.promotionLevel='SUB'; 
+        $scope.clearAccount();
+        $scope.changOpenserviceBC='L';
+        $scope.isNewCustomer = false;
+    };
     $scope.clearInputIBC = function() {
         $scope.ClearTxt();
         $scope.auth_1 = {};
@@ -1566,10 +1572,13 @@ smartApp.controller('MigratePreToPostIBCController', function(
         };
         var cid = "";
         if ($scope.customerType == 'N') {
-            cid = $('#citizenID3').val();
+            //cid = $('#citizenID3').val();
+            cid = $scope.data.customerProfile['id-number'];
+            $('#citizenID3').val(cid);
         } else {
             cid = $('#idNumberBC').val();
         }
+        console.log("cid = "+cid);
         if (cid.length >= 3) {
             SystemService.showLoading();
             if (1 == 1) {
@@ -3666,6 +3675,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
     };
 
     $scope.onVerify = function() {
+        $scope.clearDataAccount();
+        
         SystemService.showLoading();
         //=========================checkMaxAllow====================
         var checkMaxAllow = function(result) {

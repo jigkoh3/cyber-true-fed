@@ -339,6 +339,12 @@ smartApp.controller('changeOwnershipIBCController', function(
         "lastname": "คิดมากไป",
         "birthdate": "2015-07-20T00:00:00+0700"
     };
+    $scope.clearDataAccount = function(){
+        $scope.promotionLevel='SUB'; 
+        $scope.clearAccount();
+        $scope.changOpenserviceBC='L';
+        $scope.isNewCustomer = false;
+    };
     $scope.clearInputIBC = function() {
         $scope.ClearTxt();
         $scope.auth_1 = {};
@@ -3761,6 +3767,8 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.isLoadPricePlan = false;
         $scope.propositionList = [];
         valPricePlans = [];
+
+        $scope.clearDataAccount();
 
         SystemService.showLoading();
         var checkMaxAllow = function(result) {
