@@ -302,21 +302,21 @@
                     <br>
                     <br>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile || disableAddOffer" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
+                        <button ng-disabled="!isCustomerProfile || disableAddOffer" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button" ng-click="onClearRadio('radioOffer')">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
                                     </i>
                             <div style="padding-top: 3px; padding-right: 20px">เพิ่มบริการ Offer</div>
                         </button>
                     </div>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile || disableAddCp" href="#modalAddContractProp" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
+                        <button ng-disabled="!isCustomerProfile || disableAddCp" href="#modalAddContractProp" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button" ng-click="onClearRadio('radioCpOffer')">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
                                     </i>
                             <div style="padding-top: 3px; padding-right: 10px">เพิ่ม Contract & Prop</div>
                         </button>
                     </div>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile || disableAddDiscount" href="#modalAddDiscount" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button">
+                        <button ng-disabled="!isCustomerProfile || disableAddDiscount" href="#modalAddDiscount" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button" ng-click="onClearRadio('radioDisOffer')">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
                                     </i>
                             <div style="padding-top: 3px; padding-right: 20px"> เพิ่ม Discount</div>
@@ -368,7 +368,7 @@
                             </td>
                         </tr>
                     </table>
-                    <div class="row">
+                   <!--  <div class="row">
                         <div class="col-md-6">
                             <h4>มีผลเมื่อ (Effective Date)</h4>
                             <div class="row">
@@ -421,7 +421,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <br>
                     <br>
                 </div>
@@ -522,28 +522,28 @@
                                 </th>
                             </tr>
                             <tr dir-paginate="item in popUpOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage" style="cursor:pointer;">
-                                <label class="col-xs-12">
-                                    <div class="row">
-                                        <td class="col-xs-1 contentTbCenter">
-                                            <input type="radio" name="radioOffer" ng-model="radioOffer" ng-change="onChangeRadioOffer(item)" value="{{item['offer-name']}}" class="checkbox checkbox-circle2 checkbox-inline" style="cursor:pointer;">
+                                <!-- <label class="col-xs-12"> -->
+                                    <!-- <div class="row"> -->
+                                        <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
+                                            <input type="radio" name="radioOffer" ng-model="radioOffer" ng-click="radioRowClick(tableAddOffer,item)" value="{{item['offer-name']}}" style="cursor:pointer;">
                                         </td>
-                                        <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer)">
+                                        <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
                                             <h>{{item['offer-name']}}</h>
                                         </td>
-                                        <td class="col-xs-4 contentTb" ng-click="radioRowClick(tableAddOffer)">
+                                        <td class="col-xs-4 contentTb" ng-click="radioRowClick(tableAddOffer,item)">
                                             <h>{{item['offer-description']}}</h>
                                         </td>
-                                        <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick(tableAddOffer)">
+                                        <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
                                             <h>{{item['offer-level']}}</h>
                                         </td>
-                                        <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer)">
+                                        <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
                                             <h>{{item['sale-eff']}}</h>
                                         </td>
-                                        <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer)">
+                                        <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
                                             <h>{{item['sale-exp']}}</h>
                                         </td>
-                                    </div>
-                                </label>
+                                    <!-- </div> -->
+                                <!-- </label> -->
                             </tr>
                             <tr ng-show="popUpOfferList.length>=pageSize">
                                 <td colspan="6" class="text-center">
@@ -900,8 +900,8 @@
                     </div>
                 </div>
                 <div class="modal-footer" style=" padding-top: 0;">
-                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="" ng-click="addRegulaOfferList(item)">ตกลง</button>
-                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
+                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal"  ng-disabled="disableSubmitAddOffer" ng-click="addRegulaOfferList(item);">ตกลง</button>
+                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="onClearRadio('radioOffer');">ยกเลิก</button>
                 </div>
             </div>
         </div>
@@ -1958,22 +1958,22 @@
                                 </th>
                             </tr>
                             <tr dir-paginate="item in cpOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage" style="cursor:pointer;">
-                                <td class="col-xs-1 contentTbCenter">
-                                    <input type="radio" name="radioCpOffer" ng-model="radioCpOffer" ng-change="onChangeRadioOffer(item);" value="{{item['offer-name']}}" class="checkbox checkbox-circle2 checkbox-inline" style="cursor:pointer;">
+                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
+                                    <input type="radio" name="radioCpOffer" ng-model="radioCpOffer" ng-click="radioRowClick('tableAddContractProp',item)" value="{{item['offer-name']}}" style="cursor:pointer;">
                                 </td>
-                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddContractProp')">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddContractProp',item)">
                                     <h>{{item['offer-name']}}</h>
                                 </td>
-                                <td class="col-xs-4 contentTb" ng-click="radioRowClick('tableAddContractProp')">
+                                <td class="col-xs-4 contentTb" ng-click="radioRowClick('tableAddContractProp',item)">
                                     <h>{{item['offer-description']}}</h>
                                 </td>
-                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick('tableAddContractProp')">
+                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick('tableAddContractProp',item)">
                                     <h>{{item['offer-level']}}</h>
                                 </td>
-                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddContractProp')">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddContractProp',item)">
                                     <h>{{item['sale-eff']}}</h>
                                 </td>
-                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddContractProp')">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddContractProp',item)">
                                     <h>{{item['sale-exp']}}</h>
                                 </td>
                             </tr>
@@ -2099,8 +2099,8 @@
                 </div>
             </div>
             <div class="modal-footer" style=" padding-top: 0;">
-                <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="" ng-click="addRegulaOfferList(item);">ตกลง</button>
-                <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
+                <button class="btn btn-success btnPrintOffer" data-dismiss="modal"  ng-disabled="disableSubmitAddOffer" ng-click="addRegulaOfferList(item);">ตกลง</button>
+                <button class="btn btn-cancel" data-dismiss="modal" ng-click="onClearRadio('radioCpOffer');">ยกเลิก</button>
             </div>
         </div>
     </div>
@@ -2158,25 +2158,25 @@
                                 </th>
                             </tr>
                             <tr dir-paginate="item in disOfferList| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage" style="cursor:pointer;">
-                                <td class="col-xs-1 contentTbCenter">
-                                    <input type="radio" name="radioDisOffer" ng-model="radioDisOffer" ng-change="onChangeRadioOffer(item)" value="{{item['offer-name']}}" class="styled" class="checkbox checkbox-circle2 checkbox-inline" style="cursor:pointer;">
+                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
+                                    <input type="radio" name="radioDisOffer" id="radioDisOffer" ng-model="radioDisOffer" ng-click="radioRowClick('tableAddDis',item);" value="{{item['offer-name']}}">
                                 </td>
                                 <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddDis',item);">
                                     <h>{{item['offer-name']}}</h>
                                 </td>
-                                <td class="col-xs-3ontentTb" ng-click="radioRowClick('tableAddDis');">
+                                <td class="col-xs-3 contentTb" ng-click="radioRowClick('tableAddDis',item);">
                                     <h>{{item['offer-description']}}</h>
                                 </td>
-                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick('tableAddDis');">
+                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick('tableAddDis',item);">
                                     <h>{{item['offer-level']}}</h>
                                 </td>
-                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddDis');">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddDis',item);">
                                     <h>{{item['sale-eff']}}</h>
                                 </td>
-                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddDis');">
+                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick('tableAddDis',item);">
                                     <h>{{item['sale-exp']}}</h>
                                 </td>
-                                <td class="col-xs-1contentTbCenter" ng-click="radioRowClick('tableAddDis');">
+                                <td class="col-xs-1contentTbCenter" ng-click="radioRowClick('tableAddDis',item);">
                                     <h>{{item['group']}}</h>
                                 </td>
                             </tr>
@@ -2245,8 +2245,8 @@
                     </div>
                 </div>
                 <div class="modal-footer" style=" padding-top: 0;">
-                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="" ng-click="addRegulaOfferList(item)">ตกลง</button>
-                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelPricePlan()">ยกเลิก</button>
+                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="disableSubmitAddOffer" ng-click="addRegulaOfferList(item);">ตกลง</button>
+                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="onClearRadio('radioDisOffer');">ยกเลิก</button>
                 </div>
             </div>
         </div>

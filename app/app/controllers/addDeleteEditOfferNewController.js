@@ -34,7 +34,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
     $scope.approver = "";
     $scope.isMatch = true;
     $scope.propositions = [];
-
+    $scope.disableSubmitAddOffer = true;
     $scope.CitizenID = "";
 
     $scope.data = {};
@@ -136,6 +136,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
     $scope.showDetail = {};
     $scope.futureOfferList = [];
     var futureOfferList = [];
+    $scope.expireDate = new Date();
 
     $scope.onload = function() {
         AuthenService.getAuthen(function(result) {
@@ -485,6 +486,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         disOfferList = $filter('filter')(popUpOfferList, {
             'type': 'Discount'
         });
+        console.log($scope.expireDate);
     };
     $scope.getOfferList = function() {
         var result = {
@@ -850,10 +852,10 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         }
     }
     $scope.onChangeRadioOffer = function(item) {
-        console.log(item);
-        $scope.radioOffer = $('input[name=radioOffer]:checked').val();
-        $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
-        $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+        // console.log(item);
+        // $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+        // $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+        // $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
         console.log($scope.radioDisOffer);
         $('.modal-backdrop').css('height', '200%');
         $scope.addRegulaOffer = {
@@ -1504,17 +1506,40 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         $scope.disableAddBtn = true
     }
     $scope.tableAddOffer = 'tableAddOffer';
-    $scope.radioRowClick = function(tableID) {
-        $('#' + tableID + ' tr').click(function() {
-            $(this).find('td input:radio').prop('checked', true);
-        })
-        
-        setTimeout(function() {
-        $scope.radioOffer = $('input[name=radioOffer]:checked').val();
-        $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
-        $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
-        console.log($scope.radioDisOffer);
-            $('#idBindDataAgain').click();
-        }, 50);
+    $scope.radioRowClick = function(tableID, item) {
+            $('#' + tableID + ' tr').click(function() {
+                $(this).find('td input:radio').prop('checked', true);
+            })
+
+            setTimeout(function() {
+                $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+                $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+                $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+                $scope.disableSubmitAddOffer = false;
+                console.log($scope.radioDisOffer);
+                $('#idBindDataAgain').click();
+                $scope.onChangeRadioOffer(item);
+            }, 50);
+        }
+        // $scope.disableSubmitBtn = function() {
+        //     if ($scope.radioDisOffer || $scope.radioOffer || $scope.radioCpOffer) {
+        //         $scope.disableSubmitAddOffer = false;
+        //     } else {
+        //         $scope.disableSubmitAddOffer = true;
+        //     }
+        // }
+    $scope.onClearRadio = function(radioName) {
+        if (radioName == 'radioDisOffer') {
+            $scope.radioDisOffer = "";
+        } else if (radioName == 'radioCpOffer') {
+            $scope.radioCpOffer = "";
+        } else if (radioName == 'radioOffer') {
+            $scope.radioOffer = "";
+        }
+        // $('#radioDisOffer').val($scope.radioDisOffer);
+        // $('#radioDisOffer').prop('checked', false);
+        $scope.disableSubmitAddOffer = true;
+        $('input[name=' + radioName + ']').attr('checked', false);
+        // console.log($scope.radioDisOffer , $('#radioDisOffer').val());
     }
 });
