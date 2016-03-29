@@ -136,7 +136,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
     $scope.showDetail = {};
     $scope.futureOfferList = [];
     var futureOfferList = [];
-    $scope.expireDate = new Date();
+    $scope.dateNow = $filter('date')(new Date(), 'dd/MM/yyyy');
 
     $scope.onload = function() {
         AuthenService.getAuthen(function(result) {
@@ -486,7 +486,8 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         disOfferList = $filter('filter')(popUpOfferList, {
             'type': 'Discount'
         });
-        console.log($scope.expireDate);
+        $scope.cpStartDate = SystemService.convertDateToEng($scope.dateNow, 'TH');
+        $scope.trActualContractStartDate = SystemService.convertDateToEng($scope.dateNow, 'TH');
     };
     $scope.getOfferList = function() {
         var result = {
@@ -1541,5 +1542,22 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         $scope.disableSubmitAddOffer = true;
         $('input[name=' + radioName + ']').attr('checked', false);
         // console.log($scope.radioDisOffer , $('#radioDisOffer').val());
+    }
+
+    $scope.formatTHDate = function(date) {
+        if (date) {
+            if (date.indexOf("-") >= 0) {
+                // var arr = date.split("T");
+                var arr = arr.split("/");
+                var strDate = arrDate[0] + "/" + arrDate[1] + "/" + (Number(arrDate[2]) + 543);
+                console.log(arr);
+                return strDate;
+
+            } else {
+
+                return date;
+            }
+            console.log($scope.dateNow);
+        }
     }
 });
