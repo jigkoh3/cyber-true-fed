@@ -396,7 +396,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.authorizeFullName = "";
         $('#divShowAuthorizeID').hide();
         $('#authorize').prop("checked", false);
-        
+
         if (customerType == 'B' || customerType == 'C') {
             $scope.blah = "P";
             //CR02
@@ -411,7 +411,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $('#divShowAuthorize').hide();
             $('#loadingReadCard3').hide();
         }
-        
+
 
         //ST: clear input
         $scope.clearInputIBC();
@@ -1748,10 +1748,30 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                         $('#titleRegisterd').val(customer["title-code"]);
                                     }, 1000);
 
+                                    if ($scope.customerType == 'N') {
+                                        $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
+                                        $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
+                                        $scope.cardType.value = customer['id-type'];
+                                    } else {
+                                        $scope.accountID_root = customer['customer-id'];
+                                        $scope.newOwner2.prefixTH = "T5";
+                                        $scope.onselectPrefix2();
+                                    }
 
-                                    $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
-                                    $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
-                                    $scope.cardType.value = customer['id-type'];
+                                    $("#birthDay").datepicker("update", $scope.newOwner.birthDay);
+                                    $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
+                                    $("#birthDayRegisterd").datepicker("update", $scope.newOwner.birthDay);
+
+                                    //BC--------------
+                                    // $scope.bcName = customer["firstname"] + " " + customer["lastname"];
+                                    // $scope.bcName2 = customer["firstname"] + " " + customer["lastname"];
+
+                                    $scope.mailAddress.sendName = customer["firstname"];
+                                    $scope.mailAddressBC.sendName = customer["firstname"];
+
+                                    $scope.bcName = customer["firstname"];
+                                    $scope.bcName2 = customer["firstname"];
+
                                     $scope.checkValueExpireDate();
                                     $scope.checkValueDate();
 

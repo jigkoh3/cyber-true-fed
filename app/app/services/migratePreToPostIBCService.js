@@ -485,7 +485,7 @@
                         "title-code": "T5",
                         "firstname": "กูอุไก่",
                         "lastname": "สุขใจ",
-                        'birthdate': '2015-07-20T00:00:00+0700',
+                        'birthdate': '',
                         'id-expire-date': '2015-11-25T00:00:00+0700',
                         "contact-number": "029448849#123",
                         "contact-mobile-number": "444444444",
