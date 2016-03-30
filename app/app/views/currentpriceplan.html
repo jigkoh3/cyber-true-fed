@@ -6,7 +6,7 @@
         </div>
         <div class="col-md-9" ng-hide="(Action == 'ADD')">
             <div class="events" ng-repeat="item in data.offer">
-                <p>&nbsp;&nbsp;{{item["product-name"]}} : {{item["product-description"]}}</p>
+                <p>&nbsp;&nbsp;{{item["product-name"]}} : {{item["product-description"]}}, [ค่าปรับ {{item["contract-fee"]}} บ. สิ้นสุดสัญญา {{convertDate(item["contract-expire-date"])}}]</p>
             </div>
             
         </div>

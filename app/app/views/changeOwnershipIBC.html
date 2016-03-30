@@ -434,7 +434,7 @@
                             <div class="col-md-2" style="left: 15px;" ng-form="onVerify()">
                                 <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span>
                                 <br />
-                                <input type="text" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
+                                <input type="text" name="approvecode"  id="approvecodeBC" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
                             </div>
                         </div>
                     </div>
@@ -665,7 +665,7 @@
                             <div class="col-md-2" style="left: 15px;" ng-form="onVerify()">
                                 <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span>
                                 <br />
-                                <input type="text" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
+                                <input type="text" name="approvecode" id="approvecodeI" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
                             </div>
                         </div>
                     </div>

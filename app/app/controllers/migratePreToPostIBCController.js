@@ -390,13 +390,29 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.isVerify = false;
         $scope.promotion = "";
 
+        //xxxxxx ShowAuthorize
+        $scope.isAuthorize = false;
+        $scope.CitizenID2 = "";
+        $scope.authorizeFullName = "";
+        $('#divShowAuthorizeID').hide();
+        $('#authorize').prop("checked", false);
+        
         if (customerType == 'B' || customerType == 'C') {
             $scope.blah = "P";
             //CR02
             if ($scope.getAuthen['shopType'] == '0') {
                 $scope.getBillCycleList();
             }
+            //show มอบอำนาจ
+            $('#divShowAuthorize').show();
+            $('#loadingReadCard3').show();
+        } else {
+            //show มอบอำนาจ
+            $('#divShowAuthorize').hide();
+            $('#loadingReadCard3').hide();
         }
+        
+
         //ST: clear input
         $scope.clearInputIBC();
         //EN: clear input
@@ -614,10 +630,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
         "lastname": "DEMO",
         "birthdate": "2015-07-20T00:00:00+0700"
     };
-    $scope.clearDataAccount = function(){
-        $scope.promotionLevel='SUB'; 
+    $scope.clearDataAccount = function() {
+        $scope.promotionLevel = 'SUB';
         $scope.clearAccount();
-        $scope.changOpenserviceBC='L';
+        $scope.changOpenserviceBC = 'L';
         $scope.isNewCustomer = false;
     };
     $scope.clearInputIBC = function() {
@@ -1578,7 +1594,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         } else {
             cid = $('#idNumberBC').val();
         }
-        console.log("cid = "+cid);
+        console.log("cid = " + cid);
         if (cid.length >= 3) {
             SystemService.showLoading();
             if (1 == 1) {
@@ -2864,11 +2880,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         var bcOUID = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "";
         var bcBAN = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "";
-        if($scope.isAccount_child == true){
+        if ($scope.isAccount_child == true) {
             //bcOUID = $scope.dataAccountPreverify['customer-id'];
             bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
             bcBAN = $scope.accountID_child;
-        }else{
+        } else {
             bcOUID = "";
             bcBAN = "";
         }
@@ -3676,7 +3692,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
     $scope.onVerify = function() {
         $scope.clearDataAccount();
-        
+
         SystemService.showLoading();
         //=========================checkMaxAllow====================
         var checkMaxAllow = function(result) {
@@ -3687,6 +3703,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 if (result.data["display-messages"][0]["message-code"] == 'TMV-PREVERIFY-11010') {
                     $scope.showApprovCode = true;
                     $scope.isVerify = false;
+                    idFocus = $scope.customerType == 'N' ? "approvecodeI" : "approvecodeBC";
                     setTimeout(function() {
                         SystemService.showAlert({
                             "message": result.data["display-messages"][0]["message"],

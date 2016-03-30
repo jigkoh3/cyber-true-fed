@@ -321,6 +321,9 @@ smartApp.controller('ChangePricePlanController', function(
         $scope.autoHideNumberSubNo = false;
         return bool;
     }
+    $scope.convertDate = function(date){
+        return SystemService.convertDateToTH(date, 'TH');
+    }
 
     setTimeout(function() {
         SystemService.validateNummeric();
