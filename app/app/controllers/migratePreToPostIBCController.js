@@ -4445,7 +4445,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("idBillPaymentEmail", ValidateMsgService.data.msgBillEmailEmpty);
         } else if ($scope.blah == 'S' && isNull($scope.billPayment.smss)) {
             showValidate("txtBillPaymentSmss", ValidateMsgService.data.msgBillSmsNoEmpty);
-        } else if (isNull($scope.contactNo.number)) {
+        } else if (isNull($scope.contactNo.number) && $scope.isAccount_child == false) {
             showValidate("txtcontactNonumber", ValidateMsgService.data.msgCusContractNoEmpty);
         } else if (errorFUTURE) {
             showValidate("txtDateManual", ValidateMsgService.data.effectiveDateMsg);
