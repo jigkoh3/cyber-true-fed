@@ -680,7 +680,7 @@
                             </div>
                             <div class="col-md-5">
                                 <label style="cursor:pointer;">
-                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="(changOpenserviceBC=='L' || changOpenserviceBC=='S') && isAccount_root == false"> ระดับบัญชีลูกค้า (OU Level)
+                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="(changOpenserviceBC=='L' || changOpenserviceBC=='S') && (isAccount_root == false && isLastestAdress == true)"> ระดับบัญชีลูกค้า (OU Level)
                                 </label>
                             </div>
                         </div>

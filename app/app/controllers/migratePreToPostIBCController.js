@@ -696,6 +696,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         return accountCat;
     };
     $scope.onInputIdBC = function() {
+        $scope.promotion = "";
         if ($scope.isCustomerPreverify == true) {
             $scope.clearInputIBC();
         }
@@ -803,7 +804,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "company-code": $scope.data.installedProducts['company-code'],
                 "account-sub-type": $scope.subCompanyType,
                 "account-id": id,
-                "customer-id": $scope.accountID_root
+                "customer-id": $scope.accountID_root,
+                "id-number": $scope.customer['id-number']
             };
             $scope.isAccountPreverify = false;
             migratePreToPostIBCService.validateAccountIDCallback(data, function(result) {
