@@ -17,6 +17,7 @@
     window.onresize = function(event) {
         //console.log($('#hModal').height());
         $('#hModal').height(($(window).height()) - 235);
+        $('.hModal').height(($(window).height()) - 235);
         //console.log($('#hModal').height());
     };
     window.mobilecheck = function() {

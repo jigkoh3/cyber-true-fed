@@ -896,7 +896,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         $scope.popUpOfferList = $filter('filter')(popUpOfferList, {
             'type': $scope.regularOfferTypeId
         });
-        $('#hModal').height(($(window).height()) - 235);
+        $('.hModal').height(($(window).height()) - 235);
         //$('.modal-backdrop').css('height', '200%');
     };
     $scope.showDetail = function(item) {
@@ -1508,6 +1508,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
     }
     $scope.tableAddOffer = 'tableAddOffer';
     $scope.radioRowClick = function(tableID, item) {
+            $('.hModal').height(($(window).height()) - 235);
             $('#' + tableID + ' tr').click(function() {
                 $(this).find('td input:radio').prop('checked', true);
             })
