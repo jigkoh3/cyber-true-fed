@@ -3779,6 +3779,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                 if (result.data["display-messages"][0]["message-code"] == 'TMV-PREVERIFY-11010') {
                     $scope.showApprovCode = true;
                     $scope.isVerify = false;
+                    idFocus = $scope.customerType == 'N' ? "approvecodeI" : "approvecodeBC";
                     setTimeout(function() {
                         SystemService.showAlert({
                             "message": result.data["display-messages"][0]["message"],

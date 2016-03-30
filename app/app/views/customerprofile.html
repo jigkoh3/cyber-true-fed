@@ -70,12 +70,12 @@
     <div id="divShowAuthorize" class="row">
         <div class="col-md-12">
             <div class="checkbox checkbox-circle2 checkbox-inline authorize">
-                <input type="checkbox" class="styled" id="authorize" ng-model="isAuthorize" ng-disabled="!isCustomerProfile" onclick="$('#loadingReadCard2').hide(); $('#CitizenID2').val(''); $('#authorizeFullName').val('');">
+                <input type="checkbox" class="styled" id="authorize" ng-model="isAuthorize" ng-disabled="!isCustomerProfile" onclick="$('#loadingReadCard2').hide(); $('#CitizenID2').val(''); $('#authorizeFullName').val(''); if($(this).prop('checked') == true){$('#divShowAuthorizeID').show();}else{$('#divShowAuthorizeID').hide();}">
                 <label for="authorize">กรณีมอบอำนาจ </label>
             </div>
         </div>
     </div>
-    <div ng-hide="isAuthorize==false">
+    <div id="divShowAuthorizeID" ng-hide="isAuthorize==false">
         <input type="hidden" id="ReadAuthorize" value="false" />
         <div class="row">
             <div class="col-md-4">
