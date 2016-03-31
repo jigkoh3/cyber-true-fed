@@ -2813,6 +2813,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.selectReason.id = "CREQ";
         }
         //check IBC
+        var _customerID = $scope.customer["customer-id"];
         var cardTypeIBC = "";
         var changeOption = "xxx";
         var BILLING_ADDRESS = {};
@@ -2825,13 +2826,13 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.newOwner.sex = "MALE";
 
             cardTypeIBC = $scope.cardTypeBC.value;
-            if ($scope.changOpenserviceBC == 'L' && $scope.isAccount_child == false) {
+            if ($scope.changOpenserviceBC == 'L' && $scope.isLastestAdress == true) {
                 changeOption = "EXISTING";
-            } else if ($scope.changOpenserviceBC == 'L' && $scope.isAccount_child == true) {
-                changeOption = "EXISTING-ACCOUNT";
-            } else if ($scope.changOpenserviceBC == 'S' && $scope.isAccount_root == true) {
+            } else if ($scope.changOpenserviceBC == 'S' && $scope.isAccount_root == true && $scope.isAccount_child == false) {
+                _customerID = $scope.validateCustomerIDData['customer-id'];
                 changeOption = "EXISTING";
             } else if ($scope.changOpenserviceBC == 'S' && $scope.isAccount_child == true) {
+                _customerID = $scope.validateCustomerIDData['customer-id'];
                 changeOption = "EXISTING-ACCOUNT";
             } else {
                 changeOption = "NEW";
@@ -2890,7 +2891,12 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "contact-name": $scope.mailAddress.sendName
             };
             cardTypeIBC = $scope.cardType.value;
-            changeOption = $scope.isLastestAdress ? "EXISTING" : "NEW";
+            if($scope.isLastestAdress == true){
+                _customerID = $scope.lastestCustomer['customer-id'];
+                changeOption =  "EXISTING";    
+            }else{
+                changeOption = "NEW";
+            }
         }
 
         $scope.saveData.memo = $scope.saveData.memo ? $scope.saveData.memo : ""
@@ -2933,7 +2939,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     "language": $scope.customer["language"],
                     "branch-code": $scope.customer["branch-code"],
                     "tax-id": $scope.customer["tax-id"],
-                    "customer-id": $scope.isLastestUser = true ? $scope.customer["customer-id"] : "",
+                    "customer-id": _customerID,
                     "customer-level": $scope.grade["grade-name"],
                     //"customer-id": $scope.data.customerProfile["customer-id"],
                     "customer-sublevel_id": $scope.grade["grade-id"],
@@ -3248,9 +3254,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         }
 
         //check :: customer-id
-        if ($scope.customerStatusN == 'O') {
-            data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
-        } else {
+        if (changeOption == "NEW") {
             delete data['order']["customer"]["customer-id"];
         }
         //check :: ACCOUNT-BILL-CYCLE
