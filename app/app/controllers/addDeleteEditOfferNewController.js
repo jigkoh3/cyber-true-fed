@@ -48,6 +48,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
     $scope.disableAddOffer = false;
     $scope.disableAddCp = false;
     $scope.disableAddDiscount = false;
+    $scope.manualExpDate = true;
     var orderData = {};
     $scope.editOffers = [];
     //Reasons
@@ -1559,6 +1560,26 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
                 return date;
             }
             console.log($scope.dateNow);
+        }
+    }
+
+    $scope.chkExpDate = function(){
+        if($scope.radioExpDate == "expDate"){
+            $scope.manualExpDate = false;
+        }else{
+            $scope.manualExpDate = true;
+            $scope.editADEffectiveOffer = "";
+            $('#editADEffectiveOffer').val('');
+        }
+    }
+    $scope.manualExpDisDate = true;
+    $scope.chkEditDisDate = function(){
+        if($scope.editDisDate == "expDate"){
+            $scope.manualExpDisDate = false;
+        }else{
+            $scope.manualExpDisDate = true;
+            $scope.editDisEffectiveOffer = "";
+            $('#editDisEffectiveOffer').val('');
         }
     }
 });
