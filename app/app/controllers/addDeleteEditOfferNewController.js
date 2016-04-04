@@ -39,7 +39,7 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
 
     $scope.data = {};
     $scope.isReadCardSuccess = false;
-    $scope.offerType = "C"
+    $scope.offerType = "C";
     $scope.statusReason = '';
     $scope.statusReasonMemo = '';
     $scope.readOnlyOffer = true;
@@ -1503,9 +1503,13 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         $scope.readOnlyOffer = false;
     };
 
+    $scope.changeOfferType = function() {
+        $scope.enableAddOffer = false;
+        $scope.disableAddBtn = false;
+    }
     $scope.addOffer = function() {
-        $scope.enableAddOffer = true
-        $scope.disableAddBtn = true
+        $scope.enableAddOffer = true;
+        $scope.disableAddBtn = true;
     }
     $scope.tableAddOffer = 'tableAddOffer';
     $scope.radioRowClick = function(tableID, item) {
@@ -1563,20 +1567,20 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
         }
     }
 
-    $scope.chkExpDate = function(){
-        if($scope.radioExpDate == "expDate"){
+    $scope.chkExpDate = function() {
+        if ($scope.radioExpDate == "expDate") {
             $scope.manualExpDate = false;
-        }else{
+        } else {
             $scope.manualExpDate = true;
             $scope.editADEffectiveOffer = "";
             $('#editADEffectiveOffer').val('');
         }
     }
     $scope.manualExpDisDate = true;
-    $scope.chkEditDisDate = function(){
-        if($scope.editDisDate == "expDate"){
+    $scope.chkEditDisDate = function() {
+        if ($scope.editDisDate == "expDate") {
             $scope.manualExpDisDate = false;
-        }else{
+        } else {
             $scope.manualExpDisDate = true;
             $scope.editDisEffectiveOffer = "";
             $('#editDisEffectiveOffer').val('');

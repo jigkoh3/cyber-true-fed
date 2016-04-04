@@ -14822,3 +14822,23 @@ textarea.remark-message {
     color: #cfa8aa !important;
     font-weight: bold;
 }
+
+.btnOfferAction{
+    background: #fff; 
+    border-color: #c72230;
+    color: #333;
+    font-weight: bold;
+}
+
+.btnOfferAction.active{
+    background: #c72230 !important; 
+    border-color: #c72230 !important;
+    color: #fff !important;
+    font-weight: bold !important;
+}
+
+.btnOfferAction:hover{
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
