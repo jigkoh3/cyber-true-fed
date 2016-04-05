@@ -50,7 +50,7 @@
     var idFocus = "";
     var valPricePlans = [];
 
-    $scope.hideReadCardForMobile = function(){
+    $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
 
@@ -781,7 +781,7 @@
     $scope.webcamSnap = function() {
         webcam.snap();
     };
-    $scope.mobileCamSnap = function(){
+    $scope.mobileCamSnap = function() {
         var msg = $('#varMobileCam').val();
         msg = msg.replace('data:image/png;base64,', '');
         msg = msg.replace('data:image/jpeg;base64,', '');
@@ -995,6 +995,9 @@
     };
 
     $scope.onChangeShop = function() {
+        //STR:(CR selected ShopCode 05-04-2016)
+        localStorage.setItem('selectedShopCode', $scope.partnerCode);
+        //END
         $scope.clearPP();
         $scope.selectedPricePlan = {};
         if ($scope.partnerCode) {

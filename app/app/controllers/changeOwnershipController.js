@@ -1332,6 +1332,9 @@ smartApp.controller('changeOwnershipController', function(
             }
             $scope.setBirthDateOwner2();
             console.log($scope.isCheckInputForVerify);
+            //STR:(CR selected ShopCode 05-04-2016)
+            localStorage.setItem('selectedShopCode', $scope.partnerCode);
+            //END
             $('#idBindDataAgain').click();
         }, 500);
 

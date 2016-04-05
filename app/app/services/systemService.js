@@ -131,7 +131,8 @@
             httpRequest.headers = {
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
-                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL
+                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
             };
         }
         $http(httpRequest).success(function(data) {
@@ -195,7 +196,8 @@
             httpRequest.headers = {
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
-                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL
+                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
             };
         }
         //console.log(httpRequest);
@@ -267,7 +269,8 @@
             httpRequest.headers = {
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
-                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL
+                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
             };
         }
         $http(httpRequest).success(function(data) {
@@ -335,7 +338,8 @@
             httpRequest.headers = {
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
-                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL
+                'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
             };
         }
         $http(httpRequest).success(function(data) {
@@ -389,7 +393,8 @@
         httpRequest.headers = {
             'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
             'E2E_REFID': localStorage.getItem('orderId'),
-            'REF_WEB_CHANNEL': _REF_WEB_CHANNEL
+            'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
+            'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
         };
 
         $http(httpRequest).success(function(response) {
