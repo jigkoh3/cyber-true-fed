@@ -1528,13 +1528,23 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
                 $scope.onChangeRadioOffer(item);
             }, 50);
         }
-        // $scope.disableSubmitBtn = function() {
-        //     if ($scope.radioDisOffer || $scope.radioOffer || $scope.radioCpOffer) {
-        //         $scope.disableSubmitAddOffer = false;
-        //     } else {
-        //         $scope.disableSubmitAddOffer = true;
-        //     }
-        // }
+    $scope.checkboxRowClick = function(tableID) {
+            // $('.hModal').height(($(window).height()) - 235);
+            $('#' + tableID + ' tr').click(function() {
+                $(this).find('td input:checkbox').prop('checked', true);
+            })
+
+            // setTimeout(function() {
+            //     $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+            //     $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+            //     $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+            //     $scope.disableSubmitAddOffer = false;
+            //     console.log($scope.radioDisOffer);
+            //     $('#idBindDataAgain').click();
+            //     $scope.onChangeRadioOffer(item);
+            // }, 50);
+        }
+
     $scope.onClearRadio = function(radioName) {
         if (radioName == 'radioDisOffer') {
             $scope.radioDisOffer = "";

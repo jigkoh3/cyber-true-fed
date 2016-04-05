@@ -61,14 +61,14 @@
                                 </th>
                             </tr>
                         </table>
-                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="currentOffer">
                             <tr ng-repeat="item in offerList | filter:{'offer-group': 'Related Offer'}">
                                 <td class="col-xs-1 contentTb">
                                     <div align="center" class="" ng-show="offerType=='C'">
-                                        <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-eye editIcon-1x"></i></span></button>
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-eye editIcon-1x"></i></span></button>
                                     </div>
                                     <div align="center" class="" ng-show="offerType=='U'">
-                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                     </div>
                                     <div align="center" class="" ng-show="offerType=='D'">
                                         <input type="checkbox" ng-model="deleteOffer">
@@ -90,7 +90,12 @@
                                     {{item['effective-date']}}
                                 </td>
                                 <td class="col-xs-1 contentTbCenter">
-                                    {{item['expiration-date']}}
+                                    <div align="center" class="" ng-show="offerType!='U'">
+                                        {{item['expiration-date']}}
+                                    </div>
+                                    <div align="center" class="" ng-show="offerType=='U'">
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
+                                    </div>
                                 </td>
                                 <td class="col-xs-1 contentTbCenter">
                                     {{item['type']}}
@@ -109,12 +114,12 @@
                         <tr ng-repeat="item in offerList | filter:{'offer-group': 'Regular Offer'}">
                             <td class="col-xs-1 contentTb">
                                 <div align="center" class="" ng-show="offerType=='C'">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-eye editIcon-1x"></i></span></button>
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-eye editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='U'">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
-                                <div align="center" class="" ng-show="offerType=='D'">
+                                <div align="center" class="checkbox" ng-show="offerType=='D'">
                                     <input type="checkbox" ng-model="deleteOffer">
                                 </div>
                             </td>
@@ -133,7 +138,12 @@
                                 {{item['effective-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                {{item['expiration-date']}}
+                                <div align="center" class="" ng-show="offerType!='U'">
+                                    {{item['expiration-date']}}
+                                </div>
+                                <div align="center" class="" ng-show="offerType=='U'">
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
+                                </div>
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['type']}}
@@ -151,10 +161,10 @@
                         <tr ng-repeat="item in offerList | filter:{'offer-group': 'Contract & Prop'}">
                             <td class="col-xs-1 contentTb">
                                 <div align="center" class="" ng-show="offerType=='C'">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-eye editIcon-1x"></i></span></button>
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-eye editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='U'">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='D'">
                                     <input type="checkbox" ng-model="deleteOffer">
@@ -175,15 +185,15 @@
                                 {{item['effective-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                {{item['expiration-date']}}
+                                <div align="center" class="" ng-show="offerType!='U'">
+                                    {{item['expiration-date']}}
+                                </div>
+                                <div align="center" class="" ng-show="offerType=='U'">
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
+                                </div>
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['type']}}
-                            </td>
-                            <td class="col-xs-1 contentTb">
-                                <div align="center" class="">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
-                                </div>
                             </td>
                         </tr>
                     </table>
@@ -198,10 +208,10 @@
                         <tr ng-repeat="item in offerList | filter:{'offer-group': 'Discount'}">
                             <td class="col-xs-1 contentTb">
                                 <div align="center" class="" ng-show="offerType=='C'">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="fa fa-eye editIcon-1x"></i></span></button>
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-eye editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='U'">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='D'">
                                     <input type="checkbox" ng-model="deleteOffer">
@@ -222,15 +232,15 @@
                                 {{item['effective-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                {{item['expiration-date']}}
+                                <div align="center" class="" ng-show="offerType!='U'">
+                                    {{item['expiration-date']}}
+                                </div>
+                                <div align="center" class="" ng-show="offerType=='U'">
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
+                                </div>
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['type']}}
-                            </td>
-                            <td class="col-xs-1 contentTb">
-                                <div align="center" class="">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
-                                </div>
                             </td>
                         </tr>
                     </table>
@@ -341,7 +351,7 @@
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 <div align="center" class="">
-                                    <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                             </td>
                         </tr>
@@ -407,7 +417,7 @@
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 <div align="center" class="">
-                                    <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#337ab7;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                             </td>
                             <td class="col-xs-1 contentTbCenter">
@@ -1092,7 +1102,7 @@
                         <div>
                             <div style="border-top: 1px solid #e5e5e5;"> &nbsp;
                                 <label style="cursor: pointer;">
-                                    <input type="radio" name="adExpDate" value="param" ng-model="adExpDate"><span style="font-weight: bold; font-size:16px;"> Parameter</span>
+                                    <span style="font-weight: bold; font-size:16px;"> Parameter</span>
                                 </label>
                             </div>
                             <div calss="form-group">
@@ -1125,47 +1135,7 @@
                             </div> &nbsp;
                             <p></p>
                         </div>
-                        <div style="border-top: 1px solid #e5e5e5;"> &nbsp;
-                            <div>
-                                <label style="cursor: pointer;">
-                                    <input type="radio" name="adExpDate" value="exp" ng-model="adExpDate"><span style="font-weight: bold; font-size:16px;"> Expiration Date</span>
-                                </label>
-                            </div>
-                            <div calss="form-group">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                    </div>
-                                    <div class="col-md-2" style="text-align:left;top: 5px;">
-                                        <label style="cursor: pointer;" ng-click="chkExpDate()">
-                                            <input type="radio" name="radioExpDate" ng-model="radioExpDate" id="radioExpDate" value="noExpDate"> ไม่มีกำหนด
-                                        </label>
-                                    </div>
-                                    <div class="col-md-4">
-                                    </div>
-                                    <div class="col-md-3">
-                                    </div>
-                                </div> &nbsp;
-                            </div>
-                            <div calss="form-group">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                    </div>
-                                    <div class="col-md-2" style="text-align:left;top: 5px;">
-                                        <label style="cursor: pointer;" ng-click="chkExpDate()">
-                                            <input type="radio" name="radioExpDate" ng-model="radioExpDate" id="radioExpDate" value="expDate"> ระบุวันที่
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3" style="margin-top:-5px; margin-bottom:-5px;">
-                                        <div class="form-group has-feedback imp">
-                                            <input ng-disabled="manualExpDate" type="text" ng-model="editADEffectiveOffer" id="editADEffectiveOffer" class="form-control dateManual date-picker-start dateFormat" style="width:130%;" maxlength="10">
-                                            <span class="form-control-feedback is-bound" style="right: -30%;"><i class="fa fa-calendar"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                </div>
-                            </div>
-                        </div> &nbsp;
+                         &nbsp;
                         <p></p>
                     </div>
                     <div ng-show="showDetail['type']=='F&F'">
@@ -1587,7 +1557,7 @@
             <div class="modalOffer-footer" style="">
                 <!-- <div class="row" style="width: 99%;"> -->
                 <div class="col-xs-6" style="text-align: left; padding-left: 60px;">
-                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="" style="margin-top: -0px;"><span><i class="fa fa-trash-o fa-lg"></i></span> ลบ Offer</button>
+                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="" style="margin-top: -0px;"><span><i class="fa fa-trash-o fa-lg"></i></span> ยกเลิกการแก้ไข Offer</button>
                 </div>
                 <div class="col-xs-6">
                     <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
@@ -1600,6 +1570,75 @@
         </div>
     </div>
 </div>
+<div id="modal-edit-expDate-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modalOffer-header" style="background: #c72230">
+                <div style="font-size: 1.5em; color:white">รายละเอียด Parameter</div>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive hModal" style="overflow-x:hidden;">
+                    <div>
+                        
+                            <div calss="form-group">
+                                <label style="cursor: pointer;">
+                                    <span style="font-weight: bold; font-size:16px;"> Expiration Date</span>
+                                </label>
+                            </div>
+                            <div calss="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-2" style="text-align:left;top: 5px;">
+                                        <label style="cursor: pointer;" ng-click="chkExpDate()">
+                                            <input type="radio" name="radioExpDate" ng-model="radioExpDate" id="radioExpDate" value="noExpDate"> ไม่มีกำหนด
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                </div> &nbsp;
+                            </div>
+                            <div calss="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-2" style="text-align:left;top: 5px;">
+                                        <label style="cursor: pointer;" ng-click="chkExpDate()">
+                                            <input type="radio" name="radioExpDate" ng-model="radioExpDate" id="radioExpDate" value="expDate"> ระบุวันที่
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3" style="margin-top:-5px; margin-bottom:-5px;">
+                                        <div class="form-group has-feedback imp">
+                                            <input ng-disabled="manualExpDate" type="text" ng-model="editADEffectiveOffer" id="editADEffectiveOffer" class="form-control dateManual date-picker-start dateFormat" style="width:130%;" maxlength="10">
+                                            <span class="form-control-feedback is-bound" style="right: -30%;"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                         &nbsp;
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modalOffer-footer" style="">
+                <!-- <div class="row" style="width: 99%;"> -->
+                <div class="col-xs-6" style="text-align: left; padding-left: 60px;">
+                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="" style="margin-top: -0px;"><span><i class="fa fa-trash-o fa-lg"></i></span> ยกเลิกการแก้ไข Offer</button>
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
+                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ปิด</button>
+                </div>
+                <br>
+                <br>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
 </div>
 <!-- End modal-edit-offerDetail -->
 <!-- Start modal view offer  -->
