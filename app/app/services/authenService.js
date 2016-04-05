@@ -88,7 +88,7 @@
                 //STR: CR selected shopcode //05-04-2016
                 if ($routeParams.shop_code) {
                     result['shopcodes'] = ["" + $routeParams.shop_code + ""];
-                    localStorage.setItem('orderId', $routeParams.shop_code);
+                    localStorage.setItem('selectedShopCode', $routeParams.shop_code);
                 }
                 //END: CR selected shopcode //05-04-2016
                 result['partnerCodes'] = result['shopcodes'];
