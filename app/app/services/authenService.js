@@ -1,4 +1,4 @@
-﻿smartApp.service('AuthenService', function($http, SystemService) {
+﻿smartApp.service('AuthenService', function($http, SystemService, $routeParams) {
     var that = this;
     this.userProfile = {
         shopType: "",
@@ -16,8 +16,8 @@
             "thaiName": null,
             "engName": "CMTEST48 CMSUR48",
             // "shopcodes": [],
-             "shopcodes": ["12345678"],
-            // "shopcodes": ["12345678", "12345677"],
+            //"shopcodes": ["12345678"],
+            "shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
             "isByPassSecondAuthen": true,
@@ -68,6 +68,12 @@
 
         if (SystemService.demo) {
             that.userProfile.shopType = result.shopType;
+            //STR: CR selected shopcode //05-04-2016
+            if ($routeParams.shop_code) {
+                result['shopcodes'] = ["" + $routeParams.shop_code + ""];
+                localStorage.setItem('selectedShopCode', $routeParams.shop_code);
+            }
+            //END: CR selected shopcode //05-04-2016
             result['partnerCodes'] = result['shopcodes'];
             fnCallback(result);
 
@@ -79,6 +85,12 @@
             };
             $http(httpRequest).success(function(result) {
                 that.userProfile.shopType = result.shopType;
+                //STR: CR selected shopcode //05-04-2016
+                if ($routeParams.shop_code) {
+                    result['shopcodes'] = ["" + $routeParams.shop_code + ""];
+                    localStorage.setItem('orderId', $routeParams.shop_code);
+                }
+                //END: CR selected shopcode //05-04-2016
                 result['partnerCodes'] = result['shopcodes'];
                 fnCallback(result);
             }).error(function(data, status) {
