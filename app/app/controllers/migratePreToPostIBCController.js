@@ -384,6 +384,19 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         $.fancybox.close();
     };
+    $scope.checkAuthorize = function(type) {
+        setTimeout(function() {
+            if (type == "I" || type == "P") {
+                //hide มอบอำนาจ
+                $('#divShowAuthorize').hide();
+            } else {
+                //show มอบอำนาจ
+                $('#divShowAuthorize').show();
+            }
+            //edit 07-04-2016
+            $('#divShowAuthorize').hide();
+        }, 1100);
+    };
 
     $scope.changeType = function(customerType) {
         $scope.customerType = customerType;
@@ -394,7 +407,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.isAuthorize = false;
         $scope.CitizenID2 = "";
         $scope.authorizeFullName = "";
-        $('#divShowAuthorizeID').hide();
+        //$('#divShowAuthorizeID').hide();
+        $('#loadingReadCard3').hide();
         $('#authorize').prop("checked", false);
 
         if (customerType == 'B' || customerType == 'C') {
@@ -403,13 +417,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
             if ($scope.getAuthen['shopType'] == '0') {
                 $scope.getBillCycleList();
             }
-            //show มอบอำนาจ
-            $('#divShowAuthorize').show();
-            $('#loadingReadCard3').show();
+
         } else {
-            //show มอบอำนาจ
-            $('#divShowAuthorize').hide();
-            $('#loadingReadCard3').hide();
+            //
         }
 
 
@@ -1020,7 +1030,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.onLoadSubNoNull = function() {
         setTimeout(function() {
-            $('#divShowAuthorize').hide();
+            //$('#divShowAuthorize').hide();
             $('#loadingReadCard3').hide();
         }, 1000);
         AuthenService.getAuthen(function(result) {
@@ -1172,8 +1182,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                         var cutomerType = $scope.data.priceplan['account-category'];
                                         console.log(cutomerType);
                                         if (cutomerType == "P") {
-
-                                            $('#divShowAuthorize').hide();
+                                            //edit 07-04-2016
+                                            //$('#divShowAuthorize').hide();
                                         }
 
                                         $('#cardType').val($scope.cardType.value);
@@ -1258,6 +1268,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     if (!$scope.isNonePartner && $scope.shopType == '1') {
                                         //$scope.data = {};
                                     }
+                                    $scope.checkAuthorize($scope.data.priceplan['account-category']);
                                 }
                             });
                         } else {
@@ -1267,7 +1278,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 } else {
                     SystemService.hideLoading();
                     setTimeout(function() {
-                        $('#divShowAuthorize').hide();
+                        //$('#divShowAuthorize').hide();
                     }, 1000);
                 }
                 if ($scope.getAuthen["shopcodes"] && $scope.getAuthen["shopcodes"].length >= 1) {
@@ -2891,10 +2902,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "contact-name": $scope.mailAddress.sendName
             };
             cardTypeIBC = $scope.cardType.value;
-            if($scope.isLastestAdress == true){
+            if ($scope.isLastestAdress == true) {
                 _customerID = $scope.lastestCustomer['customer-id'];
-                changeOption =  "EXISTING";    
-            }else{
+                changeOption = "EXISTING";
+            } else {
                 changeOption = "NEW";
             }
         }
