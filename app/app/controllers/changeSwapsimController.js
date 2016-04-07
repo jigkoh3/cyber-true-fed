@@ -7,7 +7,7 @@
         customerprofile: 'app/views/customerprofile.html?' + runTime
     };
 
-
+//!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == true && !$scope.deviceType) || (shopType=='1' && dealerCode.length != 8)
     // Prepare page states
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
 
@@ -489,6 +489,9 @@
     };
 
     $scope.onInputDealerCode = function() {
+        //check validate 07-04-2016
+        $scope.printAble = false;
+        $scope.simSerial = "";
         if ($scope.dealerCode.length === $scope.dealerCodeLength) {
 
             $('#dealerCodeInput').prop('disabled', true);

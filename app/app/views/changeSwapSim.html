@@ -174,7 +174,7 @@
                                                    class="form-control"
                                                    ng-model="simSerial"
                                                    ng-change="onInputSIMSerial()"
-                                                   ng-disabled="!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == true && !deviceType)"
+                                                   ng-disabled="!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == true && !deviceType)  || (shopType=='1' && dealerCode.length != 8) || (shopType=='1' && getAuthen['shopType'].length==0 && dealerCodeValid==false)"
                                                    maxlength="{{ simSerialLength }}" required />
                                             <!-- ng-disabled="!dealerCode || !dealerCodeValid || !SubNo || !productCodes" -->
 
@@ -222,7 +222,7 @@
             <div class="col-md-12 form-buttons" style="margin-top:-10px;">
                 <div class="form-group">
                     <input ng-if="shopType === '0'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!printAble" />
-                    <input ng-if="shopType === '1'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!printAble" />
+                    <input ng-if="shopType === '1'" type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog()" ng-disabled="!printAble || (shopType=='1' && dealerCode.length != 8)" />
                     
                     <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
 
