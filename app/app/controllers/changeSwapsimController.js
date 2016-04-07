@@ -417,6 +417,7 @@
     };
 
     $scope.onInputSIMSerial = function() {
+        $scope.printAble = false;
         if ($scope.simSerial.length === $scope.simSerialLength) {
 
 
