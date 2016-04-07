@@ -72,7 +72,11 @@
             if ($routeParams.shop_code) {
                 result['shopcodes'] = ["" + $routeParams.shop_code + ""];
                 localStorage.setItem('selectedShopCode', $routeParams.shop_code);
+            }else{
+                localStorage.setItem('selectedShopCode', "");
             }
+            localStorage.setItem('ssoEmployeePrincipal',  JSON.stringify(result['ssoEmployeePrincipal']));
+            localStorage.setItem('ssoPartnerPrincipal',  JSON.stringify(result['ssoPartnerPrincipal']));
             //END: CR selected shopcode //05-04-2016
             result['partnerCodes'] = result['shopcodes'];
             fnCallback(result);
@@ -89,7 +93,11 @@
                 if ($routeParams.shop_code) {
                     result['shopcodes'] = ["" + $routeParams.shop_code + ""];
                     localStorage.setItem('selectedShopCode', $routeParams.shop_code);
+                }else{
+                    localStorage.setItem('selectedShopCode', "");
                 }
+                localStorage.setItem('ssoEmployeePrincipal',  JSON.stringify(result['ssoEmployeePrincipal']));
+                localStorage.setItem('ssoPartnerPrincipal',  JSON.stringify(result['ssoPartnerPrincipal']));
                 //END: CR selected shopcode //05-04-2016
                 result['partnerCodes'] = result['shopcodes'];
                 fnCallback(result);

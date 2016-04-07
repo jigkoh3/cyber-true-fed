@@ -132,7 +132,9 @@
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+                'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+                'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
             };
         }
         $http(httpRequest).success(function(data) {
@@ -197,7 +199,9 @@
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+                'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+                'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
             };
         }
         //console.log(httpRequest);
@@ -270,7 +274,9 @@
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+                'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+                'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
             };
         }
         $http(httpRequest).success(function(data) {
@@ -339,7 +345,9 @@
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+                'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+                'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
             };
         }
         $http(httpRequest).success(function(data) {
@@ -394,7 +402,9 @@
             'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
             'E2E_REFID': localStorage.getItem('orderId'),
             'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-            'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+            'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+                'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+                'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
         };
 
         $http(httpRequest).success(function(response) {
