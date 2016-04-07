@@ -174,7 +174,7 @@
                                                    class="form-control"
                                                    ng-model="simSerial"
                                                    ng-change="onInputSIMSerial()"
-                                                   ng-disabled="!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == true && !deviceType)  || (shopType=='1' && dealerCode.length != 8) || (shopType=='1' && getAuthen['shopType'].length==0 && dealerCodeValid==false)"
+                                                   ng-disabled="!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == true && !deviceType)  || (shopType=='1' && dealerCode.length != 8) || (shopType=='1' && getAuthen['shopType'].length==0 && dealerCodeValid==false) || (dealerCode.length != 8)  || (shopType=='0' && dealerCodeValid==false)"
                                                    maxlength="{{ simSerialLength }}" required />
                                             <!-- ng-disabled="!dealerCode || !dealerCodeValid || !SubNo || !productCodes" -->
 

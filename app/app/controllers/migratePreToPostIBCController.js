@@ -412,8 +412,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $('#authorize').prop("checked", false);
 
         if (customerType == 'B' || customerType == 'C') {
-            $scope.blah = "P";
+            
             //CR02
+            $scope.blah = "PS";
             if ($scope.getAuthen['shopType'] == '0') {
                 $scope.getBillCycleList();
             }
@@ -688,7 +689,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.billPayment.preferedContace = "*";
 
         $scope.billPayment.email = "";
-        $scope.billPayment.smss = "";
+        $scope.billPayment.smss = $scope.SubNo;
         $scope.billPayment.accountLang = "TH";
 
         $scope.contactNo = {
@@ -1313,13 +1314,20 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 $scope.disableTaxID = true;
             }
         } else {
-            $scope.disableTaxID = false;
-            $scope.customer['tax-id'] = "0000000000000";
+            var isnum = /^\d+$/.test($scope.customer['id-number']);
+            console.log($scope.customer['id-number'].length, $scope.customerType, isnum);
+            if ($scope.customer['id-number'].length == 13 && $scope.customerType != 'N' && isnum) {
+                $scope.customer['tax-id'] = $scope.customer['id-number'];
+            } else {
+                if ($scope.customerType == 'N') {
+                    $scope.disableTaxID = false;
+                    $scope.customer['tax-id'] = "0000000000000";
+                }else{
+                    $scope.customer['tax-id'] = "";
+                }
+            }
         }
 
-        if ($scope.customer['id-number'].length == 13 && $scope.customerType != 'N') {
-            $scope.customer['tax-id'] = $scope.customer['id-number'];
-        }
     }
     $scope.onInputShopCode = function() {
         if ($scope.partnerCode && $scope.partnerCode.length == 8) {
@@ -4355,7 +4363,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
         } else if (isNull($scope.newOwner.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
-        } else if (isNull($scope.customer['tax-id']) && $scope.customerType != 'N' && $scope.isVerify) {
+        } else if ((isNull($scope.customer['tax-id']) || $scope.customer['tax-id'].length != 13) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("taxNumber", ValidateMsgService.data.msgTaxNumberEmpty);
         } else if (isNull($scope.customer['branch-code']) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("branchCode", ValidateMsgService.data.msgBranchCodeEmpty);
