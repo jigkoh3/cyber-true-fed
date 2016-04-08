@@ -60,7 +60,7 @@
                                         &nbsp;
                                         <div class="row">
                                             <div class="col-md-12" ng-form="deviceTypeForm" style="margin-top:-3px;">
-                                                <select ng-model="deviceType" ng-disabled="!isCustomerProfile" name="deviceTypeDropdown" class="form-control" required>
+                                                <select ng-model="deviceType" ng-disabled="!isCustomerProfile" name="deviceTypeDropdown" ng-change="onClearSim()" class="form-control" required>
                                                     <option value="">Please Select</option>
                                                     <option ng-repeat="device in deviceTypeList" value="{{ device['device-code'] }}">{{ device.deviceType }}</option>
                                                 </select>
@@ -105,7 +105,7 @@
                                                     Shop Code / Dealer Code ไม่ถูกต้อง
                                                 </span>
 
-                                                <select id="dealerCodeList" ng-show="dealerCodeList.length > 1" class="form-control" ng-model="dealerCode" required>
+                                                <select id="dealerCodeList" ng-show="dealerCodeList.length > 1" class="form-control" ng-model="dealerCode" ng-change="onClearSim()" required>
                                                     <option value="">Please Select</option>
                                                     <option ng-repeat="code in dealerCodeList" value="{{ code }}">{{ code }}</option>
                                                 </select>

@@ -488,7 +488,11 @@
             $scope.printAble = false;
         }
     };
-
+    $scope.onClearSim = function(){
+        //
+        $scope.printAble = false;
+        $scope.simSerial = "";
+    };
     $scope.onInputDealerCode = function() {
         //check validate 07-04-2016
         $scope.printAble = false;
