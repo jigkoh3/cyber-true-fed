@@ -1031,9 +1031,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.onLoadSubNoNull = function() {
         setTimeout(function() {
-            //$('#divShowAuthorize').hide();
+            $('#divShowAuthorize').hide();
             $('#loadingReadCard3').hide();
-        }, 1000);
+        }, 500);
         AuthenService.getAuthen(function(result) {
             if (result == "ERROR") return;
             $scope.getAuthen = result;
@@ -1318,6 +1318,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             console.log($scope.customer['id-number'].length, $scope.customerType, isnum);
             if ($scope.customer['id-number'].length == 13 && $scope.customerType != 'N' && isnum) {
                 $scope.customer['tax-id'] = $scope.customer['id-number'];
+                $('#idBindDataAgain').click();
             } else {
                 if ($scope.customerType == 'N') {
                     $scope.disableTaxID = false;

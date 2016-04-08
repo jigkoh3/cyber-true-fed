@@ -989,7 +989,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
                             setTimeout(function() {
                                 //document.getElementById('iframePDF').focus();
-                                //document.getElementById('iframePDF').src = 'javascript:window.print();';
+                                document.getElementById('iframePDF').src = 'javascript:window.print();';
                                 //-----------------ST fixed IE8 15/01/2016 ------------------
 
 
