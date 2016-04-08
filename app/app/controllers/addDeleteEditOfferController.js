@@ -5,7 +5,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     ValidateMsgService,
     $routeParams,
     AuthenService,
-    AddDeleteEditOfferService,
+    AddDeleteEditOfferNewService,
     DeviceService,
     ReasonService,
     SystemService) {
@@ -34,7 +34,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.approver = "";
     $scope.isMatch = true;
     $scope.propositions = [];
-
+    $scope.disableSubmitAddOffer = true;
     $scope.CitizenID = "";
 
     $scope.data = {};
@@ -43,15 +43,41 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.statusReason = '';
     $scope.statusReasonMemo = '';
     $scope.readOnlyOffer = true;
-
+    $scope.enableAddOffer = false;
+    $scope.disableAddBtn = false;
+    $scope.disableAddOffer = false;
+    $scope.disableAddCp = false;
+    $scope.disableAddDiscount = false;
+    $scope.manualExpDate = true;
     var orderData = {};
     $scope.editOffers = [];
     //Reasons
+    $scope.detailViewOffer = {
+        "ff1": "0812345678",
+        "ff2": "0898765432",
+        "ff3": "0812456321",
+        "ff4": "023453214"
+    };
+
+    $scope.detailViewOfferCUG = {
+        "name": "828 : Siam Dnan"
+    };
+
+    $scope.contractProp = {
+        "ViewPropCode": "RMV000000000711",
+        "ViewPropDesc": "Existing Device Disc 1,000 or 2,000 Bt.",
+        "ViewContractNumber": "RS377",
+        "ViewTerm": "6",
+        "ViewFee": "1,000",
+        "ViewStartDate": "18/01/2015",
+        "ViewExpireDate": "18/01/2015",
+        "ViewRemark": "Privilage"
+    };
     $scope.reasons = [];
     $scope.statusReason = "";
     $scope.capMaxParameterList = {};
     var soc = "1234";
-    AddDeleteEditOfferService.getCapmaxParameter(soc, function(result) {
+    AddDeleteEditOfferNewService.getCapmaxParameter(soc, function(result) {
         console.log(result.data);
         $scope.capMaxParameterList = result.data['cap-max-parameter'];
 
@@ -97,13 +123,21 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         max: 4
     };
     $scope.radioOffer = "";
+    $scope.radioCpOffer = "";
     //STR: get offerList
     $scope.offerList = [];
     $scope.releteOfferList = [];
     $scope.regulaOfferList = [];
     $scope.popUpOfferList = [];
     var popUpOfferList = [];
+    $scope.cpOfferList = [];
+    var cpOfferList = [];
+    $scope.disOfferList = [];
+    var disOfferList = [];
     $scope.showDetail = {};
+    $scope.futureOfferList = [];
+    var futureOfferList = [];
+    $scope.dateNow = $filter('date')(new Date(), 'dd/MM/yyyy');
 
     $scope.onload = function() {
         AuthenService.getAuthen(function(result) {
@@ -196,11 +230,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             //call validateOffer
             if ($scope.SubNo !== 'null') {
                 SystemService.showLoading();
-                AddDeleteEditOfferService.getSIMData($scope.SubNo, onGetSIMData);
+                AddDeleteEditOfferNewService.getSIMData($scope.SubNo, onGetSIMData);
                 $scope.getOfferList();
                 $scope.getReleteOfferList();
                 $scope.getRegulaOfferList();
                 $scope.getPopUpOfferList();
+                $scope.getFutureOfferList();
                 if (onGetSIMData) {
                     $scope.initModalReadCard();
                 }
@@ -224,9 +259,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "sale-exp": "31/01/2017"
         }, {
             "offer-name": "MNP006",
-            "offer-description": "Diacount 50% on RC 12mth",
+            "offer-description": "Test Discpunt 001",
             "offer-level": "C",
             "type": "Discount",
+            "group": "Other",
             "sale-eff": "13/11/2014",
             "sale-exp": "08/08/2250"
         }, {
@@ -308,30 +344,66 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "sale-exp": "17/11/2016"
         }, {
             "offer-name": "RMV000000001225",
-            "offer-description": "Samsung TradeIN_3,000_Jmart",
+            "offer-description": "Test Discpunt 002",
             "offer-level": "C",
             "type": "Discount",
+            "group": "Other",
             "sale-eff": "16/07/2015",
             "sale-exp": "31/07/2020"
         }, {
             "offer-name": "RMVC00000000091",
-            "offer-description": "GOV_Caesar_Plus_4_SIM_only_Hea",
+            "offer-description": "Test Discpunt 003",
             "offer-level": "G",
             "type": "Discount",
+            "group": "Retention",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
             "offer-name": "RMVB00000000266",
-            "offer-description": "Dongle Bundling For Business Solution_12mths_Panalty",
+            "offer-description": "Test Discpunt 004",
             "offer-level": "C",
             "type": "Discount",
+            "group": "Other",
+            "sale-eff": "28/07/2015",
+            "sale-exp": "31/12/2016"
+        }, {
+            "offer-name": "RMVB00000000267",
+            "offer-description": "Test Discpunt 005",
+            "offer-level": "C",
+            "type": "Discount",
+            "group": "New",
+            "sale-eff": "28/07/2015",
+            "sale-exp": "31/12/2016"
+        }, {
+            "offer-name": "RMVB00000000268",
+            "offer-description": "Test Discpunt 006",
+            "offer-level": "C",
+            "type": "Discount",
+            "group": "Special",
+            "sale-eff": "28/07/2015",
+            "sale-exp": "31/12/2016"
+        }, {
+            "offer-name": "RMVB00000000269",
+            "offer-description": "Test Discpunt 007",
+            "offer-level": "C",
+            "type": "Discount",
+            "group": "Special",
+            "sale-eff": "28/07/2015",
+            "sale-exp": "31/12/2016"
+        }, {
+            "offer-name": "RMVB00000000210",
+            "offer-description": "Test Discpunt 008",
+            "offer-level": "C",
+            "type": "Employee",
+            "group": "Other",
             "sale-eff": "28/07/2015",
             "sale-exp": "31/12/2016"
         }, {
             "offer-name": "RMV000000000400",
-            "offer-description": "Biz_True Smart 4.0_12mths_Penalty 1,500",
+            "offer-description": "Test Discpunt 009",
             "offer-level": "G",
             "type": "Discount",
+            "group": "Convergence",
             "sale-eff": "10/01/2014",
             "sale-exp": "08/08/2018"
         }, {
@@ -402,6 +474,21 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.popUpOfferList = $filter('filter')(popUpOfferList, {
             'type': $scope.regularOfferTypeId
         });
+        // $scope.cpOfferList = result;
+        cpOfferList = $filter('filter')(popUpOfferList, {
+            'type': 'Contract & Proposition'
+        });
+        $scope.cpOfferList = $filter('filter')(popUpOfferList, {
+            'type': 'Contract & Proposition'
+        });
+        $scope.disOfferList = $filter('filter')(popUpOfferList, {
+            'type': 'Discount'
+        });
+        disOfferList = $filter('filter')(popUpOfferList, {
+            'type': 'Discount'
+        });
+        $scope.cpStartDate = SystemService.convertDateToEng($scope.dateNow, 'TH');
+        $scope.trActualContractStartDate = SystemService.convertDateToEng($scope.dateNow, 'TH');
     };
     $scope.getOfferList = function() {
         var result = {
@@ -409,121 +496,180 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 "offer-name": "PROSTDA1",
                 "offer-description": "Standard Provisioning Services for Post Pay # 1",
                 "effective-date": "19/12/2013",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Additional Offer",
-                "parameter": "",
+                "parameter": [{
+                    "parameter-name1": "Parameter Value1"
+                }, {
+                    "parameter-name2": "Parameter Value2"
+                }],
+                "Level": "Subscriber",
+                "parent": "BUNG1F02",
                 "offer-group": "Related Offer"
             }, {
                 "offer-name": "INTSPS01",
                 "offer-description": "Internation Call Special Rate",
                 "effective-date": "19/12/2013",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Additional Offer",
-                "parameter": "",
+                "parameter": [{
+                    "parameter-name1": "Parameter Value1"
+                }, {
+                    "parameter-name2": "Parameter Value2"
+                }],
+                "Level": "Subscriber",
+                "parent": "BUNG1F02",
                 "offer-group": "Related Offer"
             }, {
                 "offer-name": "RMGPSS01",
                 "offer-description": "GPRS Unlimited",
                 "effective-date": "19/12/2013",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Additional Offer",
-                "parameter": "",
+                "parameter": [{
+                    "parameter-name1": "Parameter Value1"
+                }, {
+                    "parameter-name2": "Parameter Value2"
+                }],
+                "Level": "Subscriber",
+                "parent": "BUNG1F02",
                 "offer-group": "Related Offer"
             }, {
                 "offer-name": "RMHSPS04",
                 "offer-description": "Hi-Speed 3G/EDGE/GPRS 42.0 Mbps - PostPay",
                 "effective-date": "19/12/2013",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Additional Offer",
-                "parameter": "",
+                "parameter": [{
+                    "parameter-name1": "Parameter Value1"
+                }, {
+                    "parameter-name2": "Parameter Value2"
+                }],
+                "Level": "Subscriber",
+                "parent": "BUNG1F02",
                 "offer-group": "Related Offer"
             }, {
                 "offer-name": "BARNRS01",
                 "offer-description": "Bar National Roaming1800 RMV/RFT",
                 "effective-date": "04/01/2016",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Additional Offer",
-                "parameter": "",
+                "parameter": [{
+                    "parameter-name1": "Parameter Value1"
+                }, {
+                    "parameter-name2": "Parameter Value2"
+                }],
+                "Level": "Subscriber",
                 "offer-group": "Regular Offer"
             }, {
                 "offer-name": "1331SS01",
                 "offer-description": "Free of Charge for 1331",
                 "effective-date": "04/01/2016",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Additional Offer",
-                "parameter": "",
+                "parameter": [{
+                    "parameter-name1": "Parameter Value1"
+                }, {
+                    "parameter-name2": "Parameter Value2"
+                }],
+                "Level": "Subscriber",
                 "offer-group": "Regular Offer"
             }, {
                 "offer-name": "CREDITLIMIT",
                 "offer-description": "Credit Limit offer",
                 "effective-date": "19/12/2013",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Additional Offer",
-                "parameter": "",
+                "parameter": [{
+                    "parameter-name1": "Parameter Value1"
+                }, {
+                    "parameter-name2": "Parameter Value2"
+                }],
+                "Level": "Subscriber",
                 "offer-group": "Regular Offer"
             }, {
                 "offer-name": "PROCRBT1",
                 "offer-description": "Color Ring Service Post Pay",
                 "effective-date": "27/07/2015",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Additional Offer",
-                "parameter": "",
+                "parameter": [{
+                    "parameter-name1": "Parameter Value1"
+                }, {
+                    "parameter-name2": "Parameter Value2"
+                }],
+                "Level": "Subscriber",
                 "offer-group": "Regular Offer"
             }, {
                 "offer-name": "PROVM21",
                 "offer-description": "VoiceMail-TH, SMS-TH",
                 "effective-date": "11/02/2014",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Additional Offer",
-                "parameter": "",
+                "parameter": [{
+                    "parameter-name1": "Parameter Value1"
+                }, {
+                    "parameter-name2": "Parameter Value2"
+                }],
+                "Level": "Subscriber",
                 "offer-group": "Regular Offer"
             }, {
                 "offer-name": "Dummy IMEI offer",
                 "offer-description": "Dummy IMEI offer",
                 "effective-date": "19/12/2013",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Additional Offer",
-                "parameter": "",
+                "parameter": [{
+                    "parameter-name1": "Parameter Value1"
+                }, {
+                    "parameter-name2": "Parameter Value2"
+                }],
+                "Level": "Subscriber",
                 "offer-group": "Regular Offer"
             }, {
                 "offer-name": "CFF01S02",
                 "offer-description": "Friend and Family Service-FL Prefix(1.8Bt/Call)",
                 "effective-date": "11/02/2014",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "F&F",
                 "parameter": "",
+                "Level": "Subscriber",
                 "offer-group": "Regular Offer"
             }, {
                 "offer-name": "CCUGAS01",
                 "offer-description": "CUG On/Off Net (Package level)",
                 "effective-date": "11/02/2014",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "CUG",
                 "parameter": "",
+                "Level": "Agreement",
                 "offer-group": "Regular Offer"
             }, {
-                "offer-name": "M00M0S03D",
-                "offer-description": "B&E_ShPool299 get V299min,S40,M5,50MB,Wifi ULTD",
+                "offer-name": "CV0AMS01D",
+                "offer-description": "Child_Pooled Voice Monetary",
                 "effective-date": "11/02/2014",
-                "expiration-date": "",
-                "type": "Pooling",
+                "expiration-date": "-",
+                "type": "Pooled",
                 "parameter": "",
+                "Level": "Agreement",
                 "offer-group": "Regular Offer"
             }, {
-                "offer-name": "RMV000000000030",
-                "offer-description": "MNP TMH (Employee)",
+                "offer-name": "CSMAUS01D",
+                "offer-description": "Child_Pooled SMS",
                 "effective-date": "27/07/2015",
-                "expiration-date": "",
-                "type": "Contract & Prop.",
+                "expiration-date": "-",
+                "type": "Pooled",
                 "parameter": "",
-                "offer-group": "Contract & Prop."
+                "Level": "Agreement",
+                "offer-group": "Regular Offer"
             }, {
                 "offer-name": "RMV000000000711",
                 "offer-description": "Existing Device Disc 1,000 or 2,000 Bt.",
                 "effective-date": "11/02/2014",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Contract & Prop.",
                 "parameter": "",
+                "Level": "Subscriber",
                 "offer-group": "Contract & Prop."
             }, {
                 "offer-name": "DIR007",
@@ -532,14 +678,16 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 "expiration-date": "26/03/2016",
                 "type": "Discount",
                 "parameter": "",
+                "Level": "Subscriber",
                 "offer-group": "Discount"
             }, {
                 "offer-name": "DGT024",
                 "offer-description": "Discount True Group Employee",
                 "effective-date": "25/12/2013",
-                "expiration-date": "",
+                "expiration-date": "-",
                 "type": "Discount",
                 "parameter": "",
+                "Level": "Subscriber",
                 "offer-group": "Discount"
             }]
         };
@@ -547,9 +695,21 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         for (var i = 0; i < $scope.offerList.length; i++) {
             $scope.editOffers.push();
         }
+        $scope.adViewOffer.paramName1 = "Parameter Value1";
+        $scope.adViewOffer.paramName2 = "Parameter Value2";
+        $scope.adOffer.paramName1 = "Parameter Value1";
+        $scope.adOffer.paramName2 = "Parameter Value2";
         // var data = "";
-        // AddDeleteEditOfferService.getOfferList(data, function(){
+        // AddDeleteEditOfferNewService.getOfferList(data, function(){
         // });
+    };
+    $scope.adViewOffer = {
+        "paramName1": "",
+        "paramName2": ""
+    };
+    $scope.adOffer = {
+        "paramName1": "",
+        "paramName2": ""
     };
     $scope.deleteRegulaOfferList = function(item) {
         for (var i = 0; i < $scope.regulaOfferList.length; i++) {
@@ -597,6 +757,35 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }];
         $scope.releteOfferList = result;
     };
+    $scope.getFutureOfferList = function() {
+        var result = [{
+            "offer-name": "PROSTDA1",
+            "offer-description": "Standard Provisioning Service For PostPay #1",
+            "type": "Add Offer",
+            "parameter": "",
+            "create-date": "15/03/2016",
+            "effective-date": "15/04/2016",
+            "offer-group": "Future Offer"
+        }, {
+            "offer-name": "INTSPS01",
+            "offer-description": "Internation Call Special Rate",
+            "type": "Add Offer",
+            "parameter": "",
+            "create-date": "15/03/2016",
+            "effective-date": "15/04/2016",
+            "offer-group": "Future Offer"
+        }, {
+            "offer-name": "SPE001",
+            "offer-description": "Special Discount",
+            "type": "Add Offer",
+            "parameter": "",
+            "create-date": "15/03/2016",
+            "effective-date": "11/06/2016",
+            "offer-group": "Future Offer"
+        }];
+        $scope.futureOfferList = result;
+        // futureOfferList = result;
+    };
     $scope.getRegulaOfferList = function() {
         var result = [{
             "offer-name": "FCVBAR",
@@ -636,9 +825,41 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.popUpOfferList = $filter('filter')(popUpOfferList, txtSearch);
         }
     }
+    $scope.smartSearchCpOffer = function(txtSearch) {
+        $scope.radioCpOffer = "";
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = cpOfferList;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.cpOfferList = arr;
+        } else {
+            $scope.cpOfferList = $filter('filter')(cpOfferList, txtSearch);
+        }
+    }
+    $scope.smartSearchDisOffer = function(txtSearch) {
+        $scope.radioCpOffer = "";
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arr = disOfferList;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arr = $filter('filter')(arr, txtList[i]);
+            }
+            $scope.disOfferList = arr;
+        } else {
+            $scope.disOfferList = $filter('filter')(disOfferList, txtSearch);
+        }
+    }
     $scope.onChangeRadioOffer = function(item) {
-        $scope.radioOffer = $('input[name=radioOffer]:checked').val();
-        console.log($scope.radioOffer);
+        // console.log(item);
+        // $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+        // $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+        // $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+        console.log($scope.radioDisOffer);
+        $('.modal-backdrop').css('height', '200%');
         $scope.addRegulaOffer = {
             "offer-name": item['offer-name'],
             "offer-description": item['offer-description'],
@@ -652,18 +873,18 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.relateOfferEditNewExpire = "";
     $scope.chkForEdit = [];
     $scope.onChkEditOffer = function() {
-        console.log($scope.relatedOfferChk , $scope.relateOfferEditNewExpire)
+        console.log($scope.relatedOfferChk, $scope.relateOfferEditNewExpire)
         $scope.chkForEdit = [];
         $("input:checkbox[name=editOfferChk]:checked").each(function() {
             // alert($(this).val());
             var chkItem = $filter('filter')($scope.offerList, {
                 'offer-name': $(this).val()
-                // 'offer-group': "Related Offer"
+                    // 'offer-group': "Related Offer"
             });
             var item = {
                 'item': chkItem[0],
-                'new-expiration-date': $(".txt"+$(this).val()).val()
-        };
+                'new-expiration-date': $(".txt" + $(this).val()).val()
+            };
             $scope.chkForEdit.push(item);
             // yourArray.push($(this).val());
         });
@@ -676,7 +897,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.popUpOfferList = $filter('filter')(popUpOfferList, {
             'type': $scope.regularOfferTypeId
         });
-        $('#hModal').height(($(window).height()) - 235);
+        $('.hModal').height(($(window).height()) - 235);
         //$('.modal-backdrop').css('height', '200%');
     };
     $scope.showDetail = function(item) {
@@ -705,7 +926,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             changeOption: $scope.statusCancel
         };
 
-        AddDeleteEditOfferServiceService.submitAddDeleteEditOffer(data, function(result) {
+        AddDeleteEditOfferNewServiceService.submitAddDeleteEditOfferNew(data, function(result) {
             console.log(result);
             if (result.status === true && result.data.status === 'SUCCESSFUL') {
                 $('#modalPDFOpener').click();
@@ -784,12 +1005,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         if ($scope.subNoInput && $scope.subNoInput.length === 10) {
             SystemService.showLoading();
             $scope.SubNo = $('#dataSubNo').val();
-            AddDeleteEditOfferService.getSIMData($scope.subNoInput, onGetSIMData);
+            AddDeleteEditOfferNewService.getSIMData($scope.subNoInput, onGetSIMData);
             if (onGetSIMData) {
                 $scope.getOfferList();
                 $scope.getReleteOfferList();
-                $scope.getRegulaOfferList();
+                // $scope.getRegulaOfferList();
                 $scope.getPopUpOfferList();
+                $scope.getFutureOfferList();
             }
         }
     };
@@ -1018,7 +1240,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         data['statusReason'] = $scope.statusReason.id;
         data['statusReasonMemo'] = $scope.statusReasonMemo;
 
-        AddDeleteEditOfferService.submitAddDeleteEditOffer(data, function(result) {
+        AddDeleteEditOfferNewService.submitAddDeleteEditOfferNew(data, function(result) {
             SystemService.hideLoading();
             console.log(result);
             setTimeout(function() {
@@ -1111,7 +1333,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "message-type": "WARNING",
             "en-message": msg,
             "th-message": msg,
-            "technical-message": "addDeleteEditOfferController"
+            "technical-message": "addDeleteEditOfferControllerNew"
         });
     };
     $scope.initModalReadCard = function() {
@@ -1280,4 +1502,84 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.enableEditOffer = function() {
         $scope.readOnlyOffer = false;
     };
+
+    $scope.addOffer = function() {
+        $scope.enableAddOffer = true
+        $scope.disableAddBtn = true
+    }
+    $scope.tableAddOffer = 'tableAddOffer';
+    $scope.radioRowClick = function(tableID, item) {
+            $('.hModal').height(($(window).height()) - 235);
+            $('#' + tableID + ' tr').click(function() {
+                $(this).find('td input:radio').prop('checked', true);
+            })
+
+            setTimeout(function() {
+                $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+                $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+                $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+                $scope.disableSubmitAddOffer = false;
+                console.log($scope.radioDisOffer);
+                $('#idBindDataAgain').click();
+                $scope.onChangeRadioOffer(item);
+            }, 50);
+        }
+        // $scope.disableSubmitBtn = function() {
+        //     if ($scope.radioDisOffer || $scope.radioOffer || $scope.radioCpOffer) {
+        //         $scope.disableSubmitAddOffer = false;
+        //     } else {
+        //         $scope.disableSubmitAddOffer = true;
+        //     }
+        // }
+    $scope.onClearRadio = function(radioName) {
+        if (radioName == 'radioDisOffer') {
+            $scope.radioDisOffer = "";
+        } else if (radioName == 'radioCpOffer') {
+            $scope.radioCpOffer = "";
+        } else if (radioName == 'radioOffer') {
+            $scope.radioOffer = "";
+        }
+        // $('#radioDisOffer').val($scope.radioDisOffer);
+        // $('#radioDisOffer').prop('checked', false);
+        $scope.disableSubmitAddOffer = true;
+        $('input[name=' + radioName + ']').attr('checked', false);
+        // console.log($scope.radioDisOffer , $('#radioDisOffer').val());
+    }
+
+    $scope.formatTHDate = function(date) {
+        if (date) {
+            if (date.indexOf("-") >= 0) {
+                // var arr = date.split("T");
+                var arr = arr.split("/");
+                var strDate = arrDate[0] + "/" + arrDate[1] + "/" + (Number(arrDate[2]) + 543);
+                console.log(arr);
+                return strDate;
+
+            } else {
+
+                return date;
+            }
+            console.log($scope.dateNow);
+        }
+    }
+
+    $scope.chkExpDate = function(){
+        if($scope.radioExpDate == "expDate"){
+            $scope.manualExpDate = false;
+        }else{
+            $scope.manualExpDate = true;
+            $scope.editADEffectiveOffer = "";
+            $('#editADEffectiveOffer').val('');
+        }
+    }
+    $scope.manualExpDisDate = true;
+    $scope.chkEditDisDate = function(){
+        if($scope.editDisDate == "expDate"){
+            $scope.manualExpDisDate = false;
+        }else{
+            $scope.manualExpDisDate = true;
+            $scope.editDisEffectiveOffer = "";
+            $('#editDisEffectiveOffer').val('');
+        }
+    }
 });
