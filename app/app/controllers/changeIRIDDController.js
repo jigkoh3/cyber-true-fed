@@ -41,7 +41,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     //};
     //$scope.promoType = "3";
 
-    $scope.hideReadCardForMobile = function(){
+    $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
 
@@ -614,6 +614,37 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         //check show offer
         $scope.checkShowOffer();
     };
+    $scope.dataAutoApprove = {};
+    $scope.checkAutoApprove = function() {
+        //OPENING
+        return;
+        
+        SystemService.showLoading();
+        var data = {
+            "id-type": $scope.data.responseData["customer"]["id-type"],
+            "id-number": $scope.data.responseData["customer"]["id-number"],
+            "customer-id": $scope.data.responseData["customer"]["customer-id"],
+            "customer-type": $scope.data.responseData["customer"]["installed-products"][0]["account-category"],
+            "company-code": $scope.data.responseData["customer"]["installed-products"][0]["company-code"],
+            "account-sub-type": $scope.data.responseData["customer"]["installed-products"][0]["account-sub-type"],
+            "subscriber-id": $scope.data.responseData["customer"]["installed-products"][0]["product-id-number"],
+            "account-id": $scope.data.responseData["customer"]["installed-products"][0]["ban"]
+        };
+        console.log(data);
+        changeIRIDDService.ValidateAutoApproveCode(data, function(result){
+            console.log(result);
+            SystemService.hideLoading();
+
+            //check msg
+
+            $scope.dataAutoApprove = result.data["response-data"];
+            if($scope.dataAutoApprove["auto-approve-code"] == "Y"){
+                $scope.isShowApproveRal = false;
+            }else{
+                $scope.isShowApproveRal = true;
+            }
+        });
+    };
     $scope.checkShowOffer = function() {
         if ($scope.changIR == true) {
             //console.log($scope.data);
@@ -622,6 +653,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 if ($scope.changIR == true && $scope.isSubIRNo != true && $scope.requestType != 'REMOVE_IRIDD') {
                     $scope.isShowApproveRal = true;
                     $scope.isValidateSave = false;
+                    //CR02 18-04-2016 AutoApprove
+                    $scope.checkAutoApprove();
                 } else {
                     $scope.isShowApproveRal = false;
                     if ($scope.requestTypeDB == 'IRIDD' && $scope.requestType == 'REMOVE_IRIDD') {
@@ -1351,9 +1384,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     }
 
     $scope.webcamSnap = function() {
-            webcam.snap();
-        }
-    $scope.mobileCamSnap = function(){
+        webcam.snap();
+    }
+    $scope.mobileCamSnap = function() {
         var msg = $('#varMobileCam').val();
         msg = msg.replace('data:image/png;base64,', '');
         msg = msg.replace('data:image/jpeg;base64,', '');
@@ -1361,7 +1394,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         // $('#btnSavePhoto_Mobile').hide();
         $scope.varPhoto = msg;
     };
-        //end----------- camera ----------------
+    //end----------- camera ----------------
 
     $scope.cancelChanged = function() {
         closeWP();

@@ -326,6 +326,58 @@
 
         }
     };
+    var ValidateAutoApproveCodeAPI = function(params, fnCallback) {
+        var target = '/aftersales/order/';
+        console.log(target);
+        if (!demo) {
+
+            SystemService.callServiceGetByPass(target, null, function(result) {
+                fnCallback(result);
+            });
+        } else {
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "461HQMYTGV3HF",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "response-data": {
+                    "auto-approve-code": "Y",
+                    "approve-code": "",
+                    "auto-approve-reason": ""
+                }
+            };
+            var data = {
+                "status": "UNSUCCESSFUL",
+                "display-messages": [{
+                    "message": "-",
+                    "message-code": "VCVAPA2010004",
+                    "message-type": "WARNING",
+                    "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
+                }],
+                "trx-id": "3HOKUAG1EVA3",
+                "process-instance": "tmsapnpr1 (instance: SFF_node1)",
+                "status-code": "2"
+            };
+            if (params['subscriber-id'] == "0870100002") {
+                fnCallback({
+                    status: true,
+                    data: data2,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: true,
+                    data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            }
+
+        }
+    };
 
     return {
         validateIRIDDCallback: function(msisdn, fnCallback) {
@@ -563,6 +615,11 @@
         },
         ValidateApproveCodeCallback: function(company_code, customer_type, id_number, customer_level, request_type, approve_code, fnCallback) {
             ValidateApproveCodeAPI(company_code, customer_type, id_number, customer_level, request_type, approve_code, function(resultData) {
+                fnCallback(resultData);
+            });
+        },
+        ValidateAutoApproveCode: function(data, fnCallback) {
+            ValidateAutoApproveCodeAPI(data, function(resultData) {
                 fnCallback(resultData);
             });
         }

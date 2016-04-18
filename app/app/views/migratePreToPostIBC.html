@@ -603,9 +603,12 @@
                                                         </label>
                                                     </div>
                                                     <div class="col-xs-3">
-                                                        <input ng-disabled="customSelectBC=='ACCOUNT'" id="accountID_root" ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" ng-change="onChangeAccountPreverify('ROOT'); onChangeCUSACC();" ng-blur="onEnterAccountPreverify('ROOT', accountID_root)" type="text" maxlength="9" style="height:30px; font-size: 12px;" placeholder="ระบุเลขที่ลูกค้า" class="form-control">
+                                                        <input ng-disabled="customSelectBC=='ACCOUNT'" id="accountID_root" ng-show="changOpenserviceBC == 'S'" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('ROOT', accountID_root)); onKeyUpAccountPreverify('ROOT', accountID_root);" ng-model="accountID_root" ng-change="onChangeAccountPreverify('ROOT'); onChangeCUSACC();" ng-blur="onEnterAccountPreverify('ROOT', accountID_root)" type="text" maxlength="9" style="height:30px; font-size: 12px;" placeholder="ระบุเลขที่ลูกค้า" ng-number-only="accountID_root" class="form-control">
                                                     </div>
                                                     <div class="col-xs-3" ng-show="isAccount_root"><img src="images/icon/icon_active.png" alt=""></div>
+                                                    <div class="col-xs-3">
+                                                        <span ng-span-number-only="accountID_root" class="hide" style="color:red;">กรุณากรอกเฉพาะตัวเลข</span>
+                                                    </div>
                                                 </div>
                                                 <div class="row" style="padding-top: 10px;" ng-show="isAccount_root">
                                                     <div class="col-xs-1"></div>
@@ -632,6 +635,9 @@
                                                         <input ng-disabled="customSelectBC=='CUSTOMER'" type="text" style="height:30px; font-size: 12px;" ng-keyup="($event.keyCode==13 && onEnterAccountPreverify('CHILD', accountID_child)); onKeyUpAccountPreverify('CHILD', accountID_child);" maxlength="9" ng-model="accountID_child" ng-change="onChangeAccountPreverify('CHILD'); onChangeCUSACC();" placeholder="ระบุเลขบัญชีลูกค้า" id="accountID_child" ng-blur="onEnterAccountPreverify('CHILD', accountID_child)" ng-number-only="accountID_child" class="form-control">
                                                     </div>
                                                     <div class="col-xs-3" ng-show="isAccount_child"><img src="images/icon/icon_active.png" alt=""></div>
+                                                    <div class="col-xs-3">
+                                                        <span ng-span-number-only="accountID_child" class="hide" style="color:red;">กรุณากรอกเฉพาะตัวเลข</span>
+                                                    </div>
                                                 </div>
                                                 <div class="row" style="padding-top: 10px;" ng-show="isAccount_child">
                                                     <div class="col-xs-1"></div>

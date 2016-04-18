@@ -1004,7 +1004,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                 SystemService.getMaster_list("CUST-TITLE-OTHER-TYPE", function(result) {
                     $scope.titleOtherTypeList = result;
 
-                    if ($scope.getAuthen["shopType"] == "0") {
+                    //if ($scope.getAuthen["shopType"] == "0") {
                         setTimeout(function() {
                             $scope.titleOther = "คุณ";
 
@@ -1013,7 +1013,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                         }, 1000);
 
 
-                    }
+                    //}
 
                     //console.log($scope.titleOtherTypeList);
                 });
