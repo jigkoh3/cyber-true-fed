@@ -644,7 +644,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.clearDataAccount = function() {
         $scope.promotionLevel = 'SUB';
         $scope.clearAccount();
-        $scope.changOpenserviceBC = 'L';
+        if($scope.isLastestAdress == true){
+            $scope.changOpenserviceBC = 'L';
+        }
         $scope.isNewCustomer = false;
     };
     $scope.clearInputIBC = function() {
@@ -1309,8 +1311,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         if (!ct || ct == "I") {
             if ($scope.customerType == 'N') {
-                $scope.customer['tax-id'] = $scope.customer['id-number'];
-                console.log($scope.customer['tax-id'], $scope.customer['id-number']);
+                $scope.customer['tax-id'] = $scope.lastestCustomer['id-number'];
+                console.log($scope.customer['tax-id'], $scope.lastestCustomer['id-number']);
                 $scope.disableTaxID = true;
             }
         } else {
@@ -1742,8 +1744,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     }
                                 }, 1000);
                                 $scope.isAddressList = {};
+                                $scope.changOpenserviceBC = "N";
 
                             } else {
+                                $scope.changOpenserviceBC = "L";
                                 $scope.clickButtonAddress = true;
                                 var customer = lastestCustomer.data["response-data"]["customer"];
 
@@ -3689,7 +3693,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     };
     $scope.changecusStatusBC = function(customerStatus) {
         if (customerStatus == 'N') {
-            $scope.changOpenserviceBC = false;
+            //$scope.changOpenserviceBC = false;
 
         }
         $scope.customerStatusBC = customerStatus;
@@ -3718,9 +3722,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
     $scope.changeOldAddressBC = function(status) {
         if (status) {
-            $scope.changOpenserviceBC = true;
+            //$scope.changOpenserviceBC = true;
         } else {
-            $scope.changOpenserviceBC = false;
+            //$scope.changOpenserviceBC = false;
             $scope.mailAddress = {};
             $scope.billAddress = {};
         }
@@ -4383,7 +4387,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
         } else if (isNull($scope.poa_1['lastname']) && $scope.customerType != 'N' && $scope.isVerify && $scope.isAuthorizeBC) {
             showValidate("poa_1_lastname", ValidateMsgService.data.msgPoa_1_lastnameEmpty);
         } else if (isNull($scope.accountID_root) && $scope.customerType != 'N' && $scope.changOpenserviceBC == 'S') {
-            showValidate("accountID_root", ValidateMsgService.data.msgAccountID_rootEmpty);
+            if($scope.customSelectBC == 'CUSTOMER'){
+                showValidate("accountID_root", ValidateMsgService.data.msgAccountID_rootEmpty);
+            }else{
+                showValidate("accountID_child", ValidateMsgService.data.msgAccountID_rootEmpty);
+            }
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
         } else if (errorCapmax != "") {
