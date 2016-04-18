@@ -15,8 +15,8 @@
             "saleCode": "90900051",
             "thaiName": null,
             "engName": "CMTEST48 CMSUR48",
-            "shopcodes": [],
-            //"shopcodes": ["12345678"],
+            //"shopcodes": [],
+            "shopcodes": ["12345678"],
             //"shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
@@ -75,8 +75,11 @@
             }else{
                 localStorage.setItem('selectedShopCode', "");
             }
-            localStorage.setItem('ssoEmployeePrincipal',  JSON.stringify(result['ssoEmployeePrincipal']));
-            localStorage.setItem('ssoPartnerPrincipal',  JSON.stringify(result['ssoPartnerPrincipal']));
+            // localStorage.setItem('ssoEmployeePrincipal',  JSON.stringify(result['ssoEmployeePrincipal']));
+            // localStorage.setItem('ssoPartnerPrincipal',  JSON.stringify(result['ssoPartnerPrincipal']));
+
+            localStorage.setItem('ssoEmployeePrincipal',  "");
+            localStorage.setItem('ssoPartnerPrincipal',  "");
             //END: CR selected shopcode //05-04-2016
             result['partnerCodes'] = result['shopcodes'];
             fnCallback(result);
@@ -96,8 +99,10 @@
                 }else{
                     localStorage.setItem('selectedShopCode', "");
                 }
-                localStorage.setItem('ssoEmployeePrincipal',  JSON.stringify(result['ssoEmployeePrincipal']));
-                localStorage.setItem('ssoPartnerPrincipal',  JSON.stringify(result['ssoPartnerPrincipal']));
+                // localStorage.setItem('ssoEmployeePrincipal',  JSON.stringify(result['ssoEmployeePrincipal']));
+                // localStorage.setItem('ssoPartnerPrincipal',  JSON.stringify(result['ssoPartnerPrincipal']));
+                localStorage.setItem('ssoEmployeePrincipal',  "");
+                localStorage.setItem('ssoPartnerPrincipal',  "");
                 //END: CR selected shopcode //05-04-2016
                 result['partnerCodes'] = result['shopcodes'];
                 fnCallback(result);
