@@ -2176,6 +2176,34 @@ smartApp.controller('ChangePricePlanController', function(
 
     // };
 
+    // $scope.smartSearchPP = function(txtSearch) {
+    //     if ($scope.isLoadPricePlan) {
+    //         var arr = valPricePlans;
+    //         if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
+    //             arr = $filter('filter')(valPricePlans, {
+    //                 "proposition-code": $scope.selectProposition
+    //             });
+    //         } else {
+    //             arr = valPricePlansUnique;
+    //         }
+
+    //         if (txtSearch.indexOf(' ') > 0) {
+    //             var txtList = txtSearch.split(' ');
+    //             console.log(txtList);
+    //             for (var i = 0; i < txtList.length; i++) {
+    //                 arr = $filter('filter')(arr, txtList[i]);
+    //             }
+    //         } else {
+    //             //if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
+    //             arr = $filter('filter')(arr, txtSearch);
+    //             //}
+    //         }
+    //         $scope.propositionList = arr;
+    //         console.log($scope.propositionList.length);
+    //     }
+    // };
+
+    //CR SmartSearch
     $scope.smartSearchPP = function(txtSearch) {
         if ($scope.isLoadPricePlan) {
             var arr = valPricePlans;
@@ -2190,18 +2218,45 @@ smartApp.controller('ChangePricePlanController', function(
             if (txtSearch.indexOf(' ') > 0) {
                 var txtList = txtSearch.split(' ');
                 console.log(txtList);
+
+                //for CR
+                var bbArr = [];
+
                 for (var i = 0; i < txtList.length; i++) {
-                    arr = $filter('filter')(arr, txtList[i]);
+                    //arr = $filter('filter')(arr, txtList[i]);
+                    if (i == 0) {
+                        var hege = $filter('filter')(arr, { "pricePlan": txtList[i] });
+                        var stale = $filter('filter')(arr, { "rc": txtList[i] });
+                        bbArr = hege.concat(stale);
+                    } else {
+                        var hege = $filter('filter')(bbArr, { "pricePlan": txtList[i] });
+                        var stale = $filter('filter')(bbArr, { "rc": txtList[i] });
+                        bbArr = hege.concat(stale);
+                    }
+                    arr = bbArr;
                 }
             } else {
                 //if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
-                arr = $filter('filter')(arr, txtSearch);
+                //arr = $filter('filter')(arr, txtSearch);
+                var hege = $filter('filter')(arr, { "pricePlan": txtSearch });
+                var stale = $filter('filter')(arr, { "rc": txtSearch });
+                arr = hege.concat(stale);
                 //}
             }
+
+            function unique(list) {
+                var result = [];
+                $.each(list, function(i, e) {
+                    if ($.inArray(e, result) == -1) result.push(e);
+                });
+                return result;
+            }
+            arr = unique(arr);
             $scope.propositionList = arr;
             console.log($scope.propositionList.length);
         }
     };
+    
     $scope.afterCloseWarning = function() {
         if ($scope.SubNo === 'null') {
             // $('#dataSubNo').val('');
