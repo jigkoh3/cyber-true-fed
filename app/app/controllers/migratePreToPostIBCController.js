@@ -248,6 +248,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
     };
 
+    $scope.cardInfo = {};
+
     $scope.SetCardValue = function(result) {
         $('#loadingReadCard').hide();
         $scope.isReadCardSuccess = false;
@@ -266,6 +268,79 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.isCustomerProfile = true;
             $.fancybox.close();
             $scope.cardInfo3 = eval(result);
+            console.log($scope.cardInfo3);
+            var prefix = "T2";
+            if ($scope.cardInfo3.PrefixEN == "Mr.") {
+                prefix = "T1";
+            }
+            if ($scope.cardInfo3.PrefixEN == "Miss") {
+                prefix = "T3";
+            }
+            if ($scope.cardInfo3.PrefixTH == "นาง") {
+                prefix = "T2";
+            }
+            var sex = "MALE";
+            if ($scope.cardInfo3.Sex == "2") {
+                sex = "FEMALE";
+            }
+            $scope.customer['id-number'] = $scope.cardInfo3.CitizenID;
+            $('#citizenID3').val($scope.cardInfo3.CitizenID);
+            $('#prefixTH3').val(prefix);
+            $scope.newOwner.prefixTH = prefix;
+            $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
+            $('#lastNameTH3').val($scope.cardInfo3.LastNameTH);
+            $('#birthDay').val($scope.cardInfo3.BirthDay);
+            $('#disableNewOwnerBirthday').val($scope.cardInfo3.BirthDay);
+            $('#expireDay').val($scope.cardInfo3.ExpireDay);
+            $('#disableNewOwnerExpireDay').val($scope.cardInfo3.ExpireDay);
+            $('#sex3').val(sex);
+            $('#birthDay').removeClass('date-picker');
+            $scope.newOwner.firstNameTH = $scope.cardInfo3.FirstNameTH;
+            $scope.newOwner.lastNameTH = $scope.cardInfo3.LastNameTH;
+            $scope.newOwner2.firstNameTH = $scope.cardInfo3.FirstNameTH;
+            $scope.newOwner2.lastNameTH = $scope.cardInfo3.LastNameTH;
+            console.log($scope.newOwner.firstNameTH);
+
+            $scope.cardType.value = "I";
+            $('#cardType').val('I');
+
+            //binding Tax Id
+            $('#taxId3').val($scope.cardInfo3.CitizenID);
+
+            //binding user registerd - ระบุผู้ใช้หมายเลข
+            $('#titleRegisterd').val(sex);
+            $('#firstNameRegisterd').val($scope.cardInfo3.FirstNameTH);
+            $('#lastNameRegisterd').val($scope.cardInfo3.LastNameTH);
+            $('#birthDayRegisterd').val($scope.cardInfo3.BirthDay);
+
+            $('#cardType').val('I');
+            $scope.customer['tax-id'] = $scope.cardInfo.CitizenID;
+
+            if ($scope.clickButtonAddress == false) {
+                $('#useAddressAsCard').click();
+            }
+            setTimeout(function() {
+                $('#idBindDataAgain').click();
+            }, 500);
+            $('.isCustomerProfile').prop('disabled', false);
+        } else {
+            $('#unMatch').show();
+            $scope.isMatch = false;
+        }
+
+    };
+
+    $scope.SetCardValueOnTabI = function() {
+        $scope.CitizenID = $scope.cardInfo.CitizenID;
+        $('#CitizenID').val('' + $scope.cardInfo.CitizenID);
+
+        if ($scope.cardInfo.CitizenID == $scope.data.customerProfile['id-number']) {
+            $scope.isCardValueData = true;
+            $scope.isUseCardValueData = true;
+            $scope.showDataDealer = false;
+            $scope.isReadCardSuccess = true;
+            $scope.isCustomerProfile = true;
+            $scope.cardInfo3 = $scope.cardInfo;
             console.log($scope.cardInfo3);
             var prefix = "T2";
             if ($scope.cardInfo3.PrefixEN == "Mr.") {
@@ -412,7 +487,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $('#authorize').prop("checked", false);
 
         if (customerType == 'B' || customerType == 'C') {
-            
+
             //CR02
             $scope.blah = "PS";
             if ($scope.getAuthen['shopType'] == '0') {
@@ -644,7 +719,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.clearDataAccount = function() {
         $scope.promotionLevel = 'SUB';
         $scope.clearAccount();
-        if($scope.isLastestAdress == true){
+        if ($scope.isLastestAdress == true) {
             $scope.changOpenserviceBC = 'L';
         }
         $scope.isNewCustomer = false;
@@ -887,7 +962,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         }
     };
-    $scope.clearOnChangeLevel = function(){
+    $scope.clearOnChangeLevel = function() {
         $scope.isLoadPricePlan = false;
         $scope.propositionList = [];
         valPricePlans = [];
@@ -1332,7 +1407,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 if ($scope.customerType == 'N') {
                     $scope.disableTaxID = false;
                     $scope.customer['tax-id'] = "0000000000000";
-                }else{
+                } else {
                     $scope.customer['tax-id'] = "";
                 }
             }
@@ -1755,6 +1830,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                 }, 1000);
                                 $scope.isAddressList = {};
                                 $scope.changOpenserviceBC = "N";
+                                setTimeout(function() {
+                                    if ($scope.isCardValueData == true) {
+                                        $scope.SetCardValueOnTabI();
+                                    }
+                                }, 1000);
 
                             } else {
                                 $scope.changOpenserviceBC = "L";
@@ -1896,11 +1976,13 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     $scope.onselectPrefix();
                                     //$('#titleOther').val(customer["title"]);
                                 }, 1500);
+                                setTimeout(function() {
+                                    if ($scope.isCardValueData == true) {
+                                        $scope.SetCardValueOnTabI();
+                                    }
+                                }, 1000);
                                 console.log(customer);
                                 SystemService.hideLoading();
-
-
-
                             }
                         });
                     } else {
@@ -1929,6 +2011,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
         if (!$scope.isCardValueDataLastest) {
 
         }
+        setTimeout(function() {
+            $('#idBindDataAgain').click();
+        }, 1000);
+
+
     };
     //end check input
     //start check input for verify
@@ -4398,9 +4485,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
         } else if (isNull($scope.poa_1['lastname']) && $scope.customerType != 'N' && $scope.isVerify && $scope.isAuthorizeBC) {
             showValidate("poa_1_lastname", ValidateMsgService.data.msgPoa_1_lastnameEmpty);
         } else if (isNull($scope.accountID_root) && $scope.customerType != 'N' && $scope.changOpenserviceBC == 'S') {
-            if($scope.customSelectBC == 'CUSTOMER'){
+            if ($scope.customSelectBC == 'CUSTOMER') {
                 showValidate("accountID_root", ValidateMsgService.data.msgAccountID_rootEmpty);
-            }else{
+            } else {
                 showValidate("accountID_child", ValidateMsgService.data.msgAccountID_childEmpty);
             }
         } else if (isNull($scope.pricePlan.name)) {
