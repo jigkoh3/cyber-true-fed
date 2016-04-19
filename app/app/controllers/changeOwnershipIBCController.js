@@ -588,6 +588,12 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         }
     };
+    $scope.clearOnChangeLevel = function(){
+        $scope.isLoadPricePlan = false;
+        $scope.propositionList = [];
+        valPricePlans = [];
+        $scope.onClearPricePlan();
+    };
     $scope.clearAccount = function() {
         $scope.isAccountPreverify = false;
         $scope.onClearPricePlan();

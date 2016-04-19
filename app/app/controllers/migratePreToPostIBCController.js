@@ -842,7 +842,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     $scope.isAccountPreverify = true;
                     $scope.isAccount_child = true;
                     if ($scope.accountID_root == "") {
-                        $scope.accountID_root = $scope.lastestCustomer['installed-products'][0]['ban'];
+                        //$scope.accountID_root = $scope.lastestCustomer['installed-products'][0]['ban'];
+                        $scope.accountID_root = $scope.dataAccountPreverify["customer-id"];
                     }
                     //check ParentOU Level & SelectedOU Level
                     if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "NOT REQUIRE") {
@@ -885,6 +886,12 @@ smartApp.controller('MigratePreToPostIBCController', function(
             }
 
         }
+    };
+    $scope.clearOnChangeLevel = function(){
+        $scope.isLoadPricePlan = false;
+        $scope.propositionList = [];
+        valPricePlans = [];
+        $scope.onClearPricePlan();
     };
     $scope.clearAccount = function() {
         $scope.isAccountPreverify = false;
@@ -1489,7 +1496,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "&partner-code=" + $scope.partnerCode +
                 "&privilege=false";
 
-
+            //case :: ou
+            if ($scope.promotionLevel == 'OU') {
+                target = target + "&priceplan-type=" + $scope.PPTypeId;
+            }
             migratePreToPostIBCService.salePriceplanCallback(target, function(resultGetPriceplan) {
                 if (resultGetPriceplan.status) {
                     console.log(target);
@@ -4266,6 +4276,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
 
 
+
     $scope.validateUI = function() {
         var isNull = function(txt) {
             if (txt) {
@@ -4390,7 +4401,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             if($scope.customSelectBC == 'CUSTOMER'){
                 showValidate("accountID_root", ValidateMsgService.data.msgAccountID_rootEmpty);
             }else{
-                showValidate("accountID_child", ValidateMsgService.data.msgAccountID_rootEmpty);
+                showValidate("accountID_child", ValidateMsgService.data.msgAccountID_childEmpty);
             }
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);

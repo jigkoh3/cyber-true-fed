@@ -463,8 +463,8 @@
             "message": "",
             "message-code": "",
             "message-type": "WARNING",
-            "en-message": "Please specify BAN ID.",
-            "th-message": "กรุณาระบุ BAN",
+            "en-message": "Please specify BAN.",
+            "th-message": "กรุณาระบุ เลขบัญชีลูกค้า",
             "technical-message": "FROM WEBUI"
         }
     };

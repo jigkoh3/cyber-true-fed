@@ -740,12 +740,12 @@
                             <label class="col-md-3 control-label priceplaneText">ระดับของโปรโมชั่น <span style="color:red;">*</span></label>
                             <div class="col-md-4">
                                 <label style="cursor:pointer;">
-                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="SUB" ng-model="promotionLevel"> ระดับเลขหมาย
+                                    <input type="radio" style="cursor:pointer;" ng-change="clearOnChangeLevel(); PPTypeId='SH';" name="promotionLevel" value="SUB" ng-model="promotionLevel"> ระดับเลขหมาย
                                 </label>
                             </div>
                             <div class="col-md-5">
                                 <label style="cursor:pointer;">
-                                    <input type="radio" style="cursor:pointer;" ng-change="isLoadPricePlan=false;" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="(changOpenserviceBC=='L' || changOpenserviceBC=='S') && (isAccount_root == false && isLastestAdress == true)"> ระดับบัญชีลูกค้า (OU Level)
+                                    <input type="radio" style="cursor:pointer;" ng-change="clearOnChangeLevel(); PPTypeId='SH';" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="(changOpenserviceBC=='S') && (isAccount_root == false && isLastestAdress == true)"> ระดับบัญชีลูกค้า (OU Level)
                                 </label>
                             </div>
                         </div>
@@ -754,7 +754,7 @@
                         <div class="form-group" style="margin-top: 10px;">
                             <label class="col-md-3 control-label priceplaneText">ประเภทของโปรโมชั่น <span style="color:red;">*</span></label>
                             <div class="col-md-4">
-                                <select class="form-control" ng-disabled="!isCustomerProfile" ng-model="PPTypeId" id="PPTypeId" ng-change="onChangePPTypeId()">
+                                <select class="form-control" ng-disabled="!isCustomerProfile" ng-model="PPTypeId" id="PPTypeId" ng-change="onChangePPTypeId(); clearOnChangeLevel();">
                                     <!-- <option value="">-- กรุณเลือก --</option> -->
                                     <option value="N">Normal</option>
                                     <option value="SH">Share Allowance</option>
@@ -815,14 +815,14 @@
                     
                     <div class="row" ng-show="isVerify">
                         <div class="form-group">
-                            <label class="col-md-3 control-label priceplaneText">โปรโมชั่น <span style="color:red;">*</span></label>
+                            <label class="col-md-3 control-label priceplaneText">โปรโมชั่น <span style="color:red;" ng-show="showRequirePP">*</span></label>
                             <div class="col-md-6" id="priceplan_sl">
                                 <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
                             </div>
-                            <div class="col-md-2" ng-submit="openPricePlanDialog()">
+                            <div class="col-md-2" ng-hide="showPPParentOU" ng-submit="openPricePlanDialog()">
                                 <input type="text" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog()" ng-focus="focusPricePlanFilter()" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-1" ng-hide="showPPParentOU">
                                 <!--<button type="button"
                                         ng-click="selectedPricePlan3()"
                                         ng-disabled="!isCustomerProfile"
