@@ -1247,11 +1247,17 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
                 var displayMsg = utils.getObject(result.data, 'display-messages.0');
                 console.log(displayMsg);
                 if (!displayMsg || !displayMsg['message-type']) {
+                    setTimeout(function() {
+                        $('.submitOrder').addClass('btnPrintOffer');
+                    }, 100);
                     SystemService.showBeforeClose({
                         "message": "" + result.data["display-messages"][0]["th-message"],
                         "message2": ""
                     });
                 } else {
+                    setTimeout(function() {
+                        $('.submitOrder').addClass('btnPrintOffer');
+                    }, 100);
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
                         "message2": ""
@@ -1513,37 +1519,37 @@ smartApp.controller('AddDeleteEditOfferNewController', function($scope,
     }
     $scope.tableAddOffer = 'tableAddOffer';
     $scope.radioRowClick = function(tableID, item) {
-            $('.hModal').height(($(window).height()) - 235);
-            $('#' + tableID + ' tr').click(function() {
-                $(this).find('td input:radio').prop('checked', true);
-            })
+        $('.hModal').height(($(window).height()) - 235);
+        $('#' + tableID + ' tr').click(function() {
+            $(this).find('td input:radio').prop('checked', true);
+        })
 
-            setTimeout(function() {
-                $scope.radioOffer = $('input[name=radioOffer]:checked').val();
-                $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
-                $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
-                $scope.disableSubmitAddOffer = false;
-                console.log($scope.radioDisOffer);
-                $('#idBindDataAgain').click();
-                $scope.onChangeRadioOffer(item);
-            }, 50);
-        }
+        setTimeout(function() {
+            $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+            $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+            $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+            $scope.disableSubmitAddOffer = false;
+            console.log($scope.radioDisOffer);
+            $('#idBindDataAgain').click();
+            $scope.onChangeRadioOffer(item);
+        }, 50);
+    }
     $scope.checkboxRowClick = function(tableID) {
-            // $('.hModal').height(($(window).height()) - 235);
-            $('#' + tableID + ' tr').click(function() {
-                $(this).find('td input:checkbox').prop('checked', true);
-            })
+        // $('.hModal').height(($(window).height()) - 235);
+        $('#' + tableID + ' tr').click(function() {
+            $(this).find('td input:checkbox').prop('checked', true);
+        })
 
-            // setTimeout(function() {
-            //     $scope.radioOffer = $('input[name=radioOffer]:checked').val();
-            //     $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
-            //     $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
-            //     $scope.disableSubmitAddOffer = false;
-            //     console.log($scope.radioDisOffer);
-            //     $('#idBindDataAgain').click();
-            //     $scope.onChangeRadioOffer(item);
-            // }, 50);
-        }
+        // setTimeout(function() {
+        //     $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+        //     $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+        //     $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+        //     $scope.disableSubmitAddOffer = false;
+        //     console.log($scope.radioDisOffer);
+        //     $('#idBindDataAgain').click();
+        //     $scope.onChangeRadioOffer(item);
+        // }, 50);
+    }
 
     $scope.onClearRadio = function(radioName) {
         if (radioName == 'radioDisOffer') {

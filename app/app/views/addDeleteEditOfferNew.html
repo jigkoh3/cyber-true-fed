@@ -453,11 +453,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 form-buttons">
+                <!-- <div class="col-md-12 form-buttons">
                     <div class="form-group">
-                        <!-- <input ng-click="logDataBeforeSubmit()" type="button" value="debug"/> -->
+                        
                         <input type="submit" value="พิมพ์" class="btn btn-success btnPrintOffer" ng-click="openPDFDialog();onChkEditOffer();" ng-disabled="!isCustomerProfile" />
                         <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
+                        <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
+                    </div>
+                </div> -->
+                <div class="col-md-12 form-buttons">
+                    <div class="form-group">
+                        <input type="submit" value="ยืนยัน" class="btn btn-success btnPrintOffer" ng-click="onChkEditOffer();" ng-disabled="!isCustomerProfile" href="#modalSubmit" data-toggle="modal" />
                         <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
                     </div>
                 </div>
@@ -2393,33 +2399,37 @@
     </div>
 </div>
 <!-- End Discount Modal -->
-
 <!-- Start Submit Madal -->
 <div id="modalSubmit" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog" style="width: 350px;">
         <div class="modal-content">
             <!-- <div class="modalOffer-header" style="background: #c72230">
-                <div style="font-size: 1.5em; color:white">Discount</div>
+                <div style="font-size: 1.5em; color:white">ยืนยันการทำรายการ</div>
             </div>
-            &nbsp;&nbsp; -->
+            &nbsp;&nbsp;
+ -->
             <!--<div class="modal-header">
                 <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
                 <h5>Price Plan</h5>
 
             </div>-->
             <div class="modal-body">
-                <div class="table-responsive hModal" style="overflow-x:hidden;">
-                    <div class="row">
+                <div class="table-responsive" style="overflow-x:hidden;">
+                    <div align="center">
                         <h4>ยืนยันการทำรายการ</h4>
-                        
                     </div>
+                    <div class="row">
+                        <div class="col-md-12 form-buttons">
+                            <div class="form-group">
+                                <input type="button" value="ยืนยัน" data-toggle="modal" ng-click="confirmPrint()" class="btn btn-success btnPrintOffer" data-dismiss="modal">
+                                <input type="reset" value="ยกเลิก" class="btn btn-cancel" data-dismiss="modal">
+                            </div>
+                        </div>
+                    </div>
+                    &nbsp;
                 </div>
-                <!-- <div class="modal-footer" style=" padding-top: 0;">
-                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="disableSubmitAddOffer" ng-click="addRegulaOfferList(item);">ตกลง</button>
-                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="onClearRadio('radioDisOffer');">ยกเลิก</button>
-                </div> -->
             </div>
         </div>
     </div>
 </div>
-<!-- End Submit Madal -->
+<!-- End Submit Madal
