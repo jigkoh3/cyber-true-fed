@@ -6,8 +6,8 @@
     };
     this.getAuthen = function(fnCallback) {
         var result = {
-            "shopType": "0",
-            "isSecondAuthen": true,
+            "shopType": "1",
+            "isSecondAuthen": false,
             "channel": "NONSHOP",
             "partnerCodes": [],
             "partnerName": null,
@@ -16,8 +16,8 @@
             "thaiName": null,
             "engName": "CMTEST48 CMSUR48",
             //"shopcodes": [],
-            "shopcodes": ["12345678"],
-            //"shopcodes": ["12345678", "12345677"],
+            //"shopcodes": ["12345678"],
+            "shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
             "isByPassSecondAuthen": true,
@@ -69,7 +69,7 @@
         if (SystemService.demo) {
             that.userProfile.shopType = result.shopType;
             //STR: CR selected shopcode //05-04-2016
-            if ($routeParams.shop_code) {
+            if ($routeParams.shop_code && ($routeParams.shop_code+0 > 0) && $routeParams.shop_code.length==8) {
                 result['shopcodes'] = ["" + $routeParams.shop_code + ""];
                 localStorage.setItem('selectedShopCode', $routeParams.shop_code);
             }else{
@@ -93,7 +93,7 @@
             $http(httpRequest).success(function(result) {
                 that.userProfile.shopType = result.shopType;
                 //STR: CR selected shopcode //05-04-2016
-                if ($routeParams.shop_code) {
+                if ($routeParams.shop_code && ($routeParams.shop_code+0 > 0) && $routeParams.shop_code.length==8) {
                     result['shopcodes'] = ["" + $routeParams.shop_code + ""];
                     localStorage.setItem('selectedShopCode', $routeParams.shop_code);
                 }else{

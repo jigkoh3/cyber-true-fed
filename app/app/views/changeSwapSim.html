@@ -83,29 +83,37 @@
                             <div class="row">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
-                                    
-                                    <div ng-show="!dealerCodeList || !dealerCodeList.length || dealerCodeList.length > 1">
+                                    <!-- <div ng-show="!dealerCodeList || !dealerCodeList.length || dealerCodeList.length > 1"> -->
+                                    <div>
                                         <p></p>
                                         <div class="row">
-                                            <div class="col-md-6"><b>รหัสร้านค้า<span style="color:red;">*</span> </b></div>
+                                            <div class="col-md-6"><b>รหัสร้านค้า <span style="color:red;">*</span> </b></div>
                                         </div>
                                         <p></p>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <input id="dealerCodeInput" 
+                                                <!-- <input id="dealerCodeInput" 
                                                        ng-show="!dealerCodeList || !dealerCodeList.length" 
                                                        ng-numeric-input type="text" 
                                                        class="form-control" 
                                                        ng-model="dealerCode" 
                                                        ng-change="onInputDealerCode()" 
                                                        ng-disabled="!isCustomerProfile"
+                                                       maxlength="{{ dealerCodeLength }}" required /> -->
+                                                <input id="dealerCodeInput" 
+                                                       ng-show="(shopType=='1' && dealerCodeList.length <= 1) || (shopType=='0')" 
+                                                       ng-numeric-input type="text" 
+                                                       class="form-control" 
+                                                       ng-model="dealerCode" 
+                                                       ng-change="onInputDealerCode()" 
+                                                       ng-disabled="!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == false && dealerCodeList.length == 1) || (shopType=='1' && getAuthen['isSecondAuthen'] == true)"
                                                        maxlength="{{ dealerCodeLength }}" required />
 
                                                 <span class="error" style="color:red;" ng-show="!dealerCodeValid && alreadyValidatedDealerCode">
                                                     Shop Code / Dealer Code ไม่ถูกต้อง
                                                 </span>
 
-                                                <select id="dealerCodeList" ng-show="dealerCodeList.length > 1" class="form-control" ng-model="dealerCode" ng-change="onClearSim()" required>
+                                                <select id="dealerCodeList" ng-disabled="!isCustomerProfile" ng-show="dealerCodeList.length > 1" class="form-control" ng-model="dealerCode" ng-change="onClearSim()" required>
                                                     <option value="">Please Select</option>
                                                     <option ng-repeat="code in dealerCodeList" value="{{ code }}">{{ code }}</option>
                                                 </select>
@@ -113,7 +121,7 @@
                                         </div>
                                         <p></p>
                                     </div>
-                                    <div ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == false && dealerCodeList.length == 1">
+                                    <!-- <div ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == false && dealerCodeList.length == 1">
                                         <p></p>
                                         <div class="row">
                                             <div class="col-md-6"><b>Shop Code / Dealer Code <span style="color:red;">*</span> </b></div>
@@ -139,7 +147,7 @@
                                             </div>
                                         </div>
                                         <p></p>
-                                    </div>
+                                    </div> -->
                                     <div ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true">
                                         <div class="row">
                                             <div class="col-md-4"><b>รหัสสินค้า</b></div>

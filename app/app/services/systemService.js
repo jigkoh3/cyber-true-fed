@@ -39,7 +39,7 @@
             //$('.btn-camera').addClass('hide');
             $('#divWebCam').hide();
             $('#divMobileCam').show();
-        }else{
+        } else {
             $('#divWebCam').show();
             $('#divMobileCam').hide();
         }
@@ -57,7 +57,44 @@
             '</embed>' +
             '<span>PDF plugin is not available.</span>' +
             '</object>';
-    }
+    };
+    //check unique Array :: 20-04-2016
+    this.unique = function(list) {
+        var result = [];
+        $.each(list, function(i, e) {
+            if ($.inArray(e, result) == -1) result.push(e);
+        });
+        return result;
+    };
+    //SmartSearch : Lib : 20-04-2016
+    this.smartSearch = function(arrList, txtSearch) {
+        var arr = [];
+        if (txtSearch) {
+            if (txtSearch.indexOf(' ') > 0) {
+                var txtList = txtSearch.split(' ');
+                var bbArr = [];
+                for (var i = 0; i < txtList.length; i++) {
+                    if (i == 0) {
+                        var hege = $filter('filter')(arrList, { "pricePlan": txtList[i] });
+                        var stale = $filter('filter')(arrList, { "rc": txtList[i] });
+                        bbArr = hege.concat(stale);
+                    } else {
+                        var hege = $filter('filter')(bbArr, { "pricePlan": txtList[i] });
+                        var stale = $filter('filter')(bbArr, { "rc": txtList[i] });
+                        bbArr = hege.concat(stale);
+                    }
+                }
+                arr = bbArr;
+            } else {
+                var hege = $filter('filter')(arrList, { "pricePlan": txtSearch });
+                var stale = $filter('filter')(arrList, { "rc": txtSearch });
+                arr = hege.concat(stale);
+            }
+        }else{
+            arr = arrList;
+        }
+        return this.unique(arr);
+    };
 
     this.pricePlans = [];
     var runTime = new Date().getTime();
@@ -403,8 +440,8 @@
             'E2E_REFID': localStorage.getItem('orderId'),
             'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
             'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
-                'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
-                'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
+            'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+            'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
         };
 
         $http(httpRequest).success(function(response) {
