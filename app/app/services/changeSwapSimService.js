@@ -30,13 +30,13 @@
         } else {
             var data = {
                 "status": "SUCCESSFUL",
-                "display-messages": [{
-                    "message": "Please contact 0891990135 VIP Team Number before swap SIM for VIP Customer ",
-                    "message-code": "TMV-SWAPSIM-00001",
-                    "message-type": "WARNING",
-                    "en-message": "Please contact 0891990135 VIP Team Number before swap SIM for VIP Customer ",
-                    "th-message": "เลขหมายนี้เป็นกลุ่ม VIP จะดำเนินการใดๆต้องแจ้งกับทาง ทีม VIP ก่อนเท่านั้น โปรดติดต่อ 0891990135"
-                }],
+                // "display-messages": [{
+                //     "message": "Please contact 0891990135 VIP Team Number before swap SIM for VIP Customer ",
+                //     "message-code": "TMV-SWAPSIM-00001",
+                //     "message-type": "WARNING",
+                //     "en-message": "Please contact 0891990135 VIP Team Number before swap SIM for VIP Customer ",
+                //     "th-message": "เลขหมายนี้เป็นกลุ่ม VIP จะดำเนินการใดๆต้องแจ้งกับทาง ทีม VIP ก่อนเท่านั้น โปรดติดต่อ 0891990135"
+                // }],
                 "trx-id": "3Z1N7RSSP1HYN",
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": {

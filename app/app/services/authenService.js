@@ -1,4 +1,4 @@
-﻿smartApp.service('AuthenService', function($http, SystemService, $routeParams) {
+﻿smartApp.service('AuthenService', function($http, SystemService, $routeParams, ValidateMsgService) {
     var that = this;
     this.userProfile = {
         shopType: "",
@@ -6,8 +6,8 @@
     };
     this.getAuthen = function(fnCallback) {
         var result = {
-            "shopType": "1",
-            "isSecondAuthen": false,
+            "shopType": "0",
+            "isSecondAuthen": true,
             "channel": "NONSHOP",
             "partnerCodes": [],
             "partnerName": null,
@@ -15,9 +15,9 @@
             "saleCode": "90900051",
             "thaiName": null,
             "engName": "CMTEST48 CMSUR48",
-            //"shopcodes": [],
+            "shopcodes": [],
             //"shopcodes": ["12345678"],
-            "shopcodes": ["12345678", "12345677"],
+            //"shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
             "isByPassSecondAuthen": true,
@@ -69,17 +69,26 @@
         if (SystemService.demo) {
             that.userProfile.shopType = result.shopType;
             //STR: CR selected shopcode //05-04-2016
-            if ($routeParams.shop_code && ($routeParams.shop_code+0 > 0) && $routeParams.shop_code.length==8) {
-                result['shopcodes'] = ["" + $routeParams.shop_code + ""];
-                localStorage.setItem('selectedShopCode', $routeParams.shop_code);
-            }else{
+            if ($routeParams.shop_code) {
+                var de_shop_code = decodeURI($routeParams.shop_code);
+                de_shop_code = SystemService.myTrim(de_shop_code);
+                if (de_shop_code.length == 8) {
+                    if ((de_shop_code + 0 > 0)) {
+                        result['shopcodes'] = ["" + de_shop_code + ""];
+                    }
+                    localStorage.setItem('selectedShopCode', de_shop_code);
+                } else {
+                    localStorage.setItem('selectedShopCode', de_shop_code);
+                    SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
+                }
+            } else {
                 localStorage.setItem('selectedShopCode', "");
             }
             // localStorage.setItem('ssoEmployeePrincipal',  JSON.stringify(result['ssoEmployeePrincipal']));
             // localStorage.setItem('ssoPartnerPrincipal',  JSON.stringify(result['ssoPartnerPrincipal']));
 
-            localStorage.setItem('ssoEmployeePrincipal',  "");
-            localStorage.setItem('ssoPartnerPrincipal',  "");
+            localStorage.setItem('ssoEmployeePrincipal', "");
+            localStorage.setItem('ssoPartnerPrincipal', "");
             //END: CR selected shopcode //05-04-2016
             result['partnerCodes'] = result['shopcodes'];
             fnCallback(result);
@@ -93,16 +102,26 @@
             $http(httpRequest).success(function(result) {
                 that.userProfile.shopType = result.shopType;
                 //STR: CR selected shopcode //05-04-2016
-                if ($routeParams.shop_code && ($routeParams.shop_code+0 > 0) && $routeParams.shop_code.length==8) {
-                    result['shopcodes'] = ["" + $routeParams.shop_code + ""];
-                    localStorage.setItem('selectedShopCode', $routeParams.shop_code);
-                }else{
+                if ($routeParams.shop_code) {
+                    var de_shop_code = decodeURI($routeParams.shop_code);
+                    de_shop_code = de_shop_code.trim();
+                    if (de_shop_code.length == 8) {
+                        if ((de_shop_code + 0 > 0)) {
+                            result['shopcodes'] = ["" + de_shop_code + ""];
+                        }
+                        localStorage.setItem('selectedShopCode', de_shop_code);
+                    } else {
+                        localStorage.setItem('selectedShopCode', de_shop_code);
+                        SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
+                    }
+                } else {
                     localStorage.setItem('selectedShopCode', "");
                 }
                 // localStorage.setItem('ssoEmployeePrincipal',  JSON.stringify(result['ssoEmployeePrincipal']));
                 // localStorage.setItem('ssoPartnerPrincipal',  JSON.stringify(result['ssoPartnerPrincipal']));
-                localStorage.setItem('ssoEmployeePrincipal',  "");
-                localStorage.setItem('ssoPartnerPrincipal',  "");
+
+                localStorage.setItem('ssoEmployeePrincipal', "");
+                localStorage.setItem('ssoPartnerPrincipal', "");
                 //END: CR selected shopcode //05-04-2016
                 result['partnerCodes'] = result['shopcodes'];
                 fnCallback(result);

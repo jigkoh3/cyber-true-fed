@@ -466,6 +466,14 @@
             "en-message": "Please specify BAN.",
             "th-message": "กรุณาระบุ เลขบัญชีลูกค้า",
             "technical-message": "FROM WEBUI"
+        },
+        "msgShopCodeFormat": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Partner Code not found.",
+            "th-message": "Partner Code นี้ไม่มีในระบบ",
+            "technical-message": "FROM WEBUI, Please check 'shop_code' in URL"
         }
     };
 });

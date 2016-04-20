@@ -66,6 +66,14 @@
         });
         return result;
     };
+    //trim
+    this.myTrim = function(str) {
+        var x = str;
+        for (var i = 0; i < str.length; i++) {
+            x = x.toString().replace(' ', '');
+        }
+        return x;
+    };
     //SmartSearch : Lib : 20-04-2016
     this.smartSearch = function(arrList, txtSearch) {
         var arr = [];
@@ -90,7 +98,7 @@
                 var stale = $filter('filter')(arrList, { "rc": txtSearch });
                 arr = hege.concat(stale);
             }
-        }else{
+        } else {
             arr = arrList;
         }
         return this.unique(arr);
