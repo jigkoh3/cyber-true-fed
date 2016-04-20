@@ -1167,7 +1167,7 @@
                                 "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
                                 "ACCOUNT-LASTNAME": "",
                                 "ACCOUNT-SERVICE-LEVEL": "G",
-                                "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง",
+                                "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
                                 "REQUIRE-PRICEPLAN-MSG-TH": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่",
                                 "REQUIRE-PRICEPLAN-MSG-CODE": "",
                                 "REQUIRE-PRICEPLAN": "NOT REQUIRE"
@@ -1252,7 +1252,7 @@
                                 "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
                                 "ACCOUNT-LASTNAME": "",
                                 "ACCOUNT-SERVICE-LEVEL": "G",
-                                "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง",
+                                "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
                                 "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม",
                                 "REQUIRE-PRICEPLAN-MSG-CODE": "",
                                 "REQUIRE-PRICEPLAN": "REQUIRE"
@@ -1337,7 +1337,7 @@
                                 "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
                                 "ACCOUNT-LASTNAME": "",
                                 "ACCOUNT-SERVICE-LEVEL": "",
-                                "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง",
+                                "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
                                 "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม",
                                 "REQUIRE-PRICEPLAN-MSG-CODE": "",
                                 "REQUIRE-PRICEPLAN": "OPTIONAL"
