@@ -627,7 +627,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             "customer-type": $scope.data.responseData["customer"]["installed-products"][0]["account-category"],
             "company-code": $scope.data.responseData["customer"]["installed-products"][0]["company-code"],
             "account-sub-type": $scope.data.responseData["customer"]["installed-products"][0]["account-sub-type"],
-            "subscriber-id": $scope.data.responseData["customer"]["installed-products"][0]["product-id-number"],
+            "subscriber-id": $scope.data.responseData["customer"]["installed-products"][0]["subscriber-id"],
             "account-id": $scope.data.responseData["customer"]["installed-products"][0]["ban"]
         };
         console.log(data);
@@ -654,7 +654,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     $scope.isShowApproveRal = true;
                     $scope.isValidateSave = false;
                     //CR02 18-04-2016 AutoApprove
-                    $scope.checkAutoApprove();
+                    if($scope.data.responseData.customer["installed-products"][0]['account-category']=='I'){
+                        $scope.checkAutoApprove();
+                    }
                 } else {
                     $scope.isShowApproveRal = false;
                     if ($scope.requestTypeDB == 'IRIDD' && $scope.requestType == 'REMOVE_IRIDD') {

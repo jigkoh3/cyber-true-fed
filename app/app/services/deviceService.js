@@ -46,8 +46,8 @@
 						'product-codes': [ '3000037663', '3000014924' ]
 					},
 					{
-						'deviceType': 'xxxx 003',
-						'device-code': '003',
+						'deviceType': 'xxxx 006 3In1',
+						'device-code': '006',
 						'sim-type': 'Swap SIM Combi Real Move',
 						'product-codes': [ '3000037688', '3000014988' ]
 					}

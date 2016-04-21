@@ -264,20 +264,24 @@
                     $scope.$digest();
                 }, 0);
             }
-            // shop
+            //CR :: 21-04-2016 :: shop 
             if ($scope.shopType === '1' && $scope.deviceTypeList.length) {
-                var defaultDevice = '003';
-                var checkArr = $filter('filter')($scope.deviceTypeList, { 'device-code': defaultDevice });
-                console.log(checkArr);
-                if (checkArr.length != 0) {
-                    
+                var checkDefault = function(code){
                     setTimeout(function() {
-                        $scope.deviceType = defaultDevice;
+                        $scope.deviceType = code;
                     }, 0);
                     setTimeout(function() {
                         $('#idBindDataAgain').click();
                     }, 1000);
-
+                }
+                var checkArr005 = $filter('filter')($scope.deviceTypeList, { 'device-code': '005' });
+                var checkArr006 = $filter('filter')($scope.deviceTypeList, { 'device-code': '006' });
+                if (checkArr005.length != 0) {
+                    checkDefault('005');
+                } else if (checkArr006.length != 0) {
+                    checkDefault('006');
+                }else {
+                    //
                 }
             }
         }
