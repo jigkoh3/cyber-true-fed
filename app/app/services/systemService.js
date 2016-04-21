@@ -58,6 +58,15 @@
             '<span>PDF plugin is not available.</span>' +
             '</object>';
     };
+    //myOderBy for angular :: 21-04-2016
+    this.myOrderBy = function(oldArr, oldName, newName, reverse) {
+        var newArr = [];
+        for (var i = 0; i < oldArr.length; i++) {
+            oldArr[i][newName] = oldArr[i][oldName];
+            newArr.push(oldArr[i]);
+        }
+        return $filter('orderBy')(newArr, newName, reverse);
+    };
     //check unique Array :: 20-04-2016
     this.unique = function(list) {
         var result = [];
@@ -178,9 +187,9 @@
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
                 'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
-                // ,
-                // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
-                // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
+                    // ,
+                    // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+                    // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
             };
         }
         $http(httpRequest).success(function(data) {
@@ -246,9 +255,9 @@
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
                 'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
-                // ,
-                // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
-                // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
+                    // ,
+                    // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+                    // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
             };
         }
         //console.log(httpRequest);
@@ -322,9 +331,9 @@
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
                 'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
-                // ,
-                // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
-                // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
+                    // ,
+                    // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+                    // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
             };
         }
         $http(httpRequest).success(function(data) {
@@ -394,9 +403,9 @@
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
                 'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
-                // ,
-                // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
-                // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
+                    // ,
+                    // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+                    // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
             };
         }
         $http(httpRequest).success(function(data) {
@@ -452,9 +461,9 @@
             'E2E_REFID': localStorage.getItem('orderId'),
             'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
             'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
-            // ,
-            // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
-            // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
+                // ,
+                // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
+                // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
         };
 
         $http(httpRequest).success(function(response) {

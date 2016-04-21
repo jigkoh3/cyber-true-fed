@@ -1537,8 +1537,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             };
             migratePreToPostIBCService.propositionCallback(propParam, function(resultProp) {
                 if (resultProp.status) {
-                    $scope.propositions = resultProp.data['response-data'];
-                    console.log($scope.propositions);
+                    
                     var displayMsg = utils.getObject(resultProp, 'display-messages.0');
                     if (displayMsg && resultProp.data["display-messages"].length > 0) {
                         setTimeout(function() {
@@ -1553,6 +1552,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             //$ngBootbox.customDialog($scope.customDialogOptions);
                         }, 3000);
                     }
+                    console.log(resultProp.data['response-data']);
+                    $scope.propositions = SystemService.myOrderBy(resultProp.data['response-data'], 'proposition-code', 'proposition_code', true);
+                    console.log($scope.propositions);
                 }
             });
         }
