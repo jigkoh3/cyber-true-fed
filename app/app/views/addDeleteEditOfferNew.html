@@ -72,7 +72,7 @@
                                         <button ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                     </div>
                                     <div align="center" class="" ng-show="offerType=='D'">
-                                        <input type="checkbox" ng-model="deleteOffer">
+                                        <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
                                     </div>
                                 </td>
                                 <td class="col-xs-2 contentTb">
@@ -91,12 +91,12 @@
                                     {{item['effective-date']}}
                                 </td>
                                 <td class="col-xs-1 contentTbCenter">
-                                    <div align="center" class="" ng-show="offerType!='U'">
+                                    <div align="center">
                                         {{item['expiration-date']}}
                                     </div>
-                                    <div align="center" class="" ng-show="offerType=='U'">
+                                    <!--  <div align="center" class="" ng-show="offerType=='U'">
                                         <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
-                                    </div>
+                                    </div> -->
                                 </td>
                                 <td class="col-xs-1 contentTbCenter">
                                     {{item['type']}}
@@ -122,7 +122,7 @@
                                     <button ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" ng-show="offerType=='D'">
-                                    <input type="checkbox" ng-model="deleteOffer">
+                                    <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
                                 </div>
                             </td>
                             <td class="col-xs-2 contentTb">
@@ -140,12 +140,12 @@
                                 {{item['effective-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                <div align="center" class="" ng-show="offerType!='U'">
+                                <div align="center">
                                     {{item['expiration-date']}}
                                 </div>
-                                <div align="center" class="" ng-show="offerType=='U'">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
-                                </div>
+                                <!--  <div align="center" class="" ng-show="offerType=='U'">
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
+                                    </div> -->
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['type']}}
@@ -170,7 +170,7 @@
                                     <button ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='D'">
-                                    <input type="checkbox" ng-model="deleteOffer">
+                                    <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
                                 </div>
                             </td>
                             <td class="col-xs-2 contentTb">
@@ -188,12 +188,12 @@
                                 {{item['effective-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                <div align="center" class="" ng-show="offerType!='U'">
+                                <div align="center">
                                     {{item['expiration-date']}}
                                 </div>
-                                <div align="center" class="" ng-show="offerType=='U'">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
-                                </div>
+                                <!--  <div align="center" class="" ng-show="offerType=='U'">
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
+                                    </div> -->
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['type']}}
@@ -218,7 +218,7 @@
                                     <button ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='D'">
-                                    <input type="checkbox" ng-model="deleteOffer">
+                                    <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
                                 </div>
                             </td>
                             <td class="col-xs-2 contentTb">
@@ -236,12 +236,12 @@
                                 {{item['effective-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                <div align="center" class="" ng-show="offerType!='U'">
+                                <div align="center">
                                     {{item['expiration-date']}}
                                 </div>
-                                <div align="center" class="" ng-show="offerType=='U'">
-                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
-                                </div>
+                                <!--  <div align="center" class="" ng-show="offerType=='U'">
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
+                                    </div> -->
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['type']}}
@@ -249,62 +249,65 @@
                         </tr>
                     </table>
                 </div>
-                <h4>Future Order</h4>
-                <!-- Future Order Table -->
-                <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                    <tr>
-                        <th class="col-xs-2 contentTbHeader">
-                            <h>Offer Name</h>
-                        </th>
-                        <th class="col-xs-4 contentTbHeader">
-                            <h>Offer Description</h>
-                        </th>
-                        <th class="col-xs-2 contentTbHeader">
-                            <h>Create Date</h>
-                        </th>
-                        <th class="col-xs-2 contentTbHeader">
-                            <h>Effective Date</h>
-                        </th>
-                        <th class="col-xs-1 contentTbHeader">
-                            <h>Activities</h>
-                        </th>
-                        <th class="col-xs-1 contentTbHeader">
-                            <h></h>
-                        </th>
-                    </tr>
-                </table>
-                <div>
+                <div ng-hide="offerType=='U'">
+                    <h4>Future Order</h4>
+                    <!-- Future Order Table -->
                     <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                        <tr ng-repeat="item in futureOfferList">
-                            <td class="col-xs-2 contentTb">
-                                {{item['offer-name']}}
-                            </td>
-                            <td class="col-xs-4 contentTb">
-                                {{item['offer-description']}}
-                            </td>
-                            <!-- <td class="col-xs-1 contentTb">
+                        <tr>
+                            <th class="col-xs-1 contentTbHeader" ng-show="offerType=='D'">
+                                <h></h>
+                            </th>
+                            <th class="col-xs-2 contentTbHeader">
+                                <h>Offer Name</h>
+                            </th>
+                            <th class="col-xs-4 contentTbHeader">
+                                <h>Offer Description</h>
+                            </th>
+                            <th class="col-xs-2 contentTbHeader">
+                                <h>Create Date</h>
+                            </th>
+                            <th class="col-xs-2 contentTbHeader">
+                                <h>Effective Date</h>
+                            </th>
+                            <th class="col-xs-1 contentTbHeader">
+                                <h>Activities</h>
+                            </th>
+                        </tr>
+                    </table>
+                    <div>
+                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                            <tr ng-repeat="item in futureOfferList">
+                                <td class="col-xs-1 contentTb" ng-show="offerType=='D'">
+                                    <div align="center" class="">
+                                        <input type="checkbox" ng-model="deleteFutureOffer" style="cursor:pointer;">
+                                    </div>
+                                </td>
+                                <td class="col-xs-2 contentTb">
+                                    {{item['offer-name']}}
+                                </td>
+                                <td class="col-xs-4 contentTb">
+                                    {{item['offer-description']}}
+                                </td>
+                                <!-- <td class="col-xs-1 contentTb">
                                     {{item['Level']}}
                                 </td>
                                 <td class="col-xs-1 contentTb">
                                     {{item['parent']}}
                                 </td> -->
-                            <td class="col-xs-2 contentTbCenter">
-                                {{item['create-date']}}
-                            </td>
-                            <td class="col-xs-2 contentTbCenter">
-                                {{item['effective-date']}}
-                            </td>
-                            <td class="col-xs-1 contentTbCenter">
-                                {{item['type']}}
-                            </td>
-                            <td class="col-xs-1 contentTb">
-                                <div align="center" class="">
-                                    <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:red;" type="button"><span><i class="fa fa-trash-o fa-1x"></i></span></button>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>&nbsp;&nbsp;
+                                <td class="col-xs-2 contentTbCenter">
+                                    {{item['create-date']}}
+                                </td>
+                                <td class="col-xs-2 contentTbCenter">
+                                    {{item['effective-date']}}
+                                </td>
+                                <td class="col-xs-1 contentTbCenter">
+                                    {{item['type']}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                &nbsp;&nbsp;
                 <div class="row" ng-show="offerType=='C'">
                     <div class="col-md-2">
                         <div class="btn-group" style="bottom:10px;">
@@ -388,11 +391,17 @@
                             <th class="col-xs-1 contentTbHeader">
                                 <h>ลบ</h>
                             </th>
-                            <th class="col-xs-3 contentTbHeader">
+                            <th class="col-xs-2 contentTbHeader">
                                 <h>Regular Offer Name</h>
                             </th>
                             <th class="col-xs-4 contentTbHeader">
                                 <h>Offer Description</h>
+                            </th>
+                            <th class="col-xs-1 contentTbHeader">
+                                <h>Effective Date</h>
+                            </th>
+                            <th class="col-xs-1 contentTbHeader">
+                                <h>Expiration Date</h>
                             </th>
                             <th class="col-xs-2 contentTbHeader">
                                 <h>Type</h>
@@ -400,9 +409,9 @@
                             <th class="col-xs-1 contentTbHeader">
                                 <h>Parameter</h>
                             </th>
-                            <th class="col-xs-1 contentTbHeader">
+                            <!-- <th class="col-xs-1 contentTbHeader">
                                 <h>Level</h>
-                            </th>
+                            </th> -->
                         </tr>
                     </table>
                     <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
@@ -410,11 +419,17 @@
                             <td class="col-xs-1 contentTbCenter">
                                 <a style="cursor:pointer; color:red;" type="button" ng-click="deleteRegulaOfferList(item)"><span><i class="fa fa-trash-o fa-1x"></i></span></a>
                             </td>
-                            <td class="col-xs-3 contentTb">
+                            <td class="col-xs-2 contentTb">
                                 <h>{{item['offer-name']}}</h>
                             </td>
                             <td class="col-xs-4 contentTb">
                                 <h>{{item['offer-description']}}</h>
+                            </td>
+                            <td class="col-xs-1 contentTbCenter">
+                                <h>{{item['effective-date']}}</h>
+                            </td>
+                            <td class="col-xs-1 contentTbCenter">
+                                <h>{{item['expiration-date']}}</h>
                             </td>
                             <td class="col-xs-2 contentTbCenter">
                                 <h>{{item['type']}}</h>
@@ -424,9 +439,9 @@
                                     <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                             </td>
-                            <td class="col-xs-1 contentTbCenter">
+                            <!-- <td class="col-xs-1 contentTbCenter">
                                 <h>{{item['service-level']}}</h>
-                            </td>
+                            </td> -->
                         </tr>
                     </table>
                     <br>
