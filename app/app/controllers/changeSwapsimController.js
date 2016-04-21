@@ -1,4 +1,4 @@
-﻿smartApp.controller('ChangeSwapSimController', function($routeParams, $scope, AuthenService, ChangeSwapSimService, DeviceService, sharedServices, SystemService) {
+﻿smartApp.controller('ChangeSwapSimController', function($routeParams, $scope, AuthenService, ChangeSwapSimService, DeviceService, sharedServices, SystemService, $filter) {
 
     // Templates
     var runTime = new Date().getTime();
@@ -7,7 +7,7 @@
         customerprofile: 'app/views/customerprofile.html?' + runTime
     };
 
-//!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == true && !$scope.deviceType) || (shopType=='1' && dealerCode.length != 8)
+    //!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == true && !$scope.deviceType) || (shopType=='1' && dealerCode.length != 8)
     // Prepare page states
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
 
@@ -25,7 +25,7 @@
 
     var idFocus = "";
 
-    $scope.hideReadCardForMobile = function(){
+    $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
 
@@ -250,7 +250,7 @@
 
     // Get device list
     var deviceByCode = {};
-
+    $scope.deviceType = "";
     var onGetDeviceTypeList = function(result) {
         $scope.deviceTypeList = result.data['response-data'];
 
@@ -263,6 +263,22 @@
                     $scope.deviceType = $scope.deviceTypeList[0]['device-code'];
                     $scope.$digest();
                 }, 0);
+            }
+            // shop
+            if ($scope.shopType === '1' && $scope.deviceTypeList.length) {
+                var defaultDevice = '003';
+                var checkArr = $filter('filter')($scope.deviceTypeList, { 'device-code': defaultDevice });
+                console.log(checkArr);
+                if (checkArr.length != 0) {
+                    
+                    setTimeout(function() {
+                        $scope.deviceType = defaultDevice;
+                    }, 0);
+                    setTimeout(function() {
+                        $('#idBindDataAgain').click();
+                    }, 1000);
+
+                }
             }
         }
     };
@@ -488,7 +504,7 @@
             $scope.printAble = false;
         }
     };
-    $scope.onClearSim = function(){
+    $scope.onClearSim = function() {
         //
         $scope.printAble = false;
         $scope.simSerial = "";
@@ -743,9 +759,9 @@
     }
 
     $scope.webcamSnap = function() {
-            webcam.snap();
-        }
-    $scope.mobileCamSnap = function(){
+        webcam.snap();
+    }
+    $scope.mobileCamSnap = function() {
         var msg = $('#varMobileCam').val();
         msg = msg.replace('data:image/png;base64,', '');
         msg = msg.replace('data:image/jpeg;base64,', '');
@@ -753,7 +769,7 @@
         // $('#btnSavePhoto_Mobile').hide();
         $scope.varPhoto = msg;
     };
-        //end----------- camera ----------------
+    //end----------- camera ----------------
     $scope.afterCloseWarning = function() {
         if ($scope.data || $routeParams.subno) {} else {
             $scope.SubNo = "null";
