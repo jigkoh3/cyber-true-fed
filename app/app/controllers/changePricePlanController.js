@@ -686,6 +686,7 @@ smartApp.controller('ChangePricePlanController', function(
                 if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "mapped-propo-priceplans"])) {
                     $scope.aftersalePriceplans = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
                     for (var i = 0; i < $scope.aftersalePriceplans.length; i++) {
+                        $scope.aftersalePriceplans[i]["proposition"]['proposition_code'] = $scope.aftersalePriceplans[i]["proposition"]['proposition-code'];
                         $scope.propositions.push($scope.aftersalePriceplans[i]["proposition"]);
                     }
                     //make data for $scope.propositionList form ......

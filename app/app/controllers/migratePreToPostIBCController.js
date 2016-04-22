@@ -802,7 +802,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             var msg = utils.getObject(result, 'display-messages');
             if (msg && msg.length > 0) {
                 $scope.isCustomerPreverify = false;
-
+                $scope.customer['id-number'] = "";
                 SystemService.showAlertMulti(msg, "WARNING");
 
             } else {
@@ -1553,7 +1553,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                         }, 3000);
                     }
                     console.log(resultProp.data['response-data']);
-                    $scope.propositions = SystemService.myOrderBy(resultProp.data['response-data'], 'proposition-code', 'proposition_code', true);
+                    $scope.propositions = SystemService.myOrderBy(resultProp.data['response-data'], 'proposition-code', 'proposition_code', false);
                     console.log($scope.propositions);
                 }
             });

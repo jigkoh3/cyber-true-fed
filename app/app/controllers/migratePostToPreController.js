@@ -930,7 +930,9 @@
                 //$ngBootbox.customDialog($scope.customDialogOptions);
             }, 1200);
         }
-        $scope.proPositionList = result.data['response-data'];
+        //$scope.proPositionList = result.data['response-data'];
+        $scope.proPositionList = SystemService.myOrderBy(result.data['response-data'], 'proposition-code', 'proposition_code', false);
+        console.log($scope.proPositionList);
 
         if ($scope.proPositionList && $scope.proPositionList.length) {
             for (var i = 0; i < $scope.proPositionList.length; i++) {

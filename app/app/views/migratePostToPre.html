@@ -178,7 +178,7 @@
                                     <!-- Case Normal -->
                                     <select id="propositionDropdown" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" ng-model="selectedPricePlan.proposition" ng-disabled="isSecondAuhenFailed" ng-change="getProPo()">
                                         <option value="">-- กรุณาเลือก --</option>
-                                        <option ng-repeat="item in proPositionList | orderBy: item['proposition-code']" value="{{ item['proposition-code']}}">
+                                        <option ng-repeat="item in proPositionList" value="{{ item['proposition-code']}}">
                                             {{ item['proposition-code'] }} : {{ item.description }}
                                         </option>
                                     </select>

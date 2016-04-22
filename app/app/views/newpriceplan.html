@@ -14,7 +14,7 @@
                         ng-model="propoCode"
                         ng-change="onClearPricePlan()">
                     <option value="null">-- กรุณาเลือก --</option>
-                    <option ng-repeat="item in propositions | orderBy: 'description'" value="{{item['proposition-code']}}">
+                    <option ng-repeat="item in propositions | orderBy: 'proposition_code'" value="{{item['proposition-code']}}">
                         [{{item["proposition-code"]}}] {{item["name"]}} : {{item["description"]}}
                     </option>
                 </select>

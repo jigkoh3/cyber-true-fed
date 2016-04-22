@@ -335,7 +335,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             };
             fnCallback({
                 status: true,
-                data: data2,
+                data: data,
                 error: "",
                 msgErr: ""
             });

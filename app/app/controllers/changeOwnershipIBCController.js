@@ -415,7 +415,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             var msg = utils.getObject(result, 'display-messages');
             if (msg && msg.length > 0) {
                 $scope.isCustomerPreverify = false;
-
+                $scope.customer['id-number'] = "";
                 SystemService.showAlertMulti(msg, "WARNING");
 
             } else {
@@ -1608,6 +1608,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         var cid = $('#citizenID3').val();
         if ($scope.customerType == 'N') {
             if (cid.length == 13 && !SystemService.validatePID(cid)) {
+                $scope.customer['id-number'] = "";
                 return;
             }
         }
