@@ -327,7 +327,15 @@
         }
     };
     var ValidateAutoApproveCodeAPI = function(params, fnCallback) {
-        var target = '/aftersales/order/';
+        var target = '/aftersales/tmv/validate-auto-approve-code?' +
+            'id-type=' + params['id-type'] + '&' +
+            'id-number=' + params['id-number'] + '&' +
+            'customer-id=' + params['customer-id'] + '&' +
+            'customer-type=' + params['customer-type'] + '&' +
+            'company-code=' + params['company-code'] + '&' +
+            'account-sub-type=' + params['account-sub-type'] + '&' +
+            'subscriber-id=' + params['subscriber-id'] + '&' +
+            'account-id=' + params['account-id'];
         console.log(target);
         if (!demo) {
 
@@ -342,8 +350,8 @@
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
                 "response-data": {
                     "auto-approve-code": "Y",
-                    "approve-code": "",
-                    "auto-approve-reason": ""
+                    "approve-code": "12345",
+                    "auto-approve-reason": "Test Approve Reason"
                 }
             };
             var data = {
@@ -360,21 +368,12 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node1)",
                 "status-code": "2"
             };
-            if (params['subscriber-id'] == "0870100002") {
-                fnCallback({
-                    status: true,
-                    data: data2,
-                    error: "",
-                    msgErr: ""
-                });
-            } else {
-                fnCallback({
-                    status: true,
-                    data: data,
-                    error: "",
-                    msgErr: ""
-                });
-            }
+            fnCallback({
+                status: true,
+                data: data2,
+                error: "",
+                msgErr: ""
+            });
 
         }
     };
@@ -508,7 +507,9 @@
                                             "MOBILE-SERVICETYPE": priceplan["mobile-servicetype"],
                                             "SERVICE-LEVEL": priceplan["service-level"],
                                             //"IR-APPROVE-CODE": "",
-                                            "CVSS-PROCESS-REQUEST": data["customer"]["cvss-process-request"]
+                                            "CVSS-PROCESS-REQUEST": data["customer"]["cvss-process-request"],
+                                            "AUTO-APPROVE-CODE": "N"
+                                            // "AUTO-APPROVE-REASON": ""
                                         },
                                         "primary-order-data": {
                                             "OU-ID": priceplan["ouId"],
