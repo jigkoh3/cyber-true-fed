@@ -1537,7 +1537,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             };
             migratePreToPostIBCService.propositionCallback(propParam, function(resultProp) {
                 if (resultProp.status) {
-                    
+
                     var displayMsg = utils.getObject(resultProp, 'display-messages.0');
                     if (displayMsg && resultProp.data["display-messages"].length > 0) {
                         setTimeout(function() {
@@ -2880,7 +2880,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.mootypeMail = false;
 
             $scope.mailAddress = {};
-            
+
             $scope.billPayment.accountLang = "TH";
             $('#ulAddressList').hide();
             $scope.addressList = [];
@@ -3041,6 +3041,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             bcOUID = "";
             bcBAN = "";
         }
+
 
         var data = {
             "target": "aftersales/order/submit",
@@ -3273,7 +3274,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         }
 
         //SHARE_ALLOWANCE, FriendAndFamily, CUG, POOLED
-        var spList = $scope.offerDetail["csm-offer-details"]["csm-related-offer-details"];
+
         //var spName = $scope.offerDetail["csm-offer-details"]["name"];
         var spAll = "";
         var spNameAll = "";
@@ -3286,75 +3287,78 @@ smartApp.controller('MigratePreToPostIBCController', function(
             'POOLING': [],
             'CAPMAX': []
         };
-        for (var isp = 0; isp < spList.length; isp++) {
-            var sp = spList[isp]["special-offer-type"];
-            var spName = spList[isp]["name"];
+        if ($scope.showPPParentOU == false) {
+            var spList = $scope.offerDetail["csm-offer-details"]["csm-related-offer-details"];
+            for (var isp = 0; isp < spList.length; isp++) {
+                var sp = spList[isp]["special-offer-type"];
+                var spName = spList[isp]["name"];
 
-            if (sp == "SHARE_ALLOWANCE" || sp == "POOLED" || sp == 'POOLING' || sp == 'CAPMAX') {
-                spAll = spAll + (spAll ? "|" : "") + sp;
-                spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
-                if ($scope.capMaxParameterList['monetary-capmax']) {
-                    spArray[sp].push("Monetary cap max|" + $scope.saveParamData.Monetary + "|");
-                }
-                if ($scope.capMaxParameterList['occurrence-capmax']) {
-                    spArray[sp].push("Occurrence cap max|" + $scope.saveParamData.Occurrence + "|");
-                }
-                if ($scope.capMaxParameterList['duration-capmax']) {
-                    spArray[sp].push("Duration cap max|" + $scope.saveParamData.Duration + "|" + $scope.capMaxParameterList['durationCapMaxUOM']);
-                }
-                if ($scope.capMaxParameterList['volume-capmax']) {
-                    spArray[sp].push("Volume cap max|" + $scope.saveParamData.Volume + "|" + $scope.capMaxParameterList['volumeCapMaxUOM']);
-                }
-            }
-            if (sp == 'FriendAndFamily') {
-                spAll = spAll + (spAll ? "|" : "") + sp;
-                spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
-                var countFF = 0;
-                for (var i = 1; i <= $scope.ffData.max; i++) {
-                    if ($scope.saveParamData["ff" + i]) {
-                        spArray[sp].push("Friend numbers offer level|" + $scope.saveParamData["ff" + i] + "|");
-                        countFF++;
+                if (sp == "SHARE_ALLOWANCE" || sp == "POOLED" || sp == 'POOLING' || sp == 'CAPMAX') {
+                    spAll = spAll + (spAll ? "|" : "") + sp;
+                    spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                    if ($scope.capMaxParameterList['monetary-capmax']) {
+                        spArray[sp].push("Monetary cap max|" + $scope.saveParamData.Monetary + "|");
+                    }
+                    if ($scope.capMaxParameterList['occurrence-capmax']) {
+                        spArray[sp].push("Occurrence cap max|" + $scope.saveParamData.Occurrence + "|");
+                    }
+                    if ($scope.capMaxParameterList['duration-capmax']) {
+                        spArray[sp].push("Duration cap max|" + $scope.saveParamData.Duration + "|" + $scope.capMaxParameterList['durationCapMaxUOM']);
+                    }
+                    if ($scope.capMaxParameterList['volume-capmax']) {
+                        spArray[sp].push("Volume cap max|" + $scope.saveParamData.Volume + "|" + $scope.capMaxParameterList['volumeCapMaxUOM']);
                     }
                 }
-                if (countFF < $scope.ffData.min) {
-                    SystemService.showAlert({
-                        "message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-                        "message-code": "",
-                        "message-type": "WARNING",
-                        "en-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-                        "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
-                        "technical-message": "changePricePlanController"
-                    });
-                } else {
-                    $scope.attModalVal = "modal";
-                }
-            }
-            if (sp == 'CUG') {
-
-                spAll = spAll + (spAll ? "|" : "") + sp;
-                spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
-                spArray[sp].push("CUG ID|" + $scope.saveDataCUG.id + "|");
-            }
-
-
-            //create field JSON
-            var list = spAll.split("|");
-            var listName = spNameAll.split('|');
-            if (spAll) {
-                for (var i = 0; i < list.length; i++) {
-                    data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-SIZE"] = spArray[list[i]].length;
-
-                    data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-OFFER-NAME"] = listName[i];
-
-                    var listValue = spArray[list[i]];
-                    for (var ii = 0; ii < listValue.length; ii++) {
-                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-" + ii] = listValue[ii];
+                if (sp == 'FriendAndFamily') {
+                    spAll = spAll + (spAll ? "|" : "") + sp;
+                    spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                    var countFF = 0;
+                    for (var i = 1; i <= $scope.ffData.max; i++) {
+                        if ($scope.saveParamData["ff" + i]) {
+                            spArray[sp].push("Friend numbers offer level|" + $scope.saveParamData["ff" + i] + "|");
+                            countFF++;
+                        }
                     }
-
+                    if (countFF < $scope.ffData.min) {
+                        SystemService.showAlert({
+                            "message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                            "message-code": "",
+                            "message-type": "WARNING",
+                            "en-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                            "th-message": "ต้องกรอกเบอร์อย่างน้อย " + $scope.ffData.min + " เบอร์",
+                            "technical-message": "changePricePlanController"
+                        });
+                    } else {
+                        $scope.attModalVal = "modal";
+                    }
                 }
+                if (sp == 'CUG') {
+
+                    spAll = spAll + (spAll ? "|" : "") + sp;
+                    spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                    spArray[sp].push("CUG ID|" + $scope.saveDataCUG.id + "|");
+                }
+
+
+                //create field JSON
+                var list = spAll.split("|");
+                var listName = spNameAll.split('|');
+                if (spAll) {
+                    for (var i = 0; i < list.length; i++) {
+                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-SIZE"] = spArray[list[i]].length;
+
+                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-OFFER-NAME"] = listName[i];
+
+                        var listValue = spArray[list[i]];
+                        for (var ii = 0; ii < listValue.length; ii++) {
+                            data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-" + ii] = listValue[ii];
+                        }
+
+                    }
+                }
+
+
             }
-
-
         }
         data["order"]["order-items"][0]["order-data"]["OFFERS-REQUIRE-PARAMETER"] = spAll;
 
@@ -3406,6 +3410,12 @@ smartApp.controller('MigratePreToPostIBCController', function(
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE"];
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-GENDER"];
             data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-LASTNAME"] = "";
+        }
+        if ($scope.useNumberType == "BC" && $scope.customerType == 'N') {
+            //ISSUE : 22-04-2016 TITLE
+            if ($scope.newOwner2.prefixTH == 'T5') {
+                data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE"] = $('#titleOtherRegisterdBC').val();
+            }
         }
         //check :: SUB/OU
         if ($scope.isAccount_child == true || $scope.customerType == 'N') {
