@@ -617,8 +617,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.dataAutoApprove = {};
     $scope.checkAutoApprove = function() {
         //OPENING
-        return;
-        
+        // return;
+
         SystemService.showLoading();
         var data = {
             "id-type": $scope.data.responseData["customer"]["id-type"],
@@ -631,16 +631,22 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             "account-id": $scope.data.responseData["customer"]["installed-products"][0]["ban"]
         };
         console.log(data);
-        changeIRIDDService.ValidateAutoApproveCode(data, function(result){
+        changeIRIDDService.ValidateAutoApproveCode(data, function(result) {
             console.log(result);
             SystemService.hideLoading();
 
             //check msg
 
             $scope.dataAutoApprove = result.data["response-data"];
-            if($scope.dataAutoApprove["auto-approve-code"] == "Y"){
+            if ($scope.dataAutoApprove["auto-approve-code"] == "Y") {
                 $scope.isShowApproveRal = false;
-            }else{
+                $scope.isValidateSave = true;
+                $scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = $scope.dataAutoApprove["approve-code"];
+                $scope.data.orderRequest['order']['order-items'][0]['order-data']['AUTO-APPROVE-CODE'] = "Y";
+                if ($scope.dataAutoApprove["auto-approve-reason"]) {
+                    $scope.data.orderRequest['order']['order-items'][0]['order-data']['AUTO-APPROVE-REASON'] = $scope.dataAutoApprove["auto-approve-reason"];
+                }
+            } else {
                 $scope.isShowApproveRal = true;
             }
         });
@@ -654,7 +660,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     $scope.isShowApproveRal = true;
                     $scope.isValidateSave = false;
                     //CR02 18-04-2016 AutoApprove
-                    if($scope.data.responseData.customer["installed-products"][0]['account-category']=='I'){
+                    if ($scope.data.responseData.customer["installed-products"][0]['account-category'] == 'I') {
                         $scope.checkAutoApprove();
                     }
                 } else {
