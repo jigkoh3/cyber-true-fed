@@ -933,6 +933,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
                         $scope.showRequirePP = true;
                     } else {
                         $scope.showRequirePP = false;
+                        if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "OPTIONAL") {
+                            $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'] +
+                                ": " +
+                                $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION'];
+                        }
                     }
                     //build BILLING_ADDRESS here ::
 
@@ -2361,6 +2366,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
         } else {
             $scope.newOwner2.sex = "FEMALE";
         }
+
+        if ($scope.newOwner2.prefixTH == 'T5') {
+            $scope.titleOther2 = "คุณ";
+        }
     };
     $scope.onChangeTitleOther = function() {
         console.log($scope.titleOther);
@@ -2964,6 +2973,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
             }
             if ($scope.useNumberType == 'I') {
                 $scope.titleOther2 = $("#titleRegisterdBC option:selected").text();
+                //ISSUE : 25-04-2016 TITLE
+                if ($scope.newOwner2.prefixTH == 'T5') {
+                    $scope.titleOther2 = $("#titleOtherRegisterdBC option:selected").text();
+                }
             }
             $scope.newOwner.firstNameTH = $scope.bcName;
             BILLING_ADDRESS = {
@@ -3040,6 +3053,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
         } else {
             bcOUID = "";
             bcBAN = "";
+        }
+        if (!$scope.selectProposition) {
+            var arr = $filter('filter')($scope.propositions, { 'proposition-code': $scope.promotion });
+            $scope.selectProposition = $scope.promotion;
+            $scope.pricePlan.promotion = arr[0]['name'];
         }
 
 
@@ -3411,12 +3429,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             delete data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-GENDER"];
             data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-LASTNAME"] = "";
         }
-        if ($scope.useNumberType == "BC" && $scope.customerType == 'N') {
-            //ISSUE : 22-04-2016 TITLE
-            if ($scope.newOwner2.prefixTH == 'T5') {
-                data["order"]["order-items"][0]["order-data"]["SUBSCRIBER-TITLE"] = $('#titleOtherRegisterdBC').val();
-            }
-        }
+
         //check :: SUB/OU
         if ($scope.isAccount_child == true || $scope.customerType == 'N') {
             delete data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"];

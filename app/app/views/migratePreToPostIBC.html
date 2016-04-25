@@ -993,7 +993,7 @@
                                             <label>
                                                 <p></p>
                                             </label>
-                                            <select class="form-control" id="titleOtherRegisterdBC" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
+                                            <select class="form-control" id="titleOtherRegisterdBC" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" ng-change="onChangeTitleOther2();" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
                                                 <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
                                             </select>
                                         </div>
