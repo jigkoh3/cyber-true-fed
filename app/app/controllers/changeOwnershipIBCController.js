@@ -69,6 +69,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     var isFocus = false;
     var idFocus = "";
     var valPricePlans = [];
+    var fixPropoName = "RMV000000001641";
 
 
     $scope.secondAuthenData = {};
@@ -1467,7 +1468,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                     // });
 
                     //makeDataPriceplan(resultGetPriceplan.data["response-data"], listProp[0]['name'], $scope.promotion);
-                    makeDataPriceplan(resultGetPriceplan.data["response-data"], "RMV000000001641", $scope.promotion);
+                    makeDataPriceplan(resultGetPriceplan.data["response-data"], fixPropoName, $scope.promotion);
 
 
                     console.log($scope.propositionList);
@@ -3024,6 +3025,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             bcOUID = "";
             bcBAN = "";
         }
+        if(!$scope.selectProposition){
+            $scope.selectProposition = $scope.promotion;
+        }
 
         var data = {
             "target": "aftersales/order/submit",
@@ -3153,7 +3157,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                             "ACCOUNT-SUB-TYPE": $scope.subCompanyType,
                             "COMPANY-CODE": $scope.data.installedProducts["company-code"],
                             "NAS-PROPOSITION": $scope.selectProposition,
-                            "CCBS-PROPOSITION": $scope.pricePlan.promotion,
+                            "CCBS-PROPOSITION": fixPropoName,
                             "ORIGINAL-OWNER-ID-NUMBER": $scope.data.customerProfile['id-number'],
                             "ORIGINAL-OWNER-FIRSTNAME": $scope.data.customerProfile['firstname'],
                             "ORIGINAL-OWNER-LASTNAME": $scope.data.customerProfile['lastname']
