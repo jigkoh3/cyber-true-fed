@@ -340,10 +340,15 @@ smartApp.controller('changeOwnershipIBCController', function(
         "lastname": "คิดมากไป",
         "birthdate": "2015-07-20T00:00:00+0700"
     };
-    $scope.clearDataAccount = function(){
-        $scope.promotionLevel='SUB'; 
+    $scope.clearDataAccount = function() {
+        $scope.promotionLevel = 'SUB';
         $scope.clearAccount();
-        $scope.changOpenserviceBC='L';
+        if ($scope.isLastestAdress) {
+            $scope.changOpenserviceBC = 'L';
+        } else {
+            $scope.changOpenserviceBC = 'N';
+        }
+
         $scope.isNewCustomer = false;
     };
     $scope.clearInputIBC = function() {
@@ -589,7 +594,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         }
     };
-    $scope.clearOnChangeLevel = function(){
+    $scope.clearOnChangeLevel = function() {
         $scope.isLoadPricePlan = false;
         $scope.propositionList = [];
         valPricePlans = [];
@@ -1012,12 +1017,12 @@ smartApp.controller('changeOwnershipIBCController', function(
                     $scope.titleOtherTypeList = result;
 
                     //if ($scope.getAuthen["shopType"] == "0") {
-                        setTimeout(function() {
-                            $scope.titleOther = "คุณ";
+                    setTimeout(function() {
+                        $scope.titleOther = "คุณ";
 
-                            $('#title5').val('คุณ');
-                            $scope.onChangeTitleOther();
-                        }, 1000);
+                        $('#title5').val('คุณ');
+                        $scope.onChangeTitleOther();
+                    }, 1000);
 
 
                     //}
@@ -3001,13 +3006,13 @@ smartApp.controller('changeOwnershipIBCController', function(
                 "contact-name": $scope.mailAddress.sendName
             };
             cardTypeIBC = $scope.cardType.value;
-            if($scope.isLastestAdress == true){
+            if ($scope.isLastestAdress == true) {
                 _customerID = $scope.lastestCustomer['customer-id'];
-                changeOption =  "EXISTING";    
-            }else{
+                changeOption = "EXISTING";
+            } else {
                 changeOption = "NEW";
             }
-            
+
         }
 
         $scope.saveData.memo = $scope.saveData.memo ? $scope.saveData.memo : ""
@@ -3018,14 +3023,14 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
         var bcOUID = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "";
         var bcBAN = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "";
-        if($scope.isAccount_child == true){
+        if ($scope.isAccount_child == true) {
             bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
             bcBAN = $scope.accountID_child;
-        }else{
+        } else {
             bcOUID = "";
             bcBAN = "";
         }
-        if(!$scope.selectProposition){
+        if (!$scope.selectProposition) {
             $scope.selectProposition = $scope.promotion;
         }
 
