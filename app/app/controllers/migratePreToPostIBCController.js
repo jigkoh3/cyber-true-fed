@@ -331,8 +331,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
     };
 
     $scope.SetCardValueOnTabI = function() {
-        $scope.CitizenID = $scope.cardInfo.CitizenID;
-        $('#CitizenID').val('' + $scope.cardInfo.CitizenID);
+        if ($scope.customerType == 'N') {
+            $scope.CitizenID = $scope.cardInfo.CitizenID;
+            $('#CitizenID').val('' + $scope.cardInfo.CitizenID);
+        }
 
         if ($scope.cardInfo.CitizenID == $scope.data.customerProfile['id-number']) {
             $scope.isCardValueData = true;

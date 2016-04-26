@@ -45,28 +45,6 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         SystemService.hideReadCardForMobile();
     };
 
-    window.mobileAndroidA = function() {
-                                    var check = false;
-                                    
-                                    if (/Android/i.test(navigator.userAgent)) {
-                                        check = true;
-                                    }
-                                    return check;
-                                }
-                                window.mobileAndroidB = function() {
-                                    var check = false;
-                                    
-                                    if (/Opera Mini/i.test(navigator.userAgent)) {
-                                        check = true;
-                                    }
-                                    return check;
-                                }
-                                if(window.mobileAndroidA && !window.mobileAndroidB){
-                                    alert('Android PDF :: false');
-                                }else{
-                                    alert('Android PDF :: true');
-                                }
-
 
     //Reasons
     $scope.reasons = [];
