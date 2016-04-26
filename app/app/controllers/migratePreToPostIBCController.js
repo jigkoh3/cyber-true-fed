@@ -334,73 +334,74 @@ smartApp.controller('MigratePreToPostIBCController', function(
         if ($scope.customerType == 'N') {
             $scope.CitizenID = $scope.cardInfo.CitizenID;
             $('#CitizenID').val('' + $scope.cardInfo.CitizenID);
-        }
 
-        if ($scope.cardInfo.CitizenID == $scope.data.customerProfile['id-number']) {
-            $scope.isCardValueData = true;
-            $scope.isUseCardValueData = true;
-            $scope.showDataDealer = false;
-            $scope.isReadCardSuccess = true;
-            $scope.isCustomerProfile = true;
-            $scope.cardInfo3 = $scope.cardInfo;
-            console.log($scope.cardInfo3);
-            var prefix = "T2";
-            if ($scope.cardInfo3.PrefixEN == "Mr.") {
-                prefix = "T1";
+
+            if ($scope.cardInfo.CitizenID == $scope.data.customerProfile['id-number']) {
+                $scope.isCardValueData = true;
+                $scope.isUseCardValueData = true;
+                $scope.showDataDealer = false;
+                $scope.isReadCardSuccess = true;
+                $scope.isCustomerProfile = true;
+                $scope.cardInfo3 = $scope.cardInfo;
+                console.log($scope.cardInfo3);
+                var prefix = "T2";
+                if ($scope.cardInfo3.PrefixEN == "Mr.") {
+                    prefix = "T1";
+                }
+                if ($scope.cardInfo3.PrefixEN == "Miss") {
+                    prefix = "T3";
+                }
+                if ($scope.cardInfo3.PrefixTH == "นาง") {
+                    prefix = "T2";
+                }
+                var sex = "MALE";
+                if ($scope.cardInfo3.Sex == "2") {
+                    sex = "FEMALE";
+                }
+                $scope.customer['id-number'] = $scope.cardInfo3.CitizenID;
+                $('#citizenID3').val($scope.cardInfo3.CitizenID);
+                $('#prefixTH3').val(prefix);
+                $scope.newOwner.prefixTH = prefix;
+                $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
+                $('#lastNameTH3').val($scope.cardInfo3.LastNameTH);
+                $('#birthDay').val($scope.cardInfo3.BirthDay);
+                $('#disableNewOwnerBirthday').val($scope.cardInfo3.BirthDay);
+                $('#expireDay').val($scope.cardInfo3.ExpireDay);
+                $('#disableNewOwnerExpireDay').val($scope.cardInfo3.ExpireDay);
+                $('#sex3').val(sex);
+                $('#birthDay').removeClass('date-picker');
+                $scope.newOwner.firstNameTH = $scope.cardInfo3.FirstNameTH;
+                $scope.newOwner.lastNameTH = $scope.cardInfo3.LastNameTH;
+                $scope.newOwner2.firstNameTH = $scope.cardInfo3.FirstNameTH;
+                $scope.newOwner2.lastNameTH = $scope.cardInfo3.LastNameTH;
+                console.log($scope.newOwner.firstNameTH);
+
+                $scope.cardType.value = "I";
+                $('#cardType').val('I');
+
+                //binding Tax Id
+                $('#taxId3').val($scope.cardInfo3.CitizenID);
+
+                //binding user registerd - ระบุผู้ใช้หมายเลข
+                $('#titleRegisterd').val(sex);
+                $('#firstNameRegisterd').val($scope.cardInfo3.FirstNameTH);
+                $('#lastNameRegisterd').val($scope.cardInfo3.LastNameTH);
+                $('#birthDayRegisterd').val($scope.cardInfo3.BirthDay);
+
+                $('#cardType').val('I');
+                $scope.customer['tax-id'] = $scope.cardInfo.CitizenID;
+
+                if ($scope.clickButtonAddress == false) {
+                    $('#useAddressAsCard').click();
+                }
+                setTimeout(function() {
+                    $('#idBindDataAgain').click();
+                }, 500);
+                $('.isCustomerProfile').prop('disabled', false);
+            } else {
+                $('#unMatch').show();
+                $scope.isMatch = false;
             }
-            if ($scope.cardInfo3.PrefixEN == "Miss") {
-                prefix = "T3";
-            }
-            if ($scope.cardInfo3.PrefixTH == "นาง") {
-                prefix = "T2";
-            }
-            var sex = "MALE";
-            if ($scope.cardInfo3.Sex == "2") {
-                sex = "FEMALE";
-            }
-            $scope.customer['id-number'] = $scope.cardInfo3.CitizenID;
-            $('#citizenID3').val($scope.cardInfo3.CitizenID);
-            $('#prefixTH3').val(prefix);
-            $scope.newOwner.prefixTH = prefix;
-            $('#firstNameTH3').val($scope.cardInfo3.FirstNameTH);
-            $('#lastNameTH3').val($scope.cardInfo3.LastNameTH);
-            $('#birthDay').val($scope.cardInfo3.BirthDay);
-            $('#disableNewOwnerBirthday').val($scope.cardInfo3.BirthDay);
-            $('#expireDay').val($scope.cardInfo3.ExpireDay);
-            $('#disableNewOwnerExpireDay').val($scope.cardInfo3.ExpireDay);
-            $('#sex3').val(sex);
-            $('#birthDay').removeClass('date-picker');
-            $scope.newOwner.firstNameTH = $scope.cardInfo3.FirstNameTH;
-            $scope.newOwner.lastNameTH = $scope.cardInfo3.LastNameTH;
-            $scope.newOwner2.firstNameTH = $scope.cardInfo3.FirstNameTH;
-            $scope.newOwner2.lastNameTH = $scope.cardInfo3.LastNameTH;
-            console.log($scope.newOwner.firstNameTH);
-
-            $scope.cardType.value = "I";
-            $('#cardType').val('I');
-
-            //binding Tax Id
-            $('#taxId3').val($scope.cardInfo3.CitizenID);
-
-            //binding user registerd - ระบุผู้ใช้หมายเลข
-            $('#titleRegisterd').val(sex);
-            $('#firstNameRegisterd').val($scope.cardInfo3.FirstNameTH);
-            $('#lastNameRegisterd').val($scope.cardInfo3.LastNameTH);
-            $('#birthDayRegisterd').val($scope.cardInfo3.BirthDay);
-
-            $('#cardType').val('I');
-            $scope.customer['tax-id'] = $scope.cardInfo.CitizenID;
-
-            if ($scope.clickButtonAddress == false) {
-                $('#useAddressAsCard').click();
-            }
-            setTimeout(function() {
-                $('#idBindDataAgain').click();
-            }, 500);
-            $('.isCustomerProfile').prop('disabled', false);
-        } else {
-            $('#unMatch').show();
-            $scope.isMatch = false;
         }
 
     };
