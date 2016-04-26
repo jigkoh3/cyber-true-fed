@@ -3659,6 +3659,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         var titlecode = "";
         var isBC = 'N';
 
+        //??????????????????????????????????????????
         if ($scope.customerType == 'N') {
             //I
             firstname = $scope.newOwner.firstNameTH;
@@ -3674,6 +3675,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             titlecode = customerType == 'Y' ? "" : $scope.data.customerProfile["title-code"];
             isBC = 'Y';
         }
+
 
 
         var data = {

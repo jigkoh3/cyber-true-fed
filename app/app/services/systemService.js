@@ -2171,9 +2171,17 @@
     };
     this.convertDateToEng = function(ddMMyyyy, lang) {
         if (ddMMyyyy) {
+            var sl = "/";
+            if(ddMMyyyy.indexOf("/") != -1){
+                sl = "/";
+            }else if(ddMMyyyy.indexOf("-") != -1){
+                sl = "-";
+            }else{
+                return ddMMyyyy;
+            }
             var ssc = "/";
             var ln = lang == 'TH' ? 543 : -543;
-            var arr = ddMMyyyy.split("/");
+            var arr = ddMMyyyy.split(sl);
             return "" + arr[0] + ssc + arr[1] + ssc + (Number(arr[2]) + ln);
         } else {
             return ddMMyyyy;
