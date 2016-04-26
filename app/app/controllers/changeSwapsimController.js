@@ -23,6 +23,8 @@
     $scope.isReadCardSuccess = false;
     $scope.approver = "";
 
+    $scope.checkURL_shop_code = false;
+
     var idFocus = "";
 
     $scope.hideReadCardForMobile = function() {
@@ -369,6 +371,8 @@
 
                     $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
                 }, 1000);
+            }else{
+                $scope.checkURL_shop_code = true;
             }
         }
 
@@ -795,6 +799,11 @@
         //isFocus = true;
         //$scope.initModalReadCard();
 
+        //Fix loading hide in shop_code=%20
+        if($scope.checkURL_shop_code == false){
+            $scope.checkURL_shop_code = true;
+            SystemService.showLoading();
+        }
 
 
     };

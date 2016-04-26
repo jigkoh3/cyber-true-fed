@@ -31,6 +31,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
     $scope.showDataDealer = false;
 
+    $scope.checkURL_shop_code = false;
+
     $scope.isNullSubNo = $routeParams.subno ? false : true;
 
     //$scope.lspromoType = {
@@ -1169,8 +1171,6 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     changeIRIDDService.validateIRIDDCallback($scope.SubNo, function(resultData) {
                         $scope.data = resultData;
 
-
-
                         if ($scope.data.status) {
                             console.log(resultData.priceplan['product-properties']['OFFER-INSTANCE-ID']);
                             $scope.hybridInstanceID = resultData.priceplan['product-properties']['OFFER-INSTANCE-ID'];
@@ -1329,6 +1329,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
 
                             } else {
+                                $scope.checkURL_shop_code = true;
+                                
                                 $scope.isCustomerProfile = true;
                                 $scope.changereqType("ADD_IRIDD");
                                 setTimeout(function() {
@@ -1486,6 +1488,12 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 }, 1000);
 
             }
+        }
+
+        //Fix loading hide in shop_code=%20
+        if($scope.checkURL_shop_code == false){
+            $scope.checkURL_shop_code = true;
+            SystemService.showLoading();
         }
 
 
