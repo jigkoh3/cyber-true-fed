@@ -304,7 +304,7 @@
 
     // Get current SIM data
     var onGetSIMData = function(result) {
-
+        $scope.checkURL_shop_code = true;
         if (result == false) {
             console.log(result);
             $scope.SubNo = 'null';
@@ -372,7 +372,7 @@
                     $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
                 }, 1000);
             }else{
-                $scope.checkURL_shop_code = true;
+                //
             }
         }
 

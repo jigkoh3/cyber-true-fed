@@ -1169,6 +1169,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 if ($scope.SubNo != 'null') {
 
                     changeIRIDDService.validateIRIDDCallback($scope.SubNo, function(resultData) {
+                        $scope.checkURL_shop_code = true;
                         $scope.data = resultData;
 
                         if ($scope.data.status) {
@@ -1329,8 +1330,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
 
                             } else {
-                                $scope.checkURL_shop_code = true;
                                 
+
                                 $scope.isCustomerProfile = true;
                                 $scope.changereqType("ADD_IRIDD");
                                 setTimeout(function() {
