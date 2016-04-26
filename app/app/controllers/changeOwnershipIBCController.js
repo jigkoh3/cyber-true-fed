@@ -3586,14 +3586,14 @@ smartApp.controller('changeOwnershipIBCController', function(
         } else {
             newTitle = "";
         }
-        var isBC = 'N';
+        var isBC = null;
 
         if ($scope.customerType != 'N') {
             $scope.newOwner.firstNameTH = $scope.bcName;
             isBC = 'Y';
             newTitle = "";
         } else {
-            isBC = 'N';
+            isBC = null;
         }
 
 

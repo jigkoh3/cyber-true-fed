@@ -2798,6 +2798,11 @@ smartApp.controller('changeOwnershipController', function(
         });
         if (newTitle.length > 0) {
             newTitle = newTitle[0]['th-description'];
+            if ($("#prefixTH3").val() == "T5") {
+                newTitle = $("#title5 option:selected").val();
+            } else {
+                newTitle = $("#prefixTH3 option:selected").text();
+            }
         } else {
             newTitle = "";
         }
