@@ -268,7 +268,7 @@
             }
             //CR :: 21-04-2016 :: shop 
             if ($scope.shopType === '1' && $scope.deviceTypeList.length) {
-                var checkDefault = function(code){
+                var checkDefault = function(code) {
                     setTimeout(function() {
                         $scope.deviceType = code;
                     }, 0);
@@ -276,15 +276,27 @@
                         $('#idBindDataAgain').click();
                     }, 1000);
                 }
-                var checkArr005 = $filter('filter')($scope.deviceTypeList, { 'device-code': '005' });
-                var checkArr006 = $filter('filter')($scope.deviceTypeList, { 'device-code': '006' });
-                if (checkArr005.length != 0) {
-                    checkDefault('005');
-                } else if (checkArr006.length != 0) {
-                    checkDefault('006');
-                }else {
-                    //
+                for (var i = 0; i < $scope.deviceTypeList.length; i++) {
+                    console.log(i, $scope.deviceTypeList[i]['device-code'] ,$scope.deviceTypeList.length);
+                    if ($scope.deviceTypeList[i]['device-code'] == '005') {
+                        checkDefault('005');
+                        break;
+                    } else if ($scope.deviceTypeList[i]['device-code'] == '006') {
+                        checkDefault('006');
+                        break;
+                    } else {
+                        //
+                    }
                 }
+                // var checkArr005 = $filter('filter')($scope.deviceTypeList, { 'device-code': '005' });
+                // var checkArr006 = $filter('filter')($scope.deviceTypeList, { 'device-code': '006' });
+                // if (checkArr005.length != 0) {
+                //     checkDefault('005');
+                // } else if (checkArr006.length != 0) {
+                //     checkDefault('006');
+                // }else {
+                //     //
+                // }
             }
         }
     };
@@ -371,7 +383,7 @@
 
                     $('#btn-fancy-ReadCard').fancybox(fancyboxOptions).trigger('click');
                 }, 1000);
-            }else{
+            } else {
                 //
             }
         }
@@ -800,7 +812,7 @@
         //$scope.initModalReadCard();
 
         //Fix loading hide in shop_code=%20
-        if($scope.checkURL_shop_code == false){
+        if ($scope.checkURL_shop_code == false) {
             $scope.checkURL_shop_code = true;
             SystemService.showLoading();
         }

@@ -471,8 +471,8 @@
             "message": "",
             "message-code": "",
             "message-type": "WARNING",
-            "en-message": "Partner Code not found.",
-            "th-message": "Partner Code นี้ไม่มีในระบบ",
+            "en-message": "Shop Code is invalid.",
+            "th-message": "รหัสร้านค้า ไม่ถูกต้อง",
             "technical-message": "FROM WEBUI, Please check 'shop_code' in URL"
         }
     };

@@ -16,7 +16,7 @@
             "thaiName": null,
             "engName": "CMTEST48 CMSUR48",
             "shopcodes": [],
-            //"shopcodes": ["12345678"],
+            //"shopcodes": ["12345670"],
             //"shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
@@ -69,9 +69,16 @@
         if (SystemService.demo) {
             that.userProfile.shopType = result.shopType;
             //STR: CR selected shopcode //05-04-2016
+            var checkSpace = false;
             if ($routeParams.shop_code) {
                 var de_shop_code = decodeURI($routeParams.shop_code);
-                de_shop_code = SystemService.myTrim(de_shop_code);
+                if (de_shop_code.indexOf(" ") != -1) {
+                    de_shop_code = SystemService.myTrim(de_shop_code);
+                    checkSpace = true;
+                }
+                if (de_shop_code && checkSpace == true && de_shop_code.length != 8) {
+                    checkSpace = false;
+                }
                 if (de_shop_code.length == 8) {
                     if ((de_shop_code + 0 > 0)) {
                         result['shopcodes'] = ["" + de_shop_code + ""];
@@ -79,7 +86,9 @@
                     localStorage.setItem('selectedShopCode', de_shop_code);
                 } else {
                     localStorage.setItem('selectedShopCode', de_shop_code);
-                    SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
+                    if (checkSpace == false) {
+                        SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
+                    }
                 }
             } else {
                 localStorage.setItem('selectedShopCode', "");
@@ -102,9 +111,16 @@
             $http(httpRequest).success(function(result) {
                 that.userProfile.shopType = result.shopType;
                 //STR: CR selected shopcode //05-04-2016
+                var checkSpace = false;
                 if ($routeParams.shop_code) {
                     var de_shop_code = decodeURI($routeParams.shop_code);
+                    if (de_shop_code.indexOf(" ") != -1) {
+                        checkSpace = true;
+                    }
                     de_shop_code = de_shop_code.trim();
+                    if (checkSpace == true && de_shop_code.length != 8 && de_shop_code.indexOf(" ") != -1) {
+                        checkSpace = false;
+                    }
                     if (de_shop_code.length == 8) {
                         if ((de_shop_code + 0 > 0)) {
                             result['shopcodes'] = ["" + de_shop_code + ""];
@@ -112,7 +128,9 @@
                         localStorage.setItem('selectedShopCode', de_shop_code);
                     } else {
                         localStorage.setItem('selectedShopCode', de_shop_code);
-                        SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
+                        if (checkSpace == false) {
+                            SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
+                        }
                     }
                 } else {
                     localStorage.setItem('selectedShopCode', "");
