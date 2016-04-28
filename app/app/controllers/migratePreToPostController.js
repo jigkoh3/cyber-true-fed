@@ -898,7 +898,7 @@ smartApp.controller('MigratePreToPostController', function(
 
     $scope.disableTaxID = false;
     $scope.onChangeCardTypes = function() {
-        //console.log($scope.cardType.value);
+        console.log($scope.cardType.value);
         var ct = $('#cardType').val();
 
         if (!ct || ct == "I") {
@@ -2522,7 +2522,7 @@ smartApp.controller('MigratePreToPostController', function(
                     "firstname": $scope.newOwner.firstNameTH,
                     "lastname": $scope.newOwner.lastNameTH,
                     "gender": $scope.newOwner.sex,
-                    "id-type": "I",
+                    "id-type": $scope.cardType.value,
                     "id-number": $('#citizenID3').val(),
                     "birthdate": SystemService.convertDataThToLongDate($('#birthDay').val()),
                     "id-expire-date": SystemService.convertDataThToLongDate($('#expireDay').val()),
