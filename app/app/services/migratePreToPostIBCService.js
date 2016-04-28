@@ -1169,6 +1169,7 @@
                                 "ACCOUNT-SERVICE-LEVEL": "G",
                                 "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
                                 "REQUIRE-PRICEPLAN-MSG-TH": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่",
+                                "ACCOUNT-SOC-CODE": "261988",
                                 "REQUIRE-PRICEPLAN-MSG-CODE": "",
                                 "REQUIRE-PRICEPLAN": "NOT REQUIRE"
                             },
@@ -1254,6 +1255,7 @@
                                 "ACCOUNT-SERVICE-LEVEL": "G",
                                 "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
                                 "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม",
+                                "ACCOUNT-SOC-CODE": "261988",
                                 "REQUIRE-PRICEPLAN-MSG-CODE": "",
                                 "REQUIRE-PRICEPLAN": "REQUIRE"
                             },
@@ -1339,6 +1341,7 @@
                                 "ACCOUNT-SERVICE-LEVEL": "",
                                 "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
                                 "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม",
+                                "ACCOUNT-SOC-CODE": "261988",
                                 "REQUIRE-PRICEPLAN-MSG-CODE": "",
                                 "REQUIRE-PRICEPLAN": "OPTIONAL"
                             },

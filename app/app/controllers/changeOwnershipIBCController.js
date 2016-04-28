@@ -65,6 +65,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         SystemService.hideReadCardForMobile();
     };
 
+    $scope.existingPP = true;
 
     var isFocus = false;
     var idFocus = "";
@@ -550,10 +551,12 @@ smartApp.controller('changeOwnershipIBCController', function(
                     $scope.dataAccountPreverify = result.data['response-data']['customer'];
                     $scope.isAccountPreverify = true;
                     $scope.isAccount_child = true;
+                    $scope.existingPP = false;
                     //$scope.accountID_root = $scope.dataAccountPreverify['customer-id'];
                     //check ParentOU Level & SelectedOU Level
                     if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "NOT REQUIRE") {
                         $scope.showPPParentOU = true;
+                        $scope.existingPP = true;
                         $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'] +
                             ": " +
                             $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION'];
@@ -564,6 +567,12 @@ smartApp.controller('changeOwnershipIBCController', function(
                         $scope.showRequirePP = true;
                     } else {
                         $scope.showRequirePP = false;
+                        if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "OPTIONAL") {
+                            $scope.existingPP = true;
+                            $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'] +
+                                ": " +
+                                $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION'];
+                        }
                     }
                     //build BILLING_ADDRESS here ::
 
@@ -2299,6 +2308,8 @@ smartApp.controller('changeOwnershipIBCController', function(
         $('#ppfilter2').val("");
         $scope.pricePlanFilter = {};
 
+        $scope.existingPP = false;
+
         $scope.isSelectedPricePlan = $scope.pricePlan2.pricePlan;
         $scope.selectProposition = $scope.pricePlan2.code;
         $('#selectProposition').val($scope.selectProposition);
@@ -3269,7 +3280,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             'POOLING': [],
             'CAPMAX': []
         };
-        if ($scope.showPPParentOU == false) {
+        if ($scope.existingPP == false) {
             var spList = $scope.offerDetail["csm-offer-details"]["csm-related-offer-details"];
             for (var isp = 0; isp < spList.length; isp++) {
                 var sp = spList[isp]["special-offer-type"];

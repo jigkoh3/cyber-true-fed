@@ -70,6 +70,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.totalCUG = 10;
     //end paging
 
+    $scope.existingPP = false;
+
 
     var isFocus = false;
     var idFocus = "";
@@ -925,23 +927,40 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     }
                     //check ParentOU Level & SelectedOU Level
                     if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "NOT REQUIRE") {
+                        $scope.existingPP = true;
                         $scope.showPPParentOU = true;
+                        $scope.pricePlan2.priceplans.soc = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-SOC-CODE'];
                         $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'] +
                             ": " +
                             $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION'];
                     } else {
                         $scope.showPPParentOU = false;
+                        $scope.existingPP = false;
                     }
                     if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "NOT REQUIRE" || $scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "REQUIRE") {
-                        $scope.showRequirePP = true;
+                        $scope.existingPP = true;
                     } else {
                         $scope.showRequirePP = false;
                         if ($scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"] == "OPTIONAL") {
+                            $scope.pricePlan2.priceplans.soc = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-SOC-CODE'];
+                            console.log($scope.pricePlan2.priceplans.soc, $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-SOC-CODE']);
+                            $scope.existingPP = true;
                             $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'] +
                                 ": " +
                                 $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION'];
                         }
                     }
+
+                    // var requirePP = $scope.dataAccountPreverify["installed-products"][0]['product-properties']["REQUIRE-PRICEPLAN"];
+                    // if (requirePP == "NOT REQUIRE") {
+                    //     //
+                    // } else if (requirePP == "OPTIONAL") {
+                    //     //
+                    // } else if (requirePP == "REQUIRE") {
+                    //     //
+                    // } else {
+                    //     //
+                    // }
                     //build BILLING_ADDRESS here ::
 
                 }
@@ -2445,6 +2464,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.isSelectedPricePlan = "";
     $scope.selectedPricePlan = function(pp) {
         $scope.isSelectedPricePlan2 = true;
+        $scope.existingPP = false;
         // $scope.pricePlanFilter = {};
         $scope.pricePlan2 = {
             name: pp.pricePlan,
@@ -3308,7 +3328,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             'POOLING': [],
             'CAPMAX': []
         };
-        if ($scope.showPPParentOU == false) {
+        if ($scope.existingPP == false) {
             var spList = $scope.offerDetail["csm-offer-details"]["csm-related-offer-details"];
             for (var isp = 0; isp < spList.length; isp++) {
                 var sp = spList[isp]["special-offer-type"];
