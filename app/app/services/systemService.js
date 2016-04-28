@@ -6,7 +6,7 @@
     var _WEB_METHOD_CHANNEL = "AFTERSALE_SMARTUI_WEB";
     var _REF_WEB_CHANNEL = $routeParams.channel ? $routeParams.channel : '';
 
-    this.demo = false;
+    this.demo = true;
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
@@ -669,9 +669,9 @@
         }
 
     };
-    this.generatePDF = function(data, fnCallback) {
+    this.generatePDF = function(data, fnCallback) { 
         var url = '';
-
+        data.header['selected-shopcode'] = localStorage.getItem('selectedShopCode');
         var httpRequest = {
             method: "POST",
             url: getURL('services/report/createReport.service'),
