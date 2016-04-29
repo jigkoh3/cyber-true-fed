@@ -388,7 +388,11 @@
 
                     try {
                         var check = result.data["display-messages"][0]['message-type'];
-
+                        fnCallback({
+                        data: {
+                            status: false
+                        }
+                    });
                         if ($routeParams.subno) {
                             setTimeout(function() {
                                 SystemService.showAlert({
