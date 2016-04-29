@@ -1435,7 +1435,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             if ($scope.promotionLevel == 'OU') {
                 target = target + "&priceplan-type=" + $scope.PPTypeId;
             }else{
-                target = target + "&service-level=" + ($scope.promotionLevel == "SUB" ? "C" : "G");
+                target = target + "&service-level=C";
             }
             SystemService.showLoading();
             changeOwnershipIBCService.salePriceplanCallback(target, function(resultGetPriceplan) {
