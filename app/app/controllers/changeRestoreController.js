@@ -435,6 +435,10 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
         };
 
         console.log(data);
+
+        var pdfShopCode = ($scope.getAuthen["partnerCodes"].length > 0 ? $scope.getAuthen["partnerCodes"][0] : $scope.getAuthen.saleCode);
+        localStorage.setItem('pdfShopCode', pdfShopCode);
+        
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
 

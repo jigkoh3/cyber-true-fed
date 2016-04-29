@@ -221,6 +221,10 @@
             'body': generateOrderRequest()
         };
         console.log(data);
+
+        var pdfShopCode = $scope.dealerCode;
+        localStorage.setItem('pdfShopCode', pdfShopCode);
+        
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
 

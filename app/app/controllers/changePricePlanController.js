@@ -41,7 +41,7 @@ smartApp.controller('ChangePricePlanController', function(
         //$ngBootbox.alert('xxxxxxxxxxx');
         //$ngBootbox.customDialog($scope.customDialogOptions);
     };
-    $scope.hideReadCardForMobile = function(){
+    $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
     $scope.filterAndOpen = function() {
@@ -321,7 +321,7 @@ smartApp.controller('ChangePricePlanController', function(
         $scope.autoHideNumberSubNo = false;
         return bool;
     }
-    $scope.convertDate = function(date){
+    $scope.convertDate = function(date) {
         return SystemService.convertDateToTH(date, 'TH');
     }
 
@@ -1231,6 +1231,9 @@ smartApp.controller('ChangePricePlanController', function(
         };
         console.log($scope.data);
         console.log(data);
+        
+        var pdfShopCode = ($scope.getAuthen["partnerCodes"].length > 0 ? $scope.getAuthen["partnerCodes"][0] : $scope.getAuthen.saleCode);
+        localStorage.setItem('pdfShopCode', pdfShopCode);
         //api generatePDF
         var srcPDF = "";
         SystemService.generatePDF(data, function(result) {
@@ -2124,7 +2127,7 @@ smartApp.controller('ChangePricePlanController', function(
     $scope.webcamSnap = function() {
         webcam.snap();
     }
-    $scope.mobileCamSnap = function(){
+    $scope.mobileCamSnap = function() {
         var msg = $('#varMobileCam').val();
         msg = msg.replace('data:image/png;base64,', '');
         msg = msg.replace('data:image/jpeg;base64,', '');
@@ -2257,7 +2260,7 @@ smartApp.controller('ChangePricePlanController', function(
             console.log($scope.propositionList.length);
         }
     };
-    
+
     $scope.afterCloseWarning = function() {
         if ($scope.SubNo === 'null') {
             // $('#dataSubNo').val('');

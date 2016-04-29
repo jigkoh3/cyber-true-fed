@@ -2895,6 +2895,9 @@ smartApp.controller('changeOwnershipController', function(
         };
         console.log($scope.data);
         console.log(data);
+
+        var pdfShopCode = $scope.partnerCode;
+        localStorage.setItem('pdfShopCode', pdfShopCode);
         //api generatePDF
         var srcPDF = "";
         SystemService.generatePDF(data, function(result) {

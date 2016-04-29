@@ -1561,6 +1561,10 @@
         };
 
         console.log(data);
+
+        var pdfShopCode = $scope.partnerCode;
+        localStorage.setItem('pdfShopCode', pdfShopCode);
+        
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
 
