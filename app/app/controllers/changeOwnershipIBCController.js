@@ -1418,7 +1418,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                 "company-code=" + $scope.data.installedProducts['company-code'] +
                 "&customer-type=" + $scope.getAccountCat() +
                 "&customer-subtype=" + $scope.subCompanyType +
-                "&service-level=" + ($scope.promotionLevel == "SUB" ? "C" : "G") +
+                //"&service-level=" + ($scope.promotionLevel == "SUB" ? "C" : "G") +
                 //"&proposition=" + $scope.promotion +
                 "&partner-code=" + $scope.partnerCode +
                 "&privilege=false";
@@ -1434,6 +1434,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             //case :: ou
             if ($scope.promotionLevel == 'OU') {
                 target = target + "&priceplan-type=" + $scope.PPTypeId;
+            }else{
+                target = target + "&service-level=" + ($scope.promotionLevel == "SUB" ? "C" : "G");
             }
             SystemService.showLoading();
             changeOwnershipIBCService.salePriceplanCallback(target, function(resultGetPriceplan) {
