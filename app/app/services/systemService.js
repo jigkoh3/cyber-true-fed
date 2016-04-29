@@ -10,7 +10,7 @@
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
-
+    localStorage.setItem('pdfShopCode', ""); 
     //for get by env
     this.secondAuthenURL = getSecondAuthenURL();
 
@@ -671,7 +671,7 @@
     };
     this.generatePDF = function(data, fnCallback) { 
         var url = '';
-        data.header['selected-shopcode'] = localStorage.getItem('selectedShopCode');
+        data.header['selected-shopcode'] = localStorage.getItem('pdfShopCode');
         var httpRequest = {
             method: "POST",
             url: getURL('services/report/createReport.service'),

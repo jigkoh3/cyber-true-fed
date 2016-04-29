@@ -1013,6 +1013,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 console.log(data);
                 //api generatePDF
                 var srcPDF = "";
+                var pdfShopCode = ($scope.getAuthen["partnerCodes"].length > 0 ? $scope.getAuthen["partnerCodes"][0] : $scope.getAuthen['saleCode']);
+                localStorage.setItem('pdfShopCode', pdfShopCode);
                 SystemService.generatePDF(data, function(result) {
                     var url = result;
                     $scope.srcPrintPDF = url;
