@@ -482,7 +482,7 @@
                 "response-data": {
                     "customer": {
                         "title": "",
-                        "title-code": "T5",
+                        "title-code": "T2",
                         "firstname": "กูอุไก่",
                         "lastname": "สุขใจ",
                         'birthdate': '2015-07-20T00:00:00+0700',

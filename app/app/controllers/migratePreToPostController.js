@@ -1325,6 +1325,8 @@ smartApp.controller('MigratePreToPostController', function(
                                         //$('#titleOther').val(customer["title"]);
                                         $scope.newOwner2.prefixTH = customer["title-code"];
                                         $('#titleRegisterd').val(customer["title-code"]);
+
+                                        $('#idBindDataAgain').click();
                                     }, 1000);
 
 

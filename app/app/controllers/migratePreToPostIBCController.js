@@ -1423,7 +1423,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         if (!ct || ct == "I") {
             if ($scope.customerType == 'N') {
-                $scope.customer['tax-id'] = $scope.lastestCustomer['id-number'];
+                $scope.customer['tax-id'] = $scope.lastestCustomer['id-number'] ? $scope.lastestCustomer['id-number'] : $scope.customer['id-number'];
                 console.log($scope.customer['tax-id'], $scope.lastestCustomer['id-number']);
                 $scope.disableTaxID = true;
             }
