@@ -1596,7 +1596,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             SystemService.showLoading();
             var target = "sales/catalog/product/tmv/priceplan/search?" +
                 "company-code=" + $scope.data.installedProducts['company-code'] +
-                "&customer-type=I" +
+                "&customer-type=" + $scope.getAccountCat() +
                 "&customer-subtype=" + $scope.subCompanyType +
                 "&service-level=" + $scope.data.installedProducts['service-level'] +
                 "&proposition=" + $scope.promotion +
@@ -1816,6 +1816,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                         $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                                         $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                                         $scope.cardType.value = $scope.data.customerProfile['id-type'];
+
+                                        $scope.data.customerProfile['title-code'] = $scope.data.customerProfile['title-code'] ? $scope.data.customerProfile['title-code'] : "T5";
+                                        
                                         $scope.onChangeCardTypes();
 
 

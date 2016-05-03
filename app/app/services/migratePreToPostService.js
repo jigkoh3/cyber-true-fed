@@ -17,7 +17,7 @@
                 "response-data": {
                     "customer": {
                         "title": "",
-                        "title-code": "T5",
+                        "title-code": "",
                         "firstname": "พฤกษวดี",
                         "lastname": "พฤกษวดีนงลักษณ์",
                         "birthdate": "1991-09-01T00:00:00+0700",

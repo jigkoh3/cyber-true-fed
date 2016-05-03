@@ -1244,6 +1244,9 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
                                     $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
                                     $scope.cardType.value = $scope.data.customerProfile['id-type'];
+
+                                    $scope.data.customerProfile['title-code'] = $scope.data.customerProfile['title-code'] ? $scope.data.customerProfile['title-code'] : "T5";
+
                                     $scope.onChangeCardTypes();
 
 
