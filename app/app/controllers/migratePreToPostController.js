@@ -71,6 +71,9 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.totalCUG = 10;
     //end paging
 
+    $scope.checkInputDisabledFirstName = true;
+    $scope.checkInputDisabledLastName = true;
+
 
     var isFocus = false;
     var idFocus = "";
@@ -1159,18 +1162,20 @@ smartApp.controller('MigratePreToPostController', function(
         }
     };
     $scope.setAddress = function(address) {
-        $scope.mailAddress.homeNumber = address['number'];
-        $scope.mailAddress.moo = address['moo'];
-        $scope.mailAddress.village = address['village'];
-        $scope.mailAddress.road = address['street'];
-        $scope.mailAddress.soi = address['soi'];
-        $scope.mailAddress.amphur = address['district'];
-        $scope.mailAddress.province = address['province'];
-        $scope.mailAddress.buildingName = address['building-name'];
-        $scope.mailAddress.buildingRoom = address['building-room'];
-        $scope.mailAddress.buildingFloor = address['building-floor'];
-        $scope.mailAddress.district = address['sub-district'];
-        $scope.mailAddress.postcode = address['zip'];
+        if (address) {
+            $scope.mailAddress.homeNumber = address['number'];
+            $scope.mailAddress.moo = address['moo'];
+            $scope.mailAddress.village = address['village'];
+            $scope.mailAddress.road = address['street'];
+            $scope.mailAddress.soi = address['soi'];
+            $scope.mailAddress.amphur = address['district'];
+            $scope.mailAddress.province = address['province'];
+            $scope.mailAddress.buildingName = address['building-name'];
+            $scope.mailAddress.buildingRoom = address['building-room'];
+            $scope.mailAddress.buildingFloor = address['building-floor'];
+            $scope.mailAddress.district = address['sub-district'];
+            $scope.mailAddress.postcode = address['zip'];
+        }
     };
 
 
@@ -1221,6 +1226,8 @@ smartApp.controller('MigratePreToPostController', function(
                         migratePreToPostService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
                             $scope.isLastestUser = true;
                             //$.fancybox.close();
+                            $scope.checkInputDisabledFirstName = false;
+                            $scope.checkInputDisabledLastName = false;
 
 
                             SystemService.hideLoading();
@@ -1294,6 +1301,15 @@ smartApp.controller('MigratePreToPostController', function(
 
                                 $scope.lastestCustomer = customer;
                                 if ($scope.isCardValueDataLastest == false) {
+                                    $scope.notLastestCus = true;
+                                    
+                                    
+                                    //FIXED ISSUE :: 03-05-2016
+                                    customer["title-code"] = customer["title-code"] ? customer["title-code"] : "T5";
+                                    $scope.checkInputDisabledFirstName = customer["firstname"] ? true : false;
+                                    $scope.checkInputDisabledLastName =  customer["lastname"] ? true : false;
+
+
                                     //ผู้จดทะเบียนใหม่
                                     //$scope.customer = customer;
                                     $scope.newOwner.firstNameTH = customer["firstname"];
@@ -1314,7 +1330,7 @@ smartApp.controller('MigratePreToPostController', function(
 
                                     $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                     $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
-                                    $scope.cardType.value = customer['id-type'];
+                                    $scope.cardType.value = customer['id-type'] ? customer['id-type'] : "I";
                                     $scope.checkValueExpireDate();
                                     $scope.checkValueDate();
 
@@ -3122,7 +3138,7 @@ smartApp.controller('MigratePreToPostController', function(
 
         var pdfShopCode = $scope.partnerCode;
         localStorage.setItem('pdfShopCode', pdfShopCode);
-        
+
         //api generatePDF
         var srcPDF = "";
         SystemService.generatePDF(data, function(result) {

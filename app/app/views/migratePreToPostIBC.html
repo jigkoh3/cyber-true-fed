@@ -320,7 +320,7 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true" class="form-control" required ng-show="userDealer && !isCustomerProfile">
                                     <!-- Case Normal -->
-                                    <input type="text" ng-hide="userDealer && !isCustomerProfile" ng-disabled="(isCardValueData || !isCustomerProfile || notLastestCus) && newOwner.firstNameTH" name="firstNameTH3" id="firstNameTH3" ng-change="newOwner2.firstNameTH=newOwner.firstNameTH" ng-model="newOwner.firstNameTH" class="form-control" required>
+                                    <input type="text" ng-hide="userDealer && !isCustomerProfile" ng-disabled="(isCardValueData || !isCustomerProfile || checkInputDisabledFirstName)" name="firstNameTH3" id="firstNameTH3" ng-change="newOwner2.firstNameTH=newOwner.firstNameTH" ng-model="newOwner.firstNameTH" class="form-control" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.firstNameTH3.$error.required">
                                         Required.
                                     </span>-->
@@ -332,7 +332,7 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true" class="form-control" required ng-show="userDealer && !isCustomerProfile">
                                     <!-- Case Normal -->
-                                    <input type="text" ng-hide="userDealer && !isCustomerProfile" ng-disabled="(isCardValueData || !isCustomerProfile || notLastestCus) && newOwner.lastNameTH" id="lastNameTH3" ng-change="newOwner2.lastNameTH=newOwner.lastNameTH" ng-model="newOwner.lastNameTH" name="lastNameTH" class="form-control" required>
+                                    <input type="text" ng-hide="userDealer && !isCustomerProfile" ng-disabled="(isCardValueData || !isCustomerProfile || checkInputDisabledLastName)" id="lastNameTH3" ng-change="newOwner2.lastNameTH=newOwner.lastNameTH" ng-model="newOwner.lastNameTH" name="lastNameTH" class="form-control" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.lastNameTH.$error.required">
                                         Required.
                                     </span>-->

@@ -594,6 +594,50 @@
                 "response-data": {}
             };
 
+            //ISSUE production :: 03-05-2016
+            var data3 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "4V78BST1K204J",
+                "process-instance": "tmsappr9 (instance: SFF_node1)",
+                "response-data": {
+                    "customer": {
+                        "title": "",
+                        "title-code": "",
+                        "firstname": "",
+                        "lastname": "",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "",
+                        "id-number": "2101500012420",
+                        "customer-id": "853420592",
+                        "customer-level": "NON-TOP",
+                        "installed-products": [{
+                            "ouId": "",
+                            "ban": "853420592",
+                            "product-category": "TMV",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "R",
+                            "product-status": "Cancel",
+                            "account-category": "I",
+                            "account-sub-type": "PRI",
+                            "product-id": "",
+                            "bill-cycle": "",
+                            "company-code": "OR",
+                            "service-level": "C",
+                            "subscriber-id": "",
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0891152585",
+                            "mobile-servicetype": "R",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false
+                        }],
+                        "address-list": {}
+                    }
+                }
+            };
+
             if (certificateid == "1189900130607") {
                 fnCallback({
                     status: true,

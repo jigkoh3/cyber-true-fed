@@ -72,6 +72,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
     $scope.existingPP = false;
 
+    $scope.checkInputDisabledFirstName = true;
+    $scope.checkInputDisabledLastName = true;
+
 
     var isFocus = false;
     var idFocus = "";
@@ -1681,32 +1684,36 @@ smartApp.controller('MigratePreToPostIBCController', function(
         }
     };
     $scope.setAddress = function(address) {
-        $scope.mailAddress.homeNumber = address['number'];
-        $scope.mailAddress.moo = address['moo'];
-        $scope.mailAddress.village = address['village'];
-        $scope.mailAddress.road = address['street'];
-        $scope.mailAddress.soi = address['soi'];
-        $scope.mailAddress.amphur = address['district'];
-        $scope.mailAddress.province = address['province'];
-        $scope.mailAddress.buildingName = address['building-name'];
-        $scope.mailAddress.buildingRoom = address['building-room'];
-        $scope.mailAddress.buildingFloor = address['building-floor'];
-        $scope.mailAddress.district = address['sub-district'];
-        $scope.mailAddress.postcode = address['zip'];
+        if (address) {
+            $scope.mailAddress.homeNumber = address['number'];
+            $scope.mailAddress.moo = address['moo'];
+            $scope.mailAddress.village = address['village'];
+            $scope.mailAddress.road = address['street'];
+            $scope.mailAddress.soi = address['soi'];
+            $scope.mailAddress.amphur = address['district'];
+            $scope.mailAddress.province = address['province'];
+            $scope.mailAddress.buildingName = address['building-name'];
+            $scope.mailAddress.buildingRoom = address['building-room'];
+            $scope.mailAddress.buildingFloor = address['building-floor'];
+            $scope.mailAddress.district = address['sub-district'];
+            $scope.mailAddress.postcode = address['zip'];
+        }
     };
     $scope.setAddressBC = function(address) {
-        $scope.mailAddressBC.homeNumber = address['number'];
-        $scope.mailAddressBC.moo = address['moo'];
-        $scope.mailAddressBC.village = address['village'];
-        $scope.mailAddressBC.road = address['street'];
-        $scope.mailAddressBC.soi = address['soi'];
-        $scope.mailAddressBC.amphur = address['district'];
-        $scope.mailAddressBC.province = address['province'];
-        $scope.mailAddressBC.buildingName = address['building-name'];
-        $scope.mailAddressBC.buildingRoom = address['building-room'];
-        $scope.mailAddressBC.buildingFloor = address['building-floor'];
-        $scope.mailAddressBC.district = address['sub-district'];
-        $scope.mailAddressBC.postcode = address['zip'];
+        if (address) {
+            $scope.mailAddressBC.homeNumber = address['number'];
+            $scope.mailAddressBC.moo = address['moo'];
+            $scope.mailAddressBC.village = address['village'];
+            $scope.mailAddressBC.road = address['street'];
+            $scope.mailAddressBC.soi = address['soi'];
+            $scope.mailAddressBC.amphur = address['district'];
+            $scope.mailAddressBC.province = address['province'];
+            $scope.mailAddressBC.buildingName = address['building-name'];
+            $scope.mailAddressBC.buildingRoom = address['building-room'];
+            $scope.mailAddressBC.buildingFloor = address['building-floor'];
+            $scope.mailAddressBC.district = address['sub-district'];
+            $scope.mailAddressBC.postcode = address['zip'];
+        }
     };
 
 
@@ -1769,6 +1776,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             $scope.isLastestUser = true;
                             $scope.isCustomerPreverify = true;
                             //$.fancybox.close();
+                            $scope.checkInputDisabledFirstName = false;
+                            $scope.checkInputDisabledLastName = false;
 
                             if ($scope.customerType != 'N') {
                                 //CR02
@@ -1880,6 +1889,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     $scope.titleOther = customer["title"];
 
                                     if ($scope.customerType == 'N') {
+                                        //FIXED ISSUE :: 03-05-2016
+                                        customer["title-code"] = customer["title-code"] ? customer["title-code"] : "T5";
+                                        $scope.checkInputDisabledFirstName = customer["firstname"] ? true : false;
+                                        $scope.checkInputDisabledLastName = customer["lastname"] ? true : false;
+
                                         $scope.newOwner2.firstNameTH = customer["firstname"];
                                         $scope.newOwner2.lastNameTH = customer["lastname"];
                                         $scope.newOwner2.prefixTH = customer["title-code"];
@@ -1896,7 +1910,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     if ($scope.customerType == 'N') {
                                         $scope.newOwner.birthDay = formatDate(customer["birthdate"]);
                                         $scope.newOwner.expireDay = formatDate(customer["id-expire-date"]);
-                                        $scope.cardType.value = customer['id-type'];
+                                        $scope.cardType.value = customer['id-type'] ? customer['id-type'] : "I";
                                     } else {
                                         $scope.accountID_root = customer['customer-id'];
                                         $scope.newOwner2.prefixTH = "T5";
@@ -3792,7 +3806,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         var pdfShopCode = $scope.partnerCode;
         localStorage.setItem('pdfShopCode', pdfShopCode);
-        
+
         //api generatePDF
         var srcPDF = "";
         SystemService.generatePDF(data, function(result) {
