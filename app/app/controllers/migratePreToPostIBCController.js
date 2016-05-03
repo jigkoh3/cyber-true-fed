@@ -1598,7 +1598,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "company-code=" + $scope.data.installedProducts['company-code'] +
                 "&customer-type=" + $scope.getAccountCat() +
                 "&customer-subtype=" + $scope.subCompanyType +
-                "&service-level=" + $scope.data.installedProducts['service-level'] +
+                //"&service-level=" + $scope.data.installedProducts['service-level'] +
                 "&proposition=" + $scope.promotion +
                 "&partner-code=" + $scope.partnerCode +
                 "&privilege=false";
@@ -1606,6 +1606,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
             //case :: ou
             if ($scope.promotionLevel == 'OU') {
                 target = target + "&priceplan-type=" + $scope.PPTypeId;
+            }else{
+                target = target + "&service-level=C";
             }
             migratePreToPostIBCService.salePriceplanCallback(target, function(resultGetPriceplan) {
                 if (resultGetPriceplan.status) {
