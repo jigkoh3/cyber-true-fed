@@ -66,33 +66,69 @@
             "ssoPartnerPrincipal": null
         };
 
+        //STR: CR selected shopcode //05-04-2016
+        var checkSpace = false;
+        var selectedShopCode = "";
+        if ($routeParams.shop_code) {
+            var de_shop_code = decodeURI($routeParams.shop_code);
+            if (de_shop_code.indexOf(" ") != -1) {
+                de_shop_code = SystemService.myTrim(de_shop_code);
+                checkSpace = true;
+            }
+            if (de_shop_code && checkSpace == true && de_shop_code.length != 8) {
+                checkSpace = false;
+            }
+            if (de_shop_code.length == 8) {
+                if ((de_shop_code + 0 > 0)) {
+                    result['shopcodes'] = ["" + de_shop_code + ""];
+                }
+                localStorage.setItem('selectedShopCode', de_shop_code);
+                selectedShopCode = de_shop_code;
+            } else {
+                localStorage.setItem('selectedShopCode', de_shop_code);
+                if (checkSpace == false) {
+                    SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
+                }
+            }
+        } else {
+            localStorage.setItem('selectedShopCode', "");
+        }
+        var httpRequest = {
+            method: "POST",
+            url: getURL('services/data/getFormData.service'),
+            timeout: 30000,
+            data: { "shopCodeURL": selectedShopCode }
+        };
+        console.log(httpRequest);
+
+
         if (SystemService.demo) {
             that.userProfile.shopType = result.shopType;
-            //STR: CR selected shopcode //05-04-2016
-            var checkSpace = false;
-            if ($routeParams.shop_code) {
-                var de_shop_code = decodeURI($routeParams.shop_code);
-                if (de_shop_code.indexOf(" ") != -1) {
-                    de_shop_code = SystemService.myTrim(de_shop_code);
-                    checkSpace = true;
-                }
-                if (de_shop_code && checkSpace == true && de_shop_code.length != 8) {
-                    checkSpace = false;
-                }
-                if (de_shop_code.length == 8) {
-                    if ((de_shop_code + 0 > 0)) {
-                        result['shopcodes'] = ["" + de_shop_code + ""];
-                    }
-                    localStorage.setItem('selectedShopCode', de_shop_code);
-                } else {
-                    localStorage.setItem('selectedShopCode', de_shop_code);
-                    if (checkSpace == false) {
-                        SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
-                    }
-                }
-            } else {
-                localStorage.setItem('selectedShopCode', "");
-            }
+            // //STR: CR selected shopcode //05-04-2016
+            // var checkSpace = false;
+            // if ($routeParams.shop_code) {
+            //     var de_shop_code = decodeURI($routeParams.shop_code);
+            //     if (de_shop_code.indexOf(" ") != -1) {
+            //         de_shop_code = SystemService.myTrim(de_shop_code);
+            //         checkSpace = true;
+            //     }
+            //     if (de_shop_code && checkSpace == true && de_shop_code.length != 8) {
+            //         checkSpace = false;
+            //     }
+            //     if (de_shop_code.length == 8) {
+            //         if ((de_shop_code + 0 > 0)) {
+            //             result['shopcodes'] = ["" + de_shop_code + ""];
+            //         }
+            //         localStorage.setItem('selectedShopCode', de_shop_code);
+            //     } else {
+            //         localStorage.setItem('selectedShopCode', de_shop_code);
+            //         if (checkSpace == false) {
+            //             SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
+            //         }
+            //     }
+            // } else {
+            //     localStorage.setItem('selectedShopCode', "");
+            // }
             // localStorage.setItem('ssoEmployeePrincipal',  JSON.stringify(result['ssoEmployeePrincipal']));
             // localStorage.setItem('ssoPartnerPrincipal',  JSON.stringify(result['ssoPartnerPrincipal']));
 
@@ -103,38 +139,34 @@
             fnCallback(result);
 
         } else {
-            var httpRequest = {
-                method: "POST",
-                url: getURL('services/data/getFormData.service'),
-                timeout: 30000
-            };
+
             $http(httpRequest).success(function(result) {
                 that.userProfile.shopType = result.shopType;
-                //STR: CR selected shopcode //05-04-2016
-                var checkSpace = false;
-                if ($routeParams.shop_code) {
-                    var de_shop_code = decodeURI($routeParams.shop_code);
-                    if (de_shop_code.indexOf(" ") != -1) {
-                        checkSpace = true;
-                    }
-                    de_shop_code = de_shop_code.trim();
-                    if (checkSpace == true && de_shop_code.length != 8 && de_shop_code.indexOf(" ") != -1) {
-                        checkSpace = false;
-                    }
-                    if (de_shop_code.length == 8) {
-                        if ((de_shop_code + 0 > 0)) {
-                            result['shopcodes'] = ["" + de_shop_code + ""];
-                        }
-                        localStorage.setItem('selectedShopCode', de_shop_code);
-                    } else {
-                        localStorage.setItem('selectedShopCode', de_shop_code);
-                        if (checkSpace == false) {
-                            SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
-                        }
-                    }
-                } else {
-                    localStorage.setItem('selectedShopCode', "");
-                }
+                // //STR: CR selected shopcode //05-04-2016
+                // var checkSpace = false;
+                // if ($routeParams.shop_code) {
+                //     var de_shop_code = decodeURI($routeParams.shop_code);
+                //     if (de_shop_code.indexOf(" ") != -1) {
+                //         checkSpace = true;
+                //     }
+                //     de_shop_code = de_shop_code.trim();
+                //     if (checkSpace == true && de_shop_code.length != 8 && de_shop_code.indexOf(" ") != -1) {
+                //         checkSpace = false;
+                //     }
+                //     if (de_shop_code.length == 8) {
+                //         if ((de_shop_code + 0 > 0)) {
+                //             result['shopcodes'] = ["" + de_shop_code + ""];
+                //         }
+                //         localStorage.setItem('selectedShopCode', de_shop_code);
+                //     } else {
+                //         localStorage.setItem('selectedShopCode', de_shop_code);
+                //         if (checkSpace == false) {
+                //             SystemService.showAlert(ValidateMsgService.data.msgShopCodeFormat);
+                //         }
+                //     }
+                // } else {
+                //     localStorage.setItem('selectedShopCode', "");
+                // }
                 // localStorage.setItem('ssoEmployeePrincipal',  JSON.stringify(result['ssoEmployeePrincipal']));
                 // localStorage.setItem('ssoPartnerPrincipal',  JSON.stringify(result['ssoPartnerPrincipal']));
 
