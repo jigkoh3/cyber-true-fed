@@ -846,7 +846,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.validateCustomerIDData = {};
 
     $scope.showRequirePP = true;
-    $scope.PPTypeId = "SH";
+    $scope.PPTypeId = "N";
 
     $scope.onChangePPTypeId = function() {
         console.log($scope.PPTypeId);
