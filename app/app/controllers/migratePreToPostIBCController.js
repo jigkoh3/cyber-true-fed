@@ -3455,6 +3455,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         //check :: ROOT/CHILD/NORMAL
         if ($scope.isAccount_child == true) {
             data["order"]["order-items"][0]["order-data"]["OU-HIERARCHYTYPE"] = $scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"];
+            data["order"]["order-items"][0]["order-data"]["REQUIRE-PRICEPLAN"] = $scope.dataAccountPreverify["installed-products"][0]["product-properties"]["REQUIRE-PRICEPLAN"];
             if ($scope.dataAccountPreverify["installed-products"][0]["ou-hierarchytype"] == "CHILD") {
                 data["order"]["order-items"][0]["order-data"]["PARENT-OUID"] = $scope.dataAccountPreverify["installed-products"][0]["parent-ouId"];
             } else {
