@@ -1535,6 +1535,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.isEnterPP = false;
         var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
         console.log(list.length, $scope.pricePlanFilter.value);
+        $scope.selectedPricePlan3();
         if (list.length == 1) {
             $scope.isEnterPP = true;
             $scope.selectedPricePlan(list[0]);
@@ -2989,7 +2990,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.selectReason.id = "CREQ";
         }
         //check IBC
-        var _customerID = $scope.customer["customer-id"];
+        var _customerID = $scope.lastestCustomer["customer-id"];
         var cardTypeIBC = "";
         var changeOption = "xxx";
         var BILLING_ADDRESS = {};
