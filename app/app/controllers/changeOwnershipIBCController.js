@@ -2953,7 +2953,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
             cardTypeIBC = $scope.cardTypeBC.value;
             if ($scope.changOpenserviceBC == 'L' && $scope.isLastestAdress == true) {
-                _customerID = $scope.customer["customer-id"];
+                _customerID = $scope.lastestCustomer["customer-id"];
                 changeOption = "EXISTING";
             } else if ($scope.changOpenserviceBC == 'S' && $scope.isAccount_root == true && $scope.isAccount_child == false) {
                 _customerID = $scope.validateCustomerIDData['customer-id'];
