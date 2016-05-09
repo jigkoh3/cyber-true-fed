@@ -1673,7 +1673,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     }, 1000);
                 }
                 //$scope.isVerify = false;
-                $scope.approveCode = "";
+                //$scope.approveCode = "";
 
             });
 
