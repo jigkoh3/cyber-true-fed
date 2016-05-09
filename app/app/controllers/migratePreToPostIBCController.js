@@ -3485,13 +3485,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
         //     data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"] = $scope.promotionLevel == "OU" ? "OU" : "SUBSCRIBER";
         // }
         //check :: SUB/OU
-        if ($scope.isAccount_child == false && $scope.isAccount_root == false) {
+        data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"] = $scope.promotionLevel == "OU" ? "OU" : "SUBSCRIBER";
+        if ($scope.isAccount_child == true || $scope.customerType == 'N') {
             delete data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"];
-        } else {
-            data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"] = $scope.promotionLevel == "OU" ? "OU" : "SUBSCRIBER";
         }
-
-
 
 
 
