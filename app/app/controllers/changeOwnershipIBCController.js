@@ -1434,7 +1434,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             //case :: ou
             if ($scope.promotionLevel == 'OU') {
                 target = target + "&priceplan-type=" + $scope.PPTypeId;
-            }else{
+            } else {
                 target = target + "&service-level=C";
             }
             SystemService.showLoading();
@@ -3034,15 +3034,21 @@ smartApp.controller('changeOwnershipIBCController', function(
         if ($scope.customerType != 'N' && $scope.useNumberType == 'BC') {
             $scope.newOwner2.firstNameTH = $scope.bcName2;
         }
-        var bcOUID = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "";
-        var bcBAN = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "";
-        if ($scope.isAccount_child == true) {
-            bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
-            bcBAN = $scope.accountID_child;
+        var bcOUID = "";
+        var bcBAN = "";
+        if ($scope.customerType == 'N') {
+            bcOUID = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "";
+            bcBAN = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "";
         } else {
-            bcOUID = "";
-            bcBAN = "";
+            if ($scope.isAccount_child == true) {
+                bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
+                bcBAN = $scope.accountID_child;
+            } else {
+                bcOUID = "";
+                bcBAN = "";
+            }
         }
+
         if (!$scope.selectProposition) {
             $scope.selectProposition = $scope.promotion;
         }
