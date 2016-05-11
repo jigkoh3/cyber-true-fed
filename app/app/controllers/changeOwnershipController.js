@@ -335,6 +335,8 @@ smartApp.controller('changeOwnershipController', function(
             //$scope.onselectPrefix();    
             //console.log($scope.newOwner);
             $scope.onCheckBlackList();
+
+            $scope.onCheckInputForVerify();
             setTimeout(function() {
                 $('#idBindDataAgain').click();
             }, 1000);
