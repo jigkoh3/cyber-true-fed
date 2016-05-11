@@ -3508,17 +3508,18 @@ smartApp.controller('ResumeController', function(
         $scope.validateUI();
     };
     $scope.smartSearchPP = function(txtSearch) {
-        if (txtSearch.indexOf(' ') > 0) {
-            var txtList = txtSearch.split(' ');
-            var arr = valPricePlans;
-            console.log(txtList);
-            for (var i = 0; i < txtList.length; i++) {
-                arr = $filter('filter')(arr, txtList[i]);
-            }
-            $scope.propositionList = arr;
-        } else {
-            $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
-        }
+        // if (txtSearch.indexOf(' ') > 0) {
+        //     var txtList = txtSearch.split(' ');
+        //     var arr = valPricePlans;
+        //     console.log(txtList);
+        //     for (var i = 0; i < txtList.length; i++) {
+        //         arr = $filter('filter')(arr, txtList[i]);
+        //     }
+        //     $scope.propositionList = arr;
+        // } else {
+        //     $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
+        // }
+        $scope.propositionList = SystemService.smartSearch(valPricePlans, txtSearch);
     };
     $scope.afterCloseWarning = function() {
         if ($scope.SubNo === 'null') {

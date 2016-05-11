@@ -872,7 +872,9 @@ smartApp.controller('changeOwnershipController', function(
         //    size: 'large'
         //});
         //$scope.pricePlanFilter = $('#ppfilter').val();
-        var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
+        $scope.smartSearchPP($scope.pricePlanFilter.value);
+        // var list = $filter('filter')($scope.propositionList, $scope.pricePlanFilter.value);
+        var list = $scope.propositionList;
         console.log(list.length, $scope.pricePlanFilter.value);
         if (list.length == 1) {
             $scope.isEnterPP = true;
@@ -926,7 +928,7 @@ smartApp.controller('changeOwnershipController', function(
                 "&customer-subtype=" + $scope.subCompanyType +
                 "&service-level=C" +
                 //"&proposition=" + $scope.promotion +
-                "&partner-code=" + $scope.partnerCode +
+                //"&partner-code=" + $scope.partnerCode +//cr01 :: edit :: 11-05-2016
                 "&privilege=false";
 
 
@@ -1772,7 +1774,9 @@ smartApp.controller('changeOwnershipController', function(
         if (!$scope.isLoadPricePlan) {
             //call Priceplan
             $scope.callSalePricePlanList();
-        } else {}
+        } else {
+            $scope.smartSearchPP($scope.pricePlanFilter.value);
+        }
         $scope.isSelectedPricePlan = false;
         $('.radioPriceplan').prop('checked', false);
     };
@@ -3615,6 +3619,23 @@ smartApp.controller('changeOwnershipController', function(
         } else {
             $scope.ischkNumber = false;
         }
+    };
+    $scope.smartSearchPP = function(txtSearch) {
+        $scope.isSelectedPricePlan2 = false;
+        // if (txtSearch.indexOf(' ') > 0) {
+        //     var txtList = txtSearch.split(' ');
+        //     var arr = valPricePlans;
+        //     console.log(txtList);
+        //     for (var i = 0; i < txtList.length; i++) {
+        //         arr = $filter('filter')(arr, txtList[i]);
+        //     }
+        //     $scope.propositionList = arr;
+        // } else {
+        //     $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
+        // }
+
+        //update :: 11-05-2016 //xsam32
+        $scope.propositionList = SystemService.smartSearch(valPricePlans, txtSearch);
     };
 
 });

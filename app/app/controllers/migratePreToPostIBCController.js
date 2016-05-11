@@ -1604,6 +1604,27 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "&partner-code=" + $scope.partnerCode +
                 "&privilege=false";
 
+            //case :: ou-hierarchytype
+            if($scope.promotionLevel == 'OU'){
+                //ISSUE 11-05-2016 :: ไม่ต้องCheck
+                // var ouHierachyType = "";
+                // if($scope.isAccount_child == true){
+                //     ouHierachyType = $scope.dataAccountPreverify['ou-hierarchytype'];
+                // }else if($scope.isAccount_root == true){
+                //     //API ไม่รองรับ
+                //     //ไม่ส่ง
+                //     //ouHierachyType = $scope.validateCustomerIDData['ou-hierarchytype'];
+                // }else{
+                //     //ไม่ส่ง
+                // }
+                // if (ouHierachyType == 'CHILD') {
+                //     target = target + "&ou-level=C";
+                // } else if (ouHierachyType == 'ROOT') {
+                //     target = target + "&ou-level=R";
+                // } else {
+                //     //ไม่ส่ง
+                // }
+            }
             //case :: ou
             if ($scope.promotionLevel == 'OU') {
                 target = target + "&priceplan-type=" + $scope.PPTypeId;

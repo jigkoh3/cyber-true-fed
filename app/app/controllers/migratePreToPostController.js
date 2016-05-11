@@ -3921,19 +3921,20 @@ smartApp.controller('MigratePreToPostController', function(
         }
     };
     $scope.smartSearchPP = function(txtSearch) {
-        if (txtSearch) {
-            if (txtSearch.indexOf(' ') > 0) {
-                var txtList = txtSearch.split(' ');
-                var arr = valPricePlans;
-                console.log(txtList);
-                for (var i = 0; i < txtList.length; i++) {
-                    arr = $filter('filter')(arr, txtList[i]);
-                }
-                $scope.propositionList = arr;
-            } else {
-                $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
-            }
-        }
+        // if (txtSearch) {
+        //     if (txtSearch.indexOf(' ') > 0) {
+        //         var txtList = txtSearch.split(' ');
+        //         var arr = valPricePlans;
+        //         console.log(txtList);
+        //         for (var i = 0; i < txtList.length; i++) {
+        //             arr = $filter('filter')(arr, txtList[i]);
+        //         }
+        //         $scope.propositionList = arr;
+        //     } else {
+        //         $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
+        //     }
+        // }
+        $scope.propositionList = SystemService.smartSearch(valPricePlans, txtSearch);
     };
     $scope.setDefaultSubType = function() {
         if (SystemService.checkObj($scope.data, ["installedProducts", "company-code"])) {

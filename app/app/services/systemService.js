@@ -83,7 +83,7 @@
         }
         return x;
     };
-    //SmartSearch : Lib : 20-04-2016
+    //SmartSearch : Lib : 20-04-2016 //xsam32
     this.smartSearch = function(arrList, txtSearch) {
         var arr = [];
         if (txtSearch) {
@@ -106,6 +106,38 @@
                 var hege = $filter('filter')(arrList, { "pricePlan": txtSearch });
                 var stale = $filter('filter')(arrList, { "rc": txtSearch });
                 arr = hege.concat(stale);
+            }
+        } else {
+            arr = arrList;
+        }
+        return this.unique(arr);
+    };
+    //SmartSearchPostToPre : Lib : 11-05-2016 //xsam32
+    this.smartSearchPostToPre = function(arrList, txtSearch) {
+        var arr = [];
+        if (txtSearch) {
+            if (txtSearch.indexOf(' ') > 0) {
+                var txtList = txtSearch.split(' ');
+                var bbArr = [];
+                for (var i = 0; i < txtList.length; i++) {
+                    if (i == 0) {
+                        var a = $filter('filter')(arrList, { "name": txtList[i] });
+                        var b = $filter('filter')(arrList, { "description": txtList[i] });
+                        var c = $filter('filter')(arrList, { "rc": txtList[i] });
+                        bbArr = a.concat(b).concat(c);
+                    } else {
+                        var a = $filter('filter')(bbArr, { "name": txtList[i] });
+                        var b = $filter('filter')(arrList, { "description": txtList[i] });
+                        var c = $filter('filter')(bbArr, { "rc": txtList[i] });
+                        bbArr = a.concat(b).concat(c);
+                    }
+                }
+                arr = bbArr;
+            } else {
+                var a = $filter('filter')(arrList, { "name": txtSearch });
+                var b = $filter('filter')(arrList, { "description": txtSearch });
+                var c = $filter('filter')(arrList, { "rc": txtSearch });
+                arr = a.concat(b).concat(c);
             }
         } else {
             arr = arrList;

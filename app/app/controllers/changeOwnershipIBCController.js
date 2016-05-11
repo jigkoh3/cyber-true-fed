@@ -629,17 +629,20 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
     $scope.smartSearchPP = function(txtSearch) {
         $scope.isSelectedPricePlan2 = false;
-        if (txtSearch.indexOf(' ') > 0) {
-            var txtList = txtSearch.split(' ');
-            var arr = valPricePlans;
-            console.log(txtList);
-            for (var i = 0; i < txtList.length; i++) {
-                arr = $filter('filter')(arr, txtList[i]);
-            }
-            $scope.propositionList = arr;
-        } else {
-            $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
-        }
+        // if (txtSearch.indexOf(' ') > 0) {
+        //     var txtList = txtSearch.split(' ');
+        //     var arr = valPricePlans;
+        //     console.log(txtList);
+        //     for (var i = 0; i < txtList.length; i++) {
+        //         arr = $filter('filter')(arr, txtList[i]);
+        //     }
+        //     $scope.propositionList = arr;
+        // } else {
+        //     $scope.propositionList = $filter('filter')(valPricePlans, txtSearch);
+        // }
+
+        //update :: 11-05-2016 //xsam32
+        $scope.propositionList = SystemService.smartSearch(valPricePlans, txtSearch);
     };
     $scope.onChangeCusType = function() {
         //alert($scope.getAccountCat());
@@ -1420,17 +1423,18 @@ smartApp.controller('changeOwnershipIBCController', function(
                 "&customer-subtype=" + $scope.subCompanyType +
                 //"&service-level=" + ($scope.promotionLevel == "SUB" ? "C" : "G") +
                 //"&proposition=" + $scope.promotion +
-                "&partner-code=" + $scope.partnerCode +
+                //"&partner-code=" + $scope.partnerCode +//cr01 :: edit :: 11-05-2016
                 "&privilege=false";
 
             //case :: ou-hierarchytype
-            if ($scope.data.installedProducts['ou-hierarchytype'] == 'CHILD') {
-                target = target + "&ou-level=C";
-            } else if ($scope.data.installedProducts['ou-hierarchytype'] == 'ROOT') {
-                target = target + "&ou-level=R";
-            } else {
+            //ISSUE 11-05-2016 :: ไม่ต้องCheck
+            // if ($scope.data.installedProducts['ou-hierarchytype'] == 'CHILD') {
+            //     target = target + "&ou-level=C";
+            // } else if ($scope.data.installedProducts['ou-hierarchytype'] == 'ROOT') {
+            //     target = target + "&ou-level=R";
+            // } else {
 
-            }
+            // }
             //case :: ou
             if ($scope.promotionLevel == 'OU') {
                 target = target + "&priceplan-type=" + $scope.PPTypeId;

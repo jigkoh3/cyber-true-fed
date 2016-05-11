@@ -1606,17 +1606,18 @@
     };
     $scope.smartSearchPP = function(txtSearch) {
         if (txtSearch) {
-            if (txtSearch.indexOf(' ') > 0) {
-                var txtList = txtSearch.split(' ');
-                var arr = valPricePlans;
-                console.log(txtList);
-                for (var i = 0; i < txtList.length; i++) {
-                    arr = $filter('filter')(arr, txtList[i]);
-                }
-                $scope.pricePlanList = arr;
-            } else {
-                $scope.pricePlanList = $filter('filter')(valPricePlans, txtSearch);
-            }
+            // if (txtSearch.indexOf(' ') > 0) {
+            //     var txtList = txtSearch.split(' ');
+            //     var arr = valPricePlans;
+            //     console.log(txtList);
+            //     for (var i = 0; i < txtList.length; i++) {
+            //         arr = $filter('filter')(arr, txtList[i]);
+            //     }
+            //     $scope.pricePlanList = arr;
+            // } else {
+            //     $scope.pricePlanList = $filter('filter')(valPricePlans, txtSearch);
+            // }
+            $scope.pricePlanList = SystemService.smartSearchPostToPre(valPricePlans, txtSearch);
         } else {
             $scope.pricePlanList = $filter('filter')(valPricePlans, txtSearch);
         }
