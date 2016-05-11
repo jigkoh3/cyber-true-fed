@@ -336,8 +336,8 @@ smartApp.controller('changeOwnershipController', function(
             //console.log($scope.newOwner);
             $scope.onCheckBlackList();
 
-            $scope.onCheckInputForVerify();
             setTimeout(function() {
+                $scope.onCheckInputForVerify();
                 $('#idBindDataAgain').click();
             }, 1000);
 
@@ -544,6 +544,7 @@ smartApp.controller('changeOwnershipController', function(
                 $scope.subCompanyType = "";
             }
             setTimeout(function() {
+                $scope.onCheckInputForVerify();
                 $('#subCompanyType').val($scope.subCompanyType);
             }, 1000);
         }
