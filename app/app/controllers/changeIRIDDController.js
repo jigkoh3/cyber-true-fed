@@ -1025,6 +1025,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     setTimeout(function() {
                         var srcPDF = url;
                         document.getElementById('iframePDF').src = url + '?clearData=N';
+                        document.getElementById('gviewPDF').src = 'http://docs.google.com/gview?url=https://dl.dropboxusercontent.com/u/105649867/PDFs/AfterSaleReport.pdf&embedded=true';
                         //document.getElementById('idPdfObject').data = url + '?clearData=N';
                         //document.getElementById('idPdfEmbed').src = url + '?clearData=N';
                         //$('#idPdfObject').load(url);
