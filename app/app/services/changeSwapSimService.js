@@ -75,6 +75,53 @@
                     }
                 }
             };
+            var data3 = {
+                "status": "SUCCESSFUL",
+                // "display-messages": [{
+                //     "message": "Please contact 0891990135 VIP Team Number before swap SIM for VIP Customer ",
+                //     "message-code": "TMV-SWAPSIM-00001",
+                //     "message-type": "WARNING",
+                //     "en-message": "Please contact 0891990135 VIP Team Number before swap SIM for VIP Customer ",
+                //     "th-message": "เลขหมายนี้เป็นกลุ่ม VIP จะดำเนินการใดๆต้องแจ้งกับทาง ทีม VIP ก่อนเท่านั้น โปรดติดต่อ 0891990135"
+                // }],
+                "trx-id": "3Z1N7RSSP1HYN",
+                "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+                "response-data": {
+                    "customer": {
+                        "title": "นางสาว",
+                        "title-code": "T3",
+                        "firstname": "กุมารีหริลักษณ์",
+                        "lastname": "จันทรรัศมี",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "I",
+                        "id-number": "3400400489300",
+                        "customer-id": "2592",
+                        "installed-products": [{
+                            "ouId": "921",
+                            "ban": "10000543",
+                            "product-category": "TMV",
+                            "product-type": "PRICEPLAN",
+                            "product-status": "",
+                            "number-status": "A",
+                            "account-category": "I",
+                            "account-sub-type": "FVI",
+                            "product-id": "RFSMTP01",
+                            "product-name": "RFSMTP01",
+                            "product-description": "(4G) Smart 999 voice 500mins net7GB",
+                            "company-code": "RF",
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0939860540",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "company-code-desc": "True Move H - Real Future",
+                            "is-4g": false
+                        }]
+                    }
+                }
+            };
 
             var data2 = {
                 'status': 'SUCCESSFUL',
@@ -96,6 +143,16 @@
                     cb({
                         status: true,
                         data: data,
+                        error: '',
+                        msgErr: ''
+                    });
+                }, 1000);
+            }else if (msisdn == "0840306566") {
+
+                $timeout(function() {
+                    cb({
+                        status: true,
+                        data: data3,
                         error: '',
                         msgErr: ''
                     });

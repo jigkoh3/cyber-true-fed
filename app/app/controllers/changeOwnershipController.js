@@ -1160,6 +1160,11 @@ smartApp.controller('changeOwnershipController', function(
 
                             changeOwnershipService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
                                 $scope.isLastestUser = true;
+
+                                //fix issue production :: 13-05-2016 //xsam32
+                                $scope.showEnableNewOwnerBirthday = true;
+                                $scope.showEnableNewOwnerExpireDay = true;
+
                                 $.fancybox.close();
 
 
@@ -1234,6 +1239,10 @@ smartApp.controller('changeOwnershipController', function(
                                         $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
                                         $("#birthDayRegisterd").datepicker("update", $scope.newOwner.birthDay);
 
+                                    }else{
+                                        //fix issue production :: 13-05-2016 //xsam32
+                                        $scope.showEnableNewOwnerBirthday = false;
+                                        $scope.showEnableNewOwnerExpireDay = false;
                                     }
 
                                     //ระบุผู้ใช้หมายเลข

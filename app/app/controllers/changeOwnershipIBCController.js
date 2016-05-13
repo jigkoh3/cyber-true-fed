@@ -1689,6 +1689,10 @@ smartApp.controller('changeOwnershipIBCController', function(
                                     $scope.onCheckInputForVerify();
                                 }
 
+                                //fix issue production :: 13-05-2016 //xsam32
+                                $scope.showEnableNewOwnerBirthday = true;
+                                $scope.showEnableNewOwnerExpireDay = true;
+
                                 $scope.isLastestUser = true;
                                 $.fancybox.close();
 
@@ -1790,6 +1794,10 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $scope.bcName = customer["firstname"];
                                         $scope.bcName2 = customer["firstname"];
 
+                                    }else{
+                                        //fix issue production :: 13-05-2016 //xsam32
+                                        $scope.showEnableNewOwnerBirthday = false;
+                                        $scope.showEnableNewOwnerExpireDay = false;
                                     }
 
                                     //ระบุผู้ใช้หมายเลข
