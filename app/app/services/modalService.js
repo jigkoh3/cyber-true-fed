@@ -185,6 +185,14 @@
             "th-message": "กรุณาระบุเพศ ของผู้จดทะเบียนเติมเงิน",
             "technical-message": "FROM WEBUI"
         },
+        "msgSubGenderEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Prepaid Customer’s Gender",
+            "th-message": "กรุณาระบุเพศ ของผู้ใช้หมายเลข",
+            "technical-message": "FROM WEBUI"
+        },
         "msgNewPostCusGenderEmpty": {
             "message": "",
             "message-code": "",

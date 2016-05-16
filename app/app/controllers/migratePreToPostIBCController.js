@@ -4571,7 +4571,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
         } else if (isNull($scope.newOwner.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
-        } else if ((isNull($scope.newOwner.sex) || !$('#sex3').val()) && $scope.customerType == 'N') {
+        } else if ((isNull($scope.newOwner.sex) || isNull($('#sex3').val())) && $scope.customerType == 'N') {
             showValidate("sex3", ValidateMsgService.data.msgNewPostCusGenderEmpty);
         } else if ((isNull($scope.customer['tax-id']) || $scope.customer['tax-id'].length != 13) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("taxNumber", ValidateMsgService.data.msgTaxNumberEmpty);
@@ -4617,6 +4617,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("firstNameRegisterdBC", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
             showValidate("lastNameRegisterdBC", ValidateMsgService.data.msgSubLastNameEmpty);
+        } else if ((isNull($scope.newOwner2.sex) || isNull($('#sex32').val())) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
+            showValidate("sex32", ValidateMsgService.data.msgSubGenderEmpty);
         } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
             showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
         } else if (isNull($scope.bcName2) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'BC') {
