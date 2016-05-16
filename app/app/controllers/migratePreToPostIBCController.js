@@ -4468,7 +4468,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
 
 
-
+    var firstValidate = 0;
     $scope.validateUI = function() {
         var isNull = function(txt) {
             if (txt) {
@@ -4508,7 +4508,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
         var showValidate = function(id, msg) {
-            if (isFocus) {
+            if(firstValidate == 0){
+                SystemService.showAlert(msg);
+                firstValidate = 1;
+            }else if (isFocus) {
                 $('#' + id).focus();
                 isFocus = false;
                 return;
