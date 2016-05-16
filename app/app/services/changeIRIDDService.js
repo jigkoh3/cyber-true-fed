@@ -32,7 +32,7 @@
                             "ban": "10050233",
                             "product-type": "ADDITIONAL-OFFER",
                             "product-sub-type": "R",
-                            "account-category": "C",
+                            "account-category": "I",
                             "account-sub-type": "FIN",
                             "product-name": "PROROAM2S",
                             "product-description": "Postpaid Roaming Limited Data Coverage",
@@ -345,12 +345,19 @@
         } else {
             var data2 = {
                 "status": "SUCCESSFUL",
-                "display-messages": [],
+                "display-messages": [{
+                    "message": "-",
+                    "message-code": "VCVAPA2010004",
+                    "message-type": "WARNING",
+                    "en-message": "Auto Approve is OK.",
+                    "th-message": "คุณได้รับสิทธิ์",
+                    "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
+                }],
                 "trx-id": "461HQMYTGV3HF",
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
                 "response-data": {
                     "auto-approve-code": "Y",
-                    "approve-code": "12345",
+                    "approve-code": "8080",
                     "auto-approve-reason": "Test Approve Reason"
                 }
             };

@@ -636,12 +636,18 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         changeIRIDDService.ValidateAutoApproveCode(data, function(result) {
             console.log(result);
             SystemService.hideLoading();
-
-            //check msg
-
             $scope.dataAutoApprove = result.data["response-data"];
+
+            //16-05-2016 show msg
+            //check msg
+            var msg = utils.getObject(result.data, 'display-messages');
+            if (msg && msg.length > 0 && $scope.dataAutoApprove["auto-approve-code"] != "Y") {
+                //SystemService.showAlertMulti(msg, "WARNING"); //show mulit msg
+                SystemService.showAlert(msg[0], "WARNING"); //show single msg
+            }
+
             if ($scope.dataAutoApprove["auto-approve-code"] == "Y") {
-                $scope.isShowApproveRal = false;
+                $scope.isShowApproveRal = true;
                 $scope.isValidateSave = true;
                 $scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = $scope.dataAutoApprove["approve-code"];
                 $scope.data.orderRequest['order']['order-items'][0]['order-data']['AUTO-APPROVE-CODE'] = "Y";
