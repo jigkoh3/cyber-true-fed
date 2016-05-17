@@ -348,7 +348,7 @@
                 "display-messages": [{
                     "message": "-",
                     "message-code": "VCVAPA2010004",
-                    "message-type": "WARNING",
+                    "message-type": "ERROR",
                     "en-message": "Auto Approve is OK.",
                     "th-message": "คุณได้รับสิทธิ์",
                     "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
