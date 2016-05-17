@@ -10,7 +10,7 @@
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
-    localStorage.setItem('pdfShopCode', ""); 
+    localStorage.setItem('pdfShopCode', "");
     //for get by env
     this.secondAuthenURL = getSecondAuthenURL();
 
@@ -20,6 +20,9 @@
         $('.hModal').height(($(window).height()) - 235);
         //console.log($('#hModal').height());
     };
+
+    var ua = navigator.userAgent.toLowerCase();
+    var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
     window.mobilecheck = function() {
             var check = false;
             //mobile
@@ -51,12 +54,20 @@
     //END: Solution detecting MOBILE 16/02/2016
 
     this.printPDF = function(url) {
-        divPDF2.innerHTML =
-            '<object id="idPdfObject" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="' + url + '?clearData=N' + '">' +
-            '<embed src="' + url + '?clearData=N' + '" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf">' +
-            '</embed>' +
-            '<span>PDF plugin is not available.</span>' +
-            '</object>';
+        if (isAndroid) {
+            // https://developers.google.com/cloud-print/docs/gadget
+            var gadget = new cloudprint.Gadget();
+            gadget.setPrintDocument("url", $('title').html(), url, "utf-8");
+            gadget.openPrintDialog();
+        } else {
+            divPDF2.innerHTML =
+                '<object id="idPdfObject" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="' + url + '?clearData=N' + '">' +
+                '<embed src="' + url + '?clearData=N' + '" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf">' +
+                '</embed>' +
+                '<span>PDF plugin is not available.</span>' +
+                '</object>';
+        }
+
     };
     //myOderBy for angular :: 21-04-2016
     this.myOrderBy = function(oldArr, oldName, newName, reverse) {
@@ -701,7 +712,7 @@
         }
 
     };
-    this.generatePDF = function(data, fnCallback) { 
+    this.generatePDF = function(data, fnCallback) {
         var url = '';
         data.header['selected-shopcode'] = localStorage.getItem('pdfShopCode');
         var httpRequest = {
