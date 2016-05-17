@@ -1032,7 +1032,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     setTimeout(function() {
                         var srcPDF = url;
                         document.getElementById('iframePDF').src = url + '?clearData=N';
-                        document.getElementById('gviewPDF').src = 'http://docs.google.com/gview?url=https://dl.dropboxusercontent.com/u/105649867/PDFs/AfterSaleReport.pdf&embedded=true';
+                        //document.getElementById('gviewPDF').src = 'http://docs.google.com/gview?url=https://dl.dropboxusercontent.com/u/105649867/PDFs/AfterSaleReport.pdf&embedded=true';
                         //document.getElementById('idPdfObject').data = url + '?clearData=N';
                         //document.getElementById('idPdfEmbed').src = url + '?clearData=N';
                         //$('#idPdfObject').load(url);
@@ -1465,7 +1465,10 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.afterCloseWarning = function() {
 
         if ($scope.isValidateSave == false) {
-            $('#referralcodes').focus();
+            //fix case focus  && $scope.SubNo == 'null' :: 17-05-2016 //xsam32
+            setTimeout(function(){
+                $('#referralcodes').focus();
+            }, 500);
             //$scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = "";
             isFocus = false;
         } else {
@@ -1473,7 +1476,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             $scope.printOrder();
         }
 
-        if ($scope.isNullSubNo && (!$scope.data.data || !$scope.data.data.status)) {
+        if ($scope.isNullSubNo && (!$scope.data.data || !$scope.data.data.status) && $scope.SubNo == 'null') { //fix case focus  && $scope.SubNo == 'null' :: 17-05-2016 //xsam32
             $scope.SubNo = 'null';
             // $('#dataSubNo').val('');
             setTimeout(function() {

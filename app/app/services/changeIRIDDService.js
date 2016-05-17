@@ -356,7 +356,7 @@
                 "trx-id": "461HQMYTGV3HF",
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
                 "response-data": {
-                    "auto-approve-code": "Y",
+                    "auto-approve-code": "N",
                     "approve-code": "8080",
                     "auto-approve-reason": "Test Approve Reason"
                 }

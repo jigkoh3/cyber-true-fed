@@ -52,49 +52,21 @@
         hideReadCardForMobile();
     };
     //END: Solution detecting MOBILE 16/02/2016
-    function printCanvas() {
-        var dataUrl = document.getElementById('idPdfObject').toDataURL(); //attempt to save base64 string to server using this var  
-        var windowContent = '<!DOCTYPE html>';
-        windowContent += '<html>'
-        windowContent += '<head><title>Print canvas</title></head>';
-        windowContent += '<body>'
-        windowContent += '<img src="' + dataUrl + '">';
-        windowContent += '</body>';
-        windowContent += '</html>';
-        var printWin = window.open('', '', 'width=340,height=260');
-        printWin.document.open();
-        printWin.document.write(windowContent);
-        printWin.document.close();
-        printWin.focus();
-        printWin.print();
-        printWin.close();
-    }
 
     this.printPDF = function(url) {
-        // if (isAndroid) {
-    //     // // https://developers.google.com/cloud-print/docs/gadget
-    //     // var gadget = new cloudprint.Gadget();
-    //     // gadget.setPrintDocument("url", $('title').html(), url, "utf-8");
-    //     // gadget.openPrintDialog();
-
-    //     printCanvas();
-    // } else {
-    //     divPDF2.innerHTML =
-    //         '<object id="idPdfObject" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="' + url + '?clearData=N' + '">' +
-    //         '<embed src="' + url + '?clearData=N' + '" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf">' +
-    //         '</embed>' +
-    //         '<span>PDF plugin is not available.</span>' +
-    //         '</object>';
-    //         printCanvas();
-    // }
-
-        divPDF2.innerHTML =
+        if (isAndroid) {
+            // https://developers.google.com/cloud-print/docs/gadget
+            // var gadget = new cloudprint.Gadget();
+            // gadget.setPrintDocument("url", $('title').html(), url, "utf-8");
+            // gadget.openPrintDialog();
+        } else {
+            divPDF2.innerHTML =
                 '<object id="idPdfObject" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf" data="' + url + '?clearData=N' + '">' +
                 '<embed src="' + url + '?clearData=N' + '" width="0" height="0" style="width: 0px; height: 0px;" type="application/pdf">' +
                 '</embed>' +
                 '<span>PDF plugin is not available.</span>' +
                 '</object>';
-                printCanvas();
+        }
 
     };
     //myOderBy for angular :: 21-04-2016
