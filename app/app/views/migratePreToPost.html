@@ -335,7 +335,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                        <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.sex"  required>
+                                        <select name="sexs" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" class="form-control" id="sex3" ng-disabled="!isCustomerProfile || isUseCardValueData" ng-model="newOwner.sex"  required ng-change="newGenderChange()">
                                             <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
