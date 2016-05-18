@@ -4890,4 +4890,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
             }, 1000);
         }
     }
+
+    $scope.newGenderChange = function(){
+        $('#sex32').val($scope.newOwner.sex);
+        $scope.newOwner2.sex = $scope.newOwner.sex;
+    }
 });
