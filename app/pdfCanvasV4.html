@@ -1,0 +1,96 @@
+﻿<html>
+
+<body>
+    <div id="loaded" style="width=100%;">
+        <p>&nbsp;</p>
+        <center>
+            <h1>Loading...</h1>
+        </center>
+    </div>
+    <canvas id="myCanvas" style="border: none;"></canvas>
+    <!-- Use latest PDF.js build from Github -->
+    <script type="text/javascript" src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script type="text/javascript">
+    //
+    // NOTE:
+    // Modifying the URL below to another server will likely *NOT* work. Because of browser
+    // security restrictions, we have to use a file server with special headers
+    // (CORS) - most servers don't support cross-origin browser requests.
+    //
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    var url = getParameterByName('url');
+
+    //
+    // Disable workers to avoid yet another cross-origin issue (workers need the URL of
+    // the script to be loaded, and dynamically loading a cross-origin script does
+    // not work)
+    //
+    PDFJS.disableWorker = true;
+
+    //
+    // Asynchronous download PDF as an ArrayBuffer
+    //
+    PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
+        //
+        // Fetch the first page
+        //
+        pdf.getPage(1).then(function getPageHelloWorld(page) {
+            var scale = 1.2;
+            var viewport = page.getViewport(scale);
+
+            //
+            // Prepare canvas using PDF page dimensions
+            //
+            var canvas = document.getElementById('myCanvas');
+            var context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            //
+            // Render PDF page into canvas context
+            //
+            page.render({
+                canvasContext: context,
+                viewport: viewport
+            });
+            document.getElementById('loaded').style = 'display:none';
+            if (getParameterByName('action') == "print") {
+                setTimeout(function(){
+                    myCanvas.click();
+                }, 1000);
+            }
+        });
+    });
+
+    function printCanvas() {
+        var dataUrl = document.getElementById('myCanvas').toDataURL(); //attempt to save base64 string to server using this var  
+        var windowContent = '<!DOCTYPE html>';
+        windowContent += '<html>'
+        windowContent += '<head><title>Print canvas</title></head>';
+        windowContent += '<body>'
+        windowContent += '<img src="' + dataUrl + '">';
+        windowContent += '</body>';
+        windowContent += '</html>';
+        var printWin = window.open('', '', 'width=500,height=460');
+        printWin.document.open();
+        printWin.document.write(windowContent);
+        printWin.document.close();
+        printWin.focus();
+        printWin.print();
+        printWin.close();
+    }
+    myCanvas.addEventListener("click", function() {
+        printCanvas();
+    }, false);
+    </script>
+</body>
+
+</html>

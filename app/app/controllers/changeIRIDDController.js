@@ -1031,7 +1031,18 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
                     setTimeout(function() {
                         var srcPDF = url;
-                        document.getElementById('iframePDF').src = url + '?clearData=N';
+
+                        //for case Android ::18-05-2016 //xsam32
+                        var ua = navigator.userAgent.toLowerCase();
+                        var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+                        if (isAndroid) {
+                            document.getElementById('iframePDF').src = '/pdfCanvasV4.html?action=print&url=' + url;
+                        } else {
+                            document.getElementById('iframePDF').src = url + '?clearData=N';
+                        }
+
+                        //document.getElementById('iframePDF').src = url + '?clearData=N';
+                        //document.getElementById('iframePDF').src = '/pdfCanvasV4.html?action=print&url='+url;
                         //document.getElementById('gviewPDF').src = 'http://docs.google.com/gview?url=https://dl.dropboxusercontent.com/u/105649867/PDFs/AfterSaleReport.pdf&embedded=true';
                         //document.getElementById('idPdfObject').data = url + '?clearData=N';
                         //document.getElementById('idPdfEmbed').src = url + '?clearData=N';
@@ -1042,7 +1053,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
                             setTimeout(function() {
                                 //document.getElementById('iframePDF').focus();
-                                document.getElementById('iframePDF').src = 'javascript:window.print();';
+                                //document.getElementById('iframePDF').src = 'javascript:window.print();';
                                 //-----------------ST fixed IE8 15/01/2016 ------------------
 
 
@@ -1340,7 +1351,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
 
                             } else {
-                                
+
 
                                 $scope.isCustomerProfile = true;
                                 $scope.changereqType("ADD_IRIDD");
@@ -1466,7 +1477,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
         if ($scope.isValidateSave == false) {
             //fix case focus  && $scope.SubNo == 'null' :: 17-05-2016 //xsam32
-            setTimeout(function(){
+            setTimeout(function() {
                 $('#referralcodes').focus();
             }, 500);
             //$scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = "";
@@ -1505,7 +1516,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         }
 
         //Fix loading hide in shop_code=%20
-        if($scope.checkURL_shop_code == false){
+        if ($scope.checkURL_shop_code == false) {
             $scope.checkURL_shop_code = true;
             SystemService.showLoading();
         }
