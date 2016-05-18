@@ -305,6 +305,9 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.newOwner.lastNameTH = $scope.cardInfo3.LastNameTH;
             $scope.newOwner2.firstNameTH = $scope.cardInfo3.FirstNameTH;
             $scope.newOwner2.lastNameTH = $scope.cardInfo3.LastNameTH;
+            $('#titleRegisterd').val(prefix);
+            $scope.newOwner2.prefixTH = prefix;
+
             console.log($scope.newOwner.firstNameTH);
 
             $scope.cardType.value = "I";
@@ -1237,12 +1240,12 @@ smartApp.controller('MigratePreToPostController', function(
                                 $scope.notLastestCus = false;
                                 $scope.clickButtonAddress = false;
                                 if (!$scope.isCardValueDataLastest) {
-                                    $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
-                                    $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
+                                    $scope.newOwner.firstNameTH = ""; //$scope.data.customerProfile['firstname']; Requirement fron P'mam 20160518
+                                    $scope.newOwner.lastNameTH = ""; //$scope.data.customerProfile['lastname']; Requirement fron P'mam 20160518
                                     $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
                                     // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
-                                    $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
-                                    $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
+                                    $scope.newOwner.birthDay = ""; //formatDate($scope.data.customerProfile['birthdate']); Requirement fron P'mam 20160518
+                                    $scope.newOwner.expireDay = ""; //formatDate($scope.data.customerProfile['id-expire-date']); Requirement fron P'mam 20160518
                                     $scope.cardType.value = $scope.data.customerProfile['id-type'];
 
                                     $scope.data.customerProfile['title-code'] = $scope.data.customerProfile['title-code'] ? $scope.data.customerProfile['title-code'] : "T5";
@@ -1265,14 +1268,17 @@ smartApp.controller('MigratePreToPostController', function(
                                     $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
 
                                     //ระบุผู้ใช้หมายเลข
-                                    $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];;
-                                    $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
-                                    $scope.newOwner2.prefixTH = $scope.data.customerProfile['title-code'];
+                                    $scope.newOwner2.firstNameTH = $scope.newOwner.firstNameTH; //$scope.data.customerProfile['firstname']; Requirement fron P'mam 20160518
+                                    $scope.newOwner2.lastNameTH = $scope.newOwner.lastNameTH; //$scope.data.customerProfile['lastname']; Requirement fron P'mam 20160518
+                                    $scope.newOwner2.prefixTH = $scope.newOwner.prefixTH; //$scope.data.customerProfile['title-code']; Requirement fron P'mam 20160518
+                                    $scope.titleOther2 = $scope.titleOther;
+
 
                                     // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
 
 
                                     $scope.onselectPrefix();
+                                    $scope.onselectPrefix2(); //Requirement from P'mam 20160518
 
                                 }
 
@@ -1809,9 +1815,17 @@ smartApp.controller('MigratePreToPostController', function(
         } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther == "") {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
+            //Requirement from P'mam 20160518
+            $scope.titleOther2 = "คุณ";
+            $('#titleOtherRegisterd').val('คุณ');
+            // ===================================
         } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "") {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
+            //Requirement from P'mam 20160518
+            $scope.titleOther2 = "คุณ";
+            $('#titleOtherRegisterd').val('คุณ');
+            // =====================================
         } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
             //$scope.titleOther = "คุณ";
 
@@ -1825,6 +1839,12 @@ smartApp.controller('MigratePreToPostController', function(
     };
     $scope.onselectPrefix2 = function() {
         console.log($scope.newOwner2.prefixTH);
+        //===========Requirement from P'mam 20160518=============
+        if($scope.newOwner2.prefixTH == 'T5'){ 
+            $scope.titleOther2 = "คุณ";
+            $('#titleOtherRegisterd').val('คุณ');
+        }
+        // ======================================================
         if ($scope.newOwner2.prefixTH == 'MR.' || $scope.newOwner2.prefixTH == 'T1') {
             $scope.newOwner2.sex = "MALE";
         } else {
@@ -3261,6 +3281,7 @@ smartApp.controller('MigratePreToPostController', function(
                 if (result.data["display-messages"][0]["message-code"] == 'TMV-PREVERIFY-11010') {
                     $scope.showApprovCode = true;
                     $scope.isVerify = false;
+                    idFocus = "approvecodeI"; //Fixed bug preverify maxallow not focus approveCode feild 20160518
                     setTimeout(function() {
                         SystemService.showAlert({
                             "message": result.data["display-messages"][0]["message"],
@@ -3737,7 +3758,7 @@ smartApp.controller('MigratePreToPostController', function(
             showValidate("CitizenID2", ValidateMsgService.data.authorizeIdMsg);
         } else if (errorAuthorizeName) {
             showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
-        } else if (($scope.newOwner.prefixTH == "T5") && isNull($('#titleOther').val())) {
+        } else if (isNull($scope.newOwner.prefixTH == "T5") || isNull($('#titleOther').val())) {
             showValidate("titleOther", ValidateMsgService.data.msgNewPosCusPrefixEmpty);
         } else if (isNull($scope.customer['id-number'])) {
             showValidate("citizenID3", ValidateMsgService.data.msgNewCusIDnoEmpty);
@@ -3745,6 +3766,8 @@ smartApp.controller('MigratePreToPostController', function(
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
         } else if (isNull($scope.newOwner.lastNameTH)) {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
+        } else if ((isNull($scope.newOwner.sex) || isNull($('#sex3').val()))) {
+            showValidate("sex3", ValidateMsgService.data.msgNewPostCusGenderEmpty);   
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
         } else if (errorCapmax != "") {
@@ -3765,6 +3788,8 @@ smartApp.controller('MigratePreToPostController', function(
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH)) {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
+        } else if (isNull($scope.newOwner2.sex) || isNull($('#sex32').val())) {
+            showValidate("sex3", ValidateMsgService.data.msgSubGenderEmpty);
         } else if (isNull($scope.mailAddress.postcode)) {
             showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
         } else if (isNull($scope.mailAddress.province)) {
