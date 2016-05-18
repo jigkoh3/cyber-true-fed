@@ -304,6 +304,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.newOwner.lastNameTH = $scope.cardInfo3.LastNameTH;
             $scope.newOwner2.firstNameTH = $scope.cardInfo3.FirstNameTH;
             $scope.newOwner2.lastNameTH = $scope.cardInfo3.LastNameTH;
+            $('#titleRegisterd').val(prefix);
+            $scope.newOwner2.prefixTH = prefix;
             console.log($scope.newOwner.firstNameTH);
 
             $scope.cardType.value = "I";
@@ -1605,7 +1607,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "&privilege=false";
 
             //case :: ou-hierarchytype
-            if($scope.promotionLevel == 'OU'){
+            if ($scope.promotionLevel == 'OU') {
                 //ISSUE 11-05-2016 :: ไม่ต้องCheck
                 // var ouHierachyType = "";
                 // if($scope.isAccount_child == true){
@@ -1628,7 +1630,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             //case :: ou
             if ($scope.promotionLevel == 'OU') {
                 target = target + "&priceplan-type=" + $scope.PPTypeId;
-            }else{
+            } else {
                 target = target + "&service-level=C";
             }
             migratePreToPostIBCService.salePriceplanCallback(target, function(resultGetPriceplan) {
@@ -1833,16 +1835,16 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                 $scope.clickButtonAddress = false;
                                 if (!$scope.isCardValueDataLastest) {
                                     if ($scope.customerType == 'N') {
-                                        $scope.newOwner.firstNameTH = $scope.data.customerProfile['firstname'];
-                                        $scope.newOwner.lastNameTH = $scope.data.customerProfile['lastname'];
+                                        $scope.newOwner.firstNameTH = ""; //$scope.data.customerProfile['firstname']; Requirement fron P'mam 20160518
+                                        $scope.newOwner.lastNameTH = ""; //$scope.data.customerProfile['lastname']; Requirement fron P'mam 20160518
                                         $scope.customer['id-number'] = $scope.data.customerProfile['id-number'];
                                         // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];
-                                        $scope.newOwner.birthDay = formatDate($scope.data.customerProfile['birthdate']);
-                                        $scope.newOwner.expireDay = formatDate($scope.data.customerProfile['id-expire-date']);
+                                        $scope.newOwner.birthDay = ""; //formatDate($scope.data.customerProfile['birthdate']); Requirement fron P'mam 20160518
+                                        $scope.newOwner.expireDay = ""; //formatDate($scope.data.customerProfile['id-expire-date']); Requirement fron P'mam 20160518
                                         $scope.cardType.value = $scope.data.customerProfile['id-type'];
 
                                         $scope.data.customerProfile['title-code'] = $scope.data.customerProfile['title-code'] ? $scope.data.customerProfile['title-code'] : "T5";
-                                        
+
                                         $scope.onChangeCardTypes();
 
 
@@ -1862,14 +1864,15 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     $scope.newOwner.prefixTH = $scope.data.customerProfile['title-code'];
 
                                     //ระบุผู้ใช้หมายเลข
-                                    $scope.newOwner2.firstNameTH = $scope.data.customerProfile['firstname'];;
-                                    $scope.newOwner2.lastNameTH = $scope.data.customerProfile['lastname'];
-                                    $scope.newOwner2.prefixTH = $scope.data.customerProfile['title-code'];
-
+                                    $scope.newOwner2.firstNameTH = $scope.newOwner.firstNameTH; //$scope.data.customerProfile['firstname']; Requirement fron P'mam 20160518
+                                    $scope.newOwner2.lastNameTH = $scope.newOwner.lastNameTH; //$scope.data.customerProfile['lastname']; Requirement fron P'mam 20160518
+                                    $scope.newOwner2.prefixTH = $scope.newOwner.prefixTH; //$scope.data.customerProfile['title-code']; Requirement fron P'mam 20160518
+                                    $scope.titleOther2 = $scope.titleOther;
                                     // $scope.customer['tax-id'] = $scope.data.customerProfile['id-number'];;
 
 
                                     $scope.onselectPrefix();
+                                    $scope.onselectPrefix2(); //Requirement from P'mam 20160518
 
                                 }
 
@@ -2408,9 +2411,17 @@ smartApp.controller('MigratePreToPostIBCController', function(
         } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther == "") {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
+            //Requirement from P'mam 20160518
+            $scope.titleOther2 = "คุณ";
+            $('#titleOtherRegisterd').val('คุณ');
+            // ===================================
         } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "") {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
+            //Requirement from P'mam 20160518
+            $scope.titleOther2 = "คุณ";
+            $('#titleOtherRegisterd').val('คุณ');
+            // ===================================
         } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
             //$scope.titleOther = "คุณ";
 
@@ -2424,6 +2435,12 @@ smartApp.controller('MigratePreToPostIBCController', function(
     };
     $scope.onselectPrefix2 = function() {
         console.log($scope.newOwner2.prefixTH);
+        //===========Requirement from P'mam 20160518=============
+        if ($scope.newOwner2.prefixTH == 'T5') {
+            $scope.titleOther2 = "คุณ";
+            $('#titleOtherRegisterd').val('คุณ');
+        }
+        // ======================================================
         if ($scope.newOwner2.prefixTH == 'MR.' || $scope.newOwner2.prefixTH == 'T1') {
             $scope.newOwner2.sex = "MALE";
         } else {
@@ -2464,8 +2481,27 @@ smartApp.controller('MigratePreToPostIBCController', function(
         if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
             $('#sex32').val(selectTitleOther[0]['attributes']['GENDER']);
             console.log(selectTitleOther[0]['attributes']['GENDER']);
+            console.log($('#sex32').val());
         } else {
             $('#sex32').val('ALL');
+            console.log('ALL');
+        }
+        //$scope.titleOther2 = $scope.titleOther;
+        //$scope.newOwner2.sex = $scope.newOwner.sex;
+    };
+
+    $scope.onChangeTitleOther2BC = function() {
+        console.log($scope.titleOther2);
+        var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
+            value: $scope.titleOther2
+        });
+        console.log(selectTitleOther[0]);
+        if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
+            $('#sex32BC').val(selectTitleOther[0]['attributes']['GENDER']);
+            console.log(selectTitleOther[0]['attributes']['GENDER']);
+            console.log($('#sex32BC').val());
+        } else {
+            $('#sex32BC').val('ALL');
             console.log('ALL');
         }
         //$scope.titleOther2 = $scope.titleOther;
@@ -4508,10 +4544,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
         var showValidate = function(id, msg) {
-            if(firstValidate == 0){
+            if (firstValidate == 0) {
                 SystemService.showAlert(msg);
                 firstValidate = 1;
-            }else if (isFocus) {
+            } else if (isFocus) {
                 $('#' + id).focus();
                 isFocus = false;
                 return;
@@ -4620,8 +4656,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("firstNameRegisterdBC", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
             showValidate("lastNameRegisterdBC", ValidateMsgService.data.msgSubLastNameEmpty);
-        } else if ((isNull($scope.newOwner2.sex) || isNull($('#sex32').val())) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
-            showValidate("sex32", ValidateMsgService.data.msgSubGenderEmpty);
+        } else if ((isNull($scope.newOwner2.sex) || isNull($('#sex32BC').val())) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
+            showValidate("sex32BC", ValidateMsgService.data.msgSubGenderEmpty);
         } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
             showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
         } else if (isNull($scope.bcName2) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'BC') {
