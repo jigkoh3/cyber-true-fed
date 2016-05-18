@@ -1178,6 +1178,11 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
             var ch = $scope.getAuthen["channel"] ? $scope.getAuthen["channel"] : "";
             var dl = $scope.getAuthen["shopcodes"] ? $scope.getAuthen["shopcodes"][0] : "";
+            if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                    $scope.showDataDealer = true;
+                } else {
+                    //
+                }
             SystemService.getOrderId(ch, dl, function(resultOrder) {
 
                 localStorage.setItem('orderId', resultOrder.orderId);
