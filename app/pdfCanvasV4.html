@@ -4,11 +4,12 @@
     <div id="loaded" style="width=100%;">
         <p>&nbsp;</p>
         <center>
-            <h1>Loading...</h1>
+            <h2>Loading...</h2>
         </center>
     </div>
     <canvas id="myCanvas" style="border: none;"></canvas>
     <!-- Use latest PDF.js build from Github -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script type="text/javascript">
     //
@@ -17,6 +18,7 @@
     // security restrictions, we have to use a file server with special headers
     // (CORS) - most servers don't support cross-origin browser requests.
     //
+
     function getParameterByName(name, url) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, "\\$&");
@@ -61,12 +63,14 @@
                 canvasContext: context,
                 viewport: viewport
             });
-            document.getElementById('loaded').style = 'display:none';
-            if (getParameterByName('action') == "print") {
-                setTimeout(function(){
+            setTimeout(function() {
+                document.getElementById('loaded').style = 'display:none';
+                if (getParameterByName('action') == "print") {
                     myCanvas.click();
-                }, 1000);
-            }
+                }
+            }, 5000);
+
+
         });
     });
 

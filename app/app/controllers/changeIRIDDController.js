@@ -1035,11 +1035,6 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                         //for case Android ::18-05-2016 //xsam32
                         var ua = navigator.userAgent.toLowerCase();
                         var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-                        if (isAndroid) {
-                            document.getElementById('iframePDF').src = '/pdfCanvasV4.html?action=print&url=' + url;
-                        } else {
-                            document.getElementById('iframePDF').src = url + '?clearData=N';
-                        }
 
                         //document.getElementById('iframePDF').src = url + '?clearData=N';
                         //document.getElementById('iframePDF').src = '/pdfCanvasV4.html?action=print&url='+url;
@@ -1050,25 +1045,35 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
                         if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
 
+                            if (isAndroid) {
+                                document.getElementById('iframePDF').src = '/webui1/pdfCanvasV4.html?action=print&url=' + url;
+                            } else {
+                                setTimeout(function() {
+                                    //document.getElementById('iframePDF').focus();
+                                    //document.getElementById('iframePDF').src = 'javascript:window.print();';
+                                    //-----------------ST fixed IE8 15/01/2016 ------------------
 
-                            setTimeout(function() {
-                                //document.getElementById('iframePDF').focus();
-                                //document.getElementById('iframePDF').src = 'javascript:window.print();';
-                                //-----------------ST fixed IE8 15/01/2016 ------------------
 
+                                    // function idPdf_onreadystatechange() {
+                                    //     if (idPdf.readyState === 4)
+                                    //         setTimeout(printObjectPdf, 1000);
+                                    // }
 
-                                // function idPdf_onreadystatechange() {
-                                //     if (idPdf.readyState === 4)
-                                //         setTimeout(printObjectPdf, 1000);
-                                // }
+                                    printObjectPdf();
+                                    //-----------------EN fixed IE8 15/01/2016 ------------------
+                                    //window.print();
+                                }, 2000);
+                                setTimeout(function() {
+                                    document.getElementById('iframePDF').src = srcPDF
+                                }, 2500);
+                            }
 
-                                printObjectPdf();
-                                //-----------------EN fixed IE8 15/01/2016 ------------------
-                                //window.print();
-                            }, 2000);
-                            setTimeout(function() {
-                                document.getElementById('iframePDF').src = srcPDF
-                            }, 2500);
+                        } else {
+                            if (isAndroid) {
+                                document.getElementById('iframePDF').src = '/webui1/pdfCanvasV4.html?action=none&url=' + url;
+                            } else {
+                                document.getElementById('iframePDF').src = url + '?clearData=N';
+                            }
                         }
 
 
