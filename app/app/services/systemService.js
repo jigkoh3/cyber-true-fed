@@ -46,7 +46,11 @@
         }
     };
     this.showPDFAndroid = function(url, action) {
-        document.getElementById('iframePDF').src = pathPDFAndroid + '/pdfCanvasV4.html?action=' + action + '&url=' + url;
+        if(action=='print'){
+            document.getElementById('iframePDF').src = "javascript:printCanvas();";    
+        }else{
+            document.getElementById('iframePDF').src = pathPDFAndroid + '/pdfCanvasV4.html?action=' + action + '&url=' + url;
+        }
     };
     window.mobilecheck = function() {
             var check = false;
