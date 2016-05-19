@@ -1231,7 +1231,7 @@ smartApp.controller('ChangePricePlanController', function(
         };
         console.log($scope.data);
         console.log(data);
-        
+
         var pdfShopCode = ($scope.getAuthen["partnerCodes"].length > 0 ? $scope.getAuthen["partnerCodes"][0] : $scope.getAuthen.saleCode);
         localStorage.setItem('pdfShopCode', pdfShopCode);
         //api generatePDF
@@ -1263,19 +1263,26 @@ smartApp.controller('ChangePricePlanController', function(
                 //}
 
                 var srcPDF = url;
-                document.getElementById('iframePDF').src = url + '?clearData=N';
+                //document.getElementById('iframePDF').src = url + '?clearData=N';
+
 
                 SystemService.printPDF(url);
                 //printObjectPdf();
 
+                //case for PDF Android ::18-05-2016 //xsam32
+                SystemService.checkPDFAndroid_show(url);
+
                 if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                    setTimeout(function() {
-                        //document.getElementById('iframePDF').src = 'javascript:window.print();'
-                        printObjectPdf();
-                    }, 2000);
-                    setTimeout(function() {
-                        document.getElementById('iframePDF').src = srcPDF
-                    }, 2500);
+                    // setTimeout(function() {
+                    //     //document.getElementById('iframePDF').src = 'javascript:window.print();'
+                    //     printObjectPdf();
+                    // }, 2000);
+                    // setTimeout(function() {
+                    //     document.getElementById('iframePDF').src = srcPDF
+                    // }, 2500);
+
+                    //case for PDF Android ::18-05-2016 //xsam32
+                    SystemService.checkPDFAndroid_print(url);
                 }
 
 

@@ -47,7 +47,12 @@
     };
     this.showPDFAndroid = function(url, action) {
         if(action=='print'){
-            document.getElementById('iframePDF').src = "javascript:printCanvas();";    
+            setTimeout(function() {
+                document.getElementById('iframePDF').src = "javascript:printCanvas();";
+            }, 5100);
+            setTimeout(function() {
+                that.showPDFAndroid(url, 'none');
+            }, 6000);
         }else{
             document.getElementById('iframePDF').src = pathPDFAndroid + '/pdfCanvasV4.html?action=' + action + '&url=' + url;
         }

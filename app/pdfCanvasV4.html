@@ -7,6 +7,7 @@
             <h2>Loading...</h2>
         </center>
     </div>
+    <button id="printButton" type="button" style="display:none;">Print</button>
     <canvas id="myCanvas" style="border: none;"></canvas>
     <!-- Use latest PDF.js build from Github -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -35,7 +36,12 @@
     // the script to be loaded, and dynamically loading a cross-origin script does
     // not work)
     //
-    
+    if(typeof PDFJS == "undefined") {
+        alert('PDFJS : undefined');
+    }else{
+        //alert('PDFJS : ok');
+    }
+
     PDFJS.disableWorker = true;
 
     //
@@ -46,7 +52,7 @@
         // Fetch the first page
         //
         pdf.getPage(1).then(function getPageHelloWorld(page) {
-            var scale = 1.2;
+            var scale = 1.1;
             var viewport = page.getViewport(scale);
 
             //
@@ -67,7 +73,7 @@
             setTimeout(function() {
                 document.getElementById('loaded').style = 'display:none';
                 if (getParameterByName('action') == "print") {
-                    myCanvas.click();
+                    printButton.click();
                 }
             }, 5000);
 
@@ -92,7 +98,10 @@
         printWin.print();
         printWin.close();
     }
-    myCanvas.addEventListener("click", function() {
+    // myCanvas.addEventListener("click", function() {
+    //     printCanvas();
+    // }, false);
+    printButton.addEventListener("click", function() {
         printCanvas();
     }, false);
     </script>
