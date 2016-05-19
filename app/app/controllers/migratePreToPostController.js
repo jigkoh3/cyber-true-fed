@@ -3671,7 +3671,7 @@ smartApp.controller('MigratePreToPostController', function(
 
 
 
-
+    var firstValidate = 0;
     $scope.validateUI = function() {
         var isNull = function(txt) {
             if (txt) {
@@ -3711,7 +3711,10 @@ smartApp.controller('MigratePreToPostController', function(
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
         var showValidate = function(id, msg) {
-            if (isFocus) {
+            if(firstValidate == 0){
+                SystemService.showAlert(msg);
+                firstValidate = 1;
+            } else if (isFocus) {
                 $('#' + id).focus();
                 isFocus = false;
                 return;
@@ -3789,7 +3792,7 @@ smartApp.controller('MigratePreToPostController', function(
         } else if (isNull($scope.newOwner2.lastNameTH)) {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
         } else if (isNull($scope.newOwner2.sex) || isNull($('#sex32').val())) {
-            showValidate("sex3", ValidateMsgService.data.msgSubGenderEmpty);
+            showValidate("sex32", ValidateMsgService.data.msgSubGenderEmpty);
         } else if (isNull($scope.mailAddress.postcode)) {
             showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
         } else if (isNull($scope.mailAddress.province)) {

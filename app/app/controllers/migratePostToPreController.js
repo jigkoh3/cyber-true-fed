@@ -138,7 +138,8 @@
             console.log(selectTitleOther[0]['attributes']['GENDER']);
             console.log($scope.data.customerProfileNew['gender']);
         } else {
-            $('#sex3').val('ALL');
+            $('#sex3').val('');
+            $scope.data.customerProfileNew['gender'] = '';
             console.log('ALL');
         }
         $scope.titleOther2 = $scope.data.customerProfileNew['title'];
@@ -322,7 +323,8 @@
 
             $scope.data.customerProfileNew['birthdate'] = formatDate($scope.data.customerProfile['birthdate']);
             $scope.data.customerProfileNew['id-expire-date'] = formatDate($scope.data.customerProfile['id-expire-date']);
-
+            $scope.onselectPrefix();
+            $scope.chkGenderNull();
             authenticate();
         }
         setTimeout(function() {
@@ -1164,6 +1166,9 @@
         } else if (isNull($('#expireDate').val())) {
             showValidate("expireDate", ValidateMsgService.data.msgNewPreCusExpireDateEmpty);
             return;
+        } else if (isNull($('#txtPartnerCode').val())) {
+            showValidate("txtPartnerCode", ValidateMsgService.data.msgShopCodeEmpty);
+            return;
         } else if (isNull($('#preCusPricePlan').val())) {
             showValidate("preCusPricePlan", ValidateMsgService.data.msgNewPreCusPricePlanEmpty);
             return;
@@ -1312,15 +1317,37 @@
 
         if ($scope.data.customerProfileNew['title-code'] == 'MR.' || $scope.data.customerProfileNew['title-code'] == 'T1') {
             $scope.data.customerProfileNew['gender'] = "MALE";
+            $('#sex3').val("MALE");
 
+        } else if ($scope.data.customerProfileNew['title-code'] == '' || $scope.data.customerProfileNew['title-code'] == 'T5') {
+            $scope.data.customerProfileNew['title'] = "คุณ";
+            $('#title5').val('คุณ');
         } else {
             $scope.data.customerProfileNew['gender'] = "FEMALE";
+            $('#sex3').val("FEMALE");
 
         }
     };
+
+    $scope.chkGenderNull = function() {
+        if (!$scope.data.customerProfileNew['gender']) {
+            $scope.data.customerProfileNew['gender'] = "FEMALE";
+            $('#sex3').val("FEMALE");
+        }
+
+        if(!$scope.data.customerProfileNew['title-code']){
+            $scope.data.customerProfileNew['title-code'] = "T5";
+            $scope.data.customerProfileNew['title'] = "คุณ";
+            $('#title5').val('คุณ');
+            $scope.data.customerProfileNew['gender'] = "FEMALE";
+            $('#sex3').val("FEMALE");
+        }
+    }
     $scope.checkPrefixNull = function() {
-        if ($scope.data.customerProfile['title-code']) {
+        if ($scope.data.customerProfile['title-code'] && $scope.data.customerProfile['title-code'] != "T5") {
             $scope.isPrefixNull = false;
+        } else if ($scope.data.customerProfile['title-code'] == "T5") {
+            $scope.isPrefixNull = true;
         } else {
             $scope.isPrefixNull = true;
         }
@@ -1564,7 +1591,7 @@
 
         var pdfShopCode = $scope.partnerCode;
         localStorage.setItem('pdfShopCode', pdfShopCode);
-        
+
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
 

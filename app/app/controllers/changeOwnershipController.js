@@ -61,7 +61,7 @@ smartApp.controller('changeOwnershipController', function(
     $scope.totalCUG = 10;
     //end paging
 
-    $scope.hideReadCardForMobile = function(){
+    $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
 
@@ -200,30 +200,30 @@ smartApp.controller('changeOwnershipController', function(
             }
             $('#unMatchLastest').hide();
             $('#loadingReadCardLastest').hide();
-            
 
 
-                $('#CitizenIDLastest').val('');
-                if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+
+            $('#CitizenIDLastest').val('');
+            if ($scope.getAuthen["isSecondAuthen"] == false && $scope.getAuthen["shopType"] == "1") {
+                $('#CitizenIDLastest').prop('disabled', false);
+                setTimeout(function() {
+                    $('#CitizenID').focus();
+                    $('#btnSSO').hide();
+                }, 100);
+
+            } else {
+                if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
                     $('#CitizenIDLastest').prop('disabled', false);
                     setTimeout(function() {
-                        $('#CitizenID').focus();
-                        $('#btnSSO').hide();
-                    }, 100);
+                        $('#CitizenIDLastest').focus();
+                    }, 500);
+
 
                 } else {
-                    if ($scope.getAuthen["isByPassSecondAuthen"] == true) {
-                        $('#CitizenIDLastest').prop('disabled', false);
-                        setTimeout(function() {
-                            $('#CitizenIDLastest').focus();
-                        }, 500);
-
-
-                    } else {
-                        $('#CitizenIDLastest').prop('disabled', true);
-                    }
+                    $('#CitizenIDLastest').prop('disabled', true);
                 }
-            
+            }
+
 
         }
 
@@ -1239,7 +1239,7 @@ smartApp.controller('changeOwnershipController', function(
                                         $("#expireDay").datepicker("update", $scope.newOwner.expireDay);
                                         $("#birthDayRegisterd").datepicker("update", $scope.newOwner.birthDay);
 
-                                    }else{
+                                    } else {
                                         //fix issue production :: 13-05-2016 //xsam32
                                         $scope.showEnableNewOwnerBirthday = false;
                                         $scope.showEnableNewOwnerExpireDay = false;
@@ -1685,6 +1685,7 @@ smartApp.controller('changeOwnershipController', function(
             console.log('ALL');
         }
         $scope.titleOther2 = $scope.titleOther;
+        $('#sex32').val($('#sex3').val()); //Fix bug sub gender not change when newOwner gender change 20160519
     };
 
     $scope.onChangeTitleOther2 = function() {
@@ -2651,7 +2652,7 @@ smartApp.controller('changeOwnershipController', function(
                 //save report to server
                 SystemService.saveReportToServer({}, function(resultSaveReport) {});
                 if (result.status) {
-                	SystemService.showBeforeClose({
+                    SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
                         "message2": ""
                     });
@@ -2855,7 +2856,7 @@ smartApp.controller('changeOwnershipController', function(
                 "titleTh": cardValueData["titleTh"],
                 "firstnameTh": cardValueData["firstnameTh"],
                 "lastnameTh": cardValueData["lastnameTh"],
-                
+
                 "expireDay": cardValueData["expireDay"],
                 "birthDay": cardValueData["birthDay"],
                 "issueDay": cardValueData["issueDay"],
@@ -3032,6 +3033,7 @@ smartApp.controller('changeOwnershipController', function(
                 if (result.data["display-messages"][0]["message-code"] == 'TMV-PREVERIFY-11010') {
                     $scope.showApprovCode = true;
                     $scope.isVerify = false;
+                    idFocus = "approveCode"; //Fix bug program not focus approve code field 20160519
                     setTimeout(function() {
                         SystemService.showAlert({
                             "message": result.data["display-messages"][0]["message"],
@@ -3417,7 +3419,7 @@ smartApp.controller('changeOwnershipController', function(
 
 
 
-
+    var firstValidate = 0;
     $scope.validateUI = function() {
         var isNull = function(txt) {
             if (txt) {
@@ -3457,7 +3459,10 @@ smartApp.controller('changeOwnershipController', function(
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
         var showValidate = function(id, msg) {
-            if (isFocus) {
+            if(firstValidate == 0){
+                SystemService.showAlert(msg);
+                firstValidate = 1;
+            } else if (isFocus) {
                 $('#' + id).focus();
                 isFocus = false;
                 return;
@@ -3510,6 +3515,8 @@ smartApp.controller('changeOwnershipController', function(
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
         } else if (isNull($scope.newOwner.lastNameTH)) {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
+        } else if ((isNull($scope.newOwner.sex) || isNull($('#sex3').val()))) {
+            showValidate("sex3", ValidateMsgService.data.msgNewOwnerGenderEmpty);
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
         } else if (errorCapmax != "") {
@@ -3530,6 +3537,8 @@ smartApp.controller('changeOwnershipController', function(
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH)) {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
+        } else if (isNull($scope.newOwner2.sex) || isNull($('#sex32').val())) {
+            showValidate("sex32", ValidateMsgService.data.msgSubGenderEmpty);
         } else if (isNull($scope.mailAddress.postcode)) {
             showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
         } else if (isNull($scope.mailAddress.province)) {
@@ -3651,5 +3660,10 @@ smartApp.controller('changeOwnershipController', function(
         //update :: 11-05-2016 //xsam32
         $scope.propositionList = SystemService.smartSearch(valPricePlans, txtSearch);
     };
+
+    $scope.newGenderChange = function() {
+        $('#sex32').val($scope.newOwner.sex);
+        $scope.newOwner2.sex = $scope.newOwner.sex;
+    }
 
 });
