@@ -4666,6 +4666,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
+        } else if ((isNull($scope.newOwner2.sex) || isNull($('#sex32').val())) && $scope.customerType == 'N') {
+            showValidate("sex32", ValidateMsgService.data.msgSubGenderEmpty);
             //BILLING_ADDRESS
             //BILLING_ADDRESS
         } else if (isNull($scope.mailAddress.sendName) && $scope.isAccount_child == false && $scope.customerType != 'N') {

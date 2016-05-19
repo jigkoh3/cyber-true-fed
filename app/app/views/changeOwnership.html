@@ -360,7 +360,7 @@
                                             <!-- Case Dealer -->
                                             <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                             <!-- Case Normal -->
-                                            <select name="sexs" class="form-control" id="sex3" ng-disabled="!isLastestUser" ng-model="newOwner.sex" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                                            <select name="sexs" class="form-control" id="sex3" ng-disabled="!isLastestUser" ng-model="newOwner.sex" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required ng-change="newGenderChange()">
                                                 <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                             </select>
                                         </div>
@@ -463,7 +463,7 @@
                             </div> -->
                             <div class="col-md-2" ng-form="onVerify()">
                             <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span><br />
-                                <input type="text" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
+                                <input type="text" id="approveCode" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
                             </div>
                         </div>
                     </div>

@@ -354,7 +354,7 @@
                                             <!-- Case Dealer -->
                                             <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                             <!-- Case Normal -->
-                                            <select name="sexs" class="form-control" id="sex3" ng-disabled="!isLastestUser" ng-model="newOwner.sex" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                                            <select name="sexs" class="form-control" id="sex3" ng-disabled="!isLastestUser" ng-model="newOwner.sex" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required ng-change="newGenderChange()">
                                                 <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                             </select>
                                         </div>
@@ -889,7 +889,7 @@
                                         <label>
                                             <p></p>
                                         </label>
-                                        <select class="form-control" id="titleOtherRegisterd" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
+                                        <select class="form-control" id="titleOtherRegisterd" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" ng-change="onChangeTitleOther2()" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
                                             <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -961,7 +961,7 @@
                                         <label>
                                             <p></p>
                                         </label>
-                                        <select class="form-control" id="titleOtherRegisterdBC" ng-show="newOwner2.prefixTH=='T5'" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
+                                        <select class="form-control" id="titleOtherRegisterdBC" ng-show="newOwner2.prefixTH=='T5'" ng-change="onChangeTitleOther2BC()" ng-model="titleOther2" onchange="$(this).attr('title',$('#titleOtherRegisterd option:selected').text());">
                                             <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -985,7 +985,7 @@
                                         <div class="form-group">
                                             <label>เพศ<span style="color:red;">*</span></label>
                                             <div>
-                                                <select name="sexs2" class="form-control" id="sex32" ng-model="newOwner2.sex" required>
+                                                <select name="sexs2" class="form-control" id="sex32BC" ng-model="newOwner2.sex" required>
                                                     <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                                 </select>
                                             </div>

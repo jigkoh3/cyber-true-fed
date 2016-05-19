@@ -1794,7 +1794,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $scope.bcName = customer["firstname"];
                                         $scope.bcName2 = customer["firstname"];
 
-                                    }else{
+                                    } else {
                                         //fix issue production :: 13-05-2016 //xsam32
                                         $scope.showEnableNewOwnerBirthday = false;
                                         $scope.showEnableNewOwnerExpireDay = false;
@@ -2262,6 +2262,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             console.log('ALL');
         }
         $scope.titleOther2 = $scope.titleOther;
+        $('#sex32').val($('#sex3').val());
     };
 
 
@@ -4372,7 +4373,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
 
 
-
+    var firstValidate = 0;
     $scope.validateUI = function() {
         var isNull = function(txt) {
             if (txt) {
@@ -4412,7 +4413,10 @@ smartApp.controller('changeOwnershipIBCController', function(
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
         var showValidate = function(id, msg) {
-            if (isFocus) {
+            if (firstValidate == 0) {
+                SystemService.showAlert(msg);
+                firstValidate = 1;
+            } else if (isFocus) {
                 $('#' + id).focus();
                 isFocus = false;
                 return;
@@ -4473,6 +4477,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
         } else if (isNull($scope.newOwner.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
+        } else if ((isNull($scope.newOwner.sex) || isNull($('#sex3').val())) && $scope.customerType == 'N') {
+            showValidate("sex3", ValidateMsgService.data.msgNewOwnerGenderEmpty);
         } else if ((isNull($scope.customer['tax-id']) || $scope.customer['tax-id'].length != 13) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("taxNumber", ValidateMsgService.data.msgTaxNumberEmpty);
         } else if (isNull($scope.customer['branch-code']) && $scope.customerType != 'N' && $scope.isVerify) {
@@ -4515,6 +4521,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("firstNameRegisterdBC", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
             showValidate("lastNameRegisterdBC", ValidateMsgService.data.msgSubLastNameEmpty);
+        } else if ((isNull($scope.newOwner2.sex) || isNull($('#sex32BC').val())) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
+            showValidate("sex32BC", ValidateMsgService.data.msgSubGenderEmpty);
         } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
             showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
         } else if (isNull($scope.bcName2) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'BC') {
@@ -4523,6 +4531,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.lastNameTH) && $scope.customerType == 'N') {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
+        } else if ((isNull($scope.newOwner2.sex) || isNull($('#sex32').val())) && $scope.customerType == 'N') {
+            showValidate("sex32", ValidateMsgService.data.msgSubGenderEmpty);
             //BILLING_ADDRESS
             //BILLING_ADDRESS
         } else if (isNull($scope.mailAddress.sendName) && $scope.isAccount_child == false && $scope.customerType != 'N') {
@@ -4618,7 +4628,41 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
 
 
+    $scope.onChangeTitleOther2 = function() {
+        console.log($scope.titleOther2);
+        var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
+            value: $scope.titleOther2
+        });
+        console.log(selectTitleOther[0]);
+        if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
+            $('#sex32').val(selectTitleOther[0]['attributes']['GENDER']);
+            console.log(selectTitleOther[0]['attributes']['GENDER']);
+            console.log($('#sex32').val());
+        } else {
+            $('#sex32').val('ALL');
+            console.log('ALL');
+        }
+        //$scope.titleOther2 = $scope.titleOther;
+        //$scope.newOwner2.sex = $scope.newOwner.sex;
+    };
 
+    $scope.onChangeTitleOther2BC = function() {
+        console.log($scope.titleOther2);
+        var selectTitleOther = $filter('filter')($scope.titleOtherTypeList, {
+            value: $scope.titleOther2
+        });
+        console.log(selectTitleOther[0]);
+        if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
+            $('#sex32BC').val(selectTitleOther[0]['attributes']['GENDER']);
+            console.log(selectTitleOther[0]['attributes']['GENDER']);
+            console.log($('#sex32BC').val());
+        } else {
+            $('#sex32BC').val('ALL');
+            console.log('ALL');
+        }
+        //$scope.titleOther2 = $scope.titleOther;
+        //$scope.newOwner2.sex = $scope.newOwner.sex;
+    };
 
 
 
@@ -4686,4 +4730,9 @@ smartApp.controller('changeOwnershipIBCController', function(
     };
 
     $scope.changeType('N'); // default Cus TYPE
+
+    $scope.newGenderChange = function() {
+        $('#sex32').val($scope.newOwner.sex);
+        $scope.newOwner2.sex = $scope.newOwner.sex;
+    }
 });
