@@ -1394,6 +1394,7 @@ smartApp.controller('changeOwnershipController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
+            $scope.isCardValueDataLastest = false;
 
             $scope.onCheckBlackList();
         }
@@ -1408,6 +1409,7 @@ smartApp.controller('changeOwnershipController', function(
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
+            $scope.isCardValueDataLastest = false;
 
             $scope.onCheckBlackList();
 
@@ -1421,7 +1423,7 @@ smartApp.controller('changeOwnershipController', function(
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
-
+            $scope.isCardValueDataLastest = false;
             $scope.customer['id-number'] = cid;
             $scope.onCheckBlackList();
         }
@@ -1434,7 +1436,7 @@ smartApp.controller('changeOwnershipController', function(
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
-
+            $scope.isCardValueDataLastest = false;
             $scope.customer['id-number'] = cid;
             $scope.onCheckBlackList();
 

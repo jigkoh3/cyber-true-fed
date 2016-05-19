@@ -44,7 +44,7 @@
                                         <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
                                     </a>
                                 </div>-->
-                            <button type="button" href="#modal-ReadCamera" ng-show="isCustomerProfile && shopType=='1' && getAuthen['isSecondAuthen'] == true && customerType=='N'" ng-click="initWebCamLastest()" onclick="return false" data-toggle="modal" class="btn btn-camera">
+                            <button type="button" href="#modal-ReadCamera" ng-show="isCustomerProfile && shopType=='1' && getAuthen['isSecondAuthen'] == true && customerType=='N' && isCardValueDataLastest == false" ng-click="initWebCamLastest()" onclick="return false" data-toggle="modal" class="btn btn-camera">
                                 <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
                             </button>
                         </div>
@@ -1068,7 +1068,7 @@
                                         <th>
                                             <input type="radio" ng-hide="true" name="owner" ng-change="updateMailAddress('1')" value="1" ng-model="rowNoSelected" checked="checked" />
                                         </th>
-                                        <th>{{lastestCustomer['installed-products'][0]['ban']}}</th>
+                                        <th>{{lastestCustomer['customer-id']}}</th>
                                         <th>{{lastestCustomer['title']}}</th>
                                         <th>{{lastestCustomer['firstname']}}</th>
                                         <th>{{lastestCustomer['lastname']}}</th>

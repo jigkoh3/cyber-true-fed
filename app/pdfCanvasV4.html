@@ -35,6 +35,7 @@
     // the script to be loaded, and dynamically loading a cross-origin script does
     // not work)
     //
+    
     PDFJS.disableWorker = true;
 
     //
@@ -78,7 +79,7 @@
         var dataUrl = document.getElementById('myCanvas').toDataURL(); //attempt to save base64 string to server using this var  
         var windowContent = '<!DOCTYPE html>';
         windowContent += '<html>'
-        windowContent += '<head><title>Print canvas</title></head>';
+        windowContent += '<head><title>True Store</title></head>';
         windowContent += '<body>'
         windowContent += '<img src="' + dataUrl + '">';
         windowContent += '</body>';

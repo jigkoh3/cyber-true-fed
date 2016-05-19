@@ -1964,7 +1964,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
-
+            $scope.isCardValueDataLastest = false;
             $scope.customer['id-number'] = cid;
 
             //$scope.onInputCitizenID3();
@@ -1979,7 +1979,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
-
+            $scope.isCardValueDataLastest = false;
             $scope.customer['id-number'] = cid;
 
             //$scope.onInputCitizenID3();
@@ -1995,7 +1995,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
-
+            $scope.isCardValueDataLastest = false;
             $scope.customer['id-number'] = cid;
             //$scope.onInputCitizenID3();
             $scope.onInputIdBC();
@@ -2009,7 +2009,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             //setTimeout(function () {
             //    //$.fancybox.close();
             //}, 1000);
-
+            $scope.isCardValueDataLastest = false;
             $scope.customer['id-number'] = cid;
             //$scope.onInputCitizenID3();
             $scope.onInputIdBC();
@@ -4268,7 +4268,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                 $('#idBindDataAgain').click();
             } else {
                 if ($scope.customerType == 'N') {
-                    $('#titleOtherRegisterd').val($('#titleOther').val());
+                    $('#titleOtherRegisterd').val($('#title5').val());
                     $('#titleRegisterd').val($('#prefixTH3').val());
                     $('#sex32').val($('#sex3').val());
                 }

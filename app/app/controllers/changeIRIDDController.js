@@ -100,6 +100,13 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.orderId = "";
     $scope.isReadCardSuccess = false;
 
+    var _pdfURL = "";
+    $scope.printAndSaveOrder = function(){
+        //case for PDF Android ::18-05-2016 //xsam32
+        SystemService.checkPDFAndroid_print(_pdfURL);
+        $scope.saveOrder();
+    };
+
     $scope.saveOrder = function() {
         SystemService.showLoading();
         $scope.data.orderRequest["target"] = "aftersales/order/submit";
@@ -1024,66 +1031,20 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 localStorage.setItem('pdfShopCode', pdfShopCode);
                 SystemService.generatePDF(data, function(result) {
                     var url = result;
+                    _pdfURL = result;
                     $scope.srcPrintPDF = url;
 
                     SystemService.printPDF(url);
                     //printObjectPdf();
 
                     setTimeout(function() {
-                        var srcPDF = url;
-
-                        //for case Android ::18-05-2016 //xsam32
-                        var ua = navigator.userAgent.toLowerCase();
-                        var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-
-                        if (isAndroid) {
-                            document.getElementById('iframePDF').src = '/webui1/pdfCanvasV4.html?action=none&url=' + url;
-                        } else {
-                            document.getElementById('iframePDF').src = url + '?clearData=N';
-                        }
-
-                        //document.getElementById('iframePDF').src = url + '?clearData=N';
-                        //document.getElementById('iframePDF').src = '/pdfCanvasV4.html?action=print&url='+url;
-                        //document.getElementById('gviewPDF').src = 'http://docs.google.com/gview?url=https://dl.dropboxusercontent.com/u/105649867/PDFs/AfterSaleReport.pdf&embedded=true';
-                        //document.getElementById('idPdfObject').data = url + '?clearData=N';
-                        //document.getElementById('idPdfEmbed').src = url + '?clearData=N';
-                        //$('#idPdfObject').load(url);
+                        //case for PDF Android ::18-05-2016 //xsam32
+                        SystemService.checkPDFAndroid_show(url);
 
                         if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-
-                            if (isAndroid) {
-                                document.getElementById('iframePDF').src = '/webui1/pdfCanvasV4.html?action=print&url=' + url;
-                            } else {
-                                setTimeout(function() {
-                                    //document.getElementById('iframePDF').focus();
-                                    //document.getElementById('iframePDF').src = 'javascript:window.print();';
-                                    //-----------------ST fixed IE8 15/01/2016 ------------------
-
-
-                                    // function idPdf_onreadystatechange() {
-                                    //     if (idPdf.readyState === 4)
-                                    //         setTimeout(printObjectPdf, 1000);
-                                    // }
-
-                                    printObjectPdf();
-
-                                    // //Fixed for Chrome newVersion :: 18-05-2016 //xsam32
-                                    // var printWin = window.open(url, '', 'width=500,height=460');
-
-                                    // printWin.focus();
-                                    // printWin.print();
-
-
-                                    //-----------------EN fixed IE8 15/01/2016 ------------------
-                                    //window.print();
-                                }, 2000);
-                                setTimeout(function() {
-                                    document.getElementById('iframePDF').src = srcPDF;
-                                }, 2500);
-                            }
-
+                            //case for PDF Android ::18-05-2016 //xsam32
+                            SystemService.checkPDFAndroid_print(url);
                         }
-
 
                     }, 500);
 
