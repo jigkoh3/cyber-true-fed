@@ -40,9 +40,9 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": {
                     "customer": {
-                        "gender": "FEMALE",
-                        "title": "นาง",
-                        "title-code": "",
+                        "gender": "",
+                        "title": "",
+                        "title-code": "T3",
                         "firstname": "ประยูรกาฬวรรณ",
                         "lastname": "จันทรรัศมี",
                         "contact-number": "",

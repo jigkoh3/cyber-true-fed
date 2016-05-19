@@ -491,6 +491,14 @@
             "th-message": "กรุณาระบุ เลขบัญชีลูกค้า",
             "technical-message": "FROM WEBUI"
         },
+        "msgShopCodeEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify Shop Code.",
+            "th-message": "กรุณาระบุ รหัสร้านค้า",
+            "technical-message": "FROM WEBUI"
+        },
         "msgShopCodeFormat": {
             "message": "",
             "message-code": "",

@@ -61,7 +61,7 @@
                                         <!-- Case Dealer -->
                                         <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                         <!-- Case Normal -->
-                                        <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="data.customerProfileNew['title-code']" id="prefix3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isPrefixNull)" ng-change="onselectPrefix()">
+                                        <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="data.customerProfileNew['title-code']" id="prefix3" ng-disabled="isSecondAuhenFailed || !isPrefixNull" ng-change="onselectPrefix()">
                                             <option ng-repeat="option in titleTypeListx" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -71,7 +71,10 @@
                                 <label>
                                     <p></p>
                                 </label>
-                                <select class="form-control" ng-change="onChangeTitleOther()" ng-show="data.customerProfileNew['title-code'] =='T5'" ng-model="data.customerProfileNew['title']" onchange="$(this).attr('title',$('#title5 option:selected').text());" id="title5">
+                                <!-- Case Dealer -->
+                                <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
+                                <!-- Case Normal -->
+                                <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'"  ng-change="onChangeTitleOther()" ng-show="data.customerProfileNew['title-code'] =='T5'" ng-model="data.customerProfileNew['title']" ng-disabled="isSecondAuhenFailed" onchange="$(this).attr('title',$('#title5 option:selected').text());" id="title5">
                                     <option ng-repeat="option in titleOtherTypeList" title="{{option['th-description']}}" value="{{option.value}}">{{option["th-description"]}}</option>
                                 </select>
                             </div>
@@ -104,7 +107,7 @@
                                         <!-- Case Dealer -->
                                         <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                         <!-- Case Normal -->
-                                        <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="data.customerProfileNew['gender']" id="sex3" ng-disabled="isSecondAuhenFailed || (!getSIMDataFailed && !isPrefixNull)">
+                                        <select class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-model="data.customerProfileNew['gender']" id="sex3" ng-disabled="isSecondAuhenFailed || !isPrefixNull">
                                             <option ng-repeat="option in genderTypeList" value="{{option.value}}">{{option["th-description"]}}</option>
                                         </select>
                                     </div>
@@ -516,32 +519,31 @@
                 <h4></h4>
                 <!-- end authorize -->
                 <div ng-include="template.currentpriceplan" scope="" onload=""></div>
-            
-            <!--<div ng-include="template.reasonmemo" scope="" onload=""></div>-->
-            <h4>บันทึกและเหตุผล</h4>
-            <div class="well">
-                <div class="form-horizontal">
-                    <div class="form-group" ng-show="shopType=='0'">
-                        <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
-                        <div class="col-md-4">
-                            <!--  <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-model="selectedReason" class="form-control"></select> -->
-                            <!-- <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-change="onReasonChange()" ng-model="reason" class=" form-control" ng-disabled="true"></select> -->
-                            <!-- <select class=" form-control">
+                <!--<div ng-include="template.reasonmemo" scope="" onload=""></div>-->
+                <h4>บันทึกและเหตุผล</h4>
+                <div class="well">
+                    <div class="form-horizontal">
+                        <div class="form-group" ng-show="shopType=='0'">
+                            <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
+                            <div class="col-md-4">
+                                <!--  <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-model="selectedReason" class="form-control"></select> -->
+                                <!-- <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-change="onReasonChange()" ng-model="reason" class=" form-control" ng-disabled="true"></select> -->
+                                <!-- <select class=" form-control">
                                 <option>MGJ5: Migrate Post to Pre</option>
                             </select> -->
-                            <select class=" form-control">
-                                <option>CREQ: Customer request</option>
-                            </select>
+                                <select class=" form-control">
+                                    <option>CREQ: Customer request</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">บันทึก</label>
-                        <div class="col-md-4">
-                            <textarea class="form-control" ng-model="memo" name="message" style="width:100%;height:70px;resize:none;" ng-disabled="isSecondAuhenFailed"></textarea>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">บันทึก</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" ng-model="memo" name="message" style="width:100%;height:70px;resize:none;" ng-disabled="isSecondAuhenFailed"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
             <!--<div ng-include="template.effectivepriceplan" scope="" onload=""></div>-->
             <div id="modal-pdf" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
@@ -553,12 +555,11 @@
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </h4>
                         </div>
-                        
-                         <div class="modal-body modalBodyDivStyle">
-						    <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
-						        <p>It appears your web browser doesn't support iframes.</p>
-						    </iframe>
-						</div>
+                        <div class="modal-body modalBodyDivStyle">
+                            <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
+                                <p>It appears your web browser doesn't support iframes.</p>
+                            </iframe>
+                        </div>
                         <div class="modal-footer">
                             <span ng-show="(shopType === '1' && getAuthen['isSecondAuthen'] === false) || shopType === '0'">
                                 <input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="printObjectPdf();" ng-click="submit()" class="btn btn-success" />
