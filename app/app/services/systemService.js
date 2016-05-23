@@ -24,7 +24,7 @@
     //for case Android ::18-05-2016 //xsam32
     var ua = navigator.userAgent.toLowerCase();
     var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-    isAndroid = true; //demo android
+    //isAndroid = true; //demo android
     var pathPDFAndroid = this.demo ? "" : "/webui1";
     this.checkPDFAndroid_show = function(url) {
         if (isAndroid) {
