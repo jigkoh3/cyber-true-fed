@@ -298,10 +298,12 @@ th {
         border: 1px solid #ddd !important;
     }
 }
-.divWrapTextIE{
+
+.divWrapTextIE {
     word-wrap: break-word;
     -ms-word-wrap: break-word;
 }
+
 @font-face {
     font-family: 'Glyphicons Halflings';
     src: url('../fonts/bootstrap/glyphicons-halflings-regular.eot');
@@ -2987,7 +2989,7 @@ th {
     background-color: #f5f5f5;
 }
 
-.table-hover-offer:hover{
+.table-hover-offer:hover {
     background-color: #e9e9e9;
 }
 
@@ -14759,86 +14761,88 @@ textarea.remark-message {
         width: 100%;
     }
 }
-
 .headColor {
-    vertical-align: middle; 
-    background: #c72230; 
+    vertical-align: middle;
+    background: #c72230;
     color: #ffffff;
-
 }
-
-.contentTb{
+.contentTb {
     text-align:left;
     vertical-align: middle !important;
 }
-.contentTbCenter{
+.contentTbCenter {
     text-align:center;
     vertical-align: middle !important;
 }
-.contentTbHeader{
+.contentTbHeader {
     text-align:center;
     vertical-align: middle !important;
-    color:#c72230; 
+    color:#c72230;
     background:#D1D0CE;
     font-size: 1.2em !important;
 }
-.btnOfferRed{
-    border-radius:20px !important; 
-    width:195px !important; 
+.btnOfferRed {
+    border-radius:20px !important;
+    width:195px !important;
     background: #c72230 !important;
     border-color: #c72230 !important;
 }
-.btnAddOffer{
-    background: #c72230 !important; 
+.btnAddOffer {
+    background: #c72230 !important;
     border-color: #c72230 !important;
 }
-.btnOfferRed:hover,.btnOfferRed:focus,.btnAddOffer:hover,.btnAddOffer:focus{
+.btnOfferRed:hover,
+.btnOfferRed:focus,
+.btnAddOffer:hover,
+.btnAddOffer:focus {
     background-color: #971a24 !important;
 }
-.effectiveOffer{
-
-}
-.effectiveOffer.active{
+.effectiveOffer {}
+.effectiveOffer.active {
     background-color: #c72230 !important;
 }
-
-.btnPrintOffer{
-    background: #fff !important; 
+.btnPrintOffer {
+    background: #fff !important;
     border-color: #c72230 !important;
     color: #333 !important;
     font-weight: bold;
 }
-
-.btnPrintOffer:hover{
-    background: #c72230 !important; 
+.btnPrintOffer:hover {
+    background: #c72230 !important;
     border-color: #c72230 !important;
     color: #fff !important;
     font-weight: bold;
 }
-
-.btnPrintOffer:focus{
-    background: #971a24 !important; 
+.btnPrintOffer:focus {
+    background: #971a24 !important;
     border-color: #c72230 !important;
     color: #cfa8aa !important;
     font-weight: bold;
 }
-
-.btnOfferAction{
-    background: #fff; 
+.btnOfferAction {
+    background: #fff;
     border-color: #c72230;
     color: #333;
     font-weight: bold;
 }
-
-.btnOfferAction.active{
-    background: #c72230 !important; 
+.btnOfferAction.active {
+    background: #c72230 !important;
     border-color: #c72230 !important;
     color: #fff !important;
     font-weight: bold !important;
 }
-
-.btnOfferAction:hover{
+.btnOfferAction:hover {
     color: #333;
     background-color: #e6e6e6;
     border-color: #adadad;
 }
+/*modal pdf width for 768px ::: 23-05-2016 //xsam32 */
+.modal_pdf_width {
+    width:85%;
+}
+@media (max-width: 768px) {
+    .modal_pdf_width {
+        width: 95%;
+    }
+}
+/*modal pdf width for 768px ::: 23-05-2016 //xsam32 */
