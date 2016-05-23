@@ -41,6 +41,12 @@ smartApp.controller('ChangePricePlanController', function(
         //$ngBootbox.alert('xxxxxxxxxxx');
         //$ngBootbox.customDialog($scope.customDialogOptions);
     };
+    var _pdfURL = "";
+    $scope.printAndSaveOrder = function(){
+        //case for PDF Android ::18-05-2016 //xsam32
+        SystemService.checkPDFAndroid_printNoneShop(_pdfURL);
+        $scope.saveOrder();
+    };
     $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
@@ -1238,6 +1244,7 @@ smartApp.controller('ChangePricePlanController', function(
         var srcPDF = "";
         SystemService.generatePDF(data, function(result) {
             var url = result;
+            _pdfURL = result;
             setTimeout(function() {
 
                 //var browser = navigator.appName;

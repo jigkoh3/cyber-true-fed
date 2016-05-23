@@ -2415,7 +2415,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.titleOther2 = "คุณ";
             $('#titleOtherRegisterd').val('คุณ');
             // ===================================
-        } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "") {
+        } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "" && 1==2) {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
             //Requirement from P'mam 20160518

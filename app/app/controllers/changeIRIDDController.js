@@ -103,7 +103,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     var _pdfURL = "";
     $scope.printAndSaveOrder = function(){
         //case for PDF Android ::18-05-2016 //xsam32
-        SystemService.checkPDFAndroid_print(_pdfURL);
+        SystemService.checkPDFAndroid_printNoneShop(_pdfURL);
         $scope.saveOrder();
     };
 

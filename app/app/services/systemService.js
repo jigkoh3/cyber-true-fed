@@ -24,7 +24,7 @@
     //for case Android ::18-05-2016 //xsam32
     var ua = navigator.userAgent.toLowerCase();
     var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-    //isAndroid = true; //demo android
+    isAndroid = true; //demo android
     var pathPDFAndroid = this.demo ? "" : "/webui1";
     this.checkPDFAndroid_show = function(url) {
         if (isAndroid) {
@@ -45,6 +45,18 @@
             }, 3000);
         }
     };
+    this.checkPDFAndroid_printNoneShop = function(url) {
+        if (isAndroid) {
+            document.getElementById('iframePDF').src = "javascript:printCanvas();";
+        } else {
+            setTimeout(function() {
+                printObjectPdf();
+            }, 2000);
+            setTimeout(function() {
+                document.getElementById('iframePDF').src = url; //show pdf web and clear
+            }, 3000);
+        }
+    };
     this.showPDFAndroid = function(url, action) {
         if(action=='print'){
             setTimeout(function() {
@@ -54,7 +66,8 @@
                 that.showPDFAndroid(url, 'none');
             }, 6000);
         }else{
-            document.getElementById('iframePDF').src = pathPDFAndroid + '/pdfCanvasV4.html?action=' + action + '&url=' + url;
+            //document.getElementById('iframePDF').src = pathPDFAndroid + '/pdfCanvasV4.html?action=' + action + '&url=' + url;
+            document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url; //never mind "webui1" 
         }
     };
     window.mobilecheck = function() {

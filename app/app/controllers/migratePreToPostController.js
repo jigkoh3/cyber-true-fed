@@ -1819,7 +1819,7 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.titleOther2 = "คุณ";
             $('#titleOtherRegisterd').val('คุณ');
             // ===================================
-        } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "") {
+        } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "" && 1==2) {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
             //Requirement from P'mam 20160518
@@ -3761,7 +3761,7 @@ smartApp.controller('MigratePreToPostController', function(
             showValidate("CitizenID2", ValidateMsgService.data.authorizeIdMsg);
         } else if (errorAuthorizeName) {
             showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
-        } else if (isNull($scope.newOwner.prefixTH == "T5") || isNull($('#titleOther').val())) {
+        } else if ($scope.newOwner.prefixTH == "T5" && isNull($('#titleOther').val())) {
             showValidate("titleOther", ValidateMsgService.data.msgNewPosCusPrefixEmpty);
         } else if (isNull($scope.customer['id-number'])) {
             showValidate("citizenID3", ValidateMsgService.data.msgNewCusIDnoEmpty);
