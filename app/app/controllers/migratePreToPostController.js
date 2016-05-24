@@ -1311,12 +1311,12 @@ smartApp.controller('MigratePreToPostController', function(
                                 $scope.lastestCustomer = customer;
                                 if ($scope.isCardValueDataLastest == false) {
                                     $scope.notLastestCus = true;
-                                    
-                                    
+
+
                                     //FIXED ISSUE :: 03-05-2016
                                     customer["title-code"] = customer["title-code"] ? customer["title-code"] : "T5";
                                     $scope.checkInputDisabledFirstName = customer["firstname"] ? true : false;
-                                    $scope.checkInputDisabledLastName =  customer["lastname"] ? true : false;
+                                    $scope.checkInputDisabledLastName = customer["lastname"] ? true : false;
 
 
                                     //ผู้จดทะเบียนใหม่
@@ -1812,14 +1812,23 @@ smartApp.controller('MigratePreToPostController', function(
             $scope.newOwner.sex = "MALE";
             $('#sex3').val("MALE");
             $scope.newOwner2.sex = "MALE";
-        } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther == "") {
+            $('#sex32').val("MALE");
+        } else {
+
+            $scope.newOwner.sex = "FEMALE";
+            $('#sex3').val("FEMALE");
+            $scope.newOwner2.sex = "FEMALE";
+            $('#sex32').val("FEMALE");
+        }
+
+        if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther == "") {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
             //Requirement from P'mam 20160518
             $scope.titleOther2 = "คุณ";
             $('#titleOtherRegisterd').val('คุณ');
             // ===================================
-        } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "" && 1==2) {
+        } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "") {
             $scope.titleOther = "คุณ";
             $('#titleOther').val('คุณ');
             //Requirement from P'mam 20160518
@@ -1830,17 +1839,12 @@ smartApp.controller('MigratePreToPostController', function(
             //$scope.titleOther = "คุณ";
 
             $('#titleOther').val($scope.titleOther);
-        } else {
-
-            $scope.newOwner.sex = "FEMALE";
-            $('#sex3').val("FEMALE");
-            $scope.newOwner2.sex = "FEMALE";
         }
     };
     $scope.onselectPrefix2 = function() {
         console.log($scope.newOwner2.prefixTH);
         //===========Requirement from P'mam 20160518=============
-        if($scope.newOwner2.prefixTH == 'T5'){ 
+        if ($scope.newOwner2.prefixTH == 'T5') {
             $scope.titleOther2 = "คุณ";
             $('#titleOtherRegisterd').val('คุณ');
         }
@@ -3711,7 +3715,7 @@ smartApp.controller('MigratePreToPostController', function(
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
         var showValidate = function(id, msg) {
-            if(firstValidate == 0){
+            if (firstValidate == 0) {
                 SystemService.showAlert(msg);
                 firstValidate = 1;
             } else if (isFocus) {
@@ -3770,7 +3774,7 @@ smartApp.controller('MigratePreToPostController', function(
         } else if (isNull($scope.newOwner.lastNameTH)) {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
         } else if ((isNull($scope.newOwner.sex) || isNull($('#sex3').val()))) {
-            showValidate("sex3", ValidateMsgService.data.msgNewPostCusGenderEmpty);   
+            showValidate("sex3", ValidateMsgService.data.msgNewPostCusGenderEmpty);
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
         } else if (errorCapmax != "") {
@@ -3979,7 +3983,7 @@ smartApp.controller('MigratePreToPostController', function(
         }
     }
 
-    $scope.newGenderChange = function(){
+    $scope.newGenderChange = function() {
         $('#sex32').val($scope.newOwner.sex);
         $scope.newOwner2.sex = $scope.newOwner.sex;
     }
