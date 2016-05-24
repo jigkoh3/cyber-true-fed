@@ -1855,9 +1855,17 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $scope.setAddress(customer['address-list']['CUSTOMER_ADDRESS']);
                                     }
 
-                                    //disable ที่อยู่ลูกค้าเก่า
-                                    $scope.isLastestAdress = true;
-                                    $scope.changecusStatusN('O');
+                                    
+
+                                    //// requiment form BA for Production ::: 24-05-2016 //xsam32
+                                    ////newRequiment
+                                    $scope.changecusStatusN('N');
+                                    $scope.isLastestAdress = false;
+
+                                    ////oldRequiment
+                                    //$scope.isLastestAdress = true;
+                                    //$scope.changecusStatusN('O');
+                                    //// requiment form BA for Production ::: 24-05-2016 //xsam32
 
                                     console.log(customer);
 
@@ -3032,7 +3040,8 @@ smartApp.controller('changeOwnershipIBCController', function(
                 "contact-name": $scope.mailAddress.sendName
             };
             cardTypeIBC = $scope.cardType.value;
-            if ($scope.isLastestAdress == true) {
+            //// new check CHANGE-OPTION ::: 24-05-2016 //xsam32
+            if ($scope.isLastestAdress == true && $scope.customerStatusN == 'O') {
                 _customerID = $scope.lastestCustomer['customer-id'];
                 changeOption = "EXISTING";
             } else {
