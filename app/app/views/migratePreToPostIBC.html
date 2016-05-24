@@ -79,7 +79,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                    <select name="cardTypes" ng-model="cardTypeBC.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes(); isVerify=false; approveCode='';" id="cardTypeBC" ng-disabled="!isCustomerPreverify" class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                                    <select name="cardTypes" ng-model="cardTypeBC.value" ng-blur="onCheckInputForVerify()" ng-change="isVerify=false; approveCode='';" id="cardTypeBC" ng-disabled="!isCustomerPreverify" class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                                         <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                     </select>
                                 </div>
@@ -266,7 +266,7 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                     <!-- Case Normal -->
-                                    <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-disabled="customer['branch-code'] || !isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
+                                    <input type="text" id="branchCodeI" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-disabled="!isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.branchid.$error.required">
                                         Required.
                                     </span>-->

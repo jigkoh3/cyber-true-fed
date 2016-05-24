@@ -744,7 +744,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.isAuthorizeBC = false;
         $scope.isLastestUser = false;
         $scope.isVerify = false;
-
+        firstValidate = 0; //update 20160524
         $scope.isAccount_child = false;
         $scope.isAccount_root = false;
 
@@ -754,7 +754,14 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         $scope.isAccountPreverify = false;
         //$scope.customer['id-number'] = "";
-        $scope.customer['branch-code'] = "00000";
+
+         //update 20160524
+        if ($scope.customerType != 'N') {
+            $scope.customer['branch-code'] = "";
+        } else{
+            $scope.customer['branch-code'] = "00000";
+        }
+        // =========================================================
         $scope.customer['tax-id'] = "";
         $scope.bcName = "";
         $scope.bcName2 = "";
@@ -1433,7 +1440,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
             var isnum = /^\d+$/.test($scope.customer['id-number']);
             console.log($scope.customer['id-number'].length, $scope.customerType, isnum);
             if ($scope.customer['id-number'].length == 13 && $scope.customerType != 'N' && isnum) {
-                $scope.customer['tax-id'] = $scope.customer['id-number'];
+                // $scope.customer['tax-id'] = $scope.customer['id-number'];
+                $scope.customer['tax-id'] = ""; //update 20160524 When click tab B,C taxID = ""
                 $('#idBindDataAgain').click();
             } else {
                 if ($scope.customerType == 'N') {
@@ -4610,6 +4618,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("titleOther", ValidateMsgService.data.msgNewPosCusPrefixEmpty);
         } else if (isNull($scope.customer['id-number'])) {
             showValidate("citizenID3", ValidateMsgService.data.msgNewCusIDnoEmpty);
+        } else if ((isNull($scope.customer['tax-id']) || $scope.customer['tax-id'].length != 13) && $scope.customerType == 'N' && $scope.isVerify) {
+            showValidate("taxId3", ValidateMsgService.data.msgTaxNumberEmpty);
+        } else if ((isNull($scope.customer['branch-code']) || $scope.customer['branch-code'].length != 5) && $scope.customerType == 'N' && $scope.isVerify) {
+            showValidate("branchCodeI", ValidateMsgService.data.msgBranchCodeEmpty);
         } else if (isNull($scope.newOwner.firstNameTH) && $scope.customerType == 'N') {
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
         } else if (isNull($scope.newOwner.lastNameTH) && $scope.customerType == 'N') {
@@ -4618,7 +4630,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("sex3", ValidateMsgService.data.msgNewPostCusGenderEmpty);
         } else if ((isNull($scope.customer['tax-id']) || $scope.customer['tax-id'].length != 13) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("taxNumber", ValidateMsgService.data.msgTaxNumberEmpty);
-        } else if (isNull($scope.customer['branch-code']) && $scope.customerType != 'N' && $scope.isVerify) {
+        } else if ((isNull($scope.customer['branch-code']) || $scope.customer['branch-code'].length != 5) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("branchCode", ValidateMsgService.data.msgBranchCodeEmpty);
         } else if (isNull($scope.bcName) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("bcName", ValidateMsgService.data.msgBcNameEmpty);

@@ -392,7 +392,7 @@
             "message-code": "",
             "message-type": "WARNING",
             "en-message": "Please specify Branch Code.",
-            "th-message": "กรุณาระบุ สาขาที่",
+            "th-message": "กรุณาระบุ สาขาที่ 5 หลัก",
             "technical-message": "FROM WEBUI"
         },
         "msgBcNameEmpty": {

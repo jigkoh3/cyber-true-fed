@@ -362,7 +362,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         $scope.isAuthorizeBC = false;
         $scope.isLastestUser = false;
         $scope.isVerify = false;
-
+        firstValidate = 0; //update 20160524
         $scope.isAccount_child = false;
         $scope.isAccount_root = false;
 
@@ -372,8 +372,16 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         $scope.isAccountPreverify = false;
         //$scope.customer['id-number'] = "";
-        $scope.customer['branch-code'] = "00000";
-        $scope.customer['tax-id'] = "";
+
+        //update 20160524
+        if ($scope.customerType != 'N') {
+            $scope.customer['branch-code'] = "";
+            $scope.customer['tax-id'] = "";
+        } else{
+            $scope.customer['branch-code'] = "00000";
+        }
+        // =========================================================
+
         $scope.bcName = "";
         $scope.bcName2 = "";
 
@@ -1262,15 +1270,17 @@ smartApp.controller('changeOwnershipIBCController', function(
 
         });
     };
-
+    $scope.disableTaxID = false; //update 20160524 disable field taxid when card type = I
     $scope.onChangeCardTypes = function() {
         console.log($scope.cardType.value);
-        if ($scope.cardType.value == "I") {
+        if ($scope.cardType.value == "I" && $scope.customerType == 'N') {
 
             $scope.customer['tax-id'] = $scope.customer['id-number'];
             console.log($scope.customer['tax-id'], $scope.customer['id-number']);
+            $scope.disableTaxID = true; //update 20160524 disable field taxid when card type = I
         } else {
             $scope.customer['tax-id'] = "0000000000000";
+            $scope.disableTaxID = false; //update 20160524 disable field taxid when card type = I
         }
     }
     $scope.onInputShopCode = function() {
@@ -1713,7 +1723,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         if ($scope.customerType == 'N') {
                                             $scope.customer['tax-id'] = $scope.customer['id-number'];
                                         } else {
-                                            if ($scope.customer['id-number'] && $scope.customer['id-number'].length == 13) {
+                                            if ($scope.customer['id-number'] && $scope.customer['id-number'].length == 13 && $scope.customerType == 'N') {
                                                 $scope.customer['tax-id'] = $scope.customer['id-number'];
                                             }
                                         }
@@ -1808,7 +1818,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                                     if ($scope.customerType == 'N') {
                                         $scope.customer['tax-id'] = $scope.customer['id-number'];
                                     } else {
-                                        if ($scope.customer['id-number'] && $scope.customer['id-number'].length == 13) {
+                                        if ($scope.customer['id-number'] && $scope.customer['id-number'].length == 13 && $scope.customerType == 'N') {
                                             $scope.customer['tax-id'] = $scope.customer['id-number'];
                                         }
                                     }
@@ -1855,7 +1865,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $scope.setAddress(customer['address-list']['CUSTOMER_ADDRESS']);
                                     }
 
-                                    
+
 
                                     //// requiment form BA for Production ::: 24-05-2016 //xsam32
                                     ////newRequiment
@@ -1871,7 +1881,9 @@ smartApp.controller('changeOwnershipIBCController', function(
 
                                     $scope.onCheckInputForVerify();
                                     SystemService.hideLoading();
-
+                                    if ($scope.customerType == 'N') {
+                                        $scope.onChangeCardTypes(); //update 20160524 disable field taxid when card type = I
+                                    }
 
 
                                 }
@@ -1880,6 +1892,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                     } else {
                         $scope.onselectPrefix();
                         SystemService.hideLoading();
+                        if ($scope.customerType == 'N') {
+                            $scope.onChangeCardTypes(); //update 20160524 disable field taxid when card type = I
+                        }
                         setTimeout(function() {
                             SystemService.showAlert({
                                 "message": resultData.data["display-messages"][0]["message"],
@@ -1891,6 +1906,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                             });
                         }, 1000);
                     }
+
                 });
 
             } else {
@@ -4482,6 +4498,10 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
         } else if (isNull($scope.customer['id-number'])) {
             showValidate("citizenID3", ValidateMsgService.data.msgNewCusIDnoEmpty);
+        } else if ((isNull($scope.customer['tax-id']) || $scope.customer['tax-id'].length != 13) && $scope.customerType == 'N' && $scope.isVerify) {
+            showValidate("taxId3", ValidateMsgService.data.msgTaxNumberEmpty);
+        } else if ((isNull($scope.customer['branch-code']) || $scope.customer['branch-code'].length != 5) && $scope.customerType == 'N' && $scope.isVerify) {
+            showValidate("branchCodeI", ValidateMsgService.data.msgBranchCodeEmpty);
         } else if (isNull($scope.newOwner.firstNameTH) && $scope.customerType == 'N') {
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
         } else if (isNull($scope.newOwner.lastNameTH) && $scope.customerType == 'N') {
@@ -4490,7 +4510,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("sex3", ValidateMsgService.data.msgNewOwnerGenderEmpty);
         } else if ((isNull($scope.customer['tax-id']) || $scope.customer['tax-id'].length != 13) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("taxNumber", ValidateMsgService.data.msgTaxNumberEmpty);
-        } else if (isNull($scope.customer['branch-code']) && $scope.customerType != 'N' && $scope.isVerify) {
+        } else if ((isNull($scope.customer['branch-code']) || $scope.customer['branch-code'].length != 5) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("branchCode", ValidateMsgService.data.msgBranchCodeEmpty);
         } else if (isNull($scope.bcName) && $scope.customerType != 'N' && $scope.isVerify) {
             showValidate("bcName", ValidateMsgService.data.msgBcNameEmpty);

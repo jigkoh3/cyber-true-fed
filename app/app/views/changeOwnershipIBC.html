@@ -73,7 +73,7 @@
                                     <!-- Case Dealer -->
                                     <select class="form-control" ng-disabled="true" ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'"></select>
                                     <!-- Case Normal -->
-                                    <select name="cardTypes" ng-model="cardTypeBC.value" ng-blur="onCheckInputForVerify()" ng-change="onChangeCardTypes(); isVerify=false; approveCode='';" id="cardTypeBC" ng-disabled="!isCustomerPreverify" class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                                    <select name="cardTypes" ng-model="cardTypeBC.value" ng-blur="onCheckInputForVerify()" ng-change="isVerify=false; approveCode='';" id="cardTypeBC" ng-disabled="!isCustomerPreverify" class="form-control" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                                         <option ng-repeat="option in cardTypeOptions" value="{{option.value}}">{{option["description"]}}</option>
                                     </select>
                                 </div>
@@ -274,7 +274,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>เลขที่ประจำตัวผู้เสียภาษี<span style="color:red;">*</span> </label>
-                                    <input name="taxIds" type="text" ng-model="customer['tax-id']" ng-disabled="!isLastestUser" id="taxId3" placeholder="" class="form-control numberic" maxlength="13" required>
+                                    <input name="taxIds" type="text" ng-model="customer['tax-id']" ng-disabled="!isLastestUser || disableTaxID" id="taxId3" placeholder="" class="form-control numberic" maxlength="13" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.taxIds.$error.required">
                                         Required.
                                     </span>-->
@@ -286,7 +286,7 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                     <!-- Case Normal -->
-                                    <input type="text" ng-disabled="!isLastestUser" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                                    <input type="text" ng-disabled="!isLastestUser" name="branchid" ng-model="customer['branch-code']" id="branchCodeI" placeholder="00000" maxlength="5" class="form-control numberic" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.branchid.$error.required">
                                         Required.
                                     </span>-->
