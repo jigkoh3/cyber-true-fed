@@ -251,7 +251,7 @@
                                     <!-- Case Dealer -->
                                     <input type="text" ng-disabled="true"  class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                     <!-- Case Normal -->
-                                    <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-disabled="customer['branch-code'] || !isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
+                                    <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" ng-disabled="!isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.branchid.$error.required">
                                         Required.
                                     </span>-->

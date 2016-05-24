@@ -773,14 +773,17 @@ smartApp.controller('changeOwnershipController', function(
         });
     };
 
+    $scope.disableTaxID = false; //update 20160524 disable field taxid when card type = I
     $scope.onChangeCardTypes = function() {
         console.log($scope.cardType.value);
         if ($scope.cardType.value == "I") {
 
             $scope.customer['tax-id'] = $scope.customer['id-number'];
             console.log($scope.customer['tax-id'], $scope.customer['id-number']);
+            $scope.disableTaxID = true; //update 20160524 disable field taxid when card type = I
         } else {
             $scope.customer['tax-id'] = "0000000000000";
+            $scope.disableTaxID = false; //update 20160524 disable field taxid when card type = I
         }
     }
     $scope.onInputShopCode = function() {
@@ -1316,6 +1319,7 @@ smartApp.controller('changeOwnershipController', function(
                             });
                         }, 1000);
                     }
+                    $scope.onChangeCardTypes(); //update 20160524 disable field taxid when card type = I
                 });
 
             } else {

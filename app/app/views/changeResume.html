@@ -256,7 +256,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>สาขาที่<span style="color:red;">*</span> </label>
-                                    <input type="text" ng-disabled="customer['branch-code'] || !isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
+                                    <input type="text" ng-disabled="!isCustomerProfile" name="branchid" ng-model="customer['branch-code']" placeholder="00000" maxlength="5" class="form-control numberic" required>
                                     <!--<span class="error" style="color:red;" ng-show="newcustomers.branchid.$error.required">
                                         Required.
                                     </span>-->
