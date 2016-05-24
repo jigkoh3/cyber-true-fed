@@ -377,7 +377,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         if ($scope.customerType != 'N') {
             $scope.customer['branch-code'] = "";
             $scope.customer['tax-id'] = "";
-        } else{
+        } else {
             $scope.customer['branch-code'] = "00000";
         }
         // =========================================================
@@ -1608,7 +1608,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.contactNo.continued = "";
 
             $scope.onselectPrefix();
-
+            if ($scope.customerType == 'N') {
+                $scope.onChangeCardTypes(); //update 20160524 disable field taxid when card type = I
+            }
 
 
 
@@ -1736,6 +1738,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         $scope.contactNo.continued = "";
 
                                         $scope.onselectPrefix();
+                                        if ($scope.customerType == 'N') {
+                                            $scope.onChangeCardTypes(); //update 20160524 disable field taxid when card type = I
+                                        }
 
                                     }
 
@@ -1833,6 +1838,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                                     $scope.isAddressList = customer['address-list']['CUSTOMER_ADDRESS'];
 
                                     $scope.onselectPrefix();
+                                    if ($scope.customerType == 'N') {
+                                        $scope.onChangeCardTypes(); //update 20160524 disable field taxid when card type = I
+                                    }
 
                                     // //
                                     // var astList = $filter('filter')($scope.data.accountSubtypeList, {

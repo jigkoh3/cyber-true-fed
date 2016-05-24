@@ -755,10 +755,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.isAccountPreverify = false;
         //$scope.customer['id-number'] = "";
 
-         //update 20160524
+        //update 20160524
         if ($scope.customerType != 'N') {
             $scope.customer['branch-code'] = "";
-        } else{
+        } else {
             $scope.customer['branch-code'] = "00000";
         }
         // =========================================================
@@ -1316,6 +1316,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                         $scope.onChangeCardTypes();
                                         $('#prefixTH3').val($scope.data.customerProfile['title-code']);
                                         $scope.onselectPrefix();
+                                        if ($scope.customerType == 'N') {
+                                            $scope.onChangeCardTypes(); //update 20160524 disable field taxid when card type = I
+                                        }
                                         //$ngBootbox.customDialog($scope.customDialogOptions);
 
                                     }, 1000);
@@ -1881,6 +1884,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
                                     $scope.onselectPrefix();
                                     $scope.onselectPrefix2(); //Requirement from P'mam 20160518
+                                    if ($scope.customerType == 'N') {
+                                        $scope.onChangeCardTypes(); //update 20160524 disable field taxid when card type = I
+                                    }
 
                                 }
 
@@ -2055,6 +2061,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                 //$scope.onselectPrefix();
                                 setTimeout(function() {
                                     $scope.onselectPrefix();
+                                    if ($scope.customerType == 'N') {
+                                        $scope.onChangeCardTypes(); //update 20160524 disable field taxid when card type = I
+                                    }
                                     //$('#titleOther').val(customer["title"]);
                                 }, 1500);
                                 setTimeout(function() {
@@ -2068,6 +2077,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
                         });
                     } else {
                         $scope.onselectPrefix();
+                        if ($scope.customerType == 'N') {
+                            $scope.onChangeCardTypes(); //update 20160524 disable field taxid when card type = I
+                        }
                         SystemService.hideLoading();
                         setTimeout(function() {
                             SystemService.showAlert({
@@ -4909,7 +4921,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         }
     }
 
-    $scope.newGenderChange = function(){
+    $scope.newGenderChange = function() {
         $('#sex32').val($scope.newOwner.sex);
         $scope.newOwner2.sex = $scope.newOwner.sex;
     }
