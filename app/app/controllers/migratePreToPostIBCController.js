@@ -2408,29 +2408,33 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $scope.newOwner.sex = "MALE";
             $('#sex3').val("MALE");
             $scope.newOwner2.sex = "MALE";
-        } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther == "") {
-            $scope.titleOther = "คุณ";
-            $('#titleOther').val('คุณ');
-            //Requirement from P'mam 20160518
-            $scope.titleOther2 = "คุณ";
-            $('#titleOtherRegisterd').val('คุณ');
-            // ===================================
-        } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "" && 1==2) {
-            $scope.titleOther = "คุณ";
-            $('#titleOther').val('คุณ');
-            //Requirement from P'mam 20160518
-            $scope.titleOther2 = "คุณ";
-            $('#titleOtherRegisterd').val('คุณ');
-            // ===================================
-        } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
-            //$scope.titleOther = "คุณ";
-
-            $('#titleOther').val($scope.titleOther);
+            $('#sex32').val("MALE");
         } else {
 
             $scope.newOwner.sex = "FEMALE";
             $('#sex3').val("FEMALE");
             $scope.newOwner2.sex = "FEMALE";
+            $('#sex32').val("FEMALE");
+        }
+
+        if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther == "") {
+            $scope.titleOther = "คุณ";
+            $('#titleOther').val('คุณ');
+            //Requirement from P'mam 20160518
+            $scope.titleOther2 = "คุณ";
+            $('#titleOtherRegisterd').val('คุณ');
+            // ===================================
+        } else if ($scope.newOwner.prefixTH != 'T5' && $scope.titleOther != "") {
+            $scope.titleOther = "คุณ";
+            $('#titleOther').val('คุณ');
+            //Requirement from P'mam 20160518
+            $scope.titleOther2 = "คุณ";
+            $('#titleOtherRegisterd').val('คุณ');
+            // =====================================
+        } else if ($scope.newOwner.prefixTH == 'T5' && $scope.titleOther != "") {
+            //$scope.titleOther = "คุณ";
+
+            $('#titleOther').val($scope.titleOther);
         }
     };
     $scope.onselectPrefix2 = function() {
