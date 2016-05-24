@@ -2271,6 +2271,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.newOwner.sex = "FEMALE";
             $scope.newOwner2.sex = "FEMALE";
         }
+        $('#sex3').val($scope.newOwner.sex);
+        $('#sex32').val($scope.newOwner.sex);
     };
     $scope.onselectPrefix2 = function() {
         console.log($scope.newOwner2.prefixTH);
