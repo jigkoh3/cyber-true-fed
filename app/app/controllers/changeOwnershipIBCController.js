@@ -1875,15 +1875,16 @@ smartApp.controller('changeOwnershipIBCController', function(
 
 
 
-                                    //// requiment form BA for Production ::: 24-05-2016 //xsam32
-                                    ////newRequiment
-                                    $scope.changecusStatusN('N');
-                                    $scope.isLastestAdress = false;
+                                    //// requirement form BA for Production ::: 24-05-2016 //xsam32
+                                    ////newRequirement
+                                    // $scope.changecusStatusN('N');
+                                    // $scope.isLastestAdress = false;
 
-                                    ////oldRequiment
-                                    //$scope.isLastestAdress = true;
-                                    //$scope.changecusStatusN('O');
-                                    //// requiment form BA for Production ::: 24-05-2016 //xsam32
+                                    ////oldRequirement
+                                    //// requirement form BA for Production ::: 25-05-2016 //xsam32
+                                    $scope.isLastestAdress = true;
+                                    $scope.changecusStatusN('O');
+
 
                                     console.log(customer);
 
@@ -2296,6 +2297,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             console.log('ALL');
         }
         $scope.titleOther2 = $scope.titleOther;
+        $scope.newOwner.sex = $('#sex3').val();
         $('#sex32').val($('#sex3').val());
     };
 
@@ -3074,6 +3076,15 @@ smartApp.controller('changeOwnershipIBCController', function(
                 changeOption = "NEW";
             }
 
+            //// fixed DF 25-05-2016 //xsam32
+            if ($("#titleRegisterd option:selected").val() == 'T5') {
+                $scope.titleOther2 = $("#titleOtherRegisterd option:selected").val();
+            } else {
+                $scope.titleOther2 = $("#titleRegisterd option:selected").text();
+            }
+            $scope.newOwner.sex = $("#sex3 option:selected").val();
+            $scope.newOwner2.sex = $("#sex32 option:selected").val();
+
         }
 
         $scope.saveData.memo = $scope.saveData.memo ? $scope.saveData.memo : ""
@@ -3085,8 +3096,11 @@ smartApp.controller('changeOwnershipIBCController', function(
         var bcOUID = "";
         var bcBAN = "";
         if ($scope.customerType == 'N') {
-            bcOUID = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "";
-            bcBAN = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "";
+            //bcOUID = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "";
+            //bcBAN = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "";
+            ////new requirement ::: 25-05-2016 //xsam32 @by BA
+            bcOUID = "";
+            bcBAN = "";
         } else {
             if ($scope.isAccount_child == true) {
                 bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
@@ -4682,7 +4696,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             console.log('ALL');
         }
         //$scope.titleOther2 = $scope.titleOther;
-        //$scope.newOwner2.sex = $scope.newOwner.sex;
+        $scope.newOwner2.sex = $('#sex32').val();
     };
 
     $scope.onChangeTitleOther2BC = function() {
@@ -4700,7 +4714,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             console.log('ALL');
         }
         //$scope.titleOther2 = $scope.titleOther;
-        //$scope.newOwner2.sex = $scope.newOwner.sex;
+        $scope.newOwner2.sex = $('#sex32BC').val();
     };
 
 
