@@ -2511,7 +2511,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             console.log('ALL');
         }
         //$scope.titleOther2 = $scope.titleOther;
-        //$scope.newOwner2.sex = $scope.newOwner.sex;
+        $scope.newOwner2.sex = $('#sex32').val(); //20160525 Fixed DF1954
     };
 
     $scope.onChangeTitleOther2BC = function() {
