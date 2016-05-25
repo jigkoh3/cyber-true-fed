@@ -2491,6 +2491,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $('#sex32').val('ALL');
             console.log('ALL');
         }
+        $scope.newOwner.sex = $('#sex3').val(); //edit 20160525 fixed bug subscriber gender dont chang.
         $scope.titleOther2 = $scope.titleOther;
         $scope.newOwner2.sex = $scope.newOwner.sex;
     };
@@ -4430,7 +4431,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     $('#sex32').val($('#sex3').val());
                 }
             }
-            $scope.onselectPrefix2();
+            // $scope.onselectPrefix2();
         }, 500);
 
     };

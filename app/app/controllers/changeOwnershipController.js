@@ -1688,6 +1688,7 @@ smartApp.controller('changeOwnershipController', function(
             $('#sex3').val('ALL');
             console.log('ALL');
         }
+        $scope.newOwner.sex = $('#sex3').val(); //edit 20160525 fixed bug subscriber gender dont chang.
         $scope.titleOther2 = $scope.titleOther;
         $('#sex32').val($('#sex3').val()); //Fix bug sub gender not change when newOwner gender change 20160519
     };
