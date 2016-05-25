@@ -2529,7 +2529,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             console.log('ALL');
         }
         //$scope.titleOther2 = $scope.titleOther;
-        //$scope.newOwner2.sex = $scope.newOwner.sex;
+        $scope.newOwner2.sex = $('#sex32BC').val();
     };
 
     //ระบุผู้ใช้บัตร
