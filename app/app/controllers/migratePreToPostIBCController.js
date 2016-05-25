@@ -2529,7 +2529,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             console.log('ALL');
         }
         //$scope.titleOther2 = $scope.titleOther;
-        $scope.newOwner2.sex = $('#sex32BC').val();
+        $scope.newOwner2.sex = $('#sex32BC').val(); //20160525 Fixed DF1954
     };
 
     //ระบุผู้ใช้บัตร
