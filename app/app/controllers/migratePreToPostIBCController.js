@@ -4172,6 +4172,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.selectedAddress = "";
     $scope.pauseAddress = false;
     $scope.isLoadAddress = false;
+    $scope.isChangeLang = false; //Edit 20160526 fix bug change address language
+    $scope.isChangeLangBC = false; //Edit 20160526 fix bug change address language
     var checkNull = function(org, txt) {
         if (txt) {
             if (org) {
@@ -4240,6 +4242,23 @@ smartApp.controller('MigratePreToPostIBCController', function(
             }
         }, 0);
     };
+
+//Edit 20160526 fix bug change address language
+    $scope.clearAddress = function(){
+        $scope.mailAddress.district = "";
+        $scope.mailAddress.amphur = "";
+        $scope.mailAddress.province = "";
+        $scope.mailAddress.postcode = "";
+    }
+
+    $scope.clearAddressBC = function(){
+        $scope.mailAddressBC.district = "";
+        $scope.mailAddressBC.amphur = "";
+        $scope.mailAddressBC.province = "";
+        $scope.mailAddressBC.postcode = "";
+    }
+// ================================================
+
     var filterAddressListBC = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {
             var txtList = txtSearch.split(' ');
@@ -4276,6 +4295,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             if (accountLang != $scope.billPayment.accountLang) {
                 $scope.pauseAddress = false;
                 $scope.isLoadAddress = false;
+                $scope.isChangeLang = true; //Edit 20160526 fix bug change address language
                 accountLang = $scope.billPayment.accountLang;
             }
             if (!$scope.isLoadAddress) {
@@ -4290,8 +4310,15 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
                             if ($scope.addressList.length == 1) {
                                 $scope.setSearchAddress($scope.addressList[0]);
+                            }else{ //Edit 20160526 fix bug change address language
+                                if($scope.isChangeLang == true){
+                                    $scope.isChangeLang = false;
+                                    $scope.clearAddress();
+                                    $('#ulAddressList').show();
+                                    return;
+                                }
                             }
-
+                            // =======================================================
                             filterAddressList($scope.txtSearchAddress);
                         }
                     });
@@ -4319,6 +4346,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             if (accountLangBC != $scope.mailAddressBC.accountLang) {
                 $scope.pauseAddressBC = false;
                 $scope.isLoadAddressBC = false;
+                $scope.isChangeLangBC = true; //Edit 20160526 fix bug change address language
                 accountLangBC = $scope.mailAddressBC.accountLang;
             }
             if (!$scope.isLoadAddressBC) {
@@ -4335,7 +4363,15 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
                             if ($scope.addressListBC.length == 1) {
                                 $scope.setSearchAddressBC($scope.addressListBC[0]);
+                            }else{ //Edit 20160526 fix bug change address language
+                                if($scope.isChangeLangBC == true){
+                                    $scope.isChangeLangBC = false;
+                                    $scope.clearAddressBC();
+                                    $('#ulAddressListBC').show();
+                                    return;
+                                }
                             }
+                            // =======================================================
 
                             filterAddressListBC($scope.txtSearchAddressBC);
                         }
@@ -4355,6 +4391,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.onChangeBillPaymentAccountLang = function() {
         $scope.onInputAddress();
     };
+
     $scope.onChangeBillPaymentAccountLangBC = function() {
         $scope.onInputAddressBC();
     };
