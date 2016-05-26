@@ -58,14 +58,14 @@
         }
     };
     this.showPDFAndroid = function(url, action) {
-        if(action=='print'){
+        if (action == 'print') {
             setTimeout(function() {
                 document.getElementById('iframePDF').src = "javascript:printCanvas();";
             }, 5100);
             setTimeout(function() {
                 that.showPDFAndroid(url, 'none');
             }, 6000);
-        }else{
+        } else {
             //document.getElementById('iframePDF').src = pathPDFAndroid + '/pdfCanvasV4.html?action=' + action + '&url=' + url;
             document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url; //never mind "webui1" 
         }
@@ -2944,6 +2944,11 @@
                             "district": "Din Daeng",
                             "province": "Bangkok",
                             "zipcode": "10130"
+                        }, {
+                            "subdistrict": "Din Daeng2",
+                            "district": "Din Daeng",
+                            "province": "Bangkok",
+                            "zipcode": "10130"
                         }]
                     },
                     error: "",
@@ -2963,5 +2968,21 @@
                 fnCallback(result);
             });
         }
+    };
+
+    //20160526
+    this.filterAddressList = function(arr, txtSearch) {
+        var result = [];
+        if (txtSearch.indexOf(' ') > 0) {
+            var txtList = txtSearch.split(' ');
+            var arrTemp = arr;
+            console.log(txtList);
+            for (var i = 0; i < txtList.length; i++) {
+                arrTemp = $filter('filter')(arrTemp, txtList[i]);
+            }
+        } else {
+            result = $filter('filter')(arr, txtSearch);
+        }
+        return result;
     };
 });
