@@ -302,7 +302,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             //$scope.onInputCitizenID3();
             $scope.onInputIdBC();
             $scope.onChangeCardTypes();
+
             setTimeout(function() {
+                $scope.onCheckInputForVerify();
                 $('#idBindDataAgain').click();
             }, 1000);
 
