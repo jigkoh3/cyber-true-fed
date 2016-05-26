@@ -2944,11 +2944,6 @@
                             "district": "Din Daeng",
                             "province": "Bangkok",
                             "zipcode": "10130"
-                        }, {
-                            "subdistrict": "Din Daeng2",
-                            "district": "Din Daeng",
-                            "province": "Bangkok",
-                            "zipcode": "10130"
                         }]
                     },
                     error: "",

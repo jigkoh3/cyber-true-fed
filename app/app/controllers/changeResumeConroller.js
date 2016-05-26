@@ -82,7 +82,7 @@ smartApp.controller('ResumeController', function(
         value: "I"
     };
 
-    $scope.hideReadCardForMobile = function(){
+    $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
 
@@ -2743,7 +2743,7 @@ smartApp.controller('ResumeController', function(
 
         var pdfShopCode = $scope.partnerCode;
         localStorage.setItem('pdfShopCode', pdfShopCode);
-        
+
         //api generatePDF
         var srcPDF = "";
         SystemService.generatePDF(data, function(result) {
@@ -3102,7 +3102,16 @@ smartApp.controller('ResumeController', function(
 
                             if ($scope.addressList.length == 1) {
                                 $scope.setSearchAddress($scope.addressList[0]);
+                            } else { //Edit 20160526 fix bug change address language
+                                var arr = SystemService.filterAddressList(tempAddressList, $scope.txtSearchAddress);
+                                if ($scope.addressList.length > 1 && arr.length == 0) {
+                                    $scope.isChangeLang = false;
+                                    $scope.clearAddress();
+                                    $('#ulAddressList').show();
+                                    return;
+                                }
                             }
+                            // =======================================================
 
                             filterAddressList($scope.txtSearchAddress);
                         }
@@ -3119,6 +3128,14 @@ smartApp.controller('ResumeController', function(
             $scope.addressList = [];
         }
     };
+    //Edit 20160526 fix bug change address language
+    $scope.clearAddress = function() {
+        $scope.mailAddress.district = "";
+        $scope.mailAddress.amphur = "";
+        $scope.mailAddress.province = "";
+        $scope.mailAddress.postcode = "";
+    }
+        // ================================================
     $scope.onChangeBillPaymentAccountLang = function() {
         $scope.onInputAddress();
     };
@@ -3214,9 +3231,9 @@ smartApp.controller('ResumeController', function(
     }
 
     $scope.webcamSnap = function() {
-            webcam.snap();
-        }
-    $scope.mobileCamSnap = function(){
+        webcam.snap();
+    }
+    $scope.mobileCamSnap = function() {
         var msg = $('#varMobileCam').val();
         msg = msg.replace('data:image/png;base64,', '');
         msg = msg.replace('data:image/jpeg;base64,', '');
@@ -3224,7 +3241,7 @@ smartApp.controller('ResumeController', function(
         // $('#btnSavePhoto_Mobile').hide();
         $scope.varPhoto = msg;
     };
-        //end----------- camera ----------------
+    //end----------- camera ----------------
     $scope.initWebCamLastest = function() {
         $scope.isCameraLastest = true;
         $scope.initWebCamNext();

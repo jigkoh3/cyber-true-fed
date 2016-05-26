@@ -3279,7 +3279,16 @@ smartApp.controller('changeOwnershipController', function(
 
                             if ($scope.addressList.length == 1) {
                                 $scope.setSearchAddress($scope.addressList[0]);
+                            } else { //Edit 20160526 fix bug change address language
+                                var arr = SystemService.filterAddressList(tempAddressList, $scope.txtSearchAddress);
+                                if ($scope.addressList.length > 1 && arr.length == 0) {
+                                    $scope.isChangeLang = false;
+                                    $scope.clearAddress();
+                                    $('#ulAddressList').show();
+                                    return;
+                                }
                             }
+                            // =======================================================
 
                             filterAddressList($scope.txtSearchAddress);
                         }
@@ -3296,6 +3305,14 @@ smartApp.controller('changeOwnershipController', function(
             $scope.addressList = [];
         }
     };
+    //Edit 20160526 fix bug change address language
+    $scope.clearAddress = function() {
+            $scope.mailAddress.district = "";
+            $scope.mailAddress.amphur = "";
+            $scope.mailAddress.province = "";
+            $scope.mailAddress.postcode = "";
+        }
+        // ================================================
     $scope.onChangeBillPaymentAccountLang = function() {
         $scope.onInputAddress();
     };
@@ -3464,16 +3481,8 @@ smartApp.controller('changeOwnershipController', function(
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
         var showValidate = function(id, msg) {
-            if(firstValidate == 0){
-                SystemService.showAlert(msg);
-                firstValidate = 1;
-            } else if (isFocus) {
-                $('#' + id).focus();
-                isFocus = false;
-                return;
-            } else {
-                SystemService.showAlert(msg);
-            }
+            idFocus = id;
+            SystemService.showAlert(msg);
         };
         var checkCapmaxNull = function(val) {
             if (val == '' || val == 'null') {
@@ -3588,7 +3597,7 @@ smartApp.controller('changeOwnershipController', function(
             $('#' + idFocus).focus();
             idFocus = "";
         } else {
-            $scope.validateUI();
+            // $scope.validateUI();
         }
     };
 

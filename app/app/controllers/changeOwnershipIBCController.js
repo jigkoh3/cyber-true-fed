@@ -4180,7 +4180,16 @@ smartApp.controller('changeOwnershipIBCController', function(
 
                             if ($scope.addressList.length == 1) {
                                 $scope.setSearchAddress($scope.addressList[0]);
+                            } else { //Edit 20160526 fix bug change address language
+                                var arr = SystemService.filterAddressList(tempAddressList, $scope.txtSearchAddress);
+                                if ($scope.addressList.length > 1 && arr.length == 0) {
+                                    $scope.isChangeLang = false;
+                                    $scope.clearAddress();
+                                    $('#ulAddressList').show();
+                                    return;
+                                }
                             }
+                            // =======================================================
 
                             filterAddressList($scope.txtSearchAddress);
                         }
@@ -4225,7 +4234,16 @@ smartApp.controller('changeOwnershipIBCController', function(
 
                             if ($scope.addressListBC.length == 1) {
                                 $scope.setSearchAddressBC($scope.addressListBC[0]);
+                            } else { //Edit 20160526 fix bug change address language
+                                var arr = SystemService.filterAddressList(tempAddressListBC, $scope.txtSearchAddressBC);
+                                if ($scope.addressListBC.length > 1 && arr.length == 0) {
+                                    $scope.isChangeLangBC = false;
+                                    $scope.clearAddressBC();
+                                    $('#ulAddressListBC').show();
+                                    return;
+                                }
                             }
+                            // =======================================================
 
                             filterAddressListBC($scope.txtSearchAddressBC);
                         }
@@ -4242,6 +4260,21 @@ smartApp.controller('changeOwnershipIBCController', function(
             $scope.addressListBC = [];
         }
     };
+    //Edit 20160526 fix bug change address language
+    $scope.clearAddress = function() {
+        $scope.mailAddress.district = "";
+        $scope.mailAddress.amphur = "";
+        $scope.mailAddress.province = "";
+        $scope.mailAddress.postcode = "";
+    }
+
+    $scope.clearAddressBC = function() {
+            $scope.mailAddressBC.district = "";
+            $scope.mailAddressBC.amphur = "";
+            $scope.mailAddressBC.province = "";
+            $scope.mailAddressBC.postcode = "";
+        }
+        // ================================================
     $scope.onChangeBillPaymentAccountLang = function() {
         $scope.onInputAddress();
     };
@@ -4462,16 +4495,8 @@ smartApp.controller('changeOwnershipIBCController', function(
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
         var showValidate = function(id, msg) {
-            if (firstValidate == 0) {
-                SystemService.showAlert(msg);
-                firstValidate = 1;
-            } else if (isFocus) {
-                $('#' + id).focus();
-                isFocus = false;
-                return;
-            } else {
-                SystemService.showAlert(msg);
-            }
+            idFocus = id;
+            SystemService.showAlert(msg);
         };
         var checkCapmaxNull = function(val) {
             if (val == '' || val == 'null') {
@@ -4676,7 +4701,7 @@ smartApp.controller('changeOwnershipIBCController', function(
             $('#' + idFocus).focus();
             idFocus = "";
         } else {
-            $scope.validateUI();
+            // $scope.validateUI();
         }
     };
 

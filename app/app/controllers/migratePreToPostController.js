@@ -3522,7 +3522,16 @@ smartApp.controller('MigratePreToPostController', function(
 
                             if ($scope.addressList.length == 1) {
                                 $scope.setSearchAddress($scope.addressList[0]);
+                            } else { //Edit 20160526 fix bug change address language
+                                var arr = SystemService.filterAddressList(tempAddressList, $scope.txtSearchAddress);
+                                if ($scope.addressList.length > 1 && arr.length == 0) {
+                                    $scope.isChangeLang = false;
+                                    $scope.clearAddress();
+                                    $('#ulAddressList').show();
+                                    return;
+                                }
                             }
+                            // =======================================================
 
                             filterAddressList($scope.txtSearchAddress);
                         }
@@ -3542,6 +3551,14 @@ smartApp.controller('MigratePreToPostController', function(
     $scope.onChangeBillPaymentAccountLang = function() {
         $scope.onInputAddress();
     };
+    //Edit 20160526 fix bug change address language
+    $scope.clearAddress = function(){
+        $scope.mailAddress.district = "";
+        $scope.mailAddress.amphur = "";
+        $scope.mailAddress.province = "";
+        $scope.mailAddress.postcode = "";
+    }
+// ================================================
     $scope.setSearchAddress = function(address) {
         console.log(address);
         $scope.mailAddress.province = address['province'];
@@ -3716,16 +3733,8 @@ smartApp.controller('MigratePreToPostController', function(
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
         var showValidate = function(id, msg) {
-            if (firstValidate == 0) {
-                SystemService.showAlert(msg);
-                firstValidate = 1;
-            } else if (isFocus) {
-                $('#' + id).focus();
-                isFocus = false;
-                return;
-            } else {
-                SystemService.showAlert(msg);
-            }
+            idFocus = id;
+            SystemService.showAlert(msg);
         };
         var checkCapmaxNull = function(val) {
             if (val == '' || val == 'null') {
@@ -3849,7 +3858,7 @@ smartApp.controller('MigratePreToPostController', function(
             $('#' + idFocus).focus();
             idFocus = "";
         } else {
-            $scope.validateUI();
+            // $scope.validateUI();
         }
     };
     $scope.checkUserDealer = function() {

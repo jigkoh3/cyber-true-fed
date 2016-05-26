@@ -4243,21 +4243,21 @@ smartApp.controller('MigratePreToPostIBCController', function(
         }, 0);
     };
 
-//Edit 20160526 fix bug change address language
-    $scope.clearAddress = function(){
+    //Edit 20160526 fix bug change address language
+    $scope.clearAddress = function() {
         $scope.mailAddress.district = "";
         $scope.mailAddress.amphur = "";
         $scope.mailAddress.province = "";
         $scope.mailAddress.postcode = "";
     }
 
-    $scope.clearAddressBC = function(){
-        $scope.mailAddressBC.district = "";
-        $scope.mailAddressBC.amphur = "";
-        $scope.mailAddressBC.province = "";
-        $scope.mailAddressBC.postcode = "";
-    }
-// ================================================
+    $scope.clearAddressBC = function() {
+            $scope.mailAddressBC.district = "";
+            $scope.mailAddressBC.amphur = "";
+            $scope.mailAddressBC.province = "";
+            $scope.mailAddressBC.postcode = "";
+        }
+        // ================================================
 
     var filterAddressListBC = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {
@@ -4310,9 +4310,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
                             if ($scope.addressList.length == 1) {
                                 $scope.setSearchAddress($scope.addressList[0]);
-                            }else{ //Edit 20160526 fix bug change address language
+                            } else { //Edit 20160526 fix bug change address language
                                 var arr = SystemService.filterAddressList(tempAddressList, $scope.txtSearchAddress);
-                                if($scope.addressList.length > 1 && arr.length == 0){
+                                if ($scope.addressList.length > 1 && arr.length == 0) {
                                     $scope.isChangeLang = false;
                                     $scope.clearAddress();
                                     $('#ulAddressList').show();
@@ -4364,9 +4364,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
                             if ($scope.addressListBC.length == 1) {
                                 $scope.setSearchAddressBC($scope.addressListBC[0]);
-                            }else{ //Edit 20160526 fix bug change address language
+                            } else { //Edit 20160526 fix bug change address language
                                 var arr = SystemService.filterAddressList(tempAddressListBC, $scope.txtSearchAddressBC);
-                                if($scope.addressListBC.length > 1 && arr.length == 0){
+                                if ($scope.addressListBC.length > 1 && arr.length == 0) {
                                     $scope.isChangeLangBC = false;
                                     $scope.clearAddressBC();
                                     $('#ulAddressListBC').show();
@@ -4608,16 +4608,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
             errorAuthorizeName = isNull($('#authorizeFullName').val());
         }
         var showValidate = function(id, msg) {
-            if (firstValidate == 0) {
-                SystemService.showAlert(msg);
-                firstValidate = 1;
-            } else if (isFocus) {
-                $('#' + id).focus();
-                isFocus = false;
-                return;
-            } else {
-                SystemService.showAlert(msg);
-            }
+            idFocus = id;
+            SystemService.showAlert(msg);
         };
         var checkCapmaxNull = function(val) {
             if (val == '' || val == 'null') {
@@ -4826,7 +4818,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             $('#' + idFocus).focus();
             idFocus = "";
         } else {
-            $scope.validateUI();
+            // $scope.validateUI();
         }
     };
     $scope.checkUserDealer = function() {
