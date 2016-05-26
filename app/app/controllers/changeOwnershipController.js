@@ -334,6 +334,7 @@ smartApp.controller('changeOwnershipController', function(
             // };
             //$scope.onselectPrefix();    
             //console.log($scope.newOwner);
+            $scope.onChangeCardTypes();
             $scope.onCheckBlackList();
 
             setTimeout(function() {
