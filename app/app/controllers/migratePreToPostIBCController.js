@@ -4365,7 +4365,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             if ($scope.addressListBC.length == 1) {
                                 $scope.setSearchAddressBC($scope.addressListBC[0]);
                             }else{ //Edit 20160526 fix bug change address language
-                                if($scope.isChangeLangBC == true){
+                                var arr = SystemService.filterAddressList(tempAddressListBC, $scope.txtSearchAddressBC);
+                                if($scope.addressListBC.length > 1 && arr.length == 0){
                                     $scope.isChangeLangBC = false;
                                     $scope.clearAddressBC();
                                     $('#ulAddressListBC').show();
