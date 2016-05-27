@@ -59,7 +59,9 @@
     };
     this.showPDFAndroid = function(url, action) {
         if (action == 'print') {
+            $('#loadingPrint').show();
             setTimeout(function() {
+                $('#loadingPrint').hide();
                 document.getElementById('iframePDF').src = "javascript:printCanvas();";
             }, 5100);
             setTimeout(function() {
