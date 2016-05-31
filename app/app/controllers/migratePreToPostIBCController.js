@@ -3155,7 +3155,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "contact-name": $scope.mailAddress.sendName
             };
             cardTypeIBC = $scope.cardType.value;
-            if ($scope.isLastestAdress == true) {
+            //// new check CHANGE-OPTION ::: 31-05-2016 //xsam32
+            if ($scope.isLastestAdress == true && $scope.customerStatusN == 'O') {
                 _customerID = $scope.lastestCustomer['customer-id'];
                 changeOption = "EXISTING";
             } else {
@@ -3173,8 +3174,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
         var bcOUID = "";
         var bcBAN = "";
         if ($scope.customerType == 'N') {
-            bcOUID = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "";
-            bcBAN = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "";
+            // bcOUID = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ouId'] : "";
+            // bcBAN = $scope.customerStatusN == 'O' ? $scope.lastestCustomer['installed-products'][0]['ban'] : "";
+            ////new requirement ::: 25-05-2016 //xsam32 @by BA
+            bcOUID = "";
+            bcBAN = "";
         } else {
             if ($scope.isAccount_child == true) {
                 bcOUID = $scope.dataAccountPreverify['installed-products'][0]['ouId'];
