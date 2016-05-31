@@ -26,6 +26,14 @@
     var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
     //isAndroid = true; //demo android
     var pathPDFAndroid = this.demo ? "" : "/webui1";
+    this.printPDF_web = function(url) {
+        setTimeout(function() {
+            printObjectPdf();
+        }, 2000);
+        setTimeout(function() {
+            document.getElementById('iframePDF').src = url; //show pdf web and clear
+        }, 3000);
+    };
     this.checkPDFAndroid_show = function(url) {
         if (isAndroid) {
             this.showPDFAndroid(url, 'none');
@@ -37,39 +45,43 @@
         if (isAndroid) {
             this.showPDFAndroid(url, 'print');
         } else {
-            setTimeout(function() {
-                printObjectPdf();
-            }, 2000);
-            setTimeout(function() {
-                document.getElementById('iframePDF').src = url; //show pdf web and clear
-            }, 3000);
+            that.printPDF_web(url);
         }
     };
     this.checkPDFAndroid_printNoneShop = function(url) {
         if (isAndroid) {
             document.getElementById('iframePDF').src = "javascript:printCanvas();";
         } else {
-            setTimeout(function() {
-                printObjectPdf();
-            }, 2000);
-            setTimeout(function() {
-                document.getElementById('iframePDF').src = url; //show pdf web and clear
-            }, 3000);
+            that.printPDF_web(url);
         }
     };
+    var printedAndroid = false;
     this.showPDFAndroid = function(url, action) {
         if (action == 'print') {
-            $('#loadingPrint').show();
-            setTimeout(function() {
-                $('#loadingPrint').hide();
-                document.getElementById('iframePDF').src = "javascript:printCanvas();";
-            }, 5100);
-            setTimeout(function() {
-                that.showPDFAndroid(url, 'none');
-            }, 6000);
+            var checkLoaded = function() {
+                if (printedAndroid == true) {
+                    printedAndroid = false;
+                    $('#loadingPrint').show();
+                    setTimeout(function() {
+                        $('#loadingPrint').hide();
+                        document.getElementById('iframePDF').src = "javascript:printCanvas();";
+                    }, 5100);
+                    setTimeout(function() {
+                        that.showPDFAndroid(url, 'none');
+                    }, 6000);
+                } else {
+                    alert('wait for pdf...');
+                    checkLoaded();
+                }
+            };
+            checkLoaded();
         } else {
-            //document.getElementById('iframePDF').src = pathPDFAndroid + '/pdfCanvasV4.html?action=' + action + '&url=' + url;
-            document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url; //never mind "webui1" 
+            $(function() {
+                document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url; //never mind "webui1" 
+                $('#iframePDF').load(function() {
+                    printedAndroid = true;
+                });
+            });
         }
     };
     window.mobilecheck = function() {
