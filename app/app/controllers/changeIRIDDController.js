@@ -101,7 +101,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.isReadCardSuccess = false;
 
     var _pdfURL = "";
-    $scope.printAndSaveOrder = function(){
+    $scope.printAndSaveOrder = function() {
         //case for PDF Android ::18-05-2016 //xsam32
         SystemService.checkPDFAndroid_printNoneShop(_pdfURL);
         $scope.saveOrder();
@@ -1040,13 +1040,15 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     setTimeout(function() {
                         //case for PDF Android ::18-05-2016 //xsam32
                         SystemService.checkPDFAndroid_show(url);
-
-                        if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                            //case for PDF Android ::18-05-2016 //xsam32
-                            SystemService.checkPDFAndroid_print(url);
-                        }
-
                     }, 500);
+                    if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                        //case for PDF Android ::18-05-2016 //xsam32
+                        setTimeout(function() {
+                            SystemService.checkPDFAndroid_print(url);
+                        }, 2000);
+                    }
+
+
 
 
                 });
