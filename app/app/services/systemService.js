@@ -70,7 +70,7 @@
                         that.showPDFAndroid(url, 'none');
                     }, 6000);
                 } else {
-                    alert('wait for pdf...');
+                    //alert('wait for pdf...');
                     checkLoaded();
                 }
             };
