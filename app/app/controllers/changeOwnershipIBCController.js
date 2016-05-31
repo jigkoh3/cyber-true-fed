@@ -3019,7 +3019,12 @@ smartApp.controller('changeOwnershipIBCController', function(
             }
 
             if ($scope.useNumberType == 'I') {
-                $scope.titleOther2 = $("#titleRegisterdBC option:selected").text();
+                //// fixed DF 31-05-2016 //xsam32
+                if ($("#titleRegisterdBC option:selected").val() == 'T5') {
+                    $scope.titleOther2 = $("#titleOtherRegisterdBC option:selected").val();
+                } else {
+                    $scope.titleOther2 = $("#titleRegisterdBC option:selected").text();
+                }
             }
             $scope.newOwner.firstNameTH = $scope.bcName;
             BILLING_ADDRESS = {

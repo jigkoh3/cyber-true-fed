@@ -3101,7 +3101,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 $scope.titleOther2 = $("#titleRegisterdBC option:selected").text();
                 //ISSUE : 25-04-2016 TITLE
                 if ($scope.newOwner2.prefixTH == 'T5') {
-                    $scope.titleOther2 = $("#titleOtherRegisterdBC option:selected").text();
+                    $scope.titleOther2 = $("#titleOtherRegisterdBC option:selected").val();
                 }
             }
             $scope.newOwner.firstNameTH = $scope.bcName;
