@@ -3079,6 +3079,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         var TAX_ADDRESS = {};
         $scope.titleOther = $("#prefixTH3 option:selected").text();
         if ($scope.customerType != 'N') {
+            $scope.billPayment.accountLang = $scope.mailAddressBC.accountLang;
 
             $scope.titleOther = "";
             $scope.newOwner.prefixTH = "T1";

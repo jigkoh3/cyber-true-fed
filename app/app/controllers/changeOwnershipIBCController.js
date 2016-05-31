@@ -2998,6 +2998,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
 
         if ($scope.customerType != 'N') {
+            $scope.billPayment.accountLang = $scope.mailAddressBC.accountLang;
 
             $scope.titleOther = "";
             $scope.newOwner.prefixTH = "T1";
@@ -3117,6 +3118,8 @@ smartApp.controller('changeOwnershipIBCController', function(
         if (!$scope.selectProposition) {
             $scope.selectProposition = $scope.promotion;
         }
+
+
 
         var data = {
             "target": "aftersales/order/submit",
