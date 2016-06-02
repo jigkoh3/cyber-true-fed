@@ -107,6 +107,11 @@
             $('#divWebCam').show();
             $('#divMobileCam').hide();
         }
+        if(isAndroid == true){
+            $('.idBtnReadCard_android').show();
+        }else{
+            $('.idBtnReadCard_android').addClass('hide');
+        }
     };
 
     this.hideReadCardForMobile = function() {

@@ -7,6 +7,7 @@
 <!--<![endif]-->
 <head>
     <script>
+
         
         function ReadCard(Method) {
             $('.idBtnReadCard').prop('disabled', true);
@@ -162,6 +163,22 @@
     <script src="~/js/ngDialog.js"></script>
     <script src="lib/ngBootbox.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/thaiIDReader.js"></script>
+    <script type="text/javascript">
+        var THIDReader = new thaiIDReader(8030, true);
+        function ReadCard_Android(){
+            $('.idBtnReadCard_android').prop('disabled', true);
+            THIDReader.readAll(function(data){
+                console.log(JSON.stringify(data));
+                $('.idBtnReadCard_android').prop('disabled', false);
+                angular.element(document.getElementById('' + $('#divID').val())).scope().SetCardValue(data.data.info);
+            },function(error){
+                alert(JSON.stringify(error));
+              console.log('error');
+              console.log(error);
+            });
+        };
+    </script>
     <script src="app/utils.js"></script>
     <!-- main services -->
     <script src="app/services/masterDataService.js"></script>

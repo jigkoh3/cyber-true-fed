@@ -350,8 +350,15 @@
                     "message-code": "VCVAPA2010004",
                     "message-type": "ERROR",
                     "en-message": "Auto Approve is OK.",
-                    "th-message": "คุณได้รับสิทธิ์",
+                    "th-message": "คุณได้รับสิทธิ์<br>-xxx<br>-ssss",
                     "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
+                },
+                {
+                    "message": "Change Ownership IR/IDD will be canceled",
+                    "message-code": "TMV-CHANGE-OWNERSHIP-00008",
+                    "message-type": "WARNING",
+                    "en-message": "Change Ownership IR/IDD will be canceled",
+                    "th-message": "ลูกค้าโอนเปลี่ยนเจ้าของ การโทรทางไกลต่างประเทศและการโทรข้ามแดนระหว่างประเทศ จะถูกยกเลิกอัตโนมัติ กด OK เพื่อยืนยันการทารายการต่อ"
                 }],
                 "trx-id": "461HQMYTGV3HF",
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
