@@ -49,6 +49,14 @@
     };
 
     var generateOrderRequest = function() {
+        //change AUTH_1 to POA :: 02-06-2016 //waramun
+        var customerAgent = {
+            "POA_1": {
+                "id-number": $('#CitizenID2').val(),
+                "firstname": $('#authorizeFullName').val(),
+                "lastname": $('#authorizeFullName').val()
+            }
+        };
         return {
             orderData: orderData,
             customerProfile: $scope.data.customerProfile,
@@ -59,7 +67,8 @@
             },
             saleAgent: $scope.getAuthen,
             shopcode: $scope.dealerCode,
-            simDetail: $scope.data.simDetails
+            simDetail: $scope.data.simDetails,
+            customerAgent: customerAgent
         };
     };
 
@@ -224,7 +233,7 @@
 
         var pdfShopCode = $scope.dealerCode;
         localStorage.setItem('pdfShopCode', pdfShopCode);
-        
+
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
 
@@ -281,7 +290,7 @@
                     }, 1000);
                 }
                 for (var i = 0; i < $scope.deviceTypeList.length; i++) {
-                    console.log(i, $scope.deviceTypeList[i]['device-code'] ,$scope.deviceTypeList.length);
+                    console.log(i, $scope.deviceTypeList[i]['device-code'], $scope.deviceTypeList.length);
                     if ($scope.deviceTypeList[i]['device-code'] == '005') {
                         checkDefault('005');
                         break;

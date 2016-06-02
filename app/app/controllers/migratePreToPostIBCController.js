@@ -3367,27 +3367,30 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         //
         data["order"]["customer"]["customer-agents"] = {
+            //20160602 Change AUTH to POA and POA to AUTH by waramun
+            "POA_1": {},
             "AUTH_1": {},
-            "POA": {},
-            "AUTH_2": {}
+            "POA_2": {}
         };
         //authen
         if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
             data["order"]["customer"]["customer-agents"] = {
-                "AUTH_1": {
+                //20160602 Change AUTH to POA and POA to AUTH by waramun
+                "POA_1": {
                     "id-number": $('#CitizenID2').val(),
                     "firstname": $('#authorizeFullName').val(),
                     "lastname": $('#authorizeFullName').val()
                 }
             };
         } else {
-            delete data["order"]["customer"]["customer-agents"]["AUTH_1"];
+            delete data["order"]["customer"]["customer-agents"]["POA_1"];
         }
 
         //build DATA : BUSINESS/CORPORATE
         if ($scope.customerType == 'B' || $scope.customerType == 'C') {
             //POA - ผู้มีอำนาจลงนาม 1
-            data["order"]["customer"]["customer-agents"]["POA"] = {
+            //20160602 Change AUTH to POA and POA to AUTH by waramun
+            data["order"]["customer"]["customer-agents"]["AUTH_1"] = {
                 "id-number": $('#auth_1_id_number').val(),
                 "firstname": $('#auth_1_firstName').val(),
                 "lastname": $('#auth_1_lastName').val()
@@ -3416,13 +3419,15 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
         //authen 2
         if ($('#poa_1_id_number').val() && $('#poa_1_firstname').val() && $('#poa_1_lastname').val()) {
-            data["order"]["customer"]["customer-agents"]["AUTH_2"] = {
+            //20160602 Change AUTH to POA and POA to AUTH by waramun
+            data["order"]["customer"]["customer-agents"]["POA_2"] = {
                 "id-number": $('#poa_1_id_number').val(),
                 "firstname": $('#poa_1_firstname').val(),
                 "lastname": $('#poa_1_lastname').val()
             }
         } else {
-            delete data["order"]["customer"]["customer-agents"]["AUTH_2"];
+            //20160602 Change AUTH to POA and POA to AUTH by waramun
+            delete data["order"]["customer"]["customer-agents"]["POA_2"];
         }
 
         //SHARE_ALLOWANCE, FriendAndFamily, CUG, POOLED

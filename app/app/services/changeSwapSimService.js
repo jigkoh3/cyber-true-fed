@@ -382,6 +382,7 @@
                     'id-number': payload.customerProfile['id-number'],
                     'contact-number': payload.customerProfile['contact-number'],
                     'contact-mobile-number': payload.customerProfile['contact-mobile-number'],
+                    'customer-agents': payload.customerAgent
                 },
                 'sale-agent': {
                     'name': payload.saleAgent['engName'],
@@ -427,6 +428,7 @@
             'target': '/aftersales/order/submit'
         };
         console.log(request);
+        console.log(JSON.stringify(request));
         var cb = function(result) {
             fnCallback(result);
         };
