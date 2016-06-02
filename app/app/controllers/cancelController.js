@@ -343,6 +343,14 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
 
     var generateOrderRequest = function() {
         $scope.data.customerProfile['language'] = "TH";
+        //20160602 Chanhe AUTH to POA by waramun
+        var customerAgent = {
+            "POA_1": {
+                "id-number": $('#CitizenID2').val(),
+                "firstname": $('#authorizeFullName').val(),
+                "lastname": $('#authorizeFullName').val()
+            }
+        };
         return {
             customerProfile: $scope.data.customerProfile,
             customerAddress: $scope.data.customerAddress,
@@ -351,7 +359,8 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             saleAgent: $scope.getAuthen,
             reason: $scope.statusReason,
             memo: $scope.statusReasonMemo,
-            approver: $scope.approver
+            approver: $scope.approver,
+            customerAgent: customerAgent  //20160602 Chanhe AUTH to POA by waramun
         };
     };
 
