@@ -65,7 +65,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
 
     //end reson
 
-    $scope.hideReadCardForMobile = function(){
+    $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
 
@@ -273,7 +273,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     $scope.webcamSnap = function() {
         webcam.snap();
     }
-    $scope.mobileCamSnap = function(){
+    $scope.mobileCamSnap = function() {
         var msg = $('#varMobileCam').val();
         msg = msg.replace('data:image/png;base64,', '');
         msg = msg.replace('data:image/jpeg;base64,', '');
@@ -360,7 +360,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             reason: $scope.statusReason,
             memo: $scope.statusReasonMemo,
             approver: $scope.approver,
-            customerAgent: customerAgent  //20160602 Chanhe AUTH to POA by waramun
+            customerAgent: customerAgent //20160602 Chanhe AUTH to POA by waramun
         };
     };
 
@@ -427,19 +427,29 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             setTimeout(function() {
                 $('#modalPDFOpener').click();
 
+                // setTimeout(function() {
+                //     var srcPDF = url;
+                //     document.getElementById('iframePDF').src = url + '?clearData=N';
+                //     if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                //         setTimeout(function() {
+                //             //document.getElementById('iframePDF').src = 'javascript:window.print();'
+                //             printObjectPdf();
+                //         }, 2000);
+                //         setTimeout(function() {
+                //             document.getElementById('iframePDF').src = srcPDF
+                //         }, 2500);
+                //     }
+                // }, 500);
                 setTimeout(function() {
-                    var srcPDF = url;
-                    document.getElementById('iframePDF').src = url + '?clearData=N';
-                    if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                        setTimeout(function() {
-                            //document.getElementById('iframePDF').src = 'javascript:window.print();'
-                            printObjectPdf();
-                        }, 2000);
-                        setTimeout(function() {
-                            document.getElementById('iframePDF').src = srcPDF
-                        }, 2500);
-                    }
+                    //case for PDF Android ::18-05-2016 //xsam32
+                    SystemService.checkPDFAndroid_show(url);
                 }, 500);
+                if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                    //case for PDF Android ::18-05-2016 //xsam32
+                    setTimeout(function() {
+                        SystemService.checkPDFAndroid_print(url);
+                    }, 2000);
+                }
 
 
             }, 1000);
@@ -475,6 +485,12 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
                 }
             }, 1000);
         });
+    };
+
+    $scope.printAndSaveOrder = function() {
+        //case for PDF Android ::18-05-2016 //xsam32
+        SystemService.checkPDFAndroid_printNoneShop();
+        $scope.confirmPrint();
     };
 
     $scope.openSSO = function() {

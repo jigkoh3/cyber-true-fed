@@ -47,7 +47,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
 
     //end reson
 
-    $scope.hideReadCardForMobile = function(){
+    $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
     };
 
@@ -310,7 +310,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
         webcam.reset();
         $('#btnSavePhoto').show();
     }
-    $scope.mobileCamSnap = function(){
+    $scope.mobileCamSnap = function() {
         var msg = $('#varMobileCam').val();
         msg = msg.replace('data:image/png;base64,', '');
         msg = msg.replace('data:image/jpeg;base64,', '');
@@ -321,7 +321,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     $scope.webcamSnap = function() {
         webcam.snap();
     }
-    
+
 
     var formatActiveDate = function(date) {
         if (date) {
@@ -408,7 +408,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
             reason: $scope.statusReason,
             memo: $scope.statusReasonMemo,
             approver: $scope.approver,
-            customerAgent: customerAgent  //20160603 Chanhe AUTH to POA by waramun
+            customerAgent: customerAgent //20160603 Chanhe AUTH to POA by waramun
         };
     };
 
@@ -465,7 +465,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
 
         var pdfShopCode = ($scope.getAuthen["partnerCodes"].length > 0 ? $scope.getAuthen["partnerCodes"][0] : $scope.getAuthen.saleCode);
         localStorage.setItem('pdfShopCode', pdfShopCode);
-        
+
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
 
@@ -476,18 +476,29 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 $('#modalPDFOpener').click();
 
                 setTimeout(function() {
-                    var srcPDF = url;
-                    document.getElementById('iframePDF').src = url + '?clearData=N';
-                    if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                        setTimeout(function() {
-                            //document.getElementById('iframePDF').src = 'javascript:window.print();'
-                            printObjectPdf();
-                        }, 2000);
-                        setTimeout(function() {
-                            document.getElementById('iframePDF').src = srcPDF
-                        }, 2500);
-                    }
+                    //case for PDF Android ::18-05-2016 //xsam32
+                    SystemService.checkPDFAndroid_show(url);
                 }, 500);
+                if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                    //case for PDF Android ::18-05-2016 //xsam32
+                    setTimeout(function() {
+                        SystemService.checkPDFAndroid_print(url);
+                    }, 2000);
+                }
+
+                // setTimeout(function() {
+                //     var srcPDF = url;
+                //     document.getElementById('iframePDF').src = url + '?clearData=N';
+                //     if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                //         setTimeout(function() {
+                //             //document.getElementById('iframePDF').src = 'javascript:window.print();'
+                //             printObjectPdf();
+                //         }, 2000);
+                //         setTimeout(function() {
+                //             document.getElementById('iframePDF').src = srcPDF
+                //         }, 2500);
+                //     }
+                // }, 500);
 
 
             }, 1000);
@@ -523,6 +534,12 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 }
             }, 1000);
         });
+    };
+
+    $scope.printAndSaveOrder = function() {
+        //case for PDF Android ::18-05-2016 //xsam32
+        SystemService.checkPDFAndroid_printNoneShop();
+        $scope.confirmPrint();
     };
 
     $scope.openSSO = function() {

@@ -465,7 +465,7 @@
                             <div class="col-md-2" style="left: 15px;" ng-form="onVerify()">
                                 <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span>
                                 <br />
-                                <input type="text" name="approvecode"  id="approvecodeBC" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
+                                <input type="text" name="approvecode" id="approvecodeBC" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
                             </div>
                         </div>
                     </div>
@@ -706,12 +706,12 @@
                             <label class="col-md-3 control-label priceplaneText">ระดับของโปรโมชั่น <span style="color:red;">*</span></label>
                             <div class="col-md-4">
                                 <label style="cursor:pointer;">
-                                    <input type="radio" style="cursor:pointer;"  ng-change="clearOnChangeLevel(); PPTypeId='N';" name="promotionLevel" value="SUB" ng-model="promotionLevel"> ระดับเลขหมาย
+                                    <input type="radio" style="cursor:pointer;" ng-change="clearOnChangeLevel(); PPTypeId='N';" name="promotionLevel" value="SUB" ng-model="promotionLevel"> ระดับเลขหมาย
                                 </label>
                             </div>
                             <div class="col-md-5">
                                 <label style="cursor:pointer;">
-                                    <input type="radio" style="cursor:pointer;"  ng-change="clearOnChangeLevel(); PPTypeId='N';" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="(changOpenserviceBC=='S') && (isAccount_root == false && isLastestAdress == true)"> ระดับบัญชีลูกค้า (OU Level)
+                                    <input type="radio" style="cursor:pointer;" ng-change="clearOnChangeLevel(); PPTypeId='N';" name="promotionLevel" value="OU" ng-model="promotionLevel" ng-disabled="(changOpenserviceBC=='S') && (isAccount_root == false && isLastestAdress == true)"> ระดับบัญชีลูกค้า (OU Level)
                                 </label>
                             </div>
                         </div>
@@ -1047,7 +1047,7 @@
                 <!-- 1. ng-hide="true" for production ::: 24-05-2016 //xsam32 -->
                 <!-- 2. new requirement for production ::: 25-05-2016 //xsam32 -->
                 <div class="well" ng-show="isVerify && customerType == 'N' && isLastestAdress" style="background-color:#ffffff;">
-                <!-- <div class="well" ng-hide="true" style="background-color:#ffffff;"> -->
+                    <!-- <div class="well" ng-hide="true" style="background-color:#ffffff;"> -->
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-3" style="padding-right: 0;">
@@ -1620,7 +1620,7 @@
                     </div>
                 </div>
                 <div id="modal-pdf" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog" style="width:85%">
+                    <div class="modal-dialog modal_pdf_width">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4>
@@ -1629,12 +1629,13 @@
                                 </h4>
                             </div>
                             <div class="modal-body modalBodyDivStyle">
+                                <h4 id="loadingPrint" style="width=100%;text-align:center;display:none;">กำลังพิมพ์...</h4>
                                 <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
                                     <p>It appears your web browser doesn't support iframes.</p>
                                 </iframe>
                             </div>
                             <div class="modal-footer">
-                                <span ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์" data-dismiss="modal" ng-click="saveOrder()" onclick="printObjectPdf();" class="btn btn-success"></span>
+                                <span ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์" data-dismiss="modal" ng-click="printAndSaveOrder()" class="btn btn-success"></span>
                                 <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-dismiss="modal" ng-click="saveOrder()" class="btn btn-success"></span>
                             </div>
                         </div>

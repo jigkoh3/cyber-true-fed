@@ -3533,6 +3533,12 @@ smartApp.controller('changeOwnershipIBCController', function(
 
     };
 
+    var _pdfURL = "";
+    $scope.printAndSaveOrder = function() {
+        //case for PDF Android ::18-05-2016 //xsam32
+        SystemService.checkPDFAndroid_printNoneShop(_pdfURL);
+        $scope.saveOrder();
+    };
     $scope.varPhoto = "";
     $scope.varPhotoLastest = "";
     $scope.printOrder = function() {
@@ -3791,23 +3797,34 @@ smartApp.controller('changeOwnershipIBCController', function(
         var srcPDF = "";
         SystemService.generatePDF(data, function(result) {
             var url = result;
+            _pdfURL = result;
 
             SystemService.printPDF(url);
             //printObjectPdf();
 
+            // setTimeout(function() {
+            //     var srcPDF = url;
+            //     document.getElementById('iframePDF').src = url + '?clearData=N';
+            //     if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+            //         setTimeout(function() {
+            //             //document.getElementById('iframePDF').src = 'javascript:window.print();'
+            //             printObjectPdf();
+            //         }, 2000);
+            //         setTimeout(function() {
+            //             document.getElementById('iframePDF').src = srcPDF
+            //         }, 2500);
+            //     }
+            // }, 500);
             setTimeout(function() {
-                var srcPDF = url;
-                document.getElementById('iframePDF').src = url + '?clearData=N';
-                if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                    setTimeout(function() {
-                        //document.getElementById('iframePDF').src = 'javascript:window.print();'
-                        printObjectPdf();
-                    }, 2000);
-                    setTimeout(function() {
-                        document.getElementById('iframePDF').src = srcPDF
-                    }, 2500);
-                }
+                //case for PDF Android ::18-05-2016 //xsam32
+                SystemService.checkPDFAndroid_show(url);
             }, 500);
+            if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                //case for PDF Android ::18-05-2016 //xsam32
+                setTimeout(function() {
+                    SystemService.checkPDFAndroid_print(url);
+                }, 2000);
+            }
 
 
         });

@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div id="modal-pdf" tabindsex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog" style="width:85%;">
+                <div class="modal-dialog modal_pdf_width">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4>
@@ -82,13 +82,14 @@
                         </div>
                         
                         <div class="modal-body modalBodyDivStyle">
+                            <h4 id="loadingPrint" style="width=100%;text-align:center;display:none;">กำลังพิมพ์...</h4>
 						    <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
 						        <p>It appears your web browser doesn't support iframes.</p>
 						    </iframe>
 						</div>
 
                         <div class="modal-footer">
-                            <span ng-show="shopType=='0'"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" onclick="printObjectPdf();" ng-click="confirmPrint()" class="btn btn-success"></span>
+                            <span ng-show="shopType=='0'"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์เอกสาร" data-toggle="modal" ng-click="printAndSaveOrder()" class="btn btn-success"></span>
                             <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-toggle="modal" ng-click="confirmPrint()" class="btn btn-success"></span>
                         </div>
                     </div>

@@ -100,10 +100,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.orderId = "";
     $scope.isReadCardSuccess = false;
 
-    var _pdfURL = "";
     $scope.printAndSaveOrder = function() {
         //case for PDF Android ::18-05-2016 //xsam32
-        SystemService.checkPDFAndroid_printNoneShop(_pdfURL);
+        SystemService.checkPDFAndroid_printNoneShop();
         $scope.saveOrder();
     };
 
@@ -1032,7 +1031,6 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                 localStorage.setItem('pdfShopCode', pdfShopCode);
                 SystemService.generatePDF(data, function(result) {
                     var url = result;
-                    _pdfURL = result;
                     $scope.srcPrintPDF = url;
 
                     SystemService.printPDF(url);

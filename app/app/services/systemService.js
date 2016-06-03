@@ -52,7 +52,7 @@
         if (isAndroid) {
             document.getElementById('iframePDF').src = "javascript:printCanvas();";
         } else {
-            that.printPDF_web(url);
+            printObjectPdf();
         }
     };
     var printedAndroid = false;
