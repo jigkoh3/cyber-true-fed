@@ -93,6 +93,16 @@
                                     data-toggle="tooltip">
                                 <i class="fa fa-credit-card"></i>
                             </button>
+                            <!-- read card Android :: 03-06-2016 :: xsam32 -->
+                            <button title="อ่านจากการ์ด" 
+                                    onclick="$('#ReadAuthorize').val('true');ReadCard_Android();" 
+                                    
+                                    style="height:35px;" 
+                                    class="btn credit_ie8  idBtnReadCard_android" 
+                                    type="button" 
+                                    data-toggle="tooltip">
+                                <i class="fa fa-credit-card"></i>
+                            </button>
                         </span>
                     </div>
                 </div>
@@ -238,6 +248,8 @@
                 <input type="hidden" id="divID" value="{{divID}}" />
                 <!--<input type="submit" value="อ่านบัตร" class="btn btn-danger" ng-click="ReadCardMockUp('3389225969739')">-->
                 <input type="button" value="อ่านบัตร" class="btn btn-danger idBtnReadCard" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard'); ReadCard('ReadP');">
+                <!-- read card Android :: 03-06-2016 :: xsam32 -->
+                <input type="button" value="อ่านบัตร" class="btn btn-danger idBtnReadCard_android" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard'); ReadCard_Android();">
                 <input type="button" value="ใส่ข้อมูล" class="btn btn-danger" id="btnSSOLastest" ng-click="openSSOLastest()">
             </div>
         </div>

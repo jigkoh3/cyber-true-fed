@@ -138,6 +138,16 @@
                                                     class="btn credit_ie8 idBtnReadCard">
                                                 <i class="fa fa-credit-card"></i>
                                             </button>
+                                            <!-- read card Android :: 03-06-2016 :: xsam32 -->
+                                            <button title="อ่านจากการ์ด"
+                                                    ng-click="setFreeReadCard='auth_1';"
+                                                    onclick="$('#ReadAuthorize').val('freeReadCard');ReadCard_Android();"
+                                                    style="height:30px;"
+                                                    type="button"
+                                                    ng-disabled="!isCustomerPreverify"
+                                                    class="btn credit_ie8 idBtnReadCard_android">
+                                                <i class="fa fa-credit-card"></i>
+                                            </button>
                                         </span>
                                     </div>
                                 </div>
@@ -184,6 +194,16 @@
                                                     type="button"
                                                     ng-disabled="!isCustomerProfile"
                                                     class="btn credit_ie8 idBtnReadCard">
+                                                <i class="fa fa-credit-card"></i>
+                                            </button>
+                                            <!-- read card Android :: 03-06-2016 :: xsam32 -->
+                                            <button title="อ่านจากการ์ด"
+                                                    ng-click="setFreeReadCard='poa_1';"
+                                                    onclick="$('#ReadAuthorize').val('freeReadCard');ReadCard_Android();"
+                                                    style="height:30px;"
+                                                    type="button"
+                                                    ng-disabled="!isCustomerProfile"
+                                                    class="btn credit_ie8 idBtnReadCard_android">
                                                 <i class="fa fa-credit-card"></i>
                                             </button>
                                         </span>
@@ -238,6 +258,17 @@
                                                     ng-disabled="!isCustomerProfile"
                                                     data-toggle="tooltip"
                                                     class="btn credit_ie8 idBtnReadCard">
+                                                <i class="fa fa-credit-card"></i>
+                                            </button>
+                                            <!-- read card Android :: 03-06-2016 :: xsam32 -->
+                                            <button title="อ่านจากการ์ด"
+                                                    ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)"
+                                                    onclick="$('#ReadAuthorize').val('readNewOwnerReadCard');ReadCard_Android();"
+                                                    style="height:30px;"
+                                                    type="button"
+                                                    ng-disabled="!isCustomerProfile"
+                                                    data-toggle="tooltip"
+                                                    class="btn credit_ie8 idBtnReadCard_android">
                                                 <i class="fa fa-credit-card"></i>
                                             </button>
                                             <!--<button href="#modal-ReadCard3" title="อ่านจากการ์ด" style="height:30px;" type="button" data-toggle="modal" class="btn credit_ie8">
@@ -1759,8 +1790,8 @@
                     </div>
                     <div class="col-xs-4">
                         <!--<input type="submit" value="อ่านบัตร" class="btn btn-danger" ng-click="ReadCardMockUp('3389225969739')">-->
-                        <input type="submit" value="อ่านบัตร" class="btn btn-danger" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard'); ReadCard('ReadP');">
-                        <input type="submit" value="ใส่ข้อมูล" class="btn btn-danger" onclick="setTimeout(function () { $('#CitizenID33').select(); }, 100);" ng-click="manualInputReadCard()">
+                        <input type="button" value="อ่านบัตร" class="btn btn-danger" onclick="$('#ReadAuthorize').val('readNewOwnerReadCard'); ReadCard('ReadP');">
+                        <input type="button" value="ใส่ข้อมูล" class="btn btn-danger" onclick="setTimeout(function () { $('#CitizenID33').select(); }, 100);" ng-click="manualInputReadCard()">
                     </div>
                 </div>
                 <div class="row">
