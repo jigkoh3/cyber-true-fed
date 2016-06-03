@@ -345,7 +345,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         $scope.data.customerProfile['language'] = "TH";
         //20160602 Chanhe AUTH to POA by waramun
         var customerAgent = {
-            "POA_1": {
+            "POA": {
                 "id-number": $('#CitizenID2').val(),
                 "firstname": $('#authorizeFullName').val(),
                 "lastname": $('#authorizeFullName').val()

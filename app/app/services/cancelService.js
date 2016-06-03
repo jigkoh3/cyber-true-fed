@@ -376,7 +376,7 @@
             'user-id': payload.saleAgent.logInName,
             'approver': payload.approver
         };
-        //20160602 Chanhe AUTH to POA by waramun
+        //20160602 Change AUTH to POA by waramun
         if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
 
         } else{

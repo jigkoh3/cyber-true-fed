@@ -3289,27 +3289,30 @@ smartApp.controller('changeOwnershipIBCController', function(
             data["approver"] = $scope.approver;
         }
 
-        //
+        //20160603 Change AUTH_1 to POA , AUTH_2 tp POA_2 , POA to AUTH_1 by waramun
         data["order"]["customer"]["customer-agents"] = {
-            "AUTH_1": {},
             "POA": {},
-            "AUTH_2": {}
+            "AUTH_1": {},
+            "POA_2": {}
         };
         //authen 1
         if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
-            data["order"]["customer"]["customer-agents"]["AUTH_1"] = {
+            //20160603 Change AUTH_1 to POA by waramun
+            data["order"]["customer"]["customer-agents"]["POA"] = {
                 "id-number": $('#CitizenID2').val(),
                 "firstname": $('#authorizeFullName').val(),
                 "lastname": $('#authorizeFullName').val()
             };
         } else {
-            delete data["order"]["customer"]["customer-agents"]["AUTH_1"];
+            //20160603 Change AUTH_1 to POA by waramun
+            delete data["order"]["customer"]["customer-agents"]["POA"];
         }
 
         //build DATA : BUSINESS/CORPORATE
         if ($scope.customerType == 'B' || $scope.customerType == 'C') {
             //POA - ผู้มีอำนาจลงนาม 1
-            data["order"]["customer"]["customer-agents"]["POA"] = {
+            //2016 Change POA to AUTH_1 by waramun
+            data["order"]["customer"]["customer-agents"]["AUTH_1"] = {
                 "id-number": $('#auth_1_id_number').val(),
                 "firstname": $('#auth_1_firstName').val(),
                 "lastname": $('#auth_1_lastName').val()
@@ -3331,20 +3334,23 @@ smartApp.controller('changeOwnershipIBCController', function(
             delete data["order"]["customer"]["title-code"];
         } else {
             //case: INDIVIDUAL
-            delete data["order"]["customer"]["customer-agents"]["POA"];
+            //2016 Change POA to AUTH_1 by waramun
+            delete data["order"]["customer"]["customer-agents"]["AUTH_1"];
             delete data["order"]["order-items"][0]["address-list"]["TAX_ADDRESS"];
         }
         //end build
 
         //authen 2
         if ($('#poa_1_id_number').val() && $('#poa_1_firstname').val() && $('#poa_1_lastname').val()) {
-            data["order"]["customer"]["customer-agents"]["AUTH_2"] = {
+            //2016 Change AUTH_2 to POA_2 by waramun
+            data["order"]["customer"]["customer-agents"]["POA_2"] = {
                 "id-number": $('#poa_1_id_number').val(),
                 "firstname": $('#poa_1_firstname').val(),
                 "lastname": $('#poa_1_lastname').val()
             }
         } else {
-            delete data["order"]["customer"]["customer-agents"]["AUTH_2"];
+            //2016 Change AUTH_2 to POA_2 by waramun
+            delete data["order"]["customer"]["customer-agents"]["POA_2"];
         }
 
         //SHARE_ALLOWANCE, FriendAndFamily, CUG, POOLED

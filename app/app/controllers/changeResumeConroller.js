@@ -2352,9 +2352,9 @@ smartApp.controller('ResumeController', function(
         //authen
         if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
             var authenList = $('#authorizeFullName').val().split(" ");
-
+            //Change AUTH_1 to POA by waramun
             data["order"]["customer"]["customer-agents"] = {
-                "AUTH_1": {
+                "POA": {
                     "id-number": $('#CitizenID2').val(),
                     "firstname": $('#authorizeFullName').val(),
                     "lastname": $('#authorizeFullName').val()

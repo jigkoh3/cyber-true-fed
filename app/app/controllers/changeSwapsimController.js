@@ -51,7 +51,7 @@
     var generateOrderRequest = function() {
         //change AUTH_1 to POA :: 02-06-2016 //waramun
         var customerAgent = {
-            "POA_1": {
+            "POA": {
                 "id-number": $('#CitizenID2').val(),
                 "firstname": $('#authorizeFullName').val(),
                 "lastname": $('#authorizeFullName').val()

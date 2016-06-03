@@ -3368,7 +3368,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         //
         data["order"]["customer"]["customer-agents"] = {
             //20160602 Change AUTH to POA and POA to AUTH by waramun
-            "POA_1": {},
+            "POA": {},
             "AUTH_1": {},
             "POA_2": {}
         };
@@ -3376,14 +3376,14 @@ smartApp.controller('MigratePreToPostIBCController', function(
         if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
             data["order"]["customer"]["customer-agents"] = {
                 //20160602 Change AUTH to POA and POA to AUTH by waramun
-                "POA_1": {
+                "POA": {
                     "id-number": $('#CitizenID2').val(),
                     "firstname": $('#authorizeFullName').val(),
                     "lastname": $('#authorizeFullName').val()
                 }
             };
         } else {
-            delete data["order"]["customer"]["customer-agents"]["POA_1"];
+            delete data["order"]["customer"]["customer-agents"]["POA"];
         }
 
         //build DATA : BUSINESS/CORPORATE
@@ -3412,7 +3412,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             delete data["order"]["customer"]["title-code"];
         } else {
             //case: INDIVIDUAL
-            delete data["order"]["customer"]["customer-agents"]["POA"];
+            delete data["order"]["customer"]["customer-agents"]["AUTH_1"]; //20160602 Change AUTH to POA and POA to AUTH by waramun
             delete data["order"]["order-items"][0]["address-list"]["TAX_ADDRESS"];
         }
         //end build

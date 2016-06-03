@@ -655,6 +655,7 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                     "address-list": {
                         "CUSTOMER_ADDRESS": payload.customerAddress
                     },
+                    'customer-agents': payload.customerAgent //20160602 Sent customer-agent to submit
                 },
                 "sale-agent": {
                     'name': payload.saleAgent['engName'],
@@ -704,7 +705,12 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             request["order"]["order-items"][0]["primary-order-data"]["NAS-PROPOSITION"] = payload.propositionSelected['proposition-code'];
             request["order"]["order-items"][0]["primary-order-data"]["CCBS-PROPOSITION"] = payload.propositionSelected['name'];
         }
+        //20160602 Change AUTH to POA by waramun
+        if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
 
+        } else{
+            delete request['order']['customer']['customer-agents'];
+        }
         console.log(request);
 
         var cb = function(result) {

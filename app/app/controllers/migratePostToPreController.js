@@ -1249,6 +1249,14 @@
         $scope.data.customerAddress['street'] = $scope.mailAddress.road;
         $scope.data.customerAddress['village'] = $scope.mailAddress.village;
 
+        //20160603 Chanhe AUTH to POA by waramun
+        var customerAgent = {
+            "POA": {
+                "id-number": $('#CitizenID2').val(),
+                "firstname": $('#authorizeFullName').val(),
+                "lastname": $('#authorizeFullName').val()
+            }
+        };
 
         return {
             customerProfile: $scope.data.customerProfile,
@@ -1264,7 +1272,8 @@
             postToPreData: postToPreData,
             approver: $scope.approver,
             selectReason: $scope.selectReason,
-            partnerCode: $scope.partnerCode
+            partnerCode: $scope.partnerCode,
+            customerAgent: customerAgent  //20160603 Chanhe AUTH to POA by waramun
         };
     };
     $scope.submit = function() {

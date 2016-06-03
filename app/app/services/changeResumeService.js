@@ -34,7 +34,7 @@
                             "product-type": "PRICEPLAN",
                             "product-sub-type": "R",
                             "product-status": "Active",
-                            "account-category": "I",
+                            "account-category": "B",
                             "account-sub-type": "FIN",
                             "product-id": "70STGP04",
                             "product-name": "70STGP04",

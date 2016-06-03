@@ -1462,7 +1462,7 @@ smartApp.controller('ChangePricePlanController', function(
 
             //change AUTH_1 to POA :: 02-06-2016 //xsam32
             data["order"]["customer"]["customer-agents"] = {
-                "POA_1": {
+                "POA": {
                     "id-number": $('#CitizenID2').val(),
                     "firstname": $('#authorizeFullName').val(),
                     "lastname": $('#authorizeFullName').val()

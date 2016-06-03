@@ -206,7 +206,7 @@
                             "product-type": "PRICEPLAN",
                             "product-sub-type": "R",
                             "product-status": "Active",
-                            "account-category": "I",
+                            "account-category": "B",
                             "account-sub-type": "RPI",
                             "product-id": "SMRTPP87",
                             "product-name": "SMRTPP87",
@@ -257,7 +257,8 @@
                     'firstname': payload.customerProfile['firstname'],
                     'lastname': payload.customerProfile['lastname'],
                     'id-number': payload.customerProfile['id-number'],
-                    'customer-id': payload.customerProfile['customer-id']                   
+                    'customer-id': payload.customerProfile['customer-id'],
+                    'customer-agents': payload.customerAgent                   
                 },
                 "sale-agent": {
                     'name': payload.saleAgent['engName'],
@@ -304,6 +305,12 @@
             'user-id': payload.saleAgent.logInName,
             'approver': payload.approver
         };
+        //20160602 Change AUTH to POA by waramun
+        if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
+
+        } else{
+            delete request['order']['customer']['customer-agents'];
+        }
         console.log(request);
         console.log(payload);
         var cb = function(result) {
