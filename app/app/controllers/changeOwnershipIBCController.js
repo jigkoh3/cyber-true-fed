@@ -4635,8 +4635,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("lastNameRegisterdBC", ValidateMsgService.data.msgSubLastNameEmpty);
         } else if ((isNull($scope.newOwner2.sex) || isNull($('#sex32BC').val())) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
             showValidate("sex32BC", ValidateMsgService.data.msgSubGenderEmpty);
-        } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
-            showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
+        //20160606 Cancel validate subscriber birthdate by waramun
+        // } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
+        //     showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
         } else if (isNull($scope.bcName2) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'BC') {
             showValidate("bcName2", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.firstNameTH) && $scope.customerType == 'N') {
