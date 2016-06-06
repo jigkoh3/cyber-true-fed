@@ -1566,13 +1566,18 @@ smartApp.controller('ChangePricePlanController', function(
         console.log(data);
         console.log($scope.selectReason);
 
+        //add loading :: 06-06-2016 :: xsam32
+        SystemService.showLoading();
+
         if (SystemService.demo) {
+            setTimeout(function(){
             if ($scope.isValidate && $scope.isValidateFF) {
                 SystemService.showBeforeClose({
                     "message": "รายการคำขอเลขที่ " + $scope.orderId,
                     "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
                 });
             }
+            }, 5000);
         } else {
             if ($scope.isValidate && $scope.isValidateFF) {
 

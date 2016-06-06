@@ -1051,7 +1051,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <!-- new requirement :: 06-06-2016 ng-hide="true" :: xsam32 -->
+                                    <div class="col-md-4" ng-hide="true">
                                         <div class="form-group has-feedback">
                                             <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
                                             <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterdBC" class=" form-control date-picker-birthdate dateFormat">
@@ -1130,7 +1131,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <!-- new requirement :: 06-06-2016 ng-hide="true" :: xsam32 -->
+                                <div class="col-md-4" ng-hide="true">
                                     <div class="form-group has-feedback">
                                         <label>วัน/เดือน/ปีเกิด<span style="color:red;">*</span></label>
                                         <input type="text" ng-model="newOwner2.birthDay" id="birthDayRegisterd" style="background:white" class=" form-control date-picker-birthdate dateFormat">
@@ -1638,7 +1640,8 @@
                                 <input type="text" class="form-control telephone" ng-model="contactNo.continued" ng-keyup="onNumberTelTo($event.keyCode)" ng-blur="onNumberTelTo()">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <!-- new requirement :: 06-06-2016 ng-hide="true" :: xsam32 -->
+                        <div class="col-md-3" ng-hide="true">
                             <div class="form-group">
                                 <label>เบอร์มือถือ</label>
                                 <input type="text" class="form-control telephoneZero" ng-model="customer['contact-mobile-number']" maxlength="10" ng-keyup="onInputTelZero2($event.keyCode); 
