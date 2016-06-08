@@ -14842,6 +14842,11 @@ textarea.remark-message {
 }
 @media (min-width: 768px) {
     .modal_pdf_width {
+        width: 85%;
+    }
+}
+@media (max-width: 768px) {
+    .modal_pdf_width {
         width: 100%;
     }
 }
