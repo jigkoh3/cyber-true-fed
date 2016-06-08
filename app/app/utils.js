@@ -61,7 +61,15 @@
 //read card bluetooth ::: 03-02-2016 //xsam32 ref. R3-team
 var THIDReader = new thaiIDReader(8030, true);
 
+var convertDate = function(YYYYMMDD){
+        var d = YYYYMMDD[6]+""+YYYYMMDD[7];
+        var m = YYYYMMDD[4]+""+YYYYMMDD[5];
+        var y = YYYYMMDD[0]+""+YYYYMMDD[1]+""+YYYYMMDD[2]+""+YYYYMMDD[3];
+        return d+"/"+m+"/"+y;
+    };
+
 function parseDataAndroid(res) {
+
 
     var info = res.data.info;
     return {
@@ -83,10 +91,10 @@ function parseDataAndroid(res) {
         Amphur: info.district,
         Province: info.province,
         Sex: info.gender,
-        BirthDay: info.birthdayDate,
+        BirthDay: convertDate(info.birthdayDate),
         IssueAt: info.department,
-        IssueDay: info.manufacturingDate,
-        ExpireDay: info.expiryDate,
+        IssueDay: convertDate(info.manufacturingDate),
+        ExpireDay: convertDate(info.expiryDate),
         Photo: res.data.photo,
     };
 }

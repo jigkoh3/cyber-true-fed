@@ -157,13 +157,88 @@
                     }
                 }
             };
+            var data4 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "4B5LJ6L891ZUW",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "customer": {
+                        "title": "นางสาว",
+                        "title-code": "T3",
+                        "firstname": "จินตรา",
+                        "lastname": "สุขใจ",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "I",
+                        "id-number": "3480300640456",
+                        "require-approve-code": "Y",
+                        "customer-id": "61247",
+                        "customer-level": "NON-TOP",
+                        "cvss-process-request": "Y",
+                        "installed-products": [{
+                            "ouId": "31981",
+                            "ban": "10062573",
+                            "product-type": "ADDITIONAL-OFFER",
+                            "product-sub-type": "R",
+                            "account-category": "I",
+                            "account-sub-type": "RVB",
+                            "product-name": "CREDITLIMIT",
+                            "product-description": "Credit Limit offer",
+                            "company-code": "RM",
+                            "service-level": "",
+                            "product-soc-code": "20061",
+                            "subscriber-id": "90776",
+                            "product-properties": {
+                                "OFFER-INSTANCE-ID": "427972"
+                            },
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0973590415",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "ou-hierarchytype": "NORMAL",
+                            "offer-group": "",
+                            "effective-date": "25/11/2015 00:00:00",
+                            "parent-ouId": ""
+                        }, {
+                            "ouId": "31981",
+                            "ban": "10062573",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "R",
+                            "account-category": "I",
+                            "account-sub-type": "RVB",
+                            "product-name": "SMRTAP35",
+                            "product-description": "iSmart 199 voice on-net 100 min",
+                            "company-code": "RM",
+                            "service-level": "",
+                            "product-soc-code": "117386",
+                            "subscriber-id": "90776",
+                            "product-properties": {
+                                "OFFER-INSTANCE-ID": "427965"
+                            },
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0973590415",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "ou-hierarchytype": "NORMAL",
+                            "offer-group": "",
+                            "effective-date": "25/11/2015 00:00:00",
+                            "parent-ouId": ""
+                        }]
+                    }
+                }
+            };
 
 
             if (msisdn == "0916961011") {
                 //กรณี error
                 fnCallback({
                     status: true,
-                    data: data,
+                    data: data4,
                     error: "",
                     msgErr: ""
                 });
@@ -352,8 +427,7 @@
                     "en-message": "Auto Approve is OK.",
                     "th-message": "คุณได้รับสิทธิ์<br>-xxx<br>-ssss",
                     "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
-                },
-                {
+                }, {
                     "message": "Change Ownership IR/IDD will be canceled",
                     "message-code": "TMV-CHANGE-OWNERSHIP-00008",
                     "message-type": "WARNING",
@@ -403,10 +477,10 @@
                     try {
                         var check = result.data["display-messages"][0]['message-type'];
                         fnCallback({
-                        data: {
-                            status: false
-                        }
-                    });
+                            data: {
+                                status: false
+                            }
+                        });
                         if ($routeParams.subno) {
                             setTimeout(function() {
                                 SystemService.showAlert({
@@ -526,8 +600,10 @@
                                             "SERVICE-LEVEL": priceplan["service-level"],
                                             //"IR-APPROVE-CODE": "",
                                             "CVSS-PROCESS-REQUEST": data["customer"]["cvss-process-request"],
-                                            "AUTO-APPROVE-CODE": "N"
-                                            // "AUTO-APPROVE-REASON": ""
+                                            "AUTO-APPROVE-CODE": "N",
+                                            // "AUTO-APPROVE-REASON": "",
+                                            "OU-HIERARCHYTYPE": "",
+                                            "PARENT-OUID": ""
                                         },
                                         "primary-order-data": {
                                             "OU-ID": priceplan["ouId"],

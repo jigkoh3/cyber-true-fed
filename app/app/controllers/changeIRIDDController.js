@@ -115,6 +115,15 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             'E2E_REFID': $scope.data.orderRequest["order"]["order-id"]
         };
         $scope.data.orderRequest['order']['order-items'][0]['user-memo'] = $scope.getAuthen['logInName'] + "(" + $scope.getAuthen['saleCode'] + ": " + $scope.getAuthen['engName'] + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.data.orderRequest['order']['order-items'][0]['user-memo'];
+
+        //// new requirement :: 08-06-2016 :: xsam32 @by p'kwang
+        $scope.data.orderRequest['order']['order-items'][0]['order-data']['OU-HIERARCHYTYPE'] = $scope.data.installedProduct["ou-hierarchytype"];
+        $scope.data.orderRequest['order']['order-items'][0]['order-data']['PARENT-OUID'] = $scope.data.installedProduct["parent-ouId"];
+        if($scope.data.installedProduct["parent-ouId"]){
+            //
+        }else{
+            delete $scope.data.orderRequest['order']['order-items'][0]['order-data']['PARENT-OUID'];
+        }
         //console.log(headers);
         if (SystemService.demo) {
             SystemService.showBeforeClose({
@@ -1172,6 +1181,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                     changeIRIDDService.validateIRIDDCallback($scope.SubNo, function(resultData) {
                         $scope.checkURL_shop_code = true;
                         $scope.data = resultData;
+                        console.log($scope.data);
 
                         if ($scope.data.status) {
                             console.log(resultData.priceplan['product-properties']['OFFER-INSTANCE-ID']);
