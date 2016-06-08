@@ -3130,7 +3130,7 @@ table th[class*="col-"] {
     .table-responsive {
         width: 100%;
         margin-bottom: 21px;
-        overflow-y: hidden;
+        overflow-y: auto;
         -ms-overflow-style: -ms-autohiding-scrollbar;
         border: 1px solid #ddd;
     }

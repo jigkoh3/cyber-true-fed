@@ -74,7 +74,10 @@
                     checkLoaded();
                 }
             };
-            checkLoaded();
+            setTimeout(function() {
+                checkLoaded();
+            }, 500);
+
         } else {
             $(function() {
                 document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url; //never mind "webui1" 
@@ -107,9 +110,9 @@
             $('#divWebCam').show();
             $('#divMobileCam').hide();
         }
-        if(isAndroid == true){
+        if (isAndroid == true) {
             $('.idBtnReadCard_android').show();
-        }else{
+        } else {
             $('.idBtnReadCard_android').addClass('hide');
         }
     };
