@@ -1,4 +1,4 @@
-function thaiIDReader(port, debugMode) {
+function thaiIDReader(debugMode) {
 
 	var isConnected = false;
 	var successCallback;
@@ -23,6 +23,11 @@ function thaiIDReader(port, debugMode) {
 	this.readAll = function(success, fail) {
 		send("readAll",success,fail);
 		command = "readAll";
+	}
+
+	this.readBarcode = function(success, fail) {
+		send("readBarcode",success,fail);
+		command = "readBarcode";
 	}
 
 	this.closePopup = function() {
@@ -100,7 +105,8 @@ function thaiIDReader(port, debugMode) {
 	 		try {
 	 			//localhost
 	 			//172.17.180.156
-				ws = new WebSocket("ws://localhost:" + port + "/readThaiID");
+				// ws = new WebSocket("ws://172.17.180.156:" + port + "/readThaiID");
+				ws = new WebSocket("ws://localhost:8031/readThaiID");
 
 				ws.onopen = function() {
 					isConnected = true;
@@ -145,13 +151,27 @@ function thaiIDReader(port, debugMode) {
 				    			hideLoading();
 				    			failCallBack(response);
 				    		}
-							break;	
+							break;
 			      		case "complete":
 			      			hideLoading();
 			      			if (response.code == 200) {
 			      				var info = response.res.info ? setDataThaiID(response.res.info) : "";
 			      				var photo = response.res.photo ? response.res.photo : "";
 			      				var data = {"info" : info, "photo" : photo};
+			      				var success = {"code" : response.code, "state" : response.state, "message" : response.message, "data" : data};
+			      				debug(success);
+								successCallback(success);
+								trasactionCompleted = true;
+			      				close_socket();
+				    		} else {
+				    			failCallBack(response);
+				    		}
+			      			break;
+			      		case "barcode":
+			      			hideLoading();
+			      			if (response.code == 200) {
+			      				var barcode = response.res.barcode ? response.res.barcode : "";
+			      				var data = {"barcode" : barcode};
 			      				var success = {"code" : response.code, "state" : response.state, "message" : response.message, "data" : data};
 			      				debug(success);
 								successCallback(success);
@@ -258,7 +278,7 @@ function thaiIDReader(port, debugMode) {
 			overlay.setAttribute("style", "position: absolute; top: 0%; left: 0%; width: 100%; height: 100%; background-color: black; z-index:1001; -moz-opacity:0.1; opacity:0.1; filter: alpha(opacity=10);");
 
 			content.setAttribute("id", "TIR-content");
-			content.setAttribute("style", "position: absolute; top: 50%; left: 50%; min-width: 400px; width: auto; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); padding: 10px 10px 25px 10px; background-color: white; z-index:1002; font-family: arial helvetica, arial, tahoma; font-size: 24px; overflow: auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 12px; text-align: center;z-index:999999;");
+			content.setAttribute("style", "position: absolute; top: 50%; left: 50%; min-width: 400px; width: auto; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); padding: 10px 10px 25px 10px; background-color: white; z-index:1002; font-family: arial helvetica, arial, tahoma; font-size: 24px; overflow: auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 12px; text-align: center;");
 
 			close_content.setAttribute("id", "TIR-close_content");
 			close_content.setAttribute("style", "text-align: right; padding-right: 5px;");

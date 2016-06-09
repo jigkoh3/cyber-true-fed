@@ -820,6 +820,14 @@
         $scope.varPhoto = msg;
     };
     //end----------- camera ----------------
+
+    //// new requirement readBarcode :: 09-06-2016 :: xsam32
+    $scope.readBarcode = function(text){
+        $scope.simSerial = text;
+        $('#simSerial').val(text);
+    };
+
+
     $scope.afterCloseWarning = function() {
         if ($scope.data || $routeParams.subno) {} else {
             $scope.SubNo = "null";

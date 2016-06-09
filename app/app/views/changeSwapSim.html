@@ -184,6 +184,7 @@
                                                    ng-change="onInputSIMSerial()"
                                                    ng-disabled="!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == true && !deviceType)  || (shopType=='1' && dealerCode.length != 8) || (shopType=='1' && getAuthen['shopType'].length==0 && dealerCodeValid==false) || (dealerCode.length != 8)  || (shopType=='0' && dealerCodeValid==false)"
                                                    maxlength="{{ simSerialLength }}" required />
+                                                   <button title="อ่านบาร์โค้ด" ng-disabled="!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == true && !deviceType)  || (shopType=='1' && dealerCode.length != 8) || (shopType=='1' && getAuthen['shopType'].length==0 && dealerCodeValid==false) || (dealerCode.length != 8)  || (shopType=='0' && dealerCodeValid==false)" type="button" data-toggle="tooltip" class="btn credit_ie8" onclick="checkReadBarcode_Android();"><i class="fa fa-credit-card idBtnReadCard_android"></i></button>
                                             <!-- ng-disabled="!dealerCode || !dealerCodeValid || !SubNo || !productCodes" -->
 
                                             <span class="error" style="color:red;" ng-show="hasSubmitted && simSerialForm.simSerialInput.$error.required">

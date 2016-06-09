@@ -124,3 +124,22 @@ function ReadCard_Android() {
         angular.element(document.getElementById('' + $('#divID').val())).scope().readCardError(error.message);
     });
 };
+function ReadBarcode_Android(){
+    THIDReader.readBarcode(function(response) {
+        var txtBarCode = response.data.barcode;
+        angular.element(document.getElementById('' + $('#divID').val())).scope().readBarcode(txtBarCode);
+    }, function(error) {
+        //alert(JSON.stringify(error));
+        console.log('error');
+        console.log(error);
+
+        angular.element(document.getElementById('' + $('#divID').val())).scope().readCardError(error.message);
+    });
+};
+function checkReadBarcode_Android(){
+    var ua = navigator.userAgent.toLowerCase();
+    var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+    if(isAndroid ==  true){
+        ReadBarcode_Android();
+    }
+};
