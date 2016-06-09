@@ -58,25 +58,32 @@
     var printedAndroid = false;
     this.showPDFAndroid = function(url, action) {
         if (action == 'print') {
-            var checkLoaded = function() {
-                if (printedAndroid == true) {
-                    printedAndroid = false;
-                    $('#loadingPrint').show();
-                    setTimeout(function() {
-                        $('#loadingPrint').hide();
-                        document.getElementById('iframePDF').src = "javascript:printCanvas();";
-                    }, 5100);
-                    setTimeout(function() {
-                        that.showPDFAndroid(url, 'none');
-                    }, 6000);
-                } else {
-                    //alert('wait for pdf...');
-                    checkLoaded();
+            // var checkLoaded = function() {
+            //     if (printedAndroid == true) {
+            //         printedAndroid = false;
+
+            //     } else {
+            //         //alert('wait for pdf...');
+            //         checkLoaded();
+            //     }
+            // };
+            // setTimeout(function() {
+            //     checkLoaded();
+            // }, 500);
+            (function a(x) {
+                $('#loadingPrint').show();
+                setTimeout(function() {
+                    $('#loadingPrint').hide();
+                    document.getElementById('iframePDF').src = "javascript:printCanvas();";
+                }, 5100);
+                setTimeout(function() {
+                    that.showPDFAndroid(url, 'none');
+                }, 6000);
+                if (!x) {
+                    return;
                 }
-            };
-            setTimeout(function() {
-                checkLoaded();
-            }, 500);
+                a(--x);
+            })(10);
 
         } else {
             $(function() {
