@@ -1,5 +1,6 @@
 smartApp.service('changeOwnershipPrepaidService', function($filter, SystemService, $routeParams) {
-    var demo = SystemService.demo;
+    // var demo = SystemService.demo;
+    var demo = true;
     var validateChangeOwnershipPrepaidAPI = function(msisdn, fnCallback) {
 
         if (!demo) {
