@@ -825,6 +825,7 @@
     $scope.readBarcode = function(text){
         $scope.simSerial = text;
         $('#simSerial').val(text);
+        $scope.onInputSIMSerial();
     };
 
 
