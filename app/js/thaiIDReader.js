@@ -278,7 +278,7 @@ function thaiIDReader(debugMode) {
 			overlay.setAttribute("style", "position: absolute; top: 0%; left: 0%; width: 100%; height: 100%; background-color: black; z-index:1001; -moz-opacity:0.1; opacity:0.1; filter: alpha(opacity=10);");
 
 			content.setAttribute("id", "TIR-content");
-			content.setAttribute("style", "position: absolute; top: 50%; left: 50%; min-width: 400px; width: auto; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); padding: 10px 10px 25px 10px; background-color: white; z-index:1002; font-family: arial helvetica, arial, tahoma; font-size: 24px; overflow: auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 12px; text-align: center;");
+			content.setAttribute("style", "position: absolute; top: 50%; left: 50%; min-width: 400px; width: auto; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); padding: 10px 10px 25px 10px; background-color: white; z-index:1002; font-family: arial helvetica, arial, tahoma; font-size: 24px; overflow: auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 12px; text-align: center;z-index:99999");
 
 			close_content.setAttribute("id", "TIR-close_content");
 			close_content.setAttribute("style", "text-align: right; padding-right: 5px;");
