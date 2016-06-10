@@ -170,6 +170,9 @@ smartApp.config(function($routeProvider, $httpProvider) {
     }).when('/addDeleteEditOfferNew', {
         templateUrl: 'app/views/addDeleteEditOfferNew.html?v=' + runTime,
         controller: 'AddDeleteEditOfferNewController'
+    }).when('/changeOwnershipPrepaid', {
+        templateUrl: 'app/views/changeOwnershipPrepaid.html?v=' + runTime,
+        controller: 'ChangeOwnershipPrepaidController'
     });
 
     // $routeProvider.otherwise({
