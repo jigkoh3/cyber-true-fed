@@ -29,7 +29,8 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
     $scope.isVerify = false; //for demo ============ true
     $scope.isSelectedPricePlan2 = false;
 
-    $scope.demo = SystemService.demo;
+    // $scope.demo = SystemService.demo;
+    $scope.demo = true;
 
     $scope.showApprovCode = false;
     $scope.isCustomerProfile = false;
