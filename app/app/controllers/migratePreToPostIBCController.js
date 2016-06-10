@@ -3077,7 +3077,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
         var changeOption = "xxx";
         var BILLING_ADDRESS = {};
         var TAX_ADDRESS = {};
-        $scope.titleOther = $("#prefixTH3 option:selected").text();
+        //// fix lastest title=null :: 10-06-2016 :: xsam32
+        //$scope.titleOther = $("#prefixTH3 option:selected").text();
+
         if ($scope.customerType != 'N') {
             $scope.billPayment.accountLang = $scope.mailAddressBC.accountLang;
 
@@ -3138,6 +3140,12 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 "contact-name": $scope.mailAddress.sendName
             };
         } else {
+            //// fix lastest title=null :: 10-06-2016 :: xsam32
+            if ($('#prefixTH3').val() == 'T5') {
+                $scope.titleOther = $("#titleOther option:selected").val();
+            } else {
+                $scope.titleOther = $("#prefixTH3 option:selected").text();
+            }
             BILLING_ADDRESS = {
                 "number": $scope.mailAddress.homeNumber,
                 "moo": $scope.mailAddress.moo,
@@ -4744,9 +4752,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("lastNameRegisterdBC", ValidateMsgService.data.msgSubLastNameEmpty);
         } else if ((isNull($scope.newOwner2.sex) || isNull($('#sex32BC').val())) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
             showValidate("sex32BC", ValidateMsgService.data.msgSubGenderEmpty);
-        //20160606 Cancel validate subscriber birthdate by waramun
-        // } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
-        //     showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
+            //20160606 Cancel validate subscriber birthdate by waramun
+            // } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
+            //     showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
         } else if (isNull($scope.bcName2) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'BC') {
             showValidate("bcName2", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.firstNameTH) && $scope.customerType == 'N') {
