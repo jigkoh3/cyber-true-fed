@@ -2366,7 +2366,7 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
             'E2E_REFID': $scope.orderId
         };
         console.log(data);
-        if (SystemService.demo) {
+        if ($scope.demo) {
             SystemService.showBeforeClose({
                 "message": "รายการคำขอเลขที่ " + $scope.orderId,
                 "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
@@ -2825,7 +2825,7 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
         }
         console.log(data);
         //demo
-        if (SystemService.demo) {
+        if ($scope.demo) {
             var result = {};
             var data = {
                 "status": "SUCCESSFUL",
