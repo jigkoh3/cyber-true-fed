@@ -9,7 +9,7 @@
             <h1 class="content-title">เปลี่ยนเจ้าของเบอร์เติมเงิน</h1>
             <div class="content-body">
                 <div ng-include="template.customerprofile"></div>
-                <div class="well" style="background-color:#ffffff;">
+                <div class="well" style="background-color:#ffffff;" ng-hide="showDataOtp">
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-2 text-right">
@@ -51,16 +51,11 @@
                                     </div>
                                 </div> -->
                             </div>
-                            <div class="col-md-8 right">
-                                <!--<div class="camera-s">
-                                    <a class="btn btn-camera">
-                                        <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
-                                    </a>
-                                </div>-->
+                            <!-- <div class="col-md-8 right">
                                 <button type="button" href="#modal-ReadCamera" ng-show="isCustomerProfile && shopType=='1' && getAuthen['isSecondAuthen'] == true && isCardValueDataLastest == false" ng-click="initWebCamLastest()" onclick="return false" data-toggle="modal" class="btn btn-camera">
                                     <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- Show customer person form -->
                         <div ng-show="customerType=='N'">
@@ -125,6 +120,11 @@
                                     </span>-->
                                     </div>
                                 </div>
+                                <div class="col-md-4 right">
+                                <button type="button" href="#modal-ReadCamera" ng-show="isCustomerProfile && shopType=='1' && getAuthen['isSecondAuthen'] == true && isCardValueDataLastest == false" ng-click="initWebCamLastest()" onclick="return false" data-toggle="modal" class="btn btn-camera">
+                                    <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
+                                </button>
+                            </div>
                             </div>
                             <div class="row">
                                 <div ng-class="newOwner.prefixTH=='T5'?'col-md-4':'col-md-2'">

@@ -1229,7 +1229,7 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
 
         if (cid.length == 13) {
             //setTimeout(function () {
-            //    //$.fancybox.close();
+               $.fancybox.close();
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
@@ -3406,9 +3406,9 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
         $scope.showOtpAgain = true;
         SystemService.showLoading();
         setTimeout(function() {
-                $('#otp').focus();
             SystemService.hideLoading();
             $('#idBindDataAgain').click();
+            $('#otp').focus();
         }, 1000);
 
 
