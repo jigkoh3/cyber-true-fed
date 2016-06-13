@@ -3443,6 +3443,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
         //var spName = $scope.offerDetail["csm-offer-details"]["name"];
         var spAll = "";
         var spNameAll = "";
+        ////new requirement 13-06-2016 :: add SOC :: xsam32
+        var spSocAll = "";
         $scope.attModalVal = "modal";
         var spArray = {
             'SHARE_ALLOWANCE': [],
@@ -3457,10 +3459,12 @@ smartApp.controller('MigratePreToPostIBCController', function(
             for (var isp = 0; isp < spList.length; isp++) {
                 var sp = spList[isp]["special-offer-type"];
                 var spName = spList[isp]["name"];
+                var spSoc = spList[isp]["code"];
 
                 if (sp == "SHARE_ALLOWANCE" || sp == "POOLED" || sp == 'POOLING' || sp == 'CAPMAX') {
                     spAll = spAll + (spAll ? "|" : "") + sp;
                     spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                    spSocAll = spSocAll + (spSocAll ? "|" : "") + spSoc;
                     if ($scope.capMaxParameterList['monetary-capmax']) {
                         spArray[sp].push("Monetary cap max|" + $scope.saveParamData.Monetary + "|");
                     }
@@ -3477,6 +3481,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 if (sp == 'FriendAndFamily') {
                     spAll = spAll + (spAll ? "|" : "") + sp;
                     spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                    spSocAll = spSocAll + (spSocAll ? "|" : "") + spSoc;
                     var countFF = 0;
                     for (var i = 1; i <= $scope.ffData.max; i++) {
                         if ($scope.saveParamData["ff" + i]) {
@@ -3501,6 +3506,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
                     spAll = spAll + (spAll ? "|" : "") + sp;
                     spNameAll = spNameAll + (spNameAll ? "|" : "") + spName;
+                    spSocAll = spSocAll + (spSocAll ? "|" : "") + spSoc;
                     spArray[sp].push("CUG ID|" + $scope.saveDataCUG.id + "|");
                 }
 
@@ -3508,11 +3514,12 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 //create field JSON
                 var list = spAll.split("|");
                 var listName = spNameAll.split('|');
+                var listSoc = spSocAll.split('|');
                 if (spAll) {
                     for (var i = 0; i < list.length; i++) {
                         data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-SIZE"] = spArray[list[i]].length;
 
-                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-OFFER-NAME"] = listName[i];
+                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-OFFER-NAME"] = listSoc[i]+"|"+listName[i];
 
                         var listValue = spArray[list[i]];
                         for (var ii = 0; ii < listValue.length; ii++) {

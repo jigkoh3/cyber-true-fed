@@ -679,7 +679,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         if ($scope.changIR == true) {
             //console.log($scope.data);
             //console.log($scope.data.responseData.customer);
-            if ($scope.data.responseData.customer["cvss-process-request"] == "N" && $scope.data.responseData.customer["require-approve-code"] == "Y") {
+            if ($scope.data.responseData.customer["installed-products"][0]["product-properties"]["CVSS-PROCESS-REQUEST-IR"] == "N" && $scope.data.responseData.customer["require-approve-code"] == "Y") {
                 if ($scope.changIR == true && $scope.isSubIRNo != true && $scope.requestType != 'REMOVE_IRIDD') {
                     $scope.isShowApproveRal = true;
                     $scope.isValidateSave = false;
@@ -841,6 +841,10 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.printOrder = function() {
         $scope.data.orderRequest['approver'] = $scope.approver;
         $scope.data.orderRequest['order']['order-items'][0]['primary-order-data']['OFFER-INSTANCE-ID'] = $scope.hybridInstanceID;
+
+        ////new requirement 13-06-2016 :: xsam32
+        $scope.data.orderRequest['order']['order-items'][0]['order-data']['CVSS-PROCESS-REQUEST-IDD'] = $scope.data.responseData.customer["installed-products"][0]["product-properties"]["CVSS-PROCESS-REQUEST-IDD"];
+        $scope.data.orderRequest['order']['order-items'][0]['order-data']['CVSS-PROCESS-REQUEST-IR'] = $scope.data.responseData.customer["installed-products"][0]["product-properties"]["CVSS-PROCESS-REQUEST-IR"];
 
 
         if ($scope.validateUI()) {

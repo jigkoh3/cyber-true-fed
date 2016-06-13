@@ -175,7 +175,7 @@
                         "require-approve-code": "Y",
                         "customer-id": "61247",
                         "customer-level": "NON-TOP",
-                        "cvss-process-request": "Y",
+                        //"cvss-process-request": "Y",
                         "installed-products": [{
                             "ouId": "31981",
                             "ban": "10062573",
@@ -190,7 +190,9 @@
                             "product-soc-code": "20061",
                             "subscriber-id": "90776",
                             "product-properties": {
-                                "OFFER-INSTANCE-ID": "427972"
+                                "OFFER-INSTANCE-ID": "427972",
+                                "CVSS-PROCESS-REQUEST-IDD": "Y",
+                                "CVSS-PROCESS-REQUEST-IR": "N"
                             },
                             "product-id-name": "MSISDN",
                             "product-id-number": "0973590415",
@@ -599,7 +601,9 @@
                                             "MOBILE-SERVICETYPE": priceplan["mobile-servicetype"],
                                             "SERVICE-LEVEL": priceplan["service-level"],
                                             //"IR-APPROVE-CODE": "",
-                                            "CVSS-PROCESS-REQUEST": data["customer"]["cvss-process-request"],
+                                            //"CVSS-PROCESS-REQUEST": data["customer"]["cvss-process-request"],
+                                            //"CVSS-PROCESS-REQUEST-IDD": data["customer"]["installed-products"][0]["product-properties"]["CVSS-PROCESS-REQUEST-IDD"],
+                                            //"CVSS-PROCESS-REQUEST-IR": data["customer"]["installed-products"][0]["product-properties"]["CVSS-PROCESS-REQUEST-IR"],
                                             "AUTO-APPROVE-CODE": "N",
                                             // "AUTO-APPROVE-REASON": "",
                                             "OU-HIERARCHYTYPE": "",
