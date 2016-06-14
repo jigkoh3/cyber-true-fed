@@ -555,6 +555,25 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
 
 
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
+    $scope.onLoadNull = function() {
+        $('#loadingReadCard3').hide();
+        setTimeout(function() {
+            if ($scope.SubNo == 'null') {
+                $('#dataSubNo').focus();
+            }
+        }, 1500);
+        AuthenService.getAuthen(function(result) {
+            if (result == "ERROR") return;
+            $scope.getAuthen = result;
+            $scope.chkShopcode();
+            if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
+                $scope.isNonePartner = false;
+                //$scope.showDataDealer = true;
+            }
+            $scope.shopType = $scope.getAuthen["shopType"];
+            //$scope.checkUserDealer();
+        });
+    };
     $scope.onLoad = function() {
         $('#loadingReadCard3').hide();
         AuthenService.getAuthen(function(result) {
@@ -568,7 +587,7 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
                 if ($scope.SubNo == 'null') {
                     $('#dataSubNo').focus();
                 }
-            }, 1100);
+            }, 1500);
 
             //call generate-order-id
             SystemService.showLoading();
@@ -1229,7 +1248,7 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
 
         if (cid.length == 13) {
             //setTimeout(function () {
-               $.fancybox.close();
+            $.fancybox.close();
             //}, 1000);
 
             $scope.customer['id-number'] = cid;
@@ -3310,15 +3329,15 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
         $scope.isClickPrint = false;
         isFocus = true;
         $scope.initModalReadCard();
-
         $('#CitizenIDLastest').focus();
-
-        if (idFocus) {
+        setTimeout(function() {
+            if (idFocus) {
             $('#' + idFocus).focus();
             idFocus = "";
         } else {
             // $scope.validateUI();
         }
+        }, 500);
     };
 
     $scope.checkUserDealer = function() {
@@ -3415,9 +3434,28 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
     };
 
     $scope.chkOtp = function(otp) {
-        if (otp == "55555") {
-            $scope.showDataOtp = true;
-        }
+        SystemService.showLoading();
+        setTimeout(function() {
+            if (otp == "55555") {
+                $scope.showDataOtp = true;
+            } else {
+                $scope.showDataOtp = false;
+                SystemService.showAlert({
+                    "message": "หมายเลข OTP ไม่ถูกต้อง",
+                    "message-code": "",
+                    "message-type": "WARNING",
+                    "en-message": "Incorrect otp",
+                    "th-message": "หมายเลข OTP ไม่ถูกต้อง ",
+                    "technical-message": "changeOwnershipPrepaidController"
+                });
+                setTimeout(function() {
+                    $('#btn_ngbOK').focus();
+                    idFocus = "otp";
+                }, 1000);
+            }
+            SystemService.hideLoading();
+            $('#idBindDataAgain').click();
+        }, 1000);
     };
     $scope.chkOtpKeyup = function() {
         var otp = $('#otp').val();
@@ -3429,6 +3467,19 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
                     $scope.showDataOtp = true;
                 } else {
                     $scope.showDataOtp = false;
+                    SystemService.showAlert({
+                        "message": "หมายเลข OTP ไม่ถูกต้อง",
+                        "message-code": "",
+                        "message-type": "WARNING",
+                        "en-message": "Incorrect otp",
+                        "th-message": "หมายเลข OTP ไม่ถูกต้อง ",
+                        "technical-message": "changeOwnershipPrepaidController"
+                    });
+                    setTimeout(function() {
+                        $('#btn_ngbOK').focus();
+                        idFocus = "otp";
+                    }, 1000);
+
                 }
                 SystemService.hideLoading();
                 $('#idBindDataAgain').click();
@@ -3437,5 +3488,5 @@ smartApp.controller('ChangeOwnershipPrepaidController', function(
         } else {
             $scope.showDataOtp = false;
         }
-    }
+    };
 });
