@@ -427,6 +427,12 @@
             'approver': payload.orderData.approver,
             'target': '/aftersales/order/submit'
         };
+        //// delete POA case none checked POA :: 17-06-2016 :: xsam32
+        if(payload["customerAgent"]["POA"]["id-number"]){
+            //
+        }else{
+            delete request["order"]["customer"]["customer-agents"];
+        }
         console.log(request);
         console.log(JSON.stringify(request));
         var cb = function(result) {
