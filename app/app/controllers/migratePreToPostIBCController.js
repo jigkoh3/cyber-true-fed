@@ -1825,6 +1825,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
                                 var birthDate = (dateNow.getFullYear() - 20) + "-" + fillZero(dateNow.getMonth() + 1) + "-" + fillZero(dateNow.getDate()) + "T00:00:00+0700";
                                 var expireDate = (dateNow.getFullYear() + 1) + "-" + fillZero(dateNow.getMonth() + 1) + "-" + fillZero(dateNow.getDate()) + "T00:00:00+0700";
+
+                                //// cr fix birthDate BC to '01-01-1950' :: 21-06-2016 ::: xsam32 
+                                var birthDate = "1950-01-01T00:00:00+0700";
+
+                                
                                 //alert(birthDate+":::"+expireDate);
                                 if ($scope.getAccountCat() != 'I') {
                                     $scope.newOwner.birthDay = formatDate(birthDate);

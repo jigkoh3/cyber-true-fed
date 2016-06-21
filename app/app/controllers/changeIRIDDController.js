@@ -634,7 +634,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     $scope.dataAutoApprove = {};
     $scope.checkAutoApprove = function() {
         //OPENING
-        return;
+        //return;
 
         SystemService.showLoading();
         var data = {
