@@ -1829,7 +1829,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                 //// cr fix birthDate BC to '01-01-1950' :: 21-06-2016 ::: xsam32 
                                 var birthDate = "1950-01-01T00:00:00+0700";
 
-                                
+
                                 //alert(birthDate+":::"+expireDate);
                                 if ($scope.getAccountCat() != 'I') {
                                     $scope.newOwner.birthDay = formatDate(birthDate);
@@ -3555,9 +3555,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
         }
 
         data['order']["customer"]["address-list"]["CUSTOMER_ADDRESS"] = data['order']["order-items"][0]["address-list"]["BILLING_ADDRESS"];
-        if ($scope.customerStatusN == 'O') {
-            data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
-        }
+
+        //// Fixed by comment case ISSUE customer-id ::: 21-06-2016 ::: xsam32
+        // if ($scope.customerStatusN == 'O') {
+        //     data['order']["customer"]["customer-id"] = $scope.lastestCustomer['customer-id'];
+        // }
 
         //check :: customer-id
         if (changeOption == "NEW") {
