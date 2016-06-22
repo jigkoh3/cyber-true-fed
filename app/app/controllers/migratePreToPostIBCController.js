@@ -4706,7 +4706,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("CitizenID2", ValidateMsgService.data.authorizeIdMsg);
         } else if (errorAuthorizeName) {
             showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
-        } else if (($scope.newOwner.prefixTH == "T5") && isNull($('#titleOther').val())) {
+        } else if (($scope.newOwner.prefixTH == "T5") && isNull($('#titleOther').val())&& $scope.customerType == 'N') {
             showValidate("titleOther", ValidateMsgService.data.msgNewPosCusPrefixEmpty);
         } else if (isNull($scope.customer['id-number'])) {
             showValidate("citizenID3", ValidateMsgService.data.msgNewCusIDnoEmpty);
