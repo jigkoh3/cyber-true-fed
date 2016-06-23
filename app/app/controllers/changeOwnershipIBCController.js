@@ -3325,6 +3325,9 @@ smartApp.controller('changeOwnershipIBCController', function(
                 //case: BUSINESS/CORPORATE : EXISTING-CUSTOMER : EXISTING ACCOUNT
                 delete data["order"]["order-items"][0]["address-list"]["BILLING_ADDRESS"];
                 delete data["order"]["order-items"][0]["address-list"]["TAX_ADDRESS"];
+
+                //// case EXISTING-ACCOUNT ::: 23-06-2016 :: xsam32
+                data["order"]["customer"]["contact-number"] = "";
             }
             //check :: PREFER-CONTACT
             if ($scope.billPayment.preferedContace == "FIX") {

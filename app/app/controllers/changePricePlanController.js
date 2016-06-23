@@ -622,7 +622,7 @@ smartApp.controller('ChangePricePlanController', function(
                         }
 
                         SystemService.pricePlans = $scope.propositionList;
-                        console.log($scope.propositionList);
+                        //console.log($scope.propositionList);
 
                         //$scope.propositionList = $filter('unique')($scope.propositionList);
                         //console.log($scope.propositionList);
@@ -1982,7 +1982,7 @@ smartApp.controller('ChangePricePlanController', function(
         //         CAPMAX: false
         //     };
         // }
-        console.log($scope.selectProposition);
+        //console.log($scope.selectProposition);
         if ($scope.selectProposition) {
             $scope.propositionList = $filter('filter')(valPricePlans, {
                 "proposition-code": $scope.selectProposition
@@ -1993,7 +1993,7 @@ smartApp.controller('ChangePricePlanController', function(
             });
         }
 
-        console.log($scope.selectProposition, $scope.propositionList);
+        //console.log($scope.selectProposition, $scope.propositionList);
     };
 
     //End pricePlan
