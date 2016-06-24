@@ -23,6 +23,9 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
     $scope.isCardValueData = false;
     $scope.getAuthen = {};
     $scope.isCustomerProfile = false;
+
+    $scope.isFirstClickDropDown_Proposition = true;
+    $scope.onFirstClickDropDown_Proposition = false;
     $scope.varCardInfo2 = {
         firstName: "",
         lastName: ""
@@ -688,6 +691,25 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
 
                 };
 
+                // if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "mapped-propo-priceplans"])) {
+                //     $scope.aftersalePriceplans = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
+                //     for (var i = 0; i < $scope.aftersalePriceplans.length; i++) {
+                //         $scope.aftersalePriceplans[i]["proposition"]['proposition_code'] = $scope.aftersalePriceplans[i]["proposition"]['proposition-code'];
+                //         $scope.propositions.push($scope.aftersalePriceplans[i]["proposition"]);
+                //     }
+                //     //make data for $scope.propositionList form ......
+                //     var arr = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
+                //     for (var i = 0; i < arr.length; i++) {
+                //         //makeDataPriceplan(arr[i]["priceplans"], arr[i]['proposition']['name'], arr[i]['proposition']['proposition-code']);
+                //     }
+                // }
+                if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "priceplans"])) {
+                    //make data for $scope.propositionList form ......
+                    ////makeDataPriceplan(resultGetPriceplan.data["response-data"]["priceplans"], "", "");
+                    //
+                    valPricePlans = resultGetPriceplan.data["response-data"]["priceplans"];
+
+                }
                 if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "mapped-propo-priceplans"])) {
                     $scope.aftersalePriceplans = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
                     for (var i = 0; i < $scope.aftersalePriceplans.length; i++) {
@@ -695,15 +717,61 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                         $scope.propositions.push($scope.aftersalePriceplans[i]["proposition"]);
                     }
                     //make data for $scope.propositionList form ......
-                    var arr = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
-                    for (var i = 0; i < arr.length; i++) {
-                        makeDataPriceplan(arr[i]["priceplans"], arr[i]['proposition']['name'], arr[i]['proposition']['proposition-code']);
+                    var arrMPP = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
+                    for (var im = 0; im < arrMPP.length; im++) {
+                        //makeDataPriceplan(arr[i]["priceplans"], arr[i]['proposition']['name'], arr[i]['proposition']['proposition-code']);
+                        var arr = arrMPP[im]["priceplans"];
+                        if (arr && arr != undefined && arr != null) {
+                            for (var i = 0; i < arr.length; i++) {
+                                arr[i]["proposition-code"] = arrMPP[im]['proposition']['proposition-code'];
+                                arr[i]["promotion"] = arrMPP[im]['proposition']['name'];
+                                valPricePlans.push(arr[i]);
+                            }
+                        }
                     }
                 }
-                if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "priceplans"])) {
-                    //make data for $scope.propositionList form ......
-                    makeDataPriceplan(resultGetPriceplan.data["response-data"]["priceplans"], "", "");
+                for (var u = valPricePlans.length; u--;) {
+                    var numRow = $filter('filter')($scope.propositionList, { name: valPricePlans[u]["name"] });
+                    if (numRow.length == 0) {
+                        $scope.propositionList.push(valPricePlans[u]);
+                        valPricePlansUnique.push(valPricePlans[u]);
+                    }
                 }
+                // $scope.propositionList = valPricePlans;
+                // valPricePlansUnique = valPricePlans;
+
+                //// open dropdown xxxx
+                if ($scope.isFirstClickDropDown_Proposition == true && $scope.onFirstClickDropDown_Proposition == true) {
+                    $scope.isFirstClickDropDown_Proposition = false;
+                    setTimeout(function() {
+                        var id = "selectProposition";
+                        var select_box = document.getElementById(id);
+                        if (select_box.options.length > 10) {
+                            select_box.size = 10;
+                        } else {
+                            select_box.size = select_box.options.length;
+                        }
+
+                        $('#selectProposition').focus();
+                        $('#selectProposition').click(function() {
+                            select_box.size = 1;
+                        });
+                        $('#selectProposition').blur(function() {
+                            select_box.size = 1;
+                        });
+                        $('#selectProposition').keydown(function(e) {
+                            var charCode = (e.which) ? e.which : e.keyCode;
+                            if (charCode == 13)
+                                select_box.size = 1;
+                        });
+
+                    }, 1200);
+                } else {
+                    setTimeout(function() {
+                        $('#ppfilter').focus();
+                    }, 2500);
+                }
+
 
 
                 $scope.promotion = "";
@@ -1570,13 +1638,13 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
         SystemService.showLoading();
 
         if (SystemService.demo) {
-            setTimeout(function(){
-            if ($scope.isValidate && $scope.isValidateFF) {
-                SystemService.showBeforeClose({
-                    "message": "รายการคำขอเลขที่ " + $scope.orderId,
-                    "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
-                });
-            }
+            setTimeout(function() {
+                if ($scope.isValidate && $scope.isValidateFF) {
+                    SystemService.showBeforeClose({
+                        "message": "รายการคำขอเลขที่ " + $scope.orderId,
+                        "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
+                    });
+                }
             }, 5000);
         } else {
             if ($scope.isValidate && $scope.isValidateFF) {
@@ -1775,12 +1843,12 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
         //$('#ppfilter').val('');
         //$scope.pricePlanFilter = "";
         $scope.pricePlan2 = {
-            name: pp.pricePlan,
+            display: pp.name + ' : ' + pp.description,
             promotion: pp.promotion,
             rc: pp.rc,
-            priceplans: pp.priceplans,
+            priceplans: pp,
             code: pp["proposition-code"],
-            saveName: pp.saveName,
+            saveName: pp.name,
             pp: pp
         };
         $scope.isSelectedPricePlan = true;
@@ -1826,12 +1894,12 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                 promotion: newProposition,
                 rc: $scope.pricePlan2.rc,
                 pricePlanFilter: "",
-                saveName: $scope.pricePlan2.saveName
+                saveName: $scope.pricePlan2.priceplans.name
             };
 
             //alert($scope.pricePlan.saveName);
 
-            if ($scope.pricePlan2.name) {
+            if ($scope.pricePlan2.display) {
                 $scope.isValidate = true;
             }
 
@@ -2047,6 +2115,7 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
         //$('#ppfilter').val('');
         //$scope.pricePlanFilter.value = "";
         $scope.pricePlan = {};
+        $scope.pricePlan2 = {};
         $scope.specialOfferType = {
             CUG: false,
             FF: false,
@@ -2211,22 +2280,25 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                 for (var i = 0; i < txtList.length; i++) {
                     //arr = $filter('filter')(arr, txtList[i]);
                     if (i == 0) {
-                        var hege = $filter('filter')(arr, { "pricePlan": txtList[i] });
-                        var stale = $filter('filter')(arr, { "rc": txtList[i] });
-                        bbArr = hege.concat(stale);
+                        var a = $filter('filter')(arr, { "name": txtList[i] });
+                        var b = $filter('filter')(arr, { "rc": txtList[i] });
+                        var c = $filter('filter')(arr, { "description": txtList[i] });
+                        bbArr = a.concat(b).concat(c);
                     } else {
-                        var hege = $filter('filter')(bbArr, { "pricePlan": txtList[i] });
-                        var stale = $filter('filter')(bbArr, { "rc": txtList[i] });
-                        bbArr = hege.concat(stale);
+                        var a = $filter('filter')(bbArr, { "name": txtList[i] });
+                        var b = $filter('filter')(bbArr, { "rc": txtList[i] });
+                        var c = $filter('filter')(arr, { "description": txtList[i] });
+                        bbArr = a.concat(b).concat(c);
                     }
                     arr = bbArr;
                 }
             } else {
                 //if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
                 //arr = $filter('filter')(arr, txtSearch);
-                var hege = $filter('filter')(arr, { "pricePlan": txtSearch });
-                var stale = $filter('filter')(arr, { "rc": txtSearch });
-                arr = hege.concat(stale);
+                var a = $filter('filter')(arr, { "name": txtSearch });
+                var b = $filter('filter')(arr, { "rc": txtSearch });
+                var c = $filter('filter')(arr, { "description": txtSearch });
+                arr = a.concat(b).concat(c);
                 //}
             }
 

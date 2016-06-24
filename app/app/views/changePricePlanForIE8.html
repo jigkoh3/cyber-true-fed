@@ -19,7 +19,7 @@
                                 <label class="col-md-3 control-label">รายการส่งเสริมการขาย</label>
                                 <div class="col-md-8">
                                     <!--<select ng-change="changesaleList()" class="form-control" ng-model="saleList" ng-options="key as value for (key , value) in datalsSale"></select>-->
-                                    <select id="selectProposition" ng-disabled="!isCustomerProfile" class="form-control isCustomerProfile" ng-focus="selectedPricePlan3()" ng-blur="selectedPromotion()" ng-model="propoCode" ng-change="onClearPricePlan()">
+                                    <select id="selectProposition" ng-disabled="!isCustomerProfile" class="form-control isCustomerProfile" ng-focus=" onFirstClickDropDown_Proposition=true; selectedPricePlan3();" ng-blur="selectedPromotion()" ng-model="propoCode" ng-change="onClearPricePlan()">
                                         <option value="null">-- กรุณาเลือก --</option>
                                         <option ng-repeat="item in propositions | orderBy: 'proposition_code'" value="{{item['proposition-code']}}">
                                             [{{item["proposition-code"]}}] {{item["name"]}} : {{item["description"]}}
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label priceplaneText">โปรโมชั่น <span style="color:red;">*</span></label>
                                 <div class="col-md-6" id="priceplan_sl">
-                                    <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
+                                    <input readonly="readonly" type="text" ng-value="pricePlan2.display" class="form-control">
                                 </div>
                                 <div class="col-md-2" ng-submit="openPricePlanDialog()">
                                     <input type="text" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog() && smartSearchPP(pricePlanFilter.value)" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
@@ -98,16 +98,16 @@
                                                             </label>
                                                         </th>
                                                     </tr>
-                                                    <tr dir-paginate="pp in propositionList | orderBy:'pricePlan'| itemsPerPage: pageSize" pagination-id="PPList" current-page="currentPage">
+                                                    <tr dir-paginate="pp in propositionList | orderBy:'name'| itemsPerPage: pageSize" pagination-id="PPList" current-page="currentPage">
                                                         <th colspan="5" style="padding: 5px; padding-bottom: 0px;">
                                                             <label class="col-xs-12" style="cursor:pointer;">
                                                                 <div class="row">
                                                                     <div class="col-xs-1">
-                                                                        <input name="pricelsx" type="radio" ng-click="selectedPricePlan(pp)" ng-value="pp.pricePlan" class="radioPriceplan" />
+                                                                        <input name="pricelsx" type="radio" ng-click="selectedPricePlan(pp)" ng-value="pp.name+' : '+pp.description" class="radioPriceplan" />
                                                                     </div>
-                                                                    <div class="col-xs-6" ng-show="Level=='OU'" title="{{pp.promotion}}">{{pp.pricePlan}}</div>
-                                                                    <div class="col-xs-8" ng-hide="Level=='OU'" title="{{pp.promotion}}">{{pp.pricePlan}}</div>
-                                                                    <div class="col-xs-2 text-center" ng-show="Level=='OU'">{{pp.priceplans['service-level']}}</div>
+                                                                    <div class="col-xs-6" ng-show="Level=='OU'" title="{{pp.promotion}}">{{pp.name+' : '+pp.description}}</div>
+                                                                    <div class="col-xs-8" ng-hide="Level=='OU'" title="{{pp.promotion}}">{{pp.name+' : '+pp.description}}</div>
+                                                                    <div class="col-xs-2 text-center" ng-show="Level=='OU'">{{pp['service-level']}}</div>
                                                                     <div class="col-xs-3 text-center">{{pp.rc | number}}</div>
                                                                     <!-- <div class="col-xs-2" style="text-align:center;">{{pp.promotion}}</div> -->
                                                                 </div>
