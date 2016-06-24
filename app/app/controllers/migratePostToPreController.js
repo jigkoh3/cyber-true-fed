@@ -1258,6 +1258,10 @@
             }
         };
 
+        //// what $scope.selectedProPositionIn ::: Fixed to selectProPP :: 24-06-2016 :: xsam32
+        var selectProPP = $filter('filter')($scope.proPositionList, {"proposition-code": $scope.selectedPricePlan.proposition});
+        selectProPP = selectProPP[0];
+
         return {
             customerProfile: $scope.data.customerProfile,
             customerProfileNew: $scope.data.customerProfileNew,
@@ -1265,7 +1269,7 @@
             productDetails: $scope.data.simData,
             orderData: orderData,
             saleAgent: $scope.getAuthen,
-            propositionSelected: $scope.selectedProPositionIn,
+            propositionSelected: selectProPP, //$scope.selectedProPositionIn,
             priceplanSelected: $scope.selectedPricePlan,
             reason: $scope.selectedReason,
             memo: $scope.memo,
