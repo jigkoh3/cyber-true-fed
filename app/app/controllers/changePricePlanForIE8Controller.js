@@ -13,7 +13,7 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
     $window) {
 
 
-    $scope.divID = "changePricePlanForIE8Content";
+    $scope.divID = "ChangePricePlanForIE8Content";
     $scope.isMatch = true;
     $scope.orderId = "";
     $scope.TrxID = "";
@@ -23,9 +23,6 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
     $scope.isCardValueData = false;
     $scope.getAuthen = {};
     $scope.isCustomerProfile = false;
-
-    $scope.isFirstClickDropDown_Proposition = true;
-    $scope.onFirstClickDropDown_Proposition = false;
     $scope.varCardInfo2 = {
         firstName: "",
         lastName: ""
@@ -367,7 +364,7 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                 $scope.OUID = "";
             }
 
-            //call validateChangePricePlan
+            //call validateChangePricePlanForIE8
             ChangePricePlanForIE8Service.getChangePricePlan($scope.SubNo, $scope.OUID, function(result) {
                 console.log(result);
                 if (result.status) {
@@ -600,29 +597,155 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                 $scope.propositions = [];
                 valPricePlans = [];
                 valPricePlansUnique = [];
+                var checkI = 0;
+                var loopLimit = 500;
                 var makeDataPriceplan = function(arr, proName, proCode) {
+                    //alert(proName, checkI);
                     if (arr && arr != undefined && arr != null) {
-                        for (var i = 0; i < arr.length; i++) {
-                            var item = {
-                                "proposition-code": proCode,
-                                "pricePlan": arr[i]["name"] + " : " + arr[i]["description"],
-                                "promotion": proName,
-                                "rc": arr[i]["rc"],
-                                "priceplans": arr[i],
-                                "saveName": arr[i]["name"],
-                                "radioId": arr[i]["name"] + ":" + proName
-                            };
-                            var numRow = $filter('filter')($scope.propositionList, {
-                                pricePlan: arr[i]["name"]
-                            });
-                            if (numRow.length == 0) {
+                        // for (var i = 0; i < arr.length; i++) {
+                        //     if(i==0 && checkI == loopLimit){
+                        //     i = checkI;
+                        //     }
+                        //     var item = {
+                        //         "proposition-code": proCode,
+                        //         "pricePlan": arr[i]["name"] + " : " + arr[i]["description"],
+                        //         "promotion": proName,
+                        //         "rc": arr[i]["rc"],
+                        //         "priceplans": arr[i],
+                        //         "saveName": arr[i]["name"],
+                        //         "radioId": arr[i]["name"] + ":" + proName
+                        //     };
+                        //     var numRow = $filter('filter')($scope.propositionList, {
+                        //         pricePlan: arr[i]["name"]
+                        //     });
+                        //     if (numRow.length == 0) {
 
-                                $scope.propositionList.push(item);
-                                valPricePlansUnique.push(item);
+                        //         $scope.propositionList.push(item);
+                        //         valPricePlansUnique.push(item);
 
-                            }
-                            valPricePlans.push(item);
+                        //         if(i==loopLimit){
+                        //             checkI = loopLimit;
+                        //             setTimeout(function(){
+                        //                 makeDataPriceplan(arr, proName, proCode);
+                        //             }, 1000);
+                        //             break;
+                        //          }
+
+                        //     }
+                        //     valPricePlans.push(item);
+                        // }
+                        if (arr.length > 300) {
+                            $('#backdropPP').show();
                         }
+                        var i = 0;
+                        (function() {
+                            for (; i < arr.length; i++) {
+                                /*
+                                    Normal processing here
+                                */
+                                var item = {
+                                    "proposition-code": proCode,
+                                    "pricePlan": arr[i]["name"] + " : " + arr[i]["description"],
+                                    "promotion": proName,
+                                    "rc": arr[i]["rc"],
+                                    "priceplans": arr[i],
+                                    "saveName": arr[i]["name"],
+                                    "radioId": arr[i]["name"] + ":" + proName
+                                };
+                                var numRow = $filter('filter')($scope.propositionList, {
+                                    pricePlan: arr[i]["name"]
+                                });
+                                if (numRow.length == 0) {
+
+                                    $scope.propositionList.push(item);
+                                    valPricePlansUnique.push(item);
+
+                                    // if(i==loopLimit){
+                                    //     checkI = loopLimit;
+                                    //     setTimeout(function(){
+                                    //         makeDataPriceplan(arr, proName, proCode);
+                                    //     }, 1000);
+                                    //     break;
+                                    //  }
+
+                                }
+                                valPricePlans.push(item);
+
+                                // Every 100,000 iterations, take a break
+                                if (i > 0 && i % 100 == 0) {
+                                    // Manually increment `i` because we break
+                                    i++;
+                                    // Set a timer for the next iteration 
+                                    window.setTimeout(arguments.callee);
+                                    //alert(i)
+                                    $('#idBindDataAgain').click();
+
+                                    break;
+                                }
+                                if (i > 100 && i == arr.length - 1) {
+                                    $('#idBindDataAgain').click();
+                                    $('#backdropPP').hide();
+                                    //$('#modalnewpriceplan').click();
+                                    if ($scope.pricePlanFilter.value) {
+                                        $scope.smartSearchPP($scope.pricePlanFilter.value);
+                                        var list = $scope.propositionList;
+                                        console.log(list);
+
+                                        setTimeout(function() {
+                                            $('#idBindDataAgain').click();
+                                            $('#ppfilter2').select();
+                                            $scope.firstSearch = true;
+                                            $scope.smartSearchPP($scope.pricePlanFilter.value);
+                                            var list = $scope.propositionList;
+                                            console.log(list.length, $scope.pricePlanFilter.value);
+                                            if (list.length == 1) {
+                                                //if ($scope.firstSearch == false) {
+                                                $scope.isEnterPP = true;
+                                                $scope.selectedPricePlan(list[0]);
+                                                $scope.selectedPricePlan2();
+                                                if ($scope.firstSearch == false) {
+                                                    //setTimeout(function() {
+                                                    $('#modalnewpriceplan').click();
+                                                    //}, 5100);
+
+                                                } else {
+                                                    $scope.firstSearch = false;
+                                                }
+                                                //} else {
+                                                // $scope.firstSearch = false;
+                                                //}
+
+                                            } else if (list.length > 1 && $scope.pricePlanFilter.value) {
+                                                if ($scope.firstSearch == false) {
+                                                    //setTimeout(function() {
+                                                    $('#modalnewpriceplan').click();
+                                                    //}, 5100);
+
+                                                } else {
+                                                    $scope.firstSearch = false;
+                                                }
+                                            } else if (list.length == 0) {
+                                                if ($scope.firstSearch == false) {
+                                                    //setTimeout(function() {
+                                                    $('#modalnewpriceplan').click();
+                                                    //}, 5100);
+
+                                                } else {
+                                                    $scope.firstSearch = false;
+                                                }
+                                                idFocus = "ppfilter";
+                                                SystemService.showAlert(ValidateMsgService.data.pricePlanNotFoundMsg);
+
+                                            } else {
+                                                //
+                                            }
+                                        }, 500);
+
+                                    }
+
+                                }
+                            }
+                        })();
 
                         SystemService.pricePlans = $scope.propositionList;
                         //console.log($scope.propositionList);
@@ -691,25 +814,6 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
 
                 };
 
-                // if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "mapped-propo-priceplans"])) {
-                //     $scope.aftersalePriceplans = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
-                //     for (var i = 0; i < $scope.aftersalePriceplans.length; i++) {
-                //         $scope.aftersalePriceplans[i]["proposition"]['proposition_code'] = $scope.aftersalePriceplans[i]["proposition"]['proposition-code'];
-                //         $scope.propositions.push($scope.aftersalePriceplans[i]["proposition"]);
-                //     }
-                //     //make data for $scope.propositionList form ......
-                //     var arr = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
-                //     for (var i = 0; i < arr.length; i++) {
-                //         //makeDataPriceplan(arr[i]["priceplans"], arr[i]['proposition']['name'], arr[i]['proposition']['proposition-code']);
-                //     }
-                // }
-                if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "priceplans"])) {
-                    //make data for $scope.propositionList form ......
-                    ////makeDataPriceplan(resultGetPriceplan.data["response-data"]["priceplans"], "", "");
-                    //
-                    valPricePlans = resultGetPriceplan.data["response-data"]["priceplans"];
-
-                }
                 if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "mapped-propo-priceplans"])) {
                     $scope.aftersalePriceplans = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
                     for (var i = 0; i < $scope.aftersalePriceplans.length; i++) {
@@ -717,61 +821,16 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                         $scope.propositions.push($scope.aftersalePriceplans[i]["proposition"]);
                     }
                     //make data for $scope.propositionList form ......
-                    var arrMPP = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
-                    for (var im = 0; im < arrMPP.length; im++) {
-                        //makeDataPriceplan(arr[i]["priceplans"], arr[i]['proposition']['name'], arr[i]['proposition']['proposition-code']);
-                        var arr = arrMPP[im]["priceplans"];
-                        if (arr && arr != undefined && arr != null) {
-                            for (var i = 0; i < arr.length; i++) {
-                                arr[i]["proposition-code"] = arrMPP[im]['proposition']['proposition-code'];
-                                arr[i]["promotion"] = arrMPP[im]['proposition']['name'];
-                                valPricePlans.push(arr[i]);
-                            }
-                        }
+                    var arr = resultGetPriceplan.data["response-data"]["mapped-propo-priceplans"];
+                    for (var i = 0; i < arr.length; i++) {
+                        makeDataPriceplan(arr[i]["priceplans"], arr[i]['proposition']['name'], arr[i]['proposition']['proposition-code']);
                     }
                 }
-                for (var u = valPricePlans.length; u--;) {
-                    var numRow = $filter('filter')($scope.propositionList, { name: valPricePlans[u]["name"] });
-                    if (numRow.length == 0) {
-                        $scope.propositionList.push(valPricePlans[u]);
-                        valPricePlansUnique.push(valPricePlans[u]);
-                    }
+                if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "priceplans"])) {
+                    //make data for $scope.propositionList form ......
+                    makeDataPriceplan(resultGetPriceplan.data["response-data"]["priceplans"], "", "");
+
                 }
-                // $scope.propositionList = valPricePlans;
-                // valPricePlansUnique = valPricePlans;
-
-                //// open dropdown xxxx
-                if ($scope.isFirstClickDropDown_Proposition == true && $scope.onFirstClickDropDown_Proposition == true) {
-                    $scope.isFirstClickDropDown_Proposition = false;
-                    setTimeout(function() {
-                        var id = "selectProposition";
-                        var select_box = document.getElementById(id);
-                        if (select_box.options.length > 10) {
-                            select_box.size = 10;
-                        } else {
-                            select_box.size = select_box.options.length;
-                        }
-
-                        $('#selectProposition').focus();
-                        $('#selectProposition').click(function() {
-                            select_box.size = 1;
-                        });
-                        $('#selectProposition').blur(function() {
-                            select_box.size = 1;
-                        });
-                        $('#selectProposition').keydown(function(e) {
-                            var charCode = (e.which) ? e.which : e.keyCode;
-                            if (charCode == 13)
-                                select_box.size = 1;
-                        });
-
-                    }, 1200);
-                } else {
-                    setTimeout(function() {
-                        $('#ppfilter').focus();
-                    }, 2500);
-                }
-
 
 
                 $scope.promotion = "";
@@ -786,10 +845,10 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                     $('#spanMsgNotFound').addClass('hide');
                 }
 
-                // if ($scope.pricePlanFilter.value) {
-                //     $('#modalnewpriceplan').click();
-                // }
-                $scope.filterAndOpen();
+                if ($scope.pricePlanFilter.value && $scope.firstSearch == false) {
+                    $('#modalnewpriceplan').click();
+                }
+                //$scope.filterAndOpen();
 
 
             } else {
@@ -1843,12 +1902,12 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
         //$('#ppfilter').val('');
         //$scope.pricePlanFilter = "";
         $scope.pricePlan2 = {
-            display: pp.name + ' : ' + pp.description,
+            name: pp.pricePlan,
             promotion: pp.promotion,
             rc: pp.rc,
-            priceplans: pp,
+            priceplans: pp.priceplans,
             code: pp["proposition-code"],
-            saveName: pp.name,
+            saveName: pp.saveName,
             pp: pp
         };
         $scope.isSelectedPricePlan = true;
@@ -1894,12 +1953,12 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                 promotion: newProposition,
                 rc: $scope.pricePlan2.rc,
                 pricePlanFilter: "",
-                saveName: $scope.pricePlan2.priceplans.name
+                saveName: $scope.pricePlan2.saveName
             };
 
             //alert($scope.pricePlan.saveName);
 
-            if ($scope.pricePlan2.display) {
+            if ($scope.pricePlan2.name) {
                 $scope.isValidate = true;
             }
 
@@ -2115,7 +2174,6 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
         //$('#ppfilter').val('');
         //$scope.pricePlanFilter.value = "";
         $scope.pricePlan = {};
-        $scope.pricePlan2 = {};
         $scope.specialOfferType = {
             CUG: false,
             FF: false,
@@ -2280,25 +2338,22 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                 for (var i = 0; i < txtList.length; i++) {
                     //arr = $filter('filter')(arr, txtList[i]);
                     if (i == 0) {
-                        var a = $filter('filter')(arr, { "name": txtList[i] });
-                        var b = $filter('filter')(arr, { "rc": txtList[i] });
-                        var c = $filter('filter')(arr, { "description": txtList[i] });
-                        bbArr = a.concat(b).concat(c);
+                        var hege = $filter('filter')(arr, { "pricePlan": txtList[i] });
+                        var stale = $filter('filter')(arr, { "rc": txtList[i] });
+                        bbArr = hege.concat(stale);
                     } else {
-                        var a = $filter('filter')(bbArr, { "name": txtList[i] });
-                        var b = $filter('filter')(bbArr, { "rc": txtList[i] });
-                        var c = $filter('filter')(arr, { "description": txtList[i] });
-                        bbArr = a.concat(b).concat(c);
+                        var hege = $filter('filter')(bbArr, { "pricePlan": txtList[i] });
+                        var stale = $filter('filter')(bbArr, { "rc": txtList[i] });
+                        bbArr = hege.concat(stale);
                     }
                     arr = bbArr;
                 }
             } else {
                 //if ($scope.selectProposition != "null" && $scope.selectProposition != "") {
                 //arr = $filter('filter')(arr, txtSearch);
-                var a = $filter('filter')(arr, { "name": txtSearch });
-                var b = $filter('filter')(arr, { "rc": txtSearch });
-                var c = $filter('filter')(arr, { "description": txtSearch });
-                arr = a.concat(b).concat(c);
+                var hege = $filter('filter')(arr, { "pricePlan": txtSearch });
+                var stale = $filter('filter')(arr, { "rc": txtSearch });
+                arr = hege.concat(stale);
                 //}
             }
 
@@ -2330,8 +2385,11 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
 
 
         if (idFocus) {
-            $('#' + idFocus).focus();
-            idFocus = "";
+            setTimeout(function() {
+                $('#' + idFocus).focus();
+                idFocus = "";
+            }, 500);
+
         } else {
             $scope.validateUI();
         }

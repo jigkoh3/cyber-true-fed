@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label priceplaneText">โปรโมชั่น <span style="color:red;">*</span></label>
                                 <div class="col-md-6" id="priceplan_sl">
-                                    <input readonly="readonly" type="text" ng-value="pricePlan2.display" class="form-control">
+                                    <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
                                 </div>
                                 <div class="col-md-2" ng-submit="openPricePlanDialog()">
                                     <input type="text" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog() && smartSearchPP(pricePlanFilter.value)" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
@@ -83,6 +83,42 @@
                                             </div>
                                             &nbsp;
                                             <div class="table-responsive" id="hModal">
+                                                <div id="backdropPP" style="width: 97%;
+    height: 97%;
+    position: absolute;
+    z-index: 999; display: none;">
+                                                    <div>
+                                                    </div>
+                                                    <div style="width: 99%;
+    height: 100%;
+    position: absolute;
+    background-color: black;
+    z-index: 999;
+    opacity: 0.5;filter: alpha(opacity=50);"></div>
+                                                    <div style="width: 99%;
+    height: 100%;
+    position: absolute;
+    z-index: 9999;">
+                                                        <div style="width: 50%;
+    top: 100px;
+    left: 25%;
+    position: absolute;
+    background-color: white;
+    z-index: 99999;">
+                                                            <br/>
+                                                            <div class="ngdialog-messagex" style="text-align:center;">
+                                                                <h4>กำลังโหลดข้อมูล</h4>
+                                                            </div>
+                                                            <div style="text-align:center;">
+                                                                <!--&nbsp;&nbsp;-->
+                                                                <img src="images/loading.gif" />
+                                                                <!--<i class="fa fa-spin fa-2x fa-spinner"></i>-->
+                                                            </div>
+                                                            <br/>
+                                                        </div>
+                                                        <!--<i class="fa fa-spin fa-2x fa-spinner"></i>-->
+                                                    </div>
+                                                </div>
                                                 <table class="table" style="margin-bottom: 0px;">
                                                     <tr>
                                                         <th colspan="5">
@@ -98,16 +134,16 @@
                                                             </label>
                                                         </th>
                                                     </tr>
-                                                    <tr dir-paginate="pp in propositionList | orderBy:'name'| itemsPerPage: pageSize" pagination-id="PPList" current-page="currentPage">
+                                                    <tr dir-paginate="pp in propositionList | orderBy:'pricePlan'| itemsPerPage: pageSize" pagination-id="PPList" current-page="currentPage">
                                                         <th colspan="5" style="padding: 5px; padding-bottom: 0px;">
                                                             <label class="col-xs-12" style="cursor:pointer;">
                                                                 <div class="row">
                                                                     <div class="col-xs-1">
-                                                                        <input name="pricelsx" type="radio" ng-click="selectedPricePlan(pp)" ng-value="pp.name+' : '+pp.description" class="radioPriceplan" />
+                                                                        <input name="pricelsx" type="radio" ng-click="selectedPricePlan(pp)" ng-value="pp.pricePlan" class="radioPriceplan" />
                                                                     </div>
-                                                                    <div class="col-xs-6" ng-show="Level=='OU'" title="{{pp.promotion}}">{{pp.name+' : '+pp.description}}</div>
-                                                                    <div class="col-xs-8" ng-hide="Level=='OU'" title="{{pp.promotion}}">{{pp.name+' : '+pp.description}}</div>
-                                                                    <div class="col-xs-2 text-center" ng-show="Level=='OU'">{{pp['service-level']}}</div>
+                                                                    <div class="col-xs-6" ng-show="Level=='OU'" title="{{pp.promotion}}">{{pp.pricePlan}}</div>
+                                                                    <div class="col-xs-8" ng-hide="Level=='OU'" title="{{pp.promotion}}">{{pp.pricePlan}}</div>
+                                                                    <div class="col-xs-2 text-center" ng-show="Level=='OU'">{{pp.priceplans['service-level']}}</div>
                                                                     <div class="col-xs-3 text-center">{{pp.rc | number}}</div>
                                                                     <!-- <div class="col-xs-2" style="text-align:center;">{{pp.promotion}}</div> -->
                                                                 </div>
@@ -136,6 +172,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- end -->
                             <div class="form-group" ng-show="shopType=='0'">
                                 <label class="col-md-3 control-label">เหตุผล<span style="color:red;"> *</span></label>
                                 <div class="col-md-5">
