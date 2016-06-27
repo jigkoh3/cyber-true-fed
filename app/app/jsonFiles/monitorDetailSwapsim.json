@@ -1,0 +1,56 @@
+{
+    "status": "SUCCESSFUL",
+    "trx-id": "4M1WPHFZDG0JP",
+    "process-instance": "tmsapnpr1 (instance: SFF_node4)",
+    "response-data": {
+        "order-id": "15091602000000000044",
+        "status": "CREATE",
+        "creator": "cmUser012",
+        "create-date": "2015-09-16T17:23:20+0700",
+        "customer": {
+            "title": "เธเธฒเธข",
+            "title-code": "T1",
+            "firstname": "RM005",
+            "lastname": "Prepay005",
+            "id-type": "I",
+            "id-number": "2015080711139"
+        },
+        "sale-agent": {
+            "name": "CM user012",
+            "channel": null
+        },
+        "order-items": [
+            {
+                "product-category": "TMV",
+                "order-type": "CHANGE",
+                "name": "SWAP_SIM",
+                "status": "ERROR",
+                "item-id": "15091602000000000044",
+                "product-name": "R12RMMNP1",
+                "status-message": "null",
+                "product-id-number": "0916961123",
+                "product-id-name": "MSISDN",
+                "order-data": {
+                    "CUSTOMER-ID": "68",
+                    "BAN": null,
+                    "SUBMIT_COUNT": "1",
+                    "IMSI": "0916961123",
+                    "OU-ID": null,
+                    "SIM-OWNER": "80000011",
+                    "PREPAID-SUBSCRIBER-ID": "68"
+                },
+                "primary-order-data": {
+                    "MOBILE-SERVICETYPE": "PREPAID",
+                    "PRODUCT-CODE": "0000000000",
+                    "SIM": "896600351500000603",
+                    "ACCOUNT-SUB-TYPE": "PRE",
+                    "COMPANY-CODE": "RM",
+                    "ACCOUNT-CATEGORY": "P"
+                }
+            }
+        ],
+        "submit-date": "2015-09-16T17:23:20+0700",
+        "last-modify-date": "2015-09-16T17:23:21+0700",
+        "last-modify-by": "cmUser012"
+    }
+}

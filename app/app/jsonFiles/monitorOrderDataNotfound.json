@@ -1,0 +1,20 @@
+{
+    "trx-id": "5RLYWQ69P4BW",
+    "status": "SUCCESSFUL",
+    "process-instance": "psaapdv1 (instance: SFF_node1)",
+    "fault": {
+        "name": "th.co.truecorp.ads.api.persistent.jdbc.DataNotFoundException",
+        "code": "PROFILE-404",
+        "message": "Not found data with specific criteria.",
+        "detailed-message": "DataNotFoundException Not found data with specific criteria.. "
+    },
+    "display-messages": [
+        {
+            "message": "Not found data with specific criteria.",
+            "message-type": "WARNING",
+            "en-message": "Not found data with specific criteria.",
+            "th-message": "Not found data with specific criteria.",
+            "technical-message": "psaapdv1 (instance: SFF_node1) DataNotFoundException Not found data with specific criteria.. "
+        }
+    ]
+}

@@ -1,0 +1,43 @@
+{
+    "status": "SUCCESSFUL",
+    "page": {
+        "current": 1,
+        "total": 1
+    },
+    "trx-id": "881QRS8XIWCJX",
+    "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+    "response-data": [
+        {
+            "status": "FAILED",
+            "order-id": "15090800000000000159",
+            "order-item-id": "15090800000000000159",
+            "product-category": "TMV",
+            "product-name": "NPSMAP08",
+            "order-name": "CHANGE_PRICEPLAN",
+            "order-type": "CHANGE",
+            "activity-description": "เปลี่ยนแปลงโปรโมชั่น",
+            "provisioning-system": null,
+            "provisioning-id": "99-04e198f8-237a-4ad9-8896-ef2b38fbc04a",
+            "product-id-name": "MSISDN",
+            "product-id-number": "0902010573",
+            "customer-id-number": "2013120610824",
+            "customer-name": "ชุดา มารดี",
+            "status-message": "ESB290104997-Exception of type - ServiceUnavailableException generated in Service: CCBS_UpdateSubscriber with MsgCode: BW-JAVA-100037 and Message: The method [th.co.truecorp.omx.client.ccbs.SubscriberServicesClient.updateSubscriber] raised exception [amdocs.csm3g.exceptions.CMException].  amdocs.csm3g.exceptions.CMException: (CM9-00014) User is not privileged for service change on partially suspended subscriber.  javax.naming.ServiceUnavailableException",
+            "create-by": "cmUser013",
+            "create-date": "2015-09-08T17:27:39+0700",
+            "submit-date": "2015-09-08T17:27:39+0700",
+            "sale-code": "90002073",
+            "sale-name": "CM user013",
+            "reason-code": "CREQ",
+            "order-data": {
+                "BAN": "10000445",
+                "EFFECTIVE-OPTION": "IMMEDIATE",
+                "EFFECTIVE-DATE": "08/09/2015",
+                "ACCOUNT-SUB-TYPE": "FIN",
+                "COMPANY-CODE": "RF",
+                "OU-ID": "526",
+                "ACCOUNT-CATEGORY": "I"
+            }
+        }
+    ]
+}

@@ -1,0 +1,59 @@
+{
+  "status" : "SUCCESSFUL",
+  "trx-id" : "C61RQNPP12ZGU",
+  "process-instance" : "tmsapnpr1 (instance: SFF_node3)",
+  "response-data" : {
+    "order-id" : "15092200000000000075",
+    "status" : "COMPLETED",
+    "creator" : "cmUser013",
+    "create-date" : "2015-09-22T14:34:07+0700",
+    "customer" : {
+      "firstname" : "Test SmartUI2",
+      "id-number" : "Bus002",
+      "customer-id" : "33901"
+    },
+    "sale-agent" : {
+      "name" : "CM user013",
+      "channel" : null,
+      "sale-code" : "90002073"
+    },
+    "order-items" : [ {
+      "product-category" : "TMV",
+      "order-type" : "CHANGE",
+      "name" : "CHANGE_PRICEPLAN",
+      "status" : "COMPLETED",
+      "item-id" : "15092200000000000075",
+      "product-name" : "BGPR3P03",
+      "status-message" : "OM010100000-Order processed successfully.",
+      "product-id-number" : "0880500235",
+      "product-id-name" : "MSISDN",
+      "reason-code" : "CREQ",
+      "ref-provisioning-id" : "99-2ecf7628-3ebe-4557-82cd-7a374bfa7c71",
+      "order-data" : {
+        "SERVICE-LEVEL" : "C",
+        "NAS-PROPOSITION" : null,
+        "CURRENT-PROPOSITIONS" : null,
+        "MOBILE-SERVICETYPE" : "HYBRID",
+        "SUBMIT_COUNT" : "1",
+        "CURRENT-PRICEPLAN" : "R12ESMP02",
+        "CUG-PARAM-SIZE" : "1",
+        "CUG-PARAM-OFFER-NAME" : "CUGFRS04",
+        "OFFERS-REQUIRE-PARAMETER" : "CUG",
+        "NEW-PROPOSITION" : null,
+        "CUG-PARAM-0" : "CUG ID|2000|"
+      },
+      "primary-order-data" : {
+        "BAN" : "10050253",
+        "EFFECTIVE-OPTION" : "NEXTBILL",
+        "EFFECTIVE-DATE" : "10/10/2015",
+        "ACCOUNT-SUB-TYPE" : "HYM",
+        "COMPANY-CODE" : "RF",
+        "OU-ID" : "16082",
+        "ACCOUNT-CATEGORY" : "B"
+      }
+    } ],
+    "submit-date" : "2015-09-22T14:34:07+0700",
+    "last-modify-date" : "2015-09-22T14:34:22+0700",
+    "last-modify-by" : "cmUser013"
+  }
+}

@@ -1,0 +1,567 @@
+// ---------------------- monitorOrderController.js ----------------------
+smartApp.controller('MonitorOrderController', function($scope, $routeParams, AuthenService, SystemService, MonitorOrderService, $http) {
+
+    $scope.Id = "";
+    $scope.shopType = '1';
+    $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null'; //$routeParams.SubNo;
+    $scope.divID = 'monitorOrderContent';
+    $scope.isAdmin = false;
+    $scope.conditions = [];
+    $scope.conditions[0] = { id: "A", name: 'หมายเลขบริการ' };
+    $scope.conditions[1] = { id: "B", name: 'หมายเลขบัตรประชาชน/พาสปอร์ต' };
+    $scope.conditions[2] = { id: "C", name: 'เลขที่คำขอ (Order ID)' };
+    $scope.conditions[3] = { id: "D", name: 'OMX Transaction ID' };
+    $scope.conditions[4] = { id: "E", name: 'รหัสผู้ใช้งาน (User Login)' };
+
+    $scope.serviceTypes = [];
+
+    $scope.statuses = [];
+    $scope.statuses[0] = { id: "CREATE", name: "CREATE" };
+    $scope.statuses[1] = { id: "FAILED", name: "FAILED" };
+    $scope.statuses[2] = { id: "PROCESSING", name: "PROCESSING" };
+    $scope.statuses[3] = { id: "ERROR", name: "ERROR" };
+    $scope.statuses[4] = { id: "COMPLETED", name: "COMPLETED" };
+
+    dateDiff = function(datepart, fromdate, todate) {
+
+        var fromYear = fromdate.substring(6, 10);
+        var fromMonth = fromdate.substring(3, 5);
+        var fromDay = fromdate.substring(0, 2);
+        //console.log("fromYear="+fromYear+",fromMonth="+fromMonth+",fromDay="+fromDay) ;
+
+        var toYear = todate.substring(6, 10);
+        var toMonth = todate.substring(3, 5);
+        var toDay = todate.substring(0, 2);
+
+        var from = new Date(fromYear, fromMonth, fromDay);
+        var to = new Date(toYear, toMonth, toDay);
+        var diff = Math.floor((to.getTime() - from.getTime()) / 86400000);
+
+        return diff + 1;
+    };
+
+    formatDate = function(date) {
+        var year = date.substring(6, 10);
+        var month = date.substring(3, 5);
+        var day = date.substring(0, 2);
+        if (year >= 2558) {
+            year = (year - 543);
+        }
+        return year + "-" + (month.length > 1 ? month : "0" + month) + "-" + (day.length > 1 ? day : "0" + day);
+    };
+
+    $scope.init = function() {
+        SystemService.calendarDatePicker();
+
+        MonitorOrderService.getServiceTypeCallback(function(response) {
+            $scope.serviceTypes = response.data['response-data']['configuration-items'];
+            console.log($scope.serviceTypes);
+        });
+
+        AuthenService.getAuthen(function(result) {
+            if (result == "ERROR") return;
+            $scope.getAuthen = result;
+            $("#customShopCode").val($scope.getAuthen.shopcodes);
+            $scope.chkShopcode();
+            if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
+                $scope.isNonePartner = false;
+                //$scope.showDataDealer = true;
+            }
+            if ($scope.getAuthen["shopType"] == "0") {
+                $scope.isAdmin = true;
+            }
+            $scope.shopType = $scope.getAuthen["shopType"];
+            //$scope.checkUserDealer();
+        });
+
+    };
+
+    $scope.chkShopcode = function() {
+        if ($scope.getAuthen.shopcodes.length == 1) {
+            $scope.isChkShopcode = true;
+        } else {
+            $scope.isChkShopcode = false;
+        }
+    }
+
+    validate = function() {
+        var shopCode = $("#customShopCode").val();
+        //alert("1:"+shopCode);
+        if (shopCode == undefined || shopCode == '') {
+            shopCode = "";
+        }
+
+
+        if (!$scope.isAdmin && shopCode == "") {
+            msgModel = {
+                "message": "You must fill shop code.",
+                "message-code": "SYS-000",
+                "message-type": "INFO",
+                "en-message": "You must fill shop code.",
+                "th-message": "กรุณากรอก shop code",
+                "technical-message": "",
+                "mode": "dealer"
+            };
+            SystemService.showAlert(msgModel);
+            return false;
+        }
+
+        var condition = $("#condition").val();
+
+        var fromdate = $("#fromdate").val();
+        var todate = $("#todate").val();
+
+        //           alert("Validate shopCode:"+shopCode + "|date :"+ dateDiff('d', fromdate  ,todate));
+        //           
+        //           if((fromdate == "" || todate == "" )&&(condition == 'E' || condition == 'B')){
+        if ((fromdate == "" || todate == "")) {
+            //               alert("Please input Begin and End Date!!!");
+            msgModel = {
+                "message": "You must fill the date.",
+                "message-code": "SYS-000",
+                "message-type": "INFO",
+                "en-message": "You must fill from date and to date.",
+                "th-message": "กรุณากรอกวันที่เริ่มต้นเเละจบในการค้นหา",
+                "technical-message": "",
+                "mode": "dealer"
+            };
+            SystemService.showAlert(msgModel);
+            return false;
+        }
+        if ((condition != undefined && "" != condition) && $("#product-number").val() == "" && $("#customer-id").val() == "" && $("#order-id").val() == "" && $("#provisioning-id").val() == "" && $("#sale-code").val() == "") {
+            msgModel = {
+                "message": "You must fill value of condition.",
+                "message-code": "SYS-000",
+                "message-type": "INFO",
+                "en-message": "You must fill value of condition.",
+                "th-message": "กรุณากรอกค่าของเงื่อนไขในการค้นหา",
+                "technical-message": "",
+                "mode": "dealer"
+            };
+            SystemService.showAlert(msgModel);
+            return false;
+        }
+        //           console.log("========Validate========") ;
+        //           console.log("fromdate:"+fromdate+"|") ;
+        //           console.log("todate:"+todate+"|") ;
+        //           console.log("between date :"+dateDiff('d', fromdate  ,todate));
+        //           alert("shopCode:"+shopCode+"| check = null >>>"+ (shopCode == undefined || shopCode == "")  ) ;
+        //           alert("condition:"+condition+"| check = null >>>"+ (condition == undefined || "" == condition) );
+        //           alert("serviceType:"+$("#serviceType")+"|"+ $("#serviceType").val()+"|" + ( $("#serviceType").val() == undefined || $("#serviceType").val() == "") ) ;
+        //           alert("statusListbox:"+ $("#statusListbox")+"| value ="+$("#statusListbox").val()+"| check == ''>>" + ($("#statusListbox").val() == "" )) ;
+        //          
+        //           console.log(">>>>>>"+ (shopCode != 'undefined' && shopCode != "" && ( dateDiff('d', fromdate  ,todate) > 7 ) ));
+        //           
+
+
+        //           if((condition == 'undefined' || condition == '')&&(shopCode == 'undefined' || shopCode == "") &&$("#serviceType").val()==""&&$("#statusListbox").val()=="" ) { 
+        //           if( (condition == 'undefined' ) 
+        //                      && (shopCode == 'undefined' || shopCode == "" ) 
+        //                      && ( $("#serviceType").val() == 'undefined' || $("#serviceType").val() == "")  
+        //                      && ( $("#statusListbox").val() == "" ) ) { 
+        if ((condition == undefined || "" == condition) && (shopCode == undefined || shopCode == "") && ($("#serviceType").val() == undefined || $("#serviceType").val() == "") && ($("#statusListbox").val() == "")) {
+            if (dateDiff('d', fromdate, todate) <= 1 && (fromdate != "" && todate != "")) {
+                return true;
+            } else {
+                msgModel = {
+                    "message": "Date interval does not more than 1 days",
+                    "message-code": "SYS-000",
+                    "message-type": "INFO",
+                    "en-message": "Date interval does not more than 1 day",
+                    "th-message": "กรุณาใส่วันที่ห่างกันไม่เกิน 1 วัน",
+                    "technical-message": "",
+                    "mode": "dealer"
+                };
+
+                SystemService.showAlert(msgModel);
+                return false;
+            }
+        } else if ((condition == undefined) && (shopCode != undefined || shopCode != "") && ($("#serviceType").val() == undefined || $("#serviceType").val() == "") && ($("#statusListbox").val() == undefined || $("#statusListbox").val() == "")) {
+            if (dateDiff('d', fromdate, todate) <= 1) {
+                return true;
+            } else {
+                //                   alert("Begin and End Date not more than 1 days ,, everything is null");
+                msgModel = {
+                    "message": "Date interval does not more than 1 days",
+                    "message-code": "SYS-000",
+                    "message-type": "INFO",
+                    "en-message": "Date interval does not more than 1 day",
+                    "th-message": "กรุณาใส่วันที่ห่างกันไม่เกิน 1 วัน",
+                    "technical-message": "",
+                    "mode": "dealer"
+                };
+
+                SystemService.showAlert(msgModel);
+                return false;
+            }
+        } else if (condition != undefined && condition == 'A' || condition == 'C' || condition == 'D') { // product-id
+            if (dateDiff('d', fromdate, todate) <= 181) {
+                return true;
+            } else {
+                //                   alert("Begin and End Date not more than 30 days >>> condition =0");
+                msgModel = {
+                    "message": "Date interval does not more than 180 days",
+                    "message-code": "SYS-000",
+                    "message-type": "INFO",
+                    "en-message": "Date interval does not more than 180 day",
+                    "th-message": "กรุณาใส่วันที่ห่างกันไม่เกิน 30 วัน",
+                    "technical-message": "",
+                    "mode": "dealer"
+                };
+
+                SystemService.showAlert(msgModel);
+                return false;
+            }
+
+        } else if (condition != undefined && condition == 'B') { // customer-id
+            if (dateDiff('d', fromdate, todate) <= 31) {
+                return true;
+            } else {
+                //                   alert("Begin and End Date not more than 30 days");
+                msgModel = {
+                    "message": "Date interval does not more than 30 days",
+                    "message-code": "SYS-000",
+                    "message-type": "INFO",
+                    "en-message": "Date interval does not more than 30 day",
+                    "th-message": "กรุณาใส่วันที่ห่างกันไม่เกิน 30 วัน",
+                    "technical-message": "",
+                    "mode": "dealer"
+                };
+
+                SystemService.showAlert(msgModel);
+                return false;
+            }
+
+        } else if (condition != undefined && condition == 'C') { // order-id
+            return true;
+        } else if (condition != undefined && condition == 'D') { // provisioning-id  
+            return true;
+        } else if (condition != undefined && condition == 'E') { // sale-code
+            if (dateDiff('d', fromdate, todate) <= 8) {
+                return true;
+            } else {
+                //                   alert("Begin and End Date not more than 7 days >> salecode");
+                msgModel = {
+                    "message": "Date interval does not more than 7 days",
+                    "message-code": "SYS-000",
+                    "message-type": "INFO",
+                    "en-message": "Date interval does not more than 7 day",
+                    "th-message": "กรุณาใส่วันที่ห่างกันไม่เกิน 7 วัน",
+                    "technical-message": "",
+                    "mode": "dealer"
+                };
+
+                SystemService.showAlert(msgModel);
+                return false;
+            }
+        } else if (shopCode != undefined && shopCode != "" && (dateDiff('d', fromdate, todate) >= 8)) { //|| (fromdate == "" || todate == "" )){
+            // shopcode+date--> 7 day
+            //               alert("Begin and End Date not more than 7 days >> shopcode has value");
+            msgModel = {
+                "message": "Date interval does not more than 7 days",
+                "message-code": "SYS-000",
+                "message-type": "INFO",
+                "en-message": "Date interval does not more than 7 day",
+                "th-message": "กรุณาใส่วันที่ห่างกันไม่เกิน 7 วัน",
+                "technical-message": "",
+                "mode": "dealer"
+            };
+
+            SystemService.showAlert(msgModel);
+            return false;
+        } else if ((shopCode == undefined || shopCode == "") && ((dateDiff('d', fromdate, todate) > 1) || (fromdate == "" || todate == ""))) {
+
+            //               alert("Begin and End Date not more than 1 days");
+            msgModel = {
+                "message": "Date interval does not more than 1 day. You don't fill the Shop Code / Dealer Code",
+                "message-code": "SYS-000",
+                "message-type": "INFO",
+                "en-message": "Date interval does not more than 1 day",
+                "th-message": "กรุณาใส่วันที่ห่างกันไม่เกิน 1 วัน",
+                "technical-message": "",
+                "mode": "dealer"
+            };
+
+            SystemService.showAlert(msgModel);
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    $scope.callReport = function(rowPerPage, page) {
+        var isValid = validate();
+        if (!isValid) {
+            return false;
+        }
+        //console.log('callReport!!!!! step validate:'+ isValid) ;
+        //      SystemService.showLoading();
+        var requestUrl = $scope.service + "/aftersales/order/report/query?";
+        if (SystemService.demo == true) {
+            requestUrl = "/app/jsonFiles/monitorOrderAddIDDPage.json?";
+        }
+
+
+        var shopCode = $("#customShopCode").val();
+        //alert("1:"+shopCode);
+        if (shopCode == undefined || shopCode == '') {
+
+            //           shopCode =  $("#customShopCode").val(); 
+            //alert("2:"+shopCode);
+            if (shopCode == undefined || shopCode == '') {
+                //               shopCode =  $("#shopCodeListbox").val(); 
+                //               //alert("3:"+shopCode);
+                //               if(shopCode == undefined ){
+                shopCode = "";
+                //               }
+            }
+        }
+
+        if ($("#fromdate").val() != "") {
+            //          data['submit-date-begin'] = formatDate($("#fromdate").val()) ;
+            requestUrl += ('submit-date-begin=' + formatDate($("#fromdate").val()) + "&");
+        }
+
+        if ($("#todate").val() != "") {
+            //          data['submit-date-end'] = formatDate($("#todate").val()) ;
+            requestUrl += ('submit-date-end=' + formatDate($("#todate").val()) + "&");
+        }
+
+        //      console.log("===Step set value=======") ;
+        //      console.log("status Listbox : " + $("#statusListbox").val());   
+        //      if( $("#statusListbox").val() != 'undefined' && $("#statusListbox").val() != "" ){
+        if ($("#statusListbox").val() != 'undefined' && $("#statusListbox").val() != "") {
+            //          data['status'] = $scope.statuses[$("#statusListbox").val()].name ;
+            requestUrl += ('status=' + $scope.statuses[$("#statusListbox").val()].id + "&");
+        }
+
+        if ($("#serviceType").val() != 'undefined' && ($("#serviceListbox").val() != "")) {
+            //          data['activity'] = $scope.serviceTypes[$("#serviceListbox").val()].id ;
+            requestUrl += ('activity=' + $scope.serviceTypes[$("#serviceListbox").val()].id + "&");
+        }
+        //      console.log("Service Type Listbox : ",$("#serviceListbox").val());
+        /*
+        if($("#condition").val() != "" ){
+            data['condition'] = $scope.conditions[$("#condition").val()].name ;
+        }
+        */
+
+
+        if ($("#product-number").val() != "") {
+            //          data['product-number'] = $("#product-number").val() ;
+            requestUrl += ('product-number=' + $("#product-number").val() + "&");
+        }
+
+        //      console.log("product-number : " + $("#product-number").val());
+
+
+        if ($("#customer-id").val() != "") {
+            //          data['customer-id'] = $("#customer-id").val() ;
+            requestUrl += ('customer-id=' + $("#customer-id").val() + "&");
+        }
+        //      console.log("customer-id : ",$("#customer-id").val());
+        if ($("#order-id").val() != "") {
+            //          data['order-id'] = $("#order-id").val() ;
+            requestUrl += ('order-id=' + $("#order-id").val() + "&");
+        }
+        //      console.log("order-id : ",$("#order-id").val());
+
+        if ($("#provisioning-id").val() != "") {
+            //          data['provisioning-id'] = $("#provisioning-id").val() ;
+            requestUrl += ('provisioning-id=' + $("#provisioning-id").val() + "&");
+        }
+        //      console.log("provisioning-id : ",$("#provisioning-id").val());
+
+        var condition = $("#condition").val();
+
+        if (condition != undefined && condition != "") {
+            if ($("#sale-code").val() != "") {
+                //          data['sale-code'] = $("#sale-code").val() ;
+                //              requestUrl += ( 'sale-code=' +  $("#sale-code").val()  +"&" );
+                requestUrl += ('creator=' + $("#sale-code").val() + "&");
+            }
+        }
+
+        if (shopCode != "") {
+            //          data['sale-code'] = $("#sale-code").val() ;
+            requestUrl += ('partner-code=' + shopCode + "&");
+        }
+
+        //      console.log("partner-code : ",$("#shopCode") );
+        //      console.log("rowPerPage : ",rowPerPage);
+        //      console.log("page : ", page);
+
+        requestUrl += ('page-size=' + rowPerPage + "&");
+
+        requestUrl += ('page-number=' + page + "");
+
+        //console.log("customShopCode : ",$("#customShopCode").val());
+        //console.log("fromdate : ",$("#fromdate").val());
+        //console.log("todate : ",$("#todate").val());
+
+
+
+        /*$scope.datas = [] ;
+         for (var i = 0; i < data.length; i++) {
+             //console.log("RequestData:"+JSON.stringify(data[i].value()));
+         }*/
+
+        //console.log("RequestData:"+JSON.stringify(data)) ;
+        $scope.datas = [];
+        $scope.flagShowMessageResult = false;
+        //        objectSSO['Content-Type'] = "application/json";
+        //      $http({
+        //            method: 'POST',
+        //            url: requestUrl,
+        //            data : null,
+        //            headers: objectSSO,
+        //            timeout: 4000   
+        //          }).then(function successCallback(response) {
+        //              console.log("response >>" ,response);
+        //              console.log("response.status >> "+ response.status);
+        //              console.log("response.data ['response-data'] >> ", response.data ['response-data']);
+        //              
+        //              if(response.status == "200"){       
+        //                  var data_ = response.data ['response-data'] ;
+        //                  if(data_ != undefined ) { //&& data_ [status] == "SUCCESSFUL"
+        //                                  console.log("data_ >> ", data_);
+        ////                                    if (data_ != 'undefined') {                 
+        ////                                        SystemService.hideLoading();
+        //                                       try {
+        //                                           if (data_['page']['current'] != 'undefined'){
+        //                                               $scope.totalPage = data_['page']['total']  ;
+        //                                               $scope.page = data_['page']['current'] ;
+        //                                               $.each(data_, function(index, value){
+        //                                                   $scope.datas[index] = value ;
+        //                                               });
+        //                                           }
+        //                                       } catch(err) {
+        //                                          msgModel  = {
+        //                                                  "message": "Data not found",
+        //                                                  "message-code": "SYS-000",
+        //                                                  "message-type": "INFO",
+        //                                                  "en-message": "Data not found",
+        //                                                  "th-message": "ไม่พบข้อมูล",
+        //                                                  "technical-message": "",
+        //                                                  "mode":"dealer"};
+        //                                           SystemService.showAlert(msgModel);
+        //                                           return false;
+        //                                       }
+        //                                  } else {
+        //                                      if (response.data ['display-messages'] != undefined) {
+        //                                      msgModel  = {
+        //                                              "message":response.data ['display-messages']['message'],
+        //                                              "message-code":response.data ['display-messages']['message-code'] ,
+        //                                              "message-type": response.data ['display-messages']['message-type'],
+        //                                              "en-message": response.data ['display-messages']['en-message'],
+        //                                              "th-message": response.data ['display-messages']['th-message'],
+        //                                              "technical-message": response.data ['display-messages']['technical-message'] ,
+        //                                              "mode":"dealer"};
+        //                                      } else {
+        //                                          msgModel  = {
+        //                                                  "message": response.status,
+        //                                                  "message-code": "SYS-000",
+        //                                                  "message-type": "INFO",
+        //                                                  "en-message": "error",
+        //                                                  "th-message": "เกิด ความผิดพลาดในการค้นหา",
+        //                                                  "technical-message": response.statusText ,
+        //                                                  "mode":"dealer"};   
+        //                                      }
+        //                                       SystemService.showAlert(msgModel);
+        //                                       return false;
+        //                                  }
+        //              } else if(response.status == "302"){    
+        ////                    SystemService.timeOut = 500;
+        ////                    SystemService.hideLoading();
+        //                  try {
+        //                      JSON.parse(reponse);
+        //                      } catch (Exception){
+        //                          window.location.href =  $scope.urlTimeOut ;
+        //                      }
+        //              } else {
+        //                  
+        //              }   
+        //        }, function errorCallback(response) {
+        //              msgModel  = {
+        //                      "message": "Please check service.",
+        //                      "message-code": "SYS-"+ response.status ,
+        //                      "message-type": "WARNING",
+        //                      "en-message": "Please check reponse.",
+        //                      "th-message": response.statusText,
+        //                      "technical-message": response ,
+        //                      "mode":mode};
+        //               SystemService.showAlert(msgModel);
+        //               return false;
+        //        });
+
+        $http.post(requestUrl, /*data*/ null).success(function(response) {
+            //      $http.post(encodeURI(requestUrl) ,{ headers: objectSSO }).success(function(response) {   
+            // if (response.status == "SUCCESSFUL") {
+
+            //     if (response['response-data'] != 'undefined') {
+            //         SystemService.hideLoading();
+            //         try {
+            //             if (response['page']['current'] != 'undefined') {
+            //                 $scope.totalPage = response['page']['total'];
+            //                 $scope.page = response['page']['current'];
+            //                 $.each(response['response-data'], function(index, value) {
+            //                     $scope.datas[index] = value;
+            //                 });
+            //             }
+            //         } catch (err) {
+            //             msgModel = {
+            //                 "message": "Data not found",
+            //                 "message-code": "SYS-000",
+            //                 "message-type": "INFO",
+            //                 "en-message": "Data not found",
+            //                 "th-message": "ไม่พบข้อมูล",
+            //                 "technical-message": "",
+            //                 "mode": "dealer"
+            //             };
+            //             SystemService.showAlert(msgModel);
+            //             return false;
+            //         }
+            //     } else {
+            //         msgModel = {
+            //             "message": "Data not found",
+            //             "message-code": "SYS-000",
+            //             "message-type": "INFO",
+            //             "en-message": "Data not found",
+            //             "th-message": "ไม่พบข้อมูล",
+            //             "technical-message": "",
+            //             "mode": "dealer"
+            //         };
+            //         SystemService.showAlert(msgModel);
+            //         return false;
+            //     }
+            // } else {
+            //     msgModel = {
+            //         "message": response.status,
+            //         "message-code": "SYS-000",
+            //         "message-type": "INFO",
+            //         "en-message": "error",
+            //         "th-message": "เกิด ความผิดพลาดในการค้นหา",
+            //         "technical-message": "Trx Id=" + response.trx - id + " Node System =" + process - instance,
+            //         "mode": "dealer"
+            //     };
+            //     SystemService.showAlert(msgModel);
+            //     return false;
+            // }
+
+        }).error(function(err) {
+                          console.log(err);
+            // SystemService.timeOut = 500;
+            // SystemService.hideLoading();
+            // try {
+            //     JSON.parse(reponse);
+            // } catch (Exception) {
+            //     window.location.href = $scope.urlTimeOut;
+            // }
+
+        });
+        //      console.log("msgModel: ", msgModel )
+        //            if (msgModel != null) 
+        //               SystemService.showAlert(msgModel);
+    };
+
+});

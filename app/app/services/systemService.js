@@ -6,7 +6,7 @@
     var _WEB_METHOD_CHANNEL = "AFTERSALE_SMARTUI_WEB";
     var _REF_WEB_CHANNEL = $routeParams.channel ? $routeParams.channel : '';
 
-    this.demo = false;
+    this.demo = true;
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
@@ -3009,5 +3009,14 @@
             result = $filter('filter')(arr, txtSearch);
         }
         return result;
+    };
+
+    this.getFileJson = function(requestUrl, fnCallback){
+        $http.get(requestUrl).success(function(response) { 
+            fnCallback(response);
+        }).error(function (err) {
+            alert('Connot get file.');
+            console.log(err);
+        });
     };
 });

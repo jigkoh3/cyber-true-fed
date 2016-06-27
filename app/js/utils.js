@@ -7,7 +7,7 @@ if (typeof(console) === 'undefined') {
 }
 
 if (!PRD_MODE || typeof(console.log) === 'undefined') {
-    console.log = console.error = console.info = console.debug = console.warn = console.trace = console.dir = console.dirxml = console.group = console.groupEnd = console.time = console.timeEnd = console.assert = console.profile = function() {};
+    // console.log = console.error = console.info = console.debug = console.warn = console.trace = console.dir = console.dirxml = console.group = console.groupEnd = console.time = console.timeEnd = console.assert = console.profile = function() {};
 }
 // console log ================================
 

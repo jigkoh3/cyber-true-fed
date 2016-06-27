@@ -1,0 +1,503 @@
+<!-- <meta charset="UTF-8"> -->
+
+<div class="header">
+    <div class="container-fluid">
+        <div class="navbar-brand navbar-brand-center">
+            <div class="logo"></div>
+        </div>
+    </div>
+</div>
+<div class="container" id="monitorOrderContent" ng-init="init()">
+    
+    <div class="content m_content">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <div class="content-body">
+                <div style="padding-top:1px;" class="form-group">
+                    <h4>ประวัติการให้บริการ</h4>
+                </div>
+                <form class="well" style="background-color:#ffffff;">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>เงื่อนไขการค้นหา</label>
+                                    <div class="form-group">
+                                        
+                                        <select class="form-control" ng-model="condition" ng-click="reset()" id="condition">
+                                            <option value="" selected="selected">เลือก</option>
+                                            <option ng-repeat="condition in conditions " value="{{condition.id}}">{{condition.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>&nbsp;</label>
+                                <div class="form-group" id="valueCondition">
+                                    <input type="text" placeholder="" class="form-control" maxlength="60" ng-show="condition ==  'A' " id="product-number">
+                                    <input type="text" placeholder="" class="form-control" maxlength="30" ng-show="condition ==  'B' " id="customer-id">
+                                    <input type="text" placeholder="" class="form-control" maxlength="60" ng-show="condition ==  'C'  " id="order-id">
+                                    <input type="text" placeholder="" class="form-control" maxlength="60" ng-show="condition ==  'D'  " id="provisioning-id">
+                                    <input type="text" placeholder="" class="form-control" maxlength="30" ng-show="condition ==  'E'  " id="sale-code" ng-readonly="isShop" value="{{account_login}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>ประเภทบริการ</label>
+                                <div class="form-group">
+                                    
+                                    <select class="form-control" ng-model="serviceType" ng-options="serviceType['th-description'] for serviceType in serviceTypes" id="serviceListbox">
+                                        <option value="" selected="selected">เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>รหัสร้านค้า</label>
+                                <input type="text" id="shopCode" placeholder="" class="form-control" maxlength="30" value="{{shopCode}}" ng-disabled="true" ng-show="shopCode.length>0&& !isAdmin" />
+                                <!--                                         <select class="form-control" ng-model="partner" id="shopCodeListbox"  -->
+                                <!--                                         ng-if="partners.length>1&& !isAdmin"> -->
+                                <!--                                                 <option value="">เลือก</option> -->
+                                <!--                                                 <option ng-repeat="partner in partners" value="{{partner}}" >{{partner}}</option> -->
+                                <!--                                         </select>  -->
+                                <input type="text" id="customShopCode" placeholder="" class="form-control" maxlength="8" value="{{shopCode}}" ng-show="isAdmin" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>สถานะ Order</label>
+                                <div class="form-group">
+                                    <select class="form-control" ng-model="status" ng-options="status.name for status in statuses" id="statusListbox">
+                                        <option value="">เลือก</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="fromdate">วันที่ขอบริการ จาก<span style="color:red;">*</span></label>
+                                <input type="text" id="fromdate" class="form-control date-picker dateFormat">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="todate">วันที่ขอบริการ ถึง<span style="color:red;">*</span></label>
+                                <input type="text" id="todate" class="form-control date-picker dateFormat">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-4" align="right">&nbsp;
+                                <input type="submit" ng-click="callReport(20,1)" value="ยืนยัน" class="btn btn-success">
+                            </div>
+                            <div class="col-md-4" align="left">
+                                <input type="button" ng-click="clearValue()" value="ยกเลิก" class="btn btn-cancel">
+                            </div>
+                            <!--                                 <div class="col-md-4" align="right"  style="text-align: right;">                              -->
+                            <!--                                   <img ng-src="{{ details.Poster=='N/A' ? 'http://placehold.it/150x220&text=N/A' :details.Poster }}"> -->
+                            <!--                                 </div> -->
+                            <div class="col-md-4">&nbsp;</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div ng-show="datas.length > 0" style="padding-top:10px;" class="content-body">
+                <h4>ผลการค้นหา  <b>{{page}} / {{totalPage}}</b> หน้า </h4>
+            </div>
+            <!-- show result class="table-responsive"-->
+            <div style="padding-top:3px;padding-bottom:3px;padding-right: 3px;padding-left: 3px" class="well" style="background-color:#ffffff;" ng-show=" datas.length > 0 ">
+                <div class="table-responsive" id="divTableData">
+                    <table class="table" ng-show=" datas.length > 0 " id="report">
+                        <tr class="modal-header" style="background-color:gray;" valign="top">
+                            <td>&nbsp;</td>
+                            <td align="center"><span style="color:white;">เลขที่คำขอ <br>(Order Id)&nbsp;</span></td>
+                            <td align="center" nowrap="nowrap"><span style="color:white;">OMX Transaction ID&nbsp;</span></td>
+                            <td align="center" nowrap="nowrap" ng-if="isAdmin"><span style="color:white;">หมายเลขบัตร&nbsp;</span></td>
+                            <td align="center" nowrap="nowrap"><span style="color:white;">ชื่อ-นามสกุลลูกค้า&nbsp;</span></td>
+                            <td align="center" nowrap="nowrap"><span style="color:white;">หมายเลขบริการ&nbsp;</td>
+					<td align="center" nowrap="nowrap" ><span style="color:white;">ประเภทบริการ&nbsp;</span></td>
+                            <td align="center"><span style="color:white;">วันที่ขอบริการ<br>(Submit Date)</span></td>
+                            <td align="center" nowrap="nowrap"><span style="color:white;">สถานะ Order</span></td>
+                            <td align="center" nowrap="nowrap"><span style="color:white;">รหัสร้านค้า</span></td>
+                            <td align="center" nowrap="nowrap"><span style="color:white;">รหัสตัวแทนขาย</span></td>
+                            <td class="word-wrap:break word;"><span style="color:white;">หมายเหตุ</span></td>
+                        </tr>
+                        <tbody style="background-color:white;">
+                            <tr ng-repeat="data in datas" valign="top">
+                                <td>
+                                    <img src="images/print28.png" class="img-rounded" alt="Cinque Terre" width="25" height="25" ng-click="callPrint(data)" ng-if="data['reprint']==true">
+                                </td>
+                                <td nowrap="nowrap" align="right"><a href="" ng-click="popup(data)" class="btn" data-toggle="modal" data-target="#myModal">{{data['order-id']}}</a></td>
+                                <td nowrap="nowrap" align="center">{{data['provisioning-id']}}</td>
+                                <td nowrap="nowrap" align="center" ng-if="isAdmin">{{data['customer-id-number']}}</td>
+                                <td nowrap="nowrap">{{data['customer-name']}}</td>
+                                <td nowrap="nowrap" align="center">{{data['product-id-number']}}</td>
+                                <td nowrap="nowrap">{{data['activity-description']}}</td>
+                                <td nowrap="nowrap" align="right">{{data['submit-date'] | date:"dd/MM/yyyy HH:mm:ss"}}</td>
+                                <td nowrap="nowrap">{{data['status']}}</td>
+                                <td nowrap="nowrap">{{data['partner-code']}}</td>
+                                <td nowrap="nowrap">{{data['sale-code']}}</td>
+                                <td nowrap="nowrap">{{data['status-message']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12" ng-show="datas.length>0 && totalPage>1" style="vertical-align: text-top;">
+                    <table border="0" width="800px">
+                        <tr>
+                            <td class="pagination-page" align="left" width="750px">
+                                <ul class="pagination">
+                                    <li><a href="" ng-click="callReport(20,1)" ng-show="totalPage>1">&lt;&lt;</a></li>
+                                    <li><a href="" ng-click="callReport(20,page-1)" ng-show="totalPage>1">&lt;</a></li>
+                                    <li ng-readonly="1"><a href="">{{page}}</a></li>
+                                    <li><a href="" ng-click="callReport(20,page+1)" ng-show="page<totalPage">&gt;</a></li>
+                                    <li><a href="" ng-click="callReport(20,totalPage)" ng-show="page<totalPage">&gt;&gt;</a></li>
+                                </ul>
+                            </td>
+                            <!-- 							<td align="right" width="100px" nowrap="nowrap"> -->
+                            <!-- 								<ul class="pagination"> -->
+                            <!-- 									<li><h3> -->
+                            <!-- 											<b>{{page}} / {{totalPage}}</b> Page(s)</h3></li> -->
+                            <!-- 								</ul> -->
+                            <!-- 							</td> -->
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog custom-class">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div style="vertical-align: top;">
+                        <h4><i class="ace-icon fa fa-arrow-circle-right danger" style="color:red;" ></i>รายละเอียด</h4>
+                        <!--                 <h4 class="modal-title" id="myModalLabel"></h4> -->
+                    </div>
+                </div>
+                <div class="modal-content">
+                    <div id="main_detail" class="table-responsive">
+                        <!--  class="table table-striped"-->
+                        <table class="table">
+                            <tr>
+                                <td class="col-md-2" align="right" valign="middle">เลขที่คำขอ (Order Id):</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['item-id'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">สถานะ Order:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail.status }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2" align="right" valign="top">หมายเหตุ:</td>
+                                <td class="col-md-10" align="left" colspan="3">
+                                    <textarea class="form-control" rows="2" readonly="readonly">{{ selectedData['status-message'] }}</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2" align="right" valign="middle">วันที่ขอบริการ:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" id="submit-date" value="{{ selectedData['submit-date'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">รหัสผู้ใช้งาน:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ selectedData['create-by'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2" align="right" valign="middle">รหัสร้านค้า:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ selectedData['partner-code'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">รหัสตัวแทนขาย:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ selectedData['sale-code'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2" align="right" valign="middle">ชื่อ-นามสกุลลูกค้า:</td>
+                                <td class="col-md-4" ng-if="selectedData['order-name']!='CHANGE_OWNERSHIP'">
+                                    <input type="text" class="form-control" value="{{ selectedData['customer-name'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-4" ng-if="selectedData['order-name']=='CHANGE_OWNERSHIP'">
+                                    <input type="text" class="form-control" value="{{ data_detail['primary-order-data']['ORIGINAL-OWNER-FIRSTNAME'] }}  {{ data_detail['primary-order-data']['ORIGINAL-OWNER-LASTNAME'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">หมายเลขบริการ:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ selectedData['product-id-number'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2" align="right" valign="middle">ประเภทบริการ:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ selectedData['activity-description'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <!-- both service start -->
+                            <tr ng-if="selectedData['order-name']=='CHANGE_PRICEPLAN'">
+                                <td class="col-md-2" align="right" valign="middle">ระดับ:</td>
+                                <!-- if (ouLevel != null || "G".equalsIgnoreCase(serviceLevel)  then OU else Sub  -->
+                                <td class="col-md-10" colspan="3" ng-show="data_detail ['order-data']['OU-LEVEL'] !='' &&  data_detail ['order-data']['OU-LEVEL'] != null && data_detail ['order-data']['SERVICE-LEVEL'] == 'G'">
+                                    <input type="text" class="form-control" value="OU" readonly="readonly">
+                                </td>
+                                <td class="col-md-10" colspan="3" ng-show="data_detail ['order-data']['OU-LEVEL'] !='' &&  data_detail ['order-data']['OU-LEVEL'] != null && data_detail ['order-data']['SERVICE-LEVEL'] != 'G'">
+                                    <input type="text" class="form-control" value="Sub" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='CHANGE_PRICEPLAN'">
+                                <td class="col-md-2" align="right" valign="middle">โปรโมชั่นเก่า:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ pricePlanCurrent   }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='CHANGE_PRICEPLAN'">
+                                <td class="col-md-2" align="right" valign="middle">โปรโมชั่นใหม่:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ pricePlanNew }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='CHANGE_PRICEPLAN'">
+                                <td class="col-md-2" align="right" valign="middle">รายการส่งเสริมการขาย:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['order-data']['NEW-PROPOSITION'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">มีผล:</td>
+                                <!-- - IMMEDIATE -->
+                                <!-- - FUTURE -->
+                                <!-- - NEXTBILL -->
+                                <td ng-if="selectedData['order-data']['EFFECTIVE-OPTION'] =='IMMEDIATE'" class="col-md-4">
+                                    <input type="text" class="form-control" value="ทันที" readonly="readonly">
+                                </td>
+                                <td ng-if="selectedData['order-data']['EFFECTIVE-OPTION'] =='FUTURE'" class="col-md-4">
+                                    <input type="text" class="form-control" value="ระบุวันที่" readonly="readonly">
+                                </td>
+                                <td ng-if="selectedData['order-data']['EFFECTIVE-OPTION'] =='NEXTBILL'" class="col-md-4">
+                                    <input type="text" class="form-control" value="รอบบิลถัดไป" readonly="readonly">
+                                </td>
+                                <td ng-if="selectedData['order-data']['EFFECTIVE-OPTION'] !='NEXTBILL' && selectedData['order-data']['EFFECTIVE-OPTION'] !='FUTURE' && selectedData['order-data']['EFFECTIVE-OPTION'] !='IMMEDIATE'" class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ selectedData ['order-data']['EFFECTIVE-OPTION'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='CHANGE_PRICEPLAN'">
+                                <td class="col-md-2" align="right" valign="middle">วันที่มีผล:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ selectedData ['order-data']['EFFECTIVE-DATE'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <!-- swap sim -->
+                            <tr ng-if="selectedData['order-name']=='SWAP_SIM'">
+                                <td class="col-md-2" align="right" valign="middle">บริษัท:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['primary-order-data']['COMPANY-CODE'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">Material code:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['primary-order-data']['PRODUCT-CODE'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='SWAP_SIM'">
+                                <td class="col-md-2" align="right" valign="middle">หมายเลขซิมใหม่:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['primary-order-data']['SIM'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">สถานะตัด Stock:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ inventoryStatus }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='SWAP_SIM'">
+                                <td class="col-md-2" align="right" nowrap="nowrap" valign="middle">เลขที่การตัด Stock (Doc No.):</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['order-data']['DOC-NUMBER'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">ผู้อนุมัติ:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['approver'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <!-- CHANGE_OWNERSHIP -->
+                            <tr ng-if="selectedData['order-name']=='CHANGE_OWNERSHIP'">
+                                <td class="col-md-2" align="right" nowrap="nowrap" valign="middle">ชื่อ-นามสกุลเจ้าของใหม่่:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ selectedData['customer-name'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">ประเภทลูกค้า:</td>
+                                <!-- I,P,C,B -->
+                                <td valign="top" ng-if="data_detail['primary-order-data']['ACCOUNT-CATEGORY']  =='I'" class="col-md-4">
+                                    <input type="text" class="form-control" value="บุคคลธรรมดา" readonly="readonly">
+                                </td>
+                                <td valign="top" ng-if="data_detail['primary-order-data']['ACCOUNT-CATEGORY']  =='P'" class="col-md-4">
+                                    <input type="text" class="form-control" value="บุคคลธรรมดา" readonly="readonly">
+                                </td>
+                                <td valign="top" ng-if="data_detail['primary-order-data']['ACCOUNT-CATEGORY']  =='C' || data_detail['primary-order-data']['ACCOUNT-CATEGORY']  =='B'" class="col-md-4">
+                                    <input type="text" class="form-control" value="นิติบุคคล" readonly="readonly">
+                                </td>
+                                <td valign="top" ng-if="(data_detail['primary-order-data']['ACCOUNT-CATEGORY']  !='I'  && data_detail['primary-order-data']['ACCOUNT-CATEGORY'] !='P' && data_detail['primary-order-data']['ACCOUNT-CATEGORY']  !='C' && data_detail['primary-order-data']['ACCOUNT-CATEGORY']  !='B')" class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['primary-order-data']['ACCOUNT-CATEGORY'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='CHANGE_OWNERSHIP'">
+                                <td class="col-md-2" align="right" valign="middle">โปรโมชั่นใหม่:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ pricePlanNew }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='CHANGE_OWNERSHIP'">
+                                <td class="col-md-2" align="right" valign="middle">รายการส่งเสริมการขาย:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ data_detail['primary-order-data']['CCBS-PROPOSITION'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <!-- SUSPEND  CANCEL   RESTORE-->
+                            <tr ng-if="(selectedData['order-name']=='SUSPEND' || selectedData['order-name']=='SUSPEND' || selectedData['order-name']=='CANCEL')">
+                                <td class="col-md-2" align="right" valign="middle">สถานะเก่า:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['order-data']['PRODUCT-STATUS-DESC'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">สถานะใหม่:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['order-data']['CHANGE-OPTION'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <!-- ADD_IRIDD  REMOVE_IRIDD -->
+                            <tr ng-if="(selectedData['order-name']=='ADD_IRIDD' || selectedData['order-name']=='REMOVE_IRIDD')">
+                                <td class="col-md-2" align="right" nowrap="nowrap" valign="middle">Offer code IDD:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ pricePlanIDD }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="(selectedData['order-name']=='ADD_IRIDD' || selectedData['order-name']=='REMOVE_IRIDD')">
+                                <td class="col-md-2" align="right" valign="middle">Offer code IR:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ pricePlanIR }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="(selectedData['order-name']=='ADD_IRIDD' || selectedData['order-name']=='REMOVE_IRIDD')">
+                                <td class="col-md-2" align="right" valign="middle">มีผล:</td>
+                                <!-- - IMMEDIATE -->
+                                <!-- - FUTURE -->
+                                <!-- - NEXTBILL -->
+                                <td ng-if="selectedData['order-data']['EFFECTIVE-OPTION'] =='IMMEDIATE'" class="col-md-4">
+                                    <input type="text" class="form-control" value="ทันที" readonly="readonly">
+                                </td>
+                                <td ng-if="selectedData['order-data']['EFFECTIVE-OPTION'] =='FUTURE'" class="col-md-4">
+                                    <input type="text" class="form-control" value="ระบุวันที่" readonly="readonly">
+                                </td>
+                                <td ng-if="selectedData['order-data']['EFFECTIVE-OPTION'] =='NEXTBILL'" class="col-md-4">
+                                    <input type="text" class="form-control" value="รอบบิลถัดไป" readonly="readonly">
+                                </td>
+                                <td ng-if="selectedData['order-data']['EFFECTIVE-OPTION'] !='NEXTBILL' && selectedData['order-data']['EFFECTIVE-OPTION'] !='FUTURE' && selectedData['order-data']['EFFECTIVE-OPTION'] !='IMMEDIATE'" class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ selectedData ['order-data']['EFFECTIVE-OPTION'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">วันที่มีผล:</td>
+                                <td class="col-md-4" colspan="3">
+                                    <input type="text" class="form-control" value="{{ selectedData ['order-data']['EFFECTIVE-DATE'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <!-- RESUME  -->
+                            <tr ng-if="selectedData['order-name']=='RESUME'">
+                                <td class="col-md-2" align="right" valign="middle">โปรโมชั่นปัจจุบัน:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ pricePlanNew }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='RESUME'">
+                                <td class="col-md-2" align="right" valign="middle">รายการส่งเสริมการขาย:</td>
+                                <td class="col-md-4" colspan="3">
+                                    <input type="text" class="form-control" value="{{ data_detail['primary-order-data']['CCBS-PROPOSITION'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">บริษัท:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ data_detail['primary-order-data']['COMPANY-CODE'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='RESUME'">
+                                <td class="col-md-2" align="right" valign="middle">หมายเลขซิมใหม่:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ data_detail['primary-order-data']['SIM'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <!-- MIGRATE_POST_TO_PRE  -->
+                            <tr ng-if="selectedData['order-name']=='MIGRATE_POST_TO_PRE' || selectedData['order-name']=='MIGRATE_PRE_TO_POST'">
+                                <td class="col-md-2" align="right" nowrap="nowrap" valign="middle">ชื่อ-นามสกุลเจ้าของใหม่่:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ selectedData['customer-name'] }}" readonly="readonly">
+                                </td>
+                                <td class="col-md-2" align="right" valign="middle">โปรโมชั่นใหม่:</td>
+                                <td class="col-md-4">
+                                    <input type="text" class="form-control" value="{{ pricePlanNew }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr ng-if="selectedData['order-name']=='MIGRATE_POST_TO_PRE' || selectedData['order-name']=='MIGRATE_PRE_TO_POST'">
+                                <td class="col-md-2" align="right" valign="middle">รายการส่งเสริมการขาย:</td>
+                                <td class="col-md-10" colspan="3">
+                                    <input type="text" class="form-control" value="{{ data_detail['primary-order-data']['CCBS-PROPOSITION'] }}" readonly="readonly">
+                                </td>
+                            </tr>
+                            <!--   
+CANCEL_BEFORE_INSTALL    
+CHANGE_PROMOTION_CVG     
+CHANGE_INSTALLATION_DATE             
+CHANGE_PROMOTION_SPEED -->
+                        </table>
+                    </div>
+                    <!-- end detail -->
+                </div>
+                <!-- /.modal-dialog -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Send message</button>-->
+                </div>
+            </div>
+        </div>
+        <!--  /.modal-dialog -->
+        <!-- Report Tabel  -->
+        <!-- <div id="dvData"> -->
+        <!-- <table> -->
+        <!--     <tr> -->
+        <!--         <th>Column One </th> -->
+        <!--         <th>Column Two</th> -->
+        <!--         <th>Column Three</th> -->
+        <!--     </tr> -->
+        <!--     <tr> -->
+        <!--         <td>row1 Col1</td> -->
+        <!--         <td>row1 Col2</td> -->
+        <!--         <td>row1 Col3</td> -->
+        <!--    </tr> -->
+        <!--    <tr> -->
+        <!--         <td>row2 Col1</td> -->
+        <!--         <td>row2 Col2</td> -->
+        <!--         <td>row2 Col3</td> -->
+        <!--    </tr> -->
+        <!--       <tr> -->
+        <!--         <td>row3 Col1</td> -->
+        <!--         <td>row3 Col2</td> -->
+        <!--         <td>row3 Col3</td>   -->
+        <!--    </tr> -->
+        <!-- </table> -->
+        <!-- </div> -->
+        <!-- End Report Table -->
+        <style>
+        .custom-class {
+            width: 80%;
+            /* either % (e.g. 60%) or px (400px) */
+        }
+        </style>
+    </div>
+    <!-- end main -->
