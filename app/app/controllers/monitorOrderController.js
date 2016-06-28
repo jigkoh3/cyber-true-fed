@@ -21,6 +21,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
     $scope.statuses[2] = { id: "PROCESSING", name: "PROCESSING" };
     $scope.statuses[3] = { id: "ERROR", name: "ERROR" };
     $scope.statuses[4] = { id: "COMPLETED", name: "COMPLETED" };
+    $scope.service = window.location.protocol + "//" + window.location.hostname + (null != window.location.port ? ":" + window.location.port : "");
 
     dateDiff = function(datepart, fromdate, todate) {
 
@@ -61,8 +62,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         AuthenService.getAuthen(function(result) {
             if (result == "ERROR") return;
             $scope.getAuthen = result;
-            $("#customShopCode").val($scope.getAuthen.shopcodes);
-            $scope.chkShopcode();
+    
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
                 //$scope.showDataDealer = true;
@@ -71,7 +71,13 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
                 $scope.isAdmin = true;
             }
             $scope.shopType = $scope.getAuthen["shopType"];
-            //$scope.checkUserDealer();
+            if($scope.getAuthen["shopcodes"].length > 1){
+                $scope.shopCode = $scope.getAuthen["shopcodes"][0];
+            } else{
+                $scope.shopCode = $scope.getAuthen["shopcodes"];
+            }
+            $("#customShopCode").val($scope.shopCode);
+            $scope.chkShopcode();
         });
 
     };
@@ -298,7 +304,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         //      SystemService.showLoading();
         var requestUrl = $scope.service + "/aftersales/order/report/query?";
         if (SystemService.demo == true) {
-            requestUrl = "/app/jsonFiles/monitorOrderAddIDDPage.json?";
+            requestUrl = "app/jsonFiles/monitorOrderAddIDDPage.json?";
         }
 
 
@@ -493,60 +499,60 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         //               SystemService.showAlert(msgModel);
         //               return false;
         //        });
-
+        console.log(requestUrl);
         $http.post(requestUrl, /*data*/ null).success(function(response) {
             //      $http.post(encodeURI(requestUrl) ,{ headers: objectSSO }).success(function(response) {   
-            // if (response.status == "SUCCESSFUL") {
+            if (response.status == "SUCCESSFUL") {
 
-            //     if (response['response-data'] != 'undefined') {
-            //         SystemService.hideLoading();
-            //         try {
-            //             if (response['page']['current'] != 'undefined') {
-            //                 $scope.totalPage = response['page']['total'];
-            //                 $scope.page = response['page']['current'];
-            //                 $.each(response['response-data'], function(index, value) {
-            //                     $scope.datas[index] = value;
-            //                 });
-            //             }
-            //         } catch (err) {
-            //             msgModel = {
-            //                 "message": "Data not found",
-            //                 "message-code": "SYS-000",
-            //                 "message-type": "INFO",
-            //                 "en-message": "Data not found",
-            //                 "th-message": "ไม่พบข้อมูล",
-            //                 "technical-message": "",
-            //                 "mode": "dealer"
-            //             };
-            //             SystemService.showAlert(msgModel);
-            //             return false;
-            //         }
-            //     } else {
-            //         msgModel = {
-            //             "message": "Data not found",
-            //             "message-code": "SYS-000",
-            //             "message-type": "INFO",
-            //             "en-message": "Data not found",
-            //             "th-message": "ไม่พบข้อมูล",
-            //             "technical-message": "",
-            //             "mode": "dealer"
-            //         };
-            //         SystemService.showAlert(msgModel);
-            //         return false;
-            //     }
-            // } else {
-            //     msgModel = {
-            //         "message": response.status,
-            //         "message-code": "SYS-000",
-            //         "message-type": "INFO",
-            //         "en-message": "error",
-            //         "th-message": "เกิด ความผิดพลาดในการค้นหา",
-            //         "technical-message": "Trx Id=" + response.trx - id + " Node System =" + process - instance,
-            //         "mode": "dealer"
-            //     };
-            //     SystemService.showAlert(msgModel);
-            //     return false;
-            // }
+                if (response['response-data'] != 'undefined') {
+                    SystemService.hideLoading();
+                    try {
+                        if (response['page']['current'] != 'undefined') {
+                            $scope.totalPage = response['page']['total'];
+                            $scope.page = response['page']['current'];
+                            $.each(response['response-data'], function(index, value) {
+                                $scope.datas[index] = value;
+                            });
+                        }
+                    } catch (err) {
+                        msgModel = {
+                            "message": "Data not found",
+                            "message-code": "SYS-000",
+                            "message-type": "INFO",
+                            "en-message": "Data not found",
+                            "th-message": "ไม่พบข้อมูล",
+                            "technical-message": "",
+                            "mode": "dealer"
+                        };
+                        SystemService.showAlert(msgModel);
+                        return false;
+                    }
+                } else {
+                    msgModel = {
+                        "message": "Data not found",
+                        "message-code": "SYS-000",
+                        "message-type": "INFO",
+                        "en-message": "Data not found",
+                        "th-message": "ไม่พบข้อมูล",
+                        "technical-message": "",
+                        "mode": "dealer"
+                    };
+                    SystemService.showAlert(msgModel);
+                    return false;
+                }
+            } else {
+                msgModel = {
+                    "message": response.status,
+                    "message-code": "SYS-000",
+                    "message-type": "INFO",
+                    "en-message": "error",
+                    "th-message": "เกิด ความผิดพลาดในการค้นหา",
+                    "technical-message": "Trx Id=" + response.trx - id + " Node System =" + process - instance,
+                    "mode": "dealer"
+                };
+                SystemService.showAlert(msgModel);
+                return false;
+            }
 
         }).error(function(err) {
                           console.log(err);

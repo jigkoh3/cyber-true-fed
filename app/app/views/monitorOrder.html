@@ -62,13 +62,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>รหัสร้านค้า</label>
-                                <input type="text" id="shopCode" placeholder="" class="form-control" maxlength="30" value="{{shopCode}}" ng-disabled="true" ng-show="shopCode.length>0&& !isAdmin" />
-                                <!--                                         <select class="form-control" ng-model="partner" id="shopCodeListbox"  -->
-                                <!--                                         ng-if="partners.length>1&& !isAdmin"> -->
-                                <!--                                                 <option value="">เลือก</option> -->
-                                <!--                                                 <option ng-repeat="partner in partners" value="{{partner}}" >{{partner}}</option> -->
-                                <!--                                         </select>  -->
-                                <input type="text" id="customShopCode" placeholder="" class="form-control" maxlength="8" value="{{shopCode}}" ng-show="isAdmin" />
+                                
+                                <input type="text" id="customShopCode" placeholder="" class="form-control" maxlength="8" value="{{shopCode}}" ng-model="shopCode" />
                             </div>
                         </div>
                         <div class="col-md-4">
