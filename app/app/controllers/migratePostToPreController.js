@@ -1259,9 +1259,10 @@
         };
 
         //// what $scope.selectedProPositionIn ::: Fixed to selectProPP :: 24-06-2016 :: xsam32
+        if($scope.selectedPricePlan.proposition){
         var selectProPP = $filter('filter')($scope.proPositionList, {"proposition-code": $scope.selectedPricePlan.proposition});
         selectProPP = selectProPP[0];
-
+        }
         return {
             customerProfile: $scope.data.customerProfile,
             customerProfileNew: $scope.data.customerProfileNew,
