@@ -22,7 +22,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
     $scope.statuses[3] = { id: "ERROR", name: "ERROR" };
     $scope.statuses[4] = { id: "COMPLETED", name: "COMPLETED" };
     $scope.service = window.location.protocol + "//" + window.location.hostname + (null != window.location.port ? ":" + window.location.port : "");
-
+    
     dateDiff = function(datepart, fromdate, todate) {
 
         var fromYear = fromdate.substring(6, 10);
@@ -830,7 +830,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
 
     $scope.callPrint = function(data) {
         if (null != data['order-id']) {
-            var detailUrl = "/reprint.jsp?keyId=" + encodeURI("/aftersales/order/pdf/get-pdf-reprint?order-id=" + data['order-id']); //webapp/aftersale               
+            var detailUrl = "/reprint.jsp?keyId=" + encodeURI($scope.service + "/aftersales/order/pdf/get-pdf-reprint?order-id=" + data['order-id']); //webapp/aftersale               
             //      window.open("http://localhost:8080/webapp/aftersale/app/views/print.html?keyId=15120400TLR000000141" , "Print Popup Window", "width=600,height=600,scrollbars=yes,resizable=yes");
             window.open(detailUrl, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=200, left=500, width=600, height=600");
             return true;
