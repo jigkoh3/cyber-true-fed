@@ -303,9 +303,9 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         //console.log('callReport!!!!! step validate:'+ isValid) ;
         //      SystemService.showLoading();
         var requestUrl = "/aftersales/order/report/query?";
-        // if (SystemService.demo == true) {
-        //     requestUrl = "app/jsonFiles/monitorOrderAddIDDPage.json?";
-        // }
+        if (SystemService.demo == true) {
+            requestUrl = "app/jsonFiles/monitorOrderAddIDDPage.json?";
+        }
 
 
         var shopCode = $("#customShopCode").val();
@@ -500,21 +500,35 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         //               return false;
         //        });
         console.log(requestUrl);
-        $http.post(requestUrl, /*data*/ null).success(function(response) {
-            //      $http.post(encodeURI(requestUrl) ,{ headers: objectSSO }).success(function(response) {   
-            if (response.status == "SUCCESSFUL") {
+        if (SystemService.demo == true) {
+            $http.get(requestUrl).success(function(response) {
+                //      $http.post(encodeURI(requestUrl) ,{ headers: objectSSO }).success(function(response) {   
+                if (response.status == "SUCCESSFUL") {
 
-                if (response['response-data'] != 'undefined') {
-                    SystemService.hideLoading();
-                    try {
-                        if (response['page']['current'] != 'undefined') {
-                            $scope.totalPage = response['page']['total'];
-                            $scope.page = response['page']['current'];
-                            $.each(response['response-data'], function(index, value) {
-                                $scope.datas[index] = value;
-                            });
+                    if (response['response-data'] != 'undefined') {
+                        SystemService.hideLoading();
+                        try {
+                            if (response['page']['current'] != 'undefined') {
+                                $scope.totalPage = response['page']['total'];
+                                $scope.page = response['page']['current'];
+                                $.each(response['response-data'], function(index, value) {
+                                    $scope.datas[index] = value;
+                                });
+                            }
+                        } catch (err) {
+                            msgModel = {
+                                "message": "Data not found",
+                                "message-code": "SYS-000",
+                                "message-type": "INFO",
+                                "en-message": "Data not found",
+                                "th-message": "ไม่พบข้อมูล",
+                                "technical-message": "",
+                                "mode": "dealer"
+                            };
+                            SystemService.showAlert(msgModel);
+                            return false;
                         }
-                    } catch (err) {
+                    } else {
                         msgModel = {
                             "message": "Data not found",
                             "message-code": "SYS-000",
@@ -529,42 +543,96 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
                     }
                 } else {
                     msgModel = {
-                        "message": "Data not found",
+                        "message": response.status,
                         "message-code": "SYS-000",
                         "message-type": "INFO",
-                        "en-message": "Data not found",
-                        "th-message": "ไม่พบข้อมูล",
-                        "technical-message": "",
+                        "en-message": "error",
+                        "th-message": "เกิด ความผิดพลาดในการค้นหา",
+                        "technical-message": "Trx Id=" + response.trx - id + " Node System =" + process - instance,
                         "mode": "dealer"
                     };
                     SystemService.showAlert(msgModel);
                     return false;
                 }
-            } else {
-                msgModel = {
-                    "message": response.status,
-                    "message-code": "SYS-000",
-                    "message-type": "INFO",
-                    "en-message": "error",
-                    "th-message": "เกิด ความผิดพลาดในการค้นหา",
-                    "technical-message": "Trx Id=" + response.trx - id + " Node System =" + process - instance,
-                    "mode": "dealer"
-                };
-                SystemService.showAlert(msgModel);
-                return false;
-            }
 
-        }).error(function(err) {
-            console.log(err);
-            // SystemService.timeOut = 500;
-            // SystemService.hideLoading();
-            // try {
-            //     JSON.parse(reponse);
-            // } catch (Exception) {
-            //     window.location.href = $scope.urlTimeOut;
-            // }
+            }).error(function(err) {
+                console.log(err);
+                // SystemService.timeOut = 500;
+                // SystemService.hideLoading();
+                // try {
+                //     JSON.parse(reponse);
+                // } catch (Exception) {
+                //     window.location.href = $scope.urlTimeOut;
+                // }
 
-        });
+            });
+        } else {
+            $http.post(requestUrl, /*data*/ null).success(function(response) {
+                //      $http.post(encodeURI(requestUrl) ,{ headers: objectSSO }).success(function(response) {   
+                if (response.status == "SUCCESSFUL") {
+
+                    if (response['response-data'] != 'undefined') {
+                        SystemService.hideLoading();
+                        try {
+                            if (response['page']['current'] != 'undefined') {
+                                $scope.totalPage = response['page']['total'];
+                                $scope.page = response['page']['current'];
+                                $.each(response['response-data'], function(index, value) {
+                                    $scope.datas[index] = value;
+                                });
+                            }
+                        } catch (err) {
+                            msgModel = {
+                                "message": "Data not found",
+                                "message-code": "SYS-000",
+                                "message-type": "INFO",
+                                "en-message": "Data not found",
+                                "th-message": "ไม่พบข้อมูล",
+                                "technical-message": "",
+                                "mode": "dealer"
+                            };
+                            SystemService.showAlert(msgModel);
+                            return false;
+                        }
+                    } else {
+                        msgModel = {
+                            "message": "Data not found",
+                            "message-code": "SYS-000",
+                            "message-type": "INFO",
+                            "en-message": "Data not found",
+                            "th-message": "ไม่พบข้อมูล",
+                            "technical-message": "",
+                            "mode": "dealer"
+                        };
+                        SystemService.showAlert(msgModel);
+                        return false;
+                    }
+                } else {
+                    msgModel = {
+                        "message": response.status,
+                        "message-code": "SYS-000",
+                        "message-type": "INFO",
+                        "en-message": "error",
+                        "th-message": "เกิด ความผิดพลาดในการค้นหา",
+                        "technical-message": "Trx Id=" + response.trx - id + " Node System =" + process - instance,
+                        "mode": "dealer"
+                    };
+                    SystemService.showAlert(msgModel);
+                    return false;
+                }
+
+            }).error(function(err) {
+                console.log(err);
+                // SystemService.timeOut = 500;
+                // SystemService.hideLoading();
+                // try {
+                //     JSON.parse(reponse);
+                // } catch (Exception) {
+                //     window.location.href = $scope.urlTimeOut;
+                // }
+
+            });
+        }
         //      console.log("msgModel: ", msgModel )
         //            if (msgModel != null) 
         //               SystemService.showAlert(msgModel);
@@ -611,7 +679,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         var pricePlanName = "";
 
         var detailUrl = "/sales/catalog/product/tmv/priceplan/" + encodeURI(priceplanCode);
-        if ($scope.env == 0) {
+        if (SystemService.demo == true) {
             detailUrl = "/app/jsonFiles/monitorOrderDetailAddIDD.json?" + encodeURI(priceplanCode); // +"/data" ;
         }
 
@@ -682,7 +750,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
 
         var orderid = data['order-id'];
         var detailUrl = "/aftersales/order/get/" + encodeURI(orderid);
-        if ($scope.env == 0) {
+        if (SystemService.demo == true) {
             detailUrl = "/app/jsonFiles/monitorOrderDetailChange.json?" + encodeURI(orderid);
         }
         resetValuePopup();
@@ -760,4 +828,14 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         $scope.pricePlanIR = "";
     }
 
+    $scope.callPrint = function(data) {
+        if (null != data['order-id']) {
+            var detailUrl = "/reprint.jsp?keyId=" + encodeURI("/aftersales/order/pdf/get-pdf-reprint?order-id=" + data['order-id']); //webapp/aftersale               
+            //      window.open("http://localhost:8080/webapp/aftersale/app/views/print.html?keyId=15120400TLR000000141" , "Print Popup Window", "width=600,height=600,scrollbars=yes,resizable=yes");
+            window.open(detailUrl, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=200, left=500, width=600, height=600");
+            return true;
+        } else {
+            return false;
+        }
+    }
 });
