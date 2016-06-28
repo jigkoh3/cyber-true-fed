@@ -62,7 +62,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         AuthenService.getAuthen(function(result) {
             if (result == "ERROR") return;
             $scope.getAuthen = result;
-    
+
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
                 //$scope.showDataDealer = true;
@@ -71,9 +71,9 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
                 $scope.isAdmin = true;
             }
             $scope.shopType = $scope.getAuthen["shopType"];
-            if($scope.getAuthen["shopcodes"].length > 1){
+            if ($scope.getAuthen["shopcodes"].length > 1) {
                 $scope.shopCode = $scope.getAuthen["shopcodes"][0];
-            } else{
+            } else {
                 $scope.shopCode = $scope.getAuthen["shopcodes"];
             }
             $("#customShopCode").val($scope.shopCode);
@@ -302,10 +302,10 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         }
         //console.log('callReport!!!!! step validate:'+ isValid) ;
         //      SystemService.showLoading();
-        var requestUrl = $scope.service + "/aftersales/order/report/query?";
-        if (SystemService.demo == true) {
-            requestUrl = "app/jsonFiles/monitorOrderAddIDDPage.json?";
-        }
+        var requestUrl = "/aftersales/order/report/query?";
+        // if (SystemService.demo == true) {
+        //     requestUrl = "app/jsonFiles/monitorOrderAddIDDPage.json?";
+        // }
 
 
         var shopCode = $("#customShopCode").val();
@@ -555,7 +555,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
             }
 
         }).error(function(err) {
-                          console.log(err);
+            console.log(err);
             // SystemService.timeOut = 500;
             // SystemService.hideLoading();
             // try {
@@ -569,5 +569,195 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         //            if (msgModel != null) 
         //               SystemService.showAlert(msgModel);
     };
+
+    $scope.clearValue = function() {
+        $scope.datas = [];
+        $scope.totalPage = 0;
+
+        $("#product-number").val("");
+        $("#customer-id").val("");
+        $("#order-id").val("");
+        $("#provisioning-id").val("");
+        $("#sale-code").val("");
+        $("#condition").val("");
+
+        $("#statusListbox").val("");
+        $("#serviceListbox").val("");
+
+        $("#shopCode").val($scope.shopCode);
+        $("#customShopCode").val($scope.shopCode);
+
+
+        $("#valueCondition").hide();
+
+        //          $('#fromdate').datepicker({
+        //              format: "dd/mm/yyyy" ,
+        //                 autoclose: true,
+        //                 language: 'th-th',
+        //          }).datepicker("setDate",null);
+        //          
+        //          $('#todate').datepicker({
+        //              format: "dd/mm/yyyy" ,
+        //                 autoclose: true,
+        //                 language: 'th-th',
+        //          }).datepicker("setDate",null);
+        $scope.showDate();
+        //          console.log("clearValue: " + $("#condition").val());
+
+
+    };
+
+    $scope.callGetPricePlan = function(priceplanCode, type) {
+        var pricePlanName = "";
+
+        var detailUrl = "/sales/catalog/product/tmv/priceplan/" + encodeURI(priceplanCode);
+        if ($scope.env == 0) {
+            detailUrl = "/app/jsonFiles/monitorOrderDetailAddIDD.json?" + encodeURI(priceplanCode); // +"/data" ;
+        }
+
+
+        var request = $http({
+            method: "get",
+            url: detailUrl,
+            //              data: serializedData,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            timeout: 30000
+        });
+
+
+        // Store the data-dump of the FORM scope.
+        request.success(function(response) {
+
+            if (response.name != undefined) {
+                var tmp = (response['description'] == undefined || "" == response['description']) ? '' : (priceplanCode + ":" + response['description']);
+
+                if (type == '1') {
+                    $scope.pricePlanNew = tmp;
+                } else if (type == '2') {
+                    $scope.pricePlanIDD = tmp;
+                } else if (type == '3') {
+                    $scope.pricePlanIR = tmp;
+                } else {
+                    $scope.pricePlanCurrent = tmp;
+                }
+            } else {
+                //                   return $scope.pricePlan =  "";
+
+
+            }
+        }).error(function(response) {
+            if (type == '1') {
+                $scope.pricePlanNew = priceplanCode;
+            } else if (type == '2') {
+                $scope.pricePlanIDD = priceplanCode;
+            } else if (type == '3') {
+                $scope.pricePlanIR = priceplanCode;
+            } else {
+                $scope.pricePlanCurrent = priceplanCode;
+            }
+            //              return $scope.pricePlan =  "";
+        });
+    };
+
+    $scope.popup = function(data) {
+        //
+
+        $scope.selectedData = data;
+
+        /*
+         $("#orderid").html(data['order-id']) ;
+         $("#status").html(data['status-message']) ;
+         $("#submit-date").html(data['submit-date']) ;
+         $("#sale-code").html(data['sale-code']) ;
+         $("#create-by").html(data['create-by']) ;
+         $("#customer-name").html(data['customer-name']) ;
+         $("#product-id-number").html(data['product-id-number']) ;
+         $("#status").html(data['status']) ;
+         $("#partner-code").html(data['partner-code']) ;
+            */
+
+
+        var orderid = data['order-id'];
+        var detailUrl = "/aftersales/order/get/" + encodeURI(orderid);
+        if ($scope.env == 0) {
+            detailUrl = "/app/jsonFiles/monitorOrderDetailChange.json?" + encodeURI(orderid);
+        }
+        resetValuePopup();
+        var request = $http({
+            method: "get",
+            url: detailUrl,
+            //              data: serializedData,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            timeout: 30000
+        });
+
+
+        // Store the data-dump of the FORM scope.
+        request.success(function(response) {
+
+            if (response.status == 'SUCCESSFUL') {
+                //alert("SAASASS");
+                /*
+                $scope.changepriceplan_servicetype =  response['response-data']['order-items' ][0] ;
+                $scope.swapsim_companycode =  response['response-data']['REF-PARENT-PRODUCT-IDNUMBER' ] ;
+                */
+                if (response['response-data']['order-items'].length > 0) {
+                    $scope.data_detail = response['response-data']['order-items'][0];
+                    var inventoryStatus_ = $scope.data_detail['order-data']['INVEN-STATUS'];
+                    if (inventoryStatus_ != undefined && null != inventoryStatus_ && "" != inventoryStatus_.trim()) {
+                        if (inventoryStatus_ == 1) {
+                            $scope.inventoryStatus = "COMPLETE";
+                        } else if (inventoryStatus_ == 0) {
+                            $scope.inventoryStatus = "FAILED";
+                        } else {
+                            $scope.inventoryStatus = inventoryStatus_;
+                        }
+                    } else {
+                        $scope.inventoryStatus = "";
+                    }
+                    //                       alert ("OFFER-GROUP-IR"+ $scope.data_detail['primary-order-data']['CCBS-PROPOSITION']);
+
+                    // new priceplan
+                    if ($scope.data_detail['product-name'] != undefined && null != $scope.data_detail['product-name']) {
+                        $scope.callGetPricePlan($scope.data_detail['product-name'], '1');
+                    }
+
+                    //current priceplan
+                    if ($scope.data_detail['order-data']['CURRENT-PRICEPLAN'] != undefined && null != $scope.data_detail['order-data']['CURRENT-PRICEPLAN']) {
+                        //$scope.data_detail['order-data']['CURRENT-PRICEPLAN'] = $scope.data_detail['order-data']['CURRENT-PRICEPLAN']  + ("" != $scope.pricePlan ?":"+$scope.pricePlan:"") ;
+                        $scope.callGetPricePlan($scope.data_detail['order-data']['CURRENT-PRICEPLAN'], '0');
+                    }
+                    //                       alert ("OFFER-GROUP-IDD"+ $scope.data_detail['order-data']['OFFER-GROUP-IDD']);
+                    // priceplan IDD
+                    if ($scope.data_detail['primary-order-data']['OFFER-GROUP-IDD'] != undefined && null != $scope.data_detail['primary-order-data']['OFFER-GROUP-IDD']) {
+                        //$scope.data_detail['order-data']['CURRENT-PRICEPLAN'] = $scope.data_detail['order-data']['CURRENT-PRICEPLAN']  + ("" != $scope.pricePlan ?":"+$scope.pricePlan:"") ;
+                        $scope.callGetPricePlan($scope.data_detail['primary-order-data']['OFFER-GROUP-IDD'], '2');
+                    }
+                    //                       alert ("OFFER-GROUP-IR"+ $scope.data_detail['order-data']['OFFER-GROUP-IR']);
+                    // priceplan IR
+                    if ($scope.data_detail['primary-order-data']['OFFER-GROUP-IR'] != undefined && null != $scope.data_detail['primary-order-data']['OFFER-GROUP-IR']) {
+                        $scope.callGetPricePlan($scope.data_detail['primary-order-data']['OFFER-GROUP-IR'], '3');
+                    }
+                }
+
+            }
+        }).error(function(response) {
+
+        });
+
+    };
+
+    resetValuePopup = function(data) {
+        $scope.pricePlanCurrent = "";
+        $scope.pricePlanNew = "";
+        $scope.pricePlanIDD = "";
+        $scope.pricePlanIR = "";
+    }
 
 });
