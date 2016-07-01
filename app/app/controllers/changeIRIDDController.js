@@ -637,6 +637,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         //return;
 
         SystemService.showLoading();
+        
         var data = {
             "id-type": $scope.data.responseData["customer"]["id-type"],
             "id-number": $scope.data.responseData["customer"]["id-number"],
@@ -665,6 +666,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             if ($scope.dataAutoApprove["auto-approve-code"] == "Y") {
                 $scope.isShowApproveRal = true;
                 $scope.isValidateSave = true;
+                $scope.allValidateSave();
                 $scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = $scope.dataAutoApprove["approve-code"];
                 $scope.data.orderRequest['order']['order-items'][0]['order-data']['AUTO-APPROVE-CODE'] = "Y";
                 if ($scope.dataAutoApprove["auto-approve-reason"]) {

@@ -887,54 +887,7 @@
                                             <a href="" ng-click="unUseAddressAsCard('H')"><span><i class="fa fa-trash-o fa-2x"></i></span></a>
                                         </div>
                                     </div>
-                                    <div class="row" ng-form="onEnterAddress()">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>รหัสไปรษณีย์<span style="color:red;">*</span></label>
-                                                <input type="text" id="txtmailAddresspostcode" ng-model="mailAddress.postcode" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="postcode" maxlength="5" class="form-control telephone" required />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>จังหวัด<span style="color:red;">*</span></label>
-                                                <input type="text" id="txtmailAddressprovince" ng-model="mailAddress.province" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="province" class="form-control" required>
-                                                <!--<span class="error" style="color:red;" ng-show="provinces.province.$error.required">
-                                                Required.
-                                            </span>-->
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>เขต / อำเภอ <span style="color:red;">*</span></label>
-                                                <input type="text" id="txtmailAddressamphur" ng-model="mailAddress.amphur" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="aumpers" class="form-control" required>
-                                                <!--<span class="error" style="color:red;" ng-show="aumper.aumpers.$error.required">
-                                                Required.
-                                            </span>-->
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>แขวง / ตำบล <span style="color:red;">*</span></label>
-                                                <input type="text" id="txtMaillAddressDistrict" ng-model="mailAddress.district" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="tumbols" data-toggle="dropdown" class="form-control" required>
-                                                <!--<span class="error" style="color:red;" ng-show="tumbol.tumbols.$error.required">
-                                                Required.
-                                            </span>-->
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <ul id="ulAddressList" class="dropdown-menu dropdown-default" style="position:static;width:100%;">
-                                            <li>
-                                                <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressList | limitTo: 10" ng-click="setSearchAddress(item)">
-                                                    <div class="row">
-                                                        <div class="col-xs-3">{{item.zipcode}}</div>
-                                                        <div class="col-xs-3">{{item.province}}</div>
-                                                        <div class="col-xs-3">{{item.district}}</div>
-                                                        <div class="col-xs-3">{{item.subdistrict}}</div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group" ng-form="codeban">
@@ -1003,6 +956,57 @@
                                             </span>-->
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row" ng-form="onEnterAddress()">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>แขวง / ตำบล <span style="color:red;">*</span></label>
+                                                <input type="text" id="txtMaillAddressDistrict" ng-model="mailAddress.district" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="tumbols" data-toggle="dropdown" class="form-control" required>
+                                                <!--<span class="error" style="color:red;" ng-show="tumbol.tumbols.$error.required">
+                                                Required.
+                                            </span>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>เขต / อำเภอ <span style="color:red;">*</span></label>
+                                                <input type="text" id="txtmailAddressamphur" ng-model="mailAddress.amphur" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="aumpers" class="form-control" required>
+                                                <!--<span class="error" style="color:red;" ng-show="aumper.aumpers.$error.required">
+                                                Required.
+                                            </span>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>จังหวัด<span style="color:red;">*</span></label>
+                                                <input type="text" id="txtmailAddressprovince" ng-model="mailAddress.province" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="province" class="form-control" required>
+                                                <!--<span class="error" style="color:red;" ng-show="provinces.province.$error.required">
+                                                Required.
+                                            </span>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>รหัสไปรษณีย์<span style="color:red;">*</span></label>
+                                                <input type="text" id="txtmailAddresspostcode" ng-model="mailAddress.postcode" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="postcode" maxlength="5" class="form-control telephone" required />
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        
+                                        <br />
+                                        <ul id="ulAddressList" class="dropdown-menu dropdown-default" style="position:static;width:100%;">
+                                            <li>
+                                                <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressList | limitTo: 10" ng-click="setSearchAddress(item)">
+                                                    <div class="row">
+                                                        <div class="col-xs-3">{{item.subdistrict}}</div>
+                                                        <div class="col-xs-3">{{item.district}}</div>
+                                                        <div class="col-xs-3">{{item.province}}</div>
+                                                        <div class="col-xs-3">{{item.zipcode}}</div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

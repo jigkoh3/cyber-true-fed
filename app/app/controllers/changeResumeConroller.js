@@ -570,6 +570,22 @@ smartApp.controller('ResumeController', function(
                         var myArray = result;
                         var searchText = "CREQ",
                             index = -1;
+
+                            
+                        //// delete reason code :: 01-07-2016 :: xsam32
+                        var deleteId = ["RFREIN", "MNPHR"];
+                        for (var d = 0; d < deleteId.length; d++) {
+                            for (var i = 0; i < myArray.length; i++) {
+                                if (myArray[i].id == deleteId[d]) {
+                                    result.splice(i, 1);
+                                    break;
+                                }
+                            }
+
+                        }
+
+
+
                         for (var i = 0, len = myArray.length; i < len; i++) {
                             if (myArray[i].id === searchText) {
                                 index = i;
@@ -2308,7 +2324,9 @@ smartApp.controller('ResumeController', function(
                         "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['id-number'],
                         "ORIGINAL-FIRSTNAME": $scope.data.customerProfile['firstname'],
                         "ORIGINAL-LASTNAME": $scope.data.customerProfile['lastname'],
-                        "PREFER-CONTACT": $scope.billPayment.preferedContace == 'FIX' ? $scope.fixPreferedContact : $scope.billPayment.preferedContace
+                        "PREFER-CONTACT": $scope.billPayment.preferedContace == 'FIX' ? $scope.fixPreferedContact : $scope.billPayment.preferedContace,
+                        "CURRENT-SIM-STATUS": $scope.data.installedProducts["product-properties"]["CURRENT-SIM-STATUS"],
+                        "RESOURCE-SUBSCRIBER-STATUS": $scope.data.installedProducts["product-properties"]["RESOURCE-SUBSCRIBER-STATUS"]
                     },
                     "primary-order-data": {
                         //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
@@ -3059,9 +3077,7 @@ smartApp.controller('ResumeController', function(
         }
     };
     $scope.onFocusAddress = function() {
-        if ($scope.addressList.length > 0) {
-            $('#ulAddressList').show();
-        }
+        $scope.onInputAddress();
     };
     $scope.onBlurAddress = function() {
         $('#ulAddressList').hide();

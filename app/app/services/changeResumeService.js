@@ -51,7 +51,8 @@
                                 "PRODUCT-STATUS-DATE": "2015-09-14T23:59:59.000+07:00",
                                 "IS-NEW-ACCOUNT": "true",
                                 "IS-NEW-SIM": "true",
-                                "CURRENT-SIM-STATUS": "",
+                                "CURRENT-SIM-STATUS": "OK",
+                                "RESOURCE-SUBSCRIBER-STATUS": "Hello world",
                                 "REASON-CODE": "CREQ",
                                 "PRODUCT-STATUS-CODE": "RESUME-CANCEL-OA-OS",
                                 "SUBSCRIBER-ID": "6349"
