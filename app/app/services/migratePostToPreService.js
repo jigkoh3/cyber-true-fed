@@ -293,11 +293,11 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
                 "trx-id": "4AR3P1G9VBLD",
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": [{
-                    "name": "RMV000000000001",
+                    "name": null,
                     "description": "New Sim Only",
-                    "soc": "45552",
+                    "soc": null,
                     "rc": 0.0,
-                    "service-level": "C",
+                    "service-level": null,
                     "proposition-code": "0019123"
                 }, {
                     "name": "RMV000000000211",
@@ -700,15 +700,20 @@ smartApp.service('MigratePostToPreService', function($timeout, SystemService, $r
             'approver': payload.approver
         };
 
-        if (SystemService.checkObj(payload.propositionSelected, ['soc'])) {
-            request["order"]["order-items"][0]["order-data"]["CCBS-PROPOSITION-SOC-CODE"] = payload.propositionSelected['soc'];
-            request["order"]["order-items"][0]["primary-order-data"]["NAS-PROPOSITION"] = payload.propositionSelected['proposition-code'];
-            request["order"]["order-items"][0]["primary-order-data"]["CCBS-PROPOSITION"] = payload.propositionSelected['name'];
+        //20160701 Fixed check propositionSelected before sent to submit by waramun
+        if (payload.propositionSelected) {
+            if (payload.propositionSelected['proposition-code']) {
+                request["order"]["order-items"][0]["primary-order-data"]["NAS-PROPOSITION"] = payload.propositionSelected['proposition-code'];
+            }
+            if (payload.propositionSelected['name']) {
+                request["order"]["order-items"][0]["primary-order-data"]["CCBS-PROPOSITION"] = payload.propositionSelected['name'];
+                request["order"]["order-items"][0]["order-data"]["CCBS-PROPOSITION-SOC-CODE"] = payload.propositionSelected['soc'];
+            }
         }
         //20160602 Change AUTH to POA by waramun
         if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
 
-        } else{
+        } else {
             delete request['order']['customer']['customer-agents'];
         }
         console.log(request);
