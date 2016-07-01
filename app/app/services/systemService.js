@@ -1350,22 +1350,40 @@
     this.hideLoading = function() {
         //ModalService.hideLoading();
         //alert('hideLoading');
-        setTimeout(function() {
-            //$ngBootbox.hideAll();
-            $('#btnCloseLoading').click();
+        // setTimeout(function() {
+        //     //$ngBootbox.hideAll();
+        //     $('#btnCloseLoading').click();
+        //     setTimeout(function() {
+        //         //$ngBootbox.hideAll();
+        //         $('#btnCloseLoading').click();
+        //         setTimeout(function() {
+        //             //$ngBootbox.hideAll();
+        //             $('#btnCloseLoading').click();
+        //             setTimeout(function() {
+        //                 //$ngBootbox.hideAll();
+        //                 $('#btnCloseLoading').click();
+        //             }, 1000);
+        //         }, 1000);
+        //     }, 1000);
+        // }, 1000);
+
+
+
+        //// fixed to IR-IDD bug loading case AutoApprove
+        $(function() {
             setTimeout(function() {
-                //$ngBootbox.hideAll();
-                $('#btnCloseLoading').click();
-                setTimeout(function() {
-                    //$ngBootbox.hideAll();
-                    $('#btnCloseLoading').click();
-                    setTimeout(function() {
-                        //$ngBootbox.hideAll();
-                        $('#btnCloseLoading').click();
-                    }, 1000);
-                }, 1000);
-            }, 1000);
-        }, 1000);
+                var bootbox = $('.idHideLoading');
+                for (var i = 0; i < bootbox.length; i++) {
+                    //if (bootbox[i].className == "bootbox modal fade in") {
+                    //setTimeout(function() {
+                    //$('#btnCloseLoading').click();
+                    //}, 1000);
+                    //bootbox[i].className = "bootbox modal fade out";
+                    bootbox[i].click();
+                    //}
+                }
+            }, 1100);
+        });
     };
     this.showConfirm = function() {
         return ModalService.showConfirm();
@@ -3011,10 +3029,10 @@
         return result;
     };
 
-    this.getFileJson = function(requestUrl, fnCallback){
-        $http.get(requestUrl).success(function(response) { 
+    this.getFileJson = function(requestUrl, fnCallback) {
+        $http.get(requestUrl).success(function(response) {
             fnCallback(response);
-        }).error(function (err) {
+        }).error(function(err) {
             alert('Connot get file.');
             console.log(err);
         });

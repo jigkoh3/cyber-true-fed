@@ -422,19 +422,12 @@
         } else {
             var data2 = {
                 "status": "SUCCESSFUL",
-                "display-messages": [{
-                    "message": "-",
-                    "message-code": "VCVAPA2010004",
-                    "message-type": "WARNING",
-                    "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
-                    "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
-                    "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
-                }],
+                "display-messages": [],
                 "trx-id": "461HQMYTGV3HF",
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
                 "response-data": {
                     "auto-approve-code": "Y",
-                    "approve-code": "",
+                    "approve-code": "XYZ01",
                     "auto-approve-reason": "Test Approve Reason"
                 }
             };
