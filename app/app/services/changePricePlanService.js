@@ -190,8 +190,11 @@
                         "has-splitcharge": false,
                         "is-childsim": false,
                         "is-softsuspend": false,
+                        "product-properties": {
+                            "IS-CONTRACT": "N"
+                        },
                         "contract-fee": "599",
-                        "contract-term": "",
+                        "contract-term": "8",
                         "contract-start-date": "01/09/2015",
                         "contract-expire-date": "01/09/2017",
                         "contract-termination-date": ""
@@ -208,8 +211,32 @@
                         "has-splitcharge": false,
                         "is-childsim": false,
                         "is-softsuspend": false,
+                        "product-properties": {
+                            "IS-CONTRACT": "Y"
+                        },
                         "contract-fee": "799",
-                        "contract-term": "",
+                        "contract-term": "8",
+                        "contract-start-date": "01/09/2015",
+                        "contract-expire-date": "01/09/2017",
+                        "contract-termination-date": ""
+                    }, {
+                        "product-category": "TMV",
+                        "product-type": "PROPOSITION",
+                        "product-status": "",
+                        "product-id": "PC0000000000011",
+                        "product-name": "PC0000000000011",
+                        "product-description": "SIM + iPhone",
+                        "product-soc-code": "T04",
+                        "product-id-name": "MSISDN",
+                        "product-id-number": "0870100139",
+                        "has-splitcharge": false,
+                        "is-childsim": false,
+                        "is-softsuspend": false,
+                        "product-properties": {
+                            "IS-CONTRACT": "Y"
+                        },
+                        "contract-fee": "799",
+                        "contract-term": "8",
                         "contract-start-date": "01/09/2015",
                         "contract-expire-date": "01/09/2017",
                         "contract-termination-date": ""

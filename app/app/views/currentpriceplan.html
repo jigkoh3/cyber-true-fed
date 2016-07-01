@@ -5,7 +5,7 @@
             <p class="label" style="margin-top:-2px;">รายการส่งเสริมการขาย</p>
         </div>
         <div class="col-md-9" ng-hide="(Action == 'ADD')">
-            <div class="events" ng-repeat="item in data.offer">
+            <div class="events" ng-repeat="item in data.offer" ng-hide="item['product-properties']['IS-CONTRACT'] == 'N'">
                 <p>&nbsp;&nbsp;{{item["product-name"]}} : {{item["product-description"]}}, [ค่าปรับ {{item["contract-fee"]}} บ. สิ้นสุดสัญญา {{convertDate(item["contract-expire-date"])}}]</p>
             </div>
             

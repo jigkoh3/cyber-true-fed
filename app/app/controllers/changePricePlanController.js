@@ -206,6 +206,7 @@ smartApp.controller('ChangePricePlanController', function(
     $scope.saleList = "";
     $scope.serviceM = "0";
     $scope.currentPricePlan = "";
+    $scope.notContractProposition = "";
 
     $scope.clickEffective = function() {
         //alert("vvvvv");
@@ -376,7 +377,13 @@ smartApp.controller('ChangePricePlanController', function(
                     if ($scope.data.offer.length != 0) {
                         $scope.saleList = $scope.data.offer[0]["product-name"];
                         for (var i = 0; i < $scope.data.offer.length; i++) {
-                            $scope.currentPricePlan = $scope.currentPricePlan + ($scope.currentPricePlan ? "|" : "") + $scope.data.offer[i]["product-id"];
+                            //// new Requirement p'kwang :: 01-07-2016 :: xsam32
+                            if ($scope.data.offer[i]["product-properties"]["IS-CONTRACT"] == "Y") {
+                                $scope.currentPricePlan = $scope.currentPricePlan + ($scope.currentPricePlan ? "|" : "") + $scope.data.offer[i]["product-id"];
+                            }
+                            if ($scope.data.offer[i]["product-properties"]["IS-CONTRACT"] == "N") {
+                                $scope.notContractProposition = $scope.notContractProposition + ($scope.notContractProposition ? "|" : "") + $scope.data.offer[i]["product-id"];
+                            }
                         }
                     }
                     if ($scope.Level == "OU") {
@@ -531,7 +538,12 @@ smartApp.controller('ChangePricePlanController', function(
 
             for (var i = 0; i < propositionList.length; i++) {
                 try {
-                    if (Number(propositionList[i]["contract-term"]) > 0) {
+                    //// new Requirement p'kwang :: 01-07-2016 :: xsam32
+                    var contractTerm = Number(propositionList[i]["contract-term"]);
+                    var isContract = propositionList[i]["product-properties"]["IS-CONTRACT"];
+                    var a = contractTerm > 0 ? true : false;
+                    var b = isContract == "Y" ? true : false;
+                    if (a && b) {
                         currentPropositions = currentPropositions + (currentPropositions ? "," : "&current-propositions=") + propositionList[i]["product-id"];
                     }
                 } catch (e) {}
@@ -1427,6 +1439,7 @@ smartApp.controller('ChangePricePlanController', function(
                         "OU-LEVEL": $scope.data.priceplan["ou-hierarchytype"],
                         "CURRENT-PRICEPLAN": $scope.data.priceplan["product-id"],
                         "CURRENT-PROPOSITIONS": $scope.currentPricePlan,
+                        "NOT-CONTRACT-PROPOSITION": $scope.notContractProposition,
                         "NEW-PROPOSITION": $scope.pricePlan.promotion,
                         "NAS-PROPOSITION": $scope.selectProposition
                     },
@@ -1570,13 +1583,13 @@ smartApp.controller('ChangePricePlanController', function(
         SystemService.showLoading();
 
         if (SystemService.demo) {
-            setTimeout(function(){
-            if ($scope.isValidate && $scope.isValidateFF) {
-                SystemService.showBeforeClose({
-                    "message": "รายการคำขอเลขที่ " + $scope.orderId,
-                    "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
-                });
-            }
+            setTimeout(function() {
+                if ($scope.isValidate && $scope.isValidateFF) {
+                    SystemService.showBeforeClose({
+                        "message": "รายการคำขอเลขที่ " + $scope.orderId,
+                        "message2": "ได้รับข้อมูลเรียบร้อยแล้ว"
+                    });
+                }
             }, 5000);
         } else {
             if ($scope.isValidate && $scope.isValidateFF) {
