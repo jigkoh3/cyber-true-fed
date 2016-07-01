@@ -665,7 +665,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
             if ($scope.dataAutoApprove["auto-approve-code"] == "Y") {
                 $scope.isShowApproveRal = true;
-                $scope.isValidateSave = true;
+                if($scope.dataAutoApprove["approve-code"]){
+                    $scope.isValidateSave = true;
+                }
                 $scope.allValidateSave();
                 $scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = $scope.dataAutoApprove["approve-code"];
                 $scope.data.orderRequest['order']['order-items'][0]['order-data']['AUTO-APPROVE-CODE'] = "Y";
@@ -750,6 +752,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                             //    "technical-message": "changeIRIDDController"
                             //});
                         } else {
+                            //$scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = "";
                             $scope.isValidateSave = false;
                             //by pass error
                             SystemService.showAlert({
