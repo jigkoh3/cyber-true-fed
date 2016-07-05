@@ -816,6 +816,11 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                                 $scope.filterAndOpen();
                                 $('#idBindDataAgain').click();
                                 $('#backdropPP').hide();
+                                if ($scope.propositionList.length == 0) {
+                                    $('#spanMsgNotFound').removeClass('hide');
+                                } else {
+                                    $('#spanMsgNotFound').addClass('hide');
+                                }
                             }, 2000);
 
 
@@ -880,11 +885,7 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                 $scope.isLoadPricePlan = true;
                 SystemService.hideLoading();
 
-                if ($scope.propositionList.length == 0) {
-                    $('#spanMsgNotFound').removeClass('hide');
-                } else {
-                    $('#spanMsgNotFound').addClass('hide');
-                }
+
 
                 // if ($scope.pricePlanFilter.value) {
                 //     $('#modalnewpriceplan').click();
