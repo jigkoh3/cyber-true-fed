@@ -657,10 +657,17 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             //16-05-2016 show msg
             //check msg
             var msg = utils.getObject(result.data, 'display-messages');
-            if (msg && msg.length > 0 && $scope.dataAutoApprove["auto-approve-code"] != "Y") {
-                //SystemService.showAlertMulti(msg, "WARNING"); //show mulit msg
-                msg[0]['message-type'] = "WARNING";
-                SystemService.showAlert(msg[0]); //show single msg
+            var autoApproveCode = utils.getObject(result.data, 'response-data');
+            var auto_approve_code = autoApproveCode ? autoApproveCode["auto-approve-code"] : 'N';
+            if (msg && msg.length > 0 && auto_approve_code != "Y") {
+                SystemService.showAlertMulti(msg, "WARNING"); //show mulit msg
+                //msg[0]['message-type'] = "WARNING"; //show single msg
+                //SystemService.showAlert(msg[0]); //show single msg
+            }
+            if (msg && msg.length > 0 && auto_approve_code == "Y" && !autoApproveCode['approve-code']) {
+                SystemService.showAlertMulti(msg, "WARNING"); //show mulit msg
+                //msg[0]['message-type'] = "WARNING"; //show single msg
+                //SystemService.showAlert(msg[0]); //show single msg
             }
 
             if ($scope.dataAutoApprove["auto-approve-code"] == "Y") {

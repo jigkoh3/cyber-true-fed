@@ -621,12 +621,17 @@
             "technical-message": errorText["technical-message"]
         });
         //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        setTimeout(function() {
+        var a = 1;
+        var myVar = setInterval(function(){ 
+            if(a >= 5){
+                clearInterval(myVar);
+            }
+            a++;
             $('.ngdMessage').html(errorText["message"]);
             $('.ngdEnMessage').html(errorText["en-message"]);
             $('.ngdThMessage').html(errorText["th-message"]);
             $('.ngdTechnicalMessage').html(errorText["technical-message"]);
-        }, 1200);
+        }, 1000);
     };
     this.getCustomerPreverify = function(data, fnCallback) {
 

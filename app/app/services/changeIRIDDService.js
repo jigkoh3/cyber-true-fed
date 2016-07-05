@@ -422,7 +422,21 @@
         } else {
             var data2 = {
                 "status": "SUCCESSFUL",
-                "display-messages": [],
+                "display-messages": [{
+                    "message": "-",
+                    "message-code": "VCVAPA2010004",
+                    "message-type": "WARNING",
+                    "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
+                },{
+                    "message": "-",
+                    "message-code": "VCVAPA2010004",
+                    "message-type": "WARNING",
+                    "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
+                }],
                 "trx-id": "461HQMYTGV3HF",
                 "process-instance": "psaapdv1 (instance: SFF_node1)",
                 "response-data": {
@@ -431,9 +445,66 @@
                     "auto-approve-reason": "Test Approve Reason"
                 }
             };
+            var data3 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "-",
+                    "message-code": "VCVAPA2010004",
+                    "message-type": "WARNING",
+                    "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
+                },{
+                    "message": "-",
+                    "message-code": "VCVAPA2010004",
+                    "message-type": "WARNING",
+                    "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
+                }],
+                "trx-id": "461HQMYTGV3HF",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "response-data": {
+                    "auto-approve-code": "N",
+                    "approve-code": "",
+                    "auto-approve-reason": "Test Approve Reason"
+                }
+            };
+            var data4 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "-",
+                    "message-code": "VCVAPA2010004",
+                    "message-type": "WARNING",
+                    "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
+                },{
+                    "message": "-",
+                    "message-code": "VCVAPA2010004",
+                    "message-type": "WARNING",
+                    "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
+                }],
+                "trx-id": "461HQMYTGV3HF",
+                "process-instance": "psaapdv1 (instance: SFF_node1)",
+                "response-data": {
+                    "auto-approve-code": "Y",
+                    "approve-code": "",
+                    "auto-approve-reason": "Test Approve Reason"
+                }
+            };
             var data = {
                 "status": "UNSUCCESSFUL",
                 "display-messages": [{
+                    "message": "-",
+                    "message-code": "VCVAPA2010004",
+                    "message-type": "WARNING",
+                    "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
+                    "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
+                },{
                     "message": "-",
                     "message-code": "VCVAPA2010004",
                     "message-type": "WARNING",
