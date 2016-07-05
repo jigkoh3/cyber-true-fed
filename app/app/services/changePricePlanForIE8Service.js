@@ -380,6 +380,12 @@
                     "technical-message": "tmsapnpr1 (instance: SFF_node1) DataNotFoundException Not found priceplan for changing.. "
                 }]
             };
+            var data4 = {
+                "trx-id": "8SIJX3WDLPNX",
+                "status": "SUCCESSFUL",
+                "process-instance": "tmsapnpr1 (instance: SFF_node1)",
+                "response-data": {}
+            };
             var data = {
                 "status": "SUCCESSFUL",
                 "trx-id": "02S96GZYK5TY",

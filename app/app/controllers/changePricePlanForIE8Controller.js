@@ -593,6 +593,7 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
         //call Priceplan
         ChangePricePlanForIE8Service.getPriceplan(target, function(resultGetPriceplan) {
             if (resultGetPriceplan.status) {
+
                 //console.log(resultGetPriceplan.data["display-messages"][0]);
                 if (SystemService.checkObj(resultGetPriceplan.data, ["display-messages"]) && resultGetPriceplan.data["display-messages"].length > 0) {
                     //error
@@ -608,6 +609,14 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                         //$ngBootbox.customDialog($scope.customDialogOptions);
                     }, 1000);
                 }
+                if (SystemService.checkObj(resultGetPriceplan.data, ["response-data", "priceplans"]) && SystemService.checkObj(resultGetPriceplan.data, ["response-data", "mapped-propo-priceplans"])) {
+                    $('#spanMsgNotFound').addClass('hide');
+                } else {
+                    $('#spanMsgNotFound').removeClass('hide');
+                    SystemService.hideLoading();
+                    return;
+                }
+
                 console.log($scope.aftersalePriceplans);
                 $scope.propositionList = [];
                 $scope.propositions = [];
@@ -800,6 +809,7 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                 var varArr = [].concat(resultGetPriceplan.data["response-data"]["priceplans"]);
                 var loopTotal = Math.ceil(varArr.length / loopLimit);
                 var runStep = 0;
+
                 $('#backdropPP').show();
                 for (var i = 0; i < loopTotal; i++) {
                     sleep = sleep + step;
@@ -816,11 +826,6 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                                 $scope.filterAndOpen();
                                 $('#idBindDataAgain').click();
                                 $('#backdropPP').hide();
-                                if ($scope.propositionList.length == 0) {
-                                    $('#spanMsgNotFound').removeClass('hide');
-                                } else {
-                                    $('#spanMsgNotFound').addClass('hide');
-                                }
                             }, 2000);
 
 
