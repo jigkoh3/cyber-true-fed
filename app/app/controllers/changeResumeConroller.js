@@ -673,6 +673,10 @@ smartApp.controller('ResumeController', function(
                                             $scope.newOwner.lastNameTH = $scope.data.customerProfile['firstname'];
                                             $scope.newOwner2.lastNameTH = $scope.data.customerProfile['firstname'];
                                         }
+                                        if($scope.data.installedProducts["account-category"] == "B" || $scope.data.installedProducts["account-category"] == "C"){
+                                            $scope.newOwner.lastNameTH = "";
+                                            $scope.newOwner2.lastNameTH = "";
+                                        }
 
 
                                         // $scope.onInputIdLastest3();
@@ -1184,10 +1188,11 @@ smartApp.controller('ResumeController', function(
                         var grade = resultData.data["response-data"]["company-grade"]["grade-id"];
                         $scope.grade = resultData.data["response-data"]["company-grade"];
                         var param = {
-                            //'cust-type': $scope.data.installedProducts["account-category"],
-                            'cust-type': 'I',
+                            'cust-type': $scope.data.installedProducts["account-category"], //// edit :: 06-07-2016 ::: xsam32
+                            //'cust-type': 'I', /// old version
                             'company': $scope.data.installedProducts["company-code"],
-                            'service-type': "POSTPAID",
+                            //'service-type': "POSTPAID", /// old version
+                            'service-type': $scope.data.installedProducts["mobile-servicetype"], //// edit :: 06-07-2016 ::: xsam32
                             'grade': grade
                         };
                         resumeService.getAccountSubTypeCallback(param, function(resultST) {
@@ -2055,28 +2060,29 @@ smartApp.controller('ResumeController', function(
         //$scope.propositionList = $filter('filter')(valPricePlans, { "proposition-code": value });
         //proposition
         if ($scope.partnerCode) {
-            var propParam = {
-                'company-code': $scope.data.installedProducts["company-code"],
-                'customer-type': "I",
-                'propo-type': 'NEW',
-                'mobile-servicetype': "POSTPAID",
-                'partner-code': $scope.partnerCode,
-                'privilege': false
-                    //,'proposition': ''
+            //// comment code เพราะ ไม่แสดง Proposition :: 06-07-2016 :: xsam32
+            // var propParam = {
+            //     'company-code': $scope.data.installedProducts["company-code"],
+            //     'customer-type': "I",
+            //     'propo-type': 'NEW',
+            //     'mobile-servicetype': "POSTPAID",
+            //     'partner-code': $scope.partnerCode,
+            //     'privilege': false
+            //         //,'proposition': ''
 
-            };
-            SystemService.showLoading();
-            resumeService.propositionCallback(propParam, function(resultProp) {
-                SystemService.hideLoading();
-                if (resultProp.status) {
-                    var displayMsg = utils.getObject(resultProp.data, 'display-messages.0');
-                    if (displayMsg) {
-                        SystemService.showAlert(displayMsg);
-                    }
-                    $scope.propositions = resultProp.data['response-data'];
-                    //$scope.callSalePricePlanList();
-                }
-            });
+            // };
+            // SystemService.showLoading();
+            // resumeService.propositionCallback(propParam, function(resultProp) {
+            //     SystemService.hideLoading();
+            //     if (resultProp.status) {
+            //         var displayMsg = utils.getObject(resultProp.data, 'display-messages.0');
+            //         if (displayMsg) {
+            //             SystemService.showAlert(displayMsg);
+            //         }
+            //         $scope.propositions = resultProp.data['response-data'];
+            //         //$scope.callSalePricePlanList();
+            //     }
+            // });
         }
     };
 
@@ -2332,7 +2338,7 @@ smartApp.controller('ResumeController', function(
                         //"CUSTOMER-ID": "",//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
                         "OU-ID": $scope.customerStatusN == 'O' ? $scope.data.installedProducts['ouId'] : "",
                         "BAN": $scope.customerStatusN == 'O' ? $scope.data.installedProducts['ban'] : "",
-                        "ACCOUNT-CATEGORY": "I",
+                        "ACCOUNT-CATEGORY": $scope.data.installedProducts["account-category"],
                         "ACCOUNT-SUB-TYPE": $scope.subCompanyType,
                         "COMPANY-CODE": $scope.data.installedProducts["company-code"],
                         "NAS-PROPOSITION": $scope.selectProposition,
