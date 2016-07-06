@@ -608,9 +608,9 @@
         var errorList = msgArray;
         for (var i = 0; i < errorList.length; i++) {
             errorText["message"] += errorList[i]["message"] + "<br /> ";
-            errorText["en-message"] += errorList[i]["en-message"] + "<br /> ";
-            errorText["th-message"] += errorList[i]["th-message"] + "<br /> ";
-            errorText["technical-message"] += errorList[i]["technical-message"] + "<br /> ";
+            errorText["en-message"] += errorList[i]["en-message"] ? errorList[i]["en-message"] + "<br /> " : "";
+            errorText["th-message"] += errorList[i]["th-message"] ? errorList[i]["th-message"] + "<br /> " : "";
+            errorText["technical-message"] += errorList[i]["technical-message"] ? errorList[i]["technical-message"] + "<br /> " : "";
         }
         that.showAlert({
             "message": errorText["message"],
@@ -622,8 +622,8 @@
         });
         //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         var a = 1;
-        var myVar = setInterval(function(){ 
-            if(a >= 5){
+        var myVar = setInterval(function() {
+            if (a >= 5) {
                 clearInterval(myVar);
             }
             a++;
@@ -631,7 +631,7 @@
             $('.ngdEnMessage').html(errorText["en-message"]);
             $('.ngdThMessage').html(errorText["th-message"]);
             $('.ngdTechnicalMessage').html(errorText["technical-message"]);
-        }, 1000);
+        }, 500);
     };
     this.getCustomerPreverify = function(data, fnCallback) {
 
@@ -2335,6 +2335,25 @@
             return "" + arr[0] + ssc + arr[1] + ssc + (Number(arr[2]) + ln);
         } else {
             return ddMMyyyy;
+        }
+    };
+    this.convertDateENToFomat = function(yyyyMMddT, format) {
+        //// support input format ::: 1956-02-15T00:00:00+0700
+        if (yyyyMMddT) {
+            var ssc = "/";
+            var arrDate = yyyyMMddT.split("T");
+            var arr = arrDate[0].split("-");
+            var result = "";
+            if (format == "dd/MM/yyyy") {
+                result = "" + arr[2] + "/" + arr[1] + "/" + arr[0];
+            }else if (format == "dd/MM/YYYY") {
+                result = "" + arr[2] + "/" + arr[1] + "/" + arr[0]+543;
+            } else {
+                result = arrDate[0];
+            }
+            return result;
+        } else {
+            return yyyyMMddT;
         }
     };
     this.convertDateToTH = function(ddMMyyyy, lang) {

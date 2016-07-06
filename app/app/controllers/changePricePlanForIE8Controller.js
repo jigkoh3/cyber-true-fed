@@ -2377,6 +2377,12 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
     $('#ppfilter2').keyup(function() {
         stopSearch();
         running(this.value);
+        // if ($scope.propositionList.length < 200) {
+        //     checkChangeTxt = "";
+        //     $scope.smartSearchPP(this.value);
+        // } else {
+        //     running(this.value);
+        // }
     });
 
     function running(txt) {

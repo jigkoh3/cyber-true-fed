@@ -234,13 +234,120 @@
                     }
                 }
             };
+            var data5 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "6I6980UE0LDBS",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "customer": {
+                        "title": "นาย",
+                        "title-code": "T1",
+                        "firstname": "พีรพล",
+                        "lastname": "สุขใจ",
+                        "birthdate": "1956-02-15T00:00:00+0700",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "I",
+                        "id-number": "2015093111143",
+                        "require-approve-code": "Y",
+                        "customer-id": "61259",
+                        "customer-level": "NON-TOP",
+                        "installed-products": [{
+                            "ouId": "32045",
+                            "ban": "10062595",
+                            "product-type": "ADDITIONAL-OFFER",
+                            "product-sub-type": "R",
+                            "account-category": "I",
+                            "account-sub-type": "RVT",
+                            "product-name": "CREDITLIMIT",
+                            "product-description": "Credit Limit offer",
+                            "company-code": "RM",
+                            "service-level": "",
+                            "product-soc-code": "20061",
+                            "subscriber-id": "90855",
+                            "product-properties": {
+                                "CVSS-PROCESS-REQUEST-IDD": "N",
+                                "OFFER-INSTANCE-ID": "428821",
+                                "CVSS-PROCESS-REQUEST-IR": "N"
+                            },
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0973590407",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "ou-hierarchytype": "NORMAL",
+                            "offer-group": "",
+                            "effective-date": "25/11/2015 00:00:00",
+                            "parent-ouId": ""
+                        }, {
+                            "ouId": "32045",
+                            "ban": "10062595",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "R",
+                            "account-category": "I",
+                            "account-sub-type": "RVT",
+                            "product-name": "BUFFTP66",
+                            "product-description": "250 buffet on-net 5AM - 5PM",
+                            "company-code": "RM",
+                            "service-level": "",
+                            "product-soc-code": "11250312",
+                            "subscriber-id": "90855",
+                            "product-properties": {
+                                "CVSS-PROCESS-REQUEST-IDD": "N",
+                                "OFFER-INSTANCE-ID": "593191",
+                                "CVSS-PROCESS-REQUEST-IR": "N"
+                            },
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0973590407",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "ou-hierarchytype": "NORMAL",
+                            "offer-group": "",
+                            "effective-date": "01/07/2016 00:00:00",
+                            "parent-ouId": ""
+                        }, {
+                            "ouId": "32045",
+                            "ban": "10062595",
+                            "product-type": "ADDITIONAL-OFFER",
+                            "product-sub-type": "R",
+                            "account-category": "I",
+                            "account-sub-type": "RVT",
+                            "product-name": "PROINTL1",
+                            "product-description": "International Call Enabling",
+                            "company-code": "RM",
+                            "service-level": "",
+                            "product-soc-code": "41581",
+                            "subscriber-id": "90855",
+                            "product-properties": {
+                                "CVSS-PROCESS-REQUEST-IDD": "N",
+                                "OFFER-INSTANCE-ID": "512598",
+                                "CVSS-PROCESS-REQUEST-IR": "N"
+                            },
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0973590407",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "ou-hierarchytype": "NORMAL",
+                            "offer-group": "IDD",
+                            "effective-date": "03/03/2016 00:00:00",
+                            "parent-ouId": ""
+                        }]
+                    }
+                }
+            };
 
 
             if (msisdn == "0916961011") {
                 //กรณี error
                 fnCallback({
                     status: true,
-                    data: data4,
+                    data: data5,
                     error: "",
                     msgErr: ""
                 });
@@ -412,7 +519,8 @@
             'company-code=' + params['company-code'] + '&' +
             'account-sub-type=' + params['account-sub-type'] + '&' +
             'subscriber-id=' + params['subscriber-id'] + '&' +
-            'account-id=' + params['account-id'];
+            'account-id=' + params['account-id'] + '&' +
+            'birthdate=' + params['birthdate'];
         console.log(target);
         if (!demo) {
 
@@ -429,7 +537,7 @@
                     "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
                     "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
                     "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
-                },{
+                }, {
                     "message": "-",
                     "message-code": "VCVAPA2010004",
                     "message-type": "WARNING",
@@ -454,7 +562,7 @@
                     "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
                     "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
                     "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
-                },{
+                }, {
                     "message": "-",
                     "message-code": "VCVAPA2010004",
                     "message-type": "WARNING",
@@ -479,7 +587,7 @@
                     "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
                     "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
                     "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
-                },{
+                }, {
                     "message": "-",
                     "message-code": "VCVAPA2010004",
                     "message-type": "WARNING",
@@ -504,7 +612,7 @@
                     "en-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
                     "th-message": "[VCVAPA2010004] [NOT_FOUND_CODE] [Data approveCode = [RB0012], numberOfRequest = [1], idNumber = [1111111111] not found in CVSS-SERVICES-CCBS system.]",
                     "technical-message": "CVSS Method : getValidateApproveCode, URL : http://172.19.9.200:8280/CVSS-Services-CCBS/services/CreditValidation "
-                },{
+                }, {
                     "message": "-",
                     "message-code": "VCVAPA2010004",
                     "message-type": "WARNING",
@@ -516,9 +624,32 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node1)",
                 "status-code": "2"
             };
+            var data5 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message-code": "TMV-VALIDATE-AUTO-APPROVE-CODE-00011",
+                    "message-type": "ERROR",
+                    "th-message": "ภายใต้ชื่อของลูกค้า"
+                }, {
+                    "message-code": "TMV-VALIDATE-AUTO-APPROVE-CODE-00005",
+                    "message-type": "ERROR",
+                    "th-message": "เกินกำหนดชำระมากกว่า 1 รอบบิล มี BAN: 10063974"
+                }, {
+                    "message-code": "TMV-VALIDATE-AUTO-APPROVE-CODE-00012",
+                    "message-type": "ERROR",
+                    "th-message": "กรุณาแจ้งให้ลูกค้าชำระค่าบริการ และกลับมาทำรายการใหม่อีกครั้ง"
+                }],
+                "trx-id": "416988ONK638G",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "auto-approve-code": "N",
+                    "approve-code": "",
+                    "auto-approve-reason": ""
+                }
+            };
             fnCallback({
                 status: true,
-                data: data2,
+                data: data5,
                 error: "",
                 msgErr: ""
             });

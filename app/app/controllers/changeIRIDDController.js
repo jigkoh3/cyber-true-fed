@@ -646,7 +646,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             "company-code": $scope.data.responseData["customer"]["installed-products"][0]["company-code"],
             "account-sub-type": $scope.data.responseData["customer"]["installed-products"][0]["account-sub-type"],
             "subscriber-id": $scope.data.responseData["customer"]["installed-products"][0]["subscriber-id"],
-            "account-id": $scope.data.responseData["customer"]["installed-products"][0]["ban"]
+            "account-id": $scope.data.responseData["customer"]["installed-products"][0]["ban"],
+            "birthdate": SystemService.convertDateENToFomat($scope.data.responseData["customer"]["birthdate"], 'dd/MM/yyyy')
         };
         console.log(data);
         changeIRIDDService.ValidateAutoApproveCode(data, function(result) {
