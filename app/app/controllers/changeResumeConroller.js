@@ -3407,7 +3407,7 @@ smartApp.controller('ResumeController', function(
             showValidate("citizenID3", ValidateMsgService.data.msgNewCusIDnoEmpty);
         } else if (isNull($scope.newOwner.firstNameTH)) {
             showValidate("firstNameTH3", ValidateMsgService.data.msgNewCusFirstNameEmpty);
-        } else if (isNull($scope.newOwner.lastNameTH)) {
+        } else if (isNull($scope.newOwner.lastNameTH) && $scope.data.installedProducts["account-category"] == 'I') {
             showValidate("lastNameTH3", ValidateMsgService.data.msgNewCusLastNameEmpty);
         } else if (isNull($scope.pricePlan.name)) {
             showValidate("ppfilter", ValidateMsgService.data.pleaseSelectPP);
@@ -3431,7 +3431,7 @@ smartApp.controller('ResumeController', function(
             //});
         } else if (isNull($scope.newOwner2.firstNameTH)) {
             showValidate("firstNameRegisterd", ValidateMsgService.data.msgSubFirstNameEmpty);
-        } else if (isNull($scope.newOwner2.lastNameTH)) {
+        } else if (isNull($scope.newOwner2.lastNameTH) && $scope.data.installedProducts["account-category"] == 'I') {
             showValidate("lastNameRegisterd", ValidateMsgService.data.msgSubLastNameEmpty);
         } else if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true' && isNull($scope.mailAddress.postcode)) {
             showValidate("txtmailAddresspostcode", ValidateMsgService.data.msgBillZipcodeEmpty);
