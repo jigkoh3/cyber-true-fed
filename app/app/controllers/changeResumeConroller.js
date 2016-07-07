@@ -571,7 +571,7 @@ smartApp.controller('ResumeController', function(
                         var searchText = "CREQ",
                             index = -1;
 
-                            
+
                         //// delete reason code :: 01-07-2016 :: xsam32
                         var deleteId = ["RFREIN", "MNPHR"];
                         for (var d = 0; d < deleteId.length; d++) {
@@ -629,7 +629,11 @@ smartApp.controller('ResumeController', function(
                             // if ($scope.customerType == 'B' || $scope.customerType == 'C') {
                             //     accountCat = $scope.customerType;
                             // }
+
                             if (result.status) {
+                                //if (result.installedProducts["account-category"] == 'B' || result.installedProducts["account-category"] == 'C') {
+                                    accountCat = result.installedProducts["account-category"];
+                                //}
                                 var data = {
                                     "accountCat": accountCat,
                                     "channel": "WEBUI",
@@ -638,6 +642,8 @@ smartApp.controller('ResumeController', function(
                                     //"language": null,
                                     "verifyType": "ALL"
                                 };
+
+                                console.log(data);
 
                                 SystemService.getCustomerPreverify(data, function(blackList) {
                                     var msg = utils.getObject(blackList, 'display-messages');
@@ -673,7 +679,7 @@ smartApp.controller('ResumeController', function(
                                             $scope.newOwner.lastNameTH = $scope.data.customerProfile['firstname'];
                                             $scope.newOwner2.lastNameTH = $scope.data.customerProfile['firstname'];
                                         }
-                                        if($scope.data.installedProducts["account-category"] == "B" || $scope.data.installedProducts["account-category"] == "C"){
+                                        if ($scope.data.installedProducts["account-category"] == "B" || $scope.data.installedProducts["account-category"] == "C") {
                                             $scope.newOwner.lastNameTH = "";
                                             $scope.newOwner2.lastNameTH = "";
                                         }
@@ -1212,7 +1218,7 @@ smartApp.controller('ResumeController', function(
                         // not call lastest is OA
                         if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true') {
 
-                            resumeService.lastestCustomerCallback(cid, "I", function(lastestCustomer) {
+                            resumeService.lastestCustomerCallback(cid, $scope.data.installedProducts["account-category"], function(lastestCustomer) {
                                 $scope.isLastestUser = true;
                                 $.fancybox.close();
 
