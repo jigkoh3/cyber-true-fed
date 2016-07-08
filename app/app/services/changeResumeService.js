@@ -54,7 +54,8 @@
                                 "CURRENT-SIM-STATUS": "AGING",
                                 "REASON-CODE": "COWN",
                                 "PRODUCT-STATUS-CODE": "RESUME-CANCEL-OA-OS",
-                                "SUBSCRIBER-ID": "105594"
+                                "SUBSCRIBER-ID": "105594",
+                                "REQUIRE-PRICEPLAN": "REQUIRE"//// update case selectPricePlan requirement by P'kwang ::: 08-07-2016 :: xsam32
                             },
                             "product-id-name": "MSISDN",
                             "product-id-number": "0610010588",

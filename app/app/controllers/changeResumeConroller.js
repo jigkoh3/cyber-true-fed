@@ -2358,6 +2358,20 @@ smartApp.controller('ResumeController', function(
             "approver": $scope.approver
         };
 
+        //check :: SUB/OU
+        // if ($scope.isAccount_child == true || $scope.customerType == 'N') {
+        //     delete data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"];
+        // } else {
+        //     data["order"]["order-items"][0]["order-data"]["PRICEPLAN-SERVICE-LEVEL"] = $scope.promotionLevel == "OU" ? "OU" : "SUBSCRIBER";
+        // }
+
+        //// update case selectPricePlan requirement by P'kwang ::: 08-07-2016 :: xsam32
+        if($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'false'){
+            data["order"]["order-items"][0]["order-data"]["REQUIRE-PRICEPLAN"] = $scope.data.installedProducts["product-properties"]["REQUIRE-PRICEPLAN"];
+        }else{
+            //ไม่ส่ง
+        }
+
 
         data['order']['order-id'] = $scope.orderId;
         data['ref-id'] = $scope.orderId;
