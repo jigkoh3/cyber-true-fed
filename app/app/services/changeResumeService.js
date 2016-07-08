@@ -10,62 +10,62 @@
         } else {
 
             var data = {
-  "status" : "SUCCESSFUL",
-  "display-messages" : [ ],
-  "trx-id" : "516A6VFT7CXN4",
-  "process-instance" : "tmsapnpr1 (instance: SFF_node3)",
-  "response-data" : {
-    "customer" : {
-      "title" : "",
-      "firstname" : "customer",
-      "lastname" : "",
-      "birthdate" : "1996-07-07T15:30:56+0700",
-      "contact-number" : "",
-      "contact-mobile-number" : "",
-      "id-type" : "O",
-      "id-number" : "755385/22",
-      "id-expire-date" : "2020-12-31T00:00:00+0700",
-      "customer-id" : "77901",
-      "installed-products" : [ {
-        "ouId" : "39548",
-        "ban" : "10070039",
-        "product-category" : "TMV",
-        "product-type" : "PRICEPLAN",
-        "product-sub-type" : "R",
-        "product-status" : "Cancelled",
-        "account-category" : "B",
-        "account-sub-type" : "SRB",
-        "product-id" : "SMRTPP87",
-        "product-name" : "SMRTPP87",
-        "product-description" : "iSmart 299, voice100mins net500MB UNLTD WiFi UNLTD",
-        "bill-cycle" : "2",
-        "company-code" : "RF",
-        "service-level" : "C",
-        "product-soc-code" : "",
-        "subscriber-id" : "105594",
-        "product-properties" : {
-          "REASON-DESC" : "Change Ownership",
-          "PRODUCT-STATUS-DESC" : "Cancel",
-          "RESOURCE-SUBSCRIBER-STATUS" : "PORT OUT AG",
-          "CURRENT-ACCOUNT-STATUS" : "Active",
-          "PRODUCT-STATUS-DATE" : "2016-06-29T17:12:02.000+07:00",
-          "IS-NEW-ACCOUNT" : "false",
-          "IS-NEW-SIM" : "false",
-          "CURRENT-SIM-STATUS" : "AGING",
-          "REASON-CODE" : "COWN",
-          "PRODUCT-STATUS-CODE" : "RESUME-CANCEL-OA-OS",
-          "SUBSCRIBER-ID" : "105594"
-        },
-        "product-id-name" : "MSISDN",
-        "product-id-number" : "0610010588",
-        "mobile-servicetype" : "POSTPAID",
-        "has-splitcharge" : false,
-        "is-childsim" : false,
-        "is-softsuspend" : false
-      } ]
-    }
-  }
-};
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "516A6VFT7CXN4",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "customer": {
+                        "title": "",
+                        "firstname": "customer",
+                        "lastname": "",
+                        "birthdate": "1996-07-07T15:30:56+0700",
+                        "contact-number": "",
+                        "contact-mobile-number": "",
+                        "id-type": "O",
+                        "id-number": "755385/22",
+                        "id-expire-date": "2020-12-31T00:00:00+0700",
+                        "customer-id": "77901",
+                        "installed-products": [{
+                            "ouId": "39548",
+                            "ban": "10070039",
+                            "product-category": "TMV",
+                            "product-type": "PRICEPLAN",
+                            "product-sub-type": "R",
+                            "product-status": "Cancelled",
+                            "account-category": "B",
+                            "account-sub-type": "SRB",
+                            "product-id": "SMRTPP87",
+                            "product-name": "SMRTPP87",
+                            "product-description": "iSmart 299, voice100mins net500MB UNLTD WiFi UNLTD",
+                            "bill-cycle": "2",
+                            "company-code": "RF",
+                            "service-level": "C",
+                            "product-soc-code": "",
+                            "subscriber-id": "105594",
+                            "product-properties": {
+                                "REASON-DESC": "Change Ownership",
+                                "PRODUCT-STATUS-DESC": "Cancel",
+                                "RESOURCE-SUBSCRIBER-STATUS": "PORT OUT AG",
+                                "CURRENT-ACCOUNT-STATUS": "Active",
+                                "PRODUCT-STATUS-DATE": "2016-06-29T17:12:02.000+07:00",
+                                "IS-NEW-ACCOUNT": "false",
+                                "IS-NEW-SIM": "false",
+                                "CURRENT-SIM-STATUS": "AGING",
+                                "REASON-CODE": "COWN",
+                                "PRODUCT-STATUS-CODE": "RESUME-CANCEL-OA-OS",
+                                "SUBSCRIBER-ID": "105594"
+                            },
+                            "product-id-name": "MSISDN",
+                            "product-id-number": "0610010588",
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false
+                        }]
+                    }
+                }
+            };
 
             var data2 = {
                 "status": "SUCCESSFUL",
