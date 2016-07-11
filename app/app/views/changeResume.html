@@ -374,11 +374,8 @@
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
                                 <p></p>
-                                <select class="form-control" 
-                                        ng-model="partnerCode" 
-                                        ng-change="onCheckInputForVerify();propositions=[];  changePartnerCode(); " 
-                                        ng-disabled="!isCustomerProfile">
-                                <option value="">-- กรุณาเลือก --</option>
+                                <select class="form-control" ng-model="partnerCode" ng-change="onCheckInputForVerify();propositions=[];  changePartnerCode(); " ng-disabled="!isCustomerProfile">
+                                    <option value="">-- กรุณาเลือก --</option>
                                     <option ng-repeat="item in getAuthen.shopcodes" value="{{item}}">
                                         {{item}}
                                     </option>
@@ -386,14 +383,7 @@
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
                                 <p></p>
-                                <input type="text" 
-                                        ng-change="onCheckInputForVerify();propositions=[];onInputShopCode();" 
-                                        id="txtPartnerCode" 
-                                        name="partnerCode" 
-                                        ng-model="partnerCode" 
-                                        class="form-control inputPartner" 
-                                        ng-disabled="!isCustomerProfile" 
-                                        maxlength="8" required>
+                                <input type="text" ng-change="onCheckInputForVerify();propositions=[];onInputShopCode();" id="txtPartnerCode" name="partnerCode" ng-model="partnerCode" class="form-control inputPartner" ng-disabled="!isCustomerProfile" maxlength="8" required>
                             </div>
                         </div>
                     </div>
@@ -432,7 +422,8 @@
                                 <span style="color:red;" ng-show="showApprovCode">* Approve code by referral*</span>
                             </div> -->
                             <div class="col-md-2" ng-form="onVerify()">
-                                <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span><br />
+                                <span style="color:red;" ng-show="showApprovCode">* รหัสอนุมัติ *</span>
+                                <br />
                                 <input type="text" name="approvecode" ng-model="approveCode" ng-show="showApprovCode" ng-keyup="$event.keyCode==13 && onVerify()" class="form-control" maxlength="10" style="width:150px" required>
                             </div>
                         </div>
@@ -475,9 +466,15 @@
                                 <input readonly="readonly" type="text" ng-model="pricePlan.name" class="form-control">
                             </div>
                             <div class="col-md-2">
-                                <input type="text" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog()" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
+                                <span ng-show="data.installedProducts['product-properties']['REQUIRE-PRICEPLAN'] == 'NOT REQUIRE'">
+                                &nbsp;
+                                </span>
+                                <input type="text" ng-hide="data.installedProducts['product-properties']['REQUIRE-PRICEPLAN'] == 'NOT REQUIRE'" placeholder="ค้นหา" ng-keyup="$event.keyCode==13 && openPricePlanDialog()" ng-model="pricePlanFilter.value" id="ppfilter" class="form-control pricePlanFilter">
                             </div>
                             <div class="col-md-1">
+                                <span ng-show="data.installedProducts['product-properties']['REQUIRE-PRICEPLAN'] == 'NOT REQUIRE'">
+                                &nbsp;
+                                </span>
                                 <!--<button type="button"
                                         ng-click="selectedPricePlan3()"
                                         ng-disabled="!isCustomerProfile"
@@ -487,7 +484,7 @@
                                         style="background-color: #5cb85c; border-color: #4cae4c; ">
                                     <span style="color:white;">...</span>
                                 </button>-->
-                                <button type="button" ng-click="selectedPricePlan3()" ng-disabled="!isCustomerProfile" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" class="btn isCustomerProfile" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c; ">
+                                <button ng-hide="data.installedProducts['product-properties']['REQUIRE-PRICEPLAN'] == 'NOT REQUIRE'" type="button" ng-click="selectedPricePlan3()" ng-disabled="!isCustomerProfile" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" class="btn isCustomerProfile" onclick="return false;" style="background-color: #5cb85c; border-color: #4cae4c; ">
                                     <span style="color:white;">...</span>
                                 </button>
                             </div>
@@ -568,19 +565,11 @@
                             </div>
                             <div class="col-md-4">
                                 <p></p>
-                                <input id="simSerial"
-                                                   ng-number-only="simSerial" type="text"
-                                                   name="simSerialInput"
-                                                   class="form-control"
-                                                   ng-model="simSerial"
-                                                   ng-keyup="(simSerial && $event.keyCode==13 && onEnterSimSerial())"
-                                                   ng-change="onKeyUpSimSerial()"
-                                                   ng-disabled="!isCustomerProfile"
-                                                   maxlength="{{ simSerialLength }}" required />
+                                <input id="simSerial" ng-number-only="simSerial" type="text" name="simSerialInput" class="form-control" ng-model="simSerial" ng-keyup="(simSerial && $event.keyCode==13 && onEnterSimSerial())" ng-change="onKeyUpSimSerial()" ng-disabled="!isCustomerProfile" maxlength="{{ simSerialLength }}" required />
                             </div>
                             <div class="col-md-5" style="color:red; top: 5px;">
-                            <br/>
-                                                   <span class="hide" ng-span-number-only="simSerial">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
+                                <br/>
+                                <span class="hide" ng-span-number-only="simSerial">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
                             </div>
                         </div>
                     </div>
@@ -718,7 +707,7 @@
                         </div>
                     </div>
                 </div>
-                <div  ng-show="data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true'">
+                <div ng-show="data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'true'">
                     <h4></h4>
                     <div class="well" ng-show="false" style="background-color:#ffffff;">
                         <div class="row">
@@ -887,7 +876,6 @@
                                             <a href="" ng-click="unUseAddressAsCard('H')"><span><i class="fa fa-trash-o fa-2x"></i></span></a>
                                         </div>
                                     </div>
-                                    
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group" ng-form="codeban">
@@ -991,9 +979,6 @@
                                                 <input type="text" id="txtmailAddresspostcode" ng-model="mailAddress.postcode" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="postcode" maxlength="5" class="form-control telephone" required />
                                             </div>
                                         </div>
-                                        
-                                        
-                                        
                                         <br />
                                         <ul id="ulAddressList" class="dropdown-menu dropdown-default" style="position:static;width:100%;">
                                             <li>
@@ -1135,18 +1120,12 @@
                             <div class="form-group" ng-hide="blah=='E'||blah=='P'" ng-form="ngsmss">
                                 <label class="col-md-5 control-label">SMS <span style="color:red;">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="text" 
-                                            id="txtBillPaymentSmss" 
-                                            name="smss" 
-                                            ng-model="billPayment.smss" 
-                                            ng-mobile-number="billPaymentSMSS"
-                                            maxlength="10"
-                                            class="form-control" ng-disabled="true" required>
+                                    <input type="text" id="txtBillPaymentSmss" name="smss" ng-model="billPayment.smss" ng-mobile-number="billPaymentSMSS" maxlength="10" class="form-control" ng-disabled="true" required>
                                     <!--<span class="error" style="color:red;" ng-show="ngsmss.smss.$error.required">
                                     Required.
                                 </span>-->
                                 </div>
-                                <div class="col-md-4"  style="margin-top:8px;">
+                                <div class="col-md-4" style="margin-top:8px;">
                                     <span ng-span-mobile-number="billPaymentSMSS" class="hide" style="color:red;">
                                         ต้องเป็นตัวเลข 10หลัก และขึ้นต้นด้วย 0
                                     </span>
@@ -1192,12 +1171,7 @@
                             <div class="form-group" ng-show="billPayment.preferedContace == 'FIX'">
                                 <label class="col-md-5 control-label">ระบุเบอร์ <span style="color:red;">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="text" 
-                                    id="fixPreferedContact" 
-                                    class="form-control" 
-                                    ng-model="fixPreferedContact"
-                                    ng-telephone-number-multi="fixPreferedContact"
-                                    maxlength="50">
+                                    <input type="text" id="fixPreferedContact" class="form-control" ng-model="fixPreferedContact" ng-telephone-number-multi="fixPreferedContact" maxlength="50">
                                 </div>
                                 <span style="color:red" class="hide" ng-span-telephone-number-multi="fixPreferedContact">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
                             </div>
@@ -1225,11 +1199,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>เบอร์มือถือ</label>
-                                    <input type="text" 
-                                            class="form-control telephoneZero" 
-                                            ng-model="customer['contact-mobile-number']" 
-                                            maxlength="10" 
-                                            ng-blur="onBlurTel2()">
+                                    <input type="text" class="form-control telephoneZero" ng-model="customer['contact-mobile-number']" maxlength="10" ng-blur="onBlurTel2()">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -1257,7 +1227,7 @@
                                 <!-- <span ng-show="isNumberTel2 || isNumberTelLength2 || isNumberTelZero2" style="color:red;">
                             ต้องเป็นตัวเลข 10หลัก และขึ้นต้นด้วย 0
                         </span> -->
-                        <span ng-span-mobile-number="txtcontactNonumber2" class="hide" style="color:red;">
+                                <span ng-span-mobile-number="txtcontactNonumber2" class="hide" style="color:red;">
                             ต้องเป็นตัวเลข 10หลัก และขึ้นต้นด้วย 0
                         </span>
                             </div>
@@ -1299,13 +1269,9 @@
                         <div class="form-group" ng-show="shopType=='0'">
                             <label class="col-md-4 control-label">เหตุผล<span style="color:red;"> *</span></label>
                             <div class="col-md-4">
-                                <select id="selectReasonId" 
-                                        ng-options="option.dec for option in reasons" 
-                                        ng-change="onReasonChange()" 
-                                        ng-model="reason" 
-                                        class=" form-control">
-                                        <option value="">-- กรุณาเลือก --</option>
-                                        </select>
+                                <select id="selectReasonId" ng-options="option.dec for option in reasons" ng-change="onReasonChange()" ng-model="reason" class=" form-control">
+                                    <option value="">-- กรุณาเลือก --</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -1352,12 +1318,12 @@
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </h4>
                             </div>
-                             <div class="modal-body modalBodyDivStyle">
+                            <div class="modal-body modalBodyDivStyle">
                                 <h4 id="loadingPrint" style="width=100%;text-align:center;display:none;">กำลังพิมพ์...</h4>
-							    <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
-							        <p>It appears your web browser doesn't support iframes.</p>
-							    </iframe>
-							</div>
+                                <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
+                                    <p>It appears your web browser doesn't support iframes.</p>
+                                </iframe>
+                            </div>
                             <div class="modal-footer">
                                 <span ng-show="shopType=='0' || (shopType=='1' && getAuthen['isSecondAuthen'] == false)"><input type="button" href="#modal-pdf" value="ยืนยันและพิมพ์" data-dismiss="modal" ng-click="printAndSaveOrder()" class="btn btn-success"></span>
                                 <span><input type="button" href="#modal-pdf" value="ยืนยัน" data-dismiss="modal" ng-click="saveOrder()" class="btn btn-success"></span>
