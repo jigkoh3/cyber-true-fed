@@ -632,7 +632,7 @@ smartApp.controller('ResumeController', function(
 
                             if (result.status) {
                                 //if (result.installedProducts["account-category"] == 'B' || result.installedProducts["account-category"] == 'C') {
-                                    accountCat = result.installedProducts["account-category"];
+                                accountCat = result.installedProducts["account-category"];
                                 //}
                                 var data = {
                                     "accountCat": accountCat,
@@ -1087,6 +1087,24 @@ smartApp.controller('ResumeController', function(
                         $scope.selectedPricePlan(checkOldPricePlans[0]);
                         $scope.selectedPricePlan2();
 
+                    }
+
+                    //// setDefaultPricePlan case ['REQUIRE-PRICEPLAN'] == 'NOT REQUIRE' ::: 11-07-2016 :: xsam32
+                    if ($scope.data.installedProducts['product-properties']['REQUIRE-PRICEPLAN'] == 'NOT REQUIRE') {
+                        //// setDefaultPricePlan
+                        $scope.pricePlan = {
+                            name: $scope.data.installedProducts['product-name'] + " : " + $scope.data.installedProducts['product-description'],
+                            promotion: "",
+                            rc: "",
+                            pricePlanFilter: "",
+                            saveName: $scope.data.installedProducts['product-name']
+                        };
+                        $scope.selectProposition = $scope.promotion;
+                        $scope.offerDetail = {
+                            "csm-offer-details": {
+                                "csm-related-offer-details": []
+                            }
+                        };
                     }
 
                     $scope.isLoadPricePlan = true;
@@ -2366,9 +2384,9 @@ smartApp.controller('ResumeController', function(
         // }
 
         //// update case selectPricePlan requirement by P'kwang ::: 08-07-2016 :: xsam32
-        if($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'false'){
+        if ($scope.data.installedProducts['product-properties']['IS-NEW-ACCOUNT'] == 'false') {
             data["order"]["order-items"][0]["order-data"]["REQUIRE-PRICEPLAN"] = $scope.data.installedProducts["product-properties"]["REQUIRE-PRICEPLAN"];
-        }else{
+        } else {
             //ไม่ส่ง
         }
 
