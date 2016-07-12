@@ -130,11 +130,30 @@
                 'status-code': '0',
                 'display-messages': [{
                     "message": "External service [CCB_INT] response error. ACAHblG10001-Data not found.",
-                    "message-code": "WSC-00001",
+                    "message-code": "WSC-00011",
                     "message-type": "WARNING",
                     "en-message": "External service [CCB_INT] response error. ACAHblG10001-Data not found.",
                     "technical-message": "CCB_INT response ACAHblG10001: Data not found. on service url http://172.19.194.63:8280/SearchCustomerInfoWS/SearchCustomerInfoSI."
                 }]
+            };
+
+            var data4 = {
+                "status": "SUCCESSFUL",
+                "fault": {
+                    "name": "th.co.truecorp.ads.api.ApplicationServiceException",
+                    "code": "TMV-SWAPSIM-00014",
+                    "message": " CDB data is null.  CDB data is null",
+                    "detailed-message": "ApplicationServiceException TMV-SWAPSIM-00014 CDB data is null. "
+                },
+                "display-messages": [{
+                    "message": "Mobile Number is not found or cancel, Please check and try again",
+                    "message-code": "TMV-SWAPSIM-00014",
+                    "message-type": "ERROR",
+                    "en-message": "Mobile Number is not found or cancel, Please check and try again",
+                    "th-message": "ขออภัยไม่พบหมายเลขโทรศัพท์นี้ในระบบ หรือหมายเลขถูกยกเลิก กรุณาตรวจสอบอีกครั้ง"
+                }],
+                "trx-id": "5X6EJRS9I0K3G",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)"
             };
 
             if (msisdn == "0957730500") {
@@ -147,7 +166,7 @@
                         msgErr: ''
                     });
                 }, 1000);
-            }else if (msisdn == "0840306566") {
+            } else if (msisdn == "0840306566") {
 
                 $timeout(function() {
                     cb({
@@ -194,7 +213,8 @@
                     });
                 }
             }, 1200);
-            if (displayMsg['message-code'] == "WSC-00001") {
+           //validateswapsim data not found 20160712 by Waramun
+            if (displayMsg['message-code'] == "WSC-00001" || displayMsg['message-type'] == "ERROR" || displayMsg['message-code'] == "TMV-SWAPSIM-00014") {
                 return false;
             }
             //return null;
@@ -428,9 +448,9 @@
             'target': '/aftersales/order/submit'
         };
         //// delete POA case none checked POA :: 17-06-2016 :: xsam32
-        if(payload["customerAgent"]["POA"]["id-number"]){
+        if (payload["customerAgent"]["POA"]["id-number"]) {
             //
-        }else{
+        } else {
             delete request["order"]["customer"]["customer-agents"];
         }
         console.log(request);
@@ -443,11 +463,11 @@
             //var target = '/aftersales/order/submit';
 
             SystemService.callServicePost(request, null, function(result) {
-            	//save report to server
-            	SystemService.saveReportToServer({}, function(result){
-            		
-            	});
-                
+                //save report to server
+                SystemService.saveReportToServer({}, function(result) {
+
+                });
+
                 cb(result);
             });
         } else {

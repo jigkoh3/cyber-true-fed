@@ -22,6 +22,13 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
     $scope.statuses[3] = { id: "ERROR", name: "ERROR" };
     $scope.statuses[4] = { id: "COMPLETED", name: "COMPLETED" };
     $scope.service = window.location.protocol + "//" + window.location.hostname + (null != window.location.port ? ":" + window.location.port : "");
+    var dateNow = new Date();
+    $scope.setDateNow = ("0" + dateNow.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/"  + Number(dateNow.getFullYear() + 543);
+    console.log( $scope.setDateNow);
+    $scope.fromdate =  $scope.setDateNow;
+    $('#fromdate').val($scope.fromdate);
+    $scope.todate =  $scope.setDateNow;
+    $('#todate').val($scope.todate);
 
     dateDiff = function(datepart, fromdate, todate) {
 
