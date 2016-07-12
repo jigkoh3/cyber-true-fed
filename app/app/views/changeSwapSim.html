@@ -86,7 +86,11 @@
                                     <!-- <div ng-show="!dealerCodeList || !dealerCodeList.length || dealerCodeList.length > 1"> -->
                                     <div>
                                         <p></p>
-                                        <div ng-show="(shopType=='1' && dealerCodeList.length < 1) || (shopType=='0') || (shopType=='1' && dealerCodeList.length > 1)" class="row">
+                                        <div ng-show="
+                                        (SubNo=='null' && isCustomerProfile==false && productCodes) || 
+                                        (SubNo=='null' && !shopType) || 
+                                        (shopType=='0') || 
+                                        (shopType=='1' && getAuthen['isSecondAuthen'] == false && dealerCodeList.length >= 1) || (shopType=='1' && getAuthen['isSecondAuthen'] == true && dealerCodeList.length > 1)" class="row">
                                             <div class="col-md-6"><b>รหัสร้านค้า <span style="color:red;">*</span> </b></div>
                                         </div>
                                         <p></p>
@@ -101,7 +105,11 @@
                                                        ng-disabled="!isCustomerProfile"
                                                        maxlength="{{ dealerCodeLength }}" required /> -->
                                                 <input id="dealerCodeInput" 
-                                                       ng-show="(shopType=='1' && dealerCodeList.length < 1) || (shopType=='0')" 
+                                                       ng-show="
+                                                       (SubNo=='null' && isCustomerProfile==false && productCodes) || 
+                                                       (SubNo=='null' && !shopType) || 
+                                                       (shopType=='0') || 
+                                                       (shopType=='1' && getAuthen['isSecondAuthen'] == false && dealerCodeList.length == 1)" 
                                                        ng-numeric-input type="text" 
                                                        class="form-control" 
                                                        ng-model="dealerCode" 

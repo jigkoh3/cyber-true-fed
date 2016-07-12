@@ -571,6 +571,8 @@ smartApp.controller('changeOwnershipIBCController', function(
                         $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'] +
                             ": " +
                             $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION'];
+                        //// for product-name :: ??? :: 12-07-2016 :: xsam32
+                        $scope.pricePlan.saveName = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'];
                     } else {
                         $scope.showPPParentOU = false;
                     }
@@ -583,6 +585,8 @@ smartApp.controller('changeOwnershipIBCController', function(
                             $scope.pricePlan.name = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'] +
                                 ": " +
                                 $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN-DESCRIPTION'];
+                            //// for product-name :: ??? :: 12-07-2016 :: xsam32
+                            $scope.pricePlan.saveName = $scope.dataAccountPreverify["installed-products"][0]['product-properties']['ACCOUNT-PRICEPLAN'];
                         }
                     }
                     //build BILLING_ADDRESS here ::
