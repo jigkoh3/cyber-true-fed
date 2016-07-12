@@ -17,7 +17,7 @@
             "engName": "CMTEST48 CMSUR48",
             "shopcodes": [],
             // "shopcodes": ["12345670"],
-            //"shopcodes": ["12345678", "12345677"],
+            // "shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
             "isByPassSecondAuthen": true,
@@ -136,6 +136,19 @@
             localStorage.setItem('ssoPartnerPrincipal', "");
             //END: CR selected shopcode //05-04-2016
             result['partnerCodes'] = result['shopcodes'];
+            //// check shopCode null if shopType == 1 :: 12-07-2016 :: xsam32
+            if (result['shopcodes'].length == 0 && result['shopType'] == '1') {
+                SystemService.showAlert({
+                    "message": "",
+                    "message-code": "",
+                    "message-type": "ERROR",
+                    "en-message": "",
+                    "th-message": "ระบบไม่สามารถตรวจสอบ shopcode ได้",
+                    "technical-message": "AuthenService"
+                });
+                SystemService.hideLoading();
+                return;
+            }
             fnCallback(result);
 
         } else {
@@ -174,6 +187,19 @@
                 localStorage.setItem('ssoPartnerPrincipal', "");
                 //END: CR selected shopcode //05-04-2016
                 result['partnerCodes'] = result['shopcodes'];
+                //// check shopCode null if shopType == 1 :: 12-07-2016 :: xsam32
+                if (result['shopcodes'].length == 0 && result['shopType'] == '1') {
+                    SystemService.showAlert({
+                        "message": "",
+                        "message-code": "",
+                        "message-type": "ERROR",
+                        "en-message": "",
+                        "th-message": "ระบบไม่สามารถตรวจสอบ shopcode ได้",
+                        "technical-message": "AuthenService"
+                    });
+                    SystemService.hideLoading();
+                    return;
+                }
                 fnCallback(result);
             }).error(function(data, status) {
                 fnCallback("ERROR");
