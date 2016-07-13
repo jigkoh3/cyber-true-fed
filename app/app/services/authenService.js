@@ -7,13 +7,14 @@
     this.getAuthen = function(fnCallback) {
         var result = {
             "shopType": "0",
-            "isSecondAuthen": true,
+            "userGroup": "ADMIN", /// || TELESALES || ADMIN || SHOP || DEALER ||
+            "isSecondAuthen": false,
             "channel": "NONSHOP",
             "partnerCodes": [],
             "partnerName": null,
             "partnerType": null,
             "saleCode": "90900051",
-            "thaiName": null,
+            "thaiName": "สมชาย เข็มกลัด",
             "engName": "CMTEST48 CMSUR48",
             "shopcodes": [],
             // "shopcodes": ["12345670"],

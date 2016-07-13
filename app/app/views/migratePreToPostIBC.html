@@ -21,7 +21,7 @@
                                         <input type="radio" name="type" ng-model="customerType" value="N"> บุคคลธรรมดา
                                     </label>
                                 </div> -->
-                                    <!-- for UAT 31-05-2016 //xsam32 -->
+                                <!-- for UAT 31-05-2016 //xsam32 -->
                                 <div data-toggle="buttons" class="btn-group btn-group-justified">
                                     <label class="btn btn-default active" ng-click="changeType('N');onChangeCusType();onInputCitizenID3();">
                                         <input type="radio" name="type" ng-model="customerType" value="N"> บุคคลธรรมดา
@@ -429,12 +429,38 @@
                 </div>
                 <h4 ng-show="customerType=='B' || customerType=='C'">ตรวจสอบลูกค้า</h4>
                 <div class="well" ng-show="customerType=='B' || customerType=='C'">
+                    <!-- input saleCode :: new requirement :: 13-07-2016 :: xsam32 -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3" style=" text-align: right; top: 5px;">
+                                <p></p>
+                                <label>
+                                    รหัสพนักงาน
+                                    <!-- account-category == 'I' -->
+                                    <span style="color:red;">*</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <p></p>
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile)">
+                                <!-- Case Normal -->
+                                <input type="text" id="txtSaleCodeBC" ng-hide="userDealer && !isCustomerProfile" name="saleCode" ng-model="getAuthen.saleCode" ng-keyup="($event.keyCode==13 && onEnterSaleCode())" ng-change="onChangeSaleCode();" class="form-control" ng-disabled="!isCustomerProfile" maxlength="15" required>
+                            </div>
+                            <div class="col-md-4" style="top: 5px;">
+                                <p></p>
+                                <label>
+                                    {{getAuthen.thaiName}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
                                 <label>
                                     รหัสร้านค้า
+                                    <!-- account-category == 'B,C' -->
                                     <span style="color:red;">*</span></label>
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length<=1">
@@ -697,12 +723,39 @@
                 </div>
                 <h4 ng-hide="isVerify==false && customerType!='N'">ข้อมูลหมายเลข</h4>
                 <div ng-hide="isVerify==false && customerType!='N'" class="well">
+                    <!-- input saleCode :: new requirement :: 13-07-2016 :: xsam32 -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3" style=" text-align: right; top: 5px;">
+                                <p></p>
+                                <label>
+                                    รหัสพนักงาน
+                                    <!-- account-category == 'I' -->
+                                    <span style="color:red;">*</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <p></p>
+                                <!-- Case Dealer -->
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile)">
+                                <!-- Case Normal -->
+                                <input type="text" id="txtSaleCodeI" ng-hide="userDealer && !isCustomerProfile" name="saleCode" ng-model="getAuthen.saleCode" ng-keyup="($event.keyCode==13 && onEnterSaleCode())" ng-change="onChangeSaleCode();" class="form-control" ng-disabled="!isCustomerProfile" maxlength="15" required>
+                            </div>
+                            <div class="col-md-4" style="top: 5px;">
+                                <p></p>
+                                <label>
+                                    {{getAuthen.thaiName}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- input shopCode -->
                     <div class="row" ng-show="customerType=='N'">
                         <div class="col-md-12" ng-hide="shopType=='1' && getAuthen['isSecondAuthen'] == true && getAuthen.shopcodes.length == 1">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
                                 <label>
                                     รหัสร้านค้า
+                                    <!-- account-category == 'I' -->
                                     <span style="color:red;">*</span></label>
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
@@ -722,7 +775,7 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile)">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtPartnerCode" ng-change="onCheckInputForVerify()" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="!isCustomerProfile || isChkShopcode " maxlength="8" required>
+                                <input type="text" id="txtPartnerCode" ng-change="onCheckInputForVerify()" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="!isCustomerProfile || isChkShopcode || getAuthen.userGroup == 'ADMIN'" maxlength="8" required>
                             </div>
                         </div>
                     </div>
@@ -839,7 +892,6 @@
                         text-align: right !important;
                     }
                     </style>
-                    
                     <div class="row" ng-show="isVerify">
                         <div class="form-group">
                             <label class="col-md-3 control-label priceplaneText">โปรโมชั่น <span style="color:red;" ng-show="showRequirePP">*</span></label>
@@ -1693,7 +1745,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group ">
-                                <label>ภาษาที่ใช้ติดต่อ <span style="color:red;"> *</span></label> 
+                                <label>ภาษาที่ใช้ติดต่อ <span style="color:red;"> *</span></label>
                                 <select class="form-control" ng-model="customer['language']">
                                     <option value="TH">ไทย</option>
                                     <option value="EN">อังกฤษ</option>

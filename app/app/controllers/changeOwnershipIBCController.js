@@ -3159,7 +3159,7 @@ smartApp.controller('changeOwnershipIBCController', function(
                     "customer-id": _customerID,
                     "customer-level": $scope.grade["grade-name"],
                     //"customer-id": $scope.customerStatusN == 'O' ? $scope.lastestCustomer['customer-id'] : "",
-                    "customer-sublevel_id": $scope.grade["grade-id"],
+                    "customer-sublevel-id": $scope.grade["grade-id"],
                     "customer-sublevel": $scope.grade["grade-sub-name"]
                         ///check lastest or billadress
                         ,

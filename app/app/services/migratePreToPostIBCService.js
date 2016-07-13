@@ -983,10 +983,43 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node3)",
                 "response-data": {}
             };
-            if (target == "profiles/partner/validatepartner?function-type=CHANGE_OWNERSHIP&partner-code=88888888") {
+            var data3 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "43RTPW8S64H6",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "partnerInfo": {
+                        "status-id": "1",
+                        "register-date": "2004-06-30 00:00:00.0",
+                        "status-name": "Active",
+                        "biz-reg-type-name": "นิติบุคคล",
+                        "dealer-code": "79000001",
+                        "emp-code": "",
+                        "tvs-code": "",
+                        "tmx-emp-code": "",
+                        "channel-alias": "ENTP",
+                        "channel-name": "Enterprise Customer & International Services",
+                        "partner-type-name": "Corporate",
+                        "partner-sub-type-name": "",
+                        "partner-type-group-name": "L1",
+                        "parent-code": "",
+                        "partner-name-th": "บริษัท ทรู มูฟ จำกัด"
+                    }
+                }
+            };
+
+            if (target == "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&partner-code=88888888") {
                 fnCallback({
                     status: true,
                     data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            }else if (target == "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&sale-code=88888888") {
+                fnCallback({
+                    status: true,
+                    data: data3,
                     error: "",
                     msgErr: ""
                 });

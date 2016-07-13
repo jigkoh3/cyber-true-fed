@@ -1468,6 +1468,44 @@ smartApp.controller('MigratePreToPostIBCController', function(
         }
     };
 
+    ////input saleCode :: new requirement :: 13-07-2016 :: xsam32
+    $scope.onEnterSaleCode = function() {
+        //alert($scope.getAuthen.saleCode);
+        $scope.onCheckSaleCode();
+    };
+    $scope.onChangeSaleCode = function() {
+        $scope.getAuthen.thaiName = "";
+    };
+    $scope.onCheckSaleCode = function() {
+        $scope.promotion = "";
+        $scope.getAuthen.thaiName = "";
+        SystemService.showLoading();
+        var target = "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&sale-code=" + $scope.getAuthen.saleCode;
+        migratePreToPostIBCService.validatePartnerCallback(target, function(result) {
+            SystemService.hideLoading();
+            if (result.data["display-messages"].length == 0) {
+                var saleData = result.data['response-data']['partnerInfo'];
+                $scope.getAuthen.thaiName = saleData['partner-name-th'];
+            } else {
+                //error ?
+                if($scope.getAccountCat() == 'I'){
+                    idFocus = "txtSaleCodeI";
+                }else{
+                    idFocus = "txtSaleCodeBC";
+                }
+                $scope.getAuthen.saleCode = "";
+                SystemService.showAlert({
+                    "message": result.data["display-messages"][0]["message"],
+                    "message-code": result.data["display-messages"][0]["message-code"],
+                    "message-type": "WARNING",
+                    "en-message": result.data["display-messages"][0]["en-message"],
+                    "th-message": result.data["display-messages"][0]["th-message"],
+                    "technical-message": result.data["display-messages"][0]["technical-message"]
+                });
+            }
+        });
+    };
+
 
     $scope.isNumberVolume = false;
     $scope.onInputVolume = function(charCode) {
@@ -1511,7 +1549,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.onCheckShopCode = function() {
         $scope.promotion = "";
         SystemService.showLoading();
-        var target = "profiles/partner/validatepartner?function-type=CHANGE_OWNERSHIP&partner-code=" + $scope.partnerCode;
+        var target = "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&partner-code=" + $scope.partnerCode;
         migratePreToPostIBCService.validatePartnerCallback(target, function(result) {
             SystemService.hideLoading();
             if (result.data["display-messages"].length == 0) {
@@ -3237,7 +3275,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     "customer-id": _customerID,
                     "customer-level": $scope.grade["grade-name"],
                     //"customer-id": $scope.data.customerProfile["customer-id"],
-                    "customer-sublevel_id": $scope.grade["grade-id"],
+                    "customer-sublevel-id": $scope.grade["grade-id"],
                     "customer-sublevel": $scope.grade["grade-sub-name"]
                         ///check lastest or billadress
                         ,
@@ -3416,7 +3454,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 //case: BUSINESS/CORPORATE : EXISTING-CUSTOMER : EXISTING ACCOUNT
                 delete data["order"]["order-items"][0]["address-list"]["BILLING_ADDRESS"];
                 delete data["order"]["order-items"][0]["address-list"]["TAX_ADDRESS"];
-                
+
                 //// case EXISTING-ACCOUNT ::: 23-06-2016 :: xsam32
                 data["order"]["customer"]["contact-number"] = "";
             }
@@ -3531,7 +3569,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                     for (var i = 0; i < list.length; i++) {
                         data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-SIZE"] = spArray[list[i]].length;
 
-                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-OFFER-NAME"] = listSoc[i]+"|"+listName[i];
+                        data["order"]["order-items"][0]["order-data"][list[i] + "-PARAM-OFFER-NAME"] = listSoc[i] + "|" + listName[i];
 
                         var listValue = spArray[list[i]];
                         for (var ii = 0; ii < listValue.length; ii++) {
@@ -4713,7 +4751,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             showValidate("CitizenID2", ValidateMsgService.data.authorizeIdMsg);
         } else if (errorAuthorizeName) {
             showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
-        } else if (($scope.newOwner.prefixTH == "T5") && isNull($('#titleOther').val())&& $scope.customerType == 'N') {
+        } else if (($scope.newOwner.prefixTH == "T5") && isNull($('#titleOther').val()) && $scope.customerType == 'N') {
             showValidate("titleOther", ValidateMsgService.data.msgNewPosCusPrefixEmpty);
         } else if (isNull($scope.customer['id-number'])) {
             showValidate("citizenID3", ValidateMsgService.data.msgNewCusIDnoEmpty);

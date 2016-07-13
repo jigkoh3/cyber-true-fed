@@ -2285,7 +2285,7 @@ smartApp.controller('ResumeController', function(
                     "tax-id": $scope.customer["tax-id"],
                     "customer-level": $scope.grade["grade-name"],
                     "customer-id": $scope.data.customerProfile["customer-id"],
-                    "customer-sublevel_id": $scope.grade["grade-id"],
+                    "customer-sublevel-id": $scope.grade["grade-id"], //// ? -id || _id || ref.COWN :: 13-07-2016 :: xsam32
                     "customer-sublevel": $scope.grade["grade-sub-name"]
                         ///check lastest or billadress
                         ,
