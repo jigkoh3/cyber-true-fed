@@ -1204,7 +1204,7 @@ smartApp.controller('ResumeController', function(
         if (cid.length >= 9) {
             SystemService.showLoading();
             if (1 == 1) {
-                resumeService.validateGradingCallback(cid, function(resultData) {
+                resumeService.validateGradingCallback(cid, $scope.data.installedProducts["account-category"], function(resultData) {
                     console.log(resultData);
                     console.log(resultData.data["display-messages"]);
                     if (resultData.data["display-messages"].length == 0) {

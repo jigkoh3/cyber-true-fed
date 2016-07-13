@@ -2346,8 +2346,8 @@
             var result = "";
             if (format == "dd/MM/yyyy") {
                 result = "" + arr[2] + "/" + arr[1] + "/" + arr[0];
-            }else if (format == "dd/MM/YYYY") {
-                result = "" + arr[2] + "/" + arr[1] + "/" + arr[0]+543;
+            } else if (format == "dd/MM/YYYY") {
+                result = "" + arr[2] + "/" + arr[1] + "/" + arr[0] + 543;
             } else {
                 result = arrDate[0];
             }
@@ -3060,5 +3060,30 @@
             alert('Connot get file.');
             console.log(err);
         });
+    };
+
+    this.validateGradingResultI = function() {
+        //// new requirement p'kwang p'muang case 'I' :: 13-07-2016 :: xsam32
+        var data = {
+            "status": "SUCCESSFUL",
+            "display-messages": [],
+            "trx-id": "461HQMYTGV3HF",
+            "process-instance": "psaapdv1 (instance: SFF_node1)",
+            "response-data": {
+                "company-grade": {
+                    "company-id": "010552401934111",
+                    "grade-id": "2",
+                    "grade-name": "NON-TOP",
+                    "grade-sub-name": "NONE"
+                }
+            }
+        };
+        //resultData.data["response-data"]["company-grade"]["grade-id"];
+        return {
+            status: true,
+            data: data,
+            error: "",
+            msgErr: ""
+        };
     };
 });

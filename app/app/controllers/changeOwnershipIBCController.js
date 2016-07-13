@@ -1655,7 +1655,7 @@ smartApp.controller('changeOwnershipIBCController', function(
         if (cid.length >= 3) {
             //SystemService.showLoading();
             if (1 == 1) {
-                changeOwnershipIBCService.validateGradingCallback(cid, function(resultData) {
+                changeOwnershipIBCService.validateGradingCallback(cid, $scope.getAccountCat(), function(resultData) {
                     console.log(resultData);
                     console.log(resultData.data["display-messages"]);
                     if (resultData.data["display-messages"].length == 0) {

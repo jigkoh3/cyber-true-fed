@@ -142,7 +142,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
     $scope.isChkShopcode = true;
     $scope.chkShopcode = function() {
-        if ($scope.getAuthen.shopcodes.length == 1) {
+        if ($scope.getAuthen.shopcodes.length == 1 && $scope.getAuthen.shopType == '1') {
             $scope.isChkShopcode = true;
         } else {
             $scope.isChkShopcode = false;
@@ -1784,7 +1784,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         if (cid.length >= 3) {
             SystemService.showLoading();
             if (1 == 1) {
-                migratePreToPostIBCService.validateGradingCallback(cid, function(resultData) {
+                migratePreToPostIBCService.validateGradingCallback(cid, $scope.getAccountCat(), function(resultData) {
                     console.log(resultData);
                     console.log(resultData.data["display-messages"]);
                     if (resultData.data["display-messages"].length == 0) {

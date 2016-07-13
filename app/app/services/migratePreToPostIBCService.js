@@ -432,7 +432,7 @@
     };
     var getAccountSubTypeAPI = function(param, fnCallback) {
         var target = 'profiles/tmv/master/account-subtype?' +
-            'cust-type='+ param['cust-type'] +
+            'cust-type=' + param['cust-type'] +
             '&company=' + param['company'] +
             '&service-type=POSTPAID' +
             //'&roles' + param['roles'] +
@@ -1177,93 +1177,92 @@
                 fnCallback(result);
             });
         } else {
-            var data1 = 
-{
-  "status" : "SUCCESSFUL",
-  "display-messages" : [ ],
-  "trx-id" : "3L52N9C12GL3P",
-  "process-instance" : "tmsapnpr1 (instance: SFF_node3)",
-  "response-data" : {
-    "customer" : {
-      "title" : "",
-      "title-code" : "",
-      "firstname" : "สีนวล วงศ์ปก",
-      "lastname" : "",
-      "customer-type" : "C",
-      "contact-number" : "023652148",
-      "contact-mobile-number" : "023652148",
-      "id-type" : "O",
-      "id-number" : "3210300725674",
-      "id-expire-date" : "2019-11-21T00:00:00+0700",
-      "customer-id" : "67596",
-      "installed-products" : [ {
-        "ouId" : "35859",
-        "ban" : "10066434",
-        "product-category" : "TMV",
-        "account-category" : "",
-        "account-sub-type" : "RPA",
-        "product-id" : "",
-        "company-code" : "RF",
-        "product-properties" : {
-          "REQUIRE-PRICEPLAN-MSG-EN" : "No need to select new Price Plan (Promotion)",
-          "ACCOUNT-PRICEPLAN" : "ESMPAP09",
-          "AGREEMENT-ID" : "98483",
-          "ACCOUNT-STATUS" : "Active",
-          "ACCOUNT-PRICEPLAN-DESCRIPTION" : "Ent free to talk RC 0",
-          "ACCOUNT-LASTNAME" : "",
-          "ACCOUNT-SERVICE-LEVEL" : "G",
-          "ACCOUNT-FIRSTNMAE" : "Child  สีนวล วงศ์ปก",
-          "REQUIRE-PRICEPLAN-MSG-TH" : "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่",
-          "ACCOUNT-SOC-CODE" : "927638",
-          "REQUIRE-PRICEPLAN-MSG-CODE" : "TMV-VALIDATE-ACCOUNT-00003",
-          "REQUIRE-PRICEPLAN" : "NOT REQUIRE"
-        },
-        "address-list" : {
-          "TAX_ADDRESS" : {
-            "number" : "1",
-            "moo" : "",
-            "street" : "คลองตัน",
-            "soi" : "",
-            "district" : "คลองเตย",
-            "province" : "กรุงเทพมหานคร",
-            "building-name" : "",
-            "building-room" : "",
-            "building-floor" : "",
-            "sub-district" : "คลองตัน",
-            "zip" : "10110",
-            "household" : "1"
-          }
-        },
-        "mobile-servicetype" : "POSTPAID",
-        "has-splitcharge" : false,
-        "is-childsim" : false,
-        "is-softsuspend" : false,
-        "ou-hierarchytype" : "CHILD",
-        "parent-ouId" : "35858"
-      } ],
-      "address-list" : {
-        "CUSTOMER_ADDRESS" : {
-          "number" : "1",
-          "moo" : "",
-          "street" : "คลองตัน",
-          "soi" : "",
-          "district" : "คลองเตย",
-          "province" : "กรุงเทพมหานคร",
-          "building-name" : "",
-          "building-room" : "",
-          "building-floor" : "",
-          "sub-district" : "คลองตัน",
-          "zip" : "10110",
-          "household" : "1"
-        }
-      },
-      "customer-properties" : {
-        "BILL-CYCLE" : "10",
-        "BILL-CYCLE-DESCRIPTION" : "Monthly Cycle close on the 9"
-      }
-    }
-  }
-};
+            var data1 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "3L52N9C12GL3P",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "customer": {
+                        "title": "",
+                        "title-code": "",
+                        "firstname": "สีนวล วงศ์ปก",
+                        "lastname": "",
+                        "customer-type": "C",
+                        "contact-number": "023652148",
+                        "contact-mobile-number": "023652148",
+                        "id-type": "O",
+                        "id-number": "3210300725674",
+                        "id-expire-date": "2019-11-21T00:00:00+0700",
+                        "customer-id": "67596",
+                        "installed-products": [{
+                            "ouId": "35859",
+                            "ban": "10066434",
+                            "product-category": "TMV",
+                            "account-category": "",
+                            "account-sub-type": "RPA",
+                            "product-id": "",
+                            "company-code": "RF",
+                            "product-properties": {
+                                "REQUIRE-PRICEPLAN-MSG-EN": "No need to select new Price Plan (Promotion)",
+                                "ACCOUNT-PRICEPLAN": "ESMPAP09",
+                                "AGREEMENT-ID": "98483",
+                                "ACCOUNT-STATUS": "Active",
+                                "ACCOUNT-PRICEPLAN-DESCRIPTION": "Ent free to talk RC 0",
+                                "ACCOUNT-LASTNAME": "",
+                                "ACCOUNT-SERVICE-LEVEL": "G",
+                                "ACCOUNT-FIRSTNMAE": "Child  สีนวล วงศ์ปก",
+                                "REQUIRE-PRICEPLAN-MSG-TH": "ไม่ต้องระบุโปรโมชั่น Price Plan (โปรโมชั่น) ใหม่",
+                                "ACCOUNT-SOC-CODE": "927638",
+                                "REQUIRE-PRICEPLAN-MSG-CODE": "TMV-VALIDATE-ACCOUNT-00003",
+                                "REQUIRE-PRICEPLAN": "NOT REQUIRE"
+                            },
+                            "address-list": {
+                                "TAX_ADDRESS": {
+                                    "number": "1",
+                                    "moo": "",
+                                    "street": "คลองตัน",
+                                    "soi": "",
+                                    "district": "คลองเตย",
+                                    "province": "กรุงเทพมหานคร",
+                                    "building-name": "",
+                                    "building-room": "",
+                                    "building-floor": "",
+                                    "sub-district": "คลองตัน",
+                                    "zip": "10110",
+                                    "household": "1"
+                                }
+                            },
+                            "mobile-servicetype": "POSTPAID",
+                            "has-splitcharge": false,
+                            "is-childsim": false,
+                            "is-softsuspend": false,
+                            "ou-hierarchytype": "CHILD",
+                            "parent-ouId": "35858"
+                        }],
+                        "address-list": {
+                            "CUSTOMER_ADDRESS": {
+                                "number": "1",
+                                "moo": "",
+                                "street": "คลองตัน",
+                                "soi": "",
+                                "district": "คลองเตย",
+                                "province": "กรุงเทพมหานคร",
+                                "building-name": "",
+                                "building-room": "",
+                                "building-floor": "",
+                                "sub-district": "คลองตัน",
+                                "zip": "10110",
+                                "household": "1"
+                            }
+                        },
+                        "customer-properties": {
+                            "BILL-CYCLE": "10",
+                            "BILL-CYCLE-DESCRIPTION": "Monthly Cycle close on the 9"
+                        }
+                    }
+                }
+            };
             var data3 = {
                 "status": "SUCCESSFUL",
                 "display-messages": [],
@@ -1295,7 +1294,7 @@
                                 "ACCOUNT-PRICEPLAN": "RFSMTP01",
                                 "AGREEMENT-ID": "1890",
                                 "ACCOUNT-STATUS": "Active",
-                                "ACCOUNT-SOC-CODE" : "55555",
+                                "ACCOUNT-SOC-CODE": "55555",
                                 "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
                                 "ACCOUNT-LASTNAME": "",
                                 "ACCOUNT-SERVICE-LEVEL": "G",
@@ -1383,7 +1382,7 @@
                                 "ACCOUNT-STATUS": "Active",
                                 "ACCOUNT-PRICEPLAN-DESCRIPTION": "(4G) Smart 999 voice 500mins net7GB",
                                 "ACCOUNT-LASTNAME": "",
-                                "ACCOUNT-SOC-CODE" : "55555",
+                                "ACCOUNT-SOC-CODE": "55555",
                                 "ACCOUNT-SERVICE-LEVEL": "",
                                 "ACCOUNT-FIRSTNMAE": "ปตท.การขนส่ง บริษัท ปตท.สำรวจและผลิตปิโตรเลียม จำกัด (มหาชน)",
                                 "REQUIRE-PRICEPLAN-MSG-TH": "ท่านสามารถเลือก Price Plan (โปรโมชั่น) ใหม่ หรือใช้ Price Plan (โปรโมชั่น) เดิม",
@@ -1536,10 +1535,16 @@
 
 
     return {
-        validateGradingCallback: function(company_id, fnCallback) {
-            validateGradingAPI(company_id, function(resultData) {
+        validateGradingCallback: function(company_id, accountCat, fnCallback) {
+            //// new requirement p'kwang p'muang case 'I' :: 13-07-2016 :: xsam32
+            if (accountCat == 'I') {
+                var resultData = SystemService.validateGradingResultI();
                 fnCallback(resultData);
-            });
+            } else {
+                validateGradingAPI(company_id, function(resultData) {
+                    fnCallback(resultData);
+                });
+            }
         },
         getAccountSubTypeCallback: function(sendData, fnCallback) {
             getAccountSubTypeAPI(sendData, function(resultData) {

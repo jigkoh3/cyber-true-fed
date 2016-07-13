@@ -80,7 +80,7 @@
             }
             if (de_shop_code.length == 8) {
                 if ((de_shop_code + 0 > 0)) {
-                    result['shopcodes'] = ["" + de_shop_code + ""];
+                    //result['shopcodes'] = ["" + de_shop_code + ""];
                 }
                 localStorage.setItem('selectedShopCode', de_shop_code);
                 selectedShopCode = de_shop_code;

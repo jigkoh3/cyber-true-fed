@@ -20968,10 +20968,16 @@
 
 
     return {
-        validateGradingCallback: function(company_id, fnCallback) {
-            validateGradingAPI(company_id, function(resultData) {
+        validateGradingCallback: function(company_id, accountCat, fnCallback) {
+            //// new requirement p'kwang p'muang case 'I' :: 13-07-2016 :: xsam32
+            if (accountCat == 'I') {
+                var resultData = SystemService.validateGradingResultI();
                 fnCallback(resultData);
-            });
+            } else {
+                validateGradingAPI(company_id, function(resultData) {
+                    fnCallback(resultData);
+                });
+            }
         },
         getAccountSubTypeCallback: function(sendData, fnCallback) {
             getAccountSubTypeAPI(sendData, function(resultData) {
