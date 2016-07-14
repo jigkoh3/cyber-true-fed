@@ -43,7 +43,8 @@
                             "product-properties": {
                                 "IMSI": "520002081981781",
                                 "SIM": "896600331500001222",
-                                "FIRST-CALL-DATE": "22102015"
+                                "FIRST-CALL-DATE": "22102015",
+                                "MAIN-BALANCE": "1000.39"
                             },
                             "product-id-name": "MSISDN",
                             "product-id-number": "0957732665",

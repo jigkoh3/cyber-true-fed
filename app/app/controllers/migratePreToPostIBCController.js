@@ -61,6 +61,9 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.clickModalReadCard = false;
     $scope.isUseCardValueData = false;
 
+    $scope.disabledSaleCode = false;
+    $scope.txtSaleCode = "";
+
     //paging
     $scope.currentPage = 1;
     $scope.pageSize = 10;
@@ -755,6 +758,15 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.isAccountPreverify = false;
         //$scope.customer['id-number'] = "";
 
+        //// clear for sale-code
+        $scope.propositions = [];
+        if ($scope.getAuthen['userGroup'] == 'ADMIN') {
+            $scope.partnerCode = "";
+            $scope.txtSaleCode = "";
+            $scope.getAuthen['showThaiName'] = "";
+        }
+
+
         //update 20160524
         if ($scope.customerType != 'N') {
             $scope.customer['branch-code'] = "";
@@ -1155,6 +1167,42 @@ smartApp.controller('MigratePreToPostIBCController', function(
     };
     //END: CR02 
 
+    //// for saleCode and shopCode :: 14-07-2016 :: xsam32
+    $scope.checkUserGroup = function() {
+        //// disabledSaleCode
+        if ($scope.getAuthen['userGroup'] == 'TELESALES' && $scope.getAuthen['saleCode']) {
+            $scope.disabledSaleCode = true;
+        } else if ($scope.getAuthen['userGroup'] == 'DEALER' && $scope.getAuthen['ssoPartnerPrincipal']['partnerTypeLevel'] == '2') {
+            $scope.disabledSaleCode = true;
+        } else {
+            //
+        }
+        //// set txtSaleCode 
+        if ($scope.getAuthen['userGroup'] == 'ADMIN') {
+            //// clear all
+            $scope.txtSaleCode = "";
+            $scope.partnerCode = "";
+            $scope.getAuthen['showThaiName'] = "";
+        } else if ($scope.getAuthen['userGroup'] == 'SHOP') {
+            //// set saleCode and name
+            $scope.txtSaleCode = $scope.getAuthen['saleCode'];
+            $scope.getAuthen['showThaiName'] = $scope.getAuthen['thaiName'];
+        } else if ($scope.getAuthen['userGroup'] == 'TELESALES' && $scope.getAuthen['saleCode']) {
+            //// set saleCode and name
+            $scope.txtSaleCode = $scope.getAuthen['saleCode'];
+            $scope.getAuthen['showThaiName'] = $scope.getAuthen['thaiName'];
+        } else if ($scope.getAuthen['userGroup'] == 'DEALER') {
+            //// set saleCode and name
+            $scope.txtSaleCode = $scope.getAuthen['saleCode'];
+            $scope.getAuthen['showThaiName'] = $scope.getAuthen['thaiName'];
+        } else {
+            //// clear all
+            $scope.txtSaleCode = "";
+            $scope.partnerCode = "";
+            $scope.getAuthen['showThaiName'] = "";
+        }
+    };
+
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null';
     $scope.onLoadSubNoNull = function() {
         setTimeout(function() {
@@ -1164,6 +1212,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         AuthenService.getAuthen(function(result) {
             if (result == "ERROR") return;
             $scope.getAuthen = result;
+            $scope.checkUserGroup();
             $scope.chkShopcode();
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
@@ -1185,6 +1234,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         AuthenService.getAuthen(function(result) {
             if (result == "ERROR") return;
             $scope.getAuthen = result;
+            $scope.checkUserGroup();
             if (!$scope.getAuthen["isSecondAuthen"] && $scope.getAuthen["shopType"] == "1") {
                 $scope.isNonePartner = false;
             }
@@ -1470,30 +1520,45 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
     ////input saleCode :: new requirement :: 13-07-2016 :: xsam32
     $scope.onEnterSaleCode = function() {
-        //alert($scope.getAuthen.saleCode);
         $scope.onCheckSaleCode();
     };
     $scope.onChangeSaleCode = function() {
-        $scope.getAuthen.thaiName = "";
+        $scope.getAuthen.showThaiName = "";
+        $scope.partnerCode = "";
     };
     $scope.onCheckSaleCode = function() {
         $scope.promotion = "";
-        $scope.getAuthen.thaiName = "";
+        $scope.getAuthen.showThaiName = "";
         SystemService.showLoading();
-        var target = "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&sale-code=" + $scope.getAuthen.saleCode;
+        var target = "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&sale-code=" + $scope.txtSaleCode;
+        if ($scope.getAuthen['userGroup'] == 'TELESALES') {
+            target += "&partner-code=" + $scope.partnerCode;
+        }
         migratePreToPostIBCService.validatePartnerCallback(target, function(result) {
             SystemService.hideLoading();
             if (result.data["display-messages"].length == 0) {
                 var saleData = result.data['response-data']['partnerInfo'];
-                $scope.getAuthen.thaiName = saleData['partner-name-th'];
+                $scope.getAuthen['showThaiName'] = saleData['partner-name-th'];
+                $scope.partnerCode = saleData['dealer-code'];
+
+                if ($scope.getAuthen['userGroup'] == 'TELESALES') {
+                    target += "&partner-code=" + $scope.partnerCode;
+                } else if ($scope.getAuthen['userGroup'] == 'ADMIN') {
+                    $scope.callPropositionList();
+                    // }
+                    $scope.getAuthen.shopcodes = ["" + $scope.partnerCode + ""];
+                    $scope.onCheckInputForVerify();
+                } else {
+                    //
+                }
             } else {
                 //error ?
-                if($scope.getAccountCat() == 'I'){
+                if ($scope.getAccountCat() == 'I') {
                     idFocus = "txtSaleCodeI";
-                }else{
+                } else {
                     idFocus = "txtSaleCodeBC";
                 }
-                $scope.getAuthen.saleCode = "";
+                $scope.txtSaleCode = "";
                 SystemService.showAlert({
                     "message": result.data["display-messages"][0]["message"],
                     "message-code": result.data["display-messages"][0]["message-code"],
@@ -3220,7 +3285,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
         }
 
         $scope.saveData.memo = $scope.saveData.memo ? $scope.saveData.memo : ""
-        $scope.saveData.memo = $scope.getAuthen.logInName + "(" + $scope.getAuthen.saleCode + ": " + $scope.getAuthen.engName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo;
+        $scope.saveData.memo = $scope.getAuthen.logInName + "(" + $scope.txtSaleCode + ": " + $scope.getAuthen.engName + ")" + "(" + "Order ID: " + $scope.orderId + ")" + ": " + $scope.saveData.memo;
 
         if ($scope.customerType != 'N' && $scope.useNumberType == 'BC') {
             $scope.newOwner2.firstNameTH = $scope.bcName2;
@@ -3370,6 +3435,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             "PARENT-OUID": "xxxxxxxxxxxxxxxxxxxADD",
                             "PRICEPLAN-SERVICE-LEVEL": "xxxxxxxxxxxxxxxxxxxADD",
 
+                            "MAIN-BALANCE": $scope.data.installedProducts["properties"]["MAIN-BALANCE"],
+
                             "PRICEPLAN-SOC-CODE": $scope.pricePlan2.priceplans.soc,
                             "CCBS-PROPOSITION-SOC-CODE": $scope.propositionSoc,
                             "ORIGINAL-ID-NUMBER": $scope.data.customerProfile['id-number'],
@@ -3409,7 +3476,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             "channel": $scope.getAuthen["channel"],
             "partner-code": $scope.partnerCode,
             "partner-name": $scope.getAuthen["partnerName"],
-            "sale-code": $scope.getAuthen["saleCode"],
+            "sale-code": $scope.txtSaleCode,
             "sale-assist-code": "",
             "partner-type": $scope.getAuthen["partnerType"]
         };
@@ -4909,8 +4976,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
 
 
         if (idFocus) {
-            $('#' + idFocus).focus();
-            idFocus = "";
+            setTimeout(function() {
+                $('#' + idFocus).focus();
+                idFocus = "";
+            }, 200);
         } else {
             // $scope.validateUI();
         }

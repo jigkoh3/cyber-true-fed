@@ -430,13 +430,13 @@
                 <h4 ng-show="customerType=='B' || customerType=='C'">ตรวจสอบลูกค้า</h4>
                 <div class="well" ng-show="customerType=='B' || customerType=='C'">
                     <!-- input saleCode :: new requirement :: 13-07-2016 :: xsam32 -->
-                    <div class="row">
+                    <div class="row" ng-hide="getAuthen['userGroup'] == 'SHOP'">
                         <div class="col-md-12">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
                                 <label>
                                     รหัสพนักงาน
-                                    <!-- account-category == 'I' -->
+                                    <!-- account-category == 'B,C' -->
                                     <span style="color:red;">*</span></label>
                             </div>
                             <div class="col-md-4">
@@ -444,18 +444,18 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile)">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtSaleCodeBC" ng-hide="userDealer && !isCustomerProfile" name="saleCode" ng-model="getAuthen.saleCode" ng-keyup="($event.keyCode==13 && onEnterSaleCode())" ng-change="onChangeSaleCode();" class="form-control" ng-disabled="!isCustomerProfile" maxlength="15" required>
+                                <input type="text" id="txtSaleCodeBC" ng-hide="userDealer && !isCustomerProfile" name="saleCode" ng-model="txtSaleCode" ng-keyup="($event.keyCode==13 && onEnterSaleCode())" ng-change="onChangeSaleCode();" class="form-control idSaleCode" ng-disabled="!isCustomerPreverify" maxlength="8" required>
                             </div>
                             <div class="col-md-4" style="top: 5px;">
                                 <p></p>
-                                <label>
-                                    {{getAuthen.thaiName}}
+                                <label ng-show="getAuthen.showThaiName && (userDealer && !isCustomerProfile)">
+                                    {{getAuthen.showThaiName}} <img src="images/icon/icon_active.png" alt="">
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" ng-hide="shopType=='1' && getAuthen['isSecondAuthen'] == true && getAuthen.shopcodes.length == 1">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
                                 <label>
@@ -468,7 +468,7 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtPartnerCodeBC" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" ng-change="isVerify=false;propositions=[];onCheckInputForVerify();" class="form-control" ng-disabled="isChkShopcode || !isLastestUser" maxlength="8" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
+                                <input type="text" id="txtPartnerCodeBC" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" ng-change="isVerify=false;propositions=[];onCheckInputForVerify();" class="form-control" ng-disabled="isChkShopcode || !isLastestUser || getAuthen.userGroup != 'SHOP' " maxlength="8" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" required>
                             </div>
                             <div class="col-md-4" ng-show="getAuthen.shopcodes.length>1">
                                 <p></p>
@@ -724,7 +724,7 @@
                 <h4 ng-hide="isVerify==false && customerType!='N'">ข้อมูลหมายเลข</h4>
                 <div ng-hide="isVerify==false && customerType!='N'" class="well">
                     <!-- input saleCode :: new requirement :: 13-07-2016 :: xsam32 -->
-                    <div class="row">
+                    <div class="row" ng-hide="getAuthen['userGroup'] == 'SHOP'">
                         <div class="col-md-12">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
@@ -736,14 +736,14 @@
                             <div class="col-md-4">
                                 <p></p>
                                 <!-- Case Dealer -->
-                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile)">
+                                <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtSaleCodeI" ng-hide="userDealer && !isCustomerProfile" name="saleCode" ng-model="getAuthen.saleCode" ng-keyup="($event.keyCode==13 && onEnterSaleCode())" ng-change="onChangeSaleCode();" class="form-control" ng-disabled="!isCustomerProfile" maxlength="15" required>
+                                <input type="text" id="txtSaleCodeI" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" name="saleCode" ng-model="txtSaleCode" ng-keyup="($event.keyCode==13 && onEnterSaleCode())" ng-change="onChangeSaleCode();" class="form-control idSaleCode" ng-disabled="!isCustomerPreverify || disabledSaleCode" maxlength="8" required>
                             </div>
-                            <div class="col-md-4" style="top: 5px;">
+                            <div class="col-md-4" style="top: 5px;" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <p></p>
-                                <label>
-                                    {{getAuthen.thaiName}}
+                                <label ng-show="getAuthen.showThaiName">
+                                    {{getAuthen.showThaiName}} <img src="images/icon/icon_active.png" alt="">
                                 </label>
                             </div>
                         </div>
@@ -775,7 +775,7 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile)">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtPartnerCode" ng-change="onCheckInputForVerify()" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="!isCustomerProfile || isChkShopcode || getAuthen.userGroup == 'ADMIN'" maxlength="8" required>
+                                <input type="text" id="txtPartnerCode" ng-change="onCheckInputForVerify()" ng-hide="userDealer && !isCustomerProfile" name="partnerCode" ng-model="partnerCode" ng-keyup="onInputShopCode()" class="form-control" ng-disabled="!isCustomerProfile || isChkShopcode || getAuthen.userGroup != 'SHOP'" maxlength="8" required>
                             </div>
                         </div>
                     </div>

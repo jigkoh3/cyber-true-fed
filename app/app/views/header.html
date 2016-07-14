@@ -6,6 +6,7 @@
     <h3 ng-hide="showDataDealer"><span ng-show="(Level == 'OU')">OU ID : {{data.priceplan["ouId"]}} </span> <span ng-show="(Level == 'OU') && data.priceplan['ou-hierarchytype']">({{data.priceplan["ou-hierarchytype"]}})</span> </h3>
     <h3 ng-hide="showDataDealer"><span ng-hide="(Level == 'OU')">{{data.header["subscriberno"]}}</span></h3>
     <h4 ng-hide="showDataDealer"><span ng-hide="(Action == 'ADD')">{{data.header["currpriceplan"]}}</span></h4>
+    <h4 ng-hide="showDataDealer" style="padding-top: 5px;"><span ng-show="data.priceplan['product-properties']['MAIN-BALANCE'] && divID=='migratePreToPostIBCContent'">หมายเลขเติมเงินนี้มียอดคงเหลือ {{data.priceplan['product-properties']['MAIN-BALANCE'] | number : 2}} บาท</span></h4>
 </div>
 <div class="profile" style="width:50%;" ng-show="SubNo=='null'">
     <h5 style="padding-top: 5px;"><b>หมายเลขทรูมูฟเอช</b></h5>
