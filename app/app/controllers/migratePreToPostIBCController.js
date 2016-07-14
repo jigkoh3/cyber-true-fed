@@ -1530,10 +1530,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.promotion = "";
         $scope.getAuthen.showThaiName = "";
         SystemService.showLoading();
-        var target = "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&sale-code=" + $scope.txtSaleCode;
-        if ($scope.getAuthen['userGroup'] == 'TELESALES') {
-            target += "&partner-code=" + $scope.partnerCode;
-        }
+        var target = "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&partner-code=" + $scope.txtSaleCode;
+        // if ($scope.getAuthen['userGroup'] == 'TELESALES') {
+        //     target += "&partner-code=" + $scope.partnerCode;
+        // }
         migratePreToPostIBCService.validatePartnerCallback(target, function(result) {
             SystemService.hideLoading();
             if (result.data["display-messages"].length == 0) {
