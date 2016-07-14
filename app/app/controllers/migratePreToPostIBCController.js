@@ -1679,7 +1679,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             var propParam = {
                 'company-code': $scope.data.installedProducts["company-code"],
                 'customer-type': $scope.getAccountCat(),
-                'propo-type': 'NEW',
+                'propo-type': 'NEW,MIG', /// add ,MIG :: 14-07-2016 :: xsam32
                 'mobile-servicetype': "POSTPAID",
                 'partner-code': $scope.partnerCode,
                 'privilege': false

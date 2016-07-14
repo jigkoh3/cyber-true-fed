@@ -1090,6 +1090,7 @@ smartApp.controller('ResumeController', function(
                     }
 
                     //// setDefaultPricePlan case ['REQUIRE-PRICEPLAN'] == 'NOT REQUIRE' ::: 11-07-2016 :: xsam32
+                    $scope.isLoadPricePlan = true;
                     if ($scope.data.installedProducts['product-properties']['REQUIRE-PRICEPLAN'] == 'NOT REQUIRE') {
                         //// setDefaultPricePlan
                         $scope.pricePlan = {
@@ -1105,13 +1106,15 @@ smartApp.controller('ResumeController', function(
                                 "csm-related-offer-details": []
                             }
                         };
+                    } else {
+                        //open modal price plan list
+                        $scope.openPricePlanDialog();
                     }
 
-                    $scope.isLoadPricePlan = true;
+                    
                     SystemService.hideLoading();
 
-                    //open modal price plan list
-                    $scope.openPricePlanDialog();
+
 
                 } else {
                     $scope.propositionList = [];
@@ -2054,6 +2057,7 @@ smartApp.controller('ResumeController', function(
         $('#simSerial').prop('disabled', false);
     };
     $scope.changePartnerCode = function() {
+        if($scope.isLoadPricePlan == false) return;
         var checkOldPricePlans = $filter('filter')(valPricePlans, {
             saveName: $scope.data.installedProducts['product-name']
         });
@@ -2967,7 +2971,28 @@ smartApp.controller('ResumeController', function(
             } else {
                 $scope.isVerify = true;
                 $scope.showApprovCode = false;
-                $scope.callSalePricePlanList();
+
+
+                //// setDefaultPricePlan case ['REQUIRE-PRICEPLAN'] == 'NOT REQUIRE' ::: 11-07-2016 :: xsam32
+                if ($scope.data.installedProducts['product-properties']['REQUIRE-PRICEPLAN'] == 'NOT REQUIRE') {
+                    //// setDefaultPricePlan
+                    $scope.pricePlan = {
+                        name: $scope.data.installedProducts['product-name'] + " : " + $scope.data.installedProducts['product-description'],
+                        promotion: "",
+                        rc: "",
+                        pricePlanFilter: "",
+                        saveName: $scope.data.installedProducts['product-name']
+                    };
+                    $scope.selectProposition = $scope.promotion;
+                    $scope.offerDetail = {
+                        "csm-offer-details": {
+                            "csm-related-offer-details": []
+                        }
+                    };
+                } else {
+                    //open modal price plan list
+                    $scope.callSalePricePlanList();
+                }
             }
         };
 

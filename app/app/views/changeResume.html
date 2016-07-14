@@ -415,7 +415,7 @@
                                            ng-click="onVerify()"
                                            value="Verify"
                                            class="btn btn-success">-->
-                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCustomerProfile || !partnerCode " ng-click="onVerify()" value="ตรวจสอบลูกค้า" class="btn btn-success">
+                                    <input type="button" ng-hide="isVerify" ng-disabled="!isCustomerProfile || partnerCode.length != 8 " ng-click="onVerify()" value="ตรวจสอบลูกค้า" class="btn btn-success">
                                 </label>
                             </div>
                             <!-- <div class="col-md-3">
