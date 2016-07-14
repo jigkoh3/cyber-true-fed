@@ -1421,11 +1421,11 @@ smartApp.controller('ResumeController', function(
             $scope.newOwner.birthDay = $('#birthDay').val();
             $scope.newOwner.expireDay = $('#expireDay').val();
 
-            console.log($scope.partnerCode.length == 8, $scope.customer['id-number'], $scope.cardType.value, $scope.newOwner.birthDay, $scope.newOwner.expireDay, $scope.promotion);
+            //console.log($scope.partnerCode.length == 8, $scope.customer['id-number'], $scope.cardType.value, $scope.newOwner.birthDay, $scope.newOwner.expireDay, $scope.promotion);
 
 
             // if ($scope.partnerCode.length == 8 && $scope.customer['id-number'] && $scope.cardType.value && $scope.newOwner.birthDay && $scope.newOwner.expireDay && $scope.promotion) {
-            if ($scope.partnerCode.length == 8 && $scope.promotion) {
+            if ($scope.partnerCode && $scope.partnerCode.length == 8 && $scope.promotion) {
                 $scope.isCheckInputForVerify = true;
             } else {
                 $scope.isCheckInputForVerify = false;
