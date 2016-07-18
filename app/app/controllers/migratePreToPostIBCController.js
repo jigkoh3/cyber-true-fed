@@ -3435,7 +3435,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             "PARENT-OUID": "xxxxxxxxxxxxxxxxxxxADD",
                             "PRICEPLAN-SERVICE-LEVEL": "xxxxxxxxxxxxxxxxxxxADD",
 
-                            "MAIN-BALANCE": $scope.data.installedProducts["properties"]["MAIN-BALANCE"],
+                            "MAIN-BALANCE": $scope.data.installedProducts["product-properties"]["MAIN-BALANCE"],
 
                             "PRICEPLAN-SOC-CODE": $scope.pricePlan2.priceplans.soc,
                             "CCBS-PROPOSITION-SOC-CODE": $scope.propositionSoc,
