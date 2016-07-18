@@ -24,7 +24,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     $scope.dealerCode = '';
     $scope.approver = "";
     $scope.isMatch = true;
-
+    $scope.isShowReasons = false;
     $scope.CitizenID = "";
 
     $scope.data = {};
@@ -208,6 +208,9 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
 
             $scope.getAuthen = authResult;
             $scope.shopType = $scope.getAuthen['shopType'];
+            if ($scope.getAuthen["isSecondAuthen"] == true && $scope.getAuthen["shopType"] == "1") {
+                $scope.isShowReasons = true;
+            }
 
             if ($scope.shopType === '0') {
                 $scope.isCustomerProfile = true;
