@@ -1524,7 +1524,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
     };
     $scope.onChangeSaleCode = function() {
         $scope.getAuthen.showThaiName = "";
-        $scope.partnerCode = "";
+
+        if ($scope.getAuthen['userGroup'] == 'ADMIN') {
+            $scope.partnerCode = "";
+        }
     };
     $scope.onCheckSaleCode = function() {
         $scope.promotion = "";
@@ -1540,7 +1543,10 @@ smartApp.controller('MigratePreToPostIBCController', function(
             if (result.data["display-messages"].length == 0) {
                 var saleData = result.data['response-data']['partnerInfo'];
                 $scope.getAuthen['showThaiName'] = saleData['partner-name-th'];
-                $scope.partnerCode = saleData['selected-parent-partner-code'];
+
+                if ($scope.getAuthen['userGroup'] == 'ADMIN') {
+                    $scope.partnerCode = saleData['selected-parent-partner-code'];
+                }
 
                 if ($scope.getAuthen['userGroup'] == 'TELESALES') {
                     //target += "&partner-code=" + $scope.partnerCode;
