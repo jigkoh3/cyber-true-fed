@@ -1523,6 +1523,11 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.onCheckSaleCode();
     };
     $scope.onChangeSaleCode = function() {
+
+        $scope.isVerify = false;
+        $scope.approveCode = "";
+        $scope.onCheckInputForVerify();
+
         $scope.getAuthen.showThaiName = "";
 
         if ($scope.getAuthen['userGroup'] == 'ADMIN') {
@@ -2252,7 +2257,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             console.log($scope.partnerCode.length == 8, $scope.customer['id-number'], $scope.cardType.value, $scope.newOwner.birthDay, $scope.newOwner.expireDay, $scope.promotion, $scope.subCompanyType);
 
 
-            if ($scope.partnerCode.length == 8 && $scope.customer['id-number'] && $scope.cardType.value && $scope.newOwner.birthDay && $scope.newOwner.expireDay && $scope.promotion && $scope.subCompanyType) {
+            if ($scope.partnerCode.length == 8 && $scope.customer['id-number'] && $scope.cardType.value && $scope.newOwner.birthDay && $scope.newOwner.expireDay && $scope.promotion && $scope.subCompanyType && $scope.getAuthen.showThaiName) {
                 $scope.isCheckInputForVerify = true;
             } else {
                 $scope.isCheckInputForVerify = false;

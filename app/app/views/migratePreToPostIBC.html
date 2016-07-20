@@ -724,7 +724,7 @@
                 <h4 ng-hide="isVerify==false && customerType!='N'">ข้อมูลหมายเลข</h4>
                 <div ng-hide="isVerify==false && customerType!='N'" class="well">
                     <!-- input saleCode :: new requirement :: 13-07-2016 :: xsam32 -->
-                    <div class="row" ng-hide="getAuthen['userGroup'] == 'SHOP'">
+                    <div class="row" ng-hide="getAuthen['userGroup'] == 'SHOP' || (customerType=='B' || customerType=='C')">
                         <div class="col-md-12">
                             <div class="col-md-3" style=" text-align: right; top: 5px;">
                                 <p></p>
