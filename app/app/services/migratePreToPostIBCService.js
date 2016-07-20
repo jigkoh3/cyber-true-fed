@@ -1017,10 +1017,86 @@
                     error: "",
                     msgErr: ""
                 });
-            }else if (target == "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&sale-code=88888888") {
+            } else if (target == "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&sale-code=88888888") {
                 fnCallback({
                     status: true,
                     data: data3,
+                    error: "",
+                    msgErr: ""
+                });
+            } else {
+                fnCallback({
+                    status: true,
+                    data: data2,
+                    error: "",
+                    msgErr: ""
+                });
+            }
+
+        }
+    };
+    var validateSaleCodeAPI = function(target, fnCallback) {
+        if (!demo) {
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
+            });
+        } else {
+
+            var data = {
+                "status": "SUCCESSFUL",
+                "display-messages": [],
+                "trx-id": "4M6JLVTQADK3P",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {
+                    "partnerInfo": {
+                        "status-id": "1",
+                        "register-date": "2008-08-13 00:00:00.0",
+                        "status-name": "Active",
+                        "dealer-code": "14011566",
+                        "tvs-code": "",
+                        "channel-alias": "NCM",
+                        "partner-type-name": "TA-DSA",
+                        "partner-sub-type-name": "",
+                        "partner-name-th": "ศิริพรโฟน",
+                        "partner-type-id": "13",
+                        "partner-type-level": "2",
+                        "parent-partner-code": "42110010",
+                        "outlet-partner-code": "",
+                        "distributor-code": "42110010",
+                        "act-reason-id": "1",
+                        "act-reason": "Active",
+                        "reg-status-name": "Active",
+                        "partner-name-en": "น.ส.ศิริพร เอื้อจงมานี",
+                        "terminate-date": "",
+                        "selected-parent-partner-code": "80000088"
+                    }
+                }
+            };
+            var data2 = {
+                "status": "SUCCESSFUL",
+                "display-messages": [{
+                    "message": "Error case valdiate-partner-hierarchy",
+                    "message-code": "VALIDATE-PARTNER-00001",
+                    "message-type": "ERROR",
+                    "en-message": "Error case valdiate-partner-hierarchy",
+                    "th-message": "Error case valdiate-partner-hierarchy"
+                }],
+                "trx-id": "4N6L1ORQ9S9VD",
+                "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+                "response-data": {}
+            };
+
+            if (target == "profiles/partner/valdiate-partner-hierarchy?partner-code=88888888&parent-partner-code=") {
+                fnCallback({
+                    status: true,
+                    data: data,
+                    error: "",
+                    msgErr: ""
+                });
+            }else if (target == "profiles/partner/valdiate-partner-hierarchy?partner-code=88888888&parent-partner-code=12345670") {
+                fnCallback({
+                    status: true,
+                    data: data,
                     error: "",
                     msgErr: ""
                 });
@@ -1785,6 +1861,11 @@
         },
         validatePartnerCallback: function(target, fnCallback) {
             validatePartnerAPI(target, function(result) {
+                fnCallback(result);
+            });
+        },
+        validateSaleCodeCallback: function(target, fnCallback) {
+            validateSaleCodeAPI(target, function(result) {
                 fnCallback(result);
             });
         },

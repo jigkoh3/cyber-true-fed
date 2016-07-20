@@ -13,8 +13,8 @@
             "partnerCodes": [],
             "partnerName": null,
             "partnerType": null,
-            "saleCode": "",
-            "thaiName": "",
+            "saleCode": "11223344",
+            "thaiName": "สมชาย เข็มกลัด",
             "engName": "CMTEST48 CMSUR48",
             "shopcodes": [],
             // "shopcodes": ["12345670"],
@@ -65,7 +65,7 @@
                 "name": "CMTEST48"
             },
             "ssoPartnerPrincipal": {
-                "partnerTypeLevel": "2"
+                "partnerTypeLevel": "1"
             }
         };
 

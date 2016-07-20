@@ -1530,19 +1530,20 @@ smartApp.controller('MigratePreToPostIBCController', function(
         $scope.promotion = "";
         $scope.getAuthen.showThaiName = "";
         SystemService.showLoading();
-        var target = "profiles/partner/validatepartner?function-type=MIGRATE_PRETOPOST&partner-code=" + $scope.txtSaleCode;
+        var target = "profiles/partner/valdiate-partner-hierarchy?partner-code=" + $scope.txtSaleCode + "&parent-partner-code=" + $scope.partnerCode;
         // if ($scope.getAuthen['userGroup'] == 'TELESALES') {
         //     target += "&partner-code=" + $scope.partnerCode;
         // }
-        migratePreToPostIBCService.validatePartnerCallback(target, function(result) {
+        console.log(target);
+        migratePreToPostIBCService.validateSaleCodeCallback(target, function(result) {
             SystemService.hideLoading();
             if (result.data["display-messages"].length == 0) {
                 var saleData = result.data['response-data']['partnerInfo'];
                 $scope.getAuthen['showThaiName'] = saleData['partner-name-th'];
-                $scope.partnerCode = saleData['dealer-code'];
+                $scope.partnerCode = saleData['selected-parent-partner-code'];
 
                 if ($scope.getAuthen['userGroup'] == 'TELESALES') {
-                    target += "&partner-code=" + $scope.partnerCode;
+                    //target += "&partner-code=" + $scope.partnerCode;
                 } else if ($scope.getAuthen['userGroup'] == 'ADMIN') {
                     $scope.callPropositionList();
                     // }
