@@ -14836,6 +14836,7 @@ textarea.remark-message {
     background-color: #e6e6e6;
     border-color: #adadad;
 }
+
 /*modal pdf width for 768px ::: 23-05-2016 //xsam32 */
 .modal_pdf_width {
     width:95%;
@@ -14850,4 +14851,11 @@ textarea.remark-message {
         width: 100%;
     }
 }
+
 /*modal pdf width for 768px ::: 23-05-2016 //xsam32 */
+
+
+.custom-class {
+    width: 55%;
+    /*for monitorOrder detail modal*/
+}
