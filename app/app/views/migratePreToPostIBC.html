@@ -444,7 +444,7 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile)">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtSaleCodeBC" ng-hide="userDealer && !isCustomerProfile" name="saleCode" ng-model="txtSaleCode" ng-keyup="($event.keyCode==13 && onEnterSaleCode())" ng-change="onChangeSaleCode();" class="form-control idSaleCode" ng-disabled="!isCustomerPreverify" maxlength="8" required>
+                                <input type="text" id="txtSaleCodeBC" ng-hide="userDealer && !isCustomerProfile" name="saleCode" ng-model="txtSaleCode" ng-keyup="($event.keyCode==13 && onEnterSaleCode())" ng-change="onChangeSaleCode(); onKeyUpSaleCode();" class="form-control idSaleCode" ng-disabled="!isCustomerPreverify" maxlength="8" required>
                             </div>
                             <div class="col-md-4" style="top: 5px;">
                                 <p></p>
@@ -738,7 +738,7 @@
                                 <!-- Case Dealer -->
                                 <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <!-- Case Normal -->
-                                <input type="text" id="txtSaleCodeI" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" name="saleCode" ng-model="txtSaleCode" ng-keyup="($event.keyCode==13 && onEnterSaleCode())" ng-change="onChangeSaleCode();" class="form-control idSaleCode" ng-disabled="!isCustomerPreverify || disabledSaleCode" maxlength="8" required>
+                                <input type="text" id="txtSaleCodeI" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" name="saleCode" ng-model="txtSaleCode" ng-keyup="($event.keyCode==13 && onEnterSaleCode());" ng-change="onChangeSaleCode(); onKeyUpSaleCode();" class="form-control idSaleCode" ng-disabled="!isCustomerPreverify || disabledSaleCode" maxlength="8" required>
                             </div>
                             <div class="col-md-4" style="top: 5px;" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                 <p></p>

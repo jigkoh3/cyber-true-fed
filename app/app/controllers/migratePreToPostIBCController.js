@@ -1519,8 +1519,15 @@ smartApp.controller('MigratePreToPostIBCController', function(
     };
 
     ////input saleCode :: new requirement :: 13-07-2016 :: xsam32
+
     $scope.onEnterSaleCode = function() {
+        $scope.onChangeSaleCode();
         $scope.onCheckSaleCode();
+    };
+    $scope.onKeyUpSaleCode = function() {
+        if ($scope.txtSaleCode && $scope.txtSaleCode.length == 8) {
+            $scope.onCheckSaleCode();
+        }
     };
     $scope.onChangeSaleCode = function() {
 
@@ -2980,8 +2987,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 SystemService.showLoading();
                 var target = 'first-call-date=' + $scope.data.priceplan['product-properties']['FIRST-CALL-DATE'] +
                     '&nas-proposition=' + $scope.promotion +
-                    '&company-code=' + $scope.data.priceplan['company-code'] + 
-                    '&current-priceplan=' + $scope.data.installedProducts['product-name'] + 
+                    '&company-code=' + $scope.data.priceplan['company-code'] +
+                    '&current-priceplan=' + $scope.data.installedProducts['product-name'] +
                     '&customer-type-new=' + $scope.getAccountCat();
                 console.log(target);
                 migratePreToPostIBCService.validatePrivilegeCallback(target, function(resultVP) {

@@ -290,14 +290,14 @@
             deviceByCode = _.indexBy($scope.deviceTypeList, 'device-code');
 
             // Non-shop users always have only one device type, just auto-select it
-            if ($scope.shopType === '0' || $scope.deviceTypeList.length === 1) {
+            if ($scope.getAuthen['userGroup'] == 'ADMIN' || $scope.deviceTypeList.length === 1) {
                 setTimeout(function() {
                     $scope.deviceType = $scope.deviceTypeList[0]['device-code'];
                     $scope.$digest();
                 }, 0);
             }
             //CR :: 21-04-2016 :: shop 
-            if ($scope.shopType === '1' && $scope.deviceTypeList.length) {
+            if (($scope.shopType === '1' || $scope.getAuthen['userGroup'] == 'TELESALES') && $scope.deviceTypeList.length) {
                 var checkDefault = function(code) {
                     setTimeout(function() {
                         $scope.deviceType = code;
@@ -497,7 +497,7 @@
                     //'pair-msisdn': $scope.SubNo
             };
 
-            if ($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == true) {
+            if (($scope.getAuthen['shopType'] == '1' && $scope.getAuthen['isSecondAuthen'] == true) || $scope.getAuthen['userGroup'] == 'TELESALES') {
                 data['product-code'] = $scope.productCodes;
             }
             console.log(data);

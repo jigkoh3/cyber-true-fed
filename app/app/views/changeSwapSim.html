@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true">
+                                    <div ng-show="(shopType=='1' && getAuthen['isSecondAuthen'] == true) || getAuthen['userGroup'] == 'TELESALES'">
                                         <p>&nbsp;</p>
                                         <div class="row" >
                                             <div class="col-md-4" style="margin-top:-18px;"><b>ประเภทอุปกรณ์ <span style="color:red;">*</span> </b></div>
@@ -114,7 +114,7 @@
                                                        class="form-control" 
                                                        ng-model="dealerCode" 
                                                        ng-change="onInputDealerCode()" 
-                                                       ng-disabled="!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == false && dealerCodeList.length == 1) || (shopType=='1' && getAuthen['isSecondAuthen'] == true)"
+                                                       ng-disabled="!isCustomerProfile || (shopType=='1' && getAuthen['isSecondAuthen'] == false && dealerCodeList.length == 1) || (shopType=='1' && getAuthen['isSecondAuthen'] == true) || getAuthen['userGroup'] == 'TELESALES'"
                                                        maxlength="{{ dealerCodeLength }}" required />
 
                                                 <span class="error" style="color:red;" ng-show="!dealerCodeValid && alreadyValidatedDealerCode">
@@ -156,7 +156,7 @@
                                         </div>
                                         <p></p>
                                     </div> -->
-                                    <div ng-show="shopType=='1' && getAuthen['isSecondAuthen'] == true">
+                                    <div ng-show="(shopType=='1' && getAuthen['isSecondAuthen'] == true) || getAuthen['userGroup'] == 'TELESALES'">
                                         <div class="row">
                                             <div class="col-md-4"><b>รหัสสินค้า</b></div>
                                         </div>
