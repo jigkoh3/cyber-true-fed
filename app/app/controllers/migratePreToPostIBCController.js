@@ -3477,7 +3477,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
                             // "ORIGINAL-OWNER-ID-NUMBER": $scope.data.customerProfile['id-number'],
                             // "ORIGINAL-OWNER-FIRSTNAME": $scope.data.customerProfile['firstname'],
                             // "ORIGINAL-OWNER-LASTNAME": $scope.data.customerProfile['lastname']
-                            "SIM": $scope.data.installedProducts["product-properties"]["SIM"], //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
+                            "SIM": $scope.data.installedProducts["product-properties"]["SIM"] //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ?
                         }
                     }]
                     //,"last-modify-date": ""
@@ -5030,7 +5030,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
     };
     $scope.checkValueDate = function() {
         if ($scope.newOwner.birthDay) {
-            $scope.checkBirthDate = true;
+            // 20160722 enable field in case use lastestcus by waramun
+            // $scope.checkBirthDate = true;
         } else {
             $scope.checkBirthDate = false;
         }
@@ -5052,7 +5053,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 $scope.newOwner.expireDay = "";
                 $('#expireDate').val($scope.newOwner.expireDay);
             } else {
-                $scope.cardExpire = true;
+                // 20160722 enable expire date field in case use lastestcus by waramun
+                // $scope.cardExpire = true;
 
             }
         } else {
