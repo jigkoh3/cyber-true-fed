@@ -7,7 +7,7 @@
     this.getAuthen = function(fnCallback) {
         var result = {
             "shopType": "0", /// || 0 || 0 || 1 || 1 ||
-            "userGroup": "ADMIN", /// || TELESALES || ADMIN || SHOP || DEALER ||
+            "userGroup": "TELESALES", /// || TELESALES || ADMIN || SHOP || DEALER ||
             "isSecondAuthen": false, /// || N/A || N/A || true || false ||
             "channel": "NONSHOP",
             "partnerCodes": [],
@@ -16,8 +16,8 @@
             "saleCode": "11223344",
             "thaiName": "สมชาย เข็มกลัด",
             "engName": "CMTEST48 CMSUR48",
-            "shopcodes": [],
-            // "shopcodes": ["12345670"],
+            // "shopcodes": [],
+            "shopcodes": ["12345670"],
             // "shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
@@ -140,18 +140,25 @@
             //END: CR selected shopcode //05-04-2016
             result['partnerCodes'] = result['shopcodes'];
             //// check shopCode null if shopType == 1 :: 12-07-2016 :: xsam32
-            if (result['shopcodes'].length == 0 && result['shopType'] == '1') {
+            if (result['shopcodes'].length == 0 && (result['shopType'] == '1' || result['userGroup'] == 'TELESALES')) {
                 SystemService.showAlert({
                     "message": "",
                     "message-code": "",
                     "message-type": "ERROR",
                     "en-message": "",
                     "th-message": "ระบบไม่สามารถตรวจสอบ shopcode ได้",
-                    "technical-message": "AuthenService"
+                    "technical-message": "AuthenService group " + result['userGroup']
                 });
                 SystemService.hideLoading();
                 return;
             }
+            // //// check TELESALES case saleCode: null :: 22-07-2016 :: xsam32
+            // if (result['userGroup'] == 'TELESALES' && result['ssoEmployeePrincipal']['saleCode']) {
+            //     //
+            // } else {
+            //     result['saleCode'] = "";
+            //     result['thaiName'] = "";
+            // }
             fnCallback(result);
 
         } else {
@@ -191,18 +198,25 @@
                 //END: CR selected shopcode //05-04-2016
                 result['partnerCodes'] = result['shopcodes'];
                 //// check shopCode null if shopType == 1 :: 12-07-2016 :: xsam32
-                if (result['shopcodes'].length == 0 && result['shopType'] == '1') {
+                if (result['shopcodes'].length == 0 && (result['shopType'] == '1' || result['userGroup'] == 'TELESALES')) {
                     SystemService.showAlert({
                         "message": "",
                         "message-code": "",
                         "message-type": "ERROR",
                         "en-message": "",
                         "th-message": "ระบบไม่สามารถตรวจสอบ shopcode ได้",
-                        "technical-message": "AuthenService"
+                        "technical-message": "AuthenService group " + result['userGroup']
                     });
                     SystemService.hideLoading();
                     return;
                 }
+                // //// check TELESALES case saleCode: null :: 22-07-2016 :: xsam32
+                // if (result['userGroup'] == 'TELESALES' && result['ssoEmployeePrincipal']['saleCode']) {
+                //     //
+                // } else {
+                //     result['saleCode'] = "";
+                //     result['thaiName'] = "";
+                // }
                 fnCallback(result);
             }).error(function(data, status) {
                 fnCallback("ERROR");
