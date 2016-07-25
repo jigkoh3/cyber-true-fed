@@ -1,5 +1,5 @@
 ﻿// ---------------------- ChangeRestoreController.js ----------------------
-smartApp.controller('ChangeRestoreController', function($scope, $routeParams, AuthenService, ChangeRestoreService, ChangePricePlanService, DeviceService, ReasonService, SystemService) {
+smartApp.controller('ChangeRestoreController', function($scope, $routeParams, AuthenService, ChangeRestoreService, ChangePricePlanService, DeviceService, ReasonService, SystemService, ValidateMsgService) {
 
     // Templates
     var runTime = new Date().getTime();
@@ -359,12 +359,14 @@ smartApp.controller('ChangeRestoreController', function($scope, $routeParams, Au
 
     var validateInput = function() {
         if (!$scope.statusChangeRestore) {
-            alert('กรุณาเลือกสถานะหมายเลขใหม่');
+            // alert('กรุณาเลือกสถานะหมายเลขใหม่');
+            SystemService.showAlert(ValidateMsgService.data.msgStatusSubNoEmpty);
             return false;
         }
 
         if (!$scope.statusReason) {
-            alert('กรุณาเลือกเหตุผล');
+            // alert('กรุณาเลือกเหตุผล');
+            SystemService.showAlert(ValidateMsgService.data.msgReasonCodeEmpty);
             return false;
         }
 
