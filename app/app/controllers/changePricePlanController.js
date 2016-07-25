@@ -1085,6 +1085,9 @@ smartApp.controller('ChangePricePlanController', function(
         } else if (errorAuthorizeName) {
             showValidate("authorizeFullName", ValidateMsgService.data.authorizeNameMsg);
             $scope.isValidateFF = false;
+        } else if (!$scope.selectReason) {
+            showValidate("selectReasonId", ValidateMsgService.data.msgReasonCodeEmpty);
+            $scope.isValidateFF = false;
         } else if (errorCapmax != "") {
             showValidate(errorCapmaxId, errorCapmaxMsg);
             $scope.isValidateFF = false;

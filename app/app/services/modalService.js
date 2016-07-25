@@ -506,6 +506,14 @@
             "en-message": "Shop Code is invalid.",
             "th-message": "รหัสร้านค้า ไม่ถูกต้อง",
             "technical-message": "FROM WEBUI, Please check 'shop_code' in URL"
+        },
+        "msgStatusSubNoEmpty": {
+            "message": "",
+            "message-code": "",
+            "message-type": "WARNING",
+            "en-message": "Please specify a new status.",
+            "th-message": "กรุณาระบุ สถานะหมายเลขใหม่",
+            "technical-message": "FROM WEBUI"
         }
     };
 });
