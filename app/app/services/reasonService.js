@@ -122,7 +122,9 @@
                         'CPD02': 'Product : Accessories Problem',
                         'CPD01': 'Product : Handset Problem',
                         'CCR01': 'Credit Limit',
-                        'CPD03': 'Product : Lost/stolen'
+                        'CPD03': 'Product : Lost/stolen',
+                        'C16': 'defualt สมัคร ir/idd',
+                        'DDSC': 'defualt ยกเลิก ir/idd'
                     }
                 }
             };
