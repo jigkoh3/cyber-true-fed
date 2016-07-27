@@ -7,17 +7,17 @@
     this.getAuthen = function(fnCallback) {
         var result = {
             "shopType": "0", /// || 0 || 0 || 1 || 1 ||
-            "userGroup": "TELESALES", /// || TELESALES || ADMIN || SHOP || DEALER ||
+            "userGroup": "ADMIN", /// || TELESALES || ADMIN || SHOP || DEALER ||
             "isSecondAuthen": false, /// || N/A || N/A || true || false ||
             "channel": "NONSHOP",
             "partnerCodes": [],
             "partnerName": null,
             "partnerType": null,
-            "saleCode": "11223344",
+            "saleCode": "90000088",
             "thaiName": "สมชาย เข็มกลัด",
             "engName": "CMTEST48 CMSUR48",
-            // "shopcodes": [],
-            "shopcodes": ["12345670"],
+            "shopcodes": [],
+            // "shopcodes": ["12345670"],
             // "shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
@@ -65,7 +65,7 @@
                 "name": "CMTEST48"
             },
             "ssoPartnerPrincipal": {
-                "partnerTypeLevel": "1"
+                "partnerTypeLevel": "2"
             }
         };
 
@@ -146,7 +146,19 @@
                     "message-code": "",
                     "message-type": "ERROR",
                     "en-message": "",
-                    "th-message": "ระบบไม่สามารถตรวจสอบ shopcode ได้",
+                    "th-message": "ระบบไม่สามารถตรวจสอบ Shop Code ได้",
+                    "technical-message": "AuthenService group " + result['userGroup']
+                });
+                SystemService.hideLoading();
+                return;
+            }
+            if (!result['saleCode'] && result['userGroup'] == 'DEALER') {
+                SystemService.showAlert({
+                    "message": "",
+                    "message-code": "",
+                    "message-type": "ERROR",
+                    "en-message": "",
+                    "th-message": "ระบบไม่สามารถตรวจสอบ Sale Code ได้",
                     "technical-message": "AuthenService group " + result['userGroup']
                 });
                 SystemService.hideLoading();
@@ -204,7 +216,19 @@
                         "message-code": "",
                         "message-type": "ERROR",
                         "en-message": "",
-                        "th-message": "ระบบไม่สามารถตรวจสอบ shopcode ได้",
+                        "th-message": "ระบบไม่สามารถตรวจสอบ Shop Code ได้",
+                        "technical-message": "AuthenService group " + result['userGroup']
+                    });
+                    SystemService.hideLoading();
+                    return;
+                }
+                if (!result['saleCode'] && result['userGroup'] == 'DEALER') {
+                    SystemService.showAlert({
+                        "message": "",
+                        "message-code": "",
+                        "message-type": "ERROR",
+                        "en-message": "",
+                        "th-message": "ระบบไม่สามารถตรวจสอบ Sale Code ได้",
                         "technical-message": "AuthenService group " + result['userGroup']
                     });
                     SystemService.hideLoading();
