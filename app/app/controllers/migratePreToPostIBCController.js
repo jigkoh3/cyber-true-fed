@@ -1171,7 +1171,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.checkUserGroup = function() {
         //// disabledSaleCode
         if ($scope.getAuthen['userGroup'] == 'TELESALES' && $scope.getAuthen['saleCode']) {
-            $scope.disabledSaleCode = true;
+            //$scope.disabledSaleCode = true;
         } else if ($scope.getAuthen['userGroup'] == 'DEALER' && $scope.getAuthen['ssoPartnerPrincipal']['partnerTypeLevel'] == '2') {
             $scope.disabledSaleCode = true;
         } else {
