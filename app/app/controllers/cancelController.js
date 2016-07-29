@@ -45,21 +45,21 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
         //$scope.statusReason = $scope.reasons[86];
         //solution for none fix index
         $scope.reasons = result;
-        var myArray = result;
-        var searchText = "CREQ",
-            index = -1;
-        for (var i = 0, len = myArray.length; i < len; i++) {
-            if (myArray[i].id === searchText) {
-                index = i;
-                break;
-            }
-        }
+        // var myArray = result;
+        // var searchText = "CREQ",
+        //     index = -1;
+        // for (var i = 0, len = myArray.length; i < len; i++) {
+        //     if (myArray[i].id === searchText) {
+        //         index = i;
+        //         break;
+        //     }
+        // }
 
-        console.log(index);
+        // console.log(index);
 
-        $scope.reason = $scope.reasons[index];
-        $scope.selectReason = $scope.reasons[index];
-        $scope.statusReason = $scope.reasons[index];
+        // $scope.reason = $scope.reasons[index];
+        // $scope.selectReason = $scope.reasons[index];
+        // $scope.statusReason = $scope.reasons[index];
         //solution for none fix index
     });
 

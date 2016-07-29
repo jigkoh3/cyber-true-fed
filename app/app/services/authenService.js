@@ -152,7 +152,7 @@
                 SystemService.hideLoading();
                 return;
             }
-            if (!result['saleCode'] && result['userGroup'] == 'DEALER') {
+            if (!result['saleCode'] && result['userGroup'] == 'DEALER' && result['ssoPartnerPrincipal']['partnerTypeLevel'] == '2') {
                 SystemService.showAlert({
                     "message": "",
                     "message-code": "",
@@ -222,7 +222,7 @@
                     SystemService.hideLoading();
                     return;
                 }
-                if (!result['saleCode'] && result['userGroup'] == 'DEALER') {
+                if (!result['saleCode'] && result['userGroup'] == 'DEALER' && result['ssoPartnerPrincipal']['partnerTypeLevel'] == '2') {
                     SystemService.showAlert({
                         "message": "",
                         "message-code": "",
