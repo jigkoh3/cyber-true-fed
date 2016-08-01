@@ -74,8 +74,8 @@
     </script>
     <script type="text/javascript">
                             function printIframePdf() {
-                                window.frames["iframePDF"].focus();
                                 try {
+                                    window.frames["iframePDF"].focus();
                                     window.frames["iframePDF"].print();
                                 } catch (e) {
                                     //window.print();
