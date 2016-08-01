@@ -376,12 +376,14 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
 
     var validateInput = function() {
         if (!$scope.statusChangeSuspend) {
-            alert('กรุณาเลือกสถานะหมายเลขใหม่');
+            //alert('กรุณาเลือกสถานะหมายเลขใหม่');
+            SystemService.showAlert(ValidateMsgService.data.msgStatusSubNoEmpty);
             return false;
         }
 
         if (!$scope.statusReason) {
             alert('กรุณาเลือกเหตุผล');
+            SystemService.showAlert(ValidateMsgService.data.msgReasonCodeEmpty);
             return false;
         }
 
