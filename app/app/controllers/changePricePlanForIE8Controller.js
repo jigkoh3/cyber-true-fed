@@ -1827,6 +1827,7 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
 
 
         if ($scope.cardInfo.CitizenID == $scope.data2.customerProfile["id-number"]) {
+            localStorage.setItem('cardInfo', result);
 
             $scope.isCardValueData = true;
 

@@ -35,6 +35,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
     $scope.isNullSubNo = $routeParams.subno ? false : true;
 
+    //// for send data readcard to page :: 1-08-2016 :: xsam32
+    $scope.readCardID_URL = $routeParams["readcard-id"] ? $routeParams["readcard-id"] : 'null';
+
     //$scope.lspromoType = {
     //    "0": "เลือก",
     //    "1": "PROECT1",
@@ -119,9 +122,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         //// new requirement :: 08-06-2016 :: xsam32 @by p'kwang
         $scope.data.orderRequest['order']['order-items'][0]['order-data']['OU-HIERARCHYTYPE'] = $scope.data.installedProduct["ou-hierarchytype"];
         $scope.data.orderRequest['order']['order-items'][0]['order-data']['PARENT-OUID'] = $scope.data.installedProduct["parent-ouId"];
-        if($scope.data.installedProduct["parent-ouId"]){
+        if ($scope.data.installedProduct["parent-ouId"]) {
             //
-        }else{
+        } else {
             delete $scope.data.orderRequest['order']['order-items'][0]['order-data']['PARENT-OUID'];
         }
         //console.log(headers);
@@ -369,6 +372,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
 
         if ($scope.cardInfo.CitizenID == $scope.data.responseData.customer["id-number"]) {
+            localStorage.setItem('cardInfo', result);
             $scope.isCardValueData = true;
             $scope.showDataDealer = false;
 
@@ -637,7 +641,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         //return;
 
         SystemService.showLoading();
-        
+
         var data = {
             "id-type": $scope.data.responseData["customer"]["id-type"],
             "id-number": $scope.data.responseData["customer"]["id-number"],
@@ -673,7 +677,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
             if ($scope.dataAutoApprove["auto-approve-code"] == "Y") {
                 $scope.isShowApproveRal = true;
-                if($scope.dataAutoApprove["approve-code"]){
+                if ($scope.dataAutoApprove["approve-code"]) {
                     $scope.isValidateSave = true;
                 }
                 $scope.allValidateSave();
@@ -1348,7 +1352,13 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                                     SystemService.calendarDatePicker();
                                 }, 500);
                                 setTimeout(function() {
-                                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                                    var idx = eval(localStorage.getItem('cardInfo'));
+                                    if ($scope.readCardID_URL == $scope.data.customerProfile["id-number"] && idx.CitizenID == $scope.readCardID_URL) {
+                                        $scope.SetCardValue(localStorage.getItem('cardInfo'));
+                                    } else {
+                                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                                    }
+
                                     if ($scope.getAuthen["isSecondAuthen"] == false) {
                                         $scope.isNonePartner = false;
                                         $scope.manualInputReadCard();
@@ -1479,6 +1489,11 @@ smartApp.controller('ChangeIRIDDController', function($scope,
     };
     $scope.onBindDataAgain = function() {};
     //// end validate ปุ่ม พิมพ์
+
+    /// for confirmClose modalPDF :: 1-08-2016 :: xsam32
+    $scope.showConfirmClosePDF = function() {
+        alert('xx');
+    };
 
     $scope.afterCloseWarning = function() {
 
