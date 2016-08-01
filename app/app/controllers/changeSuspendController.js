@@ -1,5 +1,5 @@
 ﻿// ---------------------- ChangeSuspendController.js ----------------------
-smartApp.controller('ChangeSuspendController', function($scope, $routeParams, AuthenService, ChangeSuspendService, ChangePricePlanService, DeviceService, ReasonService, SystemService) {
+smartApp.controller('ChangeSuspendController', function($scope, $routeParams, AuthenService, ChangeSuspendService, ChangePricePlanService, DeviceService, ReasonService, SystemService, ValidateMsgService) {
 
     // Templates
     var runTime = new Date().getTime();
