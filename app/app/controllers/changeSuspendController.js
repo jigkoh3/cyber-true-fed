@@ -382,7 +382,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
         }
 
         if (!$scope.statusReason) {
-            alert('กรุณาเลือกเหตุผล');
+            //alert('กรุณาเลือกเหตุผล');
             SystemService.showAlert(ValidateMsgService.data.msgReasonCodeEmpty);
             return false;
         }
