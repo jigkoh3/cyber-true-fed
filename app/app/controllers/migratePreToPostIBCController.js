@@ -897,7 +897,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 console.log(result);
                 var msg = utils.getObject(result.data, 'display-messages');
                 if (msg && msg.length > 0) {
-                    $scope.isCustomerPreverify = false;
+                    //// ??? :: 02-08-2016 :: xsam32
+                    // $scope.isCustomerPreverify = false;
                     $scope.accountID_root = "";
                     idFocus = "accountID_root";
                     SystemService.showAlert({
@@ -930,7 +931,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
                 console.log(result);
                 var msg = utils.getObject(result.data, 'display-messages');
                 if (msg && msg.length > 0) {
-                    $scope.isCustomerPreverify = false;
+                    //// ??? :: 02-08-2016 :: xsam32
+                    //$scope.isCustomerPreverify = false;
                     $scope.accountID_child = "";
                     idFocus = "accountID_child";
                     SystemService.showAlert({
@@ -1150,7 +1152,8 @@ smartApp.controller('MigratePreToPostIBCController', function(
             //SystemService.hideLoading();
             var msg = utils.getObject(result.data, 'display-messages');
             if (msg && msg.length > 0) {
-                $scope.isCustomerPreverify = false;
+                //// ??? :: 02-08-2016 :: xsam32
+                // $scope.isCustomerPreverify = false;
                 SystemService.showAlert({
                     "message": msg[0]["message"],
                     "message-code": msg[0]["message-code"],
