@@ -60,6 +60,13 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
 
     $scope.init = function() {
         SystemService.calendarDatePicker();
+        for(var i = 0; i < 2; i++){
+            setTimeout(function() { console.log(i) }, 100)
+        }
+
+        for(let j = 0; j < 2; j++){
+            setTimeout(function() { console.log(j) }, 100)
+        }
 
         MonitorOrderService.getServiceTypeCallback(function(response) {
             $scope.serviceTypes = response.data['response-data']['configuration-items'];
