@@ -31,7 +31,8 @@
             printObjectPdf();
         }, 2000);
         setTimeout(function() {
-            document.getElementById('iframePDF').src = url; //show pdf web and clear
+            //// command for chrome :: 03-08-2016 :: xsam32
+            //document.getElementById('iframePDF').src = url; //show pdf web and clear
         }, 3000);
     };
     this.checkPDFAndroid_show = function(url) {
