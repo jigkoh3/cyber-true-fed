@@ -6,9 +6,9 @@
     };
     this.getAuthen = function(fnCallback) {
         var result = {
-            "shopType": "0", /// || 0 || 0 || 1 || 1 ||
-            "userGroup": "ADMIN", /// || TELESALES || ADMIN || SHOP || DEALER ||
-            "isSecondAuthen": false, /// || N/A || N/A || true || false ||
+            "shopType": "0",         /// || 0         || 0     || 1    || 1 ||
+            "userGroup": "ADMIN",    /// || TELESALES || ADMIN || SHOP || DEALER ||
+            "isSecondAuthen": false, /// || N/A       || N/A   || true || false ||
             "channel": "NONSHOP",
             "partnerCodes": [],
             "partnerName": null,
