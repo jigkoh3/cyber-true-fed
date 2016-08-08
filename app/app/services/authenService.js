@@ -6,18 +6,18 @@
     };
     this.getAuthen = function(fnCallback) {
         var result = {
-            "shopType": "1",         /// || 0         || 0     || 1    || 1 ||
-            "userGroup": "DEALER",    /// || TELESALES || ADMIN || SHOP || DEALER ||
+            "shopType": "0",         /// || 0         || 0     || 1    || 1 ||
+            "userGroup": "ADMIN",    /// || TELESALES || ADMIN || SHOP || DEALER ||
             "isSecondAuthen": false, /// || N/A       || N/A   || true || false ||
             "channel": "NONSHOP",
             "partnerCodes": [],
             "partnerName": null,
             "partnerType": null,
-            "saleCode": "",
+            "saleCode": "91234567",
             "thaiName": "สมชาย เข็มกลัด",
             "engName": "CMTEST48 CMSUR48",
-            // "shopcodes": [],
-            "shopcodes": ["12345670"],
+            "shopcodes": [],
+            // "shopcodes": ["12345670"],
             // "shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
