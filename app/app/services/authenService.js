@@ -6,18 +6,18 @@
     };
     this.getAuthen = function(fnCallback) {
         var result = {
-            "shopType": "0",         /// || 0         || 0     || 1    || 1 ||
-            "userGroup": "ADMIN",    /// || TELESALES || ADMIN || SHOP || DEALER ||
+            "shopType": "1",         /// || 0         || 0     || 1    || 1 ||
+            "userGroup": "DEALER",    /// || TELESALES || ADMIN || SHOP || DEALER ||
             "isSecondAuthen": false, /// || N/A       || N/A   || true || false ||
             "channel": "NONSHOP",
             "partnerCodes": [],
             "partnerName": null,
             "partnerType": null,
-            "saleCode": "90000088",
+            "saleCode": "",
             "thaiName": "สมชาย เข็มกลัด",
             "engName": "CMTEST48 CMSUR48",
-            "shopcodes": [],
-            // "shopcodes": ["12345670"],
+            // "shopcodes": [],
+            "shopcodes": ["12345670"],
             // "shopcodes": ["12345678", "12345677"],
             "logInName": "CMTEST48",
             "isCorporate": false,
@@ -146,7 +146,7 @@
                     "message-code": "",
                     "message-type": "ERROR",
                     "en-message": "",
-                    "th-message": "ระบบไม่สามารถตรวจสอบ Shop Code ได้",
+                    "th-message": "ระบบไม่สามารถตรวจสอบรหัสร้านค้าได้",
                     "technical-message": "AuthenService group " + result['userGroup']
                 });
                 SystemService.hideLoading();
@@ -158,7 +158,7 @@
                     "message-code": "",
                     "message-type": "ERROR",
                     "en-message": "",
-                    "th-message": "ระบบไม่สามารถตรวจสอบ Sale Code ได้",
+                    "th-message": "ระบบไม่สามารถตรวจสอบรหัสพนักงานขายได้",
                     "technical-message": "AuthenService group " + result['userGroup']
                 });
                 SystemService.hideLoading();
@@ -216,7 +216,7 @@
                         "message-code": "",
                         "message-type": "ERROR",
                         "en-message": "",
-                        "th-message": "ระบบไม่สามารถตรวจสอบ Shop Code ได้",
+                        "th-message": "ระบบไม่สามารถตรวจสอบรหัสร้านค้าได้",
                         "technical-message": "AuthenService group " + result['userGroup']
                     });
                     SystemService.hideLoading();
@@ -228,7 +228,7 @@
                         "message-code": "",
                         "message-type": "ERROR",
                         "en-message": "",
-                        "th-message": "ระบบไม่สามารถตรวจสอบ Sale Code ได้",
+                        "th-message": "ระบบไม่สามารถตรวจสอบรหัสพนักงานขายได้",
                         "technical-message": "AuthenService group " + result['userGroup']
                     });
                     SystemService.hideLoading();
