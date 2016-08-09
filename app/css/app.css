@@ -14763,8 +14763,10 @@ textarea.remark-message {
 }
 .headColor {
     vertical-align: middle;
-    background: #c72230;
-    color: #ffffff;
+    background: #ddd;
+    /*color: #ffffff;*/
+    color: #000 !important;
+    border-style: none;
 }
 .contentTb {
     text-align:left;
@@ -14777,9 +14779,11 @@ textarea.remark-message {
 .contentTbHeader {
     text-align:center;
     vertical-align: middle !important;
-    color:#c72230;
-    background:#D1D0CE;
+    /*color:#c72230;*/
+    color: #000 !important;
+    /*background:#D1D0CE;*/
     font-size: 1.2em !important;
+    border-style: none !important;
 }
 .btnOfferRed {
     border-radius:20px !important;
