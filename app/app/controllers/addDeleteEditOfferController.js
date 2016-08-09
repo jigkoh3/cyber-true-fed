@@ -900,6 +900,18 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $('.hModal').height(($(window).height()) - 235);
         //$('.modal-backdrop').css('height', '200%');
     };
+    $scope.showDetail = function(item) {
+        console.log(item);
+        $scope.showDetail['offer-name'] = item['offer-name'];
+        $scope.editOfferCode = item['offer-name'];
+        $scope.showDetail['offer-description'] = item['offer-description'];
+        $scope.editOfferDesc = item['offer-description'];
+        $scope.showDetail['effective-date'] = item['effective-date'];
+        $scope.showDetail['expiration-date'] = item['expiration-date'];
+        $scope.showDetail['type'] = item['type'];
+
+        $scope.showDetail['typed'] = "AD";
+    };
 
     $scope.editDetail = function(item){
         console.log(item);
