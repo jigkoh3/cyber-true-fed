@@ -40,6 +40,10 @@ smartApp.controller('ChangeMsisdnController', function($scope, $routeParams, Aut
     $scope.reasons = [];
     $scope.statusReason = "";
 
+    $scope.hideReadCardForMobile = function() {
+        SystemService.hideReadCardForMobile();
+    };
+
     ReasonService.list("119", function(result) {
         //$scope.reasons = result;
         //$scope.statusReason = $scope.reasons[86];
