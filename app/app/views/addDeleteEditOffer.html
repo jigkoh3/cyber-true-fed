@@ -119,7 +119,7 @@
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='U'">
                                     <input ng-disabled="!isCustomerProfile" type="checkbox" ng-model="editOffer" style="cursor: pointer;">
-                                    <button ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    <button ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="editDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" ng-show="offerType=='D'">
                                     <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
@@ -167,7 +167,7 @@
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='U'">
                                     <input ng-disabled="!isCustomerProfile" type="checkbox" ng-model="editOffer" id="" value="true" style="cursor: pointer;">
-                                    <button ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    <button ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="editDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='D'">
                                     <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
@@ -215,7 +215,7 @@
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='U'">
                                     <input ng-disabled="!isCustomerProfile" type="checkbox" ng-model="editOffer" style="cursor: pointer;">
-                                    <button ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    <button ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="editDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                                 <div align="center" class="" ng-show="offerType=='D'">
                                     <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
@@ -325,19 +325,19 @@
                     <h4>Offer แนะนำ</h4>
                     <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                         <tr>
-                            <th class="col-xs-1 contentTbHeader">
+                            <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                 <h>สมัคร</h>
                             </th>
-                            <th class="col-xs-3 contentTbHeader">
+                            <th class="col-xs-3 contentTbHeader" style="color: #00a651;">
                                 <h>Related Offer Name</h>
                             </th>
-                            <th class="col-xs-4 contentTbHeader">
+                            <th class="col-xs-4 contentTbHeader" style="color: #00a651;">
                                 <h>Offer Description</h>
                             </th>
-                            <th class="col-xs-2 contentTbHeader">
+                            <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                 <h>Type</h>
                             </th>
-                            <th class="col-xs-1 contentTbHeader">
+                            <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                 <h>Parameter</h>
                             </th>
                         </tr>
@@ -358,7 +358,7 @@
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 <div align="center" class="">
-                                    <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="editDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                             </td>
                         </tr>
@@ -366,21 +366,21 @@
                     <br>
                     <br>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile || disableAddOffer" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button" ng-click="onClearRadio('radioOffer')">
+                        <button ng-disabled="!isCustomerProfile || disableAddOffer" href="#modalPricePlan" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success" type="button" ng-click="onClearRadio('radioOffer')" style="border-radius:20px; width:195px;">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
                                     </i>
                             <div style="padding-top: 3px; padding-right: 20px">เพิ่มบริการ Offer</div>
                         </button>
                     </div>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile || disableAddCp" href="#modalAddContractProp" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button" ng-click="onClearRadio('radioCpOffer')">
+                        <button ng-disabled="!isCustomerProfile || disableAddCp" href="#modalAddContractProp" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success" type="button" ng-click="onClearRadio('radioCpOffer')" style="border-radius:20px; width:195px;">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
                                     </i>
                             <div style="padding-top: 3px; padding-right: 10px">เพิ่ม Contract & Prop</div>
                         </button>
                     </div>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile || disableAddDiscount" href="#modalAddDiscount" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success btnOfferRed" type="button" ng-click="onClearRadio('radioDisOffer')">
+                        <button ng-disabled="!isCustomerProfile || disableAddDiscount" href="#modalAddDiscount" data-toggle="modal" id="modalnewpriceplan" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success" type="button" ng-click="onClearRadio('radioDisOffer')" style="border-radius:20px; width:195px;">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus ">
                                     </i>
                             <div style="padding-top: 3px; padding-right: 20px"> เพิ่ม Discount</div>
@@ -388,25 +388,25 @@
                     </div>
                     <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                         <tr>
-                            <th class="col-xs-1 contentTbHeader">
+                            <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                 <h>ลบ</h>
                             </th>
-                            <th class="col-xs-2 contentTbHeader">
+                            <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                 <h>Regular Offer Name</h>
                             </th>
-                            <th class="col-xs-4 contentTbHeader">
+                            <th class="col-xs-4 contentTbHeader" style="color: #00a651;">
                                 <h>Offer Description</h>
                             </th>
-                            <th class="col-xs-1 contentTbHeader">
+                            <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                 <h>Effective Date</h>
                             </th>
-                            <th class="col-xs-1 contentTbHeader">
+                            <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                 <h>Expiration Date</h>
                             </th>
-                            <th class="col-xs-2 contentTbHeader">
+                            <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                 <h>Type</h>
                             </th>
-                            <th class="col-xs-1 contentTbHeader">
+                            <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                 <h>Parameter</h>
                             </th>
                             <!-- <th class="col-xs-1 contentTbHeader">
@@ -436,7 +436,7 @@
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 <div align="center" class="">
-                                    <button ng-disabled="!isCustomerProfile" href="" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    <button ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="editDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                 </div>
                             </td>
                             <!-- <td class="col-xs-1 contentTbCenter">
@@ -490,10 +490,12 @@
 <div id="modalPricePlan" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modalOffer-header" style="background: #c72230">
-                <div style="font-size: 1.5em; color:white">เพิ่มบริการ Regular Offer</div>
-            </div>
             &nbsp;&nbsp;
+            <div class="modalOffer-header">
+                <span class="fa fa-plus-circle pull-left fa-lg-plus " style="color: #00a651;"></span>
+                <div style="font-size: 1.5em;">เพิ่มบริการ Regular Offer</div>
+            </div>
+            
             <!--<div class="modal-header">
                 <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
                 <h5>Price Plan</h5>
@@ -530,22 +532,22 @@
                     <div class="row" style="padding: 20px;">
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddOffer" ng-model="tableAddOffer">
                             <tr>
-                                <th class="col-xs-1 contentTbHeader">
+                                <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                     <h>เลือก</h>
                                 </th>
-                                <th class="col-xs-2 contentTbHeader">
+                                <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                     <h>Offer Name</h>
                                 </th>
-                                <th class="col-xs-4 contentTbHeader">
+                                <th class="col-xs-4 contentTbHeader" style="color: #00a651;">
                                     <h>Offer Description</h>
                                 </th>
-                                <th class="col-xs-1 contentTbHeader">
+                                <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                     <h>Level</h>
                                 </th>
-                                <th class="col-xs-2 contentTbHeader">
+                                <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                     <h>Sale Effective Date</h>
                                 </th>
-                                <th class="col-xs-2 contentTbHeader">
+                                <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                     <h>Sale Expiration Date</h>
                                 </th>
                             </tr>
@@ -1022,7 +1024,7 @@
                     </div>
                 </div>
                 <div class="modal-footer" style=" padding-top: 0;">
-                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="disableSubmitAddOffer" ng-click="addRegulaOfferList(item);">ตกลง</button>
+                    <button class="btn btn-success" data-dismiss="modal" ng-disabled="disableSubmitAddOffer" ng-click="addRegulaOfferList(item);">ตกลง</button>
                     <button class="btn btn-cancel" data-dismiss="modal" ng-click="onClearRadio('radioOffer');">ยกเลิก</button>
                 </div>
             </div>
@@ -1033,13 +1035,14 @@
 <div id="modal-edit-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modalOffer-header" style="background: #c72230">
-                <div style="font-size: 1.5em; color:white">รายละเอียด Parameter</div>
+            &nbsp;&nbsp;
+            <div class="modalOffer-header">
+                <span class="fa fa-plus-circle pull-left fa-lg-plus " style="color: #00a651;"></span>
+                <div style="font-size: 1.5em;">รายละเอียด Parameter</div>
             </div>
             <div class="modal-body">
                 <div class="table-responsive hModal" style="overflow-x:hidden;">
-                    <br>
-                    <br>
+                    
                     <div ng-show="showDetail['type']=='Additional Offer'">
                         <div calss="form-group">
                             <div class="row">
@@ -1049,7 +1052,7 @@
                                     <label>Offer Code</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="adOfferCode" ng-model="adOfferCodeParamName1" class="form-control">
+                                    <input type="text" id="adOfferCode" ng-model="editOfferCode" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -1063,7 +1066,7 @@
                                     <label>Offer Description</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="adOfferOfferDesc" ng-model="adOfferCodeParamName2" class="form-control">
+                                    <input type="text" id="adOfferOfferDesc" ng-model="editOfferDesc" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -1531,7 +1534,7 @@
                     <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="" style="margin-top: -0px;"><span><i class="fa fa-trash-o fa-lg"></i></span> ยกเลิกการแก้ไข Offer</button>
                 </div>
                 <div class="col-xs-6">
-                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
+                    <button class="btn btn-success" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
                     <button class="btn btn-cancel" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ปิด</button>
                 </div>
                 <br>
@@ -1615,12 +1618,13 @@
 <div id="modal-view-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modalOffer-header" style="background: #c72230">
-                <div style="font-size: 1.5em; color:white">รายละเอียด Parameter</div>
+            &nbsp;&nbsp;
+            <div class="modalOffer-header">
+                <span class="fa fa-plus-circle pull-left fa-lg-plus " style="color: #00a651;"></span>
+                <div style="font-size: 1.5em;">รายละเอียด Parameter</div>
             </div>
             <div class="modal-body">
-                <br>
-                <br>
+                
                 <div ng-show="showDetail['type']=='Additional Offer'">
                     <div calss="form-group">
                         <div class="row">
@@ -2075,8 +2079,10 @@
 <div id="modalAddContractProp" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modalOffer-header" style="background: #c72230">
-                <div style="font-size: 1.5em; color:white">Contract & Proposition</div>
+            &nbsp;&nbsp;
+            <div class="modalOffer-header">
+                <span class="fa fa-plus-circle pull-left fa-lg-plus " style="color: #00a651;"></span>
+                <div style="font-size: 1.5em">Contract & Proposition</div>
             </div>
             &nbsp;&nbsp;
             <!--<div class="modal-header">
@@ -2100,22 +2106,22 @@
                     <div class="row" style="padding: 20px;">
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddContractProp" ng-model="tableAddContractProp">
                             <tr>
-                                <th class="col-xs-1 contentTbHeader">
+                                <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                     <h>เลือก</h>
                                 </th>
-                                <th class="col-xs-2 contentTbHeader">
+                                <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                     <h>Offer Name</h>
                                 </th>
-                                <th class="col-xs-4 contentTbHeader">
+                                <th class="col-xs-4 contentTbHeader" style="color: #00a651;">
                                     <h>Offer Description</h>
                                 </th>
-                                <th class="col-xs-1 contentTbHeader">
+                                <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                     <h>Level</h>
                                 </th>
-                                <th class="col-xs-2 contentTbHeader">
+                                <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                     <h>Sale Effective Date</h>
                                 </th>
-                                <th class="col-xs-2 contentTbHeader">
+                                <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                     <h>Sale Expiration Date</h>
                                 </th>
                             </tr>
@@ -2260,7 +2266,7 @@
                 </div>
             </div>
             <div class="modal-footer" style=" padding-top: 0;">
-                <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="disableSubmitAddOffer" ng-click="addRegulaOfferList(item);">ตกลง</button>
+                <button class="btn btn-success" data-dismiss="modal" ng-disabled="disableSubmitAddOffer" ng-click="addRegulaOfferList(item);">ตกลง</button>
                 <button class="btn btn-cancel" data-dismiss="modal" ng-click="onClearRadio('radioCpOffer');">ยกเลิก</button>
             </div>
         </div>
@@ -2271,8 +2277,10 @@
 <div id="modalAddDiscount" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modalOffer-header" style="background: #c72230">
-                <div style="font-size: 1.5em; color:white">Discount</div>
+            &nbsp;&nbsp;
+            <div class="modalOffer-header">
+                <span class="fa fa-plus-circle pull-left fa-lg-plus " style="color: #00a651;"></span>
+                <div style="font-size: 1.5em;">Discount</div>
             </div>
             &nbsp;&nbsp;
             <!--<div class="modal-header">
@@ -2296,25 +2304,25 @@
                     <div class="row" style="padding: 20px;">
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddDis">
                             <tr>
-                                <th class="col-xs-1 contentTbHeader">
+                                <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                     <h>เลือก</h>
                                 </th>
-                                <th class="col-xs-2 contentTbHeader">
+                                <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                     <h>Offer Name</h>
                                 </th>
-                                <th class="col-xs-3 contentTbHeader">
+                                <th class="col-xs-3 contentTbHeader" style="color: #00a651;">
                                     <h>Offer Description</h>
                                 </th>
-                                <th class="col-xs-1 contentTbHeader">
+                                <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                     <h>Level</h>
                                 </th>
-                                <th class="col-xs-2 contentTbHeader">
+                                <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                     <h>Sale Effective Date</h>
                                 </th>
-                                <th class="col-xs-2 contentTbHeader">
+                                <th class="col-xs-2 contentTbHeader" style="color: #00a651;">
                                     <h>Sale Expiration Date</h>
                                 </th>
-                                <th class="col-xs-1 contentTbHeader">
+                                <th class="col-xs-1 contentTbHeader" style="color: #00a651;">
                                     <h>Type</h>
                                 </th>
                             </tr>
@@ -2406,7 +2414,7 @@
                     </div>
                 </div>
                 <div class="modal-footer" style=" padding-top: 0;">
-                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-disabled="disableSubmitAddOffer" ng-click="addRegulaOfferList(item);">ตกลง</button>
+                    <button class="btn btn-success" data-dismiss="modal" ng-disabled="disableSubmitAddOffer" ng-click="addRegulaOfferList(item);">ตกลง</button>
                     <button class="btn btn-cancel" data-dismiss="modal" ng-click="onClearRadio('radioDisOffer');">ยกเลิก</button>
                 </div>
             </div>

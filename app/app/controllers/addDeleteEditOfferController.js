@@ -39,7 +39,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.data = {};
     $scope.isReadCardSuccess = false;
-    $scope.offerType = "C"
+    $scope.offerType = "C";
     $scope.statusReason = '';
     $scope.statusReasonMemo = '';
     $scope.readOnlyOffer = true;
@@ -900,17 +900,19 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $('.hModal').height(($(window).height()) - 235);
         //$('.modal-backdrop').css('height', '200%');
     };
-    $scope.showDetail = function(item) {
+
+    $scope.editDetail = function(item){
         console.log(item);
         $scope.showDetail['offer-name'] = item['offer-name'];
+        $scope.editOfferCode = item['offer-name'];
         $scope.showDetail['offer-description'] = item['offer-description'];
+        $scope.editOfferDesc = item['offer-description'];
         $scope.showDetail['effective-date'] = item['effective-date'];
         $scope.showDetail['expiration-date'] = item['expiration-date'];
         $scope.showDetail['type'] = item['type'];
 
         $scope.showDetail['typed'] = "AD";
-    };
-
+    }
 
     // Submit form
     $scope.submit = function() {
@@ -1247,11 +1249,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 var displayMsg = utils.getObject(result.data, 'display-messages.0');
                 console.log(displayMsg);
                 if (!displayMsg || !displayMsg['message-type']) {
+                    setTimeout(function() {
+                        $('.submitOrder').addClass('btnPrintOffer');
+                    }, 100);
                     SystemService.showBeforeClose({
                         "message": "" + result.data["display-messages"][0]["th-message"],
                         "message2": ""
                     });
                 } else {
+                    setTimeout(function() {
+                        $('.submitOrder').addClass('btnPrintOffer');
+                    }, 100);
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
                         "message2": ""
@@ -1503,34 +1511,48 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.readOnlyOffer = false;
     };
 
+    $scope.changeOfferType = function() {
+        $scope.enableAddOffer = false;
+        $scope.disableAddBtn = false;
+    }
     $scope.addOffer = function() {
-        $scope.enableAddOffer = true
-        $scope.disableAddBtn = true
+        $scope.enableAddOffer = true;
+        $scope.disableAddBtn = true;
     }
     $scope.tableAddOffer = 'tableAddOffer';
     $scope.radioRowClick = function(tableID, item) {
-            $('.hModal').height(($(window).height()) - 235);
-            $('#' + tableID + ' tr').click(function() {
-                $(this).find('td input:radio').prop('checked', true);
-            })
+        $('.hModal').height(($(window).height()) - 235);
+        $('#' + tableID + ' tr').click(function() {
+            $(this).find('td input:radio').prop('checked', true);
+        })
 
-            setTimeout(function() {
-                $scope.radioOffer = $('input[name=radioOffer]:checked').val();
-                $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
-                $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
-                $scope.disableSubmitAddOffer = false;
-                console.log($scope.radioDisOffer);
-                $('#idBindDataAgain').click();
-                $scope.onChangeRadioOffer(item);
-            }, 50);
-        }
-        // $scope.disableSubmitBtn = function() {
-        //     if ($scope.radioDisOffer || $scope.radioOffer || $scope.radioCpOffer) {
-        //         $scope.disableSubmitAddOffer = false;
-        //     } else {
-        //         $scope.disableSubmitAddOffer = true;
-        //     }
-        // }
+        setTimeout(function() {
+            $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+            $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+            $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+            $scope.disableSubmitAddOffer = false;
+            console.log($scope.radioDisOffer);
+            $('#idBindDataAgain').click();
+            $scope.onChangeRadioOffer(item);
+        }, 50);
+    }
+    $scope.checkboxRowClick = function(tableID) {
+        // $('.hModal').height(($(window).height()) - 235);
+        $('#' + tableID + ' tr').click(function() {
+            $(this).find('td input:checkbox').prop('checked', true);
+        })
+
+        // setTimeout(function() {
+        //     $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+        //     $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
+        //     $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+        //     $scope.disableSubmitAddOffer = false;
+        //     console.log($scope.radioDisOffer);
+        //     $('#idBindDataAgain').click();
+        //     $scope.onChangeRadioOffer(item);
+        // }, 50);
+    }
+
     $scope.onClearRadio = function(radioName) {
         if (radioName == 'radioDisOffer') {
             $scope.radioDisOffer = "";
@@ -1563,20 +1585,20 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
     }
 
-    $scope.chkExpDate = function(){
-        if($scope.radioExpDate == "expDate"){
+    $scope.chkExpDate = function() {
+        if ($scope.radioExpDate == "expDate") {
             $scope.manualExpDate = false;
-        }else{
+        } else {
             $scope.manualExpDate = true;
             $scope.editADEffectiveOffer = "";
             $('#editADEffectiveOffer').val('');
         }
     }
     $scope.manualExpDisDate = true;
-    $scope.chkEditDisDate = function(){
-        if($scope.editDisDate == "expDate"){
+    $scope.chkEditDisDate = function() {
+        if ($scope.editDisDate == "expDate") {
             $scope.manualExpDisDate = false;
-        }else{
+        } else {
             $scope.manualExpDisDate = true;
             $scope.editDisEffectiveOffer = "";
             $('#editDisEffectiveOffer').val('');
