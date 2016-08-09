@@ -337,6 +337,13 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             return false;
         }
 
+        //// case production DEALER :: 10-08-2016 :: xsam32
+        if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == false) {
+            $scope.statusReason = {
+                "id": "CREQ"
+            };
+        }
+
         if (!$scope.statusReason) {
             //alert('กรุณาเลือกเหตุผล');
             SystemService.showAlert(ValidateMsgService.data.msgReasonCodeEmpty);

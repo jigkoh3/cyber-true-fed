@@ -64,7 +64,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
             setTimeout(function() { console.log(i) }, 100)
         }
 
-        for(let j = 0; j < 2; j++){
+        for(var j = 0; j < 2; j++){
             setTimeout(function() { console.log(j) }, 100)
         }
 
