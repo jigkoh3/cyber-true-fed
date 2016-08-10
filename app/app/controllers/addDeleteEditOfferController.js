@@ -1517,6 +1517,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.disableEditOffer = function() {
         $scope.readOnlyOffer = true;
+        // $('#editOfferChk').prop("checked", false);
     };
 
     $scope.enableEditOffer = function() {
@@ -1614,6 +1615,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.manualExpDisDate = true;
             $scope.editDisEffectiveOffer = "";
             $('#editDisEffectiveOffer').val('');
+        }
+    }
+
+    $scope.editOffer = false
+    $scope.openEditModal = function(editOffer, item){
+        if(editOffer == false){
+            $scope.showDetail(item);
+            $('#editModal').click();
         }
     }
 });
