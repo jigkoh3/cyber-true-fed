@@ -68,8 +68,8 @@
                                         <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
                                     </div>
                                     <div align="center" class="" ng-show="offerType=='U'">
-                                        <input id="editOfferChk" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="editOffer" style="cursor: pointer;" ng-click="openEditModal(editOffer, item);">
-                                        <button id="editModal" ng-show="offerType=='U'&&editOffer" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                        <input id="item['offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="chkEdit" style="cursor: pointer;" ng-click="openEditModal(chkEdit, item, item['offer-name']);">
+                                        <button id="editModal" ng-show="offerType=='U'&&chkEdit==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                     </div>
                                     <div align="center" class="" ng-show="offerType=='D'">
                                         <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
@@ -1043,23 +1043,28 @@
             </div>
             <div class="modal-body">
                 <div class="table-responsive hModal" style="overflow-x:hidden;">
-                    
-                    <div ng-show="showDetail['type']=='Additional Offer'">
-                        <div calss="form-group">
-                            <div class="row">
-                                <div class="col-md-3">
-                                </div>
-                                <div class="col-md-2" style="text-align:right;top: 5px; font-weight: bold; font-size:16px;">
-                                    <label>Offer Code</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" id="adOfferCode" ng-model="editOfferCode" class="form-control">
-                                </div>
-                                <div class="col-md-3">
-                                </div>
-                            </div> &nbsp;
-                        </div>
-                        <div calss="form-group">
+                    <label style="cursor: pointer;">
+                        <input type="checkbox" ng-model="editParam" id="editParam"> &nbsp;
+                        <span style="font-weight: bold; font-size:16px;"> Parameter</span>
+                    </label>
+                    <div ng-show="editParam">
+                        <!-- Case Additional Offer -->
+                        <div ng-show="showDetail['type']=='Additional Offer'">
+                            <div calss="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-2" style="text-align:right;top: 5px; font-weight: bold; font-size:16px;">
+                                        <label>Offer Code</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" id="adOfferCode" ng-model="editOfferCode" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                </div> &nbsp;
+                            </div>
+                            <div calss="form-group">
                             <div class="row">
                                 <div class="col-md-3">
                                 </div>
@@ -1072,14 +1077,7 @@
                                 <div class="col-md-3">
                                 </div>
                             </div>
-                        </div> &nbsp;
-                        <p></p>
-                        <div>
-                            <div style="border-top: 1px solid #e5e5e5;"> &nbsp;
-                                <label style="cursor: pointer;">
-                                    <span style="font-weight: bold; font-size:16px;"> Parameter</span>
-                                </label>
-                            </div>
+                            </div> &nbsp;
                             <div calss="form-group">
                                 <div class="row">
                                     <div class="col-md-3">
@@ -1107,13 +1105,11 @@
                                     <div class="col-md-3">
                                     </div>
                                 </div>
-                            </div> &nbsp;
-                            <p></p>
+                            </div>
                         </div>
-                        &nbsp;
-                        <p></p>
-                    </div>
-                    <div ng-show="showDetail['type']=='F&F'">
+
+                        <!-- Case F&F -->
+                        <div ng-show="showDetail['type']=='F&F'">
                         <div class="form-group row">
                             <div class="col-md-3" style="text-align: right;top: 5px;">
                                 F&F
@@ -1182,8 +1178,10 @@
                             <div class="col-md-3">
                             </div>
                         </div>
-                    </div>
-                    <div ng-show="showDetail['type']=='CUG'">
+                        </div>
+
+                        <!-- Case CUG -->
+                        <div ng-show="showDetail['type']=='CUG'">
                         <div calss="form-group row">
                             <div class="col-xs-2"></div>
                             <div class="col-xs-3" style=" text-align: left; top: 5px;">
@@ -1197,8 +1195,10 @@
                         <p></p>
                         <br>
                         <br>
-                    </div>
-                    <div ng-show="showDetail['type']=='Pooled'">
+                        </div>
+
+                        <!-- Case Pooled -->
+                        <div ng-show="showDetail['type']=='Pooled'">
                         <tr>
                             <td colspan="6" class="text-center">
                                 <div>
@@ -1339,8 +1339,10 @@
                                 &nbsp;
                             </td>
                         </tr>
-                    </div>
-                    <div ng-show="showDetail['type']=='Contract & Prop.'">
+                        </div>
+
+                        <!-- Case Contract & Prop -->
+                        <div ng-show="showDetail['type']=='Contract & Prop.'">
                         <div calss="form-group">
                             <div class="row">
                                 <div class="col-md-3">
@@ -1468,8 +1470,10 @@
                             </div> &nbsp;
                         </div>
                         &nbsp;
-                    </div>
-                    <div ng-show="showDetail['type']=='Discount'">
+                        </div>
+
+                        <!-- Case Discount -->
+                        <div ng-show="showDetail['type']=='Discount'">
                         <div class="form-group">
                             <div class="form-group row">
                                 <div class="col-xs-2">
@@ -1480,13 +1484,9 @@
                                 <div class="col-xs-7">
                                     <div class="col-xs-2" style="top:5px;">
                                         <label style="cursor: pointer;" ng-click="chkEditDisDate()">
-                                            <!-- <div data-toggle="buttons" id="divEffer" class="btn-group btn-group-justified effectiveOffer"> -->
-                                            <!--  <label ng-disabled="!isCustomerProfile" id="efferNow" class="btn btn-default effectiveOffer active" onclick="$('.date-picker-start').val('');" ng-click="onEffectiveDate('IMMEDIATE')"> -->
                                             <input type="radio" name="editDisDate" autocomplete="off" class="radio_ck" value="noExpDate" ng-model="editDisDate" checked> ทันที
                                         </label>
                                     </div>
-                                    <!-- </label> -->
-                                    <!-- <label ng-disabled="!isCustomerProfile" id="efferManual" class=" form-group has-feedback effectiveOffer" ng-click="onEffectiveDate('FUTURE')"> -->
                                     <div class="col-xs-10">
                                         <div class="form-group has-feedback">
                                             <!-- <div class="col-xs-6"> -->
@@ -1495,7 +1495,6 @@
                                                     <input type="radio" name="editDisDate" autocomplete="off" class="enable_tb" value="expDate" ng-model="editDisDate">ระบุวันที่
                                                 </label>
                                             </div>
-                                            <!-- </div> -->
                                             <div class="col-xs-6" style="margin-top:-5px; margin-bottom:-5px;">
                                                 <div class="form-group has-feedback imp" style="top:5px;">
                                                     <input ng-disabled="manualExpDisDate" type="text" ng-model="editDisEffectiveOffer" id="editDisEffectiveOffer" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10">
@@ -1504,8 +1503,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- </label> -->
-                                    <!-- </div> -->
                                 </div>
                                 <div class="col-xs-1">
                                 </div>
@@ -1526,18 +1523,52 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div style="border-top: 1px solid #e5e5e5;"> <br>
+                        <label style="cursor: pointer;">
+                            <input type="checkbox" ng-model="editExp" id="editExp"> &nbsp;
+                            <span style="font-weight: bold; font-size:16px;"> Expiration Date</span>
+                        </label>
+                        <div ng-show="editExp">
+                            <div class="form-group row">
+                            <div class="col-xs-3">
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="col-xs-2" style="top:5px; text-align:left">
+                                    <label style="cursor: pointer;" ng-click="chkEditExpDate()">
+                                        <input type="radio" name="editExpDate" class="radio_ck" value="noExpDate" ng-model="editExpDate" checked> ทันที
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                            </div>
+                            <div class="col-xs-2" style="top:5px; text-align:left">
+                                <label style="cursor: pointer;" ng-click="chkEditExpDate()">
+                                    <input type="radio" name="editExpDate" autocomplete="off" class="enable_tb" value="expDate" ng-model="editExpDate">ระบุวันที่
+                                </label>
+                            </div>
+                            <div class="col-xs-4" style="margin-top:-5px; margin-bottom:-5px;">
+                                <div class="form-group has-feedback imp" style="top:5px;">
+                                    <input ng-disabled="manualExpDate" type="text" ng-model="editDisEffectiveOffer" id="editDisEffectiveOffer" class="form-control dateManual date-picker-start dateFormat" maxlength="10">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="modalOffer-footer" style="">
-                <!-- <div class="row" style="width: 99%;"> -->
-                <!-- 20160810 Disable ยกเลิกการแก้ไข Offer Button from SRS -->
-                <!-- <div class="col-xs-6" style="text-align: left; padding-left: 60px;"> -->
-                    <!-- <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="" style="margin-top: -0px;"><span><i class="fa fa-trash-o fa-lg"></i></span> ยกเลิกการแก้ไข Offer</button> -->
-                <!-- </div> -->
                 <div class="col-xs-12">
                     <button class="btn btn-success" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
-                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ปิด</button>
+                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="unChk();" style="margin-top: -0px;">ปิด</button>
                 </div>
                 <br>
                 <br>
