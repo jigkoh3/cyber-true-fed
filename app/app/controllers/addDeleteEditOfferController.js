@@ -692,9 +692,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }]
         };
         $scope.offerList = result['offer-lists'];
+        $scope.offerList[0].selected = false;
         for (var i = 0; i < $scope.offerList.length; i++) {
             $scope.editOffers.push();
+            $scope.offerList[i].selected = false;
         }
+        console.log($scope.offerList);
         $scope.adViewOffer.paramName1 = "Parameter Value1";
         $scope.adViewOffer.paramName2 = "Parameter Value2";
         $scope.adOffer.paramName1 = "Parameter Value1";
@@ -1528,6 +1531,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.changeOfferType = function() {
         $scope.enableAddOffer = false;
         $scope.disableAddBtn = false;
+        $scope.chkEdit = false
     }
     $scope.addOffer = function() {
         $scope.enableAddOffer = true;
@@ -1629,6 +1633,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
     }
 
+    $scope.chkBoxLength = "";
     $scope.chkID = "";
     $scope.chkEdit = false
     $scope.openEditModal = function(chkModel, item, chkId) {
@@ -1639,10 +1644,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else {
             $scope.chkID = "";
         }
+        $scope.chkBoxLength = item['offer-name'];
     }
 
-    $scope.unChk = function(){
-        $('#PROSTDA1').prop('checked', false);
-        $scope.chkEdit = false;
+    $scope.unChk = function(editOfferCode){
+        for(var i = 0; i < $scope.offerList.length; i++){
+            if(editOfferCode == $scope.offerList[i]['offer-name']){
+                $scope.offerList[i].selected = false;        
+            }
+        }
     }
 });
