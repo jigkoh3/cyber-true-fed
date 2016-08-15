@@ -41,6 +41,8 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     $scope.reasons = [];
     $scope.statusReason = "";
 
+    /// requirement by p'mam :: 15-08-2-16 :: xsam32
+    $scope.isShowReason = false;
 
 
 
@@ -167,10 +169,16 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     }
 
     $scope.onChangeStatus = function() {
-        if ($scope.getAuthen['shopType'] == '0') {
+        $scope.isShowReason = false;
+        if ($scope.getAuthen['shopType'] == '0' || (($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') && $scope.getAuthen["userGroup"] == 'SHOP' && $scope.statusChangeSuspend == 'FULL-SUSPEND')) {
             var actPathId = "78";
             if ($scope.statusChangeSuspend == 'FULL-SUSPEND') {
                 actPathId = "196";
+            }
+            var defaultReasonCode = "CREQ";
+            if(($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') && $scope.getAuthen["userGroup"] == 'SHOP' && $scope.statusChangeSuspend == 'FULL-SUSPEND') {
+                $scope.isShowReason = true;
+                defaultReasonCode = "";
             }
             console.log($scope.statusChangeSuspend, actPathId);
             SystemService.showLoading();
@@ -179,7 +187,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 //solution for none fix index
                 $scope.reasons = resultReason;
                 var myArray = resultReason;
-                var searchText = "CREQ",
+                var searchText = defaultReasonCode,
                     index = -1;
                 for (var i = 0, len = myArray.length; i < len; i++) {
                     if (myArray[i].id === searchText) {
