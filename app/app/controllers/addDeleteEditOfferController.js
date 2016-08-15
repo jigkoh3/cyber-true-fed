@@ -913,7 +913,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.showDetail['typed'] = "AD";
     };
 
-    $scope.editDetail = function(item){
+    $scope.editDetail = function(item) {
         console.log(item);
         $scope.showDetail['offer-name'] = item['offer-name'];
         $scope.editOfferCode = item['offer-name'];
@@ -1517,7 +1517,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.disableEditOffer = function() {
         $scope.readOnlyOffer = true;
-        // $('#editOfferChk').prop("checked", false);
+        // $("'#" + $scope.chkID + "'").prop("checked", false);
+        // $("'#" + $scope.chkID + "'").val(false);
     };
 
     $scope.enableEditOffer = function() {
@@ -1618,11 +1619,30 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
     }
 
-    $scope.editOffer = false
-    $scope.openEditModal = function(editOffer, item){
-        if(editOffer == false){
+    $scope.chkEditExpDate = function() {
+        if ($scope.editExpDate == "expDate") {
+            $scope.manualExpDate = false;
+        } else {
+            $scope.manualExpDate = true;
+            $scope.editDisEffectiveOffer = "";
+            $('#editDisEffectiveOffer').val('');
+        }
+    }
+
+    $scope.chkID = "";
+    $scope.chkEdit = false
+    $scope.openEditModal = function(chkModel, item, chkId) {
+        if (chkModel == false) {
+            $scope.chkID = chkId;
             $scope.showDetail(item);
             $('#editModal').click();
+        } else {
+            $scope.chkID = "";
         }
+    }
+
+    $scope.unChk = function(){
+        $('#PROSTDA1').prop('checked', false);
+        $scope.chkEdit = false;
     }
 });
