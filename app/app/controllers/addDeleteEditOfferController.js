@@ -6,7 +6,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $routeParams,
     AuthenService,
     AddDeleteEditOfferNewService,
-    DeviceService,
     ReasonService,
     SystemService) {
 
@@ -80,14 +79,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     AddDeleteEditOfferNewService.getCapmaxParameter(soc, function(result) {
         console.log(result.data);
         $scope.capMaxParameterList = result.data['cap-max-parameter'];
-
-
-        // $scope.capMaxParameterList['durationCapMaxUOMCombo'] = SystemService.convertArray($scope.capMaxParameterList['duration-capmax-uom-combo'], "=");
-        // $scope.capMaxParameterList['volumeCapMaxUOMCombo'] = SystemService.convertArray($scope.capMaxParameterList['volume-capmax-uom-combo'], "=");
-
-        // $scope.capMaxParameterList['durationCapMaxUOM'] = SystemService.searchIdArray($scope.capMaxParameterList['durationCapMaxUOMCombo'], $scope.capMaxParameterList['duration-capmax-uom']);
-        // $scope.capMaxParameterList['volumeCapMaxUOM'] = SystemService.searchIdArray($scope.capMaxParameterList['volumeCapMaxUOMCombo'], $scope.capMaxParameterList['volume-capmax-uom']);
-
     });
 
     // ReasonService.list("119", function(result) {
@@ -184,10 +175,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         //console.log(charCode);
         var bool = SystemService.checkInputTel(charCode);
         $scope.isNumberSubNo = !bool;
-        //setTimeout(function () {
-        //    $scope.isNumberSubNo = false;
-        //    $('#idBindDataAgain').click();
-        //}, 3000);
         $scope.autoHideNumberSubNo = false;
         return bool;
     }
@@ -244,8 +231,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }
 
         });
-
-
         //}
     };
 
@@ -915,6 +900,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
         $scope.showDetail['typed'] = "AD";
         $scope.editExpType = "effective";
+        $scope.editParam = false;
+        $scope.editExp = false;
     };
 
     $scope.editDetail = function(item) {
@@ -1223,17 +1210,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 var displayMsg = utils.getObject(result.data, 'display-messages.0');
                 console.log(displayMsg);
                 if (!displayMsg || !displayMsg['message-type']) {
-                    setTimeout(function() {
-                        // $('.submitOrder').addClass('btnPrintOffer');
-                    }, 100);
                     SystemService.showBeforeClose({
                         "message": "" + result.data["display-messages"][0]["th-message"],
                         "message2": ""
                     });
                 } else {
-                    setTimeout(function() {
-                        // $('.submitOrder').addClass('btnPrintOffer');
-                    }, 100);
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
                         "message2": ""
@@ -1479,8 +1460,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.disableEditOffer = function() {
         $scope.readOnlyOffer = true;
-        // $("'#" + $scope.chkID + "'").prop("checked", false);
-        // $("'#" + $scope.chkID + "'").val(false);
     };
 
     $scope.enableEditOffer = function() {
@@ -1514,20 +1493,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }, 50);
     }
     $scope.checkboxRowClick = function(tableID) {
-        // $('.hModal').height(($(window).height()) - 235);
         $('#' + tableID + ' tr').click(function() {
             $(this).find('td input:checkbox').prop('checked', true);
         })
-
-        // setTimeout(function() {
-        //     $scope.radioOffer = $('input[name=radioOffer]:checked').val();
-        //     $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
-        //     $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
-        //     $scope.disableSubmitAddOffer = false;
-        //     console.log($scope.radioDisOffer);
-        //     $('#idBindDataAgain').click();
-        //     $scope.onChangeRadioOffer(item);
-        // }, 50);
     }
 
     $scope.onClearRadio = function(radioName) {
@@ -1538,11 +1506,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else if (radioName == 'radioOffer') {
             $scope.radioOffer = "";
         }
-        // $('#radioDisOffer').val($scope.radioDisOffer);
-        // $('#radioDisOffer').prop('checked', false);
         $scope.disableSubmitAddOffer = true;
         $('input[name=' + radioName + ']').attr('checked', false);
-        // console.log($scope.radioDisOffer , $('#radioDisOffer').val());
     }
 
     $scope.formatTHDate = function(date) {
