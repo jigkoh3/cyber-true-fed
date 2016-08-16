@@ -697,7 +697,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.editOffers.push();
             $scope.offerList[i].selected = false;
         }
-        console.log($scope.offerList);
+        // console.log($scope.offerList);
         $scope.adViewOffer.paramName1 = "Parameter Value1";
         $scope.adViewOffer.paramName2 = "Parameter Value2";
         $scope.adOffer.paramName1 = "Parameter Value1";
@@ -914,19 +914,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.showDetail['type'] = item['type'];
 
         $scope.showDetail['typed'] = "AD";
+        $scope.editExpType = "effective";
     };
 
     $scope.editDetail = function(item) {
-        console.log(item);
-        $scope.showDetail['offer-name'] = item['offer-name'];
-        $scope.editOfferCode = item['offer-name'];
-        $scope.showDetail['offer-description'] = item['offer-description'];
-        $scope.editOfferDesc = item['offer-description'];
-        $scope.showDetail['effective-date'] = item['effective-date'];
-        $scope.showDetail['expiration-date'] = item['expiration-date'];
-        $scope.showDetail['type'] = item['type'];
-
-        $scope.showDetail['typed'] = "AD";
+        $scope.modelChange = false;
+        $scope.showDetail(item);
     }
 
     // Submit form
@@ -951,15 +944,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         });
     };
 
-    $scope.logDataBeforeSubmit = function() {
-        console.log($scope.data);
-
-        console.log($scope.statusCancel);
-
-        console.log($scope.statusReason);
-
-        console.log($scope.statusReasonMemo);
-    };
 
     // Get current SIM data
     var onGetSIMData = function(result) {
@@ -979,12 +963,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         console.log($scope.data);
         $('#unMatch2').hide();
 
-        var cusAccountCate = $scope.data.simData['account-category'];
-        console.log(cusAccountCate);
-        if (cusAccountCate == "P" || cusAccountCate == "I") {
-            // $scope.isLastestUser = false;
-            // $('#divShowAuthorize').hide();
-        }
 
         $scope.getSIMDataFailed = false;
 
@@ -995,25 +973,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             authenticate();
         }
 
-        $scope.productStatus = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DESC');
-        $scope.activeDate = formatActiveDate(utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-DATE'));
-
-        var reasonCode = utils.getObject($scope.data, 'simData.product-properties.REASON-DESC');
-        if (reasonCode) {
-            $scope.reasonCodeDisplay = '(' + reasonCode + ')';
-        }
-
-        var companyCode = utils.getObject(result.data, 'simData.company-code');
-        if (!utils.isEmpty(companyCode)) {
-            // DeviceService.getDeviceTypeList(companyCode, onGetDeviceTypeList);
-        }
-
-        var statusType = utils.getObject($scope.data, 'simData.product-properties.PRODUCT-STATUS-CODE');
-        //get list dropdown status
-        SystemService.getMaster_list(statusType, function(result) {
-            $scope.statusList = result;
-            $scope.statusCancel = result[0].key;
-        });
     };
 
     $scope.onInputSubNo = function() {
@@ -1170,82 +1129,82 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         };
     };
 
-    $scope.openPDFDialog = function() {
+    // $scope.openPDFDialog = function() {
 
-        if (!validateInput()) {
-            return;
-        }
+    //     if (!validateInput()) {
+    //         return;
+    //     }
 
-        SystemService.showLoading();
+    //     SystemService.showLoading();
 
-        var customerType = 'O';
-        if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
-            customerType = 'Y';
-        }
+    //     var customerType = 'O';
+    //     if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
+    //         customerType = 'Y';
+    //     }
 
-        var data = {
-            'func': 'CMS',
-            'header': {
-                'title-code': customerType == 'Y' ? "" : $scope.data.customerProfile['title-code'],
-                'title': $scope.data.customerProfile['title'],
-                'firstname': $scope.data.customerProfile['firstname'],
-                'lastname': $scope.data.customerProfile['lastname'],
-                'customerType': customerType,
-                'authorizeFullName': $('#authorizeFullName').val(),
-                'id-number': $scope.data.customerProfile['id-number'],
-                'product-id-number': $scope.SubNo,
-                'ouId': $scope.data.simData['ouId'],
-                'orderId': orderData.orderId,
-                'photo': $scope.varPhoto,
+    //     var data = {
+    //         'func': 'CMS',
+    //         'header': {
+    //             'title-code': customerType == 'Y' ? "" : $scope.data.customerProfile['title-code'],
+    //             'title': $scope.data.customerProfile['title'],
+    //             'firstname': $scope.data.customerProfile['firstname'],
+    //             'lastname': $scope.data.customerProfile['lastname'],
+    //             'customerType': customerType,
+    //             'authorizeFullName': $('#authorizeFullName').val(),
+    //             'id-number': $scope.data.customerProfile['id-number'],
+    //             'product-id-number': $scope.SubNo,
+    //             'ouId': $scope.data.simData['ouId'],
+    //             'orderId': orderData.orderId,
+    //             'photo': $scope.varPhoto,
 
-                'photoIdCard': '',
-                'photoType': 'SN',
-                'titleEn': '',
-                'firstnameEn': '',
-                'lastnameEn': '',
-                'expireDay': $scope.data.customerProfile['id-expire-date'],
-                'birthDay': $scope.data.customerProfile['birthdate'],
-                'issueDay': '',
+    //             'photoIdCard': '',
+    //             'photoType': 'SN',
+    //             'titleEn': '',
+    //             'firstnameEn': '',
+    //             'lastnameEn': '',
+    //             'expireDay': $scope.data.customerProfile['id-expire-date'],
+    //             'birthDay': $scope.data.customerProfile['birthdate'],
+    //             'issueDay': '',
 
-                'homeNumber': '',
-                'moo': '',
-                'trok': '',
-                'soi': '',
-                'road': '',
-                'district': '',
-                'amphur': '',
-                'province': ''
-            },
-            'body': generateOrderRequest()
-        };
+    //             'homeNumber': '',
+    //             'moo': '',
+    //             'trok': '',
+    //             'soi': '',
+    //             'road': '',
+    //             'district': '',
+    //             'amphur': '',
+    //             'province': ''
+    //         },
+    //         'body': generateOrderRequest()
+    //     };
 
-        console.log(data);
-        SystemService.generatePDF(data, function(url) {
-            SystemService.hideLoading();
+    //     console.log(data);
+    //     SystemService.generatePDF(data, function(url) {
+    //         SystemService.hideLoading();
 
-            SystemService.printPDF(url);
-            //printObjectPdf();
+    //         SystemService.printPDF(url);
+    //         //printObjectPdf();
 
-            setTimeout(function() {
-                $('#modalPDFOpener').click();
+    //         setTimeout(function() {
+    //             $('#modalPDFOpener').click();
 
-                setTimeout(function() {
-                    var srcPDF = url;
-                    document.getElementById('iframePDF').src = url + '?clearData=N';
-                    if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                        setTimeout(function() {
-                            printObjectPdf();
-                        }, 2000);
-                        setTimeout(function() {
-                            document.getElementById('iframePDF').src = srcPDF
-                        }, 2500);
-                    }
-                }, 500);
+    //             setTimeout(function() {
+    //                 var srcPDF = url;
+    //                 document.getElementById('iframePDF').src = url + '?clearData=N';
+    //                 if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+    //                     setTimeout(function() {
+    //                         printObjectPdf();
+    //                     }, 2000);
+    //                     setTimeout(function() {
+    //                         document.getElementById('iframePDF').src = srcPDF
+    //                     }, 2500);
+    //                 }
+    //             }, 500);
 
 
-            }, 1000);
-        });
-    };
+    //         }, 1000);
+    //     });
+    // };
 
     $scope.confirmPrint = function() {
 
@@ -1265,7 +1224,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 console.log(displayMsg);
                 if (!displayMsg || !displayMsg['message-type']) {
                     setTimeout(function() {
-                        $('.submitOrder').addClass('btnPrintOffer');
+                        // $('.submitOrder').addClass('btnPrintOffer');
                     }, 100);
                     SystemService.showBeforeClose({
                         "message": "" + result.data["display-messages"][0]["th-message"],
@@ -1273,7 +1232,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     });
                 } else {
                     setTimeout(function() {
-                        $('.submitOrder').addClass('btnPrintOffer');
+                        // $('.submitOrder').addClass('btnPrintOffer');
                     }, 100);
                     SystemService.showBeforeClose({
                         "message": result.data["display-messages"][0]["th-message"],
@@ -1624,12 +1583,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     }
 
     $scope.chkEditExpDate = function() {
-        if ($scope.editExpDate == "expDate") {
+        if ($scope.editExpType == "manual") {
             $scope.manualExpDate = false;
         } else {
             $scope.manualExpDate = true;
-            $scope.editDisEffectiveOffer = "";
-            $('#editDisEffectiveOffer').val('');
+            $scope.editManualEffective = "";
+            $('#editManualEffective').val('');
         }
     }
 
@@ -1637,9 +1596,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.chkID = "";
     $scope.chkEdit = false
     $scope.openEditModal = function(chkModel, item, chkId) {
+        console.log(chkModel);
         if (chkModel == false) {
             $scope.chkID = chkId;
-            $scope.showDetail(item);
+            $scope.editDetail(item);
             $('#editModal').click();
         } else {
             $scope.chkID = "";
@@ -1647,10 +1607,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.chkBoxLength = item['offer-name'];
     }
 
-    $scope.unChk = function(editOfferCode){
-        for(var i = 0; i < $scope.offerList.length; i++){
-            if(editOfferCode == $scope.offerList[i]['offer-name']){
-                $scope.offerList[i].selected = false;        
+    $scope.modelChange = false;
+    $scope.onModelChange = function(){
+        $scope.modelChange = true;
+    }
+
+    $scope.unChk = function(editOfferCode) {
+        if ($scope.modelChange == false) {
+            for (var i = 0; i < $scope.offerList.length; i++) {
+                if (editOfferCode == $scope.offerList[i]['offer-name']) {
+                    $scope.offerList[i].selected = false;
+                }
             }
         }
     }
