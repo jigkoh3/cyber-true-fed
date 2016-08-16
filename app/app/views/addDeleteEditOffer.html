@@ -513,7 +513,23 @@
                                 <option value="AD">Additional Offer</option>
                                 <option value="CUG">CUG</option>
                                 <option value="FF">F&F</option>
-                                <option value="POOLING">Pooled</option>
+                                <option value="POOLING">Pooling</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                    &nbsp;
+                    <div class="row" ng-show="regularOfferTypeId=='POOLING'">
+                        <div class="col-md-4 text-right">
+                            <b> Pooled Offer</b>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control" ng-model="pooledOfferType" id="pooledOfferType" ng-change="">
+                                <option value="">--กรุณาระบุ--</option>
+                                <option value="Pooled1">Pooled1</option>
+                                <option value="Pooled2">Pooled2</option>
+                                <option value="Pooled3">Pooled3</option>
+                                <option value="Pooled4">Pooled4</option>
                             </select>
                         </div>
                         <div class="col-md-4"></div>
@@ -1198,8 +1214,8 @@
                             <br>
                         </div>
 
-                        <!-- Case Pooled -->
-                        <div ng-show="showDetail['type']=='Pooled'">
+                        <!-- Case Pooling -->
+                        <div ng-show="showDetail['type']=='Pooling'">
                             <tr>
                             <td colspan="6" class="text-center">
                                 <div>
@@ -1776,7 +1792,7 @@
                     <br>
                     <br>
                 </div>
-                <div ng-show="showDetail['type']=='Pooled'">
+                <div ng-show="showDetail['type']=='Pooling'">
                     <tr>
                         <td colspan="6" class="text-center">
                             <div>
