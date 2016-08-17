@@ -143,3 +143,30 @@ function checkReadBarcode_Android(){
         ReadBarcode_Android();
     }
 };
+
+
+////
+function printIframePdf() {
+                                try {
+                                    window.frames["iframePDF"].focus();
+                                    window.frames["iframePDF"].print();
+                                } catch (e) {
+                                    //window.print();
+                                    document.getElementById('iframePDF').src = 'javascript:setTimeout(function(){window.print();}, 1000);';
+                                    //console.log(e);
+                                }
+                            }
+
+                            function printObjectPdf() {
+                                try {
+                                    document.getElementById('idPdfObject').Print();
+                                } catch (e) {
+                                    printIframePdf();
+                                    //console.log(e);
+                                }
+                            }
+
+                            function idPdf_onreadystatechange() {
+                                if (idPdfObject.readyState === 4)
+                                    setTimeout(printObjectPdf, 1000);
+                            }
