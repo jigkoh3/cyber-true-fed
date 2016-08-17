@@ -894,6 +894,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.editOfferCode = item['offer-name'];
         $scope.showDetail['offer-description'] = item['offer-description'];
         $scope.editOfferDesc = item['offer-description'];
+        $scope.viewOfferCode = item['offer-name'];
+        $scope.viewOfferDesc = item['offer-description'];
         $scope.showDetail['effective-date'] = item['effective-date'];
         $scope.showDetail['expiration-date'] = item['expiration-date'];
         $scope.showDetail['type'] = item['type'];
