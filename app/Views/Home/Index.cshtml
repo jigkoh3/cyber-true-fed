@@ -73,7 +73,30 @@
         
     </script>
     <script type="text/javascript">
-                            
+                            function printIframePdf() {
+                                try {
+                                    window.frames["iframePDF"].focus();
+                                    window.frames["iframePDF"].print();
+                                } catch (e) {
+                                    //window.print();
+                                    document.getElementById('iframePDF').src = 'javascript:window.print();';
+                                    //console.log(e);
+                                }
+                            }
+
+                            function printObjectPdf() {
+                                try {
+                                    document.getElementById('idPdfObject').Print();
+                                } catch (e) {
+                                    printIframePdf();
+                                    //console.log(e);
+                                }
+                            }
+
+                            function idPdf_onreadystatechange() {
+                                if (idPdfObject.readyState === 4)
+                                    setTimeout(printObjectPdf, 1000);
+                            }
                             </script>
     <script type="text/javascript">
 
