@@ -246,7 +246,7 @@
                             "account-category": "I",
                             "account-sub-type": "RPI",
                             "product-id": "SMRTPP87",
-                            "product-name": "iSmart 299, voice100mins net500MB UNLTD WiFi UNLTD",
+                            "product-name": "SMRTPP87",
                             "product-description": "iSmart 299, voice100mins net500MB UNLTD WiFi UNLTD",
                             "bill-cycle": "10",
                             "company-code": "RM",
