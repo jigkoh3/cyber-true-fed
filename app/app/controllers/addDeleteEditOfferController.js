@@ -1588,4 +1588,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }
         }
     }
+
+    $scope.hideReadCardForMobile = function() {
+        SystemService.hideReadCardForMobile();
+    };
 });
