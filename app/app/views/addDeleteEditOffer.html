@@ -602,7 +602,7 @@
                                     <div ng-show="regularOfferTypeId=='POOLING'">
                                         <div ng-show="parameter.Volume != 'hide'">
                                             <div class="form-group row">
-                                                <label class="col-md-3 control-label">Volume cap max <span style="color:red;">*</span> </label>
+                                                <label class="col-md-3 control-label" style="text-align:right">Volume cap max <span style="color:red;">*</span> </label>
                                                 <div class="col-md-6" style="width:auto">
                                                     <select class="form-control" id="selectVolume" ng-init="saveParamData.Volume=parameter.Volume" ng-model="parameter.Volume" ng-change="saveParamData.Volume=parameter.Volume">
                                                         <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -627,7 +627,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-md-3 control-label">Volume cap max UOM <span style="color:red;">*</span> </label>
+                                                <label class="col-md-3 control-label" style="text-align:right">Volume cap max UOM <span style="color:red;">*</span> </label>
                                                 <div class="col-md-3">
                                                     <select class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['volumeCapMaxUOMCombo']" ng-model="capMaxParameterList['volume-capmax-uom']" ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2' || parameter.Volume=='-1'"></select>
                                                 </div>
@@ -636,7 +636,7 @@
                                         &nbsp;
                                         <div ng-show="parameter.Monetary != 'hide'">
                                             <div class="form-group row">
-                                                <label class="col-md-3 control-label">Monetary cap max <span style="color:red;">*</span> </label>
+                                                <label class="col-md-3 control-label" style="text-align:right">Monetary cap max <span style="color:red;">*</span> </label>
                                                 <div class="col-md-6" style="width:auto">
                                                     <select class="form-control" id="selectMonetary" ng-init="saveParamData.Monetary=parameter.Monetary" ng-model="parameter.Monetary" ng-change="saveParamData.Monetary=parameter.Monetary">
                                                         <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -661,7 +661,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-md-3 control-label">Monetary cap max UOM <span style="color:red;">*</span> </label>
+                                                <label class="col-md-3 control-label" style="text-align:right">Monetary cap max UOM <span style="color:red;">*</span> </label>
                                                 <div class="col-md-3">
                                                     <input type="text" class="form-control" readonly="readonly" value="Baht" />
                                                 </div>
@@ -670,7 +670,7 @@
                                         &nbsp;
                                         <div ng-show="parameter.Occurrence != 'hide'">
                                             <div class="form-group row">
-                                                <label class="col-md-3 control-label">Occurrence cap max <span style="color:red;">*</span> </label>
+                                                <label class="col-md-3 control-label" style="text-align:right">Occurrence cap max <span style="color:red;">*</span> </label>
                                                 <div class="col-md-6" style="width:auto">
                                                     <select class="form-control" id="selectOccurrence" ng-init="saveParamData.Occurrence=parameter.Occurrence" ng-model="parameter.Occurrence" ng-change="saveParamData.Occurrence=parameter.Occurrence">
                                                         <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -695,7 +695,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-md-3 control-label">Occurrence cap max UOM <span style="color:red;">*</span> </label>
+                                                <label class="col-md-3 control-label" style="text-align:right">Occurrence cap max UOM <span style="color:red;">*</span> </label>
                                                 <div class="col-md-3">
                                                     <input type="text" class="form-control" readonly="readonly" value="Occurrence" />
                                                 </div>
@@ -704,7 +704,7 @@
                                         &nbsp;
                                         <div ng-show="parameter.Duration != 'hide'">
                                             <div class="form-group row">
-                                                <label class="col-md-3 control-label">Duration cap max <span style="color:red;">*</span> </label>
+                                                <label class="col-md-3 control-label" style="text-align:right">Duration cap max <span style="color:red;">*</span> </label>
                                                 <div class="col-md-6" style="width:auto">
                                                     <select class="form-control" id="selectDuration" ng-init="saveParamData.Duration=parameter.Duration" ng-model="parameter.Duration" ng-change="saveParamData.Duration=parameter.Duration">
                                                         <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -729,7 +729,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-md-3 control-label">Duration cap max UOM <span style="color:red;">*</span> </label>
+                                                <label class="col-md-3 control-label" style="text-align:right">Duration cap max UOM <span style="color:red;">*</span> </label>
                                                 <div class="col-md-3">
                                                     <select class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['durationCapMaxUOMCombo']" ng-model="capMaxParameterList['duration-capmax-uom']" ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'  || parameter.Duration=='-1'"></select>
                                                 </div>
@@ -737,9 +737,9 @@
                                         </div>
                                         &nbsp;
                                         <div class="form-group row">
-                                            <div class="col-xs-1">
-                                            </div>
-                                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                            <!-- <div class="col-xs-1">
+                                            </div> -->
+                                            <div class="col-xs-3" style=" text-align: right; top: 5px;">
                                                 <label>Effective Date</label><span style="color: red">*</span>
                                             </div>
                                             <div class="col-xs-4">
@@ -752,9 +752,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-xs-1">
-                                            </div>
-                                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                            <!-- <div class="col-xs-1">
+                                            </div> -->
+                                            <div class="col-xs-3" style=" text-align: right; top: 5px;">
                                                 <label>Expiration Date</label><span style="color: red">*</span>
                                             </div>
                                             <div class="col-xs-4">
