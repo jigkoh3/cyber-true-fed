@@ -1196,7 +1196,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     // };
 
     $scope.confirmPrint = function() {
-
+        SystemService.demo = true;
         SystemService.showLoading();
 
         var data = generateOrderRequest();
@@ -1564,7 +1564,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.chkEdit = false
     $scope.openEditModal = function(chkModel, item, chkId) {
         console.log(chkModel);
-        if (chkModel == false) {
+        if (chkModel == true) {
             $scope.chkID = chkId;
             $scope.editDetail(item);
             $('#editModal').click();

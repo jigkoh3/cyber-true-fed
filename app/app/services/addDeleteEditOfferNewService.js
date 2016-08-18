@@ -381,18 +381,18 @@
             fnCallback(result);      
         };
 
-        if (!demo) {
-            var target = '/aftersales/order/submit';
+        // if (!demo) {
+        //     var target = '/aftersales/order/submit';
 
-            SystemService.callServicePost(request, null, function(result) {
-                //save report to server
-                SystemService.saveReportToServer({}, function(result){
+        //     SystemService.callServicePost(request, null, function(result) {
+        //         //save report to server
+        //         SystemService.saveReportToServer({}, function(result){
                     
-                });
+        //         });
                 
-                cb(result);
-            });
-        } else {
+        //         cb(result);
+        //     });
+        // } else {
             var data = {
                 'status': 'SUCCESSFUL',
                 'display-messages': [{
@@ -413,7 +413,7 @@
                     msgErr: ''
                 });
             }, 1000);
-        }
+        // }
     };
     this.getCapmaxParameter = function(offerCode, fnCallback) {
         var data = {};
