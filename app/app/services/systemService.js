@@ -19,7 +19,16 @@
         $('#hModal').height(($(window).height()) - 235);
         $('.hModal').height(($(window).height()) - 235);
         //console.log($('#hModal').height());
+
+        /// for show user :: for cr3 :: 23-08-2016 :: xsam32
+        // $('#divUser').width(($('.clearfix').width()) - 0);
+
     };
+
+    /// for show user :: for cr3 :: 23-08-2016 :: xsam32
+    // setTimeout(function() {
+    //     $('#divUser').width(($('.clearfix').width()) - 0);
+    // }, 300);
 
     //for case Android ::18-05-2016 //xsam32
     var ua = navigator.userAgent.toLowerCase();

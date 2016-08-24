@@ -1,4 +1,15 @@
-﻿
+﻿<!-- /// for show user :: for cr3 :: 23-08-2016 :: xsam32 -->
+<!-- <div class="" id="divUser" style="
+    margin-top: -20px;
+    background-color: orange;
+    position: fixed;
+    z-index: 999;
+">
+    <div class="col-xs-3">xxxx : xxxx</div>
+    <div class="col-xs-3">xxxx : xxxx</div>
+    <div class="col-xs-3">xxxx : xxxx</div>
+    <div class="col-xs-3">xxxx : xxxx</div>
+</div> -->
 
 
 <div class="profile" ng-show="SubNo!='null'">
@@ -12,17 +23,10 @@
     <h5 style="padding-top: 5px;"><b>หมายเลขทรูมูฟเอช</b></h5>
     <div class="row" style="padding-top: 10px;" ng-form="onInputSubNo_reset()">
         <div class="col-xs-6 text-right">
-            <input type="text" 
-                    ng-number-only="isNumberSubNo"
-                   class="form-control divInputSubno" 
-                   style="font-size:20px;" 
-                   id="dataSubNo" 
-                   ng-model="dataSubNo" 
-                   ng-keyup="onInputSubNo(); ($event.keyCode==13 && onInputSubNo_reset())" 
-                   maxlength="10" />
+            <input type="text" ng-number-only="isNumberSubNo" class="form-control divInputSubno" style="font-size:20px;" id="dataSubNo" ng-model="dataSubNo" ng-keyup="onInputSubNo(); ($event.keyCode==13 && onInputSubNo_reset())" maxlength="10" />
         </div>
         <div style="margin-top: 10px;">
-          <span style="color:red" class="hide" ng-span-number-only="isNumberSubNo">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
+            <span style="color:red" class="hide" ng-span-number-only="isNumberSubNo">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
         </div>
     </div>
 </div>
