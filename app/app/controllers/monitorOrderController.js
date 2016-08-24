@@ -1,11 +1,12 @@
 // ---------------------- monitorOrderController.js ----------------------
-smartApp.controller('MonitorOrderController', function($scope, $routeParams, AuthenService, SystemService, MonitorOrderService, $http) {
+smartApp.controller('MonitorOrderController', function($scope, $filter, $routeParams, AuthenService, SystemService, MonitorOrderService, $http) {
 
     $scope.Id = "";
     $scope.shopType = '1';
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null'; //$routeParams.SubNo;
     $scope.divID = 'monitorOrderContent';
     $scope.isAdmin = false;
+    $scope.condition = "";
     $scope.conditions = [];
     $scope.conditions[0] = { id: "A", name: 'หมายเลขบริการ' };
     $scope.conditions[1] = { id: "B", name: 'หมายเลขบัตรประชาชน/พาสปอร์ต' };
@@ -25,7 +26,9 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
     var dateNow = new Date();
     $scope.setDateNow = ("0" + dateNow.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/"  + Number(dateNow.getFullYear() + 543);
     console.log( $scope.setDateNow);
-    $scope.fromdate =  $scope.setDateNow;
+    var fromDay = new Date(dateNow.getTime() - (7 * 24 * 60 * 60 * 1000));
+    console.log(fromDay);
+    $scope.fromdate =  ("0" + fromDay.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/"  + Number(dateNow.getFullYear() + 543);
     $('#fromdate').val($scope.fromdate);
     $scope.todate =  $scope.setDateNow;
     $('#todate').val($scope.todate);
@@ -428,6 +431,7 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
 
         //console.log("RequestData:"+JSON.stringify(data)) ;
         $scope.datas = [];
+        $scope.orderDatas = [];
         $scope.flagShowMessageResult = false;
         //        objectSSO['Content-Type'] = "application/json";
         //      $http({
@@ -527,6 +531,8 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
                                 $scope.page = response['page']['current'];
                                 $.each(response['response-data'], function(index, value) {
                                     $scope.datas[index] = value;
+                                    $scope.orderDatas[index] = value;
+                                    $scope.isLoadOrder = true;
                                 });
                             }
                         } catch (err) {
@@ -593,6 +599,8 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
                                 $scope.page = response['page']['current'];
                                 $.each(response['response-data'], function(index, value) {
                                     $scope.datas[index] = value;
+                                    $scope.orderDatas[index] = value;
+                                    $scope.isLoadOrder = true;
                                 });
                             }
                         } catch (err) {
@@ -654,6 +662,8 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
 
     $scope.clearValue = function() {
         $scope.datas = [];
+        $scope.orderDatas = [];
+        $scope.isLoadOrder = false;
         $scope.totalPage = 0;
 
         $("#product-number").val("");
@@ -662,31 +672,14 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
         $("#provisioning-id").val("");
         $("#sale-code").val("");
         $("#condition").val("");
-
+        $scope.condition = "";
         $("#statusListbox").val("");
         $("#serviceListbox").val("");
 
         $("#shopCode").val($scope.shopCode);
         $("#customShopCode").val($scope.shopCode);
 
-
-        $("#valueCondition").hide();
-
-        //          $('#fromdate').datepicker({
-        //              format: "dd/mm/yyyy" ,
-        //                 autoclose: true,
-        //                 language: 'th-th',
-        //          }).datepicker("setDate",null);
-        //          
-        //          $('#todate').datepicker({
-        //              format: "dd/mm/yyyy" ,
-        //                 autoclose: true,
-        //                 language: 'th-th',
-        //          }).datepicker("setDate",null);
         $scope.showDate();
-        //          console.log("clearValue: " + $("#condition").val());
-
-
     };
 
     $scope.callGetPricePlan = function(priceplanCode, type) {
@@ -854,4 +847,42 @@ smartApp.controller('MonitorOrderController', function($scope, $routeParams, Aut
             return false;
         }
     }
+
+    $scope.select = function(selectID){
+        $('.idActive').removeClass("success");
+        $('#' + selectID ).addClass("success");
+
+    }
+
+    $scope.leyoutType = "layout-table";
+    $scope.selectLayout = function(selectID){
+        if(selectID == "layout-table"){
+            $('#' + selectID ).addClass("success");
+            $('#layout-columns').removeClass("success");
+            $scope.leyoutType = "layout-table";
+        } else {
+            $('#' + selectID ).addClass("success");
+            $('#layout-table').removeClass("success");
+            $scope.leyoutType = "layout-columns";
+        }
+    }
+
+    var valOrder = [];
+    $scope.isLoadOrder = false;
+    $scope.smartSearchOrder = function(txtSearch) {
+        if ($scope.isLoadOrder) {
+            var arr = valOrder;
+            if (txtSearch.indexOf(' ') > 0) {
+                var txtList = txtSearch.split(' ');
+
+                console.log(txtList);
+                for (var i = 0; i < txtList.length; i++) {
+                    arr = $filter('filter')(arr, txtList[i]);
+                }
+                $scope.orderDatas = arr;
+            } else {
+                $scope.orderDatas = $filter('filter')(valOrder, txtSearch);
+            }
+        }
+    };
 });

@@ -14863,3 +14863,34 @@ textarea.remark-message {
     width: 65%;
     /*for monitorOrder detail modal*/
 }
+
+.split-leftside,
+.split-rightside {
+    position: relative;
+    display: inline-block;
+    letter-spacing: normal;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: top;
+    overflow: auto;
+    float: left;
+}
+
+.split-leftside {
+    width: 40%;
+}
+
+.split-rightside {
+    width: 60%;
+}
+
+.success {
+    color: #fff !important;
+    background-color: #5cb85c !important;
+}
+
+.view2 {
+    height: 500px !important;
+    overflow: auto !important;
+}
