@@ -1,5 +1,5 @@
 // ---------------------- monitorOrderController.js ----------------------
-smartApp.controller('MonitorOrderController', function($scope, $filter, $routeParams, AuthenService, SystemService, MonitorOrderService, $http) {
+smartApp.controller('MonitorOrderController', function($scope, $filter, $routeParams, AuthenService, SystemService, MonitorOrderService, $http, SystemService) {
 
     $scope.Id = "";
     $scope.shopType = '1';
@@ -519,10 +519,11 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         //        });
         console.log(requestUrl);
         if (SystemService.demo == true) {
+            SystemService.showLoading();
             $http.get(requestUrl).success(function(response) {
                 //      $http.post(encodeURI(requestUrl) ,{ headers: objectSSO }).success(function(response) {   
                 if (response.status == "SUCCESSFUL") {
-
+                    SystemService.hideLoading();
                     if (response['response-data'] != 'undefined') {
                         SystemService.hideLoading();
                         try {
@@ -563,6 +564,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                         return false;
                     }
                 } else {
+                    SystemService.hideLoading();
                     msgModel = {
                         "message": response.status,
                         "message-code": "SYS-000",
@@ -577,6 +579,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                 }
 
             }).error(function(err) {
+                SystemService.hideLoading();
                 console.log(err);
                 // SystemService.timeOut = 500;
                 // SystemService.hideLoading();
@@ -743,7 +746,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
     $scope.data_detail = [];
     $scope.popup = function(data) {
         //
-
+        SystemService.showLoading();
         $scope.selectedData = data;
         /*
          $("#orderid").html(data['order-id']) ;
@@ -830,7 +833,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         }).error(function(response) {
 
         });
-
+        SystemService.hideLoading();
     };
 
     resetValuePopup = function(data) {

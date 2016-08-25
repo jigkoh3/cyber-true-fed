@@ -178,16 +178,20 @@
                             </div>
                         </li>
                         <li ng-repeat="orderData in orderDatas" id="{{orderData['order-id']}}" ng-click="select(orderData['order-id']); popup(orderData);" data-toggle="modal" class="list-group-item idActive orderLists" style="cursor: pointer;">
+                            <span align="center" style="vertical-align: middle; width: 5px;"><i class="fa fa-print fa-lg badge" ng-click="callPrint(orderData)" ng-if="orderData['reprint']==true" style="cursor: pointer; "></i>
+                            </span>
                             <div class="row">
                                 <!-- <div class="col-xs-12"> -->
                                 <div class="col-xs-6" style="text-align:left;">{{orderData['order-id']}}
                                 </div>
-                                <div class="col-xs-6" style="text-align:right;">{{orderData['status']}}
+                                <div class="col-xs-5" style="text-align:right;">{{orderData['status']}}
                                 </div>
                                 <!-- </div> -->
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-11">
+                                    <span style="vertical-align: middle; width: 5px;"><i class="fa fa-print fa-2x" ng-click="callPrint(orderData)" ng-if="orderData['reprint']==true" style="cursor: pointer; "></i>
+                                    </span>
                                     {{ orderData['product-id-number'] }}
                                 </div>
                             </div>
@@ -216,11 +220,6 @@
                                 <div class="col-md-5">
                                     <div class="col-md-6" align="left">สถานะ Order: </div>
                                     <div class="col-md-4" align="left"><b>{{ data_detail.status }}</b></div>
-                                    <div class="col-md-1">
-                                        <div align="right" style="vertical-align: middle; width: 5px;">
-                                            <i class="fa fa-print fa-2x" ng-click="callPrint(selectedData)" ng-if="data_detail['reprint']==true" style="cursor: pointer; "></i>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="row">
