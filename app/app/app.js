@@ -176,7 +176,7 @@ smartApp.config(function($routeProvider, $httpProvider) {
     }).when('/changePricePlanForIE8', {
         templateUrl: 'app/views/changePricePlanForIE8.html?v=' + runTime,
         controller: 'ChangePricePlanForIE8Controller'
-    }).when('/monitorOrder', {
+    }).when('/orderMonitor', {
         templateUrl: 'app/views/monitorOrder.html?v=' + runTime,
         controller: 'MonitorOrderController'
     });
