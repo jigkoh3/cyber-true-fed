@@ -64,6 +64,8 @@
                     <i class="fa fa-camera fa-lg"></i> ถ่ายรูปติดบัตร
                 </button>
             </div>
+            <!-- show photo form sc :: solution -->
+            <img ng-show="(isCustomerProfile == true) && (shopType == '1') && isReadCardSuccess == true" src="data:image/png;base64,{{cardInfo.Photo}}" alt="" height="120">
         </div>
     </div>
     &nbsp;
