@@ -740,11 +740,11 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         });
     };
 
+    $scope.data_detail = [];
     $scope.popup = function(data) {
         //
 
         $scope.selectedData = data;
-
         /*
          $("#orderid").html(data['order-id']) ;
          $("#status").html(data['status-message']) ;
@@ -822,6 +822,8 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                     if ($scope.data_detail['primary-order-data']['OFFER-GROUP-IR'] != undefined && null != $scope.data_detail['primary-order-data']['OFFER-GROUP-IR']) {
                         $scope.callGetPricePlan($scope.data_detail['primary-order-data']['OFFER-GROUP-IR'], '3');
                     }
+                    $scope.data_detail.reprint = $scope.selectedData.reprint;
+                    console.log($scope.data_detail);
                 }
 
             }

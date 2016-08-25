@@ -217,7 +217,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             //call validateOffer
             if ($scope.SubNo !== 'null') {
                 SystemService.showLoading();
-                AddDeleteEditOfferNewService.getSIMData($scope.SubNo, onGetSIMData);
+                AddDeleteEditOfferNewService.getSIMData($scope.subNoInput, $scope.level, onGetSIMData);
                 $scope.getOfferList();
                 $scope.getReleteOfferList();
                 $scope.getRegulaOfferList();
@@ -964,13 +964,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     };
 
+    $scope.level = "SUBSCRIBER";
     $scope.onInputSubNo = function() {
         $scope.subNoInput = $('#dataSubNo').val();
 
         if ($scope.subNoInput && $scope.subNoInput.length === 10) {
             SystemService.showLoading();
             $scope.SubNo = $('#dataSubNo').val();
-            AddDeleteEditOfferNewService.getSIMData($scope.subNoInput, onGetSIMData);
+            AddDeleteEditOfferNewService.getSIMData($scope.subNoInput, $scope.level, onGetSIMData);
             if (onGetSIMData) {
                 $scope.getOfferList();
                 $scope.getReleteOfferList();

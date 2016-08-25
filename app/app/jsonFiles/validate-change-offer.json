@@ -1,0 +1,75 @@
+{
+  "status": "SUCCESSFUL",
+  "display-messages": [],
+  "trx-id": "6O7FPWRHH7UOY",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "response-data": {
+    "customer": {
+      "title": "นาย",
+      "title-code": "T1",
+      "firstname": "ณพสิทธิ์",
+      "lastname": "เที่ยงธรรม",
+      "customer-type": "I",
+      "contact-number": "",
+      "contact-mobile-number": "",
+      "id-type": "I",
+      "id-number": "1000293983451",
+      "id-expire-date": "2021-05-14T00:00:00+0700",
+      "customer-id": "27596",
+      "installed-products": [
+        {
+          "ouId": "13218",
+          "ban": "10046833",
+          "product-category": "TMV",
+          "account-category": "I",
+          "account-sub-type": "FIN",
+          "product-id": "",
+          "company-code": "RF",
+          "subscriber-id": "56156",
+          "address-list": {
+            "TAX_ADDRESS": {
+              "number": "132",
+              "moo": "",
+              "street": "จอมทองบูรณะ",
+              "soi": "ไม้หอม",
+              "district": "จอมทอง",
+              "province": "กรุงเทพมหานคร",
+              "building-name": "",
+              "building-room": "",
+              "building-floor": "",
+              "sub-district": "จอมทอง",
+              "zip": "10150",
+              "household": "132"
+            }
+          },
+          "mobile-servicetype": "POSTPAID",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "ou-hierarchytype": "NORMAL",
+          "parent-ouId": ""
+        }
+      ],
+      "address-list": {
+        "CUSTOMER_ADDRESS": {
+          "number": "132",
+          "moo": "",
+          "street": "จอมทองบูรณะ",
+          "soi": "ไม้หอม",
+          "district": "จอมทอง",
+          "province": "กรุงเทพมหานคร",
+          "building-name": "",
+          "building-room": "",
+          "building-floor": "",
+          "sub-district": "จอมทอง",
+          "zip": "10150",
+          "household": "132"
+        }
+      },
+      "customer-properties": {
+        "BILL-CYCLE": "10",
+        "BILL-CYCLE-DESCRIPTION": "Monthly Cycle close on the 9"
+      }
+    }
+  }
+}

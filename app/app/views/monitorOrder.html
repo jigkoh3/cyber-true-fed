@@ -108,7 +108,7 @@
                 <div class="well" id="divTableData" style="background-color:#ffffff;">
                     <table class="table table-hover" ng-show=" datas.length > 0 " id="report">
                         <tr style="background-color:gray;">
-                            <th class="col-xs-1">&nbsp;</th>
+                            <th class="" style="width: 5px;">&nbsp;</th>
                             <th class="col-xs-2" align="center" style="vertical-align: middle; text-align:center;"><span style="color:white;">เลขที่คำขอ (Order Id)&nbsp;</span></th>
                             <th class="col-xs-2" style="vertical-align: middle; text-align:center;" align="center"><span style="color:white;">OMX Transaction ID&nbsp;</span></th>
                             <th class="col-xs-2" style="vertical-align: middle; text-align:center;" align="center"><span style="color:white;">รหัสร้านค้า / รหัสตัวแทนขาย&nbsp;</span></th>
@@ -124,7 +124,7 @@
                         </tr>
                         <tbody style="background-color:white;">
                             <tr ng-repeat="data in datas" valign="top">
-                                <td class="col-xs-1" align="center" style="vertical-align: middle;">
+                                <td align="center" style="vertical-align: middle; width: 5px;">
                                     <i class="fa fa-print fa-2x" ng-click="callPrint(data)" ng-if="data['reprint']==true" style="cursor: pointer; "></i>
                                 </td>
                                 <td style="cursor:pointer; text-align:center;" align="center" class="col-xs-2 contentTb"><a href="" ng-click="popup(data)" data-toggle="modal" data-target="#modal-order-detail">{{data['order-id']}}</a></td>
@@ -215,7 +215,12 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="col-md-6" align="left">สถานะ Order: </div>
-                                    <div class="col-md-6" align="left"><b>{{ data_detail.status }}</b></div>
+                                    <div class="col-md-4" align="left"><b>{{ data_detail.status }}</b></div>
+                                    <div class="col-md-1">
+                                        <div align="right" style="vertical-align: middle; width: 5px;">
+                                            <i class="fa fa-print fa-2x" ng-click="callPrint(selectedData)" ng-if="data_detail['reprint']==true" style="cursor: pointer; "></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
