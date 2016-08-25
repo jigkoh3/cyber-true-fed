@@ -761,19 +761,26 @@
         //$scope.authorizeFullName = $scope.cardInfo2.PrefixTH + "" + $scope.cardInfo2.FirstNameTH + "  " + $scope.cardInfo2.LastNameTH;
     }
     $scope.SetCardValue = function(result) {
+        $('#loadingReadCard').hide();
+        $('#loadingReadCard2').hide();
+        $('#unMatch2').hide();
+        $scope.isReadCardSuccess = false;
+
         $scope.cardInfo = eval(result);
         if ($scope.data.customerProfile["id-number"] == $scope.cardInfo.CitizenID) {
             $scope.isCardValueData = true;
+            $('#CitizenID').val($scope.cardInfo.CitizenID);
+
+            $scope.isReadCardSuccess = true;
+
+            $scope.onInputIdReadCard();
         } else {
             $scope.isCardValueData = false;
+            $('#unMatch').show();
         }
 
 
-        $('#CitizenID').val($scope.cardInfo.CitizenID);
 
-        $scope.isReadCardSuccess = true;
-
-        $scope.onInputIdReadCard();
 
         setTimeout(function() {
             $('#idBindDataAgain').click();
@@ -822,7 +829,7 @@
     //end----------- camera ----------------
 
     //// new requirement readBarcode :: 09-06-2016 :: xsam32
-    $scope.readBarcode = function(text){
+    $scope.readBarcode = function(text) {
         $scope.simSerial = text;
         $('#simSerial').val(text);
         $scope.onInputSIMSerial();
