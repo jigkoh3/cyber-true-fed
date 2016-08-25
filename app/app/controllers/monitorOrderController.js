@@ -533,6 +533,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                                     $scope.datas[index] = value;
                                     $scope.orderDatas[index] = value;
                                     $scope.isLoadOrder = true;
+                                    valOrder.push(value);
                                 });
                             }
                         } catch (err) {
@@ -601,6 +602,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                                     $scope.datas[index] = value;
                                     $scope.orderDatas[index] = value;
                                     $scope.isLoadOrder = true;
+                                    valOrder.push(value);
                                 });
                             }
                         } catch (err) {
@@ -665,6 +667,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         $scope.orderDatas = [];
         $scope.isLoadOrder = false;
         $scope.totalPage = 0;
+        $scope.data_detail = [];
 
         $("#product-number").val("");
         $("#customer-id").val("");
@@ -857,12 +860,12 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
     $scope.leyoutType = "layout-table";
     $scope.selectLayout = function(selectID){
         if(selectID == "layout-table"){
-            $('#' + selectID ).addClass("success");
-            $('#layout-columns').removeClass("success");
+            $('#' + selectID ).addClass("leyout-type");
+            $('#layout-columns').removeClass("leyout-type");
             $scope.leyoutType = "layout-table";
         } else {
-            $('#' + selectID ).addClass("success");
-            $('#layout-table').removeClass("success");
+            $('#' + selectID ).addClass("leyout-type");
+            $('#layout-table').removeClass("leyout-type");
             $scope.leyoutType = "layout-columns";
         }
     }

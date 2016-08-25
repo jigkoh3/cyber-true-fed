@@ -1,0 +1,53 @@
+﻿<html>
+
+<head>
+    <script>
+    function ReadCard(Method) {
+        document.getElementById('photo').src = '';
+        if (navigator.userAgent.indexOf('Chrome') > 0) {
+            var str = document.getElementById('card').Run(Method.replace('Read', 'ReadWait'));
+            ShowData(str);
+        } else {
+            document.getElementById('card').Run(Method);
+        }
+    }
+
+    function ShowData(str) {
+        var obj = eval(str);
+        if (obj.Photo) {
+            document.getElementById('photo').src = "data:image/jpeg;base64," + obj.Photo;
+        }
+        document.getElementById('span_event').innerHTML = ('Event : ReadSuccess<br/>Args : ' + str);
+    }
+    </script>
+</head>
+
+<div class="content m_content">
+    <object id="card" classid="CLSID:D6083DBA-4351-4DA9-85D5-9069544998F1">
+    </object>
+    <script for="card" event="CardChange(state,args)">
+    function card::CardChange(state, args) {
+        document.getElementById('span_event').innerHTML = ('Event : ' + state + '<br/>Args : ' + args);
+        if (state == 'ReadSuccess') {
+            ShowData(args);
+        }
+    }
+    </script>
+    <script>
+    setTimeout(function() {
+        document.getElementById('card').Run('PreviewCard');
+    }, 100);
+    </script>
+    <p>ActiveX อ่านบัตรประชาชนนี้รองรับบราวเซอร์ IE และ Chrome เท่านั้น</p>
+    <p>* กรณี Chrome ต้องติดตั้ง plugin ตัวนี้ก่อน <a target="_search" href="https://chrome.google.com/webstore/detail/activex-for-chrome/lgllffgicojgllpmdbemgglaponefajn">ดาว์นโหลด</a></p>
+    <input type="button" value="อ่านข้อมูล" onclick="ReadCard('Read')" />
+    <input type="button" value="อ่านข้อมูลและรูปถ่าย" onclick="ReadCard('ReadP')" />
+    <input type="button" value="อ่านข้อมูลและแสดงหน้าบัตร" onclick="ReadCard('ReadUpdate')" />
+    <input type="button" value="พิมพ์หน้าบัตร" onclick="ReadCard('PreviewCardDialog')" />
+    <br />
+    <span id="span_event"></span>
+    <br />
+    <img id="photo" width="100" />
+</div>
+
+</html>
