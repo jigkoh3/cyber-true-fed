@@ -14886,11 +14886,26 @@ textarea.remark-message {
 }
 
 .success {
+    /*color: #fff !important;*/
+    /*background-color: #5cb85c !important;*/
+    background-color: #D2D2D2 !important;
+    font-weight: bold;
+}
+
+.leyout-type{
     color: #fff !important;
     background-color: #5cb85c !important;
+    font-weight: bold;
 }
 
 .view2 {
     height: 500px !important;
     overflow: auto !important;
+}
+
+
+.orderLists:hover{
+    /*color: #5cb85c;*/
+    font-weight: bold;
+    /*background-color: #D2D2D2;*/
 }

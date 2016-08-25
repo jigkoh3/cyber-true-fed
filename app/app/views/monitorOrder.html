@@ -91,7 +91,7 @@
             <div ng-show="datas.length > 0" style="padding-top:10px; background-color: #fff; border-style: none; box-shadow: none;" class="well">
                 <div class="row" align="right">
                     <div class="btn-group btn-group-sm">
-                        <button id="layout-table" type="button" class="btn btn-default success" ng-click="selectLayout('layout-table');">
+                        <button id="layout-table" type="button" class="btn btn-default leyout-type" ng-click="selectLayout('layout-table');">
                             <i class="fa fa-table fa-lg">
                             </i> View 1
                         </button>
@@ -177,25 +177,25 @@
                                 <input class="form-control" type="text" placeholder="ค้นหา" ng-model="searchOrder" ng-keyup="smartSearchOrder(searchOrder)">
                             </div>
                         </li>
-                        <li ng-repeat="data in datas" id="{{data['order-id']}}" ng-click="select(data['order-id']); popup(data);" data-toggle="modal" class="list-group-item idActive" style="cursor: pointer;">
+                        <li ng-repeat="orderData in orderDatas" id="{{orderData['order-id']}}" ng-click="select(orderData['order-id']); popup(orderData);" data-toggle="modal" class="list-group-item idActive orderLists" style="cursor: pointer;">
                             <div class="row">
                                 <!-- <div class="col-xs-12"> -->
-                                <div class="col-xs-6" style="text-align:left;">{{data['order-id']}}
+                                <div class="col-xs-6" style="text-align:left;">{{orderData['order-id']}}
                                 </div>
-                                <div class="col-xs-6" style="text-align:right;">{{data['status']}}
+                                <div class="col-xs-6" style="text-align:right;">{{orderData['status']}}
                                 </div>
                                 <!-- </div> -->
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    {{ data['product-id-number'] }}
+                                    {{ orderData['product-id-number'] }}
                                 </div>
                             </div>
                             <div class="row">
                                 <!-- <div class="col-xs-12"> -->
-                                <div class="col-xs-6" style="text-align:left;">{{data['partner-code']}} / {{data['sale-code']}}
+                                <div class="col-xs-6" style="text-align:left;">{{orderData['partner-code']}} / {{orderData['sale-code']}}
                                 </div>
-                                <div class="col-xs-6" style="text-align:right;">{{data['submit-date'] | date:"dd/MM/yyyy HH:mm:ss"}}
+                                <div class="col-xs-6" style="text-align:right;">{{orderData['submit-date'] | date:"dd/MM/yyyy HH:mm:ss"}}
                                 </div>
                                 <!-- </div> -->
                             </div>
