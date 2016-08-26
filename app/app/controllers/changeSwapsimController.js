@@ -693,7 +693,14 @@
 
                     } else {
                         setTimeout(function() {
-                            SystemService.showAlert(displayMsg);
+                            SystemService.showAlert({
+                                "message": displayMsg["display-messages"][0]["message"],
+                                "message-code": displayMsg["display-messages"][0]["message-code"],
+                                "message-type": "WARNING",
+                                "en-message": displayMsg["display-messages"][0]["en-message"],
+                                "th-message": displayMsg["display-messages"][0]["th-message"],
+                                "technical-message": displayMsg["display-messages"][0]["technical-message"]
+                            });
                         }, 1200);
                     }
                 });
