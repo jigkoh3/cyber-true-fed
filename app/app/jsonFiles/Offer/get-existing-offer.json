@@ -1,0 +1,252 @@
+{
+  "status": "SUCCESSFUL",
+  "display-messages": [],
+  "trx-id": "4C7GK1UL66VSV",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "response-data": {
+    "customer": {
+      "installed-products": [
+        {
+          "product-category": "TMV",
+          "product-type": "PRICEPLAN-BUILT-IN",
+          "product-status": "A",
+          "product-id": "RMGPSS62",
+          "product-name": "RMGPSS62",
+          "product-description": "BundleGPRS 700MB,SpecialRate(PP)0.002bt/KB,Cap1500",
+          "service-level": "G",
+          "product-soc-code": "79253",
+          "product-properties": {
+            "PARENT-SOC-NAME": "RFSMTP10",
+            "AGREEMENT-ID": "102687",
+            "PARENT-SOC-SEQUENCE": "556521",
+            "AGREEMENT-SOC-SEQUENCE": "556527",
+            "OFFER-INSTANCE-ID": "556527"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "ADDITIONAL",
+          "effective-date": "03/06/2016",
+          "soc-type": "U"
+        },
+        {
+          "product-category": "TMV",
+          "product-type": "ADDITIONAL-OFFER",
+          "product-status": "A",
+          "product-id": "CREDITLIMIT",
+          "product-name": "CREDITLIMIT",
+          "product-description": "Credit Limit offer",
+          "service-level": "G",
+          "product-soc-code": "20061",
+          "product-properties": {
+            "AGREEMENT-ID": "102687",
+            "PARENT-SOC-SEQUENCE": "",
+            "AGREEMENT-SOC-SEQUENCE": "556520",
+            "OFFER-INSTANCE-ID": "556528"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "ADDITIONAL",
+          "effective-date": "03/06/2016",
+          "soc-type": "U"
+        },
+        {
+          "product-category": "TMV",
+          "product-type": "PRICEPLAN",
+          "product-status": "A",
+          "product-id": "RFSMTP10",
+          "product-name": "RFSMTP10",
+          "product-description": "Smart 340 voice 200 mins 3GEG 700 MB Wifi Ultd",
+          "service-level": "C",
+          "product-soc-code": "91904",
+          "product-properties": {
+            "AGREEMENT-ID": "102687",
+            "PARENT-SOC-SEQUENCE": "",
+            "AGREEMENT-SOC-SEQUENCE": "556521",
+            "OFFER-INSTANCE-ID": "556521"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "PRICEPLAN",
+          "effective-date": "03/06/2016",
+          "soc-type": "P"
+        },
+        {
+          "product-category": "TMV",
+          "product-type": "PRICEPLAN-BUILT-IN",
+          "product-status": "A",
+          "product-id": "INTSPS01",
+          "product-name": "INTSPS01",
+          "product-description": "Internation Call Special Rate",
+          "service-level": "C",
+          "product-soc-code": "53032",
+          "product-properties": {
+            "PARENT-SOC-NAME": "RFSMTP10",
+            "AGREEMENT-ID": "102687",
+            "PARENT-SOC-SEQUENCE": "556521",
+            "AGREEMENT-SOC-SEQUENCE": "556526",
+            "OFFER-INSTANCE-ID": "556526"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "ADDITIONAL",
+          "effective-date": "03/06/2016",
+          "soc-type": "U"
+        },
+        {
+          "product-category": "TMV",
+          "product-type": "PRICEPLAN-BUILT-IN",
+          "product-status": "A",
+          "product-id": "RMPGPS01",
+          "product-name": "RMPGPS01",
+          "product-description": "GPRS Provisioning SOC - RMV (HMMS,HINTERNET)",
+          "service-level": "C",
+          "product-soc-code": "41701",
+          "product-properties": {
+            "PARENT-SOC-NAME": "RFSMTP10",
+            "AGREEMENT-ID": "102687",
+            "PARENT-SOC-SEQUENCE": "556521",
+            "AGREEMENT-SOC-SEQUENCE": "556524",
+            "OFFER-INSTANCE-ID": "556524"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "ADDITIONAL",
+          "effective-date": "03/06/2016",
+          "soc-type": "U"
+        },
+        {
+          "product-category": "TMV",
+          "product-type": "PROPOSITION",
+          "product-id": "AGE180000000001",
+          "product-name": "AGE180000000001",
+          "product-description": "Age more than 18 but less than 20",
+          "product-soc-code": "55562",
+          "product-properties": {
+            "IS-CONTRACT": "Y",
+            "CONTRACT-EXPIRATION-DATE": "01/01/2017",
+            "CONTRACT-FEE": "199",
+            "CONTRACT-START-DATE": "01/07/2015",
+            "CONTRACT-TERM": "18",
+            "OFFER-INSTANCE-ID": "326711"
+          },
+          "product-id-name": "MSISDN",
+          "product-id-number": "",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "contract-fee": "199",
+          "contract-term": "18",
+          "offer-group": "PROPOSITION",
+          "effective-date": "02/08/2015",
+          "expire-date": "",
+          "soc-type": "U"
+        },
+        {
+          "product-category": "TMV",
+          "product-type": "PRICEPLAN-BUILT-IN",
+          "product-status": "A",
+          "product-id": "PROSTDA1",
+          "product-name": "PROSTDA1",
+          "product-description": "Standard Provisioning Services for Post Pay # 1",
+          "service-level": "C",
+          "product-soc-code": "40941",
+          "product-properties": {
+            "PARENT-SOC-NAME": "RFSMTP10",
+            "AGREEMENT-ID": "102687",
+            "PARENT-SOC-SEQUENCE": "556521",
+            "AGREEMENT-SOC-SEQUENCE": "556522",
+            "OFFER-INSTANCE-ID": "556522"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "ADDITIONAL",
+          "effective-date": "03/06/2016",
+          "soc-type": "U"
+        },
+        {
+          "product-category": "TMV",
+          "product-type": "PRICEPLAN-BUILT-IN",
+          "product-status": "A",
+          "product-id": "FCVBAR",
+          "product-name": "FCVBAR",
+          "product-description": "First Call Verification, Barring",
+          "service-level": "C",
+          "product-soc-code": "41861",
+          "product-properties": {
+            "PARENT-SOC-NAME": "RFSMTP10",
+            "AGREEMENT-ID": "102687",
+            "PARENT-SOC-SEQUENCE": "556521",
+            "AGREEMENT-SOC-SEQUENCE": "556525",
+            "OFFER-INSTANCE-ID": "556525"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "ADDITIONAL",
+          "effective-date": "03/06/2016",
+          "soc-type": "U"
+        },
+        {
+          "product-category": "TMV",
+          "product-type": "PRICEPLAN-BUILT-IN",
+          "product-status": "A",
+          "product-id": "RMHSPS04",
+          "product-name": "RMHSPS04",
+          "product-description": "Hi-Speed 3G/EDGE/GPRS 42.0 Mbps - PostPay",
+          "service-level": "C",
+          "product-soc-code": "41661",
+          "product-properties": {
+            "PARENT-SOC-NAME": "RFSMTP10",
+            "AGREEMENT-ID": "102687",
+            "PARENT-SOC-SEQUENCE": "556521",
+            "AGREEMENT-SOC-SEQUENCE": "556523",
+            "OFFER-INSTANCE-ID": "556523"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "ADDITIONAL",
+          "effective-date": "03/06/2016",
+          "soc-type": "U"
+        },
+        {
+          "product-category": "TMV",
+          "product-type": "ADDITIONAL-OFFER",
+          "product-status": "A",
+          "product-id": "CARRYS01",
+          "product-name": "CARRYS01",
+          "product-description": "Free call bonus from move to Postpaid",
+          "service-level": "C",
+          "product-soc-code": "11213612",
+          "product-properties": {
+            "AGREEMENT-ID": "102687",
+            "PARENT-SOC-SEQUENCE": "",
+            "AGREEMENT-SOC-SEQUENCE": "556530",
+            "OFFER-INSTANCE-ID": "556530"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "ADDITIONAL",
+          "effective-date": "03/06/2016",
+          "soc-type": "U"
+        }
+      ]
+    }
+  }
+}

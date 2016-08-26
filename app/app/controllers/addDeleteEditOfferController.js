@@ -960,6 +960,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             SystemService.hideLoading();
         } else {
             authenticate();
+            $scope.getExistingOffer();
         }
 
     };
@@ -1576,7 +1577,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     }
 
     $scope.modelChange = false;
-    $scope.onModelChange = function(){
+    $scope.onModelChange = function() {
         $scope.modelChange = true;
     }
 
@@ -1592,5 +1593,22 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.hideReadCardForMobile = function() {
         SystemService.hideReadCardForMobile();
+    };
+
+    $scope.existingOffer = [];
+    $scope.builtInOffer = [];
+    $scope.regularOffer = [];
+    $scope.discountOffer = [];
+    $scope.getExistingOffer = function() {
+        AddDeleteEditOfferNewService.getExistingOffer($scope.level, $scope.data.simData['product-id-number'], $scope.data.simData['subscriber-id'], function(result) {
+            console.log(result.data['response-data']['customer']['installed-products']);
+            if (result) {
+                $scope.existingOffer = result.data['response-data']['customer']['installed-products'];
+                $scope.builtInOffer = $filter('filter')($scope.existingOffer, {'product-type': 'PRICEPLAN-BUILT-IN'});
+                $scope.regularOffer = $filter('filter')($scope.existingOffer, {'product-type': 'ADDITIONAL-OFFER'});
+                $scope.propoOffer = $filter('filter')($scope.existingOffer, {'product-type': 'PROPOSITION'});
+                $scope.discountOffer = $filter('filter')($scope.existingOffer, {'product-type': 'DISCOUNT'});
+            }
+        });
     };
 });
