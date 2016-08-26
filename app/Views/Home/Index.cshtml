@@ -386,6 +386,7 @@
             $('#CitizenID').val('');
             //document.getElementById('span_event').innerHTML = ('Event : ' + state + '<br/>Args : ' + args);
             if (state == 'ReadSuccess') {
+                $('#imgShowPhoto').attr("src", "data:image/png;base64,"+eval(args).Photo);
                 $('.idBtnReadCard').prop('disabled', false);
                 if ($('#ReadAuthorize').val() == 'true') {
                     angular.element(document.getElementById('' + $('#divID').val())).scope().SetCardValue2(args);
