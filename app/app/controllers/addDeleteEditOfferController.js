@@ -1646,7 +1646,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
         if($scope.addType == 'ALL'){
             $scope.addOfferType.value = 'ADDITIONAL';
-            var searchParam = "offer-group=" + $scope.addOfferType + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";    
+            var searchParam = "offer-group=" + $scope.addOfferType.value + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";    
         } else if($scope.addType == 'CONTRACT_PROPO') {
             $scope.addOfferType.value = 'CONTRACT_PROPO';
             var searchParam = "offer-group=CONTRACT_PROPO" + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";
@@ -1654,7 +1654,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.addOfferType.value = 'DISCOUNT';
             var searchParam = "offer-group=DISCOUNT" + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";
         }else {
-            var searchParam = "offer-group=" + $scope.addOfferType + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";   
+            var searchParam = "offer-group=" + $scope.addOfferType.value + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";   
         }
         
         console.log(searchParam);
