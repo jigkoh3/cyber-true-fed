@@ -111,7 +111,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     //paging
     $scope.currentPage = 1;
     $scope.pageSize = 5;
-    $scope.addOfferType = "AD";
+    $scope.addOfferType = {
+        value: "ADDITIONAL"};
     $scope.txtSearchOffer = "";
     $scope.ffData = {
         max: 4
@@ -892,9 +893,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.radioOffer = "";
         $scope.txtSearchOffer = "";
         //$scope.popUpOfferList = popUpOfferList;
-        $scope.addOfferLists = $filter('filter')(addOfferLists, {
-            'type': $scope.addOfferType
-        });
+        // $scope.addOfferLists = $filter('filter')(addOfferLists, {
+        //     'type': $scope.addOfferType
+        // });
         $('.hModal').height(($(window).height()) - 235);
         //$('.modal-backdrop').css('height', '200%');
     };
@@ -1652,7 +1653,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
         // var searchParam = "offer-group=" + $scope.addOfferType + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";
         console.log(searchParam);
-        AddDeleteEditOfferNewService.searchOffer(searchParam, $scope.addType, function(result){
+        AddDeleteEditOfferNewService.searchOffer(searchParam, $scope.addOfferType.value, function(result){
             // console.log(result);
             // SystemService.hideLoading();
             if(result.data['response-data']){

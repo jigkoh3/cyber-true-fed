@@ -540,7 +540,7 @@
                             <b>Offer Type</b>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-control" ng-model="addOfferType" id="addOfferType" ng-change="onAddOfferType(); searchOffer();">
+                            <select class="form-control" ng-model="addOfferType.value" id="addOfferType" ng-change="onAddOfferType(); searchOffer('ALL');">
                                 <!-- <option value="">All</option> -->
                                 <option value="ADDITIONAL">Additional Offer</option>
                                 <option value="RELATED">Related Offer</option>
