@@ -1645,6 +1645,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
 
         if($scope.addType == 'ALL'){
+            $scope.addOfferType.value = 'ADDITIONAL';
             var searchParam = "offer-group=" + $scope.addOfferType + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";    
         } else if($scope.addType == 'CONTRACT_PROPO') {
             $scope.addOfferType.value = 'CONTRACT_PROPO';
@@ -1652,13 +1653,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else if($scope.addType == 'DISCOUNT'){
             $scope.addOfferType.value = 'DISCOUNT';
             var searchParam = "offer-group=DISCOUNT" + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";
+        }else {
+            var searchParam = "offer-group=" + $scope.addOfferType + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";   
         }
-        // var searchParam = "offer-group=" + $scope.addOfferType + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";
+        
         console.log(searchParam);
         AddDeleteEditOfferNewService.searchOffer(searchParam, $scope.addOfferType.value, function(result){
             // console.log(result);
             // SystemService.hideLoading();
-            $scope.addOfferType.value = 'ADDITIONAL';
             if(result.data['response-data']){
                 SystemService.hideLoading();
                 $scope.addOfferLists = result.data['response-data'];

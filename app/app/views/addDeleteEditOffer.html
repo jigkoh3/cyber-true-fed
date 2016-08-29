@@ -523,7 +523,7 @@
             &nbsp;&nbsp;
             <div class="modalOffer-header">
                 <span class="fa fa-plus-circle pull-left fa-lg-plus" style="color: #00a651;"></span>
-                <div ng-if="addType=='ALL'" style="font-size: 1.5em;">เพิ่มบริการ Offer</div>
+                <div ng-if="addType=='ALL'||addType==''" style="font-size: 1.5em;">เพิ่มบริการ Offer</div>
                 <div ng-if="addType=='CONTRACT_PROPO'" style="font-size: 1.5em;">เพิ่มบริการ Contract & Proposition</div>
                 <div ng-if="addType=='DISCOUNT'" style="font-size: 1.5em;">เพิ่มบริการ Discount</div>
             </div>
@@ -535,12 +535,12 @@
             </div>-->
             <div class="modal-body">
                 <div class="table-responsive hModal" style="overflow-x:hidden;">
-                    <div class="row" ng-if="addType=='ALL'">
+                    <div class="row" ng-if="addType=='ALL'||addType==''">
                         <div class="col-md-4 text-right" style="margin-top: 9px;">
                             <b>Offer Type</b>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-control" ng-model="addOfferType.value" id="addOfferType" ng-change="onAddOfferType(); searchOffer('ALL');">
+                            <select class="form-control" ng-model="addOfferType.value" id="addOfferType" ng-change="onAddOfferType(); searchOffer('');">
                                 <!-- <option value="">All</option> -->
                                 <option value="ADDITIONAL">Additional Offer</option>
                                 <option value="RELATED">Related Offer</option>
