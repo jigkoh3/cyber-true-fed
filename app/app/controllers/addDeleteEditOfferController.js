@@ -970,10 +970,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.level = "SUBSCRIBER";
+    $scope.callService = false;
     $scope.onInputSubNo = function() {
+        if($scope.callService == true){
+            return;
+        }
         $scope.subNoInput = $('#dataSubNo').val();
 
         if ($scope.subNoInput && $scope.subNoInput.length === 10) {
+            $scope.callService == true;
             SystemService.showLoading();
             $scope.SubNo = $('#dataSubNo').val();
             AddDeleteEditOfferNewService.getSIMData($scope.subNoInput, $scope.level, onGetSIMData);
@@ -984,6 +989,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.getPopUpOfferList();
                 $scope.getFutureOfferList();
             }
+        }else {
+            $scope.callService = false;
         }
     };
     // (End) Get current SIM data ----------------------
@@ -1615,4 +1622,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }
         });
     };
+
+    $scope.searchOffer = function(){
+        // var searchParam = 
+    }
 });
