@@ -35,6 +35,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.propositions = [];
     $scope.disableSubmitAddOffer = true;
     $scope.CitizenID = "";
+    $scope.viewOffer = {};
 
     $scope.data = {};
     $scope.isReadCardSuccess = false;
@@ -890,12 +891,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
     $scope.showDetail = function(item) {
         console.log(item);
-        $scope.showDetail['offer-name'] = item['offer-name'];
-        $scope.editOfferCode = item['offer-name'];
-        $scope.showDetail['offer-description'] = item['offer-description'];
-        $scope.editOfferDesc = item['offer-description'];
-        $scope.viewOfferCode = item['offer-name'];
-        $scope.viewOfferDesc = item['offer-description'];
+        $scope.editOfferCode = item['product-name'];
+        $scope.editOfferDesc = item['product-description'];
+        
         $scope.showDetail['effective-date'] = item['effective-date'];
         $scope.showDetail['expiration-date'] = item['expiration-date'];
         $scope.showDetail['type'] = item['type'];
@@ -904,6 +902,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.editExpType = "effective";
         $scope.editParam = false;
         $scope.editExp = false;
+        $scope.viewOffer = {
+            "product-name": item['product-name'],
+            "product-description": item['product-description'],
+            "effective-date": item['effective-date'],
+            "expiration-date": item['expiration-date']
+        }
     };
 
     $scope.editDetail = function(item) {
@@ -1584,7 +1588,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.unChk = function(editOfferCode) {
         if ($scope.modelChange == false) {
             for (var i = 0; i < $scope.offerList.length; i++) {
-                if (editOfferCode == $scope.offerList[i]['offer-name']) {
+                if (editOfferCode == $scope.offerList[i]['product-name']) {
                     $scope.offerList[i].selected = false;
                 }
             }
