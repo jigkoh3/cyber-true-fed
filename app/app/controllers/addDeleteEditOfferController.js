@@ -51,6 +51,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.manualExpDate = true;
     var orderData = {};
     $scope.editOffers = [];
+    $scope.addOfferLists = [];
+    var addOfferlists = [];
     //Reasons
     $scope.detailViewOffer = {
         "ff1": "0812345678",
@@ -109,7 +111,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     //paging
     $scope.currentPage = 1;
     $scope.pageSize = 5;
-    $scope.regularOfferTypeId = "AD";
+    $scope.addOfferType = "AD";
     $scope.txtSearchOffer = "";
     $scope.ffData = {
         max: 4
@@ -119,9 +121,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     //STR: get offerList
     $scope.offerList = [];
     $scope.releteOfferList = [];
-    $scope.regulaOfferList = [];
-    $scope.popUpOfferList = [];
-    var popUpOfferList = [];
+    $scope.addNewOfferLists = [];
+
+// =========================Change to addOfferLists=================================
+    // $scope.popUpOfferList = [];
+    // var popUpOfferList = [];
+// =================================================================================
+
     $scope.cpOfferList = [];
     var cpOfferList = [];
     $scope.disOfferList = [];
@@ -221,8 +227,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 AddDeleteEditOfferNewService.getSIMData($scope.subNoInput, $scope.level, onGetSIMData);
                 $scope.getOfferList();
                 $scope.getReleteOfferList();
-                $scope.getRegulaOfferList();
-                $scope.getPopUpOfferList();
+                // $scope.getRegulaOfferList();
+                // $scope.getPopUpOfferList();
                 $scope.getFutureOfferList();
                 if (onGetSIMData) {
                     $scope.initModalReadCard();
@@ -235,247 +241,247 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         //}
     };
 
-    $scope.getPopUpOfferList = function() {
-        var result = [{
-            "offer-name": "PKSMSS30",
-            "offer-description": "SMS package 50THB 60sms 30 Days",
-            "type": "Additional Offer",
-            "offer-level": "C",
-            "sale-eff": "19/11/2015",
-            "sale-exp": "31/01/2017"
-        }, {
-            "offer-name": "MNP006",
-            "offer-description": "Test Discpunt 001",
-            "offer-level": "C",
-            "type": "Discount",
-            "group": "Other",
-            "sale-eff": "13/11/2014",
-            "sale-exp": "08/08/2250"
-        }, {
-            "offer-name": "RMV000000001314",
-            "offer-description": "MNP Gen Y",
-            "offer-level": "C",
-            "type": "Contract & Proposition",
-            "sale-eff": "24/03/2015",
-            "sale-exp": "05/07/2016"
-        }, {
-            "offer-name": "CCUGA501",
-            "offer-description": "CUG on/off Net(Package Level)",
-            "offer-level": "C",
-            "type": "CUG",
-            "sale-eff": "27/03/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "CFF05501",
-            "offer-description": "F&F service-FL 5 Full Math(0 Bt)_Sub",
-            "offer-level": "C",
-            "type": "CUG",
-            "sale-eff": "27/03/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "M00M0S03D",
-            "offer-description": "B&E_ShPool299 getV299min.S40.M5 50MB Wifi ULT",
-            "offer-level": "G",
-            "type": "Pooling",
-            "sale-eff": "27/03/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMV000000001536",
-            "offer-description": "AllianceCP_4G_Extra",
-            "offer-level": "C",
-            "type": "Additional Offer",
-            "sale-eff": "19/11/2015",
-            "sale-exp": "31/01/2017"
-        }, {
-            "offer-name": "RMV000000000223",
-            "offer-description": "Biz(MNP O2R)_True Smart 4.0_12mths_Penalty 1,000",
-            "offer-level": "C",
-            "type": "Additional Offer",
-            "sale-eff": "13/11/2014",
-            "sale-exp": "08/08/2250"
-        }, {
-            "offer-name": "RMV000000001022",
-            "offer-description": "New Galaxy SIM only",
-            "offer-level": "C",
-            "type": "Additional Offer",
-            "sale-eff": "24/03/2015",
-            "sale-exp": "05/07/2016"
-        }, {
-            "offer-name": "RMVC00000000032",
-            "offer-description": "GOV_Caesar3_TrueSamrt4.0+SIM",
-            "offer-level": "C",
-            "type": "Additional Offer",
-            "sale-eff": "27/03/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMVC00000000071",
-            "offer-description": "Non Shop_EDU_Puenkru2_True Lenevo+SIM",
-            "offer-level": "C",
-            "type": "CUG",
-            "sale-eff": "30/06/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMV000000001073",
-            "offer-description": "iPhone 6 discount 7500",
-            "offer-level": "C",
-            "type": "CUG",
-            "sale-eff": "23/04/2015",
-            "sale-exp": "04/02/2016"
-        }, {
-            "offer-name": "RMV000000001520",
-            "offer-description": "MG_4G Cele. iPhone 5s_Airtime",
-            "offer-level": "C",
-            "type": "CUG",
-            "sale-eff": "17/11/2015",
-            "sale-exp": "17/11/2016"
-        }, {
-            "offer-name": "RMV000000001225",
-            "offer-description": "Test Discpunt 002",
-            "offer-level": "C",
-            "type": "Discount",
-            "group": "Other",
-            "sale-eff": "16/07/2015",
-            "sale-exp": "31/07/2020"
-        }, {
-            "offer-name": "RMVC00000000091",
-            "offer-description": "Test Discpunt 003",
-            "offer-level": "G",
-            "type": "Discount",
-            "group": "Retention",
-            "sale-eff": "28/07/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMVB00000000266",
-            "offer-description": "Test Discpunt 004",
-            "offer-level": "C",
-            "type": "Discount",
-            "group": "Other",
-            "sale-eff": "28/07/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMVB00000000267",
-            "offer-description": "Test Discpunt 005",
-            "offer-level": "C",
-            "type": "Discount",
-            "group": "New",
-            "sale-eff": "28/07/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMVB00000000268",
-            "offer-description": "Test Discpunt 006",
-            "offer-level": "C",
-            "type": "Discount",
-            "group": "Special",
-            "sale-eff": "28/07/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMVB00000000269",
-            "offer-description": "Test Discpunt 007",
-            "offer-level": "C",
-            "type": "Discount",
-            "group": "Special",
-            "sale-eff": "28/07/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMVB00000000210",
-            "offer-description": "Test Discpunt 008",
-            "offer-level": "C",
-            "type": "Employee",
-            "group": "Other",
-            "sale-eff": "28/07/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMV000000000400",
-            "offer-description": "Test Discpunt 009",
-            "offer-level": "G",
-            "type": "Discount",
-            "group": "Convergence",
-            "sale-eff": "10/01/2014",
-            "sale-exp": "08/08/2018"
-        }, {
-            "offer-name": "RMV000000000322",
-            "offer-description": "New Galaxy SIM only",
-            "offer-level": "C",
-            "sale-eff": "01/01/2015",
-            "sale-exp": "05/07/2016"
-        }, {
-            "offer-name": "RMV000000001010",
-            "offer-description": "GOV_Caesar5_TrueSamrt4.0",
-            "offer-level": "G",
-            "type": "Pooling",
-            "sale-eff": "01/01/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMVC00000000101",
-            "offer-description": "Non Shop_EDU_Puenkru2_True",
-            "offer-level": "C",
-            "type": "Pooling",
-            "sale-eff": "05/06/2014",
-            "sale-exp": "31/12/2015"
-        }, {
-            "offer-name": "RMVB00000000555",
-            "offer-description": "Dongle Bundling For Business Solution_15mths",
-            "offer-level": "C",
-            "type": "CUG",
-            "sale-eff": "01/01/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMVC00000001073",
-            "offer-description": "iPhone 6 discount 8500",
-            "offer-level": "G",
-            "type": "Pooling",
-            "sale-eff": "13/02/2015",
-            "sale-exp": "04/02/2016"
-        }, {
-            "offer-name": "RMV000000001220",
-            "offer-description": "MG_4G Cele. iPhone 6s_Airtime",
-            "offer-level": "C",
-            "type": "Contract & Proposition",
-            "sale-eff": "15/01/2015",
-            "sale-exp": "01/12/2017"
-        }, {
-            "offer-name": "RMVC00000001225",
-            "offer-description": "Samsung TradeIN_5,000_Jmart",
-            "offer-level": "C",
-            "type": "Contract & Proposition",
-            "sale-eff": "16/07/2015",
-            "sale-exp": "31/07/2020"
-        }, {
-            "offer-name": "RMVC00000000100",
-            "offer-description": "GOV_Caesar_Plus_4_SIM_only",
-            "offer-level": "C",
-            "type": "Contract & Proposition",
-            "sale-eff": "28/02/2015",
-            "sale-exp": "31/12/2016"
-        }, {
-            "offer-name": "RMVB00000000211",
-            "offer-description": "Dongle Bundling For Business Solution_12mths_Panalty",
-            "offer-level": "G",
-            "type": "Contract & Proposition",
-            "sale-eff": "01/07/2015",
-            "sale-exp": "31/12/2016"
-        }];
-        $scope.popUpOfferList = result;
-        popUpOfferList = result;
-        $scope.popUpOfferList = $filter('filter')(popUpOfferList, {
-            'type': $scope.regularOfferTypeId
-        });
-        // $scope.cpOfferList = result;
-        cpOfferList = $filter('filter')(popUpOfferList, {
-            'type': 'Contract & Proposition'
-        });
-        $scope.cpOfferList = $filter('filter')(popUpOfferList, {
-            'type': 'Contract & Proposition'
-        });
-        $scope.disOfferList = $filter('filter')(popUpOfferList, {
-            'type': 'Discount'
-        });
-        disOfferList = $filter('filter')(popUpOfferList, {
-            'type': 'Discount'
-        });
-        $scope.cpStartDate = SystemService.convertDateToEng($scope.dateNow, 'TH');
-        $scope.trActualContractStartDate = SystemService.convertDateToEng($scope.dateNow, 'TH');
-    };
+    // $scope.getPopUpOfferList = function() {
+    //     var result = [{
+    //         "offer-name": "PKSMSS30",
+    //         "offer-description": "SMS package 50THB 60sms 30 Days",
+    //         "type": "Additional Offer",
+    //         "offer-level": "C",
+    //         "sale-eff": "19/11/2015",
+    //         "sale-exp": "31/01/2017"
+    //     }, {
+    //         "offer-name": "MNP006",
+    //         "offer-description": "Test Discpunt 001",
+    //         "offer-level": "C",
+    //         "type": "Discount",
+    //         "group": "Other",
+    //         "sale-eff": "13/11/2014",
+    //         "sale-exp": "08/08/2250"
+    //     }, {
+    //         "offer-name": "RMV000000001314",
+    //         "offer-description": "MNP Gen Y",
+    //         "offer-level": "C",
+    //         "type": "Contract & Proposition",
+    //         "sale-eff": "24/03/2015",
+    //         "sale-exp": "05/07/2016"
+    //     }, {
+    //         "offer-name": "CCUGA501",
+    //         "offer-description": "CUG on/off Net(Package Level)",
+    //         "offer-level": "C",
+    //         "type": "CUG",
+    //         "sale-eff": "27/03/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "CFF05501",
+    //         "offer-description": "F&F service-FL 5 Full Math(0 Bt)_Sub",
+    //         "offer-level": "C",
+    //         "type": "CUG",
+    //         "sale-eff": "27/03/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "M00M0S03D",
+    //         "offer-description": "B&E_ShPool299 getV299min.S40.M5 50MB Wifi ULT",
+    //         "offer-level": "G",
+    //         "type": "Pooling",
+    //         "sale-eff": "27/03/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMV000000001536",
+    //         "offer-description": "AllianceCP_4G_Extra",
+    //         "offer-level": "C",
+    //         "type": "Additional Offer",
+    //         "sale-eff": "19/11/2015",
+    //         "sale-exp": "31/01/2017"
+    //     }, {
+    //         "offer-name": "RMV000000000223",
+    //         "offer-description": "Biz(MNP O2R)_True Smart 4.0_12mths_Penalty 1,000",
+    //         "offer-level": "C",
+    //         "type": "Additional Offer",
+    //         "sale-eff": "13/11/2014",
+    //         "sale-exp": "08/08/2250"
+    //     }, {
+    //         "offer-name": "RMV000000001022",
+    //         "offer-description": "New Galaxy SIM only",
+    //         "offer-level": "C",
+    //         "type": "Additional Offer",
+    //         "sale-eff": "24/03/2015",
+    //         "sale-exp": "05/07/2016"
+    //     }, {
+    //         "offer-name": "RMVC00000000032",
+    //         "offer-description": "GOV_Caesar3_TrueSamrt4.0+SIM",
+    //         "offer-level": "C",
+    //         "type": "Additional Offer",
+    //         "sale-eff": "27/03/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMVC00000000071",
+    //         "offer-description": "Non Shop_EDU_Puenkru2_True Lenevo+SIM",
+    //         "offer-level": "C",
+    //         "type": "CUG",
+    //         "sale-eff": "30/06/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMV000000001073",
+    //         "offer-description": "iPhone 6 discount 7500",
+    //         "offer-level": "C",
+    //         "type": "CUG",
+    //         "sale-eff": "23/04/2015",
+    //         "sale-exp": "04/02/2016"
+    //     }, {
+    //         "offer-name": "RMV000000001520",
+    //         "offer-description": "MG_4G Cele. iPhone 5s_Airtime",
+    //         "offer-level": "C",
+    //         "type": "CUG",
+    //         "sale-eff": "17/11/2015",
+    //         "sale-exp": "17/11/2016"
+    //     }, {
+    //         "offer-name": "RMV000000001225",
+    //         "offer-description": "Test Discpunt 002",
+    //         "offer-level": "C",
+    //         "type": "Discount",
+    //         "group": "Other",
+    //         "sale-eff": "16/07/2015",
+    //         "sale-exp": "31/07/2020"
+    //     }, {
+    //         "offer-name": "RMVC00000000091",
+    //         "offer-description": "Test Discpunt 003",
+    //         "offer-level": "G",
+    //         "type": "Discount",
+    //         "group": "Retention",
+    //         "sale-eff": "28/07/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMVB00000000266",
+    //         "offer-description": "Test Discpunt 004",
+    //         "offer-level": "C",
+    //         "type": "Discount",
+    //         "group": "Other",
+    //         "sale-eff": "28/07/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMVB00000000267",
+    //         "offer-description": "Test Discpunt 005",
+    //         "offer-level": "C",
+    //         "type": "Discount",
+    //         "group": "New",
+    //         "sale-eff": "28/07/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMVB00000000268",
+    //         "offer-description": "Test Discpunt 006",
+    //         "offer-level": "C",
+    //         "type": "Discount",
+    //         "group": "Special",
+    //         "sale-eff": "28/07/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMVB00000000269",
+    //         "offer-description": "Test Discpunt 007",
+    //         "offer-level": "C",
+    //         "type": "Discount",
+    //         "group": "Special",
+    //         "sale-eff": "28/07/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMVB00000000210",
+    //         "offer-description": "Test Discpunt 008",
+    //         "offer-level": "C",
+    //         "type": "Employee",
+    //         "group": "Other",
+    //         "sale-eff": "28/07/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMV000000000400",
+    //         "offer-description": "Test Discpunt 009",
+    //         "offer-level": "G",
+    //         "type": "Discount",
+    //         "group": "Convergence",
+    //         "sale-eff": "10/01/2014",
+    //         "sale-exp": "08/08/2018"
+    //     }, {
+    //         "offer-name": "RMV000000000322",
+    //         "offer-description": "New Galaxy SIM only",
+    //         "offer-level": "C",
+    //         "sale-eff": "01/01/2015",
+    //         "sale-exp": "05/07/2016"
+    //     }, {
+    //         "offer-name": "RMV000000001010",
+    //         "offer-description": "GOV_Caesar5_TrueSamrt4.0",
+    //         "offer-level": "G",
+    //         "type": "Pooling",
+    //         "sale-eff": "01/01/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMVC00000000101",
+    //         "offer-description": "Non Shop_EDU_Puenkru2_True",
+    //         "offer-level": "C",
+    //         "type": "Pooling",
+    //         "sale-eff": "05/06/2014",
+    //         "sale-exp": "31/12/2015"
+    //     }, {
+    //         "offer-name": "RMVB00000000555",
+    //         "offer-description": "Dongle Bundling For Business Solution_15mths",
+    //         "offer-level": "C",
+    //         "type": "CUG",
+    //         "sale-eff": "01/01/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMVC00000001073",
+    //         "offer-description": "iPhone 6 discount 8500",
+    //         "offer-level": "G",
+    //         "type": "Pooling",
+    //         "sale-eff": "13/02/2015",
+    //         "sale-exp": "04/02/2016"
+    //     }, {
+    //         "offer-name": "RMV000000001220",
+    //         "offer-description": "MG_4G Cele. iPhone 6s_Airtime",
+    //         "offer-level": "C",
+    //         "type": "Contract & Proposition",
+    //         "sale-eff": "15/01/2015",
+    //         "sale-exp": "01/12/2017"
+    //     }, {
+    //         "offer-name": "RMVC00000001225",
+    //         "offer-description": "Samsung TradeIN_5,000_Jmart",
+    //         "offer-level": "C",
+    //         "type": "Contract & Proposition",
+    //         "sale-eff": "16/07/2015",
+    //         "sale-exp": "31/07/2020"
+    //     }, {
+    //         "offer-name": "RMVC00000000100",
+    //         "offer-description": "GOV_Caesar_Plus_4_SIM_only",
+    //         "offer-level": "C",
+    //         "type": "Contract & Proposition",
+    //         "sale-eff": "28/02/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }, {
+    //         "offer-name": "RMVB00000000211",
+    //         "offer-description": "Dongle Bundling For Business Solution_12mths_Panalty",
+    //         "offer-level": "G",
+    //         "type": "Contract & Proposition",
+    //         "sale-eff": "01/07/2015",
+    //         "sale-exp": "31/12/2016"
+    //     }];
+    //     $scope.popUpOfferList = result;
+    //     popUpOfferList = result;
+    //     $scope.popUpOfferList = $filter('filter')(popUpOfferList, {
+    //         'type': $scope.addOfferType
+    //     });
+    //     // $scope.cpOfferList = result;
+    //     cpOfferList = $filter('filter')(popUpOfferList, {
+    //         'type': 'Contract & Proposition'
+    //     });
+    //     $scope.cpOfferList = $filter('filter')(popUpOfferList, {
+    //         'type': 'Contract & Proposition'
+    //     });
+    //     $scope.disOfferList = $filter('filter')(popUpOfferList, {
+    //         'type': 'Discount'
+    //     });
+    //     disOfferList = $filter('filter')(popUpOfferList, {
+    //         'type': 'Discount'
+    //     });
+    //     $scope.cpStartDate = SystemService.convertDateToEng($scope.dateNow, 'TH');
+    //     $scope.trActualContractStartDate = SystemService.convertDateToEng($scope.dateNow, 'TH');
+    // };
     $scope.getOfferList = function() {
         var result = {
             "offer-lists": [{
@@ -701,9 +707,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         "paramName2": ""
     };
     $scope.deleteRegulaOfferList = function(item) {
-        for (var i = 0; i < $scope.regulaOfferList.length; i++) {
-            if (item['offer-name'] == $scope.regulaOfferList[i]['offer-name']) {
-                $scope.regulaOfferList.splice(i, 1);
+        for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
+            if (item['offer-name'] == $scope.addNewOfferLists[i]['offer-name']) {
+                $scope.addNewOfferLists.splice(i, 1);
                 break;
             }
         }
@@ -716,12 +722,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         "service-level": "",
         "offer-group": ""
     };
-    $scope.addRegulaOfferList = function() {
-        var list = $filter('filter')($scope.regulaOfferList, {
-            'offer-name': $scope.addRegulaOffer['offer-name']
+    $scope.addNewOfferList = function(item) {
+        console.log(item);
+        var list = $filter('filter')($scope.addNewOfferLists, {
+            'name': item['name']
         });
         if (list.length == 0) {
-            $scope.regulaOfferList.push($scope.addRegulaOffer);
+            $scope.addNewOfferLists.push(item);
         }
     }
     $scope.getReleteOfferList = function() {
@@ -798,20 +805,20 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "service-level": "C",
             "offer-group": "Related Offer"
         }];
-        $scope.regulaOfferList = result;
+        // $scope.addNewOfferLists = result;
     };
     $scope.smartSearchOffer = function(txtSearch) {
         $scope.radioOffer = "";
         if (txtSearch.indexOf(' ') > 0) {
             var txtList = txtSearch.split(' ');
-            var arr = popUpOfferList;
+            var arr = addOfferLists;
             console.log(txtList);
             for (var i = 0; i < txtList.length; i++) {
                 arr = $filter('filter')(arr, txtList[i]);
             }
-            $scope.popUpOfferList = arr;
+            $scope.addOfferLists = arr;
         } else {
-            $scope.popUpOfferList = $filter('filter')(popUpOfferList, txtSearch);
+            $scope.addOfferLists = $filter('filter')(addOfferLists, txtSearch);
         }
     }
     $scope.smartSearchCpOffer = function(txtSearch) {
@@ -847,6 +854,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         // $scope.radioOffer = $('input[name=radioOffer]:checked').val();
         // $scope.radioCpOffer = $('input[name=radioCpOffer]:checked').val();
         // $scope.radioDisOffer = $('input[name=radioDisOffer]:checked').val();
+        $scope.selectedOffer = item;
+        console.log($scope.selectedOffer);
         console.log($scope.radioDisOffer);
         $('.modal-backdrop').css('height', '200%');
         $scope.addRegulaOffer = {
@@ -879,12 +888,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         });
         console.log($scope.chkForEdit);
     };
-    $scope.onRegularOfferTypeId = function() {
+    $scope.onAddOfferType = function() {
         $scope.radioOffer = "";
         $scope.txtSearchOffer = "";
         //$scope.popUpOfferList = popUpOfferList;
-        $scope.popUpOfferList = $filter('filter')(popUpOfferList, {
-            'type': $scope.regularOfferTypeId
+        $scope.addOfferLists = $filter('filter')(addOfferLists, {
+            'type': $scope.addOfferType
         });
         $('.hModal').height(($(window).height()) - 235);
         //$('.modal-backdrop').css('height', '200%');
@@ -970,6 +979,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.level = "SUBSCRIBER";
+    $scope.serviceLevel = "C";
     $scope.callService = false;
     $scope.onInputSubNo = function() {
         if($scope.callService == true){
@@ -986,7 +996,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.getOfferList();
                 $scope.getReleteOfferList();
                 // $scope.getRegulaOfferList();
-                $scope.getPopUpOfferList();
+                // $scope.getPopUpOfferList();
                 $scope.getFutureOfferList();
             }
         }else {
@@ -1623,7 +1633,34 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         });
     };
 
-    $scope.searchOffer = function(){
-        // var searchParam = 
+    $scope.addType = "";
+    $scope.searchOffer = function(offerGroup){
+        SystemService.showLoading();
+        $scope.addType = offerGroup;
+        if($scope.level == "SUBSCRIBER"){
+            $scope.serviceLevel = "C";
+        } else {
+            $scope.serviceLevel = "G";
+        }
+
+        if($scope.addType == 'ALL'){
+            var searchParam = "offer-group=" + $scope.addOfferType + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";    
+        } else if($scope.addType == 'CONTRACT_PROPO') {
+            var searchParam = "offer-group=CONTRACT_PROPO" + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";
+        } else if($scope.addType == 'DISCOUNT'){
+            var searchParam = "offer-group=DISCOUNT" + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";
+        }
+        // var searchParam = "offer-group=" + $scope.addOfferType + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&keyword=" + $scope.keywordSearchOffer + "&current-pooled=";
+        console.log(searchParam);
+        AddDeleteEditOfferNewService.searchOffer(searchParam, $scope.addType, function(result){
+            // console.log(result);
+            // SystemService.hideLoading();
+            if(result.data['response-data']){
+                SystemService.hideLoading();
+                $scope.addOfferLists = result.data['response-data'];
+                 addOfferLists = result.data['response-data'];
+                console.log($scope.addOfferLists);   
+            }
+        });
     }
 });

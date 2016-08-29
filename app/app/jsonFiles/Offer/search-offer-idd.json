@@ -1,0 +1,48 @@
+{
+  "status": "SUCCESSFUL",
+  "trx-id": "NN7JCQUGD0E8H",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "response-data": [
+    {
+      "name": "INTL",
+      "description": "International Call Enabling",
+      "soc": "10104810",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "IDD",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-01-08",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "IDD"
+      ]
+    },
+    {
+      "name": "PROINTL1",
+      "description": "International Call Enabling",
+      "soc": "41581",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "IDD",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2001-12-13",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "IDD"
+      ],
+      "exclusion-group": "EXP004"
+    }
+  ]
+}

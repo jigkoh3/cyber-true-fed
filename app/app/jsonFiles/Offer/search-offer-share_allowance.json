@@ -1,0 +1,5701 @@
+{
+  "status": "SUCCESSFUL",
+  "trx-id": "587JD3NWQXOZY",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "response-data": [
+    {
+      "name": "EVOCFS05C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "10311610",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-03-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "RMGPSS61C",
+      "description": "BundleGPRS 800GB,SpecialRate(PP)0.00097656 bt/KB",
+      "soc": "925298",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-10-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP32C",
+      "description": "Capmax for Voice Unit Recurring",
+      "soc": "10318110",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-09-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP48C",
+      "description": "Capmax for Voice,SMS Unit Recurring",
+      "soc": "10409110",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-10-02",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP21C",
+      "description": "Biz&EntSharing130,000_80000min3000SMSCUG,1F&F,Data",
+      "soc": "924408",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-02-22",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP24C",
+      "description": "Biz & Ent Sharing 44,250_81900Min,3540SMS,CUG,F&F",
+      "soc": "924438",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-06-10",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAA26C",
+      "description": "B&E_1.36M_V950K,S117K,M124.4K,G2300GB,Wifi+CUG+F&F",
+      "soc": "924448",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-07-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP23C",
+      "description": "Biz&Ent Sharing67877 Get 72100min,6180SMS,CUG,F&F",
+      "soc": "924428",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-03-02",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAA25C",
+      "description": "Capmax for MMS Unit Recurring",
+      "soc": "10245410",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-05-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP39C",
+      "description": "Capmax for Voice Unit Recurring",
+      "soc": "924588",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-12-16",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP38C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "924568",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-12-16",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAA40C",
+      "description": "Biz & Ent 38,000_CUG,F&F,1000SMS200MMS3WEG",
+      "soc": "924598",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-28",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAA36C",
+      "description": "Ent _43,369_V15500BtS930M310Data Unlimited",
+      "soc": "924548",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-12-13",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP31C",
+      "description": "Biz&Ent_80,520 SharingV109,200S15,600M3120",
+      "soc": "924498",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-10-04",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP33C",
+      "description": "Biz & Ent Sharing 20000_V40000min2000SMS400MMSWiFi",
+      "soc": "924518",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-09-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAA31C",
+      "description": "Biz&Ent_80,520 SharingV109,200S15,600M3120",
+      "soc": "924488",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-10-04",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAA04C",
+      "description": "P_Ent_/200k_SharingV465000S13500M2400EG3G70000MB",
+      "soc": "10509511",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-06-28",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP36C",
+      "description": "Ent _43,369_V15500BtS930M310Data Unlimited",
+      "soc": "924538",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-12-13",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP34C",
+      "description": "Biz&Ent_10,200 SharingV20,400 Min",
+      "soc": "924528",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-12-10",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP37C",
+      "description": "Biz&Ent Sharing9900_OnNet6AM-6PMV8250SMS330CUG,F&F",
+      "soc": "924558",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-11-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAA33C",
+      "description": "Biz & Ent Sharing 20000_V40000min2000SMS400MMSWiFi",
+      "soc": "924508",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-09-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "VS00US01C",
+      "description": "Capmax for Voice (Unit) and SMS (Unit)_Recurring",
+      "soc": "139308",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "V00GUS01C",
+      "description": "Capmax for Voice SPN (Unit) and GPRS (Unit)_OneTime",
+      "soc": "710268",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        },
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAA38C",
+      "description": "Capmax for MMS Unit Recurring",
+      "soc": "924578",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-12-16",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "EVOCFS01C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "10309110",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-03-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "V000US01C",
+      "description": "Capmax for Voice SPN (Unit)_Recurring",
+      "soc": "10035610",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAS02C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "924638",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-11-19",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP40C",
+      "description": "Biz & Ent 38,000_CUG,F&F,1000SMS200MMS3WEG",
+      "soc": "924608",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-28",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP41C",
+      "description": "Biz&Ent Sharing 69800_V122500SMS17500MMS3500_3WEG",
+      "soc": "924628",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-02-10",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP14C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "924788",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-08-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAA41C",
+      "description": "Biz&Ent Sharing 69800_V122500SMS17500MMS3500_3WEG",
+      "soc": "924618",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-02-10",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP13C",
+      "description": "Ent _10000_EG3g5000Mb",
+      "soc": "10090810",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-11-26",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESMPAS05C",
+      "description": "B&E209,580bt SharingV210,000&S126,000&105,000MB",
+      "soc": "1006078",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-04-22",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        },
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP42C",
+      "description": "B&E18,463bt SharingV18500S11,100DATA9,250MB",
+      "soc": "1006068",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-04-22",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        },
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAA14C",
+      "description": "Capmax for MMS Unit Recurring",
+      "soc": "924798",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-08-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP13C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "924778",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-06-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP18C",
+      "description": "Capmax for Voice Unit Recurring",
+      "soc": "924848",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-10-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "VS00US02C",
+      "description": "Capmax for Voice SPN (Unit) and SMS (Unit)_Recurring",
+      "soc": "10576711",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-12-23",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAA17C",
+      "description": "Capmax for MMS Unit Recurring",
+      "soc": "924828",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-10-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP15C",
+      "description": "Capmax for Voice,SMS Unit Recurring",
+      "soc": "924808",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-10-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP17C",
+      "description": "Capmax for Voice,SMS Unit Recurring",
+      "soc": "924838",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-10-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAA22C",
+      "description": "Capmax for MMS Unit Recurring",
+      "soc": "924878",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-02-24",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP16C",
+      "description": "Capmax for Voice,SMS Unit Recurring",
+      "soc": "924818",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-10-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP20C",
+      "description": "Capmax for Voice Unit Recurring",
+      "soc": "924868",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-11-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP19C",
+      "description": "Biz&Ent14,970_S1500M300UnWEG2g384_HS_0.99bt",
+      "soc": "924858",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-11-08",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP22C",
+      "description": "Capmax for Voice,SMS Unit Recurring",
+      "soc": "924888",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-02-24",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP24C",
+      "description": "Capmax for Voice,SMS Unit Recurring",
+      "soc": "10241210",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-05-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "EVOCFS08C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "924918",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-03-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP46C",
+      "description": "Capmax for Voice,SMS Unit Recurring",
+      "soc": "10191910",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-07-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP05C",
+      "description": "D_Ent_119,700_Data 600 GB Unlimited WiFi+HS@Mac",
+      "soc": "10147310",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-04-22",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP25C",
+      "description": "Capmax for Voice,SMS Unit Recurring",
+      "soc": "10244610",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-05-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "V000MS03C",
+      "description": "Capmax for Voice (Monetary)_Recurring",
+      "soc": "10469110",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-10-17",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP50C",
+      "description": "Capmax for Voice Unit Recurring",
+      "soc": "10414010",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-10-02",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "EVOCFS13C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "10314010",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-06-11",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "EVOCFS02C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "10310910",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-03-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "V000US02C",
+      "description": "Capmax for Voice (Unit)_Recurring",
+      "soc": "10117810",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "0S00US02C",
+      "description": "Capmax for SMSG MT (Unit)_ALLOSMLOAL16_Recurring",
+      "soc": "11328212",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2015-12-17",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "GPSHBP06C",
+      "description": "Biz Data Sharing70000bt,get30000MB",
+      "soc": "10149210",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-01-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "VS00AS01C",
+      "description": "Capmax for Voice (Monetary) and SMS (Unit)_Recurring",
+      "soc": "138668",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "00M0US01C",
+      "description": "Capmax for MMS (Unit)_Recurring",
+      "soc": "138688",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP44C",
+      "description": "Capmax for Voice,SMS Unit Recurring",
+      "soc": "10178010",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-07-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "V000MS01C",
+      "description": "Capmax for Voice (Monetary)_OneTime",
+      "soc": "138448",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "000GUS02C",
+      "description": "Capmax for GPRS (Unit)_Recurring",
+      "soc": "710408",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP45C",
+      "description": "Capmax for Voice duration No SPN",
+      "soc": "10178110",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-07-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "V000MS02C",
+      "description": "Capmax for Voice SPN (Monetary)_Recurring",
+      "soc": "10035210",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "VS0GUS02C",
+      "description": "Capmax for Voice SPN (Unit) and SMS (Unit) and GPRS (Unit)_Recurring",
+      "soc": "10624311",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2015-02-17",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        },
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "CSHR5P11C",
+      "description": "P_corp sharing 599 get300min200sms_650MB_150sub",
+      "soc": "10165410",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2011-10-27",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "EVOCFS11C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "10313610",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-06-11",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "000GUS01C",
+      "description": "Capmax for GPRS (Unit)_OneTime",
+      "soc": "710398",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "EVOCFS07C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "10312610",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-03-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "V00GUS02C",
+      "description": "Capmax for Voice SPN (Unit) and GPRS (Unit)_Recurring",
+      "soc": "710388",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        },
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP49C",
+      "description": "Capmax for Voice Unit Recurring",
+      "soc": "10409910",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-10-02",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "CFRMIS02C",
+      "description": "Capmax for Voice Unit Recurring",
+      "soc": "10317510",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-05-10",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "EVOCFS10C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "10312910",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-03-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "VSMGMS01C",
+      "description": "Capmax for Voice SMS MMS GPRS Monetary Recurring",
+      "soc": "12644916",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2016-05-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP23C",
+      "description": "Biz&Ent_Sharing10,000btV12000DATA30GB_1.25bt",
+      "soc": "10155010",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-03-10",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP26C",
+      "description": "B&E_1.36M_V950K,S117K,M124.4K,G2300GB,Wifi+CUG+F&F",
+      "soc": "924458",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-07-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        },
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "EVOCFS06C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "10312410",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-03-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP51C",
+      "description": "Capmax for Voice,SMS Unit Recurring",
+      "soc": "10415210",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-10-02",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "EVOCFS12C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "10313810",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-06-11",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP30C",
+      "description": "Biz_Sharing 24456_V14000S1750M175UnWEG2g384",
+      "soc": "924468",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-08-26",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAA30C",
+      "description": "Biz_Sharing 24456_V14000S1750M175UnWEG2g384",
+      "soc": "924478",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-08-26",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "GPSHBP05C",
+      "description": "Biz Data Sharing70000bt,get30000MB",
+      "soc": "10155710",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-01-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP15C",
+      "description": "Biz&EntSharing193903_CUG,F&F,67900min,29100SMS,WEG",
+      "soc": "924398",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-11-16",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "0S00US01C",
+      "description": "Capmax for SMSG MT (Unit)_ALLOSMLOAL03_Recurring",
+      "soc": "997958",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAP21C",
+      "description": "Biz&Ent_Sharing 199,600bt Data 1200GB _0.99bt",
+      "soc": "10150210",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-03-05",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "RMGPSS69C",
+      "description": "BundleGPRS 5000MB,SpecialRate(PP)0.00097656bt/KB",
+      "soc": "925308",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-11-26",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "RMGPSS59C",
+      "description": "BundleGPRS 100GB,SpecialRate(PP)0.00097656 bt/KB",
+      "soc": "925288",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-10-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "GPRVBS30C",
+      "description": "BundleGPRS 7,500MB, 1 bt/MB(no exc,no cap max)",
+      "soc": "925278",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-11-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "GPRTBS04C",
+      "description": "GPRS Special rate 0.50Bt/min,not cap",
+      "soc": "925268",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-06-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAP04C",
+      "description": "P_Ent_/200k_SharingV465000S13500M2400EG3G70000MB",
+      "soc": "10146610",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-04-22",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        },
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "CSHR5P10C",
+      "description": "P_corp sharing 599 get300min120sms_350MB_250sub",
+      "soc": "10161810",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2011-10-27",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        },
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Duration cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "Minutes",
+          "valid-values": {
+            "Hours": "Hours",
+            "Seconds": "Seconds",
+            "Minutes": "Minutes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "RMGPSS91C",
+      "description": "BundleGPRS 80GB,SpecialRate(PP)0.0004882bt/KB",
+      "soc": "925318",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-07-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Volume cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Volume cap max UOM",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "MB",
+          "valid-values": {
+            "KB": "KiloBytes",
+            "B": "Bytes",
+            "GB": "GigaBytes",
+            "TB": "TeraBytes",
+            "MB": "MegaBytes"
+          }
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHSAA24C",
+      "description": "Capmax for MMS Unit Recurring",
+      "soc": "10243210",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-05-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "00M0US02C",
+      "description": "Capmax for MMS with SPN (Unit)_Recurring",
+      "soc": "10627911",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2015-02-17",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "VS00AS02C",
+      "description": "Capmax for Voice SPN (Monetary) and SMS (Unit)_Recurring",
+      "soc": "10033010",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "ESHRAA51C",
+      "description": "Capmax for MMS Unit Recurring",
+      "soc": "10415510",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-10-02",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    },
+    {
+      "name": "EVOCFS03C",
+      "description": "Capmax for Voice Money,SMS Unit Recurring",
+      "soc": "10311110",
+      "properties": {
+        "TR_SPECIAL_OFFER_IND": "CAP",
+        "OFFER_TYPE": "SH"
+      },
+      "group": "SHARE_ALLOWANCE",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-03-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Monetary cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        },
+        {
+          "name": "Occurrence cap max",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "-2"
+        },
+        {
+          "name": "Agreement level offer instance ID",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "ADDITIONAL",
+        "SHARE_ALLOWANCE"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,553 @@
+{
+  "status": "SUCCESSFUL",
+  "trx-id": "AF7JCN95S0C11",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "response-data": [
+    {
+      "name": "CUGFRS01",
+      "description": "299 Free Unlimited Call Within Group - CUG",
+      "soc": "1004598",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2007-07-10",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "ESPUAS01",
+      "description": "Biz & Ent Bulk SMS A2P CUG 10,000 SMS_0.80bt",
+      "soc": "844018",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-05-14",
+        "end": "2017-01-01"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Migration ind",
+          "required": false,
+          "min": 1,
+          "max": 1,
+          "data-type": "TEXT",
+          "default-value": "N",
+          "valid-values": {
+            "N": "No",
+            "Y": "Yes"
+          }
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Rolled occurrence quota from ensemble",
+          "required": false,
+          "min": 1,
+          "max": 1,
+          "data-type": "NUMBER",
+          "default-value": "0"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ]
+    },
+    {
+      "name": "EVOCES23",
+      "description": "SOC CUG 49 baht",
+      "soc": "111606",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-06-22",
+        "end": "2017-01-01"
+      },
+      "rc": 49,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "EVOCDS01",
+      "description": "SOC_Ent_100_Unlimited CUG+F&F1 No.(True: Full mat)",
+      "soc": "111666",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2011-09-09",
+        "end": "2017-01-01"
+      },
+      "rc": 100,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG",
+        "FF"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "CUGFRS06",
+      "description": "Free Unlimited Call Within Group 8am-6pm",
+      "soc": "1005478",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-01-22",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "CUGFRS03",
+      "description": "Free Unlimited Call Within Group 5am-5pm, 1Bt PMB",
+      "soc": "1005468",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-05-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "CUGFRS04",
+      "description": "Free Unlimited Call Within Group 24Hrs- CUG",
+      "soc": "84964",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-08-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "CUGFRS11",
+      "description": "Free Unlimited Call Within Group 0am-6pm, 1Bt PMB",
+      "soc": "1005488",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2011-09-16",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "CCUGAS01",
+      "description": "CUG On/Off Net (Package level)",
+      "soc": "55092",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-01-08",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "CUGFRS05",
+      "description": "Corporate CUG Free unlimited - Subscriber Level",
+      "soc": "20471",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2009-09-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "CUGFRS10",
+      "description": "CUG 0.18 THB(PMB) - 24Hrs (PKG Level)",
+      "soc": "986638",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2011-04-23",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "EVOCAS01",
+      "description": "SOC_Ent_100_CUG free(Subscriber Level)",
+      "soc": "103825",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2011-09-09",
+        "end": "2250-08-08"
+      },
+      "rc": 100,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "ESCUGS01",
+      "description": "Biz&Ent_CUG Sub Level(Postpaid-Hybrid) 24 hrs.",
+      "soc": "1080899",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2015-05-12",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "CUGFRS02",
+      "description": "299 Free Unlimited Call Within Group 24Hrs- CUG",
+      "soc": "997798",
+      "properties": {
+        "OFFER_TYPE": "N"
+      },
+      "group": "CUG",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-02-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG"
+      ],
+      "exclusion-group": "EXR036"
+    }
+  ]
+}

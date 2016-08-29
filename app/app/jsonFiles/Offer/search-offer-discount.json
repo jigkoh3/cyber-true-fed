@@ -1,0 +1,7685 @@
+{
+  "status": "SUCCESSFUL",
+  "trx-id": "AF7JCOBT2D5QB",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "response-data": [
+    {
+      "name": "DIR085",
+      "description": "Discount Ring Back Tone Fee",
+      "soc": "97725",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-08-01",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR080",
+      "description": "Discount Ring Back Tone Fee",
+      "soc": "90744",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-05-31",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR074",
+      "description": "Discount Ring Back Tone Fee",
+      "soc": "93235",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-04-04",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR002",
+      "description": "Discount Ring Back Tone Fee",
+      "soc": "80864",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2010-06-21",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM013",
+      "description": "Discount promotion 400",
+      "soc": "114536",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-11-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM012",
+      "description": "Discount promotion 300",
+      "soc": "114526",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-11-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM011",
+      "description": "Discount promotion 200",
+      "soc": "114516",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-11-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM014",
+      "description": "Discount promotion 500",
+      "soc": "114626",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-11-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM015",
+      "description": "Discount promotion 600",
+      "soc": "116136",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-11-08",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM010",
+      "description": "Discount promotion 100",
+      "soc": "114456",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-11-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM017",
+      "description": "Discount promotion 800",
+      "soc": "116156",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-11-08",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM018",
+      "description": "Discount promotion 900",
+      "soc": "116166",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-11-08",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM016",
+      "description": "Discount promotion 700",
+      "soc": "116146",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-11-08",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR081",
+      "description": "Discount 199 Baht",
+      "soc": "89824",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-05-08",
+        "end": "2099-02-06"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DAU001",
+      "description": "Discount Usage SookX3",
+      "soc": "10396010",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGC095",
+      "description": "RBT first monthly fee discount",
+      "soc": "11831",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2009-09-28",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGC096",
+      "description": "RBT first monthly fee discount",
+      "soc": "31761",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2009-09-28",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR015",
+      "description": "Discount Ring Back Tone Fee",
+      "soc": "52462",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2010-12-16",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIU013",
+      "description": "Discount 40% for SMS & MMS",
+      "soc": "104715",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-08-22",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DAR007",
+      "description": "Discount up to 10% on RC",
+      "soc": "74822",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-09-14",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGT024",
+      "description": "Discount True Group Employee",
+      "soc": "41672",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2008-11-12",
+        "end": "2020-02-06"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM003",
+      "description": "Employee Dis. 50% (Volunteer)",
+      "soc": "82472",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-03-12",
+        "end": "2020-02-05"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM002",
+      "description": "Dis50%True,CP Emp(DirectDebit)",
+      "soc": "41712",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-01-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM004",
+      "description": "Discount 10% for CP Employee",
+      "soc": "52762",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-03-28",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR045",
+      "description": "Discount 200bt for TMH 1Bill",
+      "soc": "31911",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-10-07",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR044",
+      "description": "Discount20% on RC for TMH1Bill",
+      "soc": "36341",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-10-07",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC020",
+      "description": "Advance per month",
+      "soc": "11293712",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "TESTTVSD03",
+      "description": "Discount Subscription Fee 5% (CC+AO6)",
+      "soc": "11035012",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW016",
+      "description": "Discount 100 bt on Monthly fee",
+      "soc": "11123112",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR201",
+      "description": "Advance per month",
+      "soc": "1098009",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-09",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR209",
+      "description": "Advance per month",
+      "soc": "11028012",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-06",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC045",
+      "description": "Advance per month",
+      "soc": "11929012",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-02-11",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "MGP001",
+      "description": "Discount 50% on Monthly fee",
+      "soc": "11123512",
+      "properties": {
+        "DISCOUNT_GROUP": "PRE2POST",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW026",
+      "description": "Discount 150B on Monthly fee",
+      "soc": "12292716",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-03-17",
+        "end": "2099-03-17"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR182",
+      "description": "TrueSmartChoice Discount(349B.)",
+      "soc": "1080969",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE024",
+      "description": "CP Employee RC Disc 50%",
+      "soc": "11425012",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-12",
+        "end": "2020-02-05"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR019",
+      "description": "Discount for RC 100%",
+      "soc": "99853",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-02-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC066",
+      "description": "Advance per month",
+      "soc": "12465517",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-07",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC067",
+      "description": "Advance per month",
+      "soc": "12465617",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-07",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR121",
+      "description": "Advance per month",
+      "soc": "119497",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-04-11",
+        "end": "2020-02-05"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "CVG001",
+      "description": "TrueSmartChoice SIM2Disc(30%)",
+      "soc": "11138012",
+      "properties": {
+        "DISCOUNT_GROUP": "CVG",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-02",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP005",
+      "description": "Advance per month",
+      "soc": "12473917",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE016",
+      "description": "Top Privilege Disc100Bht 6mth",
+      "soc": "11099312",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-25",
+        "end": "2016-08-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SER007",
+      "description": "Discount Color Ring (Charge max. 12 Baht/Month)",
+      "soc": "12647216",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_SERVICE",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-08-01",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR018",
+      "description": "Discount for RC 75%",
+      "soc": "99823",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-02-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR188",
+      "description": "Special discount",
+      "soc": "1085399",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-19",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR179",
+      "description": "Discount RBT monthly Fee 100%",
+      "soc": "1077999",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-04-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR180",
+      "description": "TrueSmartChoice Discount(100%)",
+      "soc": "1080929",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DER002",
+      "description": "Discount on bill",
+      "soc": "10536411",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-12-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW023",
+      "description": "Discount50% on Monthly fee 12m",
+      "soc": "11317912",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR181",
+      "description": "TrueSmartChoice FamilyDiscount(30%)",
+      "soc": "1080949",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC061",
+      "description": "Advance per month",
+      "soc": "12415817",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-12",
+        "end": "2019-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR004",
+      "description": "Discount for RC 50 bt",
+      "soc": "82232",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-05-11",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM009",
+      "description": "Discount for RC 10%",
+      "soc": "110696",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM008",
+      "description": "Discount for RC 5%",
+      "soc": "110676",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "CVG005",
+      "description": "SmartChoice/3Products Discount",
+      "soc": "11276412",
+      "properties": {
+        "DISCOUNT_GROUP": "CVG",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-17",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE020",
+      "description": "Top Privilege Disc 5% 1 mth",
+      "soc": "11257412",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR171",
+      "description": "Advance per month",
+      "soc": "1071669",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-19",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW015",
+      "description": "Discount 50% on Monthly fee",
+      "soc": "11122912",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR114",
+      "description": "Special Discount SookX3 100 Bt",
+      "soc": "111317",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-02-27",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGT030",
+      "description": "100Bt.Discount on MonthlyCharge",
+      "soc": "82292",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2009-09-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC062",
+      "description": "Advance per month",
+      "soc": "12465117",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-07",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR157",
+      "description": "Advance per month",
+      "soc": "10629811",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR008",
+      "description": "Discount for RC 900 bt",
+      "soc": "82212",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-05-11",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR006",
+      "description": "Discount for RC 700 bt",
+      "soc": "82272",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-05-11",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGT033",
+      "description": "400Bt.Discount on MonthlyCharge",
+      "soc": "82352",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2009-09-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC027",
+      "description": "Advance per month",
+      "soc": "11329312",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-09",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR156",
+      "description": "Advance per month",
+      "soc": "10629711",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW019",
+      "description": "Special discount",
+      "soc": "11149312",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-22",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC003",
+      "description": "Advance per month",
+      "soc": "11097012",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGT031",
+      "description": "200Bt.Discount on MonthlyCharge",
+      "soc": "82312",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2009-09-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR007",
+      "description": "Discount for RC 800 bt",
+      "soc": "82252",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-05-11",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW014",
+      "description": "Discount 100% on Monthly fee",
+      "soc": "11118412",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR149",
+      "description": "Advance per month",
+      "soc": "10625111",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-13",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGT032",
+      "description": "300Bt.Discount on MonthlyCharge",
+      "soc": "82332",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2009-09-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE030",
+      "description": "Discount300bt on MonthlyFee24m",
+      "soc": "12505216",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-04-28",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC004",
+      "description": "Advance per month",
+      "soc": "11097312",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC065",
+      "description": "Advance per month",
+      "soc": "12465417",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-07",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM013",
+      "description": "Discount for RC 100%",
+      "soc": "110736",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM010",
+      "description": "Discount for RC 15%",
+      "soc": "110706",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR150",
+      "description": "Advance per month",
+      "soc": "10625411",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-13",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR092",
+      "description": "discount _201bt",
+      "soc": "106416",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-10-22",
+        "end": "2020-02-05"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM011",
+      "description": "Discount for RC 20%",
+      "soc": "110716",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE031",
+      "description": "Discount50% on Monthly fee 24m",
+      "soc": "12647416",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-05-31",
+        "end": "2019-05-10"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM012",
+      "description": "Discount for RC 50%",
+      "soc": "110726",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "EDS004",
+      "description": "Advance per month (GOV)",
+      "soc": "12495216",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-04-21",
+        "end": "2021-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP001",
+      "description": "Advance per month",
+      "soc": "12346316",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-03-22",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR037",
+      "description": "Discount 183 Baht",
+      "soc": "11336112",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC063",
+      "description": "Advance per month",
+      "soc": "12465217",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-07",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP002",
+      "description": "Advance per month",
+      "soc": "12346416",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-03-22",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR187",
+      "description": "CP Group Discount 30% on RC",
+      "soc": "1083799",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-14",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC060",
+      "description": "Advance per month",
+      "soc": "12415717",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-12",
+        "end": "2019-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR155",
+      "description": "Advance per month",
+      "soc": "10629611",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGT034",
+      "description": "500Bt.Discount on MonthlyCharge",
+      "soc": "82452",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2009-09-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC064",
+      "description": "Advance per month",
+      "soc": "12465317",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-07",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP009",
+      "description": "Advance per month",
+      "soc": "12501017",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-14",
+        "end": "2017-01-06"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "MNP001",
+      "description": "Discount 50% on RC 12mth",
+      "soc": "11161212",
+      "properties": {
+        "DISCOUNT_GROUP": "MNP",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW030",
+      "description": "Discount25% on Monthly fee 12m",
+      "soc": "12323417",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-06-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR154",
+      "description": "Advance per month",
+      "soc": "10629511",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW025",
+      "description": "Discount 100B on Monthly fee",
+      "soc": "12292516",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-03-17",
+        "end": "2099-03-17"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP010",
+      "description": "Advance per month",
+      "soc": "12501117",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-14",
+        "end": "2017-01-06"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM024",
+      "description": "Special discount",
+      "soc": "1071329",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-10",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DRR021",
+      "description": "RC Discount50%12Mth_MNP",
+      "soc": "1082369",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "CVG004",
+      "description": "SmartChoice/3Products Discount",
+      "soc": "11276012",
+      "properties": {
+        "DISCOUNT_GROUP": "CVG",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR189",
+      "description": "CP Group Discount 50% on RC",
+      "soc": "1086359",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-19",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "MNP004",
+      "description": "Discount 100 Bt on RC 12mth",
+      "soc": "11161912",
+      "properties": {
+        "DISCOUNT_GROUP": "MNP",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE017",
+      "description": "Top Privilege Disc100Bht 12mth",
+      "soc": "11099712",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-25",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP011",
+      "description": "Advance per month",
+      "soc": "12501217",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-14",
+        "end": "2017-01-06"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC011",
+      "description": "Advance per month",
+      "soc": "11110312",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR184",
+      "description": "Advance per month",
+      "soc": "1083089",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-12",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DEU003",
+      "description": "10% Discount on Roaming usage",
+      "soc": "1094009",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP003",
+      "description": "Advance per month",
+      "soc": "12346516",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-03-22",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "MNP003",
+      "description": "Discount 50% on RC 24mth",
+      "soc": "11161812",
+      "properties": {
+        "DISCOUNT_GROUP": "MNP",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR153",
+      "description": "Advance per month",
+      "soc": "10629411",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "CVG009",
+      "description": "TrueSmartChoice Discount(100B.)",
+      "soc": "12361516",
+      "properties": {
+        "DISCOUNT_GROUP": "CVG",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-04-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR159",
+      "description": "Advance per month",
+      "soc": "10630011",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR152",
+      "description": "Advance per month",
+      "soc": "10629311",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW001",
+      "description": "Special discount",
+      "soc": "11075112",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-25",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIU021",
+      "description": "Discount on over bundle",
+      "soc": "10600211",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR186",
+      "description": "Special discount",
+      "soc": "1083159",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP004",
+      "description": "Advance per month",
+      "soc": "12346616",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-03-22",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "EDS005",
+      "description": "Advance per month (GOV)",
+      "soc": "12332517",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-06-15",
+        "end": "2021-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR170",
+      "description": "Advance per month",
+      "soc": "1071279",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-10",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR185",
+      "description": "Advance per month",
+      "soc": "1083109",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-12",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DER005",
+      "description": "Thailand-Greater China Fee",
+      "soc": "11076212",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC012",
+      "description": "Advance per month",
+      "soc": "11110412",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM023",
+      "description": "Special discount",
+      "soc": "1071289",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-10",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR151",
+      "description": "Advance per month",
+      "soc": "10629211",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR173",
+      "description": "Discount 50% on RC 18mth",
+      "soc": "1072619",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-13",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC043",
+      "description": "Advance per month",
+      "soc": "11899512",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-21",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR174",
+      "description": "Discount 50% on RC 24mth",
+      "soc": "1072649",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-13",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "MNP002",
+      "description": "Discount 50% on RC 18mth",
+      "soc": "11161712",
+      "properties": {
+        "DISCOUNT_GROUP": "MNP",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR148",
+      "description": "Advance per month",
+      "soc": "10625011",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-13",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR169",
+      "description": "Advance per month",
+      "soc": "1071149",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-10",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "TESTTVSD04",
+      "description": "Discount Subscription Fee 10% (Cap Amt 100 Bt)",
+      "soc": "11074212",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP006",
+      "description": "Advance per month",
+      "soc": "12474117",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC010",
+      "description": "Advance per month",
+      "soc": "11110212",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR197",
+      "description": "TrueSmartChoice Discount(649B.)",
+      "soc": "1092249",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-02",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR161",
+      "description": "Advance per month",
+      "soc": "1060499",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP007",
+      "description": "Advance per month",
+      "soc": "12475217",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW022",
+      "description": "Discount 50% on Monthly fee 6m",
+      "soc": "11317012",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR200",
+      "description": "Advance per month",
+      "soc": "1096519",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-02",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "MGP004",
+      "description": "Discount50% on Monthly fee 12m",
+      "soc": "11319212",
+      "properties": {
+        "DISCOUNT_GROUP": "PRE2POST",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC036",
+      "description": "Advance per month",
+      "soc": "11887612",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC025",
+      "description": "Advance per month",
+      "soc": "11304812",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC009",
+      "description": "Advance per month",
+      "soc": "11110112",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DEO007",
+      "description": "Discount One Time 25%",
+      "soc": "10599211",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR198",
+      "description": "TrueSmartChoice Discount(250B.)",
+      "soc": "1092289",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-02",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW024",
+      "description": "Discount100bt on MonthlyFee12m",
+      "soc": "11317212",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC026",
+      "description": "Advance per month",
+      "soc": "11304912",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC002",
+      "description": "Advance per month",
+      "soc": "11096712",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR191",
+      "description": "Advance per month",
+      "soc": "1087119",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-06-09",
+        "end": "2017-02-05"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR033",
+      "description": "Advance per month",
+      "soc": "11316412",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-01",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR160",
+      "description": "Advance per month",
+      "soc": "1060389",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-29",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DEO008",
+      "description": "Discount One Time 30%",
+      "soc": "10599311",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW028",
+      "description": "Discount 300B on Monthly fee",
+      "soc": "12293016",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-03-17",
+        "end": "2099-03-17"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR190",
+      "description": "Advance per month",
+      "soc": "1087109",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-06-09",
+        "end": "2017-02-05"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC006",
+      "description": "Advance per month",
+      "soc": "11109712",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SVG002",
+      "description": "Special Discount SookX3 100 Bt",
+      "soc": "12604117",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-08-11",
+        "end": "2099-10-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC024",
+      "description": "Advance per month",
+      "soc": "11304712",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC038",
+      "description": "Advance per month",
+      "soc": "11887812",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR192",
+      "description": "Advance per month",
+      "soc": "1087129",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-06-09",
+        "end": "2017-02-05"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC007",
+      "description": "Advance per month",
+      "soc": "11109812",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR034",
+      "description": "Advance per month",
+      "soc": "11318412",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-01",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR143",
+      "description": "Advance per month",
+      "soc": "10463810",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-10-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "CVG003",
+      "description": "SmartChoice/3Products Discount",
+      "soc": "11275912",
+      "properties": {
+        "DISCOUNT_GROUP": "CVG",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DEO009",
+      "description": "Discount One Time 50%",
+      "soc": "10599411",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC023",
+      "description": "Advance per month",
+      "soc": "11304612",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "TESTTVSD14",
+      "description": "Test Discount ProRev_ProArr_AccuN (Total Charge Level)",
+      "soc": "11994613",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "1939-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC005",
+      "description": "Advance per month",
+      "soc": "11107412",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR142",
+      "description": "Advance per month",
+      "soc": "10463710",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-10-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR162",
+      "description": "Advance per month",
+      "soc": "1060539",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR027",
+      "description": "Advance per month",
+      "soc": "1087319",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-21",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC055",
+      "description": "Advance per month",
+      "soc": "12541216",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-05-19",
+        "end": "2019-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR194",
+      "description": "Special discount",
+      "soc": "1089529",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-06-09",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC013",
+      "description": "Discount on bill",
+      "soc": "11109612",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR193",
+      "description": "Special discount",
+      "soc": "1089519",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-06-09",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR163",
+      "description": "Advance per month",
+      "soc": "1060549",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR141",
+      "description": "Advance per month",
+      "soc": "10463610",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-10-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC030",
+      "description": "Advance per month",
+      "soc": "11329912",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-09",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR028",
+      "description": "Advance per month",
+      "soc": "1087339",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-21",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC037",
+      "description": "Advance per month",
+      "soc": "11887712",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "CVG002",
+      "description": "TrueSmartChoice Discount",
+      "soc": "11270012",
+      "properties": {
+        "DISCOUNT_GROUP": "CVG",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC044",
+      "description": "Advance per month",
+      "soc": "11928912",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-02-11",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW029",
+      "description": "Discount on Monthly fee",
+      "soc": "12613216",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-05-19",
+        "end": "2099-03-17"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM022",
+      "description": "Advance per month",
+      "soc": "120557",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-09-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC056",
+      "description": "Advance per month",
+      "soc": "12294017",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-06-07",
+        "end": "2019-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC029",
+      "description": "Advance per month",
+      "soc": "11329812",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-09",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "MGP003",
+      "description": "Discount 50% on Monthly fee 6m",
+      "soc": "11318112",
+      "properties": {
+        "DISCOUNT_GROUP": "PRE2POST",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC015",
+      "description": "Advance per month",
+      "soc": "11179212",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-10-13",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "TESTTVSD13",
+      "description": "Test Discount ProRev_ProArr_AccuY (Total Charge Level)",
+      "soc": "11994313",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "1939-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC033",
+      "description": "Discount on bill",
+      "soc": "11434012",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP012",
+      "description": "Advance payment",
+      "soc": "12531617",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-08-04",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC034",
+      "description": "Discount on bill",
+      "soc": "11434112",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP013",
+      "description": "Advance payment",
+      "soc": "12532117",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-08-04",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM023",
+      "description": "Advance per month",
+      "soc": "120567",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-09-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP014",
+      "description": "Advance payment",
+      "soc": "12564317",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-08-11",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC057",
+      "description": "Advance per month",
+      "soc": "12294117",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-06-07",
+        "end": "2019-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "MNP006",
+      "description": "Discount 50% on RC 12mth",
+      "soc": "11263712",
+      "properties": {
+        "DISCOUNT_GROUP": "MNP",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DBM001",
+      "description": "Discount For MNP (Enterprise)",
+      "soc": "120407",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-06-28",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC022",
+      "description": "Advance per month",
+      "soc": "11304512",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR144",
+      "description": "Advance per month",
+      "soc": "10463910",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-10-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC054",
+      "description": "Advance per month",
+      "soc": "12541016",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-05-19",
+        "end": "2019-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR095",
+      "description": "Advance Payment",
+      "soc": "124946",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC028",
+      "description": "Advance per month",
+      "soc": "11329712",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-09",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR010",
+      "description": "Discount for RC 25%",
+      "soc": "82142",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-06-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE021",
+      "description": "Special Discount per month",
+      "soc": "11389512",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-07",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR031",
+      "description": "Advance per month",
+      "soc": "1095699",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-02",
+        "end": "2017-06-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM005",
+      "description": "Discount for RC 20%",
+      "soc": "82042",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DEO005",
+      "description": "Discount One Time 10%",
+      "soc": "10599011",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM004",
+      "description": "Discount for RC 15%",
+      "soc": "82062",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC016",
+      "description": "Advance per month",
+      "soc": "11236912",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-10",
+        "end": "2099-12-07"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM006",
+      "description": "Discount for RC 50%",
+      "soc": "82022",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR030",
+      "description": "Advance per month",
+      "soc": "1095669",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-02",
+        "end": "2017-06-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM003",
+      "description": "Discount for RC 10%",
+      "soc": "82082",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC058",
+      "description": "Advance per month",
+      "soc": "12294217",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-06-07",
+        "end": "2019-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "MNP005",
+      "description": "Discount 200 Bt on RC 10mth",
+      "soc": "11179012",
+      "properties": {
+        "DISCOUNT_GROUP": "MNP",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-10-08",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM007",
+      "description": "Discount for RC 100%",
+      "soc": "82002",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE022",
+      "description": "Special Discount per month",
+      "soc": "11389612",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-07",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "EDS002",
+      "description": "Discount RC 250Baht",
+      "soc": "11948012",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-02-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC008",
+      "description": "Advance per month",
+      "soc": "11109912",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR113",
+      "description": "Special Discount 99 Baht",
+      "soc": "110927",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-03-13",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR009",
+      "description": "Discount for RC 7%",
+      "soc": "82162",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-06-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE025",
+      "description": "Discount50% on Monthly fee 12m",
+      "soc": "12318916",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-03-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR011",
+      "description": "Discount for RC 30%",
+      "soc": "82122",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-06-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCM002",
+      "description": "Discount for RC 5%",
+      "soc": "82102",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR093",
+      "description": "Advance per month",
+      "soc": "120226",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-12-11",
+        "end": "2020-02-05"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC019",
+      "description": "Discount on bill",
+      "soc": "11277612",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-17",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DEO006",
+      "description": "Discount One Time 20%",
+      "soc": "10599111",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC059",
+      "description": "Advance per month",
+      "soc": "12294317",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-06-07",
+        "end": "2019-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC021",
+      "description": "Advance per month",
+      "soc": "11304212",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR005",
+      "description": "Discount for RC 600 bt",
+      "soc": "82192",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-05-11",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR029",
+      "description": "Advance per month",
+      "soc": "1095649",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-02",
+        "end": "2017-06-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SVG001",
+      "description": "SmartChoice/3Products Discount",
+      "soc": "12603417",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-08-11",
+        "end": "2099-10-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SER006",
+      "description": "Discount Color Ring (Charge max. 9 Baht/Month)",
+      "soc": "12647116",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_SERVICE",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-08-01",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR120",
+      "description": "PartnerPrivilegeRCDiscount50%",
+      "soc": "117177",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-04-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BSP008",
+      "description": "Advance per month",
+      "soc": "12475317",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+        "DISCOUNT_TYPE": "SPECIAL",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "CVG006",
+      "description": "SmartChoice/3Products Discount",
+      "soc": "11276512",
+      "properties": {
+        "DISCOUNT_GROUP": "CVG",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-17",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR172",
+      "description": "Advance per month",
+      "soc": "1071849",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-19",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC018",
+      "description": "Advance per month",
+      "soc": "11257212",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-10-29",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE026",
+      "description": "VOC TeamPrivilege Disc50%12mth",
+      "soc": "12380616",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-04-07",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR204",
+      "description": "Advance per month",
+      "soc": "11011512",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-23",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR023",
+      "description": "Advance per month",
+      "soc": "1064229",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-17",
+        "end": "2017-06-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DEO003",
+      "description": "Discount One Time 500Baht",
+      "soc": "10598811",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC039",
+      "description": "Advance per month",
+      "soc": "11888212",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR203",
+      "description": "Advance per month",
+      "soc": "11011412",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-23",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC049",
+      "description": "Advance per month",
+      "soc": "11929412",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-02-11",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC051",
+      "description": "Advance per month",
+      "soc": "12379216",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-04-05",
+        "end": "2055-07-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR132",
+      "description": "Discount on bill",
+      "soc": "10085010",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-07-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "CVG010",
+      "description": "Discount 100% on monthly fee",
+      "soc": "12280817",
+      "properties": {
+        "DISCOUNT_GROUP": "CVG",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-05-31",
+        "end": "2099-10-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "EDS003",
+      "description": "Advance per month (GOV)",
+      "soc": "12494916",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-04-21",
+        "end": "2021-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC053",
+      "description": "Advance per month",
+      "soc": "12380416",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-04-05",
+        "end": "2055-07-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR202",
+      "description": "Advance per month",
+      "soc": "11011312",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-23",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR133",
+      "description": "Discount on bill",
+      "soc": "10085110",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-07-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR110",
+      "description": "Discount Sook X3 300 Baht",
+      "soc": "130906",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-02-28",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "CVG008",
+      "description": "Home Wireless BB Discount",
+      "soc": "11370312",
+      "properties": {
+        "DISCOUNT_GROUP": "CVG",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-05",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR106",
+      "description": "Advance Payment",
+      "soc": "125556",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGC097",
+      "description": "Free monthly charge 1 month",
+      "soc": "93705",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2009-09-23",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DEO004",
+      "description": "Discount One Time 750Baht",
+      "soc": "10598911",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC031",
+      "description": "Discount on bill",
+      "soc": "11433612",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR147",
+      "description": "Advance per month",
+      "soc": "10622811",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-13",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR032",
+      "description": "Advance per month",
+      "soc": "11138912",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-22",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "MGP002",
+      "description": "Special discount",
+      "soc": "11153212",
+      "properties": {
+        "DISCOUNT_GROUP": "PRE2POST",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-28",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR105",
+      "description": "Advance Payment",
+      "soc": "125546",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR108",
+      "description": "Advance Payment",
+      "soc": "125586",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR101",
+      "description": "Advance Payment",
+      "soc": "125506",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR107",
+      "description": "Advance Payment",
+      "soc": "125576",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR104",
+      "description": "Advance Payment",
+      "soc": "125536",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGC058",
+      "description": "Discount on ColorRing Service 12Mth",
+      "soc": "93615",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2007-04-04",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR103",
+      "description": "Advance Payment",
+      "soc": "125526",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGC062",
+      "description": "Discount Color Ring Service 6 Mth",
+      "soc": "93635",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2007-06-29",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR102",
+      "description": "Advance Payment",
+      "soc": "125516",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR109",
+      "description": "Advance Payment",
+      "soc": "125596",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC035",
+      "description": "Discount on bill",
+      "soc": "11441412",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-14",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR199",
+      "description": "Discount 100Bt on RC 12mth",
+      "soc": "1092839",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-06-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR145",
+      "description": "Discount on bill",
+      "soc": "10599911",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-06",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR195",
+      "description": "Advance per month",
+      "soc": "1091929",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-06-25",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR099",
+      "description": "Advance Payment",
+      "soc": "125486",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SVG003",
+      "description": "TrueSmartChoice Discount",
+      "soc": "12606817",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-08-11",
+        "end": "2099-10-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR098",
+      "description": "Advance Payment",
+      "soc": "125476",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR096",
+      "description": "Advance Payment",
+      "soc": "125456",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM021",
+      "description": "Discount on bill",
+      "soc": "1003928",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-06-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR100",
+      "description": "Advance Payment",
+      "soc": "125496",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DEO002",
+      "description": "Discount One Time 250Baht",
+      "soc": "10598411",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR196",
+      "description": "Advance per month",
+      "soc": "1091949",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-06-25",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR210",
+      "description": "Advance per month",
+      "soc": "11028312",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-06",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIM020",
+      "description": "Discount on bill",
+      "soc": "1003918",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-06-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC047",
+      "description": "Advance per month",
+      "soc": "11929212",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-02-11",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC048",
+      "description": "Advance per month",
+      "soc": "11929312",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-02-11",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC040",
+      "description": "Advance per month",
+      "soc": "11888612",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR097",
+      "description": "Advance Payment",
+      "soc": "125466",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-01-23",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR021",
+      "description": "Discount for total Bill 35%",
+      "soc": "93245",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-04-24",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR206",
+      "description": "Special discount",
+      "soc": "11026112",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-23",
+        "end": "2020-07-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC041",
+      "description": "Advance per month",
+      "soc": "11888712",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-26",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR024",
+      "description": "Advance per month",
+      "soc": "1064379",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-17",
+        "end": "2017-06-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR084",
+      "description": "Discount fee 99 Baht",
+      "soc": "91024",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-05-28",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR168",
+      "description": "Advance per month",
+      "soc": "1070589",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-10",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR167",
+      "description": "Advance per month",
+      "soc": "1070579",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-10",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR026",
+      "description": "Advance per month",
+      "soc": "1064399",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-17",
+        "end": "2017-06-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR025",
+      "description": "Advance per month",
+      "soc": "1064389",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-17",
+        "end": "2017-06-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "EDS001",
+      "description": "Discount RC 150Baht",
+      "soc": "11947712",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-02-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC046",
+      "description": "Advance per month",
+      "soc": "11929112",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-02-11",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCU006",
+      "description": "Discount domestic usage charge",
+      "soc": "119006",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2012-12-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC052",
+      "description": "Advance per month",
+      "soc": "12380316",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-04-05",
+        "end": "2055-07-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR129",
+      "description": "Discount on bill",
+      "soc": "10084710",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-07-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR091",
+      "description": "Discount Sook X3 199 Baht",
+      "soc": "106905",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-11-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR040",
+      "description": "Discount 100 bt on Monthly fee",
+      "soc": "31891",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-08-30",
+        "end": "2115-06-06"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR158",
+      "description": "Advance per month",
+      "soc": "10629911",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-14",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR007",
+      "description": "Discount Ring Back Tone Fee",
+      "soc": "52782",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2010-10-29",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR205",
+      "description": "Advance per month",
+      "soc": "11011612",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-07-23",
+        "end": "2017-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGC035",
+      "description": "disc on Color Ring Service",
+      "soc": "67612",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2005-08-01",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE029",
+      "description": "Discount200B on Monthly fee24m",
+      "soc": "12505016",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-04-28",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR122",
+      "description": "Advance per month",
+      "soc": "119507",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-04-11",
+        "end": "2020-02-05"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW021",
+      "description": "Special discount",
+      "soc": "11255812",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-11-03",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC032",
+      "description": "Discount on bill",
+      "soc": "11433912",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "CVG007",
+      "description": "SmartChoice/3Products Discount",
+      "soc": "11340012",
+      "properties": {
+        "DISCOUNT_GROUP": "CVG",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-12-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DGC091",
+      "description": "5% Discount on Roaming usage",
+      "soc": "119306",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2009-08-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC017",
+      "description": "Advance per month",
+      "soc": "11256912",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-10-29",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "TESTTVSD01",
+      "description": "Discount Subscription Fee 20% (Cap Amt 1000 Bt)",
+      "soc": "11035312",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW017",
+      "description": "Discount 200 bt on Monthly fee",
+      "soc": "11123212",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE027",
+      "description": "CP Employee RC Disc 25%",
+      "soc": "12493916",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-05-03",
+        "end": "2018-04-26"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR011",
+      "description": "Discount Ring Back Tone Fee",
+      "soc": "52862",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2010-10-29",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR014",
+      "description": "Discount for RC 6.55%",
+      "soc": "99673",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-02-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR009",
+      "description": "Discount Ring Back Tone Fee",
+      "soc": "52822",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2010-10-29",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR010",
+      "description": "Discount Ring Back Tone Fee",
+      "soc": "52842",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2010-10-29",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "TESTTVSD02",
+      "description": "Discount Subscription Fee 500 Baht (CC+PP)",
+      "soc": "11032412",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 99,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR008",
+      "description": "Discount Ring Back Tone Fee",
+      "soc": "52802",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2010-10-29",
+        "end": "2020-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW018",
+      "description": "Privilege Discount 50% on RC",
+      "soc": "11123312",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-08-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR128",
+      "description": "Discount on bill",
+      "soc": "10084610",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-07-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC014",
+      "description": "Advance per month",
+      "soc": "11130512",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-08",
+        "end": "2099-12-07"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR176",
+      "description": "Special discount",
+      "soc": "1076019",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-04-07",
+        "end": "2020-02-02"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DER003",
+      "description": "Discount on bill",
+      "soc": "10536611",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-12-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR015",
+      "description": "Discount for RC 10%",
+      "soc": "99723",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-02-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "NEW027",
+      "description": "Discount 200B on Monthly fee",
+      "soc": "12292816",
+      "properties": {
+        "DISCOUNT_GROUP": "NEW",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-03-17",
+        "end": "2099-03-17"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR123",
+      "description": "Advance per month",
+      "soc": "119517",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-04-11",
+        "end": "2020-02-05"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR183",
+      "description": "TrueSmartChoice Discount(449B.)",
+      "soc": "1080999",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-05-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR041",
+      "description": "Discount 200 bt on Monthly fee",
+      "soc": "31901",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2011-08-30",
+        "end": "2099-12-25"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC001",
+      "description": "Advance per month",
+      "soc": "11092012",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-09-01",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR131",
+      "description": "Discount on bill",
+      "soc": "10084910",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-07-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DER004",
+      "description": "Discount on bill",
+      "soc": "1076339",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-03-26",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR116",
+      "description": "Special Discount 400 Baht",
+      "soc": "112377",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-03-17",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "SPE028",
+      "description": "CP Employee RC Disc 30%12mths",
+      "soc": "12494216",
+      "properties": {
+        "DISCOUNT_GROUP": "SPECIAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-05-03",
+        "end": "2018-04-26"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC068",
+      "description": "Advance per month",
+      "soc": "12514617",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-07-21",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DEO001",
+      "description": "Discount One Time 100Baht",
+      "soc": "10596911",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2015-02-05",
+        "end": "2016-12-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC050",
+      "description": "Advance per month",
+      "soc": "12239513",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-02-25",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "BUC042",
+      "description": "Advance per month",
+      "soc": "11899412",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2016-01-21",
+        "end": "2018-01-31"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR016",
+      "description": "Discount for RC 20%",
+      "soc": "99753",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-02-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DIR130",
+      "description": "Discount on bill",
+      "soc": "10084810",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2014-07-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    },
+    {
+      "name": "DCR017",
+      "description": "Discount for RC 50%",
+      "soc": "99783",
+      "properties": {
+        "DISCOUNT_GROUP": "NORMAL",
+        "DISCOUNT_TYPE": "REGULAR",
+        "OFFER_TYPE": "N"
+      },
+      "group": "DISCOUNT",
+      "soc-type": "D",
+      "sale-period": {
+        "start": "2013-02-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "available-groups": [
+        "DISCOUNT"
+      ]
+    }
+  ]
+}

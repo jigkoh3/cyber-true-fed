@@ -98,15 +98,8 @@
         } else {
             var url = "/app/jsonFiles/offer/validate-change-offer.json";
             SystemService.getFileJson(url, function(response) {
-                console.log(response);
-                //     fnCallback({
-                //         status: true,
-                //         data: response,
-                //         error: "",
-                //         msgErr: ""
-                //     });
-                // });
-
+                // console.log(response);
+               
                 $timeout(function() {
                     cb({
                         status: true,
@@ -132,7 +125,7 @@
 
             var url = "/app/jsonFiles/Offer/get-existing-offer.json";
             SystemService.getFileJson(url, function(response) {
-                console.log(response);
+                // console.log(response);
 
                 fnCallback({
                     status: true,
@@ -143,7 +136,48 @@
             });
         }
 
-    }
+    };
+
+    this.searchOffer = function(param, type, fnCallback){
+        if(!demo){
+            var target = '/sales/catalog/product/tmv/offer/search?' + param;
+            SystemService.callServiceGet(target, null, function(result){
+                fnCallback(result);
+            });
+        } else {
+            if(type == 'ALL'){
+                var url = "/app/jsonFiles/Offer/search-offer-additional.json"    
+            } else if(type == 'CUG'){
+                var url = "/app/jsonFiles/Offer/search-offer-cug.json"    
+            } else if(type == 'CONTRACT_PROPO'){
+                var url = "/app/jsonFiles/Offer/search-offer-contract_propo.json"    
+            } else if(type == 'SHARE_ALLOWANCE'){
+                var url = "/app/jsonFiles/Offer/search-offer-share_allowance.json"    
+            } else if(type == 'FF'){
+                var url = "/app/jsonFiles/Offer/search-offer-ff.json"    
+            } else if(type == 'DISCOUNT'){
+                var url = "/app/jsonFiles/Offer/search-offer-discount.json"    
+            } else if(type == 'IR'){
+                var url = "/app/jsonFiles/Offer/search-offer-ir.json"    
+            } else if(type == 'IDD'){
+                var url = "/app/jsonFiles/Offer/search-offer-idd.json"    
+            } else if(type == 'ADDITIONAL'){
+                var url = "/app/jsonFiles/Offer/search-offer-additional.json"    
+            } else{
+                var url = "/app/jsonFiles/Offer/search-offer-additional.json"    
+            }
+            
+            SystemService.getFileJson(url, function(response){
+                // console.log(response);
+                fnCallback({
+                    status: true,
+                    data: response,
+                    error: "",
+                    msgErr: ""
+                });
+            });
+        }
+    };
 
     this.submitAddDeleteEditOfferNew = function(payload, fnCallback) {
 

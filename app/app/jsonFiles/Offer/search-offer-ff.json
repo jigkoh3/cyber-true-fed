@@ -1,0 +1,6124 @@
+{
+  "status": "SUCCESSFUL",
+  "trx-id": "AF7JCM0AE1ECD",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "response-data": [
+    {
+      "name": "FX02FS02",
+      "description": "F&F 2 Numbers TRUE Fixed-line",
+      "soc": "1005918",
+      "properties": {
+        "FF_NUMBER": "2",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-05-27",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS39",
+      "description": "Talk: 1F&F Full Match",
+      "soc": "265748",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-07-16",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF01S09",
+      "description": "Friend and Family service-TOT FL Prefix(0Bt)",
+      "soc": "986598",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2011-04-23",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "SPEAKS48",
+      "description": "Talk: 5 F&F for CD O2O NW",
+      "soc": "10170110",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TLKFFS02",
+      "description": "F&F150 unlimited voice 24hrs",
+      "soc": "108335",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-02-13",
+        "end": "2250-08-08"
+      },
+      "rc": 150,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TASPES04",
+      "description": "Talk plus: 6 F&F for CD O2Other NW",
+      "soc": "10172310",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-02-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS01",
+      "description": "Talk: 5F&F",
+      "soc": "996478",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-05-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FLA10S01",
+      "description": "10 F&F Numbers for Fixed Line (Free/0bt)",
+      "soc": "1005608",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-05-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS08",
+      "description": "Talk: 5F&F",
+      "soc": "1005618",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "BUFFTS06",
+      "description": "Free call 1 number Onnet Sat-Sun",
+      "soc": "10482011",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-11-11",
+        "end": "2017-01-06"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXC011"
+    },
+    {
+      "name": "SPEAKS38",
+      "description": "Talk: 5F&F for VC O2Other NW",
+      "soc": "10169110",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS05",
+      "description": "Talk plus: 6 F&F",
+      "soc": "997188",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-03-27",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS04",
+      "description": "Talk plus: 6 F&F",
+      "soc": "997178",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-02-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS06",
+      "description": "Talk: 5 F&F",
+      "soc": "997198",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-02-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "IFF04S01",
+      "description": "F&F Service-FL 4 Prefix Free 5am-5pm.Other 2/1",
+      "soc": "10051010",
+      "properties": {
+        "FF_NUMBER": "4",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-02-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FLA10S03",
+      "description": "10 F&F Numbers for Fixed Line (Free/0bt)",
+      "soc": "86922",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-10-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FL02PS01",
+      "description": "F&F 2 Prefix FL (3bt/time)",
+      "soc": "572498",
+      "properties": {
+        "FF_NUMBER": "2",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-08-16",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS33",
+      "description": "Talk: 1F&F True FL (Higher Priority)",
+      "soc": "96155",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2009-11-07",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FL01PS02",
+      "description": "F&F 1 Prefix FL (3bt/time)",
+      "soc": "572488",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-08-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "EVOCDS01",
+      "description": "SOC_Ent_100_Unlimited CUG+F&F1 No.(True: Full mat)",
+      "soc": "111666",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2011-09-09",
+        "end": "2017-01-01"
+      },
+      "rc": 100,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "CUG ID",
+          "required": true,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "CUG",
+        "FF"
+      ],
+      "exclusion-group": "EXR036"
+    },
+    {
+      "name": "EVOCCS01",
+      "description": "SOC_Ent_100_Unlimited F&F 1 No.(True: Full mat)",
+      "soc": "122126",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2011-09-20",
+        "end": "2017-01-01"
+      },
+      "rc": 100,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS11",
+      "description": "Talk: 5F&F",
+      "soc": "997228",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS07",
+      "description": "Talk: 5 F&F",
+      "soc": "997208",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-03-27",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS09",
+      "description": "Talk: 5F&F",
+      "soc": "997218",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS03",
+      "description": "Talk: 5F&F",
+      "soc": "572508",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-05-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS12",
+      "description": "Talk: 5F&F",
+      "soc": "997238",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-05-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS16",
+      "description": "Talk: 5F&F",
+      "soc": "997248",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2005-03-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS17",
+      "description": "Talk: 5F&F",
+      "soc": "997258",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2005-05-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS35",
+      "description": "Talk: 1F&F True Move only (0.25 bt)",
+      "soc": "997298",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-02-03",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS38",
+      "description": "Talk: 1F&F True FL, 7am-7pm period (2/1/1 bt)",
+      "soc": "938698",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-07-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS34",
+      "description": "Talk: 1F&F True FL",
+      "soc": "938678",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-01-22",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS37",
+      "description": "Talk: 1F&F True FL,8am-6pm period (2/1/1 bt)",
+      "soc": "938688",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-07-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FL01PS03",
+      "description": "F&F 1 Prefix FL BAN Level (3bt/time)",
+      "soc": "938668",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-04-22",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "FAMPKS01",
+      "description": "Talk: 2F&F - TM2TM & TM2True",
+      "soc": "1005498",
+      "properties": {
+        "FF_NUMBER": "2",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-06-26",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF01S01",
+      "description": "Friend & Family service-FL Prefix(1.5Bt/Call)_Sub",
+      "soc": "114846",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-11-05",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "CFF03S02",
+      "description": "Friend & Family service Prefix(1 Bt/minute)_Sub",
+      "soc": "114967",
+      "properties": {
+        "FF_NUMBER": "3",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-07-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "FTALKS22",
+      "description": "Talk: 5F&F (Higher Priority) - O2O & O2True",
+      "soc": "978928",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TASPES10",
+      "description": "Talk Plus: 6 F&F for VC O2Other2 NW",
+      "soc": "10172910",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-02-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS23",
+      "description": "Talk: 6F&F (Higher Priority) - O2O & O2True",
+      "soc": "978938",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-30",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS61",
+      "description": "Talk: 5 F&F for CD O2Other2 NW",
+      "soc": "10171410",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TASPES09",
+      "description": "Talk plus: 6 F&F for CD O2O NW",
+      "soc": "10172810",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-03-27",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "RETENS22",
+      "description": "Retention F&F_Free Call On-Net 1 Number",
+      "soc": "12474017",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2016-07-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "TR10PS01",
+      "description": "F&F 10 numbers Prefix On-Net (Free/0bt)",
+      "soc": "986948",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2009-04-22",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "SPEAKS63",
+      "description": "Talk: 5 F&F for VC O2O NW",
+      "soc": "10171610",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TRPLES01",
+      "description": "3 F&F numbers - On Net",
+      "soc": "986958",
+      "properties": {
+        "FF_NUMBER": "3",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-07-17",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF03S01",
+      "description": "Friend & Family service-FL Prefix (3 Bt/Call)_Sub",
+      "soc": "115086",
+      "properties": {
+        "FF_NUMBER": "3",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2007-05-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "TASPES08",
+      "description": "Talk plus: 6 F&F for CD O2Other NW",
+      "soc": "10172710",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-03-27",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TR03FS01",
+      "description": "F&F 3 numbers On-Net (Free/0bt)",
+      "soc": "986938",
+      "properties": {
+        "FF_NUMBER": "3",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-09-13",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TASPES07",
+      "description": "Talk plus: 6 F&F for VC O2O NW",
+      "soc": "10172610",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-03-27",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF03S05",
+      "description": "F&F service-FL Prefix (1.80Bt./Call)_Sub",
+      "soc": "115037",
+      "properties": {
+        "FF_NUMBER": "3",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-12-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "SPEAKS60",
+      "description": "Talk: 5 F&F for CD O2O NW",
+      "soc": "10171310",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF03S04",
+      "description": "F&F service-FL Prefix (2 Bt/Call)_Sub",
+      "soc": "115226",
+      "properties": {
+        "FF_NUMBER": "3",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-12-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "SPEAKS62",
+      "description": "Talk: 5F&F for VC O2Other NW",
+      "soc": "10171510",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS65",
+      "description": "Talk: 5 F&F for CD O2Other NW",
+      "soc": "10171810",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF10S01",
+      "description": "Friend & Family service 50 Baht_Sub",
+      "soc": "115296",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-08-16",
+        "end": "2250-08-08"
+      },
+      "rc": 50,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "SPEAKS64",
+      "description": "Talk: 5 F&F for VC O2Other2 NW",
+      "soc": "10171710",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TLKFFS01",
+      "description": "Talk F&F On-net & True Fixed line number",
+      "soc": "83042",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-08-28",
+        "end": "2017-01-06"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FFVSMS02",
+      "description": "TrueSmartChoice_Call Free in Family GroupUnlimited",
+      "soc": "1081879",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2015-05-01",
+        "end": "2020-06-30"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "SPEAKS53",
+      "description": "Talk: 5 F&F for CD O2Other NW",
+      "soc": "10170610",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS66",
+      "description": "Talk: 5 F&F for CD O2O NW",
+      "soc": "10171910",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS54",
+      "description": "Talk: 5 F&F for CD O2O NW",
+      "soc": "10170710",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS67",
+      "description": "Talk: 5 F&F for CD O2Other2 NW",
+      "soc": "10172010",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS35",
+      "description": "Talk: 5 F&F for CD O2Other NW",
+      "soc": "10168510",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS36",
+      "description": "Talk: 5 F&F for CD O2O NW",
+      "soc": "10168910",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "BUFFTS05",
+      "description": "Free call 1 number Onnet 5am-5pm",
+      "soc": "10481311",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2014-11-11",
+        "end": "2017-01-06"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXC011"
+    },
+    {
+      "name": "TASPES02",
+      "description": "Talk plus: 6 F&F for VC O2Other NW",
+      "soc": "10172110",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-02-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF05S01",
+      "description": "F&F service-FL 5 Full Match (0 Bt.)_Sub",
+      "soc": "103565",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2009-02-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "CFF10S02",
+      "description": "Friend & Family service (Free)_Sub",
+      "soc": "103575",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-08-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "CFF10S04",
+      "description": "Friend & Family service-True FL Prefix (Free)_Sub",
+      "soc": "103585",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-12-20",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "CFF01S07",
+      "description": "F&F service-All network 1 Full Match (0 Bt.)_Sub",
+      "soc": "103555",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-11-04",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "SPEAKS51",
+      "description": "Talk: 5 F&F for VC O2O NW",
+      "soc": "10170410",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS52",
+      "description": "Talk: 5 F&F for VC O2Other2 NW",
+      "soc": "10170510",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS46",
+      "description": "Talk: 5 F&F for VC O2Other2 NW",
+      "soc": "10169910",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS45",
+      "description": "Talk: 5 F&F for VC O2O NW",
+      "soc": "10169810",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS49",
+      "description": "Talk: 5 F&F for CD O2Other2 NW",
+      "soc": "10170210",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TLKFFS03",
+      "description": "Buffet Onnet 1 Number 149B. 24Hour (recurring)",
+      "soc": "11897712",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2016-01-26",
+        "end": "2250-08-08"
+      },
+      "rc": 149,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "TASPES13",
+      "description": "Talk Plus: 6 F&F for CD O2Other2 NW",
+      "soc": "10173210",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-02-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS50",
+      "description": "Talk: 5F&F for VC O2Other NW",
+      "soc": "10170310",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TASPES05",
+      "description": "Talk plus: 6 F&F for CD O2O NW",
+      "soc": "10172410",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-02-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TASPES12",
+      "description": "Talk Plus: 6 F&F for VC O2Other2 NW",
+      "soc": "10173110",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-02-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TASPES06",
+      "description": "Talk plus: 6 F&F for VC O2Other NW",
+      "soc": "10172510",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-03-27",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS57",
+      "description": "Talk: 5 F&F for VC O2O NW",
+      "soc": "10171010",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TM01FS01",
+      "description": "F&F 1 numbers On-Net True Move (Free/0bt)",
+      "soc": "10173310",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2007-04-09",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS58",
+      "description": "Talk: 5 F&F for VC O2Other2 NW",
+      "soc": "10171110",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TR10FS01",
+      "description": "F&F 10 numbers On-Net (Free/0bt)",
+      "soc": "10173410",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-05-24",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "FL01PS04",
+      "description": "F&F 1 Prefix True FL (Free/1.5bt)",
+      "soc": "986688",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2009-04-10",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS47",
+      "description": "Talk: 5 F&F for CD O2Other NW",
+      "soc": "10170010",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FL02PS02",
+      "description": "F&F 2 Prefix FL (Free 24 hrs.)",
+      "soc": "986698",
+      "properties": {
+        "FF_NUMBER": "2",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2012-04-04",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF10S07",
+      "description": "Friend and Family service-FL Perfix(Free,1Bt/call)",
+      "soc": "92153",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-02-10",
+        "end": "2017-01-01"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "TASPES03",
+      "description": "Talk plus: 6 F&F for VC O2O NW",
+      "soc": "10172210",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-02-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS42",
+      "description": "Talk: 5 F&F for CD O2O NW",
+      "soc": "10169510",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS13",
+      "description": "Talk: 5F&F",
+      "soc": "997638",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS56",
+      "description": "Talk: 5F&F for VC O2Other NW",
+      "soc": "10170910",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS18",
+      "description": "Talk: 5F&F",
+      "soc": "997648",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2005-03-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FAMPKS02",
+      "description": "Talk: 2F&F - TM2TM & TM2True (1baht/call)",
+      "soc": "995518",
+      "properties": {
+        "FF_NUMBER": "2",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2007-05-23",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS34",
+      "description": "Talk: 5 F&F for VC O2Other2 NW",
+      "soc": "10168410",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF10S06",
+      "description": "Friend and Family service-Any Prefix (Free)",
+      "soc": "1004458",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-05-12",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "SPEAKS41",
+      "description": "Talk: 5 F&F for CD O2Other NW",
+      "soc": "10169410",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS33",
+      "description": "Talk: 5 F&F for VC O2O NW",
+      "soc": "10168310",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF10S05",
+      "description": "Friend &  Family service-True FL Prefix(50 Bt)_Sub",
+      "soc": "103945",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2007-01-15",
+        "end": "2250-08-08"
+      },
+      "rc": 50,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "FTALKS36",
+      "description": "Talk: 3F&F True Move number",
+      "soc": "1005908",
+      "properties": {
+        "FF_NUMBER": "3",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2010-06-29",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS02",
+      "description": "Talk: 5F&F",
+      "soc": "996708",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-05-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS55",
+      "description": "Talk: 5 F&F for CD O2Other2 NW",
+      "soc": "10170810",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS21",
+      "description": "Talk: 5F&F",
+      "soc": "997658",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-05-07",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS14",
+      "description": "Talk: 5F&F (Higher Priority)",
+      "soc": "1005728",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2003-10-29",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FL10PS03",
+      "description": "Free call to Fixed Line,Fixed Line Plus Unlimited",
+      "soc": "1064929",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2015-02-17",
+        "end": "2019-02-21"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS39",
+      "description": "Talk: 5 F&F for VC O2O NW",
+      "soc": "10169210",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS15",
+      "description": "Talk: 6F&F (Higher Priority)",
+      "soc": "1005738",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2003-10-29",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS31",
+      "description": "Talk: 1F&F True FL",
+      "soc": "265738",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-02-28",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS40",
+      "description": "Talk: 1F&F Mobile Full match",
+      "soc": "113106",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2013-11-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "CFF10S03",
+      "description": "Friend & Family service-Any Prefix (Free)_Sub",
+      "soc": "6531",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-12-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "FTALKS19",
+      "description": "Talk: 5 F&F",
+      "soc": "1005808",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS40",
+      "description": "Talk: 5 F&F for VC O2Other2 NW",
+      "soc": "10169310",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS28",
+      "description": "Talk: 1F&F True Move number",
+      "soc": "997848",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2007-07-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS29",
+      "description": "Talk: 1F&F True Move number",
+      "soc": "997858",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2007-07-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FL01PS01",
+      "description": "F&F 1 Prefix True FL (Free/0bt)",
+      "soc": "996348",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "OT10FS01",
+      "description": "F&F 10 numbers FL and MB (Free/0.70bt)",
+      "soc": "10043110",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-11-15",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS20",
+      "description": "Talk plus: 6 F&F",
+      "soc": "1005878",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-01-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS27",
+      "description": "Talk: 1F&F True Move number",
+      "soc": "997838",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2007-07-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS26",
+      "description": "Talk: 10 F&F",
+      "soc": "1005898",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-03-02",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS32",
+      "description": "F&F 5 Full Match On-Net TMV (1Bt/Call)",
+      "soc": "997908",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-08-13",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS24",
+      "description": "Talk: 1F&F",
+      "soc": "1005888",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2005-06-16",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS30",
+      "description": "Talk: 1F&F TMV 25 Satang",
+      "soc": "997868",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2008-08-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS59",
+      "description": "Talk: 5 F&F for CD O2Other NW",
+      "soc": "10171210",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-10-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FTALKS10",
+      "description": "Talk: 5F&F",
+      "soc": "997508",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS43",
+      "description": "Talk: 5 F&F for CD O2Other2 NW",
+      "soc": "10169610",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS32",
+      "description": "Talk: 5F&F for VC O2Other NW",
+      "soc": "10168210",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS44",
+      "description": "Talk: 5F&F for VC O2Other NW",
+      "soc": "10169710",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "FL10PS01",
+      "description": "F&F 10 Prefixes True FL (Free/1bt,PMB)",
+      "soc": "1005598",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2006-08-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "FL10PS02",
+      "description": "F&F 10 Prefixes True FL (Free/0bt)",
+      "soc": "265718",
+      "properties": {
+        "FF_NUMBER": "10",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2007-01-18",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ],
+      "exclusion-group": "EXR023"
+    },
+    {
+      "name": "FTALKS25",
+      "description": "Talk: 1F&F - O2True",
+      "soc": "265728",
+      "properties": {
+        "FF_NUMBER": "1",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2005-06-25",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "TASPES11",
+      "description": "Talk Plus: 6 F&F for CD O2Other2 NW",
+      "soc": "10173010",
+      "properties": {
+        "FF_NUMBER": "6",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2002-02-21",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    },
+    {
+      "name": "SPEAKS37",
+      "description": "Talk: 5 F&F for CD O2Other2 NW",
+      "soc": "10169010",
+      "properties": {
+        "FF_NUMBER": "5",
+        "OFFER_TYPE": "N"
+      },
+      "group": "FF",
+      "soc-type": "U",
+      "sale-period": {
+        "start": "2004-07-01",
+        "end": "2250-08-08"
+      },
+      "rc": 0,
+      "max-instance-allow": 0,
+      "service-level": "C",
+      "parameter-specifications": [
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        },
+        {
+          "name": "Friend numbers offer level",
+          "required": false,
+          "min": 1,
+          "max": 10,
+          "data-type": "TEXT"
+        }
+      ],
+      "available-groups": [
+        "FF"
+      ]
+    }
+  ]
+}
