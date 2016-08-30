@@ -599,21 +599,21 @@
                         <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddOffer" ng-model="tableAddOffer" ng-show="addOfferLists.length > 0">
                             <tr>
                                 <th class="col-xs-1 contentTbHeader"">
-                                <h>เลือก</h>
-                            </th>
-                            <th class="col-xs-2 contentTbHeader"">
+                                    <h>เลือก</h>
+                                </th>
+                                <th class="col-xs-2 contentTbHeader"">
                                     <h>Offer Name</h>
                                 </th>
                                 <th class="col-xs-4 contentTbHeader"">
-                                <h>Offer Description</h>
-                            </th>
-                            <th class="col-xs-1 contentTbHeader"">
+                                    <h>Offer Description</h>
+                                </th>
+                                <th class="col-xs-1 contentTbHeader"">
                                     <h>Level</h>
                                 </th>
                                 <th class="col-xs-2 contentTbHeader"">
-                                <h>Sale Effective Date</h>
-                            </th>
-                            <th class="col-xs-2 contentTbHeader"">
+                                    <h>Sale Effective Date</h>
+                                </th>
+                                <th class="col-xs-2 contentTbHeader"">
                                     <h>Sale Expiration Date</h>
                                 </th>
                             </tr>
@@ -643,10 +643,15 @@
                                 <td colspan="6" class="text-center">
                                     <div dir-pagination-controls pagination-id="offerList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
                                 </td>
-                        </tr>
-                        <br>
-                        <br>
-                    </table>
+                            </tr>
+                            <br>
+                            <br>
+                        </table>
+                        <div class="row" ng-show="addOfferLists.length == 0">
+                            <div class="col-md-12" align="center">
+                                <h3 style="color:red; text-align:center;">*ไม่พบข้อมูล Offer</h3>
+                            </div>
+                        </div>
                     <!-- offer detail -->
                     <div ng-show="selectedOffer.group=='CUG'&& radioOffer">
                         <br>
@@ -1080,6 +1085,164 @@
                                     &nbsp;
                                 </div>
                             </td>
+                    </div>
+                    <div ng-show="selectedOffer.group=='CONTRACT_PROPO' && radioOffer" style="padding: 20px;">
+                            <div class="form-group">
+                                <div style="font-size: 1.23em; font-weight: bold; padding-left: 100px;">Offer Parameter</div>
+                            </div>
+                            &nbsp;
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Proposition Code</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input ng-disabled="true" type="text" ng-model="cpPropCode" class="form-control">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Proposition Description</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input ng-disabled="true" type="text" ng-model="cpPropDesc" class="form-control">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Contract Number</label><span style="color: red">*</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" ng-model="cpContractNumber" class="form-control">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Term</label><span style="color: red">*</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" ng-model="cpTerm" class="form-control">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Fee</label><span style="color: red">*</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" ng-model="cpFee" class="form-control" id="cpFee">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Effective Date</label><span style="color: red">*</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="has-feedback">
+                                        <input name="birthDay" type="text" ng-model="cpStartDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Expiration Date</label><span style="color: red">*</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="has-feedback">
+                                        <input name="birthDay" type="text" ng-model="cpExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>Remark</label><span style="color: red">*</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input name="cpRemark" type="text" ng-model="cpRemark" class="form-control">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                    </div>
+                    <div ng-show="selectedOffer.group=='DISCOUNT' && radioOffer" style="padding: 20px;">
+                            <div class="form-group">
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-2" style=" text-align: left; top: 5px;">
+                                        <label>Effective Date</label><span style="color:red;">*</span>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="col-xs-2" style="top:5px;">
+                                            <input type="radio" name="date" autocomplete="off" class="radio_ck" checked> ทันที
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group has-feedback">
+                                                <!-- <div class="col-xs-6"> -->
+                                                <div class="col-xs-3" style="top:5px;">
+                                                    <input type="radio" name="date" autocomplete="off" class="enable_tb" value="specify">ระบุวันที่
+                                                </div>
+                                                <!-- </div> -->
+                                                <div class="col-xs-6" style="margin-top:-5px; margin-bottom:-5px;">
+                                                    <div class="form-group has-feedback imp" style="top:5px;">
+                                                        <input type="text" ng-model="addDisEffectiveOffer['manualBillDate']" id="txtDateManual" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10">
+                                                        <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- </label> -->
+                                        <!-- </div> -->
+                                    </div>
+                                    <div class="col-xs-1">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-xs-2">
+                                    </div>
+                                    <div class="col-xs-2" style=" text-align: left; top: 5px;">
+                                        <label>Expiration Date</label><span style="color:red;">*</span>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="form-group has-feedback">
+                                            <input name="birthDay" type="text" ng-model="addDisExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                            <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -2507,12 +2670,8 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="col-xs-2" style="top:5px;">
-                                            <!-- <div data-toggle="buttons" id="divEffer" class="btn-group btn-group-justified effectiveOffer"> -->
-                                            <!--  <label ng-disabled="!isCustomerProfile" id="efferNow" class="btn btn-default effectiveOffer active" onclick="$('.date-picker-start').val('');" ng-click="onEffectiveDate('IMMEDIATE')"> -->
                                             <input type="radio" name="date" autocomplete="off" class="radio_ck" checked> ทันที
                                         </div>
-                                        <!-- </label> -->
-                                        <!-- <label ng-disabled="!isCustomerProfile" id="efferManual" class=" form-group has-feedback effectiveOffer" ng-click="onEffectiveDate('FUTURE')"> -->
                                         <div class="col-xs-10">
                                             <div class="form-group has-feedback">
                                                 <!-- <div class="col-xs-6"> -->

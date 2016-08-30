@@ -1622,8 +1622,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.regularOffer = [];
     $scope.discountOffer = [];
     $scope.getExistingOffer = function() {
+        SystemService.showLoading();
         AddDeleteEditOfferNewService.getExistingOffer($scope.level, $scope.data.simData['product-id-number'], $scope.data.simData['subscriber-id'], function(result) {
             console.log(result.data['response-data']['customer']['installed-products']);
+            SystemService.hideLoading();
             if (result) {
                 $scope.existingOffer = result.data['response-data']['customer']['installed-products'];
                 $scope.builtInOffer = $filter('filter')($scope.existingOffer, {'product-type': 'PRICEPLAN-BUILT-IN'});
@@ -1666,6 +1668,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.addOfferLists = result.data['response-data'];
                  addOfferLists = result.data['response-data'];
                 console.log($scope.addOfferLists);   
+            } else{
+                $scope.addOfferLists = [];
             }
         });
     }

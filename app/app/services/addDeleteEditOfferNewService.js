@@ -164,7 +164,7 @@
             } else if(type == 'ADDITIONAL'){
                 var url = "/app/jsonFiles/Offer/search-offer-additional.json"    
             } else{
-                var url = "/app/jsonFiles/Offer/search-offer-additional.json"    
+                var url = "/app/jsonFiles/Offer/search-offer-notfound.json"    
             }
             
             SystemService.getFileJson(url, function(response){
