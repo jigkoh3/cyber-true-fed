@@ -140,7 +140,7 @@
 
     this.validateOffer = function(name, currentOffer, fnCallback){
         if(!demo){
-            var target = "/sales/catalog/product/tmv/offer/validate?" + "&new-offer=" + name + "&current-offers=" + currentOffer;
+            var target = "/sales/catalog/product/tmv/offer/validate?" + "new-offer=" + name + "&current-offers=" + currentOffer;
             SystemService.callServicePost(target, null, function(result){
                 fnCallback(result);
             });
