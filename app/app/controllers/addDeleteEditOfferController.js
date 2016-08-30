@@ -1620,6 +1620,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.existingOffer = [];
     $scope.builtInOffer = [];
     $scope.regularOffer = [];
+    $scope.propoOffer = [];
     $scope.discountOffer = [];
     $scope.getExistingOffer = function() {
         SystemService.showLoading();
