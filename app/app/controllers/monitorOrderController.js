@@ -26,7 +26,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
     var dateNow = new Date();
     $scope.setDateNow = ("0" + dateNow.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/"  + Number(dateNow.getFullYear() + 543);
     console.log( $scope.setDateNow);
-    var fromDay = new Date(dateNow.getTime() - (7 * 24 * 60 * 60 * 1000));
+    var fromDay = new Date(dateNow.getTime() - (6 * 24 * 60 * 60 * 1000));
     console.log(fromDay);
     $scope.fromdate =  ("0" + fromDay.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/"  + Number(dateNow.getFullYear() + 543);
     $('#fromdate').val($scope.fromdate);
@@ -133,25 +133,32 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
 
         var fromdate = $("#fromdate").val();
         var todate = $("#todate").val();
+        console.log(condition);
 
         //           alert("Validate shopCode:"+shopCode + "|date :"+ dateDiff('d', fromdate  ,todate));
         //           
         //           if((fromdate == "" || todate == "" )&&(condition == 'E' || condition == 'B')){
-        if ((fromdate == "" || todate == "")) {
+
+        // 20160830 by waramun add check condition != "A" && condition != "C" && condition != "D"
+        if(condition != "A" && condition != "C" && condition != "D"){
+            if ((fromdate == "" || todate == "")) {
             //               alert("Please input Begin and End Date!!!");
-            msgModel = {
-                "message": "You must fill the date.",
-                "message-code": "SYS-000",
-                "message-type": "INFO",
-                "en-message": "You must fill from date and to date.",
-                "th-message": "กรุณากรอกวันที่เริ่มต้นเเละจบในการค้นหา",
-                "technical-message": "",
-                "mode": "dealer"
-            };
-            SystemService.showAlert(msgModel);
-            return false;
+                msgModel = {
+                    "message": "You must fill the date.",
+                    "message-code": "SYS-000",
+                    "message-type": "INFO",
+                    "en-message": "You must fill from date and to date.",
+                    "th-message": "กรุณากรอกวันที่เริ่มต้นเเละจบในการค้นหา",
+                    "technical-message": "",
+                    "mode": "dealer"
+                };
+                SystemService.showAlert(msgModel);
+                return false;
+            }
         }
-        if ((condition != undefined && "" != condition) && $("#product-number").val() == "" && $("#customer-id").val() == "" && $("#order-id").val() == "" && $("#provisioning-id").val() == "" && $("#sale-code").val() == "") {
+        
+        // if ((condition != undefined && "" != condition) && $("#product-number").val() == "" && $("#customer-id").val() == "" && $("#order-id").val() == "" && $("#provisioning-id").val() == "" && $("#sale-code").val() == "") {
+            if ((condition == "A" && $('#product-number').val() == "") || (condition == "B" && $('#customer-id').val() == "") || (condition == "C" && $('#order-id').val() == "") || (condition == "D" && $('#provisioning-id').val() == "") || (condition == "E" && $('#sale-code').val() == "")) {
             msgModel = {
                 "message": "You must fill value of condition.",
                 "message-code": "SYS-000",
@@ -217,8 +224,9 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                 SystemService.showAlert(msgModel);
                 return false;
             }
-        } else if (condition != undefined && condition == 'A' || condition == 'C' || condition == 'D') { // product-id
-            if (dateDiff('d', fromdate, todate) <= 181) {
+            //20160830 by waramun delete condition == 'A' , condition == 'C' , condition == 'D'
+        } else if (condition != undefined && condition == 'B') { // product-id
+            if (dateDiff('d', fromdate, todate) <= 31) {
                 return true;
             } else {
                 //                   alert("Begin and End Date not more than 30 days >>> condition =0");
@@ -685,7 +693,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         $("#shopCode").val($scope.shopCode);
         $("#customShopCode").val($scope.shopCode);
 
-        $scope.showDate();
+        // $scope.showDate();
     };
 
     $scope.callGetPricePlan = function(priceplanCode, type) {
@@ -844,7 +852,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
     }
 
     var webContextPath = getContextPath();
-    // console.log(webContextPath);
+    console.log(webContextPath);
     $scope.callPrint = function(data) {
         if (null != data['order-id']) {
             var detailUrl = webContextPath + "/reprint.jsp?keyId=" + encodeURI($scope.service + "/aftersales/order/pdf/get-pdf-reprint?order-id=" + data['order-id']); //webapp/aftersale               
@@ -867,6 +875,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         if(selectID == "layout-table"){
             $('#' + selectID ).addClass("leyout-type");
             $('#layout-columns').removeClass("leyout-type");
+            $('.idActive').removeClass("success");
             $scope.leyoutType = "layout-table";
         } else {
             $('#' + selectID ).addClass("leyout-type");
@@ -876,6 +885,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
     }
 
     var valOrder = [];
+    $scope.searchOrder = "";
     $scope.isLoadOrder = false;
     $scope.smartSearchOrder = function(txtSearch) {
         if ($scope.isLoadOrder) {

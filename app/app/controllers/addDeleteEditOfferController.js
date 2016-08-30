@@ -1670,6 +1670,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 console.log($scope.addOfferLists);   
             } else{
                 $scope.addOfferLists = [];
+                addOfferLists = [];
             }
         });
     }
