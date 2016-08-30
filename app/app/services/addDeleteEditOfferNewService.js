@@ -138,6 +138,25 @@
 
     };
 
+    this.validateOffer = function(name, currentOffer, fnCallback){
+        if(!demo){
+            var target = "/sales/catalog/product/tmv/offer/validate?" + "&new-offer=" + name + "&current-offers=" + currentOffer;
+            SystemService.callServicePost(target, null, function(result){
+                fnCallback(result);
+            });
+        } else {
+            var url = "/app/jsonFiles/Offer/validate-offer-success.json";
+            SystemService.getFileJson(url, function(response){
+                fnCallback({
+                    status: true,
+                    data: response,
+                    error: "",
+                    msgErr: ""
+                });
+            });
+        }
+    };
+
     this.searchOffer = function(param, type, fnCallback){
         if(!demo){
             var target = '/sales/catalog/product/tmv/offer/search?' + param;
@@ -243,7 +262,7 @@
                         'SERVICE-LEVEL': "C",
                         'SUBSCRIBER-ID': payload.customerProfile['subscriber-id'],
                         "CHANGE-OPTION": payload.statusCancel,
-                        "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-DESC']
+                        // "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-DESC']
 
                         // 'OU-ID': payload.productDetails['ouId'],
                         // 'BAN': payload.productDetails['ban'],

@@ -222,7 +222,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.OUID = "";
             }
 
-            //call validateOffer
+            //call validate-change-offer
             if ($scope.SubNo !== 'null') {
                 SystemService.showLoading();
                 AddDeleteEditOfferNewService.getSIMData($scope.subNoInput, $scope.level, onGetSIMData);
@@ -728,6 +728,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         var list = $filter('filter')($scope.addNewOfferLists, {
             'name': item['name']
         });
+
         if (list.length == 0) {
             $scope.addNewOfferLists.push(item);
         }
@@ -1627,12 +1628,39 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         AddDeleteEditOfferNewService.getExistingOffer($scope.level, $scope.data.simData['product-id-number'], $scope.data.simData['subscriber-id'], function(result) {
             console.log(result.data['response-data']['customer']['installed-products']);
             SystemService.hideLoading();
-            if (result) {
-                $scope.existingOffer = result.data['response-data']['customer']['installed-products'];
-                $scope.builtInOffer = $filter('filter')($scope.existingOffer, {'product-type': 'PRICEPLAN-BUILT-IN'});
-                $scope.regularOffer = $filter('filter')($scope.existingOffer, {'product-type': 'ADDITIONAL-OFFER'});
-                $scope.propoOffer = $filter('filter')($scope.existingOffer, {'product-type': 'PROPOSITION'});
-                $scope.discountOffer = $filter('filter')($scope.existingOffer, {'product-type': 'DISCOUNT'});
+            if (result.data['response-data']) {
+                $scope.builtInOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], {'product-type': 'PRICEPLAN-BUILT-IN'});
+                $scope.regularOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], {'product-type': 'ADDITIONAL-OFFER'});
+                $scope.propoOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], {'product-type': 'PROPOSITION'});
+                $scope.discountOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], {'product-type': 'DISCOUNT'});
+
+                if($scope.builtInOffer){
+                    for(var i = 0; i < $scope.builtInOffer.length; i++){
+                        $scope.existingOffer.push($scope.builtInOffer[i])
+                    }
+                }
+                if($scope.regularOffer){
+                    for(var i = 0; i < $scope.regularOffer.length; i++){
+                        $scope.existingOffer.push($scope.regularOffer[i])
+                    }
+                }
+                if($scope.propoOffer){
+                    for(var i = 0; i < $scope.propoOffer.length; i++){
+                        $scope.existingOffer.push($scope.propoOffer[i])
+                    }
+                }
+                if($scope.discountOffer){
+                    for(var i = 0; i < $scope.discountOffer.length; i++){
+                        $scope.existingOffer.push($scope.discountOffer[i])
+                    }
+                }
+                // console.log($scope.existingOffer);
+            } else {
+                $scope.existingOffer = [];
+                $scope.builtInOffer = [];
+                $scope.regularOffer = [];
+                $scope.propoOffer = [];
+                $scope.discountOffer = [];
             }
         });
     };
@@ -1673,6 +1701,31 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.addOfferLists = [];
                 addOfferLists = [];
             }
+        });
+    }
+
+    $scope.newOffer = {};
+    $scope.currentOfferParam = ""
+    $scope.validateOffer = function(item){
+        $scope.currentOfferParam = "";
+        $scope.selectedNewOffer = item.name;
+        $scope.newOffer = item;
+        if($scope.existingOffer.length >= 1){
+            $scope.currentOfferParam = $scope.existingOffer[0]['product-name'];
+            for(var i = 1; i < $scope.existingOffer.length; i++){    
+                $scope.currentOfferParam += "|" +  $scope.existingOffer[i]['product-name'];
+            };
+        };
+        console.log($scope.currentOfferParam);
+
+        AddDeleteEditOfferNewService.validateOffer($scope.selectedNewOffer, $scope.currentOfferParam, function(result){
+            $scope.validateOfferResult = result;
+            console.log($scope.validateOfferResult.data);
+            if(!$scope.validateOfferResult.data.fault){
+                $scope.addNewOfferList($scope.newOffer);
+            } else {
+                SystemService.showAlert($scope.validateOfferResult.data['display-messages'][0]);
+        }
         });
     }
 });

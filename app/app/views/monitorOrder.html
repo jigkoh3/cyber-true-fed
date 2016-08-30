@@ -127,17 +127,25 @@
                                 <td align="center" style="vertical-align: middle; width: 5px;">
                                     <i class="fa fa-print fa-2x" ng-click="callPrint(data)" ng-if="data['reprint']==true" style="cursor: pointer; "></i>
                                 </td>
-                                <td style="cursor:pointer; text-align:center;" align="center" class="col-xs-2 contentTb"><a href="" ng-click="popup(data)" data-toggle="modal" data-target="#modal-order-detail">{{data['order-id']}}</a></td>
+                                <td style="cursor:pointer; text-align:center;" align="center" class="col-xs-2 contentTb"><a ng-click="popup(data)" data-toggle="modal" data-target="#modal-order-detail">{{data['order-id']}}</a>
+                                </td>
                                 <!-- <td  align="right"><a href="" ng-click="popup(data)" class="btn" data-toggle="modal" data-target="#myModal">myModal</a></td> -->
                                 <td align="center" class="col-xs-2 contentTb">{{data['provisioning-id']}}</td>
                                 <td align="center" class="col-xs-2 contentTb" style="text-align:center;">
-                                <span ng-if="data['partner-code'] || data['sale-code']">{{data['partner-code']}} / {{data['sale-code']}}</span></td>
-                                <td align="center" ng-if="isAdmin" class="col-xs-2 contentTb" style="text-align:center;">{{data['customer-id-number']}}</td>
+                                    <span ng-if="data['partner-code'] || data['sale-code']">{{data['partner-code']}} / {{data['sale-code']}}
+                                    </span>
+                                </td>
+                                <td align="center" ng-if="isAdmin" class="col-xs-2 contentTb" style="text-align:center;">{{data['customer-id-number']}}
+                                </td>
                                 <!-- <td style="vertical-align: middle;" >{{data['customer-name']}}</td> -->
                                 <!-- <td style="vertical-align: middle;"  align="center">{{data['product-id-number']}}</td> -->
-                                <td class="col-md-2 contentTb">{{data['activity-description']}}</td>
-                                <td align="right" class="col-xs-2 contentTb" style="text-align:center;">{{data['submit-date'] | date:"dd/MM/yyyy HH:mm:ss"}}</td>
-                                <td align="center" class="col-xs-1 contentTb" style="text-align:center;">{{data['status']}}</td>
+                                <td class="col-xs-2 contentTb">
+                                    {{data['activity-description']}}
+                                </td>
+                                <td align="right" class="col-xs-1 contentTb" style="text-align:center;">    {{data['submit-date'] | date:"dd/MM/yyyy HH:mm:ss"}}
+                                </td>
+                                <td align="center" class="col-xs-1 contentTb" style="text-align:center;">   {{data['status']}}
+                                </td>
                                 <!-- <td style="vertical-align: middle;" >{{data['partner-code']}}</td> -->
                                 <!-- <td style="vertical-align: middle;" >{{data['sale-code']}}</td> -->
                                 <!-- <td style="vertical-align: middle;" >{{data['status-message']}}</td> -->

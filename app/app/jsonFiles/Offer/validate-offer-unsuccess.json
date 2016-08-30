@@ -1,0 +1,20 @@
+{
+  "trx-id": "3P7K6RCG9L6JN",
+  "status": "SUCCESSFUL",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "fault": {
+    "name": "th.co.truecorp.ads.sale.catalog.product.tmv.OfferInstanceReachedLimitException",
+    "code": "OFFER-401",
+    "message": "Number of offer RMGPSS62 instance has reached maximum value 0 ",
+    "detailed-message": "OfferInstanceReachedLimitException Number of offer RMGPSS62 instance has reached maximum value 0 . "
+  },
+  "display-messages": [
+    {
+      "message": "Invalid offer RMGPSS62.",
+      "message-type": "WARNING",
+      "en-message": "Sorry, Offer RMGPSS62 is invalid.",
+      "th-message": "ขออภัย ระบบไม่อนุญาตให้ทำการเลือก RMGPSS62 ได้",
+      "technical-message": "Number of offer RMGPSS62 instance has reached maximum value 0 "
+    }
+  ]
+}
