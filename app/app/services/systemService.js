@@ -2366,6 +2366,24 @@
             return yyyyMMddT;
         }
     };
+    this.convertDateENNoTToFomat = function(yyyyMMdd, format) {
+        //// support input format ::: 1956-02-15
+        if (yyyyMMdd) {
+            var ssc = "/";
+            var arr = yyyyMMdd.split("-");
+            var result = "";
+            if (format == "dd/MM/yyyy") {
+                result = "" + arr[2] + "/" + arr[1] + "/" + arr[0];
+            } else if (format == "dd/MM/YYYY") {
+                result = "" + arr[2] + "/" + arr[1] + "/" + (Number(arr[0]) + 543);
+            } else {
+                result = arrDate[0];
+            }
+            return result;
+        } else {
+            return yyyyMMddT;
+        }
+    };
     this.convertDateToTH = function(ddMMyyyy, lang) {
         if (ddMMyyyy) {
             var ssc = "/";

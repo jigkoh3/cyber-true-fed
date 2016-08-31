@@ -96,12 +96,7 @@
                                     {{item['effective-date']}}
                                 </td>
                                 <td class="col-xs-1 contentTbCenter">
-                                    <div align="center">
-                                        {{item['expiration-date']}}
-                                    </div>
-                                    <!--  <div align="center" class="" ng-show="offerType=='U'">
-                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
-                                    </div> -->
+                                    {{item['expiration-date']}}
                                 </td>
                                 <td class="col-xs-1 contentTbCenter">
                                     {{item['offer-group']}}
@@ -146,18 +141,13 @@
                                 <span ng-if="item[ 'service-level']=='G'">Agreement</span>
                             </td>
                             <td class="col-xs-1 contentTb">
-                                    {{item['product-properties']['PARENT-SOC-NAME']}}
+                                {{item['product-properties']['PARENT-SOC-NAME']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['effective-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                <div align="center">
-                                    {{item['expiration-date']}}
-                                </div>
-                                <!--  <div align="center" class="" ng-show="offerType=='U'">
-                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
-                                    </div> -->
+                                {{item['expiration-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['offer-group']}}
@@ -207,12 +197,7 @@
                                 {{item['effective-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                <div align="center">
-                                    {{item['expiration-date']}}
-                                </div>
-                                <!--  <div align="center" class="" ng-show="offerType=='U'">
-                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
-                                    </div> -->
+                                {{item['expiration-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['offer-group']}}
@@ -256,18 +241,13 @@
                                 <span ng-if="item[ 'service-level']=='G'">Agreement</span>
                             </td>
                             <td class="col-xs-1 contentTb">
-                                    {{item['product-properties']['PARENT-SOC-NAME']}}
+                                {{item['product-properties']['PARENT-SOC-NAME']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['effective-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
-                                <div align="center">
-                                    {{item['expiration-date']}}
-                                </div>
-                                <!--  <div align="center" class="" ng-show="offerType=='U'">
-                                        <button ng-disabled="!isCustomerProfile" href="#modal-edit-expDate-offerDetail" data-toggle="modal" onclick="return false;" ng-click="showDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color: red;" type="button"><span><i class="fa fa-calendar editIcon-1x"></i></span></button>
-                                    </div> -->
+                                {{item['expiration-date']}}
                             </td>
                             <td class="col-xs-1 contentTbCenter">
                                 {{item['offer-group']}}
@@ -403,13 +383,13 @@
                         </button>
                     </div>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile || disableAddCp" href="#modal-add-offer" data-toggle="modal" id="addNewContractPropo" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success" type="button" ng-click="onClearRadio('radioCpOffer'); searchOffer('CONTRACT_PROPO');" style="border-radius:20px; width:195px;">
+                        <button ng-disabled="!isCustomerProfile || disableAddCp" href="#modal-add-offer" data-toggle="modal" id="addNewContractPropo" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success" type="button" ng-click="onClearRadio('radioOffer'); searchOffer('CONTRACT_PROPO');" style="border-radius:20px; width:195px;">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus"></i>
                             <div style="padding-top: 3px; padding-right: 10px">เพิ่ม Contract & Prop</div>
                         </button>
                     </div>
                     <div class="btn-group" style="bottom:10px;">
-                        <button ng-disabled="!isCustomerProfile || disableAddDiscount" href="#modal-add-offer" data-toggle="modal" id="addNewDiscount" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success" type="button" ng-click="onClearRadio('radioDisOffer'); searchOffer('DISCOUNT');" style="border-radius:20px; width:195px;">
+                        <button ng-disabled="!isCustomerProfile || disableAddDiscount" href="#modal-add-offer" data-toggle="modal" id="addNewDiscount" onclick="$('#hModal').height(($(window).height()) - 235);return false;" class="btn btn-success" type="button" ng-click="onClearRadio('radioOffer'); searchOffer('DISCOUNT');" style="border-radius:20px; width:195px;">
                             <i class="fa fa-plus-circle pull-left fa-lg-plus"></i>
                             <div style="padding-top: 3px; padding-right: 20px"> เพิ่ม Discount</div>
                         </button>
@@ -779,36 +759,6 @@
                                     </span>
                             </div>
                             <div class="col-md-3">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-xs-1">
-                            </div>
-                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                <label>Effective Date</label><span style="color: red">*</span>
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="form-group has-feedback">
-                                    <input name="birthDay" type="text" ng-model="cpStartDate" class="form-control date-picker dateFormat" maxlength="10" required>
-                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-xs-2">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-xs-1">
-                            </div>
-                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                <label>Expiration Date</label><span style="color: red">*</span>
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="form-group has-feedback">
-                                    <input name="birthDay" type="text" ng-model="cpExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
-                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-xs-2">
                             </div>
                         </div>
                     </div>
@@ -1240,6 +1190,75 @@
                                     </div>
                                 </div>
                             </div>
+                    </div>
+                    <!-- offer effective & expiration date -->
+                    <br>
+                    <div ng-show="radioOffer"  style="border-top: 1px solid #e5e5e5;"">
+                    <br>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-3" style=" text-align: right; top: 5px;">
+                                    <label>วันที่มีผล (Effective Date)</label><span style="color:red;">*</span>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="col-xs-5" style="top:5px;">
+                                        <label style="cursor: pointer;">
+                                            <input style="cursor: pointer;" type="radio" ng-model="offerEffectiveDate" value="immediate" ng-change="onEffectiveChange();"> ทันที (Immediate)
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="form-group has-feedback">
+                                            <div class="col-xs-5" style="top:5px;">
+                                                <label style="cursor: pointer;">
+                                                    <input style="cursor: pointer;" type="radio" ng-model="offerEffectiveDate" value="specify" style="cursor: pointer;" ng-change="onEffectiveChange();" > ระบุวันที่
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
+                                                <div class="form-group has-feedback imp" style="top:5px;">
+                                                    <input type="text" ng-model="addNewOfferEffectiveDate" id="addNewOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10" ng-disabled="offerEffectiveDate=='immediate'">
+                                                    <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-1"></div>
+                            </div>
+                        </div>
+                        <div class="form-group"">
+                            <div class="row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-3" style=" text-align: right; top: 5px;">
+                                    <label>วันที่หมดอายุ (Expiration Date)</label><span style="color:red;">*</span>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="col-xs-5" style="top:5px;">
+                                        <label style="cursor: pointer;">
+                                            <input style="cursor: pointer;" type="radio" name="offerExpirationDate" ng-model="offerExpirationDate" value="unlimited" ng-change="onExpirationChange();"> ไม่มีกำหนด (Unlimited)
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="form-group has-feedback">
+                                            <div class="col-xs-5" style="top:5px;">
+                                                <label style="cursor: pointer;">
+                                                    <input style="cursor: pointer;" type="radio" name="offerExpirationDate" ng-model="offerExpirationDate" ng-model="" value="specify" style="cursor: pointer;">ระบุวันที่
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
+                                                <div class="form-group has-feedback imp" style="top:5px;">
+                                                    <input type="text" ng-model="addNewOfferExpirationDate" id="addNewOfferExpirationDate" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10" ng-disabled="offerExpirationDate=='unlimited'">
+                                                    <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-1"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
