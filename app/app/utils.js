@@ -56,7 +56,8 @@
 })();
 
 
-
+//read all in UMS
+var wms = new WebMS(true);
 
 //read card bluetooth ::: 03-02-2016 //xsam32 ref. R3-team
 var THIDReader = new thaiIDReader(8030, true);
@@ -101,7 +102,7 @@ function parseDataAndroid(res) {
 
 function ReadCard_Android() {
     $('.idBtnReadCard_android').prop('disabled', true);
-    THIDReader.readAll(function(data) {
+    wms.readAll(function(data) {
         $('.idBtnReadCard_android').prop('disabled', false);
 
         var args = parseDataAndroid(data);
@@ -125,7 +126,7 @@ function ReadCard_Android() {
     });
 };
 function ReadBarcode_Android(){
-    THIDReader.readBarcode(function(response) {
+    wms.readBarcode(function(response) {
         var txtBarCode = response.data.barcode;
         angular.element(document.getElementById('' + $('#divID').val())).scope().readBarcode(txtBarCode);
     }, function(error) {
