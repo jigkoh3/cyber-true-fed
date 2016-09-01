@@ -686,16 +686,8 @@
                     </div>
                     <div ng-show="selectedOffer.group=='FF'&& radioOffer" style="padding: 20px;">
                         <div class="form-group row">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" style="text-align:right;top:9px;">
                                 F&F <span style="color:red;">*</span>
-                            </div>
-                            <div class="col-md-3">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-3">
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 1">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF1" ng-model="saveParamData.ff1" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
@@ -747,18 +739,26 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6" style="text-align:center;">
                                 <span ng-span-number-only="ifff" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
+                                    กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                </span>
                                 <span ng-show="isNumberTelLengthFF" style="color:red;">
-                                        กรุณากรอกหมายเลข9-10ตัว
-                                    </span>
+                                    กรุณากรอกหมายเลข9-10ตัว
+                                </span>
                                 <span ng-show="isNumberTelZeroFF" style="color:red;">
-                                        กรุณากรอก 0 เป็นตัวแรก
-                                    </span>
+                                    กรุณากรอก 0 เป็นตัวแรก
+                                </span>
                             </div>
                             <div class="col-md-3">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12" style="color:red;text-align:center;">
+                                <span>
+                                    *กรุณากรอกดบอร์ Friends & Family อย่างน้อย {{selectedOffer['parameter-specifications'][0].min}} เบอร์
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -1194,7 +1194,7 @@
                     <!-- offer effective & expiration date -->
                     <br>
                     <div ng-show="radioOffer"  style="border-top: 1px solid #e5e5e5;"">
-                    <br>
+                        <br>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-xs-1">
