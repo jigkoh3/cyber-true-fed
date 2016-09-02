@@ -1949,8 +1949,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.cpExpireDate = $('#cpExpireDate').val();
             $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
             $scope.validateAddCp();
+            $('#idBindDataAgain').click();
         });
-        $('#idBindDataAgain').click();
+        
     });
 
     $(document).ready(function() {
@@ -1959,8 +1960,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.cpExpireDate = $('#cpExpireDate').val();
             $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
             $scope.validateAddCp();
+            $('#idBindDataAgain').click();
         });
-        $('#idBindDataAgain').click();
     });
 
     $scope.clearValueAddNewOffer = function() {
