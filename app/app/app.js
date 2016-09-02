@@ -25,8 +25,8 @@ smartApp.config(function($routeProvider, $httpProvider) {
         templateUrl: 'app/views/changePricePlan.html?v=' + runTime,
         controller: 'ChangePricePlanController'
     }).when('/changeOwnershipI', {
-        templateUrl: 'app/views/changeOwnership.html?v=' + runTime,
-        controller: 'changeOwnershipController'
+        templateUrl: 'app/views/changeOwnershipIBC.html?v=' + runTime,
+        controller: 'changeOwnershipIBCController'
     }).when('/changeOwnership', {
         templateUrl: 'app/views/changeOwnershipIBC.html?v=' + runTime,
         controller: 'changeOwnershipIBCController'
@@ -34,8 +34,8 @@ smartApp.config(function($routeProvider, $httpProvider) {
         templateUrl: 'app/views/changeOwnershipIBC.html?v=' + runTime,
         controller: 'changeOwnershipIBCController'
     }).when('/changeOwnership/:id/:subno', {
-        templateUrl: 'app/views/changeOwnership.html?v=' + runTime,
-        controller: 'changeOwnershipController'
+        templateUrl: 'app/views/changeOwnershipIBC.html?v=' + runTime,
+        controller: 'changeOwnershipIBCController'
     }).when('/changeIRIDD', {
         templateUrl: 'app/views/changeIRIDD.html?v=' + runTime,
         controller: 'ChangeIRIDDController'
@@ -150,8 +150,8 @@ smartApp.config(function($routeProvider, $httpProvider) {
         templateUrl: 'app/views/allProduct.html?v=' + runTime,
         controller: 'AllproductController'
     }).when('/migratePreToPost/:id/:subno/:shopType', {
-        templateUrl: 'app/views/migratePreToPost.html?v=' + runTime,
-        controller: 'MigratePreToPostController'
+        templateUrl: 'app/views/migratePreToPostIBC.html?v=' + runTime,
+        controller: 'MigratePreToPostIBCController'
     }).when('/migratePreToPostIBC', {
         templateUrl: 'app/views/migratePreToPostIBC.html?v=' + runTime,
         controller: 'MigratePreToPostIBCController'
