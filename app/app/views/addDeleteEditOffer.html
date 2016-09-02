@@ -1094,7 +1094,10 @@
                                     <label>Contract Number</label><span style="color: red">*</span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input type="text" ng-model="cpContractNumber" class="form-control">
+                                    <input type="text" ng-model="cpContractNumber" class="form-control" ng-number-only="inputCpCN" maxlength="10" ng-keyup="validateAddCp()">
+                                    <span ng-span-number-only="inputCpCN" class="hide" style="color:red;">
+                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                    </span>
                                 </div>
                                 <div class="col-xs-2">
                                 </div>
@@ -1106,7 +1109,10 @@
                                     <label>Term</label><span style="color: red">*</span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input type="text" ng-model="cpTerm" class="form-control">
+                                    <input type="text" ng-model="cpTerm" class="form-control" ng-number-only="inputCpTerm" disabled>
+                                    <span ng-span-number-only="inputCpTerm" class="hide" style="color:red;">
+                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                    </span>
                                 </div>
                                 <div class="col-xs-2">
                                 </div>
@@ -1118,7 +1124,10 @@
                                     <label>Fee</label><span style="color: red">*</span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input type="text" ng-model="cpFee" class="form-control" id="cpFee">
+                                    <input type="text" ng-model="cpFee" class="form-control" id="cpFee" ng-number-only="inputCpFee" disabled>
+                                    <span ng-span-number-only="inputCpFee" class="hide" style="color:red;">
+                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                    </span>
                                 </div>
                                 <div class="col-xs-2">
                                 </div>
@@ -1127,11 +1136,11 @@
                                 <div class="col-xs-1">
                                 </div>
                                 <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Effective Date</label><span style="color: red">*</span>
+                                    <label>Start Date</label><span style="color: red">*</span>
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="has-feedback">
-                                        <input name="birthDay" type="text" ng-model="cpStartDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                        <input name="birthDay" type="text" id="cpStartDate" ng-model="cpStartDate" class="form-control date-picker-today dateFormat" maxlength="10" requireds ng-keyup="validateAddCp()">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1146,7 +1155,7 @@
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="has-feedback">
-                                        <input name="birthDay" type="text" ng-model="cpExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
+                                        <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today dateFormat" maxlength="10" required ng-keyup="validateAddCp()">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1160,7 +1169,7 @@
                                     <label>Remark</label><span style="color: red">*</span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input name="cpRemark" type="text" ng-model="cpRemark" class="form-control">
+                                    <input name="cpRemark" type="text" ng-model="cpRemark" class="form-control" ng-keyup="validateAddCp()">
                                 </div>
                                 <div class="col-xs-2">
                                 </div>

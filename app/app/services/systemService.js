@@ -1983,6 +1983,9 @@
         var date = new Date();
         date.setDate(date.getDate() + 1);
 
+        var dateNow = new Date();
+        date.setDate(date.getDate());
+
         var birthdate = new Date();
         birthdate.setDate(birthdate.getDate());
 
@@ -2004,6 +2007,13 @@
             startDate: date
         });
 
+        $('.date-picker-today').datepicker({
+            clearBtn: true,
+            autoclose: true,
+            todayHighlight: true,
+            language: 'th-th',
+            startDate: dateNow
+        });
 
         $('.date-picker-expiredate').datepicker({
             clearBtn: true,
