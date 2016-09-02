@@ -912,6 +912,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     var currentDate = new Date();
                     currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));
                     var setDate = ("0" + currentDate.getDate()).slice(-2) + "/" + ("0" + Number(currentDate.getMonth() + 1)).slice(-2) + "/"  + Number(currentDate.getFullYear() + 543);
+                    $('#cpExpireDate').datepicker("setDate", new Date(currentDate.getFullYear(), ("0" + Number(currentDate.getMonth() + 0)).slice(-2), ("0" + currentDate.getDate()).slice(-2)));
                     $('#cpExpireDate').val(setDate);
                     $scope.cpExpireDate = $('#cpExpireDate').val();
                     // console.log(setDate);
