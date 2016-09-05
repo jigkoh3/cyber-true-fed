@@ -65,27 +65,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.addOfferLists = [];
     var addOfferlists = [];
     //Reasons
-    $scope.detailViewOffer = {
-        "ff1": "0812345678",
-        "ff2": "0898765432",
-        "ff3": "0812456321",
-        "ff4": "023453214"
-    };
-
-    $scope.detailViewOfferCUG = {
-        "name": "828 : Siam Dnan"
-    };
-
-    $scope.contractProp = {
-        "ViewPropCode": "RMV000000000711",
-        "ViewPropDesc": "Existing Device Disc 1,000 or 2,000 Bt.",
-        "ViewContractNumber": "RS377",
-        "ViewTerm": "6",
-        "ViewFee": "1,000",
-        "ViewStartDate": "18/01/2015",
-        "ViewExpireDate": "18/01/2015",
-        "ViewRemark": "Privilage"
-    };
+    
+    
     $scope.reasons = [];
     $scope.statusReason = "";
     $scope.capMaxParameterList = {};
@@ -240,8 +221,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             if ($scope.SubNo !== 'null') {
                 SystemService.showLoading();
                 AddDeleteEditOfferNewService.getSIMData($scope.subNoInput, $scope.level, onGetSIMData);
-                $scope.getOfferList();
-                $scope.getReleteOfferList();
+                // $scope.getOfferList();
+                // $scope.getReleteOfferList();
                 // $scope.getRegulaOfferList();
                 // $scope.getPopUpOfferList();
                 $scope.getFutureOfferList();
@@ -256,471 +237,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         //}
     };
 
-    // $scope.getPopUpOfferList = function() {
-    //     var result = [{
-    //         "offer-name": "PKSMSS30",
-    //         "offer-description": "SMS package 50THB 60sms 30 Days",
-    //         "type": "Additional Offer",
-    //         "offer-level": "C",
-    //         "sale-eff": "19/11/2015",
-    //         "sale-exp": "31/01/2017"
-    //     }, {
-    //         "offer-name": "MNP006",
-    //         "offer-description": "Test Discpunt 001",
-    //         "offer-level": "C",
-    //         "type": "Discount",
-    //         "group": "Other",
-    //         "sale-eff": "13/11/2014",
-    //         "sale-exp": "08/08/2250"
-    //     }, {
-    //         "offer-name": "RMV000000001314",
-    //         "offer-description": "MNP Gen Y",
-    //         "offer-level": "C",
-    //         "type": "Contract & Proposition",
-    //         "sale-eff": "24/03/2015",
-    //         "sale-exp": "05/07/2016"
-    //     }, {
-    //         "offer-name": "CCUGA501",
-    //         "offer-description": "CUG on/off Net(Package Level)",
-    //         "offer-level": "C",
-    //         "type": "CUG",
-    //         "sale-eff": "27/03/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "CFF05501",
-    //         "offer-description": "F&F service-FL 5 Full Math(0 Bt)_Sub",
-    //         "offer-level": "C",
-    //         "type": "CUG",
-    //         "sale-eff": "27/03/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "M00M0S03D",
-    //         "offer-description": "B&E_ShPool299 getV299min.S40.M5 50MB Wifi ULT",
-    //         "offer-level": "G",
-    //         "type": "Pooling",
-    //         "sale-eff": "27/03/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMV000000001536",
-    //         "offer-description": "AllianceCP_4G_Extra",
-    //         "offer-level": "C",
-    //         "type": "Additional Offer",
-    //         "sale-eff": "19/11/2015",
-    //         "sale-exp": "31/01/2017"
-    //     }, {
-    //         "offer-name": "RMV000000000223",
-    //         "offer-description": "Biz(MNP O2R)_True Smart 4.0_12mths_Penalty 1,000",
-    //         "offer-level": "C",
-    //         "type": "Additional Offer",
-    //         "sale-eff": "13/11/2014",
-    //         "sale-exp": "08/08/2250"
-    //     }, {
-    //         "offer-name": "RMV000000001022",
-    //         "offer-description": "New Galaxy SIM only",
-    //         "offer-level": "C",
-    //         "type": "Additional Offer",
-    //         "sale-eff": "24/03/2015",
-    //         "sale-exp": "05/07/2016"
-    //     }, {
-    //         "offer-name": "RMVC00000000032",
-    //         "offer-description": "GOV_Caesar3_TrueSamrt4.0+SIM",
-    //         "offer-level": "C",
-    //         "type": "Additional Offer",
-    //         "sale-eff": "27/03/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMVC00000000071",
-    //         "offer-description": "Non Shop_EDU_Puenkru2_True Lenevo+SIM",
-    //         "offer-level": "C",
-    //         "type": "CUG",
-    //         "sale-eff": "30/06/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMV000000001073",
-    //         "offer-description": "iPhone 6 discount 7500",
-    //         "offer-level": "C",
-    //         "type": "CUG",
-    //         "sale-eff": "23/04/2015",
-    //         "sale-exp": "04/02/2016"
-    //     }, {
-    //         "offer-name": "RMV000000001520",
-    //         "offer-description": "MG_4G Cele. iPhone 5s_Airtime",
-    //         "offer-level": "C",
-    //         "type": "CUG",
-    //         "sale-eff": "17/11/2015",
-    //         "sale-exp": "17/11/2016"
-    //     }, {
-    //         "offer-name": "RMV000000001225",
-    //         "offer-description": "Test Discpunt 002",
-    //         "offer-level": "C",
-    //         "type": "Discount",
-    //         "group": "Other",
-    //         "sale-eff": "16/07/2015",
-    //         "sale-exp": "31/07/2020"
-    //     }, {
-    //         "offer-name": "RMVC00000000091",
-    //         "offer-description": "Test Discpunt 003",
-    //         "offer-level": "G",
-    //         "type": "Discount",
-    //         "group": "Retention",
-    //         "sale-eff": "28/07/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMVB00000000266",
-    //         "offer-description": "Test Discpunt 004",
-    //         "offer-level": "C",
-    //         "type": "Discount",
-    //         "group": "Other",
-    //         "sale-eff": "28/07/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMVB00000000267",
-    //         "offer-description": "Test Discpunt 005",
-    //         "offer-level": "C",
-    //         "type": "Discount",
-    //         "group": "New",
-    //         "sale-eff": "28/07/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMVB00000000268",
-    //         "offer-description": "Test Discpunt 006",
-    //         "offer-level": "C",
-    //         "type": "Discount",
-    //         "group": "Special",
-    //         "sale-eff": "28/07/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMVB00000000269",
-    //         "offer-description": "Test Discpunt 007",
-    //         "offer-level": "C",
-    //         "type": "Discount",
-    //         "group": "Special",
-    //         "sale-eff": "28/07/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMVB00000000210",
-    //         "offer-description": "Test Discpunt 008",
-    //         "offer-level": "C",
-    //         "type": "Employee",
-    //         "group": "Other",
-    //         "sale-eff": "28/07/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMV000000000400",
-    //         "offer-description": "Test Discpunt 009",
-    //         "offer-level": "G",
-    //         "type": "Discount",
-    //         "group": "Convergence",
-    //         "sale-eff": "10/01/2014",
-    //         "sale-exp": "08/08/2018"
-    //     }, {
-    //         "offer-name": "RMV000000000322",
-    //         "offer-description": "New Galaxy SIM only",
-    //         "offer-level": "C",
-    //         "sale-eff": "01/01/2015",
-    //         "sale-exp": "05/07/2016"
-    //     }, {
-    //         "offer-name": "RMV000000001010",
-    //         "offer-description": "GOV_Caesar5_TrueSamrt4.0",
-    //         "offer-level": "G",
-    //         "type": "Pooling",
-    //         "sale-eff": "01/01/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMVC00000000101",
-    //         "offer-description": "Non Shop_EDU_Puenkru2_True",
-    //         "offer-level": "C",
-    //         "type": "Pooling",
-    //         "sale-eff": "05/06/2014",
-    //         "sale-exp": "31/12/2015"
-    //     }, {
-    //         "offer-name": "RMVB00000000555",
-    //         "offer-description": "Dongle Bundling For Business Solution_15mths",
-    //         "offer-level": "C",
-    //         "type": "CUG",
-    //         "sale-eff": "01/01/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMVC00000001073",
-    //         "offer-description": "iPhone 6 discount 8500",
-    //         "offer-level": "G",
-    //         "type": "Pooling",
-    //         "sale-eff": "13/02/2015",
-    //         "sale-exp": "04/02/2016"
-    //     }, {
-    //         "offer-name": "RMV000000001220",
-    //         "offer-description": "MG_4G Cele. iPhone 6s_Airtime",
-    //         "offer-level": "C",
-    //         "type": "Contract & Proposition",
-    //         "sale-eff": "15/01/2015",
-    //         "sale-exp": "01/12/2017"
-    //     }, {
-    //         "offer-name": "RMVC00000001225",
-    //         "offer-description": "Samsung TradeIN_5,000_Jmart",
-    //         "offer-level": "C",
-    //         "type": "Contract & Proposition",
-    //         "sale-eff": "16/07/2015",
-    //         "sale-exp": "31/07/2020"
-    //     }, {
-    //         "offer-name": "RMVC00000000100",
-    //         "offer-description": "GOV_Caesar_Plus_4_SIM_only",
-    //         "offer-level": "C",
-    //         "type": "Contract & Proposition",
-    //         "sale-eff": "28/02/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }, {
-    //         "offer-name": "RMVB00000000211",
-    //         "offer-description": "Dongle Bundling For Business Solution_12mths_Panalty",
-    //         "offer-level": "G",
-    //         "type": "Contract & Proposition",
-    //         "sale-eff": "01/07/2015",
-    //         "sale-exp": "31/12/2016"
-    //     }];
-    //     $scope.popUpOfferList = result;
-    //     popUpOfferList = result;
-    //     $scope.popUpOfferList = $filter('filter')(popUpOfferList, {
-    //         'type': $scope.addOfferType
-    //     });
-    //     // $scope.cpOfferList = result;
-    //     cpOfferList = $filter('filter')(popUpOfferList, {
-    //         'type': 'Contract & Proposition'
-    //     });
-    //     $scope.cpOfferList = $filter('filter')(popUpOfferList, {
-    //         'type': 'Contract & Proposition'
-    //     });
-    //     $scope.disOfferList = $filter('filter')(popUpOfferList, {
-    //         'type': 'Discount'
-    //     });
-    //     disOfferList = $filter('filter')(popUpOfferList, {
-    //         'type': 'Discount'
-    //     });
-    //     $scope.cpStartDate = SystemService.convertDateToEng($scope.dateNow, 'TH');
-    //     $scope.trActualContractStartDate = SystemService.convertDateToEng($scope.dateNow, 'TH');
-    // };
-    $scope.getOfferList = function() {
-        var result = {
-            "offer-lists": [{
-                "offer-name": "PROSTDA1",
-                "offer-description": "Standard Provisioning Services for Post Pay # 1",
-                "effective-date": "19/12/2013",
-                "expiration-date": "-",
-                "type": "Additional Offer",
-                "parameter": [{
-                    "parameter-name1": "Parameter Value1"
-                }, {
-                    "parameter-name2": "Parameter Value2"
-                }],
-                "Level": "Subscriber",
-                "parent": "BUNG1F02",
-                "offer-group": "Related Offer"
-            }, {
-                "offer-name": "INTSPS01",
-                "offer-description": "Internation Call Special Rate",
-                "effective-date": "19/12/2013",
-                "expiration-date": "-",
-                "type": "Additional Offer",
-                "parameter": [{
-                    "parameter-name1": "Parameter Value1"
-                }, {
-                    "parameter-name2": "Parameter Value2"
-                }],
-                "Level": "Subscriber",
-                "parent": "BUNG1F02",
-                "offer-group": "Related Offer"
-            }, {
-                "offer-name": "RMGPSS01",
-                "offer-description": "GPRS Unlimited",
-                "effective-date": "19/12/2013",
-                "expiration-date": "-",
-                "type": "Additional Offer",
-                "parameter": [{
-                    "parameter-name1": "Parameter Value1"
-                }, {
-                    "parameter-name2": "Parameter Value2"
-                }],
-                "Level": "Subscriber",
-                "parent": "BUNG1F02",
-                "offer-group": "Related Offer"
-            }, {
-                "offer-name": "RMHSPS04",
-                "offer-description": "Hi-Speed 3G/EDGE/GPRS 42.0 Mbps - PostPay",
-                "effective-date": "19/12/2013",
-                "expiration-date": "-",
-                "type": "Additional Offer",
-                "parameter": [{
-                    "parameter-name1": "Parameter Value1"
-                }, {
-                    "parameter-name2": "Parameter Value2"
-                }],
-                "Level": "Subscriber",
-                "parent": "BUNG1F02",
-                "offer-group": "Related Offer"
-            }, {
-                "offer-name": "BARNRS01",
-                "offer-description": "Bar National Roaming1800 RMV/RFT",
-                "effective-date": "04/01/2016",
-                "expiration-date": "-",
-                "type": "Additional Offer",
-                "parameter": [{
-                    "parameter-name1": "Parameter Value1"
-                }, {
-                    "parameter-name2": "Parameter Value2"
-                }],
-                "Level": "Subscriber",
-                "offer-group": "Regular Offer"
-            }, {
-                "offer-name": "1331SS01",
-                "offer-description": "Free of Charge for 1331",
-                "effective-date": "04/01/2016",
-                "expiration-date": "-",
-                "type": "Additional Offer",
-                "parameter": [{
-                    "parameter-name1": "Parameter Value1"
-                }, {
-                    "parameter-name2": "Parameter Value2"
-                }],
-                "Level": "Subscriber",
-                "offer-group": "Regular Offer"
-            }, {
-                "offer-name": "CREDITLIMIT",
-                "offer-description": "Credit Limit offer",
-                "effective-date": "19/12/2013",
-                "expiration-date": "-",
-                "type": "Additional Offer",
-                "parameter": [{
-                    "parameter-name1": "Parameter Value1"
-                }, {
-                    "parameter-name2": "Parameter Value2"
-                }],
-                "Level": "Subscriber",
-                "offer-group": "Regular Offer"
-            }, {
-                "offer-name": "PROCRBT1",
-                "offer-description": "Color Ring Service Post Pay",
-                "effective-date": "27/07/2015",
-                "expiration-date": "-",
-                "type": "Additional Offer",
-                "parameter": [{
-                    "parameter-name1": "Parameter Value1"
-                }, {
-                    "parameter-name2": "Parameter Value2"
-                }],
-                "Level": "Subscriber",
-                "offer-group": "Regular Offer"
-            }, {
-                "offer-name": "PROVM21",
-                "offer-description": "VoiceMail-TH, SMS-TH",
-                "effective-date": "11/02/2014",
-                "expiration-date": "-",
-                "type": "Additional Offer",
-                "parameter": [{
-                    "parameter-name1": "Parameter Value1"
-                }, {
-                    "parameter-name2": "Parameter Value2"
-                }],
-                "Level": "Subscriber",
-                "offer-group": "Regular Offer"
-            }, {
-                "offer-name": "Dummy IMEI offer",
-                "offer-description": "Dummy IMEI offer",
-                "effective-date": "19/12/2013",
-                "expiration-date": "-",
-                "type": "Additional Offer",
-                "parameter": [{
-                    "parameter-name1": "Parameter Value1"
-                }, {
-                    "parameter-name2": "Parameter Value2"
-                }],
-                "Level": "Subscriber",
-                "offer-group": "Regular Offer"
-            }, {
-                "offer-name": "CFF01S02",
-                "offer-description": "Friend and Family Service-FL Prefix(1.8Bt/Call)",
-                "effective-date": "11/02/2014",
-                "expiration-date": "-",
-                "type": "F&F",
-                "parameter": "",
-                "Level": "Subscriber",
-                "offer-group": "Regular Offer"
-            }, {
-                "offer-name": "CCUGAS01",
-                "offer-description": "CUG On/Off Net (Package level)",
-                "effective-date": "11/02/2014",
-                "expiration-date": "-",
-                "type": "CUG",
-                "parameter": "",
-                "Level": "Agreement",
-                "offer-group": "Regular Offer"
-            }, {
-                "offer-name": "CV0AMS01D",
-                "offer-description": "Child_Pooled Voice Monetary",
-                "effective-date": "11/02/2014",
-                "expiration-date": "-",
-                "type": "Pooling",
-                "parameter": "",
-                "Level": "Agreement",
-                "offer-group": "Regular Offer"
-            }, {
-                "offer-name": "CSMAUS01D",
-                "offer-description": "Child_Pooled SMS",
-                "effective-date": "27/07/2015",
-                "expiration-date": "-",
-                "type": "Pooling",
-                "parameter": "",
-                "Level": "Agreement",
-                "offer-group": "Regular Offer"
-            }, {
-                "offer-name": "RMV000000000711",
-                "offer-description": "Existing Device Disc 1,000 or 2,000 Bt.",
-                "effective-date": "11/02/2014",
-                "expiration-date": "-",
-                "type": "Contract & Prop.",
-                "parameter": "",
-                "Level": "Subscriber",
-                "offer-group": "Contract & Prop."
-            }, {
-                "offer-name": "DIR007",
-                "offer-description": "Discount Ring Back Tone Fee",
-                "effective-date": "26/11/2015",
-                "expiration-date": "26/03/2016",
-                "type": "Discount",
-                "parameter": "",
-                "Level": "Subscriber",
-                "offer-group": "Discount"
-            }, {
-                "offer-name": "DGT024",
-                "offer-description": "Discount True Group Employee",
-                "effective-date": "25/12/2013",
-                "expiration-date": "-",
-                "type": "Discount",
-                "parameter": "",
-                "Level": "Subscriber",
-                "offer-group": "Discount"
-            }]
-        };
-        $scope.offerList = result['offer-lists'];
-        $scope.offerList[0].selected = false;
-        for (var i = 0; i < $scope.offerList.length; i++) {
-            $scope.editOffers.push();
-            $scope.offerList[i].selected = false;
-        }
-        // console.log($scope.offerList);
-        $scope.adViewOffer.paramName1 = "Parameter Value1";
-        $scope.adViewOffer.paramName2 = "Parameter Value2";
-        $scope.adOffer.paramName1 = "Parameter Value1";
-        $scope.adOffer.paramName2 = "Parameter Value2";
-        // var data = "";
-        // AddDeleteEditOfferNewService.getOfferList(data, function(){
-        // });
-    };
-    $scope.adViewOffer = {
-        "paramName1": "",
-        "paramName2": ""
-    };
-    $scope.adOffer = {
-        "paramName1": "",
-        "paramName2": ""
-    };
+
+   
     $scope.deleteRegulaOfferList = function(item) {
         for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
             if (item['offer-name'] == $scope.addNewOfferLists[i]['offer-name']) {
@@ -730,14 +248,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
         console.log($scope.addNewOfferLists);
     }
-    $scope.addRegulaOffer = {
-        "offer-name": "",
-        "offer-description": "",
-        "type": "",
-        "parameter": "",
-        "service-level": "",
-        "offer-group": ""
-    };
+    
     $scope.addNewOfferList = function(item) {
         console.log(item);
         var list = $filter('filter')($scope.addNewOfferLists, {
@@ -750,28 +261,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.ffNumber = "";
         console.log($scope.addNewOfferLists);
     }
-    $scope.getReleteOfferList = function() {
-        var result = [{
-            "offer-name": "FCVBAR",
-            "offer-description": "First Call Verification. Barring",
-            "type": "Additional Offer",
-            "parameter": "",
-            "offer-group": "Related Offer"
-        }, {
-            "offer-name": "FTALKS25",
-            "offer-description": "Talk 1F&F - O2True",
-            "type": "F&F",
-            "parameter": "",
-            "offer-group": "Related Offer"
-        }, {
-            "offer-name": "RMPGPS01",
-            "offer-description": "GPRS Unlimited",
-            "type": "Additional Offer",
-            "parameter": "",
-            "offer-group": "Related Offer"
-        }];
-        $scope.releteOfferList = result;
-    };
+    
     $scope.getFutureOfferList = function() {
         var result = [{
             "offer-name": "PROSTDA1",
@@ -801,31 +291,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.futureOfferList = result;
         // futureOfferList = result;
     };
-    $scope.getRegulaOfferList = function() {
-        var result = [{
-            "offer-name": "FCVBAR",
-            "offer-description": "First Call Verification. Barring",
-            "type": "Additional Offer",
-            "parameter": "",
-            "service-level": "C",
-            "offer-group": "Related Offer"
-        }, {
-            "offer-name": "FTALKS25",
-            "offer-description": "Talk 1F&F - O2True",
-            "type": "F&F",
-            "parameter": "",
-            "service-level": "G",
-            "offer-group": "Related Offer"
-        }, {
-            "offer-name": "RMPGPS01",
-            "offer-description": "GPRS Unlimited",
-            "type": "Additional Offer",
-            "parameter": "",
-            "service-level": "C",
-            "offer-group": "Related Offer"
-        }];
-        // $scope.addNewOfferLists = result;
-    };
+   
     $scope.smartSearchOffer = function(txtSearch) {
         $scope.radioOffer = "";
         if (txtSearch.indexOf(' ') > 0) {
@@ -919,7 +385,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
 
                 $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
-                break;
         }
 
         if ($scope.selectedOffer.group == "DISCOUNT") {
@@ -1054,8 +519,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.SubNo = $('#dataSubNo').val();
             AddDeleteEditOfferNewService.getSIMData($scope.subNoInput, $scope.level, onGetSIMData);
             if (onGetSIMData) {
-                $scope.getOfferList();
-                $scope.getReleteOfferList();
+                // $scope.getOfferList();
+                // $scope.getReleteOfferList();
                 // $scope.getRegulaOfferList();
                 // $scope.getPopUpOfferList();
                 $scope.getFutureOfferList();
@@ -1841,6 +1306,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.addNewOfferEffectiveDate = "";
             $('#addNewOfferEffectiveDate').val($scope.addNewOfferEffectiveDate);
         }
+
+        $scope.chkValueAddNewOffer();
     };
 
     $scope.onExpirationChange = function() {
@@ -1848,6 +1315,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.addNewOfferExpirationDate = "";
             $('#addNewOfferExpirationDate').val($scope.addNewOfferExpirationDate);
         }
+
+        $scope.chkValueAddNewOffer();
     };
 
     $scope.onCheckFF = function() {
@@ -1863,6 +1332,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.ffNumber = "";
+    $scope.chkValueforFF = false;
     $scope.onInputFF = function(charCode) {
         // console.log($scope.saveParamData);
         var count = 0;
@@ -1873,9 +1343,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
         // alert(count);
         if (count >= $scope.ffData.min) {
-            $scope.disableSubmitAddOffer = false;
+            // $scope.disableSubmitAddOffer = false;
+            $scope.chkValueforFF = true;
+            $scope.chkValueAddNewOffer();            
         } else {
-            $scope.disableSubmitAddOffer = true;
+            // $scope.disableSubmitAddOffer = true;
+            $scope.chkValueforFF = false;
+            $scope.chkValueAddNewOffer();
         }
     };
 
@@ -1916,11 +1390,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.disableSubmitAddOffer = false;
     };
 
+    $scope.chkValueforCp = false;
     $scope.validateAddCp = function() {
         if ($scope.cpContractNumber && $scope.cpStartDate && $scope.cpExpireDate && $scope.cpRemark && $scope.cpRemark != " " && $scope.cpDiffResult >= 0) {
             $scope.disableSubmitAddOffer = false;
+            $scope.chkValueforCp = true;
         } else {
             $scope.disableSubmitAddOffer = true;
+            $scope.chkValueforCp = false;
         }
     }
 
@@ -1964,8 +1441,75 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         });
     });
 
+    $(document).ready(function() {
+        $("#addNewOfferEffectiveDate").change(function() {
+            $scope.addNewOfferEffectiveDate = $('#addNewOfferEffectiveDate').val();
+            $scope.chkValueAddNewOffer();
+            $('#idBindDataAgain').click();
+        });
+    });
+
+    $(document).ready(function() {
+        $("#addNewOfferExpirationDate").change(function() {
+            $scope.addNewOfferExpirationDate = $('#addNewOfferExpirationDate').val();
+            $scope.chkValueAddNewOffer();
+            $('#idBindDataAgain').click();
+        });
+    });
+
     $scope.clearValueAddNewOffer = function() {
         $scope.cpRemark = "";
         $scope.cpContractNumber = "";
-    }
+    };
+
+    $scope.chkValueAddNewOffer = function(){
+        switch($scope.selectedOffer.group){
+            case "CUG":
+                console.log($scope.cugParam);
+                if (!$scope.cugParam['group-id']) { 
+                    $scope.disableSubmitAddOffer = true;
+                } else if ($scope.cugParam['group-id'] && ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate)){
+                    $scope.disableSubmitAddOffer = true;
+                } else if ($scope.cugParam['group-id'] && ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate)){ 
+                    $scope.disableSubmitAddOffer = true;
+                } else{
+                    $scope.disableSubmitAddOffer = false;
+                }
+                break;
+
+            case "CONTRACT_PROPO":
+                if($scope.chkValueforCp == false){
+                    $scope.disableSubmitAddOffer = true;
+                } else if ($scope.chkValueforCp == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate){
+                    $scope.disableSubmitAddOffer = true;
+                } else if ($scope.chkValueforCp == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate){ 
+                    $scope.disableSubmitAddOffer = true;
+                } else{
+                    $scope.disableSubmitAddOffer = false;
+                }
+                break;
+
+            case "DISCOUNT":
+                if ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate){
+                    $scope.disableSubmitAddOffer = true;
+                } else if ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate){ 
+                    $scope.disableSubmitAddOffer = true;
+                } else{
+                    $scope.disableSubmitAddOffer = false;
+                }
+                break;
+
+            case "FF":
+                if($scope.chkValueforFF == false){
+                    $scope.disableSubmitAddOffer = true;
+                } else if ($scope.chkValueforFF == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate){
+                    $scope.disableSubmitAddOffer = true;
+                } else if ($scope.chkValueforFF == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate){ 
+                    $scope.disableSubmitAddOffer = true;
+                } else{
+                    $scope.disableSubmitAddOffer = false;
+                }
+                break;
+        }
+    };
 });
