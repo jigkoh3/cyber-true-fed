@@ -638,28 +638,6 @@
                     <!-- offer detail -->
                     <div ng-show="selectedOffer.group=='CUG'&& radioOffer">
                         <br>
-                        <!-- <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-3" style=" text-align: right; top: 5px;">
-                                    <label>CUG <span style="color:red;">*</span></label>
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="text" ng-model="saveDataCUG.name" readonly class="form-control">
-                                </div>
-                                <div class="col-md-2" ng-submit="onFilterCUGId()">
-                                    <input id="txtSearchCUG" type="text" ng-model="saveDataCUG.filter" ng-keyup="$event.keyCode==13 && onFilterCUGId()" placeholder="ค้นหา" class="form-control">
-                                </div>
-                                <div class="col-md-1 right">
-                                    <span class="input-group right" style="background-color: #37B624;">
-                                    <button ng-click="onModalCUG()" ng-disabled="!isCustomerProfile" href="#modalCUG" class="btn" id="idModalCUG" onclick="return false;" data-toggle="modal" style="background-color: #5cb85c; border-color: #4cae4c;">
-                                        <span style="color: #fff">...</span>
-                                    </button>
-                                    </span>
-                                </div>
-                            </div>
-                            &nbsp;
-                        </div> -->
-                        <!-- <br> -->
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-2"></div>
@@ -788,11 +766,29 @@
                         </div>
                     </div>
                     <div ng-show="selectedOffer.group=='ADDITIONAL'&& radioOffer" style="padding: 20px;">
-                        <div class="form-group">
-                            <div class="form-group row">
+                       
+                            <div class="form-group row" ng-repeat="item in selectedOffer['parameter-specifications']">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group has-feedback">
+                                        <input ng-if="item['data-type']=='TEXT'" type="text" ng-model="adParam" class="form-control">
+                                        <input ng-if="item['data-type']=='NUMBER'" type="text" ng-model="adParam" class="form-control" ng-number-only="{{item['name']}}">
+                                        <span ng-span-number-only="{{item['name']}}" class="hide" style="color:red;">
+                                            กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="col-xs-2">
                                 </div>
-                                <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                            </div>
+                           <!--  <div class="form-group row">
+                                <div class="col-xs-2">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
                                     <label>TR_ACTUAL_CONTRACT_START_DATE</label>
                                 </div>
                                 <div class="col-xs-4">
@@ -807,7 +803,7 @@
                             <div class="form-group row">
                                 <div class="col-xs-2">
                                 </div>
-                                <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
                                     <label>TR_ORIG_CONTRACT_EXPIRE_DATE</label>
                                 </div>
                                 <div class="col-xs-4">
@@ -822,7 +818,7 @@
                             <div class="form-group row">
                                 <div class="col-xs-2">
                                 </div>
-                                <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
                                     <label>TR_CONTRACT_FEE</label>
                                 </div>
                                 <div class="col-xs-4">
@@ -834,7 +830,7 @@
                             <div class="form-group row">
                                 <div class="col-xs-2">
                                 </div>
-                                <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
                                     <label>TR_CONTRACT_NUMBER</label>
                                 </div>
                                 <div class="col-xs-4">
@@ -846,7 +842,7 @@
                             <div class="form-group row">
                                 <div class="col-xs-2">
                                 </div>
-                                <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
                                     <label>TR_GENERATE_CHARGE_YES_NO</label>
                                 </div>
                                 <div class="col-xs-4">
@@ -862,7 +858,7 @@
                             <div class="form-group row">
                                 <div class="col-xs-2">
                                 </div>
-                                <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
                                     <label>TR_CONTRACT_TERM</label>
                                 </div>
                                 <div class="col-xs-4">
@@ -874,7 +870,7 @@
                             <div class="form-group row">
                                 <div class="col-xs-2">
                                 </div>
-                                <div class="col-xs-4" style=" text-align: left; top: 5px;">
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
                                     <label>TR_CONTRACT_REMARK</label>
                                 </div>
                                 <div class="col-xs-4">
@@ -882,8 +878,8 @@
                                 </div>
                                 <div class="col-xs-2">
                                 </div>
-                            </div>
-                        </div>
+                            </div> -->
+                        
                     </div>
                     <div ng-show="selectedOffer.group=='POOLING' && radioOffer" style="padding: 20px;">
                             <td colspan="6" class="text-center">
@@ -2367,7 +2363,7 @@
                                 <label>Expiration Date</label>
                             </div>
                             <div class="col-md-4">
-                                <input ng-disabled="true" type="text" id="adViewOffer['expiration-date']" ng-model="viewOffer['effective-date']" class="form-control">
+                                <input ng-disabled="true" type="text" id="adViewOffer['expiration-date']" ng-model="viewOffer['expiration-date']" class="form-control">
                             </div>
                             <div class="col-md-3">
                             </div>
