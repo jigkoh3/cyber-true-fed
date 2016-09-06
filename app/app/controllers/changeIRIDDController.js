@@ -1352,12 +1352,13 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                                     SystemService.calendarDatePicker();
                                 }, 500);
                                 setTimeout(function() {
-                                    var idx = eval(localStorage.getItem('cardInfo'));
-                                    if ($scope.readCardID_URL == $scope.data.customerProfile["id-number"] && idx.CitizenID == $scope.readCardID_URL) {
-                                        $scope.SetCardValue(localStorage.getItem('cardInfo'));
-                                    } else {
-                                        $("#btn-fancy-ReadCard").fancybox().trigger('click');
-                                    }
+                                    $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                                    // var idx = eval(localStorage.getItem('cardInfo'));
+                                    // if ($scope.readCardID_URL == $scope.data.customerProfile["id-number"] && idx.CitizenID == $scope.readCardID_URL) {
+                                    //     $scope.SetCardValue(localStorage.getItem('cardInfo'));
+                                    // } else {
+                                    //     $("#btn-fancy-ReadCard").fancybox().trigger('click');
+                                    // }
 
                                     if ($scope.getAuthen["isSecondAuthen"] == false) {
                                         $scope.isNonePartner = false;
