@@ -601,7 +601,7 @@
                                 <!-- <label class="col-xs-12"> -->
                                 <!-- <div class="row"> -->
                                 <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
-                                    <input type="radio" name="radioOffer" ng-model="radioOffer" ng-click="radioRowClick(tableAddOffer,item)" value="{{item['name']}}" style="cursor:pointer;">
+                                    <input id="{{item['name']}}" type="radio" name="radioOffer" ng-model="radioOffer" ng-click="radioRowClick(tableAddOffer,item)" value="{{item['name']}}" style="cursor:pointer;" class="css-checkbox"><label for="{{item['name']}}" class="css-label" ng-click="radioRowClick(tableAddOffer,item)"></label>
                                 </td>
                                 <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
                                     <h>{{item['name']}}</h>
@@ -775,11 +775,12 @@
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="form-group has-feedback">
-                                        <input ng-if="item['data-type']=='TEXT'" type="text" ng-model="adParam" class="form-control">
-                                        <input ng-if="item['data-type']=='NUMBER'" type="text" ng-model="adParam" class="form-control" ng-number-only="{{item['name']}}">
+                                        <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control">
+                                        <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-only="{{item['name']}}">
                                         <span ng-span-number-only="{{item['name']}}" class="hide" style="color:red;">
                                             กรุณากรอกเฉพาะตัวเลขเท่านั้น
                                         </span>
+                                        <select ng-if="item['data-type']=='TEXT'&&item['valid-values']"  class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']"></select>
                                     </div>
                                 </div>
                                 <div class="col-xs-2">
