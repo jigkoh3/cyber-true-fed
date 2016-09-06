@@ -162,7 +162,12 @@
 
     this.searchOffer = function(param, type, fnCallback){
         if(!demo){
-            var target = '/sales/catalog/product/tmv/offer/search?' + param;
+            if(type == "RELATED"){
+                var target = '/sales/catalog/product/tmv/offer/related/search?' + param;
+            } else {
+                var target = '/sales/catalog/product/tmv/offer/search?' + param;    
+            }
+            
             SystemService.callServiceGet(target, null, function(result){
                 fnCallback(result);
             });
@@ -185,6 +190,9 @@
                 var url = "/app/jsonFiles/Offer/search-offer-idd.json"    
             } else if(type == 'ADDITIONAL'){
                 var url = "/app/jsonFiles/Offer/search-offer-additional.json"    
+            } else if(type == 'RELATED'){
+                // var url = "/app/jsonFiles/Offer/search-related-offer-priceplan.json" 
+                    var url = "/app/jsonFiles/Offer/search-offer-notfound.json"
             } else{
                 var url = "/app/jsonFiles/Offer/search-offer-notfound.json"    
             }

@@ -1,0 +1,85 @@
+{
+  "status": "SUCCESSFUL",
+  "trx-id": "3N7Q4HXTO20Y5",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "response-data": [
+    {
+      "required": true,
+      "offer": {
+        "name": "PROSTDA1",
+        "soc": null,
+        "group": null,
+        "soc-type": null,
+        "rc": 0,
+        "max-instance-allow": 0,
+        "service-level": null
+      },
+      "default-selected": true
+    },
+    {
+      "required": true,
+      "offer": {
+        "name": "RMGPSS62",
+        "soc": null,
+        "group": null,
+        "soc-type": null,
+        "rc": 0,
+        "max-instance-allow": 0,
+        "service-level": null
+      },
+      "default-selected": true
+    },
+    {
+      "required": true,
+      "offer": {
+        "name": "INTSPS01",
+        "soc": null,
+        "group": null,
+        "soc-type": null,
+        "rc": 0,
+        "max-instance-allow": 0,
+        "service-level": null
+      },
+      "default-selected": true
+    },
+    {
+      "required": false,
+      "offer": {
+        "name": "RMPGPS01",
+        "soc": null,
+        "group": null,
+        "soc-type": null,
+        "rc": 0,
+        "max-instance-allow": 0,
+        "service-level": null
+      },
+      "default-selected": true
+    },
+    {
+      "required": true,
+      "offer": {
+        "name": "RMHSPS04",
+        "soc": null,
+        "group": null,
+        "soc-type": null,
+        "rc": 0,
+        "max-instance-allow": 0,
+        "service-level": null
+      },
+      "default-selected": true
+    },
+    {
+      "required": false,
+      "offer": {
+        "name": "FCVBAR",
+        "soc": null,
+        "group": null,
+        "soc-type": null,
+        "rc": 0,
+        "max-instance-allow": 0,
+        "service-level": null
+      },
+      "default-selected": true
+    }
+  ]
+}
