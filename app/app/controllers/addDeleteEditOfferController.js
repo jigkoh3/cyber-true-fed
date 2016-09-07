@@ -1170,6 +1170,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.regularOffer = [];
     $scope.propoOffer = [];
     $scope.discountOffer = [];
+    $scope.pooledOffer = [];
     $scope.getExistingOffer = function() {
         SystemService.showLoading();
         AddDeleteEditOfferNewService.getExistingOffer($scope.level, $scope.data.simData['product-id-number'], $scope.data.simData['subscriber-id'], function(result) {
@@ -1185,6 +1186,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.regularOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'ADDITIONAL-OFFER' });
                 $scope.propoOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'PROPOSITION' });
                 $scope.discountOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'DISCOUNT' });
+                $scope.pooledOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'POOLED' });
                 $scope.priceplan = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'offer-group': 'PRICEPLAN' });
                 if($scope.priceplan.length > 0){
                     $scope.data.header["currpriceplan"] = $scope.priceplan[0]['product-name'] + ":" + $scope.priceplan[0]['product-description'];    
@@ -1210,13 +1212,19 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         $scope.existingOffer.push($scope.discountOffer[i])
                     }
                 }
-                // console.log($scope.existingOffer);
+                if ($scope.pooledOffer) {
+                    for (var i = 0; i < $scope.pooledOffer.length; i++) {
+                        $scope.existingOffer.push($scope.pooledOffer[i])
+                    }
+                }
+                console.log($scope.pooledOffer);
             } else {
                 $scope.existingOffer = [];
                 $scope.builtInOffer = [];
                 $scope.regularOffer = [];
                 $scope.propoOffer = [];
                 $scope.discountOffer = [];
+                $scope.pooledOffer = [];
             }
         });
     };
