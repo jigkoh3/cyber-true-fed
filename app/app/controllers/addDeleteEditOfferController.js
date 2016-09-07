@@ -413,7 +413,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 break;
         }
 
-        if ($scope.selectedOffer.group == "DISCOUNT") {
+        if ($scope.selectedOffer.group == "DISCOUNT" || $scope.selectedOffer.group == "RELATED") {
             $scope.disableSubmitAddOffer = false;
         } else {
             $scope.disableSubmitAddOffer = true;
@@ -1062,6 +1062,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
         setTimeout(function() {
             $scope.radioOffer = $('input[name=radioOffer]:checked').val();
+            $('input[name=paramCug]').prop('checked', false);
 
             // $scope.disableSubmitAddOffer = false;
             console.log($scope.radioDisOffer);
@@ -1254,7 +1255,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             if (result.data['response-data']) {
                 SystemService.hideLoading();
                 $scope.addOfferLists = result.data['response-data'];
+                console.log($scope.addOfferLists);
                 for (var i = 0; i < $scope.addOfferLists.length; i++) {
+                    // case relate offer price plan 
+                    if($scope.addOfferType.value == 'RELATED'){
+                        $scope.addOfferLists[i]["sale-period"] = {"start": "", "end": "" };
+                        $scope.addOfferLists[i].name = $scope.addOfferLists[i].offer.name;
+                        $scope.addOfferLists[i]['service-level'] = $scope.addOfferLists[i].offer['service-level'];
+                        $scope.addOfferLists[i].group = "RELATED";                        
+                    }
+                    // ========================================================================
+
                     if ($scope.addOfferLists[i]["sale-period"].start) {
                         $scope.addOfferLists[i]["sale-period"].start = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["sale-period"].start, "dd/MM/YYYY");
                     }
@@ -1264,7 +1275,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                 }
                 addOfferLists = $scope.addOfferLists;
-                console.log($scope.addOfferLists);
+                // console.log($scope.addOfferLists);
 
                 if ($scope.addOfferType.value == "CUG") {
                     $scope.getCUGLists();
@@ -1316,8 +1327,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
 
                 if ($scope.newOffer.group == "CUG") {
-                    $scope.newOffer.param['group-id'] = $scope.cugParam['group-id'];
-                    $scope.newOffer.param['group-name'] = $scope.cugParam['group-name'];
+                    $scope.newOffer.param['cug-group-id'] = $scope.cugParam['group-id'];
+                    $scope.newOffer.param['cug-group-name'] = $scope.cugParam['group-name'];
                 }
 
                 if ($scope.newOffer.group == "CONTRACT_PROPO") {
@@ -1538,6 +1549,16 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 } else if ($scope.chkValueforFF == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
                     $scope.disableSubmitAddOffer = true;
                 } else if ($scope.chkValueforFF == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
+                    $scope.disableSubmitAddOffer = true;
+                } else {
+                    $scope.disableSubmitAddOffer = false;
+                }
+                break;
+
+            case "RELATED":
+                if ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
+                    $scope.disableSubmitAddOffer = true;
+                } else if ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
                     $scope.disableSubmitAddOffer = true;
                 } else {
                     $scope.disableSubmitAddOffer = false;

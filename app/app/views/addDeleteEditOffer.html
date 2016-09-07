@@ -529,7 +529,7 @@
                         <div class="col-md-4"></div>
                     </div>
                     &nbsp;
-                    <div class="row" ng-show="addOfferType=='POOLING'">
+                    <div class="row" ng-show="addOfferType.value=='POOLING'">
                         <div class="col-md-4 text-right" style="margin-top: 9px;">
                             <b> Pooled Offer</b>
                         </div>
@@ -666,7 +666,7 @@
                                         <th style="padding: 5px; padding-bottom: 0px;">
                                             <label class="col-xs-12" style="cursor:pointer;" ng-click="onSelectCUG(item)">
                                                 <div class="row">
-                                                    <div class="col-xs-1"><input name="pricelsx" type="radio" class="radioCUG" /></div>
+                                                    <div class="col-xs-1"><input name="paramCug" type="radio" class="radioCUG" /></div>
                                                     <div class="col-xs-3">{{item['group-id']}}</div>
                                                     <div class="col-xs-8 text-center">{{item['group-name']}}</div>
                                                 </div>

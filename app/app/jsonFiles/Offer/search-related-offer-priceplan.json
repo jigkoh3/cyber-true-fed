@@ -12,7 +12,7 @@
         "soc-type": null,
         "rc": 0,
         "max-instance-allow": 0,
-        "service-level": null
+        "service-level": "C"
       },
       "default-selected": true
     },

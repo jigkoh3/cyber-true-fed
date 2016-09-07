@@ -191,8 +191,8 @@
             } else if(type == 'ADDITIONAL'){
                 var url = "/app/jsonFiles/Offer/search-offer-additional.json"    
             } else if(type == 'RELATED'){
-                // var url = "/app/jsonFiles/Offer/search-related-offer-priceplan.json" 
-                    var url = "/app/jsonFiles/Offer/search-offer-notfound.json"
+                var url = "/app/jsonFiles/Offer/search-related-offer-priceplan.json" 
+                    // var url = "/app/jsonFiles/Offer/search-offer-notfound.json"
             } else{
                 var url = "/app/jsonFiles/Offer/search-offer-notfound.json"    
             }
