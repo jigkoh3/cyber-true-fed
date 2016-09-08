@@ -267,7 +267,74 @@
           "offer-group": "ADDITIONAL",
           "effective-date": "03/06/2016",
           "soc-type": "U"
-        }
+        },{
+        "product-category" : "TMV",
+        "product-type" : "ADDITIONAL-OFFER",
+        "product-status" : "A",
+        "product-id" : "M00M0S03D",
+        "product-name" : "M00M0S03D",
+        "product-description" : "B&E_ShPool299 get V299min,S40,M5,50MB,Wifi ULTD",
+        "service-level" : "G",
+        "product-soc-code" : "10289210",
+        "product-properties" : {
+          "AGREEMENT-ID" : "101044",
+          "PARENT-SOC-SEQUENCE" : "",
+          "AGREEMENT-SOC-SEQUENCE" : "522518",
+          "OFFER-INSTANCE-ID" : "550837"
+        },
+        "product-id-name" : "MSISDN",
+        "has-splitcharge" : false,
+        "is-childsim" : false,
+        "is-softsuspend" : false,
+        "offer-group" : "POOLED",
+        "effective-date" : "19/05/2016",
+        "soc-type" : "U"
+      },{
+        "product-category" : "TMV",
+        "product-type" : "ADDITIONAL-OFFER",
+        "product-status" : "A",
+        "product-id" : "VS00US01C",
+        "product-name" : "VS00US01C",
+        "product-description" : "Capmax for Voice (Unit) and SMS (Unit)_Recurring",
+        "service-level" : "C",
+        "product-soc-code" : "139308",
+        "product-properties" : {
+          "PARENT-SOC-NAME" : "CCSHAP01",
+          "AGREEMENT-ID" : "101044",
+          "PARENT-SOC-SEQUENCE" : "550830",
+          "AGREEMENT-SOC-SEQUENCE" : "522522",
+          "OFFER-INSTANCE-ID" : "550832"
+        },
+        "product-id-name" : "MSISDN",
+        "has-splitcharge" : false,
+        "is-childsim" : false,
+        "is-softsuspend" : false,
+        "offer-group" : "SHARE_ALLOWANCE",
+        "effective-date" : "19/05/2016",
+        "soc-type" : "U"
+      },{
+        "product-category" : "TMV",
+        "product-type" : "DISCOUNT",
+        "product-status" : "A",
+        "product-id" : "BUC013",
+        "product-name" : "BUC013",
+        "product-description" : "Discount on bill",
+        "service-level" : "C",
+        "product-soc-code" : "11109612",
+        "product-properties" : {
+          "AGREEMENT-ID" : "103733",
+          "PARENT-SOC-SEQUENCE" : "",
+          "AGREEMENT-SOC-SEQUENCE" : "649940",
+          "OFFER-INSTANCE-ID" : "649940"
+        },
+        "product-id-name" : "MSISDN",
+        "has-splitcharge" : false,
+        "is-childsim" : false,
+        "is-softsuspend" : false,
+        "offer-group" : "DISCOUNT",
+        "effective-date" : "06/09/2016",
+        "soc-type" : "D"
+      }
       ]
     }
   }
