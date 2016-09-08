@@ -155,10 +155,11 @@ function print_androidUMS(url) {
     // });
     // setTimeout(function(){
     // }, 3000);
+    url = "http://sff-uat.true.th:19083/webui/PDFs/AfterSaleReport.pdf";
     wms.printWeb(url, function(x) {
         alert("Print SUCCESSFUL");
     }, function(x) {
-        alert(x);
+        alert('Print ERROR : '+ JSON.stringify(x));
     });
 
 }
