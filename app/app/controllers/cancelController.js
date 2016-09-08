@@ -26,6 +26,7 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     $scope.isMatch = true;
     $scope.isShowReasons = false;
     $scope.CitizenID = "";
+    $scope.varPhoto = "";
 
     $scope.data = {};
     $scope.isReadCardSuccess = false;
@@ -382,6 +383,70 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
             return;
         }
 
+        var cardValueData = {
+            //NEW---
+            "photoIdCard": "",
+
+            //SC=Scan
+            //SN=Snap
+            "photoType": "SN",
+            "titleEn": "",
+            "firstnameEn": "",
+            "lastnameEn": "",
+            "expireDay": "",
+            "birthDay": "",
+            "issueDay": "",
+
+            "titleTh": "",
+            "firstnameTh": "",
+            "lastnameTh": "",
+
+            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+            "homeNumber": "",
+            "moo": "",
+            "trok": "",
+            "soi": "",
+            "road": "",
+            "district": "",
+            "amphur": "",
+            "province": ""
+                //NEW---
+        };
+        if ($scope.isCardValueData) {
+            cardValueData.photoType = "SC";
+            cardValueData.photoIdCard = $scope.cardInfo.CitizenID;
+            cardValueData = {
+                //NEW---
+                "photoIdCard": $scope.cardInfo.Photo,
+
+                //SC=Scan
+                //SN=Snap
+                "photoType": "SC",
+                "titleEn": $scope.cardInfo.PrefixEN,
+                "firstnameEn": $scope.cardInfo.FirstNameEN,
+                "lastnameEn": $scope.cardInfo.LastNameEN,
+                "expireDay": $scope.cardInfo.ExpireDay,
+                "birthDay": $scope.cardInfo.BirthDay,
+                "issueDay": $scope.cardInfo.IssueDay,
+
+                "titleTh": $scope.cardInfo.PrefixTH,
+                "firstnameTh": $scope.cardInfo.FirstNameTH,
+                "lastnameTh": $scope.cardInfo.LastNameTH,
+
+                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                "homeNumber": $scope.cardInfo.HomeNumber,
+                "moo": $scope.cardInfo.Moo,
+                "trok": $scope.cardInfo.Trok,
+                "soi": $scope.cardInfo.Soi,
+                "road": $scope.cardInfo.Road,
+                "district": $scope.cardInfo.District,
+                "amphur": $scope.cardInfo.Amphur,
+                "province": $scope.cardInfo.Province
+                    //NEW---
+            };
+
+        }
+
         SystemService.showLoading();
 
         var customerType = 'O';
@@ -404,23 +469,34 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
                 'orderId': orderData.orderId,
                 'photo': $scope.varPhoto,
 
-                'photoIdCard': '',
-                'photoType': 'SN',
-                'titleEn': '',
-                'firstnameEn': '',
-                'lastnameEn': '',
-                'expireDay': $scope.data.customerProfile['id-expire-date'],
-                'birthDay': $scope.data.customerProfile['birthdate'],
-                'issueDay': '',
+                //NEW---
+                "photoIdCard": cardValueData["photoIdCard"],
 
-                'homeNumber': '',
-                'moo': '',
-                'trok': '',
-                'soi': '',
-                'road': '',
-                'district': '',
-                'amphur': '',
-                'province': ''
+                //SC=Scan
+                //SN=Snap
+                "photoType": cardValueData["photoType"],
+                "titleEn": cardValueData["titleEn"],
+                "firstnameEn": cardValueData["firstnameEn"],
+                "lastnameEn": cardValueData["lastnameEn"],
+
+                "titleTh": cardValueData["titleTh"],
+                "firstnameTh": cardValueData["firstnameTh"],
+                "lastnameTh": cardValueData["lastnameTh"],
+
+                "expireDay": cardValueData["expireDay"],
+                "birthDay": cardValueData["birthDay"],
+                "issueDay": cardValueData["issueDay"],
+
+                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                "homeNumber": cardValueData["homeNumber"],
+                "moo": cardValueData["moo"],
+                "trok": cardValueData["trok"],
+                "soi": cardValueData["soi"],
+                "road": cardValueData["road"],
+                "district": cardValueData["district"],
+                "amphur": cardValueData["amphur"],
+                "province": cardValueData["province"]
+                    //NEW---
             },
             'body': generateOrderRequest()
         };
