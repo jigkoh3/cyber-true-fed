@@ -24,35 +24,35 @@
                     </div>
                 </div>
                 <h4>ข้อมูลบริการปัจจุบัน</h4>
-                <div class="well table-responsive">
-                    <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 0px;background-color:#fff;">
                         <thead>
                             <tr>
-                            <th class="contentTbHeader">
-                                <h></h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Offer Name</h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Offer Description</h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Level</h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Parent</h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Effective Date</h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Expiration Date</h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Type</h>
-                            </th>
-                        </tr>
+                                <th class="contentTbHeader">
+                                
+                                </th>
+                                <th class="contentTbHeader"">
+                                    Offer Name
+                                </th>
+                                <th class="contentTbHeader"">
+                                    Offer Description
+                                </th>
+                                <th class="contentTbHeader"">
+                                    Level
+                                </th>
+                                <th class="contentTbHeader"">
+                                    Parent
+                                </th>
+                                <th class="contentTbHeader"">
+                                    Effective Date
+                                </th>
+                                <th class="contentTbHeader"">
+                                    Expiration Date
+                                </th>
+                                <th class="contentTbHeader"">
+                                    Type
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
                             <!-- ### -->
@@ -154,8 +154,8 @@
                                         {{item['offer-group']}}
                                     </td>
                                 </tr>
-                                <tr ng-show="regularOffer==''" colspan="8">
-                                    <td class="contentTb">
+                                <tr ng-show="regularOffer==''">
+                                    <td class="contentTb" colspan="8">
                                         -
                                     </td>
                                 </tr>
@@ -264,61 +264,64 @@
                         </tbody>
                     </table>
                 </div>
+                <br>
                 <div ng-hide="offerType=='U'">
                     <h4>Future Order</h4>
                     <!-- Future Order Table -->
-                    <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                        <tr>
-                            <th class="contentTbHeader" ng-show="offerType=='D'">
-                                <h></h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Offer Name</h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Offer Description</h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Create Date</h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Effective Date</h>
-                            </th>
-                            <th class="contentTbHeader"">
-                                <h>Activities</h>
-                            </th>
-                        </tr>
-                    </table>
-                    <div>
-                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
-                            <tr ng-repeat="item in futureOfferList">
-                                <td class="contentTb" ng-show="offerType=='D'">
-                                    <div align="center" class="">
-                                        <input type="checkbox" ng-model="deleteFutureOffer" style="cursor:pointer;">
-                                    </div>
-                                </td>
-                                <td class="contentTb">
-                                    {{item['offer-name']}}
-                                </td>
-                                <td class="contentTb">
-                                    {{item['offer-description']}}
-                                </td>
-                                <!-- <td class="col-xs-1 contentTb">
-                                    {{item['Level']}}
-                                </td>
-                                <td class="col-xs-1 contentTb">
-                                    {{item['parent']}}
-                                </td> -->
-                                <td class="contentTbCenter">
-                                    {{item['create-date']}}
-                                </td>
-                                <td class="contentTbCenter">
-                                    {{item['effective-date']}}
-                                </td>
-                                <td class="contentTbCenter">
-                                    {{item['type']}}
-                                </td>
-                            </tr>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
+                            <thead>
+                                <tr>
+                                    <th class="contentTbHeader" ng-show="offerType=='D'">
+                                    
+                                    </th>
+                                    <th class="contentTbHeader">
+                                        Offer Name
+                                    </th>
+                                    <th class="contentTbHeader">
+                                        Offer Description
+                                    </th>
+                                    <th class="contentTbHeader">
+                                        Create Date
+                                    </th>
+                                    <th class="contentTbHeader">
+                                        Effective Date
+                                    </th>
+                                    <th class="contentTbHeader">
+                                        Activities
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in futureOfferList">
+                                    <td class="contentTb" ng-show="offerType=='D'">
+                                        <div align="center" class="">
+                                            <input type="checkbox" ng-model="deleteFutureOffer" style="cursor:pointer;">
+                                        </div>
+                                    </td>
+                                    <td class="contentTb">
+                                        {{item['offer-name']}}
+                                    </td>
+                                    <td class="contentTb">
+                                        {{item['offer-description']}}
+                                    </td>
+                                    <!-- <td class="col-xs-1 contentTb">
+                                        {{item['Level']}}
+                                    </td>
+                                    <td class="col-xs-1 contentTb">
+                                        {{item['parent']}}
+                                    </td> -->
+                                    <td class="contentTbCenter">
+                                        {{item['create-date']}}
+                                    </td>
+                                    <td class="contentTbCenter">
+                                        {{item['effective-date']}}
+                                    </td>
+                                    <td class="contentTbCenter">
+                                        {{item['type']}}
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -515,7 +518,7 @@
 
             </div>-->
             <div class="modal-body">
-                <div class="table-responsive hModal" style="overflow-x:hidden;">
+                <div class="hModal" style="overflow-x:hidden;">
                     <div class="row" ng-if="addType=='ALL'||addType==''">
                         <div class="col-md-4 text-right" style="margin-top: 9px;">
                             <b>Offer Type</b>
@@ -576,61 +579,65 @@
                         </div>
                     </div>
                     &nbsp;
-                    <div class="row" style="padding: 20px; margin-top: -50px;">
-                        <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddOffer" ng-model="tableAddOffer" ng-show="addOfferLists.length > 0">
-                            <tr>
-                                <th class="col-xs-1 contentTbHeader">
-                                    <h>เลือก</h>
-                                </th>
-                                <th class="col-xs-2 contentTbHeader">
-                                    <h>Offer Name</h>
-                                </th>
-                                <th class="col-xs-4 contentTbHeader">
-                                    <h>Offer Description</h>
-                                </th>
-                                <th class="col-xs-1 contentTbHeader">
-                                    <h>Level</h>
-                                </th>
-                                <th class="col-xs-2 contentTbHeader">
-                                    <h>Sale Effective Date</h>
-                                </th>
-                                <th class="col-xs-2 contentTbHeader">
-                                    <h>Sale Expiration Date</h>
-                                </th>
-                                <th class="col-xs-1 contentTbHeader" ng-show="addOfferType.value == 'DISCOUNT'">
-                                    <h>Group</h>
-                                </th>
-                            </tr>
-                            <tr dir-paginate="item in addOfferLists| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage" style="cursor:pointer;">
+                    <div class="table-responsive" style="padding: 20px; margin-top: -50px;">
+                        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddOffer" ng-model="tableAddOffer" ng-show="addOfferLists.length > 0">
+                            <thead>
+                                <tr>
+                                    <th class="contentTbHeader">
+                                        เลือก
+                                    </th>
+                                    <th class="contentTbHeader">
+                                        Offer Name
+                                    </th>
+                                    <th class="contentTbHeader">
+                                        Offer Description
+                                    </th>
+                                    <th class="contentTbHeader">
+                                        Level
+                                    </th>
+                                    <th class="contentTbHeader">
+                                        Sale Effective Date
+                                    </th>
+                                    <th class="contentTbHeader">
+                                        Sale Expiration Date
+                                    </th>
+                                    <th class="contentTbHeader" ng-show="addOfferType.value == 'DISCOUNT'">
+                                        Group
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr dir-paginate="item in addOfferLists| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage" style="cursor:pointer;">
                                 <!-- <label class="col-xs-12"> -->
                                 <!-- <div class="row"> -->
-                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
-                                    <input id="{{item['name']}}" type="radio" name="radioOffer" ng-model="radioOffer" ng-click="radioRowClick(tableAddOffer,item)" value="{{item['name']}}" style="cursor:pointer;">
-                                </td>
-                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
-                                    <h>{{item['name']}}</h>
-                                </td>
-                                <td class="col-xs-4 contentTb" ng-click="radioRowClick(tableAddOffer,item)">
-                                    <h>{{item['description']}}</h>
-                                </td>
-                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
-                                    <h>{{item['service-level']}}</h>
-                                </td>
-                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
-                                    <h>{{item['sale-period']['start']}}</h>
-                                </td>
-                                <td class="col-xs-2 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
-                                    <h>{{item['sale-period']['end']}}</h>
-                                </td>
-                                <td class="col-xs-1 contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)" ng-show="addOfferType.value == 'DISCOUNT'">
-                                    <h>{{item.properties.DISCOUNT_GROUP}}</h>
-                                </td>
-                            </tr>
-                            <tr ng-show="addOfferLists.length>=pageSize">
-                                <td colspan="7" class="text-center">
-                                    <div dir-pagination-controls pagination-id="offerList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
-                                </td>
-                            </tr>
+                                    <td class="contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
+                                        <input id="{{item['name']}}" type="radio" name="radioOffer" ng-model="radioOffer" ng-click="radioRowClick(tableAddOffer,item)" value="{{item['name']}}" style="cursor:pointer;">
+                                    </td>
+                                    <td class="contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
+                                        {{item['name']}}
+                                    </td>
+                                    <td class="contentTb" ng-click="radioRowClick(tableAddOffer,item)">
+                                        {{item['description']}}
+                                    </td>
+                                    <td class="contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
+                                        {{item['service-level']}}
+                                    </td>
+                                    <td class="contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
+                                        {{item['sale-period']['start']}}
+                                    </td>
+                                    <td class="contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
+                                        {{item['sale-period']['end']}}
+                                    </td>
+                                    <td class="contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)" ng-show="addOfferType.value == 'DISCOUNT'">
+                                        {{item.properties.DISCOUNT_GROUP}}
+                                    </td>
+                                </tr>
+                                <tr ng-show="addOfferLists.length>=pageSize">
+                                    <td colspan="7" class="text-center">
+                                        <div dir-pagination-controls pagination-id="offerList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
+                                    </td>
+                                </tr>
+                            </tbody>
                             <br>
                         </table>
                         <div class="row" ng-show="addOfferLists.length == 0">
@@ -693,7 +700,7 @@
                     </div>
                     <div ng-show="selectedOffer.group=='FF'&& radioOffer" style="padding: 20px;">
                         <div class="form-group row">
-                            <div class="col-md-3" style="text-align:right;top:9px;">
+                            <div class="col-md-3 text-right" style="top:9px;">
                                 F&F <span style="color:red;">*</span>
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 1">
@@ -1272,7 +1279,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:left;top: 5px; font-weight: bold; font-size:16px;">
+                            <div class="col-md-2 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
                                 <label>Offer Code</label>
                             </div>
                             <div class="col-md-4">
@@ -1286,7 +1293,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:left;top: 5px; font-weight: bold; font-size:16px;">
+                            <div class="col-md-2 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
                                 <label>Offer Description</label>
                             </div>
                             <div class="col-md-7">
@@ -1309,7 +1316,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-2" style="text-align:left;top: 5px;">
+                                    <div class="col-md-2 text-right" style="top: 5px;">
                                         <label>Parameter Name1</label>
                                     </div>
                                     <div class="col-md-4">
@@ -1323,7 +1330,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-2" style="text-align:left;top: 5px;">
+                                    <div class="col-md-2 text-right" style="top: 5px;">
                                         <label>Parameter Name2</label>
                                     </div>
                                     <div class="col-md-4">
@@ -1425,7 +1432,7 @@
                         <div ng-show="showDetail['type']=='Pooling'">
                             <div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Volume cap max</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Volume cap max</label>
                                     <div class="col-md-6" style="width:auto">
                                         <select class="form-control" id="selectVolume" ng-init="saveParamData.Volume=parameter.Volume" ng-model="parameter.EditVolume" ng-change="onModelChange()">
                                             <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -1450,7 +1457,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Volume cap max UOM</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Volume cap max UOM</label>
                                     <div class="col-md-3">
                                         <select class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['volumeCapMaxUOMCombo']" ng-model="capMaxEditParameterList['volume-capmax-uom']" ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2' || parameter.Volume=='-1'" ng-change="onModelChange()"></select>
                                     </div>
@@ -1459,7 +1466,7 @@
                             &nbsp;
                             <div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Monetary cap max</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Monetary cap max</label>
                                     <div class="col-md-6" style="width:auto">
                                         <select class="form-control" id="selectMonetary" ng-init="saveParamData.Monetary=parameter.Monetary" ng-model="parameter.EditMonetary" ng-change="onModelChange()">
                                             <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -1484,7 +1491,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Monetary cap max UOM</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Monetary cap max UOM</label>
                                     <div class="col-md-3">
                                         <input readonly type="text" class="form-control" readonly="readonly" value="Baht" />
                                     </div>
@@ -1493,7 +1500,7 @@
                             &nbsp;
                             <div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Occurrence cap max</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Occurrence cap max</label>
                                     <div class="col-md-6" style="width:auto">
                                         <select class="form-control" id="selectOccurrence" ng-init="saveParamData.Occurrence=parameter.Occurrence" ng-model="parameter.EditOccurrence" ng-change="onModelChange()">
                                             <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -1518,7 +1525,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Occurrence cap max UOM</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Occurrence cap max UOM</label>
                                     <div class="col-md-3">
                                         <input readonly type="text" class="form-control" readonly="readonly" value="Occurrence" />
                                     </div>
@@ -1527,7 +1534,7 @@
                             &nbsp;
                             <div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Duration cap max</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Duration cap max</label>
                                     <div class="col-md-6" style="width:auto">
                                         <select class="form-control" id="selectDuration" ng-init="saveParamData.Duration=parameter.Duration" ng-model="parameter.EditDuration" ng-change="onModelChange()">
                                             <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -1552,7 +1559,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Duration cap max UOM</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Duration cap max UOM</label>
                                     <div class="col-md-3">
                                         <select class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['durationCapMaxUOMCombo']" ng-model="capMaxEditParameterList['duration-capmax-uom']" ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'  || parameter.Duration=='-1'" ng-change="onModelChange()"></select>
                                     </div>
@@ -1566,7 +1573,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <div class="col-md-2 text-right" style="top: 5px;">
                                         <label>Contract Number</label>
                                     </div>
                                     <div class="col-md-4">
@@ -1580,7 +1587,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <div class="col-md-2 text-right" style="top: 5px;">
                                         <label>Proposition Code</label>
                                     </div>
                                     <div class="col-md-4">
@@ -1594,7 +1601,7 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                     </div>
-                                    <div class="col-md-3" style="text-align:right;top: 5px;">
+                                    <div class="col-md-3 text-right" style="top: 5px;">
                                         <label>Propsition Description</label>
                                     </div>
                                     <div class="col-md-6">
@@ -1608,7 +1615,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <div class="col-md-2 text-right" style="top: 5px;">
                                         <label>Term</label>
                                     </div>
                                     <div class="col-md-4">
@@ -1622,7 +1629,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <div class="col-md-2 text-right" style="top: 5px;">
                                         <label>Fee</label>
                                     </div>
                                     <div class="col-md-4">
@@ -1636,7 +1643,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <div class="col-md-2 text-right" style="top: 5px;">
                                         <label>Effective Date</label>
                                     </div>
                                     <div class="col-md-4">
@@ -1650,7 +1657,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <div class="col-md-2 text-right" style="top: 5px;">
                                         <label>Expiration Date</label>
                                     </div>
                                     <div class="col-md-4">
@@ -1664,7 +1671,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <div class="col-md-2 text-right" style="top: 5px;">
                                         <label>Terminate Date</label>
                                     </div>
                                     <div class="col-md-4">
@@ -1678,7 +1685,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-2" style="text-align:right;top: 5px;">
+                                    <div class="col-md-2 text-right" style="top: 5px;">
                                         <label>Remark</label>
                                     </div>
                                     <div class="col-md-4">
@@ -1881,7 +1888,7 @@
                     <div class="row">
                         <div class="col-md-3">
                         </div>
-                        <div class="col-md-2" style="text-align:right;top: 5px; font-weight: bold; font-size:16px;">
+                        <div class="col-md-2 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
                             <label>Offer Code</label>
                         </div>
                         <div class="col-md-4">
@@ -1895,7 +1902,7 @@
                     <div class="row">
                         <div class="col-md-3">
                         </div>
-                        <div class="col-md-2" style="text-align:right;top: 5px; font-weight: bold; font-size:16px;">
+                        <div class="col-md-2 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
                             <label>Offer Description</label>
                         </div>
                         <div class="col-md-7">
@@ -1910,7 +1917,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Parameter Name1</label>
                             </div>
                             <div class="col-md-4">
@@ -1924,7 +1931,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Parameter Name2</label>
                             </div>
                             <div class="col-md-4">
@@ -2026,7 +2033,7 @@
                         <td colspan="6" class="text-center">
                             <div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Volume cap max</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Volume cap max</label>
                                     <div class="col-md-6" style="width:auto">
                                         <select ng-disabled="true" class="form-control" id="selectVolume" ng-init="saveParamData.Volume=parameter.Volume" ng-model="parameter.ViewVolume" ng-change="saveParamData.Volume=parameter.Volume">
                                             <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -2051,7 +2058,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Volume cap max UOM</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Volume cap max UOM</label>
                                     <div class="col-md-3">
                                         <select ng-disabled="true" class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['volumeCapMaxUOMCombo']" ng-model="capMaxViewParameterList['volume-capmax-uom']" ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2' || parameter.Volume=='-1'"></select>
                                     </div>
@@ -2060,7 +2067,7 @@
                             &nbsp;
                             <div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Monetary cap max</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Monetary cap max</label>
                                     <div class="col-md-6" style="width:auto">
                                         <select ng-disabled="true" class="form-control" id="selectMonetary" ng-init="saveParamData.Monetary=parameter.Monetary" ng-model="parameter.ViewMonetary" ng-change="saveParamData.Monetary=parameter.Monetary">
                                             <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -2085,7 +2092,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Monetary cap max UOM</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Monetary cap max UOM</label>
                                     <div class="col-md-3">
                                         <input ng-disabled="true" readonly type="text" class="form-control" readonly="readonly" value="Baht" />
                                     </div>
@@ -2094,7 +2101,7 @@
                             &nbsp;
                             <div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Occurrence cap max</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Occurrence cap max</label>
                                     <div class="col-md-6" style="width:auto">
                                         <select ng-disabled="true" class="form-control" id="selectOccurrence" ng-init="saveParamData.Occurrence=parameter.Occurrence" ng-model="parameter.ViewOccurrence" ng-change="saveParamData.Occurrence=parameter.Occurrence">
                                             <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -2119,7 +2126,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Occurrence cap max UOM</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Occurrence cap max UOM</label>
                                     <div class="col-md-3">
                                         <input ng-disabled="true" readonly type="text" class="form-control" readonly="readonly" value="Occurrence" />
                                     </div>
@@ -2128,7 +2135,7 @@
                             &nbsp;
                             <div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Duration cap max</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Duration cap max</label>
                                     <div class="col-md-6" style="width:auto">
                                         <select ng-disabled="true" class="form-control" id="selectDuration" ng-init="saveParamData.Duration=parameter.Duration" ng-model="parameter.ViewDuration" ng-change="saveParamData.Duration=parameter.Duration">
                                             <option value="-2">ใช้ค่า Default จากระบบ</option>
@@ -2153,7 +2160,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 control-label" style="text-align:right;top: 5px;">Duration cap max UOM</label>
+                                    <label class="col-md-3 control-label text-right" style="top: 5px;">Duration cap max UOM</label>
                                     <div class="col-md-3">
                                         <select ng-disabled="true" class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['durationCapMaxUOMCombo']" ng-model="capMaxViewParameterList['duration-capmax-uom']" ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'  || parameter.Duration=='-1'"></select>
                                     </div>
@@ -2168,7 +2175,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Proposition Code</label>
                             </div>
                             <div class="col-md-4">
@@ -2182,7 +2189,7 @@
                         <div class="row">
                             <div class="col-md-2">
                             </div>
-                            <div class="col-md-3" style="text-align:right;top: 5px;">
+                            <div class="col-md-3 text-right" style="top: 5px;">
                                 <label>Propsition Description</label>
                             </div>
                             <div class="col-md-6">
@@ -2196,7 +2203,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Contract Number</label>
                             </div>
                             <div class="col-md-4">
@@ -2210,7 +2217,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Term</label>
                             </div>
                             <div class="col-md-4">
@@ -2224,7 +2231,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Fee</label>
                             </div>
                             <div class="col-md-4">
@@ -2238,7 +2245,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Effective Date</label>
                             </div>
                             <div class="col-md-4">
@@ -2252,7 +2259,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Expiration Date</label>
                             </div>
                             <div class="col-md-4">
@@ -2266,7 +2273,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Terminate Date</label>
                             </div>
                             <div class="col-md-4">
@@ -2280,7 +2287,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Remark</label>
                             </div>
                             <div class="col-md-4">
@@ -2350,7 +2357,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Effective Date</label>
                             </div>
                             <div class="col-md-4">
@@ -2364,7 +2371,7 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="text-align:right;top: 5px;">
+                            <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Expiration Date</label>
                             </div>
                             <div class="col-md-4">
