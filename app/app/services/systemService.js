@@ -84,12 +84,8 @@
                 $('#loadingPrint').show();
                 setTimeout(function() {
                     $('#loadingPrint').hide();
-                    document.getElementById('iframePDF').src = "javascript:printCanvas();";
-                    wms.printWeb(url, function(success){
-                        alert('Print SUCCESSFUL');
-                    }, function(error){
-                        alert(error);
-                    });
+                    //document.getElementById('iframePDF').src = "javascript:printCanvas();";
+                    print_androidUMS(url);
                 }, 5100);
                 setTimeout(function() {
                     that.showPDFAndroid(url, 'none');

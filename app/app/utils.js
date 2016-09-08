@@ -62,12 +62,12 @@ var wms = new WebMS(true);
 //read card bluetooth ::: 03-02-2016 //xsam32 ref. R3-team
 var THIDReader = new thaiIDReader(8030, true);
 
-var convertDate = function(YYYYMMDD){
-        var d = YYYYMMDD[6]+""+YYYYMMDD[7];
-        var m = YYYYMMDD[4]+""+YYYYMMDD[5];
-        var y = YYYYMMDD[0]+""+YYYYMMDD[1]+""+YYYYMMDD[2]+""+YYYYMMDD[3];
-        return d+"/"+m+"/"+y;
-    };
+var convertDate = function(YYYYMMDD) {
+    var d = YYYYMMDD[6] + "" + YYYYMMDD[7];
+    var m = YYYYMMDD[4] + "" + YYYYMMDD[5];
+    var y = YYYYMMDD[0] + "" + YYYYMMDD[1] + "" + YYYYMMDD[2] + "" + YYYYMMDD[3];
+    return d + "/" + m + "/" + y;
+};
 
 function parseDataAndroid(res) {
 
@@ -125,7 +125,8 @@ function ReadCard_Android() {
         angular.element(document.getElementById('' + $('#divID').val())).scope().readCardError(error.message);
     });
 };
-function ReadBarcode_Android(){
+
+function ReadBarcode_Android() {
     wms.readBarcode(function(response) {
         var txtBarCode = response.data.barcode;
         angular.element(document.getElementById('' + $('#divID').val())).scope().readBarcode(txtBarCode);
@@ -137,10 +138,27 @@ function ReadBarcode_Android(){
         angular.element(document.getElementById('' + $('#divID').val())).scope().readCardError(error.message);
     });
 };
-function checkReadBarcode_Android(){
+
+function checkReadBarcode_Android() {
     var ua = navigator.userAgent.toLowerCase();
     var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-    if(isAndroid ==  true){
+    if (isAndroid == true) {
         ReadBarcode_Android();
     }
 };
+
+function print_androidUMS(url) {
+    // wms.printWeb(url, function(success){
+    //     alert("Print SUCCESSFUL");
+    // }, function(error){
+    //     alert(error);
+    // });
+    // setTimeout(function(){
+    // }, 3000);
+    wms.printWeb(url, function(x) {
+        alert("Print SUCCESSFUL");
+    }, function(x) {
+        alert(x);
+    });
+
+}
