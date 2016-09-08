@@ -29,8 +29,30 @@
           "offer-group": "ADDITIONAL",
           "effective-date": "03/06/2016",
           "soc-type": "U"
+        },{
+        "product-category" : "TMV",
+        "product-type" : "ADDITIONAL-OFFER",
+        "product-status" : "A",
+        "product-id" : "ECCBSS01G",
+        "product-name" : "ECCBSS01G",
+        "product-description" : "Test_V240S20Data100MB_Pooling",
+        "service-level" : "C",
+        "product-soc-code" : "212208",
+        "product-properties" : {
+          "PARENT-SOC-NAME" : "ECCBCP01D",
+          "AGREEMENT-ID" : "103816",
+          "PARENT-SOC-SEQUENCE" : "561000",
+          "AGREEMENT-SOC-SEQUENCE" : "560996",
+          "OFFER-INSTANCE-ID" : "561001"
         },
-        {
+        "product-id-name" : "MSISDN",
+        "has-splitcharge" : false,
+        "is-childsim" : false,
+        "is-softsuspend" : false,
+        "offer-group" : "POOLING",
+        "effective-date" : "03/06/2016",
+        "soc-type" : "U"
+      },{
           "product-category": "TMV",
           "product-type": "ADDITIONAL-OFFER",
           "product-status": "A",
