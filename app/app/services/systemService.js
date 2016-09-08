@@ -85,6 +85,11 @@
                 setTimeout(function() {
                     $('#loadingPrint').hide();
                     document.getElementById('iframePDF').src = "javascript:printCanvas();";
+                    wms.printWeb(url, function(success){
+                        alert('Print SUCCESSFUL');
+                    }, function(error){
+                        alert(error);
+                    });
                 }, 5100);
                 setTimeout(function() {
                     that.showPDFAndroid(url, 'none');
