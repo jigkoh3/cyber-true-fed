@@ -203,6 +203,9 @@ smartApp.controller('CancelController', function($scope, $routeParams, AuthenSer
     };
     // (End) Get current SIM data ----------------------
     $scope.TrxID = '';
+    $scope.isCardValueData = false;
+    $scope.getAuthen = {};
+    $scope.isCustomerProfile = false;
     $scope.orderId = '';
     var authenticate = function() {
         AuthenService.getAuthen(function(authResult) {

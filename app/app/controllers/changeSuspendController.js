@@ -177,7 +177,7 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
                 actPathId = "196";
             }
             var defaultReasonCode = "CREQ";
-            if(($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') && $scope.getAuthen["userGroup"] == 'SHOP' && $scope.statusChangeSuspend == 'FULL-SUSPEND') {
+            if (($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') && $scope.getAuthen["userGroup"] == 'SHOP' && $scope.statusChangeSuspend == 'FULL-SUSPEND') {
                 $scope.isShowReason = true;
                 defaultReasonCode = "";
             }
@@ -222,6 +222,9 @@ smartApp.controller('ChangeSuspendController', function($scope, $routeParams, Au
     };
     // (End) Get current SIM data ----------------------
     $scope.TrxID = '';
+    $scope.isCardValueData = false;
+    $scope.getAuthen = {};
+    $scope.isCustomerProfile = false;
     $scope.orderId = '';
     $scope.statusList = {};
     var authenticate = function() {
