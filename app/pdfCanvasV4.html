@@ -77,6 +77,11 @@
                     printButton.click();
                 }
             }, 1000);
+            setTimeout(function() {
+                if (getParameterByName('action') == "printUMS") {
+                    document.getElementById('loaded').style = 'display:none';
+                }
+            }, 3000);
 
 
         });

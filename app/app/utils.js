@@ -155,11 +155,17 @@ function print_androidUMS(url) {
     // });
     // setTimeout(function(){
     // }, 3000);
-    //url = "http://sff-uat.true.th:19083/webui/PDFs/AfterSaleReport.pdf";
-    wms.printWeb(url, function(x) {
+    urlx = "http://sff-uat.true.th:8980/webui/PDFs/AfterSaleReport.pdf";
+    var urlLCS = localStorage.getItem('urlx');
+    var webContextPath = getContextPath();
+    //var urlx = window.location.origin+window.location.pathname+"pdfCanvasV4.html?action=none&url=" + urlLCS;
+    //var urlx = "http://sff-uat.true.th:8980/webui/report/view/pdf/" + urlLCS + ".action?clearData=N";
+    console.log(urlx);
+    alert('Print URL:' + urlx);
+    wms.printWeb(urlx, function(x) {
         //alert("Print SUCCESSFUL");
     }, function(x) {
-        alert('Print ERROR : '+ JSON.stringify(x));
+        alert('Print ERROR : ' + JSON.stringify(x));
     });
 
 }
