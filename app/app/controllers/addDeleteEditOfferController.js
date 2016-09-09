@@ -1743,7 +1743,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.setDatepickerValue = function(){
         var setDatepicker = $scope.dataForEdit.param['expiration-date'].split("/");
-        $('#editCpExpirationDate').datepicker("setDate", new Date(Number(setDatepicker[2]) - 543,Number(setDatepicker[1]) - 1, Number(setDatepicker[0])) );
+        setTimeout(function() {
+            $('#editCpExpirationDate').datepicker("setDate", new Date(Number(setDatepicker[2]) - 543,Number(setDatepicker[1]) - 1, Number(setDatepicker[0])) );
+        }, 10);  
     };
 
     $scope.onEditCUGParam = function(item) {
