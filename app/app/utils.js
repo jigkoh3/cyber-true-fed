@@ -159,7 +159,7 @@ function print_androidUMS(url) {
     var urlLCS = localStorage.getItem('urlx');
     var webContextPath = getContextPath();
     //var urlx = window.location.origin+window.location.pathname+"pdfCanvasV4.html?action=none&url=" + urlLCS;
-    var urlx = "http://sff-uat.true.th:8980" + urlLCS + "";
+    var urlx = "http://sff-uat.true.th:8980" + urlLCS + "?clearData=N";
     // var urlx = "http://sff-uat.true.th:8980/webui/images/commons/readcard@2x.png";
     console.log(urlx);
     alert('Print URL:' + urlx);
