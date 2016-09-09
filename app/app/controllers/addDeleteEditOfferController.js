@@ -364,6 +364,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         if ($scope.cpTerm == 0) {
                             $scope.cpExpireDate = $scope.cpStartDate;
                             $('#cpExpireDate').val($scope.cpExpireDate);
+                            var dateToSet = $scope.cpExpireDate.split("/");
+                            $('#cpExpireDate').datepicker("setDate", new Date(Number(dateToSet[2]) - 543, Number(dateToSet[1]) - 1, Number(dateToSet[0])));
                         }
                     }
                     if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_FEE" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
