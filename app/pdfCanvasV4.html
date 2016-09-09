@@ -12,7 +12,6 @@
     <!-- Use latest PDF.js build from Github -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
     <script type="text/javascript" src="PDFs/pdfjs-1.4.20-dist/build/pdf.js"></script>
-    <script type="text/javascript" src="js/webMS.js"></script>
     <script type="text/javascript">
     //
     // NOTE:
@@ -38,9 +37,9 @@
     // the script to be loaded, and dynamically loading a cross-origin script does
     // not work)
     //
-    if (typeof PDFJS == "undefined") {
+    if(typeof PDFJS == "undefined") {
         alert('PDFJS : undefined');
-    } else {
+    }else{
         //alert('PDFJS : ok');
     }
 
@@ -78,12 +77,6 @@
                     printButton.click();
                 }
             }, 1000);
-            setTimeout(function() {
-                if (getParameterByName('action') == "printUMS") {
-                    document.getElementById('loaded').style = 'display:none';
-                }
-
-            }, 3000);
 
 
         });
@@ -99,11 +92,6 @@
         windowContent += '</body>';
         windowContent += '</html>';
         var printWin = window.open('', '', 'width=500,height=460');
-        wms.printWeb(dataUrl.replace('image/png', 'image/octet-stream'), function(x) {
-            //alert("Print SUCCESSFUL");
-        }, function(x) {
-            alert('Print ERROR : ' + JSON.stringify(x));
-        });
         printWin.document.open();
         printWin.document.write(windowContent);
         printWin.document.close();
