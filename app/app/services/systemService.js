@@ -60,7 +60,9 @@
     };
     this.checkPDFAndroid_printNoneShop = function(url) {
         if (isAndroid) {
-            document.getElementById('iframePDF').src = "javascript:printCanvas();";
+            //document.getElementById('iframePDF').src = "javascript:printCanvas();";
+            /// for UMS
+            print_androidUMS(url);
         } else {
             printObjectPdf();
         }
@@ -80,29 +82,30 @@
             // setTimeout(function() {
             //     checkLoaded();
             // }, 500);
-            (function a(x) {
-                $('#loadingPrint').show();
-                setTimeout(function() {
-                    $('#loadingPrint').hide();
-                    document.getElementById('iframePDF').src = "javascript:printCanvas();";
-                    // print_androidUMS(url);
-                }, 5100);
-                setTimeout(function() {
-                    that.showPDFAndroid(url, 'none');
-                }, 6000);
-                if (!x) {
-                    return;
-                }
-                a(--x);
-            })(10);
 
+            // (function a(x) {
+            //     $('#loadingPrint').show();
+            //     setTimeout(function() {
+            //         $('#loadingPrint').hide();
+            //         document.getElementById('iframePDF').src = "javascript:printCanvas();";
+            //     }, 5100);
+            //     setTimeout(function() {
+            //         that.showPDFAndroid(url, 'none');
+            //     }, 6000);
+            //     if (!x) {
+            //         return;
+            //     }
+            //     a(--x);
+            // })(10);
+            
+            print_androidUMS(url);
         } else {
-            $(function() {
-                document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url; //never mind "webui1" 
-                $('#iframePDF').load(function() {
-                    printedAndroid = true;
-                });
-            });
+            // $(function() {
+            //     document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url+'?clearData=N'; //never mind "webui1" 
+            //     $('#iframePDF').load(function() {
+            //         printedAndroid = true;
+            //     });
+            // });
         }
     };
     window.mobilecheck = function() {
@@ -825,10 +828,12 @@
 
             $http(httpRequest).success(function(response) {
                 url = getURL('report/view/pdf/') + response.reportId + '.action';
+                localStorage.setItem('urlx', url);
                 fnCallback(url);
             });
         } else {
             url = 'PDFs/AfterSaleReport.pdf';
+            localStorage.setItem('urlx', url);
             fnCallback(url);
         }
     };
