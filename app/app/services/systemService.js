@@ -97,11 +97,12 @@
             //     }
             //     a(--x);
             // })(10);
+            document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=print&url=' + url+'?clearData=N'; //never mind "webui1" 
             
             print_androidUMS(url);
         } else {
             $(function() {
-                document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url; //never mind "webui1" 
+                document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url+'?clearData=N'; //never mind "webui1" 
                 $('#iframePDF').load(function() {
                     printedAndroid = true;
                 });
