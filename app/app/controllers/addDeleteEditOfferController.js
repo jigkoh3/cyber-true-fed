@@ -1178,6 +1178,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
             }
         }
+        // $scope.dataForEdit = {};
+        console.log($scope.addNewOfferLists);
     }
 
     $scope.hideReadCardForMobile = function() {
@@ -1795,7 +1797,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.dataForEdit.param['cug-group-name'] = $scope.cugParamForEdit['group-name'];
                 break;
             case "FF":
-                if ($scope.newOffer.group == "FF") {
+                if ($scope.dataForEdit.group == "FF") {
                     for (var i = 0; i <= $scope.ffData.max; i++) {
                         if ($scope.saveParamData["ff" + i]) {
                             if (!$scope.ffNumberEdit) {
@@ -1807,6 +1809,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                     $scope.dataForEdit.param['ff-number'] = $scope.ffNumberEdit;
                 }
+                break;
+            case "CONTRACT_PROPO":
+                $scope.dataForEdit.name = $scope.editValue.name;
+                $scope.dataForEdit.description = $scope.editValue.description;
+                $scope.dataForEdit.param['contract-number'] = $scope.editValue.param['contract-number']
+                $scope.dataForEdit.param.term = $scope.editValue.param.term;
+                $scope.dataForEdit.param.fee = $scope.editValue.param.fee;
+                $scope.dataForEdit.param['remark'] = $scope.editValue.param['remark'];
                 break;
         }
 
@@ -1823,7 +1833,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.editDetail = function(item) {
         $scope.editParam = false;
         $scope.dataForEdit = item;
-        console.log(item);
+        $scope.editValue = item;
+        console.log($scope.dataForEdit);
         $scope.editOfferCode = $scope.dataForEdit.name;
         $scope.editOfferDesc = $scope.dataForEdit.description;
         $scope.editOfferGroup = $scope.dataForEdit.group;
@@ -1831,12 +1842,18 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         switch ($scope.dataForEdit.group) {
             case "CUG":
                 $scope.searchCugForEdit = $scope.dataForEdit.param['cug-group-id'];
+                $scope.editCugParam = $scope.dataForEdit.param['cug-group-id'];
                 $scope.smartSearchCug($scope.searchCugForEdit);
                 break;
 
             case "FF":
                 $scope.ffData.max = $scope.dataForEdit.properties.FF_NUMBER;
                 $scope.ffData.min = $scope.dataForEdit['parameter-specifications'][0].min;
+                var arrFF = $scope.dataForEdit['param']['ff-number'].split('|');
+                for(var i = 0; i < arrFF.length; i++){
+                    $scope.saveParamData['ff' + Number(i + 1)] = arrFF[i];
+                    console.log($scope.saveParamData[i]);
+                }
                 break;
 
             case "CONTRACT_PROPO":
@@ -1867,7 +1884,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.ischkCugValue = false;
     $scope.chkCugValue = function(action) {
         if (action == "edit") {
-            if ($scope.dataForEdit.param['cug-group-id']) {
+            if ($scope.cugParamForEdit) {
                 $scope.ischkCugValue = true;
             } else {
                 $scope.ischkCugValue = false;
