@@ -1487,6 +1487,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.chkValueforCp = false;
     $scope.validateAddCp = function(action) {
+        $scope.cpDiffResultForEdit = $scope.checkValueCpDate($('#editCpStartDate').val(), $('#editCpExpirationDate').val());
         if (action == "edit") {
             if ($scope.dataForEdit.param['contract-number'] && $scope.dataForEdit.param['start-date'] && $scope.dataForEdit.param['expiration-date'] && $scope.dataForEdit.param['remark'] && $scope.dataForEdit.param['remark'] != " " && $scope.cpDiffResultForEdit >= 0) {
                 $scope.disableSubmitAddOffer = false;
@@ -1495,7 +1496,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.disableSubmitAddOffer = true;
                 $scope.chkValueforCp = false;
             }
-
         } else {
             if ($scope.cpContractNumber && $scope.cpStartDate && $scope.cpExpireDate && $scope.cpRemark && $scope.cpRemark != " " && $scope.cpDiffResult >= 0) {
                 $scope.disableSubmitAddOffer = false;
@@ -1811,18 +1811,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
                 break;
             case "CONTRACT_PROPO":
-                $scope.dataForEdit.name = $scope.editValue.name;
-                $scope.dataForEdit.description = $scope.editValue.description;
-                $scope.dataForEdit.param['contract-number'] = $scope.editValue.param['contract-number']
-                $scope.dataForEdit.param.term = $scope.editValue.param.term;
-                $scope.dataForEdit.param.fee = $scope.editValue.param.fee;
-                $scope.dataForEdit.param['remark'] = $scope.editValue.param['remark'];
                 break;
         }
 
+        $scope.editValue = $scope.dataForEdit;
+        console.log($scope.editValue);
         for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
-            if ($scope.dataForEdit.name == $scope.addNewOfferLists[i].name) {
-                $scope.addNewOfferLists[i] = $scope.dataForEdit;
+            if ($scope.editValue.name == $scope.addNewOfferLists[i].name) {
+                $scope.addNewOfferLists[i] = $scope.editValue;
             }
         }
 
@@ -1832,8 +1828,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.editDetail = function(item) {
         $scope.editParam = false;
-        $scope.dataForEdit = item;
-        $scope.editValue = item;
+        $scope.dataForEdit = angular.copy(item);
+        $scope.editValue = {};
         console.log($scope.dataForEdit);
         $scope.editOfferCode = $scope.dataForEdit.name;
         $scope.editOfferDesc = $scope.dataForEdit.description;

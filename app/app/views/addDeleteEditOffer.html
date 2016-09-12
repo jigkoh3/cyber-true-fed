@@ -1629,7 +1629,7 @@
                                     <label>Proposition Code</label>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input ng-disabled="true" type="text" ng-model="editValue.name" class="form-control">
+                                    <input ng-disabled="true" type="text" ng-model="dataForEdit.name" class="form-control">
                                 </div>
                                 <div class="col-xs-2">
                                 </div>
@@ -1641,7 +1641,7 @@
                                     <label>Proposition Description</label>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input ng-disabled="true" type="text" ng-model="editValue.description" class="form-control">
+                                    <input ng-disabled="true" type="text" ng-model="dataForEdit.description" class="form-control">
                                 </div>
                                 <div class="col-xs-2">
                                 </div>
@@ -1653,7 +1653,7 @@
                                     <label>Contract Number</label><span style="color: red">*</span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input type="text" ng-model="editValue.param['contract-number']" class="form-control" ng-number-only="inputEditCpCN" maxlength="10" ng-keyup="validateAddCp('edit')">
+                                    <input type="text" ng-model="dataForEdit.param['contract-number']" class="form-control" ng-number-only="inputEditCpCN" maxlength="10" ng-keyup="validateAddCp('edit')">
                                     <span ng-span-number-only="inputEditCpCN" class="hide" style="color:red;">
                                         กรุณากรอกเฉพาะตัวเลขเท่านั้น
                                     </span>
@@ -1728,7 +1728,7 @@
                                     <label>Remark</label><span style="color: red">*</span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input name="cpRemark" type="text" ng-model="editValue.param['remark']" class="form-control" ng-keyup="validateAddCp('edit')">
+                                    <input name="cpRemark" type="text" ng-model="dataForEdit.param['remark']" class="form-control" ng-keyup="validateAddCp('edit')">
                                 </div>
                                 <div class="col-xs-2">
                                 </div>
