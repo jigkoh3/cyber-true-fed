@@ -155,10 +155,10 @@ function print_androidUMS(url) {
     // });
     // setTimeout(function(){
     // }, 3000);
-    var urlx = "http://sff-uat.true.th:8980/webui/PDFs/AfterSaleReport.pdf";
-    var urlLCS = localStorage.getItem('urlx');
-    var webContextPath = getContextPath();
-    //var urlx = window.location.origin+window.location.pathname+"pdfCanvasV4.html?action=none&url=" + urlLCS;
+    // var urlx = "http://sff-uat.true.th:8980/webui/PDFs/AfterSaleReport.pdf";
+    // var urlLCS = localStorage.getItem('urlx');
+    // var webContextPath = getContextPath();
+    var urlx = "http://sff-uat.true.th:8980/webui/pdfCanvasV4_UMS.html?action=none&url=" + url;
     // var urlx = "http://sff-uat.true.th:8980" + urlLCS + "?clearData=N"; /// soonnnnnnnnnnnn
     // var urlx = "http://sff-uat.true.th:8980/webui/images/commons/readcard@2x.png";
     console.log(urlx);
