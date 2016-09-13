@@ -2486,7 +2486,7 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
 
                 //SC=Scan
                 //SN=Snap
-                "photoType": "SN",
+                "photoType": "SC",
                 "titleEn": "Mr.",
                 "firstnameEn": "Songphol",
                 "lastnameEn": "Pantayoung",
