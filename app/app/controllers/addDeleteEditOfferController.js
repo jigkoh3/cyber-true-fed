@@ -69,12 +69,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.reasons = [];
     $scope.statusReason = "";
-    $scope.capMaxParameterList = {};
-    var soc = "1234";
-    AddDeleteEditOfferNewService.getCapmaxParameter(soc, function(result) {
-        console.log(result.data);
-        $scope.capMaxParameterList = result.data['cap-max-parameter'];
-    });
 
     // ReasonService.list("119", function(result) {
     //     //$scope.reasons = result;
@@ -107,9 +101,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         value: "ADDITIONAL"
     };
     $scope.txtSearchOffer = "";
-    $scope.ffData = {
-        max: 4
-    };
     $scope.radioOffer = "";
     $scope.radioCpOffer = "";
     //STR: get offerList
@@ -117,15 +108,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.releteOfferList = [];
     $scope.addNewOfferLists = [];
 
-    // =========================Change to addOfferLists=================================
-    // $scope.popUpOfferList = [];
-    // var popUpOfferList = [];
-    // =================================================================================
-
-    $scope.cpOfferList = [];
-    var cpOfferList = [];
-    $scope.disOfferList = [];
-    var disOfferList = [];
     $scope.showDetail = {};
     $scope.futureOfferList = [];
     var futureOfferList = [];
@@ -306,37 +288,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.addOfferLists = $filter('filter')(addOfferLists, txtSearch);
         }
     }
-    $scope.smartSearchCpOffer = function(txtSearch) {
-        $scope.radioCpOffer = "";
-        if (txtSearch.indexOf(' ') > 0) {
-            var txtList = txtSearch.split(' ');
-            var arr = cpOfferList;
-            console.log(txtList);
-            for (var i = 0; i < txtList.length; i++) {
-                arr = $filter('filter')(arr, txtList[i]);
-            }
-            $scope.cpOfferList = arr;
-        } else {
-            $scope.cpOfferList = $filter('filter')(cpOfferList, txtSearch);
-        }
-    }
-    $scope.smartSearchDisOffer = function(txtSearch) {
-        $scope.radioCpOffer = "";
-        if (txtSearch.indexOf(' ') > 0) {
-            var txtList = txtSearch.split(' ');
-            var arr = disOfferList;
-            console.log(txtList);
-            for (var i = 0; i < txtList.length; i++) {
-                arr = $filter('filter')(arr, txtList[i]);
-            }
-            $scope.disOfferList = arr;
-        } else {
-            $scope.disOfferList = $filter('filter')(disOfferList, txtSearch);
-        }
-    }
-
-    $scope.ffData.min = 0;
-    $scope.ffData.max = 0;
+   
+    $scope.ffData = {
+        "mun": 0,
+        "max": 0
+    };
     $scope.onChangeRadioOffer = function(item) {
         $scope.clearValueAddNewOffer();
         $scope.selectedOffer = item;
