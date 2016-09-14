@@ -158,7 +158,7 @@ function print_androidUMS(url) {
     // var urlx = "http://sff-uat.true.th:8980/webui/PDFs/AfterSaleReport.pdf";
     // var urlLCS = localStorage.getItem('urlx');
     // var webContextPath = getContextPath();
-    var urlx = "http://sff-uat.true.th:8980/webui" + url;
+    var urlx = "http://sff-uat.true.th:8980" + url;
     // var urlx = "http://sff-uat.true.th:8980" + urlLCS + "?clearData=N"; /// soonnnnnnnnnnnn
     // var urlx = "http://sff-uat.true.th:8980/webui/images/commons/readcard@2x.png";
     console.log(urlx);
