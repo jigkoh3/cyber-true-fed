@@ -275,7 +275,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.smartSearchOffer = function(txtSearch) {
-        $scope.radioOffer = "";
+        // $scope.radioOffer = "";
         if (txtSearch.indexOf(' ') > 0) {
             var txtList = txtSearch.split(' ');
             var arr = addOfferLists;
@@ -286,6 +286,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.addOfferLists = arr;
         } else {
             $scope.addOfferLists = $filter('filter')(addOfferLists, txtSearch);
+        }
+
+        if(!$scope.radioOffer){
+            $scope.disableSubmitAddOffer = true;
         }
     }
 
@@ -1040,7 +1044,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $('input[name=paramCug]').prop('checked', false);
 
             // $scope.disableSubmitAddOffer = false;
-            console.log($scope.radioDisOffer);
+            // console.log($scope.radioDisOffer);
             $('#idBindDataAgain').click();
             $scope.onChangeRadioOffer(item);
         }, 50);
@@ -1209,6 +1213,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.addType = "";
     $scope.searchOffer = function(offerGroup) {
         SystemService.showLoading();
+        $scope.radioOffer = "";
+        $scope.disableSubmitAddOffer = true;
         $scope.addType = offerGroup;
         $scope.clearAddNewOfferDate();
         if ($scope.level == "SUBSCRIBER") {
