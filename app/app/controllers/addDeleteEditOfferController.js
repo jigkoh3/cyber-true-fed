@@ -1245,10 +1245,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 for (var i = 0; i < $scope.addOfferLists.length; i++) {
                     // case relate offer price plan 
                     if ($scope.addOfferType.value == 'RELATED') {
-                        $scope.addOfferLists[i]["sale-period"] = { "start": "", "end": "" };
-                        $scope.addOfferLists[i].name = $scope.addOfferLists[i].offer.name;
-                        $scope.addOfferLists[i]['service-level'] = $scope.addOfferLists[i].offer['service-level'];
-                        $scope.addOfferLists[i].group = "RELATED";
+                        $scope.addOfferLists[i] = $scope.addOfferLists[i].offer;
                     }
                     // ========================================================================
 
