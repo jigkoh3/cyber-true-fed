@@ -288,7 +288,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.addOfferLists = $filter('filter')(addOfferLists, txtSearch);
         }
     }
-   
+
     $scope.ffData = {
         "mun": 0,
         "max": 0
@@ -1226,11 +1226,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else if ($scope.addType == 'DISCOUNT') {
             $scope.addOfferType.value = 'DISCOUNT';
             var searchParam = "offer-group=DISCOUNT" + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel;
-        } else if ($scope.addType == 'DISCOUNT') {
-            $scope.addOfferType.value = 'RELATED';
-            var searchParam = "current-priceplan=" + $scope.priceplan[0]['product-name'] + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel;
         } else {
-            var searchParam = "offer-group=" + $scope.addOfferType.value + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel;
+            if ($scope.addOfferType.value == 'RELATED') {
+                var searchParam = "current-priceplan=" + $scope.priceplan[0]['product-name'] + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel;
+            } else {
+                var searchParam = "offer-group=" + $scope.addOfferType.value + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel;
+            }
         }
 
         console.log(searchParam);
@@ -1802,7 +1803,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.ffData.max = $scope.dataForEdit.properties.FF_NUMBER;
                 $scope.ffData.min = $scope.dataForEdit['parameter-specifications'][0].min;
                 var arrFF = $scope.dataForEdit['param']['ff-number'].split('|');
-                for(var i = 0; i < arrFF.length; i++){
+                for (var i = 0; i < arrFF.length; i++) {
                     $scope.saveParamData['ff' + Number(i + 1)] = arrFF[i];
                     console.log($scope.saveParamData[i]);
                 }
@@ -1841,7 +1842,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             } else {
                 $scope.ischkCugValue = false;
             }
-        } 
+        }
         // else {
         //     if ($scope.dataForEdit.param['cug-group-id']) {
         //         $scope.disableSubmitAddOffer = false;
