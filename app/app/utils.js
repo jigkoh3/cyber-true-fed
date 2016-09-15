@@ -158,7 +158,8 @@ function print_androidUMS(url) {
     // var urlx = "http://sff-uat.true.th:8980/webui/PDFs/AfterSaleReport.pdf";
     // var urlLCS = localStorage.getItem('urlx');
     // var webContextPath = getContextPath();
-    var urlx = "http://sff-uat.true.th:8980" + url;
+    // var urlx = "http://sff-uat.true.th:8980" + url;
+    var urlx = "http://sff-uat.true.th:8980/webui/pdfCanvasV4_UMS.html";
     // var urlx = '<!DOCTYPE html><html><body><embed src="http://sff-uat.true.th:8980/webui-mock/PDFs/AfterSaleReport.pdf" type="application/pdf"></body></html>';
     // var urlx = "<!DOCTYPE html><html><body><embed src=\"http://sff-uat.true.th:8980/webui-mock/PDFs/AfterSaleReport.pdf\" type=\"application/pdf\"></body></html>";
     // var urlx = "http://sff-uat.true.th:8980" + urlLCS + "?clearData=N"; /// soonnnnnnnnnnnn
