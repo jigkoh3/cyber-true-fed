@@ -798,6 +798,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                 */
                 if (response['response-data']['order-items'].length > 0) {
                     $scope.data_detail = response['response-data']['order-items'][0];
+                    $scope.data_detail['approver'] = response['response-data']['approver'];
                     var inventoryStatus_ = $scope.data_detail['order-data']['INVEN-STATUS'];
                     if (inventoryStatus_ != undefined && null != inventoryStatus_ && "" != inventoryStatus_.trim()) {
                         if (inventoryStatus_ == 1) {
@@ -872,6 +873,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
 
     $scope.leyoutType = "layout-table";
     $scope.selectLayout = function(selectID){
+        $scope.data_detail = [];
         if(selectID == "layout-table"){
             $('#' + selectID ).addClass("leyout-type");
             $('#layout-columns').removeClass("leyout-type");
