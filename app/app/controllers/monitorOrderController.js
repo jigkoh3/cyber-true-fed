@@ -873,6 +873,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
 
     $scope.leyoutType = "layout-table";
     $scope.selectLayout = function(selectID){
+        $scope.selectedData = [];
         $scope.data_detail = [];
         if(selectID == "layout-table"){
             $('#' + selectID ).addClass("leyout-type");
