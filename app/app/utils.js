@@ -160,7 +160,7 @@ function print_androidUMS(url) {
     // var webContextPath = getContextPath();
     // var urlx = "http://sff-uat.true.th:8980" + url;
     // http://localhost:10000/pdfCanvasV4.html?action=none&url=PDFs/AfterSaleReport.pdf?clearData=N
-    var urlx = "http://sff-uat.true.th:8980/pdfCanvasV4_UMS.html?order-id=555&url=http://sff-uat.true.th:8980/webui-mock/PDFs/AfterSaleReport.pdf&test=1";
+    var urlx = "http://sff-uat.true.th:8980/webui/pdfCanvasV4_UMS.html?order-id=555&url=http://sff-uat.true.th:8980/webui-mock/PDFs/AfterSaleReport.pdf&test=1";
     //var urlx = "http://sff-uat.true.th:8980/pdfCanvasV4_UMS.html?order-id=555&url=http://sff-uat.true.th:8980/"+url+"&test=1";
     // var urlx = "http://192.168.43.186:8080" + url;
     // var urlx = '<!DOCTYPE html><html><body><embed src="http://sff-uat.true.th:8980/webui-mock/PDFs/AfterSaleReport.pdf" type="application/pdf"></body></html>';
