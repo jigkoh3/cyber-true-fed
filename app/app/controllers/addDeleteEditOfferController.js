@@ -288,7 +288,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.addOfferLists = $filter('filter')(addOfferLists, txtSearch);
         }
 
-        if(!$scope.radioOffer){
+        if (!$scope.radioOffer) {
             $scope.disableSubmitAddOffer = true;
         }
     }
@@ -298,6 +298,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         "max": 0
     };
     $scope.onChangeRadioOffer = function(item) {
+
+        if ($scope.selectedOffer.group == "DISCOUNT") {
+            var expiredateDiscount = new Date();
+            expiredateDiscount.setMonth(expiredateDiscount.getMonth() + 24);
+            $("#addNewOfferExpirationDate").datepicker("setEndDate", expiredateDiscount);
+        } else {
+            $("#addNewOfferExpirationDate").datepicker("setEndDate", "");
+        }
         $scope.clearValueAddNewOffer();
         $scope.selectedOffer = item;
         $scope.saveParamData = {};
@@ -381,6 +389,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
                 $('#idBindDataAgain').click();
                 console.log($scope.selectedOffer);
+                break;
+
+            case "DISCOUNT":
+
                 break;
         }
 
@@ -1538,10 +1550,20 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.chkValueAddNewOffer();
             $('#idBindDataAgain').click();
         });
+        $("#addNewOfferEffectiveDate").blur(function() {
+            $scope.addNewOfferEffectiveDate = $('#addNewOfferEffectiveDate').val();
+            $scope.chkValueAddNewOffer();
+            $('#idBindDataAgain').click();
+        });
     });
 
     $(document).ready(function() {
         $("#addNewOfferExpirationDate").change(function() {
+            $scope.addNewOfferExpirationDate = $('#addNewOfferExpirationDate').val();
+            $scope.chkValueAddNewOffer();
+            $('#idBindDataAgain').click();
+        });
+        $("#addNewOfferExpirationDate").blur(function() {
             $scope.addNewOfferExpirationDate = $('#addNewOfferExpirationDate').val();
             $scope.chkValueAddNewOffer();
             $('#idBindDataAgain').click();
@@ -1555,10 +1577,20 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.chkValueAddNewOffer("edit");
             $('#idBindDataAgain').click();
         });
+        $("#editNewOfferEffectiveDate").blur(function() {
+            $scope.dataForEdit['param']['effective-date-value'] = $('#editNewOfferEffectiveDate').val();
+            $scope.chkValueAddNewOffer("edit");
+            $('#idBindDataAgain').click();
+        });
     });
 
     $(document).ready(function() {
         $("#editNewOfferExpirationDate").change(function() {
+            $scope.dataForEdit['param']['expiration-date-value'] = $('#editNewOfferExpirationDate').val();
+            $scope.chkValueAddNewOffer("edit");
+            $('#idBindDataAgain').click();
+        });
+        $("#editNewOfferExpirationDate").blur(function() {
             $scope.dataForEdit['param']['expiration-date-value'] = $('#editNewOfferExpirationDate').val();
             $scope.chkValueAddNewOffer("edit");
             $('#idBindDataAgain').click();
