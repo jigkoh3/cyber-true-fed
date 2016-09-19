@@ -2538,7 +2538,7 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
         SystemService.generatePDF(data, function(result) {
             var url = result;
             setTimeout(function() {
-                url = url.replace('.action', '.pdf');
+                // url = url.replace('.action', '.pdf');
                 print_androidUMS(url);
             }, 500);
 
