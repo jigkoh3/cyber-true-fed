@@ -2476,7 +2476,7 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
                 "id-number": "3389225969739",
                 "product-id-number": "0689100006",
                 "ouId": "5010",
-                "orderId": "15070800DEMO000000002",
+                "orderId": $scope.orderId,
                 "photo": "",
 
 
