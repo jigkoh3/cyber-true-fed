@@ -298,6 +298,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         "max": 0
     };
     $scope.onChangeRadioOffer = function(item) {
+        $scope.clearValueAddNewOffer();
+        $scope.selectedOffer = item;
+        $scope.saveParamData = {};
+        console.log($scope.selectedOffer);
+        $('.modal-backdrop').css('height', '200%');
 
         if ($scope.selectedOffer.group == "DISCOUNT") {
             var expiredateDiscount = new Date();
@@ -306,12 +311,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else {
             $("#addNewOfferExpirationDate").datepicker("setEndDate", "");
         }
-        $scope.clearValueAddNewOffer();
-        $scope.selectedOffer = item;
-        $scope.saveParamData = {};
-        console.log($scope.selectedOffer);
-        $('.modal-backdrop').css('height', '200%');
-
+        
         // add new param value for add new offer
         switch ($scope.selectedOffer.group) {
             case "FF":
