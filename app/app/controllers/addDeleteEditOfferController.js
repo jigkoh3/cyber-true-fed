@@ -311,7 +311,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else {
             $("#addNewOfferExpirationDate").datepicker("setEndDate", "");
         }
-        
+
         // add new param value for add new offer
         switch ($scope.selectedOffer.group) {
             case "FF":
@@ -1460,6 +1460,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.chkValueforCp = false;
     $scope.validateAddCp = function(action) {
         $scope.cpDiffResultForEdit = $scope.checkValueCpDate($('#editCpStartDate').val(), $('#editCpExpirationDate').val());
+        $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
+        if ($scope.cpDiffResult < 0) {
+            $('#cpExpireDate').val('');
+            $scope.cpExpireDate = "";
+
+        }
         if (action == "edit") {
             if ($scope.dataForEdit.param['contract-number'] && $scope.dataForEdit.param['start-date'] && $scope.dataForEdit.param['expiration-date'] && $scope.dataForEdit.param['remark'] && $scope.dataForEdit.param['remark'] != " " && $scope.cpDiffResultForEdit >= 0) {
                 $scope.disableSubmitAddOffer = false;
@@ -1505,14 +1511,29 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.cpStartDate = $('#cpStartDate').val();
             $scope.cpExpireDate = $('#cpExpireDate').val();
             $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
+            $('#cpExpireDate').datepicker("setStartDate", $("#cpStartDate").val());
             $scope.validateAddCp();
             $('#idBindDataAgain').click();
         });
-
+        $("#cpStartDate").blur(function() {
+            $scope.cpStartDate = $('#cpStartDate').val();
+            $scope.cpExpireDate = $('#cpExpireDate').val();
+            $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
+            $('#cpExpireDate').datepicker("setStartDate", $("#cpStartDate").val());
+            $scope.validateAddCp();
+            $('#idBindDataAgain').click();
+        });
     });
 
     $(document).ready(function() {
         $("#cpExpireDate").change(function() {
+            $scope.cpStartDate = $('#cpStartDate').val();
+            $scope.cpExpireDate = $('#cpExpireDate').val();
+            $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
+            $scope.validateAddCp();
+            $('#idBindDataAgain').click();
+        });
+        $("#cpExpireDate").blur(function() {
             $scope.cpStartDate = $('#cpStartDate').val();
             $scope.cpExpireDate = $('#cpExpireDate').val();
             $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
@@ -1527,6 +1548,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.dataForEdit.param['start-date'] = $('#editCpStartDate').val();
             $scope.dataForEdit.param['expiration-date'] = $('#editCpExpirationDate').val();
             $scope.cpDiffResultForEdit = $scope.checkValueCpDate($('#editCpStartDate').val(), $('#editCpExpirationDate').val());
+            $('#editCpExpirationDate').datepicker("setStartDate", $("#editCpStartDate").val());
             $scope.validateAddCp();
             $('#idBindDataAgain').click();
         });
@@ -1547,11 +1569,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $(document).ready(function() {
         $("#addNewOfferEffectiveDate").change(function() {
             $scope.addNewOfferEffectiveDate = $('#addNewOfferEffectiveDate').val();
+            $('#addNewOfferExpirationDate').datepicker('setStartDate', $('#addNewOfferEffectiveDate').val())
             $scope.chkValueAddNewOffer();
             $('#idBindDataAgain').click();
         });
         $("#addNewOfferEffectiveDate").blur(function() {
             $scope.addNewOfferEffectiveDate = $('#addNewOfferEffectiveDate').val();
+            $('#addNewOfferExpirationDate').datepicker('setStartDate', $('#addNewOfferEffectiveDate').val())
             $scope.chkValueAddNewOffer();
             $('#idBindDataAgain').click();
         });
@@ -1574,11 +1598,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $(document).ready(function() {
         $("#editNewOfferEffectiveDate").change(function() {
             $scope.dataForEdit['param']['effective-date-value'] = $('#editNewOfferEffectiveDate').val();
+            $("#editNewOfferExpirationDate").datepicker("setStartDate", $('#editNewOfferEffectiveDate').val())
             $scope.chkValueAddNewOffer("edit");
             $('#idBindDataAgain').click();
         });
         $("#editNewOfferEffectiveDate").blur(function() {
             $scope.dataForEdit['param']['effective-date-value'] = $('#editNewOfferEffectiveDate').val();
+            $("#editNewOfferExpirationDate").datepicker("setStartDate", $('#editNewOfferEffectiveDate').val())
             $scope.chkValueAddNewOffer("edit");
             $('#idBindDataAgain').click();
         });
@@ -1605,6 +1631,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.chkValueAddNewOffer = function(action) {
         if (action == "edit") {
+            $scope.difDateForEdit = $scope.checkValueCpDate($('#editNewOfferEffectiveDate').val(), $('#editNewOfferExpirationDate').val());
+            // console.log($scope.difDateForEdit);
+            if ($scope.difDateForEdit < 0) {
+                $('#editNewOfferExpirationDate').val('');
+                $scope.dataForEdit['param']['expiration-date-value'] = "";
+            }
             switch ($scope.dataForEdit.group) {
                 case "CUG":
                     // console.log($scope.cugParam);
@@ -1671,6 +1703,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     break;
             }
         } else {
+            $scope.difDateForAdd = $scope.checkValueCpDate($('#addNewOfferEffectiveDate').val(), $('#addNewOfferExpirationDate').val());
+            // console.log($scope.difDateForAdd);
+            if ($scope.difDateForAdd < 0) {
+                $('#addNewOfferExpirationDate').val('');
+                $scope.addNewOfferExpirationDate = "";
+            }
             switch ($scope.selectedOffer.group) {
                 case "CUG":
                     // console.log($scope.cugParam);
@@ -1826,6 +1864,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.editOfferCode = $scope.dataForEdit.name;
         $scope.editOfferDesc = $scope.dataForEdit.description;
         $scope.editOfferGroup = $scope.dataForEdit.group;
+
+        setTimeout(function() {
+            $('#editNewOfferEffectiveDate').datepicker("setDate", $scope.dataForEdit['param']['effective-date-value']);
+            // $('#editNewOfferExpirationDate').datepicker("setDate", $scope.dataForEdit['param']['expiration-date-value']);
+        }, 50);
 
         switch ($scope.dataForEdit.group) {
             case "CUG":
