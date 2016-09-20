@@ -83,22 +83,25 @@
             //     checkLoaded();
             // }, 500);
 
-            // (function a(x) {
-            //     $('#loadingPrint').show();
-            //     setTimeout(function() {
-            //         $('#loadingPrint').hide();
-            //         document.getElementById('iframePDF').src = "javascript:printCanvas();";
-            //     }, 5100);
-            //     setTimeout(function() {
-            //         that.showPDFAndroid(url, 'none');
-            //     }, 6000);
-            //     if (!x) {
-            //         return;
-            //     }
-            //     a(--x);
-            // })(1);
+
+            //// popup chrome printer
+            (function a(x) {
+                $('#loadingPrint').show();
+                setTimeout(function() {
+                    $('#loadingPrint').hide();
+                    document.getElementById('iframePDF').src = "javascript:printCanvas();";
+                }, 5100);
+                setTimeout(function() {
+                    that.showPDFAndroid(url, 'none');
+                }, 6000);
+                if (!x) {
+                    return;
+                }
+                a(--x);
+            })(1);
             
-            print_androidUMS(url);
+            //// send to UMS printer
+            // print_androidUMS(url);
         } else {
             $(function() {
                 document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url+'?clearData=N'; //never mind "webui1" 
