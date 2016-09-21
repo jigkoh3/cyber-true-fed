@@ -69,7 +69,7 @@
     };
     var printedAndroid = false;
     this.showPDFAndroid = function(url, action) {
-        // if (action == 'print') {
+        if (action == 'print') {
             // var checkLoaded = function() {
             //     if (printedAndroid == true) {
             //         printedAndroid = false;
@@ -85,31 +85,31 @@
 
 
             //// popup chrome printer
-            // (function a(x) {
-            //     $('#loadingPrint').show();
-            //     setTimeout(function() {
-            //         $('#loadingPrint').hide();
-            //         document.getElementById('iframePDF').src = "javascript:printCanvas();";
-            //     }, 5100);
-            //     setTimeout(function() {
-            //         that.showPDFAndroid(url, 'none');
-            //     }, 6000);
-            //     if (!x) {
-            //         return;
-            //     }
-            //     a(--x);
-            // })(1);
+            (function a(x) {
+                $('#loadingPrint').show();
+                setTimeout(function() {
+                    $('#loadingPrint').hide();
+                    document.getElementById('iframePDF').src = "javascript:printCanvas();";
+                }, 5100);
+                setTimeout(function() {
+                    that.showPDFAndroid(url, 'none');
+                }, 6000);
+                if (!x) {
+                    return;
+                }
+                a(--x);
+            })(0);
             
             //// send to UMS printer
             // print_androidUMS(url);
-        // } else {
+        } else {
             $(function() {
-                document.getElementById('iframePDF').src = 'pdfCanvasV4_UMS.html?action=' + action + '&url=' + url+'?clearData=N'; //never mind "webui1" 
+                document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url+'?clearData=N'; //never mind "webui1" 
                 $('#iframePDF').load(function() {
                     printedAndroid = true;
                 });
             });
-        // }
+        }
     };
     window.mobilecheck = function() {
             var check = false;

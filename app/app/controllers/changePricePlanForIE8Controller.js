@@ -2539,8 +2539,15 @@ smartApp.controller('ChangePricePlanForIE8Controller', function(
             var url = result;
             setTimeout(function() {
                 // url = url.replace('.action', '.pdf');
-                print_androidUMS(url);
+                // print_androidUMS(url);
+                SystemService.printPDF(url);
+
+                //case for PDF Android ::18-05-2016 //xsam32
+                SystemService.checkPDFAndroid_show(url);
             }, 500);
+            setTimeout(function() {
+                    SystemService.checkPDFAndroid_print(url);
+                }, 2000);
 
 
         });

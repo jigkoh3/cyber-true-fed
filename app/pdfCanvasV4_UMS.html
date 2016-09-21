@@ -65,7 +65,7 @@
         // Fetch the first page
         //
         pdf.getPage(1).then(function getPageHelloWorld(page) {
-            var scale = 1.5;
+            var scale = 2;
             var viewport = page.getViewport(scale);
 
             //
@@ -84,19 +84,18 @@
                 viewport: viewport
             });
             setTimeout(function() {
-                // document.getElementById('loaded').style = 'display:none';
+                document.getElementById('loaded').style = 'display:none';
                 if (getParameterByName('action') == "print") {
-                    //printButton.click();
-                    var dataUrl = document.getElementById('myCanvas').toDataURL(); //attempt to save base64 string to server using this var  
-                    // alert("dataUrl");
-                    $('#testIMG_PDF').attr({
-                        "src": dataUrl
-                    });
-                    //alert('set');
-                    $('#loaded').hide();
-                    $('#myCanvas').hide();
-                    window.print();
+                    printButton.click();
                 }
+                var dataUrl = document.getElementById('myCanvas').toDataURL(); //attempt to save base64 string to server using this var  
+                // alert("dataUrl");
+                $('#testIMG_PDF').attr({
+                    "src": dataUrl
+                });
+                //alert('set');
+                $('#loaded').hide();
+                $('#myCanvas').hide();
 
             }, 5000);
 
@@ -105,22 +104,21 @@
     });
 
     function printCanvas() {
-        // var dataUrl = document.getElementById('myCanvas').toDataURL(); //attempt to save base64 string to server using this var  
-        // var windowContent = '<!DOCTYPE html>';
-        // windowContent += '<html>'
-        // windowContent += '<head><title>True Store</title></head>';
-        // windowContent += '<body>'
-        // windowContent += '<img src="' + dataUrl + '">';
-        // windowContent += '</body>';
-        // windowContent += '</html>';
-        // var printWin = window.open('', '', 'width=500,height=460');
-        // printWin.document.open();
-        // printWin.document.write(windowContent);
-        // printWin.document.close();
-        // printWin.focus();
-        // printWin.print();
-        // printWin.close();
-        window.print();
+        var dataUrl = document.getElementById('myCanvas').toDataURL(); //attempt to save base64 string to server using this var  
+        var windowContent = '<!DOCTYPE html>';
+        windowContent += '<html>'
+        windowContent += '<head><title>True Store</title></head>';
+        windowContent += '<body>'
+        windowContent += '<img src="' + dataUrl + '">';
+        windowContent += '</body>';
+        windowContent += '</html>';
+        var printWin = window.open('', '', 'width=500,height=460');
+        printWin.document.open();
+        printWin.document.write(windowContent);
+        printWin.document.close();
+        printWin.focus();
+        printWin.print();
+        printWin.close();
     }
     // myCanvas.addEventListener("click", function() {
     //     printCanvas();
