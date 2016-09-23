@@ -11,6 +11,7 @@
     <canvas id="myCanvas" style="border: none;"></canvas>
     <!-- Use latest PDF.js build from Github -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="PDFs/pdfjs-1.4.20-dist/build/pdf.js"></script>
     <script type="text/javascript">
     //
@@ -32,14 +33,15 @@
     }
     var url = getParameterByName('url');
 
+
     //
     // Disable workers to avoid yet another cross-origin issue (workers need the URL of
     // the script to be loaded, and dynamically loading a cross-origin script does
     // not work)
     //
-    if(typeof PDFJS == "undefined") {
+    if (typeof PDFJS == "undefined") {
         alert('PDFJS : undefined');
-    }else{
+    } else {
         //alert('PDFJS : ok');
     }
 
@@ -83,21 +85,27 @@
     });
 
     function printCanvas() {
-        var dataUrl = document.getElementById('myCanvas').toDataURL(); //attempt to save base64 string to server using this var  
-        var windowContent = '<!DOCTYPE html>';
-        windowContent += '<html>'
-        windowContent += '<head><title>True Store</title></head>';
-        windowContent += '<body>'
-        windowContent += '<img src="' + dataUrl + '">';
-        windowContent += '</body>';
-        windowContent += '</html>';
-        var printWin = window.open('', '', 'width=500,height=460');
-        printWin.document.open();
-        printWin.document.write(windowContent);
-        printWin.document.close();
-        printWin.focus();
-        printWin.print();
-        printWin.close();
+        $(function() {
+            var urlx = "http://sff-uat.true.th:8980" + url + "";
+            // var urlx = "/PDFs/AfterSaleReport.pdf";
+            location = urlx;
+
+        });
+        // var dataUrl = document.getElementById('myCanvas').toDataURL(); //attempt to save base64 string to server using this var  
+        // var windowContent = '<!DOCTYPE html>';
+        // windowContent += '<html>'
+        // windowContent += '<head><title>True Store</title></head>';
+        // windowContent += '<body>'
+        // windowContent += '<img src="' + dataUrl + '">';
+        // windowContent += '</body>';
+        // windowContent += '</html>';
+        // var printWin = window.open('', '', 'width=500,height=460');
+        // printWin.document.open();
+        // printWin.document.write(windowContent);
+        // printWin.document.close();
+        // printWin.focus();
+        // printWin.print();
+        // printWin.close();
     }
     // myCanvas.addEventListener("click", function() {
     //     printCanvas();
