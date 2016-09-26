@@ -98,7 +98,7 @@
                     return;
                 }
                 a(--x);
-            })(0);
+            })(1);
             
             //// send to UMS printer
             // print_androidUMS(url);
