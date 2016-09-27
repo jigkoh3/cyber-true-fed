@@ -26,7 +26,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.isReadCardSuccess = false;
     $scope.isAuthorize = false;
     $scope.isMatch = true;
-    $scope.isVerify = true; //for demo ============ true
+    $scope.isVerify = false; //for demo ============ true
     $scope.isSelectedPricePlan2 = false;
     $scope.clickButtonAddress = false;
     $scope.notLastestCus = true;
@@ -4453,7 +4453,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             } else {
                 $('#ulAddressList').hide();
             }
-        }, 100);
+        }, 500);
     };
     $scope.onBlurAddressBC = function() {
         setTimeout(function() {
@@ -4462,10 +4462,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
             } else {
                 $('#ulAddressList').hide();
             }
-        }, 100);
-    };
-    $scope.onBlurAddressBC = function() {
-        $('#ulAddressListBC').hide();
+        }, 500);
     };
     var filterAddressList = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {
