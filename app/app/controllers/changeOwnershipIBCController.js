@@ -1703,7 +1703,7 @@ smartApp.controller('changeOwnershipIBCController', function(
 
                                 //// cr fix birthDate BC to '01-01-1950' :: 21-06-2016 ::: xsam32 
                                 var birthDate = "1950-01-01T00:00:00+0700";
-                                
+
                                 //alert(birthDate+":::"+expireDate);
                                 if ($scope.getAccountCat() != 'I') {
                                     $scope.newOwner.birthDay = formatDate(birthDate);
@@ -1790,6 +1790,32 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         //$scope.customer = customer;
                                         $scope.newOwner.firstNameTH = customer["firstname"];
                                         $scope.newOwner.lastNameTH = customer["lastname"];
+
+                                        ////str:: issue 27-09-2016 :: case other-title not found data in list array
+                                        var checkTOTL_value = customer["title"];
+                                        var checkarr = $filter('filter')($scope.titleOtherTypeList, checkTOTL_value);
+                                        $scope.titleOther = checkTOTL_value;
+                                        if (checkarr.length > 0) {
+                                            // $scope.titleOther = checkTOTL_value;
+                                        } else {
+                                            var totl = {
+                                                "key": checkTOTL_value,
+                                                "value": checkTOTL_value,
+                                                "attributes": {
+                                                    "GENDER": "ALL"
+                                                },
+                                                "description": checkTOTL_value,
+                                                "en-description": checkTOTL_value,
+                                                "th-description": checkTOTL_value
+                                            };
+                                            $scope.titleOtherTypeList.push(totl);
+                                            var tts = SystemService.demo ? 2200 : 100;
+                                            setTimeout(function() {
+                                                $('#title5').val(checkTOTL_value);
+                                                $scope.onChangeTitleOther();
+                                            }, tts);
+                                        }
+                                        ////end:: issue 27-09-2016 :: case other-title not found data in list array
 
                                         if ($scope.customerType == 'N') {
                                             $scope.newOwner2.firstNameTH = customer["firstname"];
@@ -4649,9 +4675,9 @@ smartApp.controller('changeOwnershipIBCController', function(
             showValidate("lastNameRegisterdBC", ValidateMsgService.data.msgSubLastNameEmpty);
         } else if ((isNull($scope.newOwner2.sex) || isNull($('#sex32BC').val())) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
             showValidate("sex32BC", ValidateMsgService.data.msgSubGenderEmpty);
-        //20160606 Cancel validate subscriber birthdate by waramun
-        // } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
-        //     showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
+            //20160606 Cancel validate subscriber birthdate by waramun
+            // } else if (isNull($('#birthDayRegisterdBC').val()) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'I') {
+            //     showValidate("birthDayRegisterdBC", ValidateMsgService.data.msgSubBirthdateEmpty);
         } else if (isNull($scope.bcName2) && $scope.customerType != 'N' && $scope.changCheckno == true && $scope.useNumberType == 'BC') {
             showValidate("bcName2", ValidateMsgService.data.msgSubFirstNameEmpty);
         } else if (isNull($scope.newOwner2.firstNameTH) && $scope.customerType == 'N') {
