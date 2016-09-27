@@ -1357,7 +1357,31 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     console.log($scope.checkExpireDate);
                                     console.log($scope.newOwner.expireDay);
                                     setTimeout(function() {
-                                        $scope.titleOther = $scope.data.customerProfile['title'];
+
+                                        ////str:: issue 27-09-2016 :: case other-title not found data in list array
+                                        var checkTOTL_value = $scope.data.customerProfile['title'];
+                                        var checkarr = $filter('filter')($scope.titleOtherTypeList, checkTOTL_value);
+                                        $scope.titleOther = checkTOTL_value;
+                                        if (checkarr.length > 0) {
+                                            // $scope.titleOther = checkTOTL_value;
+                                        } else {
+                                            var totl = {
+                                                "key": checkTOTL_value,
+                                                "value": checkTOTL_value,
+                                                "attributes": {
+                                                    "GENDER": "ALL"
+                                                },
+                                                "description": checkTOTL_value,
+                                                "en-description": checkTOTL_value,
+                                                "th-description": checkTOTL_value
+                                            };
+                                            $scope.titleOtherTypeList.push(totl);
+                                            setTimeout(function() {
+                                                $('#titleOther').val(checkTOTL_value);
+                                            }, 100);
+                                        }
+                                        ////end:: issue 27-09-2016 :: case other-title not found data in list array
+
                                         $('#titleOther').val($scope.data.customerProfile['title']);
                                         // $('#divShowAuthorize').hide();
                                         var cutomerType = $scope.data.priceplan['account-category'];
@@ -2064,7 +2088,31 @@ smartApp.controller('MigratePreToPostIBCController', function(
                                     $scope.newOwner.firstNameTH = customer["firstname"];
                                     $scope.newOwner.lastNameTH = customer["lastname"];
 
-                                    $scope.titleOther = customer["title"];
+                                    // $scope.titleOther = customer["title"];
+                                    ////str:: issue 27-09-2016 :: case other-title not found data in list array
+                                    var checkTOTL_value = customer["title"];
+                                    var checkarr = $filter('filter')($scope.titleOtherTypeList, checkTOTL_value);
+                                    $scope.titleOther = checkTOTL_value;
+                                    if (checkarr.length > 0) {
+                                        // $scope.titleOther = checkTOTL_value;
+                                    } else {
+                                        var totl = {
+                                            "key": checkTOTL_value,
+                                            "value": checkTOTL_value,
+                                            "attributes": {
+                                                "GENDER": "ALL"
+                                            },
+                                            "description": checkTOTL_value,
+                                            "en-description": checkTOTL_value,
+                                            "th-description": checkTOTL_value
+                                        };
+                                        $scope.titleOtherTypeList.push(totl);
+                                        var tts = SystemService.demo ? 2200 : 100;
+                                        setTimeout(function() {
+                                            $('#titleOther').val(checkTOTL_value);
+                                        }, tts);
+                                    }
+                                    ////end:: issue 27-09-2016 :: case other-title not found data in list array
 
                                     if ($scope.customerType == 'N') {
                                         //FIXED ISSUE :: 03-05-2016
