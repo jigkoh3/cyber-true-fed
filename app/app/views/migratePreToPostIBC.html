@@ -1539,11 +1539,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" ng-form="onEnterAddress()">
+                                <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>แขวง / ตำบล <span style="color:red;">*</span></label>
-                                            <input type="text" id="txtMaillAddressDistrictBC" ng-model="mailAddressBC.district" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="tumbols" data-toggle="dropdown" class="form-control idInputAddress" ng-blur="onBlurAddress()" required>
+                                            <input type="text" id="txtMaillAddressDistrictBC" ng-model="mailAddressBC.district" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="tumbols" data-toggle="dropdown" class="form-control idInputAddressBC" ng-blur="onBlurAddressBC()" required>
                                             <!--<span class="error" style="color:red;" ng-show="tumbol.tumbols.$error.required">
                                                 Required.
                                             </span>-->
@@ -1552,7 +1552,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>เขต / อำเภอ <span style="color:red;">*</span></label>
-                                            <input type="text" id="txtmailAddressamphurBC" ng-model="mailAddressBC.amphur" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="aumpers" class="form-control idInputAddress" ng-blur="onBlurAddress()" required>
+                                            <input type="text" id="txtmailAddressamphurBC" ng-model="mailAddressBC.amphur" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="aumpers" class="form-control idInputAddressBC" ng-blur="onBlurAddressBC()" required>
                                             <!--<span class="error" style="color:red;" ng-show="aumper.aumpers.$error.required">
                                                 Required.
                                             </span>-->
@@ -1561,7 +1561,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>จังหวัด<span style="color:red;">*</span></label>
-                                            <input type="text" id="txtmailAddressprovinceBC" ng-model="mailAddressBC.province" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="province" class="form-control idInputAddress" ng-blur="onBlurAddress()" required>
+                                            <input type="text" id="txtmailAddressprovinceBC" ng-model="mailAddressBC.province" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="province" class="form-control idInputAddressBC" ng-blur="onBlurAddressBC()" required>
                                             <!--<span class="error" style="color:red;" ng-show="provinces.province.$error.required">
                                                 Required.
                                             </span>-->
@@ -1570,7 +1570,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>รหัสไปรษณีย์<span style="color:red;">*</span></label>
-                                            <input type="text" id="txtmailAddresspostcodeBC" ng-model="mailAddressBC.postcode" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="postcode" maxlength="5" class="form-control telephone idInputAddress" ng-blur="onBlurAddress()" required />
+                                            <input type="text" id="txtmailAddresspostcodeBC" ng-model="mailAddressBC.postcode" ng-keyup="($event.keyCode!=13 && onInputAddressBC()); ($event.keyCode==13 && onEnterAddressBC());" ng-focus="onFocusAddressBC()" name="postcode" maxlength="5" class="form-control telephone idInputAddressBC" ng-blur="onBlurAddressBC()" required />
                                         </div>
                                     </div>
                                     <br />

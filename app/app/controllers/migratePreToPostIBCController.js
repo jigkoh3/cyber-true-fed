@@ -4441,28 +4441,28 @@ smartApp.controller('MigratePreToPostIBCController', function(
         // }
     };
     $scope.onFocusAddressBC = function() {
-        $scope.onInputAddress();
+        $scope.onInputAddressBC();
         // if ($scope.addressListBC.length > 0) {
         //     $('#ulAddressListBC').show();
         // }
     };
     $scope.onBlurAddress = function() {
         setTimeout(function() {
-            if ($('.idInputAddress').is(':focus') == true) {
+            if ($('.idInputAddress').is(':focus') == true || $('#ulAddressList:hover').length > 0) {
                 //
             } else {
                 $('#ulAddressList').hide();
             }
-        }, 500);
+        }, 100);
     };
     $scope.onBlurAddressBC = function() {
         setTimeout(function() {
-            if ($('.idInputAddress').is(':focus') == true) {
+            if ($('.idInputAddressBC').is(':focus') == true || $('#ulAddressListBC:hover').length > 0) {
                 //
             } else {
-                $('#ulAddressList').hide();
+                $('#ulAddressListBC').hide();
             }
-        }, 500);
+        }, 100);
     };
     var filterAddressList = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {
