@@ -10,6 +10,7 @@
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
+    this.limitAddressList = 20;
     localStorage.setItem('pdfShopCode', "");
     //for get by env
     this.secondAuthenURL = getSecondAuthenURL();

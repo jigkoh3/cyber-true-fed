@@ -23,6 +23,8 @@
     $scope.zipLength = 5;
     $scope.currentPage = 1;
 
+    $scope.limitAddressList = SystemService.limitAddressList;
+
     $scope.isLastestUser = true;
     $scope.isReadCardSuccess = false;
     $scope.isSecondAuhenFailed = true;
@@ -93,12 +95,7 @@
             $scope.onInputAddress();
         }
     };
-    $scope.onFocusAddress = function() {
-        if ($scope.addressList.length > 0) {
-            $('#ulAddressList').show();
-        }
-    };
-
+    
     $scope.initModalReadCard = function() {
         $scope.isCardValueData = false;
         $('#CitizenID').val("");
@@ -150,9 +147,20 @@
         }
         $scope.titleOther2 = $scope.data.customerProfileNew['title'];
     };
-
+    $scope.onFocusAddress = function() {
+        $scope.onInputAddress();
+        // if ($scope.addressList.length > 0) {
+        //     $('#ulAddressList').show();
+        // }
+    };
     $scope.onBlurAddress = function() {
-        $('#ulAddressList').hide();
+        setTimeout(function() {
+            if ($('.idInputAddress').is(':focus') == true || $('#ulAddressList:hover').length > 0) {
+                //
+            } else {
+                $('#ulAddressList').hide();
+            }
+        }, 100);
     };
     var filterAddressList = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {

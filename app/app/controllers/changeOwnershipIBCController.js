@@ -27,6 +27,7 @@ smartApp.controller('changeOwnershipIBCController', function(
     $scope.isAuthorize = false;
     $scope.isMatch = true;
     $scope.isVerify = false; //for demo ============ true
+    $scope.limitAddressList = SystemService.limitAddressList;
     $scope.isSelectedPricePlan2 = false;
 
     $scope.demo = SystemService.demo;
@@ -4163,20 +4164,34 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
     };
     $scope.onFocusAddress = function() {
-        if ($scope.addressList.length > 0) {
-            $('#ulAddressList').show();
-        }
+        $scope.onInputAddress();
+        // if ($scope.addressList.length > 0) {
+        //     $('#ulAddressList').show();
+        // }
     };
     $scope.onFocusAddressBC = function() {
-        if ($scope.addressListBC.length > 0) {
-            $('#ulAddressListBC').show();
-        }
+        $scope.onInputAddressBC();
+        // if ($scope.addressListBC.length > 0) {
+        //     $('#ulAddressListBC').show();
+        // }
     };
     $scope.onBlurAddress = function() {
-        $('#ulAddressList').hide();
+        setTimeout(function() {
+            if ($('.idInputAddress').is(':focus') == true || $('#ulAddressList:hover').length > 0) {
+                //
+            } else {
+                $('#ulAddressList').hide();
+            }
+        }, 100);
     };
     $scope.onBlurAddressBC = function() {
-        $('#ulAddressListBC').hide();
+        setTimeout(function() {
+            if ($('.idInputAddressBC').is(':focus') == true || $('#ulAddressListBC:hover').length > 0) {
+                //
+            } else {
+                $('#ulAddressListBC').hide();
+            }
+        }, 100);
     };
     var filterAddressList = function(txtSearch) {
         if (txtSearch.indexOf(' ') > 0) {

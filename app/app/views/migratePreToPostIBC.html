@@ -1435,7 +1435,7 @@
                                     <br />
                                     <ul id="ulAddressList" class="dropdown-menu dropdown-default" style="position: static;width: 100%;">
                                         <li>
-                                            <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressList | limitTo: 20" ng-click="setSearchAddress(item)">
+                                            <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressList | limitTo: limitAddressList" ng-click="setSearchAddress(item)">
                                                 <div class="row">
                                                     <div class="col-xs-3">{{item.subdistrict}}</div>
                                                     <div class="col-xs-3">{{item.district}}</div>
@@ -1576,7 +1576,7 @@
                                     <br />
                                     <ul id="ulAddressListBC" class="dropdown-menu dropdown-default" style="position:static;width:100%;">
                                         <li>
-                                            <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressListBC | limitTo: 20" ng-click="setSearchAddressBC(item)">
+                                            <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressListBC | limitTo: limitAddressList" ng-click="setSearchAddressBC(item)">
                                                 <div class="row">
                                                     <div class="col-xs-3">{{item.subdistrict}}</div>
                                                     <div class="col-xs-3">{{item.district}}</div>

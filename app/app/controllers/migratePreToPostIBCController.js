@@ -27,6 +27,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.isAuthorize = false;
     $scope.isMatch = true;
     $scope.isVerify = false; //for demo ============ true
+    $scope.limitAddressList = SystemService.limitAddressList;
     $scope.isSelectedPricePlan2 = false;
     $scope.clickButtonAddress = false;
     $scope.notLastestCus = true;

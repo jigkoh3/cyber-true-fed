@@ -371,7 +371,7 @@
                                             <!-- Case Dealer -->
                                             <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                             <!-- Case Normal -->
-                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtMaillAddressDistrict" ng-model="mailAddress.district" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="tumbols" data-toggle="dropdown" class="form-control" ng-disabled="isSecondAuhenFailed" required>
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtMaillAddressDistrict" ng-model="mailAddress.district" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="tumbols" data-toggle="dropdown" class="form-control idInputAddress" ng-blur="onBlurAddress()" ng-disabled="isSecondAuhenFailed" required>
                                             <!--<span class="error" style="color:red;" ng-show="tumbol.tumbols.$error.required">
                                                 Required.
                                             </span>-->
@@ -383,7 +383,7 @@
                                             <!-- Case Dealer -->
                                             <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                             <!-- Case Normal -->
-                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtmailAddressamphur" ng-model="mailAddress.amphur" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="aumpers" class="form-control" ng-disabled="isSecondAuhenFailed" required>
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtmailAddressamphur" ng-model="mailAddress.amphur" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="aumpers" class="form-control idInputAddress" ng-blur="onBlurAddress()" ng-disabled="isSecondAuhenFailed" required>
                                             <!--<span class="error" style="color:red;" ng-show="aumper.aumpers.$error.required">
                                                 Required.
                                             </span>-->
@@ -395,7 +395,7 @@
                                             <!-- Case Dealer -->
                                             <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                             <!-- Case Normal -->
-                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtmailAddressprovince" ng-model="mailAddress.province" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="province" class="form-control" ng-disabled="isSecondAuhenFailed" required>
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtmailAddressprovince" ng-model="mailAddress.province" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="province" class="form-control idInputAddress" ng-blur="onBlurAddress()" ng-disabled="isSecondAuhenFailed" required>
                                             <!--<span class="error" style="color:red;" ng-show="provinces.province.$error.required">
                                                 Required.
                                             </span>-->
@@ -407,13 +407,13 @@
                                             <!-- Case Dealer -->
                                             <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                             <!-- Case Normal -->
-                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtmailAddresspostcode" ng-model="mailAddress.postcode" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="postcode" maxlength="5" class="form-control telephone" ng-disabled="isSecondAuhenFailed" required />
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtmailAddresspostcode" ng-model="mailAddress.postcode" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="postcode" maxlength="5" class="form-control telephone idInputAddress" ng-blur="onBlurAddress()" ng-disabled="isSecondAuhenFailed" required />
                                         </div>
                                     </div>
                                     <br />
                                     <ul id="ulAddressList" class="dropdown-menu dropdown-default" style="position:static;width:100%;">
                                         <li>
-                                            <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressList | limitTo: 10" ng-click="setSearchAddress(item)">
+                                            <a href="javascript:retrun false" onclick="return false;" ng-repeat="item in addressList | limitTo: limitAddressList" ng-click="setSearchAddress(item)">
                                                 <div class="row">
                                                     <div class="col-xs-3">{{item.subdistrict}}</div>
                                                     <div class="col-xs-3">{{item.district}}</div>
