@@ -26,7 +26,7 @@ smartApp.controller('MigratePreToPostIBCController', function(
     $scope.isReadCardSuccess = false;
     $scope.isAuthorize = false;
     $scope.isMatch = true;
-    $scope.isVerify = false; //for demo ============ true
+    $scope.isVerify = true; //for demo ============ true
     $scope.isSelectedPricePlan2 = false;
     $scope.clickButtonAddress = false;
     $scope.notLastestCus = true;
@@ -4435,17 +4435,34 @@ smartApp.controller('MigratePreToPostIBCController', function(
         }
     };
     $scope.onFocusAddress = function() {
-        if ($scope.addressList.length > 0) {
-            $('#ulAddressList').show();
-        }
+        $scope.onInputAddress();
+        // if ($scope.addressList.length > 0) {
+        //     $('#ulAddressList').show();
+        // }
     };
     $scope.onFocusAddressBC = function() {
-        if ($scope.addressListBC.length > 0) {
-            $('#ulAddressListBC').show();
-        }
+        $scope.onInputAddress();
+        // if ($scope.addressListBC.length > 0) {
+        //     $('#ulAddressListBC').show();
+        // }
     };
     $scope.onBlurAddress = function() {
-        $('#ulAddressList').hide();
+        setTimeout(function() {
+            if ($('.idInputAddress').is(':focus') == true) {
+                //
+            } else {
+                $('#ulAddressList').hide();
+            }
+        }, 100);
+    };
+    $scope.onBlurAddressBC = function() {
+        setTimeout(function() {
+            if ($('.idInputAddress').is(':focus') == true) {
+                //
+            } else {
+                $('#ulAddressList').hide();
+            }
+        }, 100);
     };
     $scope.onBlurAddressBC = function() {
         $('#ulAddressListBC').hide();
