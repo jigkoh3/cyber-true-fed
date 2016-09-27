@@ -135,6 +135,12 @@
         if (SystemService.checkObj(selectTitleOther[0], ['attributes', 'GENDER'])) {
             $('#sex3').val(selectTitleOther[0]['attributes']['GENDER']);
             $scope.data.customerProfileNew['gender'] = selectTitleOther[0]['attributes']['GENDER'];
+            // 20160927 start check gender = ALL
+            if (selectTitleOther[0]['attributes'].GENDER == "ALL") {
+                $('#sex3').val('');
+                $scope.data.customerProfileNew['gender'] = '';
+            }
+            //end check gender = ALL
             console.log(selectTitleOther[0]['attributes']['GENDER']);
             console.log($scope.data.customerProfileNew['gender']);
         } else {
@@ -543,6 +549,31 @@
 
                 }
             });
+
+            ////str:: issue 27-09-2016 :: case other-title not found data in list array
+            var checkTOTL_value = $scope.data.customerProfile['title'];
+            var checkarr = $filter('filter')($scope.titleOtherTypeList, checkTOTL_value);
+            $scope.titleOther = checkTOTL_value;
+            if (checkarr.length > 0) {
+                // $scope.titleOther = checkTOTL_value;
+            } else {
+                var totl = {
+                    "key": checkTOTL_value,
+                    "value": checkTOTL_value,
+                    "attributes": {
+                        "GENDER": "ALL"
+                    },
+                    "description": checkTOTL_value,
+                    "en-description": checkTOTL_value,
+                    "th-description": checkTOTL_value
+                };
+                $scope.titleOtherTypeList.push(totl);
+                setTimeout(function() {
+                    $('#title5').val(checkTOTL_value);
+                }, 100);
+                $scope.onChangeTitleOther();
+            }
+            ////end:: issue 27-09-2016 :: case other-title not found data in list array
         });
     };
 
@@ -1259,9 +1290,9 @@
         };
 
         //// what $scope.selectedProPositionIn ::: Fixed to selectProPP :: 24-06-2016 :: xsam32
-        if($scope.selectedPricePlan.proposition){
-        var selectProPP = $filter('filter')($scope.proPositionList, {"proposition-code": $scope.selectedPricePlan.proposition});
-        selectProPP = selectProPP[0];
+        if ($scope.selectedPricePlan.proposition) {
+            var selectProPP = $filter('filter')($scope.proPositionList, { "proposition-code": $scope.selectedPricePlan.proposition });
+            selectProPP = selectProPP[0];
         }
         return {
             customerProfile: $scope.data.customerProfile,
@@ -1333,7 +1364,7 @@
             $scope.data.customerProfileNew['gender'] = "MALE";
             $('#sex3').val("MALE");
 
-        } else if ($scope.data.customerProfileNew['title-code'] == '' || $scope.data.customerProfileNew['title-code'] == 'T5') {
+        } else if ($scope.data.customerProfileNew['title-code'] == '' || ($scope.data.customerProfileNew['title-code'] == 'T5' && !$scope.data.customerProfileNew['title'])) {
             $scope.data.customerProfileNew['title'] = "คุณ";
             $('#title5').val('คุณ');
         } else {
