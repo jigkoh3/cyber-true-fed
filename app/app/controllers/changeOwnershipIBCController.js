@@ -4272,10 +4272,12 @@ smartApp.controller('changeOwnershipIBCController', function(
                             } else { //Edit 20160526 fix bug change address language
                                 var arr = SystemService.filterAddressList(tempAddressList, $scope.txtSearchAddress);
                                 if ($scope.addressList.length > 1 && arr.length == 0) {
-                                    $scope.isChangeLang = false;
-                                    $scope.clearAddress();
-                                    $('#ulAddressList').show();
-                                    return;
+                                    if ($scope.isChangeLang == true) {
+                                        $scope.clearAddress();
+                                        $('#ulAddressList').show();
+                                        $scope.isChangeLang = false;
+                                        return;
+                                    }
                                 }
                             }
                             // =======================================================
@@ -4326,10 +4328,12 @@ smartApp.controller('changeOwnershipIBCController', function(
                             } else { //Edit 20160526 fix bug change address language
                                 var arr = SystemService.filterAddressList(tempAddressListBC, $scope.txtSearchAddressBC);
                                 if ($scope.addressListBC.length > 1 && arr.length == 0) {
-                                    $scope.isChangeLangBC = false;
-                                    $scope.clearAddressBC();
-                                    $('#ulAddressListBC').show();
-                                    return;
+                                    if ($scope.isChangeLangBC == true) {
+                                        $scope.isChangeLangBC = false;
+                                        $scope.clearAddressBC();
+                                        $('#ulAddressListBC').show();
+                                        return;
+                                    }
                                 }
                             }
                             // =======================================================
@@ -4365,9 +4369,11 @@ smartApp.controller('changeOwnershipIBCController', function(
         }
         // ================================================
     $scope.onChangeBillPaymentAccountLang = function() {
+        $scope.isChangeLang = true; //Edit 20160526 fix bug change address language
         $scope.onInputAddress();
     };
     $scope.onChangeBillPaymentAccountLangBC = function() {
+        $scope.isChangeLangBC = true; //Edit 20160526 fix bug change address language
         $scope.onInputAddressBC();
     };
     $scope.setSearchAddress = function(address) {
