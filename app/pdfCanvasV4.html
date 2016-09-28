@@ -78,7 +78,7 @@
                 if (getParameterByName('action') == "print") {
                     printButton.click();
                 }
-            }, 1000);
+            }, 5000);
 
 
         });
@@ -92,21 +92,21 @@
         //     location = urlx;
 
         // });
-        // var dataUrl = document.getElementById('myCanvas').toDataURL(); //attempt to save base64 string to server using this var  
-        // var windowContent = '<!DOCTYPE html>';
-        // windowContent += '<html>'
-        // windowContent += '<head><title>True Store</title></head>';
-        // windowContent += '<body>'
-        // windowContent += '<img src="' + dataUrl + '">';
-        // windowContent += '</body>';
-        // windowContent += '</html>';
-        // var printWin = window.open('', '', 'width=500,height=460');
-        // printWin.document.open();
-        // printWin.document.write(windowContent);
-        // printWin.document.close();
-        // printWin.focus();
-        // printWin.print();
-        // printWin.close();
+        var dataUrl = document.getElementById('myCanvas').toDataURL(); //attempt to save base64 string to server using this var  
+        var windowContent = '<!DOCTYPE html>';
+        windowContent += '<html>';
+        windowContent += '<head><title>True Store</title></head>';
+        windowContent += '<body style="margin-top: -20px;margin-left: 0px;margin-right: 0px;">';
+        windowContent += '<img style="width: 100%; border: none;"  src="' + dataUrl + '">';
+        windowContent += '</body>';
+        windowContent += '</html>';
+        var printWin = window.open('', '', 'width=500,height=460');
+        printWin.document.open();
+        printWin.document.write(windowContent);
+        printWin.document.close();
+        printWin.focus();
+        printWin.print();
+        printWin.close();
     }
     // myCanvas.addEventListener("click", function() {
     //     printCanvas();

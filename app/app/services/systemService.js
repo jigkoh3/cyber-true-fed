@@ -6,7 +6,7 @@
     var _WEB_METHOD_CHANNEL = "AFTERSALE_SMARTUI_WEB";
     var _REF_WEB_CHANNEL = $routeParams.channel ? $routeParams.channel : '';
 
-    this.demo = false;
+    this.demo = true;
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
@@ -61,9 +61,9 @@
     };
     this.checkPDFAndroid_printNoneShop = function(url) {
         if (isAndroid) {
-            // document.getElementById('iframePDF').src = "javascript:printCanvas();";
+            document.getElementById('iframePDF').src = "javascript:printCanvas();";
             /// for UMS
-            print_androidUMS(url);
+            // print_androidUMS(url);
         } else {
             printObjectPdf();
         }
@@ -86,23 +86,23 @@
 
 
             //// popup chrome printer
-            // (function a(x) {
-            //     $('#loadingPrint').show();
-            //     setTimeout(function() {
-            //         $('#loadingPrint').hide();
-            //         document.getElementById('iframePDF').src = "javascript:printCanvas();";
-            //     }, 5100);
-            //     setTimeout(function() {
-            //         that.showPDFAndroid(url, 'none');
-            //     }, 6000);
-            //     if (!x) {
-            //         return;
-            //     }
-            //     a(--x);
-            // })(1);
+            (function a(x) {
+                $('#loadingPrint').show();
+                setTimeout(function() {
+                    $('#loadingPrint').hide();
+                    document.getElementById('iframePDF').src = "javascript:printCanvas();";
+                }, 5100);
+                setTimeout(function() {
+                    that.showPDFAndroid(url, 'none');
+                }, 6000);
+                if (!x) {
+                    return;
+                }
+                a(--x);
+            })(1);
 
             //// send to UMS printer
-            print_androidUMS(url);
+            // print_androidUMS(url);
         } else {
             $(function() {
                 document.getElementById('iframePDF').src = 'pdfCanvasV4.html?action=' + action + '&url=' + url + '?clearData=N'; //never mind "webui1" 
