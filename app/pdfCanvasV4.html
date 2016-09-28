@@ -96,8 +96,10 @@
         var windowContent = '<!DOCTYPE html>';
         windowContent += '<html>';
         windowContent += '<head><title>True Store</title></head>';
-        windowContent += '<body style="margin-top: -20px;margin-left: 0px;margin-right: 0px;">';
-        windowContent += '<img style="width: 100%; border: none;"  src="' + dataUrl + '">';
+        windowContent += '<body style="margin-top: -20px;">';
+        windowContent += '<div style="height: 980px; text-align: center; vertical-align: bottom; overflow: scroll;">';
+        windowContent += '<img style="height: 1045px;    margin-top: 0px; border: none;"  src="' + dataUrl + '">';
+        windowContent += '</div>';
         windowContent += '</body>';
         windowContent += '</html>';
         var printWin = window.open('', '', 'width=500,height=460');
