@@ -76,7 +76,7 @@
             setTimeout(function() {
                 document.getElementById('loaded').style = 'display:none';
                 if (getParameterByName('action') == "print") {
-                    // printButton.click();
+                    printButton.click();
                 }
             }, 5000);
 
@@ -96,13 +96,13 @@
         var windowContent = '<!DOCTYPE html>';
         windowContent += '<html>';
         windowContent += '<head><title>True Store</title></head>';
-        windowContent += '<body style="">';
+        windowContent += '<body style="margin-top: -20px;">';
         windowContent += '<div style="height: 980px; text-align: center; vertical-align: bottom; overflow: hidden;">';
-        windowContent += '<img style="height: 100%;    margin-top: 0px; border: none;"  src="' + dataUrl + '">';
+        windowContent += '<img style="height: 1030px;    margin-top: 0px; border: none;"  src="' + dataUrl + '">';
         windowContent += '</div>';
         windowContent += '</body>';
         windowContent += '</html>';
-        var printWin = window.open('', '_tab', 'width=1200,height=680');
+        var printWin = window.open('', '', 'width=500,height=460');
         printWin.document.open();
         printWin.document.write(windowContent);
         printWin.document.close();
