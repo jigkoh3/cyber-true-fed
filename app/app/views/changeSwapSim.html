@@ -108,7 +108,7 @@
                                                        ng-show="
                                                        (SubNo=='null' && isCustomerProfile==false && productCodes) || 
                                                        (SubNo=='null' && !shopType) || 
-                                                       (shopType=='0') || 
+                                                       (shopType=='0' && dealerCodeList.length <= 1) || 
                                                        (shopType=='1' && getAuthen['isSecondAuthen'] == false && dealerCodeList.length == 1)" 
                                                        ng-numeric-input type="text" 
                                                        class="form-control" 

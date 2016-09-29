@@ -836,7 +836,7 @@
                 fnCallback(url);
             });
         } else {
-            url = 'PDFs/AfterSaleReport.pdf';
+            url = 'PDFs/issueIDCard.pdf';
             localStorage.setItem('urlx', url);
             fnCallback(url);
         }
