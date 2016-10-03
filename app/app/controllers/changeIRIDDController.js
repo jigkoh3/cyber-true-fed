@@ -775,6 +775,9 @@ smartApp.controller('ChangeIRIDDController', function($scope,
                                 "th-message": resultData.data["display-messages"][0]["th-message"],
                                 "technical-message": resultData.data["display-messages"][0]["technical-message"]
                             });
+
+                            /// issue on blur :: 3-10-2016 :: clear data :: xsam32
+                            $scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'] = "";
                         }
                         $scope.allValidateSave();
                     });
