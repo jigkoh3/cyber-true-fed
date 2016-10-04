@@ -233,7 +233,7 @@
                         bbArr = a.concat(b).concat(c);
                     } else {
                         var a = $filter('filter')(bbArr, { "name": txtList[i] });
-                        var b = $filter('filter')(arrList, { "description": txtList[i] });
+                        var b = $filter('filter')(bbArr, { "description": txtList[i] });
                         var c = $filter('filter')(bbArr, { "rc": txtList[i] });
                         bbArr = a.concat(b).concat(c);
                     }
