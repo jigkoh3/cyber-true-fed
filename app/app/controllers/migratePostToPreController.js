@@ -579,7 +579,9 @@
                 setTimeout(function() {
                     $('#title5').val(checkTOTL_value);
                 }, 100);
-                $scope.onChangeTitleOther();
+                if($scope.data.customerProfileNew['title-code'] == "T5"){
+                    $scope.onChangeTitleOther();    
+                };
             }
             ////end:: issue 27-09-2016 :: case other-title not found data in list array
         });
