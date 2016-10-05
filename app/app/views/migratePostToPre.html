@@ -371,7 +371,7 @@
                                             <!-- Case Dealer -->
                                             <input type="text" ng-disabled="true" class="form-control" required ng-show="(userDealer && !isCustomerProfile) || SubNo == 'null'">
                                             <!-- Case Normal -->
-                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtMaillAddressDistrict" ng-model="mailAddress.district" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="tumbols" data-toggle="dropdown" class="form-control idInputAddress" ng-blur="onBlurAddress()" ng-disabled="isSecondAuhenFailed" required>
+                                            <input type="text" ng-hide="(userDealer && !isCustomerProfile) || SubNo == 'null'" id="txtMaillAddressDistrict" ng-model="mailAddress.district" ng-keyup="($event.keyCode!=13 && onInputAddress()); ($event.keyCode==13 && onEnterAddress());" ng-focus="onFocusAddress()" name="tumbols" class="form-control idInputAddress" ng-blur="onBlurAddress()" ng-disabled="isSecondAuhenFailed" required>
                                             <!--<span class="error" style="color:red;" ng-show="tumbol.tumbols.$error.required">
                                                 Required.
                                             </span>-->
