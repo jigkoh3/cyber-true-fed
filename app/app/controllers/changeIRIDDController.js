@@ -127,7 +127,7 @@ smartApp.controller('ChangeIRIDDController', function($scope,
         } else {
             delete $scope.data.orderRequest['order']['order-items'][0]['order-data']['PARENT-OUID'];
         }
-        //console.log(headers);
+        console.log(JSON.stringify($scope.data.orderRequest));
         if (SystemService.demo) {
             SystemService.showBeforeClose({
                 "message": "รายการคำขอเลขที่ " + $scope.orderId,
@@ -499,6 +499,15 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             $scope.setDefualtReason($scope.reasons, "C16");
         } else {
             $scope.setDefualtReason($scope.reasons, "DDSC");
+            if ($scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE']) {
+                delete $scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'];
+                $scope.data.orderRequest['order']['order-items'][0]['order-data']['AUTO-APPROVE-CODE'] = "N";
+                if ($scope.dataAutoApprove["auto-approve-reason"]) {
+                    delete $scope.data.orderRequest['order']['order-items'][0]['order-data']['AUTO-APPROVE-REASON'];
+                }
+                $scope.isValidateSave = false;
+                $scope.dataAutoApprove["approve-code"] = "";
+            }
         }
         setTimeout(function() {
             $('#btnValidatePrint').prop('disabled', true);
@@ -717,6 +726,15 @@ smartApp.controller('ChangeIRIDDController', function($scope,
 
             }
         } else {
+            if ($scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE']) {
+                delete $scope.data.orderRequest['order']['order-items'][0]['order-data']['IR-APPROVE-CODE'];
+                $scope.data.orderRequest['order']['order-items'][0]['order-data']['AUTO-APPROVE-CODE'] = "N";
+                if ($scope.dataAutoApprove["auto-approve-reason"]) {
+                    delete $scope.data.orderRequest['order']['order-items'][0]['order-data']['AUTO-APPROVE-REASON'];
+                }
+                $scope.isValidateSave = false;
+                $scope.dataAutoApprove["approve-code"] = "";
+            }
             $scope.isShowApproveRal = false;
             if ($scope.changIDD == true) {
                 if ($scope.requestTypeDB == 'IDD' && $scope.requestType == 'REMOVE_IRIDD') {
@@ -729,6 +747,8 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             } else {
                 $scope.isValidateSave = false;
             }
+
+
         }
         $scope.allValidateSave();
 
