@@ -453,7 +453,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.viewOfferDetail = function(item) {
         var parameter = [];
         console.log(item);
-        $scope.offerParam = $filter('filter')($scope.existingParameter, { 'product-name': item['product-name'] });
+        $scope.offerParam = $filter('filter')($scope.existingParameter, item["product-properties"]["OFFER-INSTANCE-ID"]);
         console.log($scope.offerParam)
         if ($scope.offerParam.length != 0) {
             for (var i = 0; i < $scope.offerParam[0]["product-properties"]["PARAM-SIZE"]; i++) {
