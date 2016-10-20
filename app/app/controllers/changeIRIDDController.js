@@ -673,6 +673,22 @@ smartApp.controller('ChangeIRIDDController', function($scope,
             var msg = utils.getObject(result.data, 'display-messages');
             var autoApproveCode = utils.getObject(result.data, 'response-data');
             var auto_approve_code = autoApproveCode ? autoApproveCode["auto-approve-code"] : 'N';
+            // msg.unshift({
+            //         "message": "-",
+            //         "message-code": "VCVAPA2010004",
+            //         "message-type": "WARNING",
+            //         "en-message": "&nbsp;",
+            //         "th-message": "&nbsp;",
+            //         "technical-message": ""
+            //     });
+            // msg.unshift({
+            //         "message": "-",
+            //         "message-code": "VCVAPA2010004",
+            //         "message-type": "WARNING",
+            //         "en-message": "<b>ไม่สามารถทำการขอ Auto Approve code ได้ กรุณาติดต่อ Referral Team เพื่อขอ Approve Code Manual</b>",
+            //         "th-message": "<b>ไม่สามารถทำการขอ Auto Approve code ได้ กรุณาติดต่อ Referral Team เพื่อขอ Approve Code Manual</b>",
+            //         "technical-message": ""
+            //     });
             if (msg && msg.length > 0 && auto_approve_code != "Y") {
                 SystemService.showAlertMulti(msg, "WARNING"); //show mulit msg
                 //msg[0]['message-type'] = "WARNING"; //show single msg
