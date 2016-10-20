@@ -448,8 +448,30 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $('.hModal').height(($(window).height()) - 235);
         //$('.modal-backdrop').css('height', '200%');
     };
-    $scope.showDetail = function(item) {
+    $scope.offerParam = [];
+    $scope.paramDetail = [];
+    $scope.viewOfferDetail = function(item) {
+        var parameter = [];
         console.log(item);
+        $scope.offerParam = $filter('filter')($scope.existingParameter, { 'product-name': item['product-name'] });
+        console.log($scope.offerParam)
+        if ($scope.offerParam.length != 0) {
+            for (var i = 0; i < $scope.offerParam[0]["product-properties"]["PARAM-SIZE"]; i++) {
+                parameter.push($scope.offerParam[0]["product-properties"]["PARAM-" + i]);
+            }
+            for (var i = 0; i < parameter.length; i++) {
+                var arrParam = parameter[i].split("|");
+                if (arrParam[1] == "TR_ACTUAL_CONTRACT_START_DATE" || arrParam[1] == "TR_ORIG_CONTRACT_EXPIRE_DATE") {
+                    arrParam[2] = SystemService.convertDateToTH(arrParam[2].replace(" 00:00:00", ""), "TH")
+                }
+                $scope.paramDetail.push({
+                    "name": arrParam[1],
+                    "value": arrParam[2]
+                });
+            }
+            console.log($scope.paramDetail);
+        }
+
         $scope.editOfferCode = item['product-name'];
         $scope.editOfferDesc = item['product-description'];
 
@@ -467,6 +489,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "effective-date": item['effective-date'],
             "expiration-date": item['expiration-date']
         }
+    };
+
+    $scope.onCancelViewOffer = function() {
+        $scope.offerParam = [];
+        $scope.paramDetail = [];
     };
 
     // Submit form
@@ -585,7 +612,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.orderId = order.orderId;
                 localStorage.setItem('orderId', order.orderId);
                 $scope.getExistingOffer();
-
                 $scope.initModalReadCard();
             });
         });
@@ -1211,6 +1237,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                 }
                 console.log($scope.pooledOffer);
+                $scope.getExistingOfferParam();
             } else {
                 $scope.existingOffer = [];
                 $scope.builtInOffer = [];
@@ -1929,4 +1956,20 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         //     }
         // }
     }
+
+    $scope.existingParameter = [];
+    $scope.getExistingOfferParam = function() {
+        SystemService.showLoading();
+        var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"] + "&account-id=" + $scope.data.simData.ban;
+        console.log(param);
+        AddDeleteEditOfferNewService.getExistingParameter(param, function(result) {
+            if (result) {
+                SystemService.hideLoading();
+                console.log(result);
+                $scope.existingParameter = angular.copy(result.data["response-data"]["customer"]["installed-products"]);
+            } else {
+                $scope.existingParameter = [];
+            }
+        });
+    };
 });

@@ -1,0 +1,63 @@
+{
+  "status": "SUCCESSFUL",
+  "display-messages": [],
+  "trx-id": "4R8RB2RE37A6Q",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "response-data": {
+    "customer": {
+      "installed-products": [
+        {
+          "product-category": "TMV",
+          "product-type": "ADDITIONAL-OFFER",
+          "product-name": "RMGPSS62",
+          "product-description": "MG_4G Device Upgrade for non shop",
+          "service-level": "C",
+          "product-soc-code": "12502916",
+          "product-properties": {
+            "PARAM-SIZE": "7",
+            "AGREEMENT-ID": "110596",
+            "PARAM-0": "200930317|TR_ACTUAL_CONTRACT_START_DATE|27/07/2016 00:00:00",
+            "PARAM-1": "200930311|TR_CONTRACT_FEE|0",
+            "PARAM-2": "200930312|TR_CONTRACT_NUMBER|-",
+            "PARAM-3": "200930314|TR_CONTRACT_REMARK|-",
+            "PARAM-4": "200930316|TR_CONTRACT_TERM|0",
+            "OFFER-INSTANCE-ID": "619111",
+            "PARAM-5": "200930315|TR_GENERATE_CHARGE_YES_NO|N",
+            "PARAM-6": "200930313|TR_ORIG_CONTRACT_EXPIRE_DATE|27/07/2016 00:00:00"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "",
+          "effective-date": "26/07/2016",
+          "expire-date": "",
+          "soc-type": "U"
+        },
+        {
+          "product-category": "TMV",
+          "product-type": "PRICEPLAN",
+          "product-name": "",
+          "product-description": "True Smart Choice 300Mins Unlimited data(2GB)&WiFi",
+          "service-level": "C",
+          "product-soc-code": "1081059",
+          "product-properties": {
+            "PARAM-SIZE": "2",
+            "AGREEMENT-ID": "110596",
+            "PARAM-0": "200927501|Migration ind|N",
+            "PARAM-1": "200927499|Rolled duration quota from ensemble|0",
+            "OFFER-INSTANCE-ID": "617160"
+          },
+          "product-id-name": "MSISDN",
+          "has-splitcharge": false,
+          "is-childsim": false,
+          "is-softsuspend": false,
+          "offer-group": "",
+          "effective-date": "26/07/2016",
+          "expire-date": "",
+          "soc-type": "P"
+        }
+      ]
+    }
+  }
+}

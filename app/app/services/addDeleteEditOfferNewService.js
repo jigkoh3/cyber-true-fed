@@ -99,7 +99,7 @@
             var url = "/app/jsonFiles/offer/validate-change-offer.json";
             SystemService.getFileJson(url, function(response) {
                 // console.log(response);
-               
+
                 $timeout(function() {
                     cb({
                         status: true,
@@ -138,18 +138,18 @@
 
     };
 
-    this.validateOffer = function(name, currentOffer, fnCallback){
-        if(!demo){
+    this.validateOffer = function(name, currentOffer, fnCallback) {
+        if (!demo) {
             var target = "/sales/catalog/product/tmv/offer/validate?" + "new-offer=" + name + "&current-offers=" + currentOffer;
             var request = {
                 "target": target
             };
-            SystemService.callServicePost(request, null, function(result){
+            SystemService.callServicePost(request, null, function(result) {
                 fnCallback(result);
             });
         } else {
             var url = "/app/jsonFiles/Offer/validate-offer-success.json";
-            SystemService.getFileJson(url, function(response){
+            SystemService.getFileJson(url, function(response) {
                 fnCallback({
                     status: true,
                     data: response,
@@ -160,44 +160,44 @@
         }
     };
 
-    this.searchOffer = function(param, type, fnCallback){
-        if(!demo){
-            if(type == "RELATED"){
+    this.searchOffer = function(param, type, fnCallback) {
+        if (!demo) {
+            if (type == "RELATED") {
                 var target = '/sales/catalog/product/tmv/offer/related/search?' + param;
             } else {
-                var target = '/sales/catalog/product/tmv/offer/search?' + param;    
+                var target = '/sales/catalog/product/tmv/offer/search?' + param;
             }
-            
-            SystemService.callServiceGet(target, null, function(result){
+
+            SystemService.callServiceGet(target, null, function(result) {
                 fnCallback(result);
             });
         } else {
-            if(type == 'ALL'){
-                var url = "/app/jsonFiles/Offer/search-offer-additional.json"    
-            } else if(type == 'CUG'){
-                var url = "/app/jsonFiles/Offer/search-offer-cug.json"    
-            } else if(type == 'CONTRACT_PROPO'){
-                var url = "/app/jsonFiles/Offer/search-offer-contract_propo.json"    
-            } else if(type == 'SHARE_ALLOWANCE'){
-                var url = "/app/jsonFiles/Offer/search-offer-share_allowance.json"    
-            } else if(type == 'FF'){
-                var url = "/app/jsonFiles/Offer/search-offer-ff.json"    
-            } else if(type == 'DISCOUNT'){
-                var url = "/app/jsonFiles/Offer/search-offer-discount.json"    
-            } else if(type == 'IR'){
-                var url = "/app/jsonFiles/Offer/search-offer-ir.json"    
-            } else if(type == 'IDD'){
-                var url = "/app/jsonFiles/Offer/search-offer-idd.json"    
-            } else if(type == 'ADDITIONAL'){
-                var url = "/app/jsonFiles/Offer/search-offer-additional.json"    
-            } else if(type == 'RELATED'){
-                var url = "/app/jsonFiles/Offer/search-related-offer-priceplan2.json" 
+            if (type == 'ALL') {
+                var url = "/app/jsonFiles/Offer/search-offer-additional.json"
+            } else if (type == 'CUG') {
+                var url = "/app/jsonFiles/Offer/search-offer-cug.json"
+            } else if (type == 'CONTRACT_PROPO') {
+                var url = "/app/jsonFiles/Offer/search-offer-contract_propo.json"
+            } else if (type == 'SHARE_ALLOWANCE') {
+                var url = "/app/jsonFiles/Offer/search-offer-share_allowance.json"
+            } else if (type == 'FF') {
+                var url = "/app/jsonFiles/Offer/search-offer-ff.json"
+            } else if (type == 'DISCOUNT') {
+                var url = "/app/jsonFiles/Offer/search-offer-discount.json"
+            } else if (type == 'IR') {
+                var url = "/app/jsonFiles/Offer/search-offer-ir.json"
+            } else if (type == 'IDD') {
+                var url = "/app/jsonFiles/Offer/search-offer-idd.json"
+            } else if (type == 'ADDITIONAL') {
+                var url = "/app/jsonFiles/Offer/search-offer-additional.json"
+            } else if (type == 'RELATED') {
+                var url = "/app/jsonFiles/Offer/search-related-offer-priceplan2.json"
                     // var url = "/app/jsonFiles/Offer/search-offer-notfound.json"
-            } else{
-                var url = "/app/jsonFiles/Offer/search-offer-notfound.json"    
+            } else {
+                var url = "/app/jsonFiles/Offer/search-offer-notfound.json"
             }
-            
-            SystemService.getFileJson(url, function(response){
+
+            SystemService.getFileJson(url, function(response) {
                 // console.log(response);
                 fnCallback({
                     status: true,
@@ -375,5 +375,27 @@
             });
         }
     };
+
+    this.getExistingParameter = function(param, fnCallback) {
+        var data = {};
+        if (demo) {
+            var url = "/app/jsonFiles/Offer/get-existing-parameter.json";
+            SystemService.getFileJson(url, function(result) {
+                // console.log(response);
+
+                fnCallback({
+                    status: true,
+                    data: result,
+                    error: "",
+                    msgErr: ""
+                });
+            });
+        } else {
+            var target = 'aftersales/tmv/offer/get-existing-parameter?' + param;
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
+            });
+        }
+    }
 
 });
