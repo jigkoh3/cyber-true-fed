@@ -249,14 +249,14 @@
                     </table>
                 </div>
                 <br>
-                <div ng-hide="offerType=='U'">
+                <div ng-hide="false">
                     <h4>Future Order</h4>
                     <!-- Future Order Table -->
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <thead>
                                 <tr class="well">
-                                    <th class="contentTbHeader" ng-show="offerType=='D'">
+                                    <th class="contentTbHeader" ng-hide="offerType=='C'">
                                     
                                     </th>
                                     <th class="contentTbHeader">
@@ -278,9 +278,12 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in futureOfferList">
-                                    <td class="contentTb" ng-show="offerType=='D'">
-                                        <div align="center" class="">
+                                    <td class="contentTb" ng-hide="offerType=='C'">
+                                        <div align="center" ng-show="offerType=='D'">
                                             <input type="checkbox" ng-model="deleteFutureOffer" style="cursor:pointer;">
+                                        </div>
+                                        <div align="center" class="" ng-show="offerType=='U'">
+                                            <button ng-disabled="!isCustomerProfile" href="#modal-edit-future-offer" data-toggle="modal" onclick="return false;" ng-click="editFutureOffer(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                         </div>
                                     </td>
                                     <td class="contentTb">
@@ -1048,10 +1051,6 @@
                             </td>
                     </div>
                     <div ng-show="selectedOffer.group=='CONTRACT_PROPO' && radioOffer" style="padding: 20px;">
-                            <div class="form-group">
-                                <div style="font-size: 1.23em; font-weight: bold; padding-left: 100px;">Offer Parameter</div>
-                            </div>
-                            &nbsp;
                             <div class="form-group row">
                                 <div class="col-xs-1">
                                 </div>
@@ -1168,7 +1167,7 @@
                     </div> -->
                     <!-- offer effective & expiration date -->
                     <br>
-                    <div ng-show="radioOffer"  style="border-top: 1px solid #e5e5e5;"">
+                    <div ng-show="radioOffer && selectedOffer.group!='CONTRACT_PROPO'" style="border-top: 1px solid #e5e5e5;"">
                         <br>
                         <div class="form-group">
                             <div class="row">
@@ -1824,78 +1823,75 @@
         </div>
     </div>
 </div>
+<!-- End modal-edit-offerDetail -->
 
-<div id="modal-edit-expDate-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-lg">
+<!-- Start modal-edit-future-offer -->
+<div id="modal-edit-future-offer" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal_pdf_width modal-lg">
         <div class="modal-content">
-            <div class="modalOffer-header" style="background: #c72230">
-                <div style="font-size: 1.5em; color:white">รายละเอียด Parameter</div>
+            &nbsp;&nbsp;
+            <div class="modalOffer-header">
+                <span class="fa fa-info-circle pull-left fa-lg-plus" style="color: #00a651;"></span>
+                <div style="font-size: 1.5em;">รายละเอียด Parameter</div>
             </div>
             <div class="modal-body">
-                <div class="table-responsive hModal" style="overflow-x:hidden;">
-                    <div>
-                        <div calss="form-group">
-                            <label style="cursor: pointer;">
-                                <span style="font-weight: bold; font-size:16px;"> Expiration Date</span>
-                            </label>
+                <div class="hModal" style="overflow-x:hidden;">
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
+                                <label>Offer Code</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="viewOfferCode" ng-model="futureOfferDetail['product-name']" class="form-control" style="border-style: none; background: none;" disabled>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
+                                <label>Offer Description</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" id="viewOfferDesc" ng-model="futureOfferDetail['product-description']" class="form-control" style="border-style: none; background: none;" disabled>
+                            </div>
                         </div>
-                        <div calss="form-group">
-                            <div class="row">
-                                <div class="col-md-3">
-                                </div>
-                                <div class="col-md-2" style="text-align:left;top: 5px;">
-                                    <label style="cursor: pointer;" ng-click="chkExpDate()">
-                                        <input type="radio" name="radioExpDate" ng-model="radioExpDate" id="radioExpDate" value="noExpDate"> ไม่มีกำหนด
-                                    </label>
-                                </div>
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-3">
-                                </div>
-                            </div> &nbsp;
-                        </div>
-                        <div calss="form-group">
-                            <div class="row">
-                                <div class="col-md-3">
-                                </div>
-                                <div class="col-md-2" style="text-align:left;top: 5px;">
-                                    <label style="cursor: pointer;" ng-click="chkExpDate()">
-                                        <input type="radio" name="radioExpDate" ng-model="radioExpDate" id="radioExpDate" value="expDate"> ระบุวันที่
-                                    </label>
-                                </div>
-                                <div class="col-md-3" style="margin-top:-5px; margin-bottom:-5px;">
-                                    <div class="form-group has-feedback imp">
-                                        <input ng-disabled="manualExpDate" type="text" ng-model="editADEffectiveOffer" id="editADEffectiveOffer" class="form-control dateManual date-picker-start dateFormat" style="width:130%;" maxlength="10">
-                                        <span class="form-control-feedback is-bound" style="right: -30%;"><i class="fa fa-calendar"></i></span>
-                                    </div>
+                    </div> &nbsp;
+                    <br>
+                    <br>
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2 text-right" style="top: 5px;">
+                                <label>Effective Date</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group has-feedback imp" style="top:5px;">
+                                    <input type="text" ng-model="futureOfferDetail['effective-date']" id="editFutureOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-3">
                             </div>
-                        </div>
-                        &nbsp;
-                        <p></p>
+                        </div> &nbsp;
                     </div>
                 </div>
             </div>
-            <div class="modalOffer-footer" style="">
-                <!-- <div class="row" style="width: 99%;"> -->
-                <!-- 20160810 Disable ยกเลิกการแก้ไข Offer Button from SRS -->
-                <!-- <div class="col-xs-6" style="text-align: left; padding-left: 60px;"> -->
-                <!-- <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="" style="margin-top: -0px;"><span><i class="fa fa-trash-o fa-lg"></i></span> ยกเลิกการแก้ไข Offer</button> -->
-                <!-- </div> -->
-                <div class="col-xs-12">
-                    <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button>
-                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ปิด</button>
-                </div>
+            <div class="modalOffer-footer" style=" padding-top: 0;">
                 <br>
-                <br>
-                <!-- </div> -->
+                <button class="btn btn-success" data-dismiss="modal" ng-click="confirmEditFutureOffer();" style="margin-top: -0px;" ng-disabled="disableSubmitEditFutureOffer">ตกลง</button>
+                <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelEditFutureOffer();" style="margin-top: -0px;">ปิด</button>
             </div>
         </div>
     </div>
 </div>
-<!-- End modal-edit-offerDetail -->
+<!-- End modal-edit-future-offer -->
 
 <!-- Start modal view offer  -->
 <div id="modal-view-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false" style="overflow-y: hidden;">
@@ -1952,7 +1948,7 @@
                             </div> &nbsp;
                         </div>
                     </div>
-                    <div calss="form-group">
+                    <div calss="form-group" ng-hide="viewOffer['offer-group']=='PROPOSITION'">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
@@ -1966,7 +1962,7 @@
                             </div>
                         </div> &nbsp;
                     </div>
-                    <div calss="form-group">
+                    <div calss="form-group" ng-hide="viewOffer['offer-group']=='PROPOSITION'">
                         <div class="row">
                             <div class="col-md-3">
                             </div>

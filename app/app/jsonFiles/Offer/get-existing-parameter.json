@@ -16,7 +16,7 @@
           "product-properties": {
             "PARAM-SIZE": "7",
             "AGREEMENT-ID": "110596",
-            "PARAM-0": "200930317|TR_ACTUAL_CONTRACT_START_DATE|27/07/2016 00:00:00",
+            "PARAM-0": "200930317|TR_ACTUAL_CONTRACT_START_DATE|27/07/2016 55:55:55",
             "PARAM-1": "200930311|TR_CONTRACT_FEE|0",
             "PARAM-2": "200930312|TR_CONTRACT_NUMBER|-",
             "PARAM-3": "200930314|TR_CONTRACT_REMARK|-",

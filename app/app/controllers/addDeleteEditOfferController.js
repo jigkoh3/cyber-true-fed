@@ -110,6 +110,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.showDetail = {};
     $scope.futureOfferList = [];
+    $scope.tempFutureOfferList = [];
     $scope.dateNow = $filter('date')(new Date(), 'dd/MM/yyyy');
     var dateNow = new Date();
     $scope.setDateNow = ("0" + dateNow.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/" + Number(dateNow.getFullYear() + 543);
@@ -424,7 +425,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $('.hModal').height(($(window).height()) - 235);
         var parameter = [];
         console.log(item);
-        $scope.offerParam = $filter('filter')($scope.existingParameter, item["product-properties"]["OFFER-INSTANCE-ID"]);
+        if (item["product-properties"]["OFFER-INSTANCE-ID"]) {
+            $scope.offerParam = $filter('filter')($scope.existingParameter, item["product-properties"]["OFFER-INSTANCE-ID"]);
+        } else {
+            $scope.offerParam = [];
+        }
         console.log($scope.offerParam)
         if ($scope.offerParam.length != 0) {
             for (var i = 0; i < $scope.offerParam[0]["product-properties"]["PARAM-SIZE"]; i++) {
@@ -433,12 +438,18 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             for (var i = 0; i < parameter.length; i++) {
                 var arrParam = parameter[i].split("|");
                 if (arrParam[1] == "TR_ACTUAL_CONTRACT_START_DATE" || arrParam[1] == "TR_ORIG_CONTRACT_EXPIRE_DATE") {
-                    arrParam[2] = SystemService.convertDateToTH(arrParam[2].replace(" 00:00:00", ""), "TH")
+                    var dateParam = arrParam[2].split(" ");
+                    dateParam[0] = SystemService.convertDateToTH(dateParam[0], "TH")
+                    $scope.paramDetail.push({
+                        "name": arrParam[1],
+                        "value": dateParam[0]
+                    });
+                } else {
+                    $scope.paramDetail.push({
+                        "name": arrParam[1],
+                        "value": arrParam[2]
+                    });
                 }
-                $scope.paramDetail.push({
-                    "name": arrParam[1],
-                    "value": arrParam[2]
-                });
             }
             console.log($scope.paramDetail);
         }
@@ -458,7 +469,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "product-name": item['product-name'],
             "product-description": item['product-description'],
             "effective-date": item['effective-date'],
-            "expiration-date": item['expiration-date']
+            "expiration-date": item['expiration-date'],
+            "offer-group": item['offer-group']
         }
     };
 
@@ -1036,6 +1048,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.enableAddOffer = false;
         $scope.disableAddBtn = false;
         $scope.chkEdit = false
+        $scope.futureOfferList = angular.copy($scope.tempFutureOfferList);
     }
     $scope.addOffer = function() {
         $scope.enableAddOffer = true;
@@ -1957,9 +1970,62 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     $scope.futureOfferList[i]["effective-date"] = SystemService.convertDateToTH($scope.futureOfferList[i]["effective-date"], "TH")
                     $scope.futureOfferList[i]["product-properties"]["CREATE-DATE"] = SystemService.convertDateToTH($scope.futureOfferList[i]["product-properties"]["CREATE-DATE"], "TH")
                 }
+                $scope.tempFutureOfferList = angular.copy($scope.futureOfferList); 
             } else {
                 $scope.futureOfferList = [];
+                $scope.tempFutureOfferList = [];
             }
         });
     };
+
+    $scope.disableSubmitEditFutureOffer = true;
+    $scope.futureOfferDetail = [];
+    $scope.editFutureOffer = function(item) {
+        $scope.futureOfferDetail = angular.copy(item);
+        setTimeout(function() {
+            $('#editFutureOfferEffectiveDate').val($scope.futureOfferDetail['effective-date']);
+            $('#editFutureOfferEffectiveDate').datepicker("setDate", $scope.futureOfferDetail['effective-date']);
+        }, 100);
+
+        console.log($scope.futureOfferDetail);
+    };
+
+    $scope.onCancelEditFutureOffer = function() {
+        $scope.futureOfferDetail = [];
+        setTimeout(function() {
+            $('#editFutureOfferEffectiveDate').val("");
+            $('#editFutureOfferEffectiveDate').datepicker("setDate", "");
+        }, 100);
+    };
+
+    $scope.confirmEditFutureOffer = function() {
+        for (var i = 0; i < $scope.futureOfferList.length; i++) {
+            if ($scope.futureOfferList[i]["product-name"] === $scope.futureOfferDetail["product-name"]) {
+                $scope.futureOfferList[i]["effective-date"] = $scope.futureOfferDetail["effective-date"];
+            }
+        }
+        $scope.onCancelEditFutureOffer();
+    };
+
+    $scope.chkFutureOfferEffDate = function(){
+        if ($scope.futureOfferDetail['effective-date'] == "" || $("#editFutureOfferEffectiveDate").val() == "") {
+            $scope.disableSubmitEditFutureOffer = true;
+        } else {
+            $scope.disableSubmitEditFutureOffer = false;
+        }
+        $('#idBindDataAgain').click();
+    };
+
+    $(document).ready(function() {
+        $("#editFutureOfferEffectiveDate").change(function() {
+            $scope.futureOfferDetail['effective-date'] = $('#editFutureOfferEffectiveDate').val();
+            $('#idBindDataAgain').click();
+            $scope.chkFutureOfferEffDate();
+        });
+        $("#editFutureOfferEffectiveDate").blur(function() {
+            $scope.futureOfferDetail['effective-date'] = $('#editFutureOfferEffectiveDate').val();
+            $('#idBindDataAgain').click();
+            $scope.chkFutureOfferEffDate();
+        });
+    });
 });
