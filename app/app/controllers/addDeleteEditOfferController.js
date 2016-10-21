@@ -201,7 +201,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             //call validate-change-offer
             if ($scope.SubNo !== 'null') {
                 SystemService.showLoading();
-                AddDeleteEditOfferNewService.getSIMData($scope.subNoInput, $scope.level, onGetSIMData);
+                AddDeleteEditOfferNewService.getSIMData($scope.SubNo, $scope.level, onGetSIMData);
                 // $scope.getOfferList();
                 // $scope.getReleteOfferList();
                 // $scope.getRegulaOfferList();
