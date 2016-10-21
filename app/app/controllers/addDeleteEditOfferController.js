@@ -110,7 +110,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.showDetail = {};
     $scope.futureOfferList = [];
-    var futureOfferList = [];
     $scope.dateNow = $filter('date')(new Date(), 'dd/MM/yyyy');
     var dateNow = new Date();
     $scope.setDateNow = ("0" + dateNow.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/" + Number(dateNow.getFullYear() + 543);
@@ -207,7 +206,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 // $scope.getReleteOfferList();
                 // $scope.getRegulaOfferList();
                 // $scope.getPopUpOfferList();
-                $scope.getFutureOfferList();
+                // $scope.getFutureOfferList();
                 if (onGetSIMData) {
                     $scope.initModalReadCard();
                 }
@@ -243,36 +242,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.ffNumber = "";
         console.log($scope.addNewOfferLists);
     }
-
-    $scope.getFutureOfferList = function() {
-        var result = [{
-            "offer-name": "PROSTDA1",
-            "offer-description": "Standard Provisioning Service For PostPay #1",
-            "type": "Add Offer",
-            "parameter": "",
-            "create-date": "15/03/2016",
-            "effective-date": "15/04/2016",
-            "offer-group": "Future Offer"
-        }, {
-            "offer-name": "INTSPS01",
-            "offer-description": "Internation Call Special Rate",
-            "type": "Add Offer",
-            "parameter": "",
-            "create-date": "15/03/2016",
-            "effective-date": "15/04/2016",
-            "offer-group": "Future Offer"
-        }, {
-            "offer-name": "SPE001",
-            "offer-description": "Special Discount",
-            "type": "Add Offer",
-            "parameter": "",
-            "create-date": "15/03/2016",
-            "effective-date": "11/06/2016",
-            "offer-group": "Future Offer"
-        }];
-        $scope.futureOfferList = result;
-        // futureOfferList = result;
-    };
 
     $scope.smartSearchOffer = function(txtSearch) {
         // $scope.radioOffer = "";
@@ -569,7 +538,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 // $scope.getReleteOfferList();
                 // $scope.getRegulaOfferList();
                 // $scope.getPopUpOfferList();
-                $scope.getFutureOfferList();
+                // $scope.getFutureOfferList();
             }
         } else {
             $scope.callService = false;
@@ -1971,6 +1940,25 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.existingParameter = angular.copy(result.data["response-data"]["customer"]["installed-products"]);
             } else {
                 $scope.existingParameter = [];
+            }
+            $scope.callGetFutureOffer();
+        });
+    };
+
+    $scope.callGetFutureOffer = function() {
+        SystemService.showLoading();
+        var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"];
+        AddDeleteEditOfferNewService.getFutureOffer(param, function(result) {
+            if (result) {
+                SystemService.hideLoading();
+                $scope.futureOfferList = angular.copy(result.data["response-data"]["customer"]["installed-products"]);
+                console.log($scope.futureOfferList);
+                for (var i = 0; i < $scope.futureOfferList.length; i++) {
+                    $scope.futureOfferList[i]["effective-date"] = SystemService.convertDateToTH($scope.futureOfferList[i]["effective-date"], "TH")
+                    $scope.futureOfferList[i]["product-properties"]["CREATE-DATE"] = SystemService.convertDateToTH($scope.futureOfferList[i]["product-properties"]["CREATE-DATE"], "TH")
+                }
+            } else {
+                $scope.futureOfferList = [];
             }
         });
     };

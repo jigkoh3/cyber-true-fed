@@ -1,0 +1,71 @@
+{
+    "status": "SUCCESSFUL",
+    "display-messages": [],
+    "trx-id": "4C8REA5PCOKEC",
+    "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+    "response-data": {
+        "customer": {
+            "installed-products": [{
+                "product-category": "TMV",
+                "product-type": "DISCOUNT",
+                "product-name": "BUC020",
+                "product-description": "Advance per month",
+                "service-level": "C",
+                "product-soc-code": "11293712",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "653988",
+                    "AGREEMENT-ID": "86435",
+                    "FUTURE-SOURCE": "REQUEST",
+                    "CREATE-DATE": "10/09/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "01/12/2016",
+                "soc-type": "D"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "PROROAM6",
+                "product-description": "Provision - Mix Pay Roaming + OPEN INT'l SMS-MO",
+                "service-level": "C",
+                "product-soc-code": "844458",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "12880",
+                    "AGREEMENT-ID": "86435",
+                    "FUTURE-SOURCE": "OMX",
+                    "CREATE-DATE": "16/08/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "01/09/2016",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "INTL",
+                "product-description": "International Call Enabling",
+                "service-level": "C",
+                "product-soc-code": "10104810",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "12879",
+                    "AGREEMENT-ID": "86435",
+                    "FUTURE-SOURCE": "OMX",
+                    "CREATE-DATE": "16/08/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "01/09/2016",
+                "soc-type": "U"
+            }]
+        }
+    }
+}

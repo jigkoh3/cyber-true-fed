@@ -396,6 +396,27 @@
                 fnCallback(result);
             });
         }
-    }
+    };
 
+    this.getFutureOffer = function(param, fnCallback) {
+        var data = {};
+        if (demo) {
+            var url = "/app/jsonFiles/Offer/get-future-offer.json";
+            SystemService.getFileJson(url, function(result) {
+                // console.log(response);
+
+                fnCallback({
+                    status: true,
+                    data: result,
+                    error: "",
+                    msgErr: ""
+                });
+            });
+        } else {
+            var target = 'aftersales/tmv/offer/get-future-order?' + param;
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
+            });
+        }
+    };
 });
