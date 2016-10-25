@@ -1247,7 +1247,7 @@
 
 <!-- Start modal-edit-offerDetail -->
 <div id="modal-edit-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal_pdf_width modal-lg">
         <div class="modal-content">
             &nbsp;&nbsp;
             <div class="modalOffer-header">
@@ -1264,7 +1264,7 @@
                                 <label>Offer Code</label>
                             </div>
                             <div class="col-md-4">
-                                <input type="text" id="adOfferCode" ng-model="editOfferCode" class="form-control" style="border-style: none; background: none;" disabled>
+                                <input type="text" id="viewOfferCode" ng-model="viewOffer['product-name']" class="form-control" style="border-style: none; background: none;" disabled>
                             </div>
                             <div class="col-md-3">
                             </div>
@@ -1278,543 +1278,70 @@
                                 <label>Offer Description</label>
                             </div>
                             <div class="col-md-7">
-                                <input type="text" id="adOfferOfferDesc" ng-model="editOfferDesc" class="form-control" style="border-style: none; background: none;" disabled>
+                                <input type="text" id="viewOfferDesc" ng-model="viewOffer['product-description']" class="form-control" style="border-style: none; background: none;" disabled>
                             </div>
-                            <!-- <div class="col-md-3"> -->
-                            <!-- </div> -->
                         </div>
                     </div> &nbsp;
-                    <!-- <br> -->
-                    <!-- <br> -->
-                   <!--  <label style="cursor: pointer;">
-                        <input type="checkbox" ng-model="editParam" id="editParam"> &nbsp;
-                        <span style="font-weight: bold; font-size:16px;"> Parameter</span>
-                    </label> -->
-                    <!-- <div ng-show="editParam"> -->
-                    <div>
-                        <div ng-show="dataForEdit.group=='CUG'">
-                            <br>
-                            <div class="modal-body">
+                    <br>
+                    <br>
+                    <div ng-repeat="item in paramForEdit" ng-show="paramForEdit">
+                        <div calss="form-group">
                             <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
-                                    <input type="text" placeholder="ค้นหา CUG" ng-model="searchCugForEdit" class="form-control" ng-keyup="smartSearchCug(searchCugForEdit); chkCugValue('edit');">
+                                <div class="col-md-1">
                                 </div>
-                                <div class="col-md-2"></div>
-                            </div>
-                            &nbsp;
-                            <div class="table-responsive">
-                                <label class="col-xs-12">
-                                    <div class="row">
-                                        <div class="col-xs-1">&nbsp;</div>
-                                        <div class="col-xs-3">
-                                            <span><b> Group ID</b></span>
-                                        </div>
-                                        <div class="col-xs-8 text-center">
-                                            <span><b> Group Name</b></span>
-                                        </div>
-                                    </div>
-                                </label>
-                                <table class="table" style="width: 98%; margin-bottom: 0px;">
-                                <!--<tr class="row" ng-repeat="item in cugList | filter: saveDataCUG.filter">-->
-                                    <tr class="row" dir-paginate="item in cugList | filter: onSearchCUG  | itemsPerPage: pageSize_cug" current-page="currentPage_cug" pagination-id="cugList">
-
-                                        <th style="padding: 5px; padding-bottom: 0px;">
-                                            <label class="col-xs-12" style="cursor:pointer;" ng-click="onEditCUGParam(item)">
-                                                <div class="row">
-                                                    <div class="col-xs-1"><input name="paramCugEdit" type="radio" class="radioCUG" value="{{item['group-id']}}" ng-change="chkValueAddNewOffer('edit')" ng-model="editCugParam" id="{{item['group-id']}}"></div>
-                                                    <div class="col-xs-3">{{item['group-id']}}</div>
-                                                    <div class="col-xs-8 text-center">{{item['group-name']}}</div>
-                                                </div>
-                                            </label>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5" class="text-center" style="margin-bottom: 0px;">
-                                            <style>
-                                                .pagination {
-                                                    margin: 0;
-                                                }
-                                            </style>
-                                            <div dir-pagination-controls pagination-id="cugList" boundary-links=" true" template-url="lib/paging/dirPagination.tpl.html?v=3456785999000"></div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            </div>
-                        </div>
-                        <div ng-show="dataForEdit.group=='FF'" style="padding: 20px;">
-                            <div class="form-group row">
-                            <div class="col-md-3 text-right" style="top:9px;">
-                                F&F <span style="color:red;">*</span>
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 1">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF1" ng-model="saveParamData.ff1" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 2">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF2" ng-model="saveParamData.ff2" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            </div>
-                            <div class="form-group row" ng-show="ffData.max >= 3">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 3">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF3" ng-model="saveParamData.ff3" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 4">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF4" ng-model="saveParamData.ff4" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            </div>
-                            <div class="form-group row" ng-show="ffData.max >= 5">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 5">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF5" ng-model="saveParamData.ff5" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 6">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF6" ng-model="saveParamData.ff6" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            </div>
-                            <div class="form-group row" ng-show="ffData.max >= 7">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 7">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF7" ng-model="saveParamData.ff7" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 8">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF8" ng-model="saveParamData.ff8" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            </div>
-                            <div class="form-group row" ng-show="ffData.max >= 9">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 9">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF9" ng-model="saveParamData.ff9" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 10">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF10" ng-model="saveParamData.ff10" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            </div>
-                            <div class="row">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-6" style="text-align:center;">
-                                <span ng-span-number-only="ifff" class="hide" style="color:red;">
-                                    กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                </span>
-                                <span ng-show="isNumberTelLengthFF" style="color:red;">
-                                    กรุณากรอกหมายเลข9-10ตัว
-                                </span>
-                                <span ng-show="isNumberTelZeroFF" style="color:red;">
-                                    กรุณากรอก 0 เป็นตัวแรก
-                                </span>
-                            </div>
-                            <div class="col-md-3">
-                            </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                            <div class="col-md-12" style="color:red;text-align:center;">
-                                <span>
-                                    กรุณาระบุเลขหมายเลขคนสนิท(Friend & Family) อย่างน้อย {{selectedOffer['parameter-specifications'][0].min}} เบอร์
-                                </span>
-                            </div>
-                            </div>
-                        </div>
-                        <div ng-show="dataForEdit.group=='ADDITIONAL'" style="padding: 20px;">
-                            <div class="form-group row" ng-repeat="item in dataForEdit['parameter-specifications']">
-                            <div class="col-xs-1">
-                            </div>
-                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="form-group has-feedback">
-                                    <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD('edit');">
-                                    <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-only="{{item['name']}}" ng-keyup="validateAddAD('edit');">
-                                    <span ng-span-number-only="{{item['name']}}" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
-                                    <select ng-if="item['data-type']=='TEXT'&&item['valid-values']"  class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD('edit');"></select>
+                                <div class="col-md-4 text-right" style="top: 5px;">
+                                    <label> {{item.name}} </label>
                                 </div>
-                            </div>
-                            <div class="col-xs-2"></div>
-                            </div>
-                        </div>
-                        <div ng-show="dataForEdit.group=='POOLING'" style="padding: 20px;">
-                            <td colspan="6" class="text-center">
-                                <div ng-show="addOfferType=='POOLING'">
-                                    <div ng-show="parameter.Volume != 'hide'">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Volume cap max <span style="color:red;">*</span> </label>
-                                            <div class="col-md-6" style="width:auto">
-                                                <select class="form-control" id="selectVolume" ng-init="saveParamData.Volume=parameter.Volume" ng-model="parameter.Volume" ng-change="saveParamData.Volume=parameter.Volume">
-                                                    <option value="-2">ใช้ค่า Default จากระบบ</option>
-                                                    <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
-                                                    <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
-                                                    <option value="0">Not Allow</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input type="text" id="txtVolume" ng-show="parameter.Volume>=1 || parameter.Volume == ''" ng-model="saveParamData.Volume" ng-numeric="isNumberVolume" placeholder="" maxlength="10" class="form-control" style="width:110px;">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-3 hidden-sm">
-                                            </div>
-                                            <div class="col-md-5 hidden-sm">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <span ng-span-numeric="isNumberVolume" class="hide" style="color:red;">
-                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                                    </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Volume cap max UOM <span style="color:red;">*</span> </label>
-                                            <div class="col-md-3">
-                                                <select class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['volumeCapMaxUOMCombo']" ng-model="capMaxParameterList['volume-capmax-uom']" ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2' || parameter.Volume=='-1'"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    &nbsp;
-                                    <div ng-show="parameter.Monetary != 'hide'">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Monetary cap max <span style="color:red;">*</span> </label>
-                                            <div class="col-md-6" style="width:auto">
-                                                <select class="form-control" id="selectMonetary" ng-init="saveParamData.Monetary=parameter.Monetary" ng-model="parameter.Monetary" ng-change="saveParamData.Monetary=parameter.Monetary">
-                                                    <option value="-2">ใช้ค่า Default จากระบบ</option>
-                                                    <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
-                                                    <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
-                                                    <option value="0">Not Allow</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input type="text" id="txtMonetary" ng-show="parameter.Monetary>=1 || parameter.Monetary==''" ng-model="saveParamData.Monetary" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberMonetary">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-3 hidden-sm">
-                                            </div>
-                                            <div class="col-md-5 hidden-sm">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <span ng-span-numeric="isNumberMonetary" class="hide" style="color:red;">
-                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                                    </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Monetary cap max UOM <span style="color:red;">*</span> </label>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" readonly="readonly" value="Baht" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    &nbsp;
-                                    <div ng-show="parameter.Occurrence != 'hide'">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Occurrence cap max <span style="color:red;">*</span> </label>
-                                            <div class="col-md-6" style="width:auto">
-                                                <select class="form-control" id="selectOccurrence" ng-init="saveParamData.Occurrence=parameter.Occurrence" ng-model="parameter.Occurrence" ng-change="saveParamData.Occurrence=parameter.Occurrence">
-                                                    <option value="-2">ใช้ค่า Default จากระบบ</option>
-                                                    <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
-                                                    <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
-                                                    <option value="0">Not Allow</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input type="text" id="txtOccurrence" ng-show="parameter.Occurrence>=1 || parameter.Occurrence == ''" ng-model="saveParamData.Occurrence" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberOccurrence">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-3 hidden-sm">
-                                            </div>
-                                            <div class="col-md-5 hidden-sm">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <span ng-span-numeric="isNumberOccurrence" class="hide" style="color:red;">
-                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                                    </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Occurrence cap max UOM <span style="color:red;">*</span> </label>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" readonly="readonly" value="Occurrence" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    &nbsp;
-                                    <div ng-show="parameter.Duration != 'hide'">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Duration cap max <span style="color:red;">*</span> </label>
-                                            <div class="col-md-6" style="width:auto">
-                                                <select class="form-control" id="selectDuration" ng-init="saveParamData.Duration=parameter.Duration" ng-model="parameter.Duration" ng-change="saveParamData.Duration=parameter.Duration">
-                                                    <option value="-2">ใช้ค่า Default จากระบบ</option>
-                                                    <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
-                                                    <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
-                                                    <option value="0">Not Allow</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input type="text" id="txtDuration" ng-show="parameter.Duration>=1 || parameter.Duration == ''" ng-model="saveParamData.Duration" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberDuration">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-3 hidden-sm">
-                                            </div>
-                                            <div class="col-md-5 hidden-sm">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <span ng-span-numeric="isNumberDuration" class="hide" style="color:red;">
-                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                                    </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Duration cap max UOM <span style="color:red;">*</span> </label>
-                                            <div class="col-md-3">
-                                                <select class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['durationCapMaxUOMCombo']" ng-model="capMaxParameterList['duration-capmax-uom']" ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'  || parameter.Duration=='-1'"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    &nbsp;
-                                    <div class="form-group row">
-                                        <!-- <div class="col-xs-1">
-                                            </div> -->
-                                        <div class="col-xs-3" style=" text-align: right; top: 5px;">
-                                            <label>Effective Date</label><span style="color: red">*</span>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <div class="form-group has-feedback">
-                                                <input name="birthDay" type="text" ng-model="cpStartDate" class="form-control date-picker dateFormat" maxlength="10" required>
-                                                <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-2">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <!-- <div class="col-xs-1">
-                                            </div> -->
-                                        <div class="col-xs-3" style=" text-align: right; top: 5px;">
-                                            <label>Expiration Date</label><span style="color: red">*</span>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <div class="form-group has-feedback">
-                                                <input name="birthDay" type="text" ng-model="cpExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
-                                                <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-2">
-                                        </div>
-                                    </div>
-                                    &nbsp;
+                                <div class="col-md-4">
+                                    <input type="text" id="adViewOffer['effective-date']" ng-model="item.value" class="form-control">
                                 </div>
-                            </td>
-                        </div>
-                        <div ng-show="dataForEdit.group=='CONTRACT_PROPO'" style="padding: 20px;">
-                            <div class="form-group">
-                                <div style="font-size: 1.23em; font-weight: bold; padding-left: 100px;">Offer Parameter</div>
-                            </div>
-                            &nbsp;
-                            <div class="form-group row">
-                                <div class="col-xs-1">
+                                <div class="col-md-3">
                                 </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Proposition Code</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input ng-disabled="true" type="text" ng-model="dataForEdit.name" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Proposition Description</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input ng-disabled="true" type="text" ng-model="dataForEdit.description" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Contract Number</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="dataForEdit.param['contract-number']" class="form-control" ng-number-only="inputEditCpCN" maxlength="10" ng-keyup="validateAddCp('edit')">
-                                    <span ng-span-number-only="inputEditCpCN" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Term</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="dataForEdit.param.term" class="form-control" ng-number-only="inputCpTerm" disabled>
-                                    <span ng-span-number-only="inputCpTerm" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Fee</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="dataForEdit.param.fee" class="form-control" id="cpFee" ng-number-only="inputCpFee" disabled>
-                                    <span ng-span-number-only="inputCpFee" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Start Date</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="editCpStartDate" ng-model="dataForEdit.param['start-date']" class="form-control date-picker-today dateFormat" maxlength="10" requireds ng-keyup="validateAddCp('edit')">
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Expiration Date</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="editCpExpirationDate" ng-model="dataForEdit.param['expiration-date']" class="form-control date-picker-today dateFormat" maxlength="10" required ng-keyup="validateAddCp('edit')" ng-click="setDatepickerValue();">
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Remark</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input name="cpRemark" type="text" ng-model="dataForEdit.param['remark']" class="form-control" ng-keyup="validateAddCp('edit')">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
+                            </div> &nbsp;
                         </div>
                     </div>
-                        <!-- <br> -->
-                        <!-- <br> -->
-                    <div style="border-top: 1px solid #e5e5e5;">
-                        <br>
-                       <!--  <label style="cursor: pointer;">
-                            <input type="checkbox" ng-model="editExp" id="editExp"> &nbsp;
-                            <span style="font-weight: bold; font-size:16px;"> Expiration Date</span>
-                        </label> -->
-                        <!-- <div ng-show="editExp"> -->
-                        <div>
-                             <br>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-xs-1">
-                                    </div>
-                                    <div class="col-xs-3" style=" text-align: right; top: 5px;">
-                                        <label>วันที่มีผล (Effective Date)</label><span style="color:red;">*</span>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="col-xs-5" style="top:5px;">
-                                            <label style="cursor: pointer;">
-                                                <input style="cursor: pointer;" type="radio" ng-model="dataForEdit['param']['effective-date-type']" value="immediate" ng-change="onEffectiveChangeForEdit();"> ทันที (Immediate)
-                                            </label>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="form-group has-feedback">
-                                                <div class="col-xs-5" style="top:5px;">
-                                                    <label style="cursor: pointer;">
-                                                        <input style="cursor: pointer;" type="radio" ng-model="dataForEdit['param']['effective-date-type']" value="specify" style="cursor: pointer;" ng-change="onEffectiveChangeForEdit();" > ระบุวันที่
-                                                    </label>
-                                                </div>
-                                                <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
-                                                    <div class="form-group has-feedback imp" style="top:5px;">
-                                                        <input type="text" ng-model="dataForEdit['param']['effective-date-value']" id="editNewOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10" ng-disabled="dataForEdit['param']['effective-date-type']=='immediate'">
-                                                        <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-1"></div>
+                    <div calss="form-group" ng-hide="viewOffer['offer-group']=='PROPOSITION'">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2 text-right" style="top: 5px;">
+                                <label>Effective Date</label>
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <input type="text" id="adViewOffer['effective-date']" ng-model="viewOffer['effective-date']" class="form-control"> -->
+                                <div class="form-group has-feedback imp" style="top:5px;">
+                                    <input type="text" ng-model="showDetail['effective-date']" id="editOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-xs-1">
-                                    </div>
-                                    <div class="col-xs-3" style=" text-align: right; top: 5px;">
-                                        <label>วันที่หมดอายุ (Expiration Date)</label><span style="color:red;">*</span>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="col-xs-5" style="top:5px;">
-                                            <label style="cursor: pointer;">
-                                                <input style="cursor: pointer;" type="radio" name="editOfferExpirationDate" ng-model="dataForEdit['param']['expiration-date-type']" value="unlimited" ng-change="onExpirationChangeForEdit();"> ไม่มีกำหนด (Unlimited)
-                                            </label>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="form-group has-feedback">
-                                                <div class="col-xs-5" style="top:5px;">
-                                                    <label style="cursor: pointer;">
-                                                        <input style="cursor: pointer;" type="radio" name="editOfferExpirationDate" ng-model="dataForEdit['param']['expiration-date-type']" value="specify" style="cursor: pointer;" ng-change="onExpirationChangeForEdit();">ระบุวันที่
-                                                    </label>
-                                                </div>
-                                                <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
-                                                    <div class="form-group has-feedback imp" style="top:5px;">
-                                                        <input type="text" ng-model="dataForEdit['param']['expiration-date-value']" id="editNewOfferExpirationDate" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10" ng-disabled="dataForEdit['param']['expiration-date-type']=='unlimited'">
-                                                        <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-1"></div>
+                            <div class="col-md-3">
+                            </div>
+                        </div> &nbsp;
+                    </div>
+                    <div calss="form-group" ng-hide="viewOffer['offer-group']=='PROPOSITION'">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2 text-right" style="top: 5px;">
+                                <label>Expiration Date</label>
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <input type="text" id="adViewOffer['expiration-date']" ng-model="viewOffer['expiration-date']" class="form-control"> -->
+                                <div class="form-group has-feedback imp" style="top:5px;">
+                                    <input type="text" ng-model="showDetail['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
+                            </div>
+                            <div class="col-md-3">
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
             <div class="modalOffer-footer" style="">
                 <div class="col-xs-12">
                     <button class="btn btn-success" data-dismiss="modal" ng-click="disableEditOffer(); unChk(editOfferCode); editNewOffer();" style="margin-top: -0px;" ng-disabled="disableSubmitAddOffer">ตกลง</button>
-                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="unChk(editOfferCode);" style="margin-top: -0px;">ปิด</button>
+                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="unChk(viewOffer['product-name']);onCancelViewOffer();" style="margin-top: -0px;">ปิด</button>
                 </div>
                 <br>
                 <br>
