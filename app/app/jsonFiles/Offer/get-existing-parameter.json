@@ -16,14 +16,14 @@
           "product-properties": {
             "PARAM-SIZE": "7",
             "AGREEMENT-ID": "110596",
-            "PARAM-0": "200930317|TR_ACTUAL_CONTRACT_START_DATE|27/07/2016 55:55:55",
+            "PARAM-0": "200930317|TR_ACTUAL_CONTRACT_START_DATE|27/07/2017 55:55:55",
             "PARAM-1": "200930311|TR_CONTRACT_FEE|0",
             "PARAM-2": "200930312|TR_CONTRACT_NUMBER|-",
             "PARAM-3": "200930314|TR_CONTRACT_REMARK|-",
             "PARAM-4": "200930316|TR_CONTRACT_TERM|0",
             "OFFER-INSTANCE-ID": "619111",
             "PARAM-5": "200930315|TR_GENERATE_CHARGE_YES_NO|N",
-            "PARAM-6": "200930313|TR_ORIG_CONTRACT_EXPIRE_DATE|27/07/2016 00:00:00"
+            "PARAM-6": "200930313|TR_ORIG_CONTRACT_EXPIRE_DATE|27/07/2018 00:00:00"
           },
           "product-id-name": "MSISDN",
           "has-splitcharge": false,

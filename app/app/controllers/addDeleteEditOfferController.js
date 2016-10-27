@@ -422,6 +422,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.paramDetail = [];
     $scope.paramForEdit = [];
     $scope.viewOfferDetail = function(item, action) {
+        $scope.modelChange = false;
+        $scope.showDetail = [];
+        $scope.showDetail = angular.copy(item);
+        $scope.paramDetail = [];
         $('#hModal').height(($(window).height()) - 235);
         $('.hModal').height(($(window).height()) - 235);
         var parameter = [];
@@ -458,14 +462,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }
         }
 
-        $scope.editOfferCode = item['product-name'];
-        $scope.editOfferDesc = item['product-description'];
+        // $scope.showDetail['effective-date'] = item['effective-date'];
+        // $scope.showDetail['expiration-date'] = item['expiration-date'];
+        // $scope.showDetail['type'] = item['type'];
+        $scope.paramForEdit['effective-date'] = $scope.showDetail['effective-date'];
+        $scope.paramForEdit['expiration-date'] = $scope.showDetail['expiration-date'];
+        $('#editOfferEffectiveDate').datepicker("setDate", $scope.showDetail['effective-date']);
+        $('#editOfferExpirationDate').datepicker("setDate", $scope.showDetail['expiration-date']);
+        setTimeout(function() {
+            SystemService.calendarDatePicker();
+        }, 1200);
 
-        $scope.showDetail['effective-date'] = item['effective-date'];
-        $scope.showDetail['expiration-date'] = item['expiration-date'];
-        $scope.showDetail['type'] = item['type'];
-
-        // $scope.showDetail['typed'] = "AD";
         $scope.editExpType = "effective";
         $scope.editParam = false;
         $scope.editExp = false;
@@ -476,6 +483,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "expiration-date": item['expiration-date'],
             "offer-group": item['offer-group']
         }
+    };
+
+    $scope.setDatepicker = function(id, value) {
+        $('#' + id).datepicker("setDate", value);
     };
 
     $scope.onCancelViewOffer = function() {
@@ -1042,10 +1053,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
     };
 
-    $scope.disableEditOffer = function() {
-        $scope.readOnlyOffer = true;
-    };
-
     $scope.enableEditOffer = function() {
         $scope.readOnlyOffer = false;
     };
@@ -1055,6 +1062,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.disableAddBtn = false;
         $scope.chkEdit = false
         $scope.futureOfferList = angular.copy($scope.tempFutureOfferList);
+        for (var i = 0; i < $scope.existingOffer.length; i++) {
+            $scope.existingOffer[i].selected = false;
+        }
     }
     $scope.addOffer = function() {
         $scope.enableAddOffer = true;
@@ -1145,7 +1155,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         console.log(chkModel);
         if (chkModel == true) {
             $scope.chkID = chkId;
-            $scope.viewOfferDetail(item);
+            $scope.viewOfferDetail(item, 'edit');
             $('#editModal').click();
         } else {
             $scope.chkID = "";
@@ -1982,7 +1992,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     $scope.futureOfferList[i]["effective-date"] = SystemService.convertDateToTH($scope.futureOfferList[i]["effective-date"], "TH")
                     $scope.futureOfferList[i]["product-properties"]["CREATE-DATE"] = SystemService.convertDateToTH($scope.futureOfferList[i]["product-properties"]["CREATE-DATE"], "TH")
                 }
-                $scope.tempFutureOfferList = angular.copy($scope.futureOfferList); 
+                $scope.tempFutureOfferList = angular.copy($scope.futureOfferList);
             } else {
                 $scope.futureOfferList = [];
                 $scope.tempFutureOfferList = [];
@@ -2019,7 +2029,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.onCancelEditFutureOffer();
     };
 
-    $scope.chkFutureOfferEffDate = function(){
+    $scope.chkFutureOfferEffDate = function() {
         if ($scope.futureOfferDetail['effective-date'] == "" || $("#editFutureOfferEffectiveDate").val() == "") {
             $scope.disableSubmitEditFutureOffer = true;
         } else {

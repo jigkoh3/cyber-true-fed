@@ -70,12 +70,12 @@
                                         </div>
                                         <div align="center" ng-show="offerType=='U'">
                                             <input id="item['product-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'product-name']);" ng-hide="item[ 'Level']=='Agreement'">
-                                            <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button">
+                                            <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button">
                                                 <span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span>
                                             </button>
                                         </div>
                                         <div align="center" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
+                                            <input type="checkbox" ng-model="item.selected" style="cursor:pointer;">
                                         </div>
                                     </td>
                                     <td class="col-xs-2 contentTb">
@@ -118,7 +118,7 @@
                                         </div>
                                         <div align="center" class="" ng-show="offerType=='U'">
                                             <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='Agreement'">
-                                            <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                            <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                         </div>
                                         <div align="center" ng-show="offerType=='D'">
                                             <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
@@ -164,7 +164,7 @@
                                         </div>
                                         <div align="center" class="" ng-show="offerType=='U'">
                                                 <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='Agreement'">
-                                                <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                                <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                             </div>
                                         <div align="center" class="" ng-show="offerType=='D'">
                                             <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
@@ -210,7 +210,7 @@
                                         </div>
                                         <div align="center" class="" ng-show="offerType=='U'">
                                             <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='Agreement'">
-                                            <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span>   </button>
+                                            <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span>   </button>
                                         </div>
                                         <div align="center" class="" ng-show="offerType=='D'">
                                             <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
@@ -1293,7 +1293,11 @@
                                     <label> {{item.name}} </label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="adViewOffer['effective-date']" ng-model="item.value" class="form-control">
+                                    <input ng-hide="item.name=='TR_ACTUAL_CONTRACT_START_DATE'||item.name=='TR_ORIG_CONTRACT_EXPIRE_DATE'" type="text" id="{{item.name}}" ng-model="item.value" class="form-control" ng-change="onModelChange();">
+                                    <div ng-show="item.name=='TR_ACTUAL_CONTRACT_START_DATE'||item.name=='TR_ORIG_CONTRACT_EXPIRE_DATE'" class="form-group has-feedback imp" style="top:5px;">
+                                        <input type="text" ng-model="item.value" id="{{item.name}}" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;" ng-click="setDatepicker(item.name, item.value);" ng-change="onModelChange();" ng-disabled="item.name=='TR_ACTUAL_CONTRACT_START_DATE'">
+                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -1310,7 +1314,7 @@
                             <div class="col-md-4">
                                 <!-- <input type="text" id="adViewOffer['effective-date']" ng-model="viewOffer['effective-date']" class="form-control"> -->
                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                    <input type="text" ng-model="showDetail['effective-date']" id="editOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;">
+                                    <input type="text" ng-model="paramForEdit['effective-date']" id="editOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;" ng-disabled="true">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -1328,7 +1332,7 @@
                             <div class="col-md-4">
                                 <!-- <input type="text" id="adViewOffer['expiration-date']" ng-model="viewOffer['expiration-date']" class="form-control"> -->
                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                    <input type="text" ng-model="showDetail['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;">
+                                    <input type="text" ng-model="paramForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -1340,7 +1344,7 @@
             </div>
             <div class="modalOffer-footer" style="">
                 <div class="col-xs-12">
-                    <button class="btn btn-success" data-dismiss="modal" ng-click="disableEditOffer(); unChk(editOfferCode); editNewOffer();" style="margin-top: -0px;" ng-disabled="disableSubmitAddOffer">ตกลง</button>
+                    <button class="btn btn-success" data-dismiss="modal" ng-click="unChk(viewOffer['product-name']);" style="margin-top: -0px;" ng-disabled="!modelChange">ตกลง</button>
                     <button class="btn btn-cancel" data-dismiss="modal" ng-click="unChk(viewOffer['product-name']);onCancelViewOffer();" style="margin-top: -0px;">ปิด</button>
                 </div>
                 <br>
