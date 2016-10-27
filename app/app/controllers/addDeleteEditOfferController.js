@@ -422,6 +422,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.paramDetail = [];
     $scope.paramForEdit = [];
     $scope.viewOfferDetail = function(item, action) {
+        $scope.idSetDate = false;
         $scope.showDetail = [];
         $scope.showDetail = angular.copy(item);
         $scope.paramDetail = [];
@@ -472,7 +473,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             SystemService.calendarDatePicker();
         }, 1200);
 
-        $scope.editExpType = "effective";
+        // $scope.editExpType = "effective";
         $scope.editParam = false;
         $scope.editExp = false;
         $scope.viewOffer = {
@@ -483,10 +484,29 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "offer-group": item['offer-group']
         }
         $scope.modelChange = false;
+
+        setTimeout(function() {
+            $("#TR_ORIG_CONTRACT_EXPIRE_DATE").change(function() {
+                console.log($('#TR_ORIG_CONTRACT_EXPIRE_DATE').val());
+                for (var i = 0; i < $scope.paramForEdit.length; i++) {
+                    if ($scope.paramForEdit[i].name == "TR_ORIG_CONTRACT_EXPIRE_DATE" && $scope.paramForEdit[i].value != $('#TR_ORIG_CONTRACT_EXPIRE_DATE').val()) {
+                        $scope.paramForEdit[i].value = $('#TR_ORIG_CONTRACT_EXPIRE_DATE').val();
+                        $scope.onModelChange();
+                    }
+                }
+                setTimeout(function() {
+                    $('#idBindDataAgain').click();
+                }, 50);
+            });
+        }, 2000);
     };
 
+    $scope.idSetDate = false;
     $scope.setDatepicker = function(id, value) {
-        $('#' + id).datepicker("setDate", value);
+        if ($scope.idSetDate == false) {
+            $('#' + id).datepicker("setDate", value);
+            $scope.idSetDate = true;
+        }
     };
 
     $scope.onCancelViewOffer = function() {
@@ -1653,20 +1673,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     });
     // =====================================
 
-    $(document).ready(function() {
-        $("#editOfferExpirationDate").change(function() {
-            $scope.paramForEdit['expiration-date'] = $('#editOfferExpirationDate').val();
-            $scope.onModelChange();
-            setTimeout(function() {
-                $('#idBindDataAgain').click();
-            }, 50);
-        });
-        $("#editOfferExpirationDate").blur(function() {
-            $scope.paramForEdit['expiration-date'] = $('#editOfferExpirationDate').val();
-            $('#idBindDataAgain').click();
-        });
-    });
-
     $scope.clearValueAddNewOffer = function() {
         $scope.cpRemark = "";
         $scope.cpContractNumber = "";
@@ -2062,4 +2068,19 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.chkFutureOfferEffDate();
         });
     });
+
+    $(document).ready(function() {
+        $("#editOfferExpirationDate").change(function() {
+            $scope.paramForEdit['expiration-date'] = $('#editOfferExpirationDate').val();
+            $scope.onModelChange();
+            setTimeout(function() {
+                $('#idBindDataAgain').click();
+            }, 50);
+        });
+        $("#editOfferExpirationDate").blur(function() {
+            $scope.paramForEdit['expiration-date'] = $('#editOfferExpirationDate').val();
+            $('#idBindDataAgain').click();
+        });
+    });
+
 });
