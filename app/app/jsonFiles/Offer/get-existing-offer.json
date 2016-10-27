@@ -117,6 +117,7 @@
                 "is-softsuspend": false,
                 "offer-group": "ADDITIONAL",
                 "effective-date": "03/06/2016",
+                "expiration-date": "03/07/2020",
                 "soc-type": "U"
             }, {
                 "product-category": "TMV",

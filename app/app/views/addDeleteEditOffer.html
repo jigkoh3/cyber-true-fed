@@ -248,8 +248,8 @@
                         </tbody>
                     </table>
                 </div>
-                <br>
-                <div ng-hide="false">
+                
+                <div ng-show="futureOfferList">
                     <h4>Future Order</h4>
                     <!-- Future Order Table -->
                     <div class="table-responsive">
@@ -1292,7 +1292,7 @@
                                 <div class="col-md-4 text-right" style="top: 5px;">
                                     <label> {{item.name}} </label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input ng-hide="item.name=='TR_ACTUAL_CONTRACT_START_DATE'||item.name=='TR_ORIG_CONTRACT_EXPIRE_DATE'" type="text" id="{{item.name}}" ng-model="item.value" class="form-control" ng-change="onModelChange();">
                                     <div ng-show="item.name=='TR_ACTUAL_CONTRACT_START_DATE'||item.name=='TR_ORIG_CONTRACT_EXPIRE_DATE'" class="form-group has-feedback imp" style="top:5px;">
                                         <input type="text" ng-model="item.value" id="{{item.name}}" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;" ng-click="setDatepicker(item.name, item.value);" ng-change="onModelChange();" ng-disabled="item.name=='TR_ACTUAL_CONTRACT_START_DATE'">
@@ -1311,7 +1311,7 @@
                             <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Effective Date</label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <!-- <input type="text" id="adViewOffer['effective-date']" ng-model="viewOffer['effective-date']" class="form-control"> -->
                                 <div class="form-group has-feedback imp" style="top:5px;">
                                     <input type="text" ng-model="paramForEdit['effective-date']" id="editOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;" ng-disabled="true">
@@ -1329,10 +1329,10 @@
                             <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Expiration Date</label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <!-- <input type="text" id="adViewOffer['expiration-date']" ng-model="viewOffer['expiration-date']" class="form-control"> -->
                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                    <input type="text" ng-model="paramForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;">
+                                    <input type="text" ng-model="paramForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;" ng-change="onModelChange();">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -1402,7 +1402,7 @@
                             <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Effective Date</label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group has-feedback imp" style="top:5px;">
                                     <input type="text" ng-model="futureOfferDetail['effective-date']" id="editFutureOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
@@ -1471,7 +1471,7 @@
                                 <div class="col-md-4 text-right" style="top: 5px;">
                                     <label> {{item.name}} </label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input ng-disabled="true" type="text" id="adViewOffer['effective-date']" ng-model="item.value" class="form-control">
                                 </div>
                                 <div class="col-md-3">
@@ -1486,7 +1486,7 @@
                             <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Effective Date</label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input ng-disabled="true" type="text" id="adViewOffer['effective-date']" ng-model="viewOffer['effective-date']" class="form-control">
                             </div>
                             <div class="col-md-3">
@@ -1500,7 +1500,7 @@
                             <div class="col-md-2 text-right" style="top: 5px;">
                                 <label>Expiration Date</label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input ng-disabled="true" type="text" id="adViewOffer['expiration-date']" ng-model="viewOffer['expiration-date']" class="form-control">
                             </div>
                             <div class="col-md-3">

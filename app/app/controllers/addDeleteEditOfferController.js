@@ -422,7 +422,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.paramDetail = [];
     $scope.paramForEdit = [];
     $scope.viewOfferDetail = function(item, action) {
-        $scope.modelChange = false;
         $scope.showDetail = [];
         $scope.showDetail = angular.copy(item);
         $scope.paramDetail = [];
@@ -483,6 +482,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "expiration-date": item['expiration-date'],
             "offer-group": item['offer-group']
         }
+        $scope.modelChange = false;
     };
 
     $scope.setDatepicker = function(id, value) {
@@ -948,31 +948,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     }
 
-    // Get device list
-    var deviceByCode = {};
-
-    var onGetDeviceTypeList = function(result) {
-        $scope.deviceTypeList = utils.getObject(result.data, 'response-data.device');
-
-        if ($scope.deviceTypeList && $scope.deviceTypeList.length) {
-            deviceByCode = _.indexBy($scope.deviceTypeList, 'device-code');
-        }
-    };
-
-    $scope.$watch('deviceType', function(val) {
-        if (deviceByCode[val]) {
-            var sim = deviceByCode[val].sim[0];
-
-            var productCodes = _.pluck(sim['product-code'], 'code');
-            $scope.productCodes = productCodes.join('/');
-
-            $scope.simType = sim['sim-type'];
-        } else {
-            $scope.productCodes = '';
-            $scope.simType = ''
-        }
-    });
-
     $scope.SetCardValue = function(result) {
         $('#loadingReadCard').hide();
         $scope.isReadCardSuccess = false;
@@ -1194,12 +1169,33 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.getExistingOffer = function() {
         SystemService.showLoading();
         AddDeleteEditOfferService.getExistingOffer($scope.level, $scope.data.simData['product-id-number'], $scope.data.simData['subscriber-id'], function(result) {
-            console.log(result.data['response-data']['customer']['installed-products']);
             SystemService.hideLoading();
-            if (result.data['response-data']) {
+            var msg = utils.getObject(result.data, 'display-messages');
+
+            if (msg && msg.length > 0) {
+                setTimeout(function() {
+                    SystemService.showAlert({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
+                }, 1000);
+                if (msg[0]['message-type'] == "ERROR") {
+                    return false;
+                }
+            }
+            // console.log(result.data['response-data']['customer']['installed-products']);
+            var customerData = utils.getObject(result.data['response-data'], 'customer');
+            if (customerData) {
                 for (var i = 0; i < result.data['response-data']['customer']['installed-products'].length; i++) {
                     if (result.data['response-data']['customer']['installed-products'][i]['effective-date']) {
                         result.data['response-data']['customer']['installed-products'][i]['effective-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['effective-date'], 'TH');
+                    }
+                    if (result.data['response-data']['customer']['installed-products'][i]['expiration-date']) {
+                        result.data['response-data']['customer']['installed-products'][i]['expiration-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['expiration-date'], 'TH');
                     }
                 }
                 $scope.builtInOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'PRICEPLAN-BUILT-IN' });
@@ -1657,6 +1653,20 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     });
     // =====================================
 
+    $(document).ready(function() {
+        $("#editOfferExpirationDate").change(function() {
+            $scope.paramForEdit['expiration-date'] = $('#editOfferExpirationDate').val();
+            $scope.onModelChange();
+            setTimeout(function() {
+                $('#idBindDataAgain').click();
+            }, 50);
+        });
+        $("#editOfferExpirationDate").blur(function() {
+            $scope.paramForEdit['expiration-date'] = $('#editOfferExpirationDate').val();
+            $('#idBindDataAgain').click();
+        });
+    });
+
     $scope.clearValueAddNewOffer = function() {
         $scope.cpRemark = "";
         $scope.cpContractNumber = "";
@@ -1969,8 +1979,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"] + "&account-id=" + $scope.data.simData.ban;
         console.log(param);
         AddDeleteEditOfferService.getExistingParameter(param, function(result) {
-            if (result) {
-                SystemService.hideLoading();
+            SystemService.hideLoading();
+            var existingParamData = utils.getObject(result.data['response-data'], 'customer');
+            if (existingParamData) {
                 console.log(result);
                 $scope.existingParameter = angular.copy(result.data["response-data"]["customer"]["installed-products"]);
             } else {
@@ -1984,8 +1995,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         SystemService.showLoading();
         var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"];
         AddDeleteEditOfferService.getFutureOffer(param, function(result) {
-            if (result) {
-                SystemService.hideLoading();
+            SystemService.hideLoading();
+            var futureOfferData = utils.getObject(result.data['response-data'], 'customer');
+            if (futureOfferData) {
                 $scope.futureOfferList = angular.copy(result.data["response-data"]["customer"]["installed-products"]);
                 console.log($scope.futureOfferList);
                 for (var i = 0; i < $scope.futureOfferList.length; i++) {
