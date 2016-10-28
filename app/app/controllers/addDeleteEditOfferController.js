@@ -232,15 +232,18 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.addNewOfferList = function(item) {
         console.log(item);
-        var list = $filter('filter')($scope.addNewOfferLists, {
-            'name': item['name']
-        });
+        // var list = $filter('filter')($scope.addNewOfferLists, {
+        //     'name': item['name']
+        // });
 
-        if (list.length == 0) {
-            $scope.addNewOfferLists.push(item);
-        }
-        $scope.ffNumber = "";
+        // if (list.length == 0) {
+        //     $scope.addNewOfferLists.push(item);
+        // }
+        // $scope.ffNumber = "";
+        // console.log($scope.addNewOfferLists);
+        $scope.addNewOfferLists.push(item);
         console.log($scope.addNewOfferLists);
+        $scope.ffNumber = "";
     }
 
     $scope.smartSearchOffer = function(txtSearch) {
@@ -1289,6 +1292,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.addType = "";
     $scope.searchOffer = function(offerGroup) {
         SystemService.showLoading();
+        $scope.txtSearchOffer = "";
         $scope.radioOffer = "";
         $scope.disableSubmitAddOffer = true;
         $scope.addType = offerGroup;
@@ -1366,6 +1370,30 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             for (var i = 1; i < $scope.existingOffer.length; i++) {
                 $scope.currentOfferParam += "|" + $scope.existingOffer[i]['product-name'];
             };
+        };
+        if ($scope.futureOfferList.length > 0) {
+            if ($scope.currentOfferParam == "") {
+                $scope.currentOfferParam = $scope.futureOfferList[0]['product-name'];
+                for (var i = 1; i < $scope.futureOfferList.length; i++) {
+                    $scope.currentOfferParam += "|" + $scope.futureOfferList[i]['product-name'];
+                };
+            } else {
+                for (var i = 0; i < $scope.futureOfferList.length; i++) {
+                    $scope.currentOfferParam += "|" + $scope.futureOfferList[i]['product-name'];
+                }
+            }
+        };
+        if ($scope.addNewOfferLists.length > 0) {
+            if ($scope.currentOfferParam == "") {
+                $scope.currentOfferParam = $scope.addNewOfferLists[0]['name'];
+                for (var i = 1; i < $scope.addNewOfferLists.length; i++) {
+                    $scope.currentOfferParam += "|" + $scope.addNewOfferLists[i]['name'];
+                };
+            } else {
+                for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
+                    $scope.currentOfferParam += "|" + $scope.addNewOfferLists[i]['name'];
+                }
+            }
         };
         console.log($scope.currentOfferParam);
 
