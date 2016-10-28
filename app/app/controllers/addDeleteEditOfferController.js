@@ -1065,10 +1065,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.disableAddBtn = false;
         $scope.chkEdit = false
         $scope.futureOfferList = angular.copy($scope.tempFutureOfferList);
-        for (var i = 0; i < $scope.existingOffer.length; i++) {
-            $scope.existingOffer[i].selected = false;
-            $scope.existingOffer[i].edited = false;
-        }
         $scope.existingOffer = angular.copy($scope.existingOfferTemp);
         $scope.setDefaultExistingOffer();
     }
@@ -1203,10 +1199,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.propoOffer = [];
     $scope.discountOffer = [];
     $scope.pooledOffer = [];
-    $scope.existingOfferTemp
+    $scope.existingOfferTemp = [];
     $scope.getExistingOffer = function() {
         SystemService.showLoading();
-        $scope.existingOfferTemp
+        $scope.existingOfferTemp = [];
         AddDeleteEditOfferService.getExistingOffer($scope.level, $scope.data.simData['product-id-number'], $scope.data.simData['subscriber-id'], function(result) {
             SystemService.hideLoading();
             var msg = utils.getObject(result.data, 'display-messages');
