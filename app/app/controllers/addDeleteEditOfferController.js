@@ -503,6 +503,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         for (var i = 0; i < $scope.existingOffer.length; i++) {
             if ($scope.existingOffer[i]["product-name"] === productName) {
                 $scope.existingOffer[i]["expiration-date"] = $scope.paramForEdit['expiration-date'];
+                $scope.existingOffer[i].edited = true;
             }
         }
         $scope.setDefaultExistingOffer();
@@ -1065,6 +1066,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.futureOfferList = angular.copy($scope.tempFutureOfferList);
         for (var i = 0; i < $scope.existingOffer.length; i++) {
             $scope.existingOffer[i].selected = false;
+            $scope.existingOffer[i].edited = false;
         }
         $scope.existingOffer = angular.copy($scope.existingOfferTemp);
         $scope.setDefaultExistingOffer();
@@ -1181,7 +1183,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.unChk = function(editOfferCode) {
         if ($scope.modelChange == false) {
             for (var i = 0; i < $scope.existingOffer.length; i++) {
-                if (editOfferCode == $scope.existingOffer[i]['product-name']) {
+                if (editOfferCode == $scope.existingOffer[i]['product-name']  && $scope.existingOffer[i].edited == false) {
                     $scope.existingOffer[i].selected = false;
                 }
             }
@@ -1247,30 +1249,35 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 if ($scope.builtInOffer) {
                     for (var i = 0; i < $scope.builtInOffer.length; i++) {
                         $scope.builtInOffer[i]["selected"] = false;
+                        $scope.builtInOffer[i]["edited"] = false;
                         $scope.existingOffer.push($scope.builtInOffer[i])
                     }
                 }
                 if ($scope.regularOffer) {
                     for (var i = 0; i < $scope.regularOffer.length; i++) {
                         $scope.regularOffer[i]["selected"] = false;
+                        $scope.builtInOffer[i]["edited"] = false;
                         $scope.existingOffer.push($scope.regularOffer[i])
                     }
                 }
                 if ($scope.propoOffer) {
                     for (var i = 0; i < $scope.propoOffer.length; i++) {
                         $scope.propoOffer[i]["selected"] = false;
+                        $scope.builtInOffer[i]["edited"] = false;
                         $scope.existingOffer.push($scope.propoOffer[i])
                     }
                 }
                 if ($scope.discountOffer) {
                     for (var i = 0; i < $scope.discountOffer.length; i++) {
                         $scope.discountOffer[i]["selected"] = false;
+                        $scope.builtInOffer[i]["edited"] = false;
                         $scope.existingOffer.push($scope.discountOffer[i])
                     }
                 }
                 if ($scope.pooledOffer) {
                     for (var i = 0; i < $scope.pooledOffer.length; i++) {
                         $scope.pooledOffer[i]["selected"] = false;
+                        $scope.builtInOffer[i]["edited"] = false;
                         $scope.existingOffer.push($scope.pooledOffer[i])
                     }
                 }
