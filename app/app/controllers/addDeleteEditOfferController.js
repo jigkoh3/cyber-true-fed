@@ -2013,7 +2013,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.callGetFutureOffer = function() {
         SystemService.showLoading();
-        var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"] + "futrue-order-type=OFFER";
+        var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"] + "&futrue-order-type=OFFER";
         AddDeleteEditOfferService.getFutureOffer(param, function(result) {
             SystemService.hideLoading();
             var futureOfferData = utils.getObject(result.data['response-data'], 'customer');
