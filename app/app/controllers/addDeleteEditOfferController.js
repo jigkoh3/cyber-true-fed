@@ -108,7 +108,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.releteOfferList = [];
     $scope.addNewOfferLists = [];
 
-    $scope.showDetail = {};
     $scope.futureOfferList = [];
     $scope.tempFutureOfferList = [];
     $scope.dateNow = $filter('date')(new Date(), 'dd/MM/yyyy');
@@ -423,8 +422,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.paramForEdit = [];
     $scope.viewOfferDetail = function(item, action) {
         $scope.idSetDate = false;
-        $scope.showDetail = [];
-        $scope.showDetail = angular.copy(item);
         $scope.paramDetail = [];
         $scope.paramForEdit = [];
         $('#hModal').height(($(window).height()) - 235);
@@ -463,13 +460,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }
         }
 
-        // $scope.showDetail['effective-date'] = item['effective-date'];
-        // $scope.showDetail['expiration-date'] = item['expiration-date'];
-        // $scope.showDetail['type'] = item['type'];
-        $scope.paramForEdit['effective-date'] = $scope.showDetail['effective-date'];
-        $scope.paramForEdit['expiration-date'] = $scope.showDetail['expiration-date'];
-        $('#editOfferEffectiveDate').datepicker("setDate", $scope.showDetail['effective-date']);
-        $('#editOfferExpirationDate').datepicker("setDate", $scope.showDetail['expiration-date']);
+        $scope.paramForEdit['effective-date'] = item['effective-date'];
+        $scope.paramForEdit['expiration-date'] = item['expiration-date'];
+        // $('#editOfferEffectiveDate').datepicker("setDate", item['effective-date']);
+        $('#editOfferExpirationDate').datepicker("setDate", item['expiration-date']);
         setTimeout(function() {
             SystemService.calendarDatePicker();
         }, 1200);
@@ -523,7 +517,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.offerParam = [];
         $scope.paramDetail = [];
         $scope.paramForEdit = [];
-        $scope.showDetail = [];
     };
 
     // Submit form
@@ -2020,7 +2013,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.callGetFutureOffer = function() {
         SystemService.showLoading();
-        var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"];
+        var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"] + "futrue-order-type=OFFER";
         AddDeleteEditOfferService.getFutureOffer(param, function(result) {
             SystemService.hideLoading();
             var futureOfferData = utils.getObject(result.data['response-data'], 'customer');
