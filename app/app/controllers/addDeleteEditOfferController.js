@@ -508,11 +508,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.existingOffer[i]["expiration-date"] = $scope.paramForEdit['expiration-date'];
             }
         }
-        $scope.builtInOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'PRICEPLAN-BUILT-IN' });
-        $scope.regularOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'ADDITIONAL-OFFER' });
-        $scope.propoOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'PROPOSITION' });
-        $scope.discountOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'DISCOUNT' });
-        $scope.pooledOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'POOLED' });
+        $scope.setDefaultExistingOffer();
     };
 
     $scope.idSetDate = false;
@@ -1075,11 +1071,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.existingOffer[i].selected = false;
         }
         $scope.existingOffer = angular.copy($scope.existingOfferTemp);
-        $scope.builtInOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'PRICEPLAN-BUILT-IN' });
-        $scope.regularOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'ADDITIONAL-OFFER' });
-        $scope.propoOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'PROPOSITION' });
-        $scope.discountOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'DISCOUNT' });
-        $scope.pooledOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'POOLED' });
+        $scope.setDefaultExistingOffer();
     }
     $scope.addOffer = function() {
         $scope.enableAddOffer = true;
@@ -1174,6 +1166,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $('#editModal').click();
         } else {
             $scope.chkID = "";
+            for (var i = 0; i < $scope.existingOffer.length; i++) {
+                if ($scope.existingOffer[i]["product-name"] == item["product-name"] && $scope.existingOffer[i]["product-name"] == $scope.existingOfferTemp[i]["product-name"]) {
+                    $scope.existingOffer[i] = angular.copy($scope.existingOfferTemp[i]);
+                }
+            }
+            $scope.setDefaultExistingOffer();
         }
         $scope.chkBoxLength = item['offer-name'];
     }
@@ -2105,5 +2103,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $('#idBindDataAgain').click();
         });
     });
+
+    $scope.setDefaultExistingOffer = function() {
+        $scope.builtInOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'PRICEPLAN-BUILT-IN' });
+        $scope.regularOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'ADDITIONAL-OFFER' });
+        $scope.propoOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'PROPOSITION' });
+        $scope.discountOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'DISCOUNT' });
+        $scope.pooledOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'POOLED' });
+    };
 
 });
