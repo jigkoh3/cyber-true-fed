@@ -768,7 +768,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="selectedOffer.group=='ADDITIONAL'&& radioOffer" style="padding: 20px;">
+                    <div ng-show="selectedOffer.group=='ADDITIONAL'&& radioOffer && selectedOffer['parameter-specifications'].length > 0" style="padding: 20px;">
                         <div class="form-group row" ng-repeat="item in selectedOffer['parameter-specifications']">
                             <div class="col-xs-1">
                             </div>

@@ -1067,6 +1067,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.futureOfferList = angular.copy($scope.tempFutureOfferList);
         $scope.existingOffer = angular.copy($scope.existingOfferTemp);
         $scope.setDefaultExistingOffer();
+        $scope.addNewOfferLists = [];
     }
     $scope.addOffer = function() {
         $scope.enableAddOffer = true;
