@@ -223,7 +223,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.deleteRegulaOfferList = function(item) {
         for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
-            if (item['offer-name'] == $scope.addNewOfferLists[i]['offer-name']) {
+            if (item.guID == $scope.addNewOfferLists[i].guID) {
                 $scope.addNewOfferLists.splice(i, 1);
                 break;
             }
@@ -1297,6 +1297,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.searchOffer = function(offerGroup) {
         SystemService.showLoading();
         $scope.txtSearchOffer = "";
+        $scope.currentPage = 1;
         $scope.radioOffer = "";
         $scope.disableSubmitAddOffer = true;
         $scope.addType = offerGroup;
