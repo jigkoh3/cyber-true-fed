@@ -635,17 +635,17 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="row" ng-if="addOfferLists.length == 0">
-                            <div class="col-md-12" align="center">
-                                <h3 style="color:red; text-align:center;">*ไม่พบข้อมูล Offer</h3>
-                            </div>
-                        </div>
-                        <div class="row" ng-if="pooledOfferType == '' && addOfferType.value == 'POOLING'">
-                            <div class="col-md-12" align="center">
-                                <h3 style="color:red; text-align:center;">*กรุณาระบุ Pooled Offer</h3>
-                            </div>
-                        </div>
                     </div>
+                    <!-- <div class="row" ng-if="addOfferLists.length == 0">
+                        <div class="col-md-12" align="center">
+                            <h3 style="color:red; text-align:center;">*ไม่พบข้อมูล Offer</h3>
+                        </div>
+                    </div> -->
+                    <!-- <div class="row" ng-if="pooledOfferType == '' && addOfferType.value == 'POOLING'">
+                        <div class="col-md-12" align="center">
+                            <h3 style="color:red; text-align:center;">*กรุณาระบุ Pooled Offer</h3>
+                        </div>
+                    </div> -->
                     <!-- offer detail -->
                     <div ng-show="selectedOffer.group=='CUG'&& radioOffer">
                         <br>
@@ -773,7 +773,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="selectedOffer.group=='ADDITIONAL'&& radioOffer && selectedOffer['parameter-specifications'].length > 0" style="padding: 20px;">
+                    <div ng-show="(selectedOffer.group=='ADDITIONAL' || selectedOffer.group=='POOLING') && radioOffer && selectedOffer['parameter-specifications'].length > 0" style="padding: 20px;">
                         <div class="form-group row" ng-repeat="item in selectedOffer['parameter-specifications']">
                             <div class="col-xs-1">
                             </div>
@@ -886,179 +886,6 @@
                                 <div class="col-xs-2">
                                 </div>
                             </div> -->
-                    </div>
-                    <div ng-show="selectedOffer.group=='POOLING' && radioOffer" style="padding: 20px;">
-                            <td colspan="6" class="text-center">
-                                <div ng-show="addOfferType=='POOLING'">
-                                    <div ng-show="parameter.Volume != 'hide'">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Volume cap max <span style="color:red;">*</span> </label>
-                                            <div class="col-md-6" style="width:auto">
-                                                <select class="form-control" id="selectVolume" ng-init="saveParamData.Volume=parameter.Volume" ng-model="parameter.Volume" ng-change="saveParamData.Volume=parameter.Volume">
-                                                    <option value="-2">ใช้ค่า Default จากระบบ</option>
-                                                    <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
-                                                    <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
-                                                    <option value="0">Not Allow</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input type="text" id="txtVolume" ng-show="parameter.Volume>=1 || parameter.Volume == ''" ng-model="saveParamData.Volume" ng-numeric="isNumberVolume" placeholder="" maxlength="10" class="form-control" style="width:110px;">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-3 hidden-sm">
-                                            </div>
-                                            <div class="col-md-5 hidden-sm">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <span ng-span-numeric="isNumberVolume" class="hide" style="color:red;">
-                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                                    </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Volume cap max UOM <span style="color:red;">*</span> </label>
-                                            <div class="col-md-3">
-                                                <select class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['volumeCapMaxUOMCombo']" ng-model="capMaxParameterList['volume-capmax-uom']" ng-disabled="parameter.Volume=='null' || parameter.Volume=='0' || parameter.Volume=='-2' || parameter.Volume=='-1'"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    &nbsp;
-                                    <div ng-show="parameter.Monetary != 'hide'">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Monetary cap max <span style="color:red;">*</span> </label>
-                                            <div class="col-md-6" style="width:auto">
-                                                <select class="form-control" id="selectMonetary" ng-init="saveParamData.Monetary=parameter.Monetary" ng-model="parameter.Monetary" ng-change="saveParamData.Monetary=parameter.Monetary">
-                                                    <option value="-2">ใช้ค่า Default จากระบบ</option>
-                                                    <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
-                                                    <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
-                                                    <option value="0">Not Allow</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input type="text" id="txtMonetary" ng-show="parameter.Monetary>=1 || parameter.Monetary==''" ng-model="saveParamData.Monetary" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberMonetary">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-3 hidden-sm">
-                                            </div>
-                                            <div class="col-md-5 hidden-sm">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <span ng-span-numeric="isNumberMonetary" class="hide" style="color:red;">
-                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                                    </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Monetary cap max UOM <span style="color:red;">*</span> </label>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" readonly="readonly" value="Baht" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    &nbsp;
-                                    <div ng-show="parameter.Occurrence != 'hide'">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Occurrence cap max <span style="color:red;">*</span> </label>
-                                            <div class="col-md-6" style="width:auto">
-                                                <select class="form-control" id="selectOccurrence" ng-init="saveParamData.Occurrence=parameter.Occurrence" ng-model="parameter.Occurrence" ng-change="saveParamData.Occurrence=parameter.Occurrence">
-                                                    <option value="-2">ใช้ค่า Default จากระบบ</option>
-                                                    <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
-                                                    <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
-                                                    <option value="0">Not Allow</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input type="text" id="txtOccurrence" ng-show="parameter.Occurrence>=1 || parameter.Occurrence == ''" ng-model="saveParamData.Occurrence" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberOccurrence">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-3 hidden-sm">
-                                            </div>
-                                            <div class="col-md-5 hidden-sm">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <span ng-span-numeric="isNumberOccurrence" class="hide" style="color:red;">
-                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                                    </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Occurrence cap max UOM <span style="color:red;">*</span> </label>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" readonly="readonly" value="Occurrence" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    &nbsp;
-                                    <div ng-show="parameter.Duration != 'hide'">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Duration cap max <span style="color:red;">*</span> </label>
-                                            <div class="col-md-6" style="width:auto">
-                                                <select class="form-control" id="selectDuration" ng-init="saveParamData.Duration=parameter.Duration" ng-model="parameter.Duration" ng-change="saveParamData.Duration=parameter.Duration">
-                                                    <option value="-2">ใช้ค่า Default จากระบบ</option>
-                                                    <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
-                                                    <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
-                                                    <option value="0">Not Allow</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input type="text" id="txtDuration" ng-show="parameter.Duration>=1 || parameter.Duration == ''" ng-model="saveParamData.Duration" placeholder="" maxlength="10" class="form-control" style="width:110px;" ng-numeric="isNumberDuration">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-3 hidden-sm">
-                                            </div>
-                                            <div class="col-md-5 hidden-sm">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <span ng-span-numeric="isNumberDuration" class="hide" style="color:red;">
-                                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                                    </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" style="text-align:right">Duration cap max UOM <span style="color:red;">*</span> </label>
-                                            <div class="col-md-3">
-                                                <select class="form-control" ng-options="item.id as item.value for item in capMaxParameterList['durationCapMaxUOMCombo']" ng-model="capMaxParameterList['duration-capmax-uom']" ng-disabled="parameter.Duration=='null' || parameter.Duration=='0' || parameter.Duration=='-2'  || parameter.Duration=='-1'"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    &nbsp;
-                                    <div class="form-group row">
-                                        <!-- <div class="col-xs-1">
-                                            </div> -->
-                                        <div class="col-xs-3" style=" text-align: right; top: 5px;">
-                                            <label>Effective Date</label><span style="color: red">*</span>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <div class="form-group has-feedback">
-                                                <input name="birthDay" type="text" ng-model="cpStartDate" class="form-control date-picker dateFormat" maxlength="10" required>
-                                                <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-2">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <!-- <div class="col-xs-1">
-                                            </div> -->
-                                        <div class="col-xs-3" style=" text-align: right; top: 5px;">
-                                            <label>Expiration Date</label><span style="color: red">*</span>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <div class="form-group has-feedback">
-                                                <input name="birthDay" type="text" ng-model="cpExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
-                                                <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-2">
-                                        </div>
-                                    </div>
-                                    &nbsp;
-                                </div>
-                            </td>
                     </div>
                     <div ng-show="selectedOffer.group=='CONTRACT_PROPO' && radioOffer" style="padding: 20px;">
                             <div class="form-group row">

@@ -369,7 +369,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 break;
         }
 
-        if ($scope.selectedOffer.group == "DISCOUNT" || $scope.selectedOffer.group == "RELATED") {
+        if ($scope.selectedOffer.group == "DISCOUNT" || $scope.selectedOffer.group == "RELATED" || $scope.selectedOffer.group == "IDD" || $scope.selectedOffer.group == "IR") {
             $scope.disableSubmitAddOffer = false;
         } else {
             $scope.disableSubmitAddOffer = true;
@@ -420,9 +420,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         // });
         $('.hModal').height(($(window).height()) - 235);
         //$('.modal-backdrop').css('height', '200%');
-        if($scope.addOfferType.value != "POOLING"){
-            $scope.pooledOfferType = "";
-        };
+        $scope.pooledOfferType = "";
     };
     $scope.offerParam = [];
     $scope.paramDetail = [];
@@ -1300,16 +1298,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.addType = "";
     $scope.pooledOfferType = "";
     $scope.searchOffer = function(offerGroup) {
+        $scope.addType = offerGroup;
         if($scope.addType == '' && $scope.addOfferType.value == "POOLING" && !$scope.pooledOfferType) {
             $scope.addOfferLists = [];
             return;
         }
-        SystemService.showLoading();
         $scope.txtSearchOffer = "";
         $scope.currentPage = 1;
         $scope.radioOffer = "";
         $scope.disableSubmitAddOffer = true;
-        $scope.addType = offerGroup;
         $scope.clearAddNewOfferDate();
         if ($scope.level == "SUBSCRIBER") {
             $scope.serviceLevel = "C";
@@ -1337,6 +1334,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
 
         console.log(searchParam);
+        SystemService.showLoading();
         AddDeleteEditOfferService.searchOffer(searchParam, $scope.addOfferType.value, function(result) {
             // console.log(result);
             SystemService.hideLoading();

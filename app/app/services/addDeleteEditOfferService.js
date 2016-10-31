@@ -188,7 +188,7 @@
                 var url = "/app/jsonFiles/Offer/search-offer-ir.json"
             } else if (type == 'IDD') {
                 var url = "/app/jsonFiles/Offer/search-offer-idd.json"
-            } else if (type == 'ADDITIONAL') {
+            } else if (type == 'ADDITIONAL'||type == 'POOLING') {
                 var url = "/app/jsonFiles/Offer/search-offer-additional.json"
             } else if (type == 'RELATED') {
                 var url = "/app/jsonFiles/Offer/search-related-offer-priceplan2.json"
