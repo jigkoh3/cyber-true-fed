@@ -491,8 +491,8 @@
                 </div> -->
                 <div class="col-md-12 form-buttons">
                     <div class="form-group">
-                        <input type="submit" value="ยืนยัน" class="btn btn-success" ng-click="onChkEditOffer();" ng-disabled="!isCustomerProfile" href="#modalSubmit" data-toggle="modal" />
-                        <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
+                        <input type="button" value="ยืนยัน" class="btn btn-success" ng-click="onChkEditOffer();" ng-disabled="!isCustomerProfile" href="#modalSubmit" data-toggle="modal" />
+                        <input type="button" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
                     </div>
                 </div>
             </div>
@@ -1243,8 +1243,8 @@
                 </div>
             </div>
             <div class="modal-footer" style=" padding-top: 0;">
-                <button class="btn btn-success" data-dismiss="modal" ng-disabled="disableSubmitAddOffer" ng-click="validateOffer(selectedOffer);">ตกลง</button>
-                <button class="btn btn-cancel" data-dismiss="modal" ng-click="onClearRadio('radioOffer');">ยกเลิก</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-disabled="disableSubmitAddOffer" ng-click="validateOffer(selectedOffer);">ตกลง</button>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="onClearRadio('radioOffer');">ยกเลิก</button>
             </div>
         </div>
     </div>
@@ -1818,8 +1818,8 @@
             </div>
             <div class="modalOffer-footer" style="">
                 <div class="col-xs-12">
-                    <button class="btn btn-success" data-dismiss="modal" ng-click="disableEditOffer(); unChk(editOfferCode); editNewOffer();" style="margin-top: -0px;" ng-disabled="disableSubmitAddOffer">ตกลง</button>
-                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="unChk(editOfferCode);" style="margin-top: -0px;">ปิด</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="disableEditOffer(); unChk(editOfferCode); editNewOffer();" style="margin-top: -0px;" ng-disabled="disableSubmitAddOffer">ตกลง</button>
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="unChk(editOfferCode);" style="margin-top: -0px;">ปิด</button>
                 </div>
                 <br>
                 <br>
@@ -1928,8 +1928,8 @@
             </div>
             <div class="modalOffer-footer" style="">
                 <div class="col-xs-12">
-                    <button class="btn btn-success" data-dismiss="modal" ng-click="unChk(viewOffer['product-name']);onEditCurrentOffer(viewOffer['product-name']);" style="margin-top: -0px;" ng-disabled="!modelChange">ตกลง</button>
-                    <button class="btn btn-cancel" data-dismiss="modal" ng-click="unChk(viewOffer['product-name']);onCancelViewOffer();" style="margin-top: -0px;">ปิด</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="unChk(viewOffer['product-name']);onEditCurrentOffer(viewOffer['product-name']);" style="margin-top: -0px;" ng-disabled="!modelChange">ตกลง</button>
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="unChk(viewOffer['product-name']);onCancelViewOffer();" style="margin-top: -0px;">ปิด</button>
                 </div>
                 <br>
                 <br>
@@ -2000,8 +2000,8 @@
             </div>
             <div class="modalOffer-footer" style=" padding-top: 0;">
                 <br>
-                <button class="btn btn-success" data-dismiss="modal" ng-click="confirmEditFutureOffer();" style="margin-top: -0px;" ng-disabled="disableSubmitEditFutureOffer">ตกลง</button>
-                <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelEditFutureOffer();" style="margin-top: -0px;">ปิด</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="confirmEditFutureOffer();" style="margin-top: -0px;" ng-disabled="disableSubmitEditFutureOffer">ตกลง</button>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelEditFutureOffer();" style="margin-top: -0px;">ปิด</button>
             </div>
         </div>
     </div>
@@ -2095,7 +2095,7 @@
             </div>
             <div class="modalOffer-footer" style=" padding-top: 0;">
                 <!-- <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button> -->
-                <button class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelViewOffer();" style="margin-top: -0px;">ปิด</button>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelViewOffer();" style="margin-top: -0px;">ปิด</button>
             </div>
         </div>
     </div>
