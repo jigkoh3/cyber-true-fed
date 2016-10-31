@@ -420,6 +420,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         // });
         $('.hModal').height(($(window).height()) - 235);
         //$('.modal-backdrop').css('height', '200%');
+        if($scope.addOfferType.value != "POOLING"){
+            $scope.pooledOfferType = "";
+        };
     };
     $scope.offerParam = [];
     $scope.paramDetail = [];
@@ -1238,7 +1241,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.regularOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'ADDITIONAL-OFFER' });
                 $scope.propoOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'PROPOSITION' });
                 $scope.discountOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'DISCOUNT' });
-                $scope.pooledOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'POOLED' });
+                $scope.pooledOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'offer-group': 'POOLED' });
                 $scope.priceplan = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'offer-group': 'PRICEPLAN' });
                 if ($scope.priceplan.length > 0) {
                     $scope.data.header["currpriceplan"] = $scope.priceplan[0]['product-name'] + ":" + $scope.priceplan[0]['product-description'];
@@ -1295,7 +1298,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.addType = "";
+    $scope.pooledOfferType = "";
     $scope.searchOffer = function(offerGroup) {
+        if($scope.addType == '' && $scope.addOfferType.value == "POOLING" && !$scope.pooledOfferType) {
+            $scope.addOfferLists = [];
+            return;
+        }
         SystemService.showLoading();
         $scope.txtSearchOffer = "";
         $scope.currentPage = 1;
@@ -1321,6 +1329,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else {
             if ($scope.addOfferType.value == 'RELATED') {
                 var searchParam = "current-priceplan=" + $scope.priceplan[0]['product-name'] + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel;
+            } else if ($scope.addOfferType.value == 'POOLING' && $scope.pooledOfferType) {
+                var searchParam = "current-priceplan=" + $scope.priceplan[0]['product-name'] + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&current-pooled=" + $scope.pooledOfferType;
             } else {
                 var searchParam = "offer-group=" + $scope.addOfferType.value + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel;
             }

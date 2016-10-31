@@ -537,12 +537,12 @@
                     &nbsp;
                     <div class="row" ng-show="addOfferType.value=='POOLING'">
                         <div class="col-md-4 text-right" style="margin-top: 9px;">
-                            <b> Pooled Offer</b>
+                            <b>Pooled Offer</b>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-control" ng-model="pooledOfferType" id="pooledOfferType" ng-change="">
+                            <select class="form-control" ng-model="pooledOfferType" id="pooledOfferType" ng-change="searchOffer('')">
                                 <option value="">--กรุณาระบุ--</option>
-                                <option value="Pooled1">Pooled1</option>
+                                <option ng-repeat="item in pooledOffer" value="{{item['product-name']}}">{{item['product-name']}}</option>
                             </select>
                         </div>
                         <div class="col-md-4"></div>
@@ -576,7 +576,7 @@
                     </div>
                     &nbsp;
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddOffer" ng-model="tableAddOffer" ng-show="addOfferLists.length > 0">
+                        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableAddOffer" ng-model="tableAddOffer" ng-if="addOfferLists.length > 0">
                             <thead>
                                 <tr class="well">
                                     <th class="contentTbHeader">
@@ -635,9 +635,14 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="row" ng-show="addOfferLists.length == 0">
+                        <div class="row" ng-if="addOfferLists.length == 0">
                             <div class="col-md-12" align="center">
                                 <h3 style="color:red; text-align:center;">*ไม่พบข้อมูล Offer</h3>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="pooledOfferType == '' && addOfferType.value == 'POOLING'">
+                            <div class="col-md-12" align="center">
+                                <h3 style="color:red; text-align:center;">*กรุณาระบุ Pooled Offer</h3>
                             </div>
                         </div>
                     </div>
