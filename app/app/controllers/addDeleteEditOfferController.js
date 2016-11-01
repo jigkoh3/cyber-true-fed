@@ -479,8 +479,19 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "product-description": item['product-description'],
             "effective-date": item['effective-date'],
             "expiration-date": item['expiration-date'],
-            "offer-group": item['offer-group']
+            "offer-group": item['offer-group'],
+            "offer-instance-id": item["product-properties"]["OFFER-INSTANCE-ID"],
+            "CONTRACT-START-DATE": item["product-properties"]["CONTRACT-START-DATE"],
+            "CONTRACT-EXPIRATION-DATE": item["product-properties"]["CONTRACT-EXPIRATION-DATE"],
+            "original-data": item,
+            "param": {
+                "TR_CONTRACT_NUMBER": $filter('filter')($scope.paramDetail, "TR_CONTRACT_NUMBER"),
+                "TR_CONTRACT_TERM": $filter('filter')($scope.paramDetail, "TR_CONTRACT_TERM"),
+                "TR_CONTRACT_FEE": $filter('filter')($scope.paramDetail, "TR_CONTRACT_FEE"),
+                "TR_CONTRACT_REMARK": $filter('filter')($scope.paramDetail, "TR_CONTRACT_REMARK")
+            }
         }
+        console.log($scope.viewOffer);
         $scope.modelChange = false;
 
         setTimeout(function() {
@@ -2235,13 +2246,27 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.listNewOffer = function(){
+        // var newOffer = "";
+        // if($scope.addNewOfferLists.length > 0){
+        //     newOffer = $scope.addNewOfferLists[0]["name"];
+        //     for(var i = 1; i < $scope.addNewOfferLists.length; i++) {
+        //         newOffer += ", " + $scope.addNewOfferLists[i]["name"];
+        //     }
+        // }
+        // return newOffer;
+
         var newOffer = "";
+        var effectiveDate = "";
+        var effectiveDates = "";
         if($scope.addNewOfferLists.length > 0){
-            newOffer = $scope.addNewOfferLists[0]["name"];
+            effectiveDate =  $scope.addNewOfferLists[0]['param']['effective-date-value'] ? $scope.addNewOfferLists[0]['param']['effective-date-value'] : $scope.setDateNow; 
+            newOffer = $scope.addNewOfferLists[0]["name"] + ":" + $scope.addNewOfferLists[0]["description"] + "  มีผลเมื่อ " + effectiveDate;
             for(var i = 1; i < $scope.addNewOfferLists.length; i++) {
-                newOffer += "," + $scope.addNewOfferLists[i]["name"];
+                effectiveDates =  $scope.addNewOfferLists[i]['param']['effective-date-value'] ? $scope.addNewOfferLists[i]['param']['effective-date-value'] : $scope.setDateNow; 
+                newOffer += ",\n" + $scope.addNewOfferLists[i]["name"] + ":" + $scope.addNewOfferLists[i]["description"] + "  มีผลเมื่อ " + effectiveDates;
             }
         }
+        // console.log(newOffer);
         return newOffer;
     };
 

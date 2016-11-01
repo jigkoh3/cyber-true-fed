@@ -1673,6 +1673,20 @@
                 <div class="hModal" style="overflow:auto;overflow-x:hidden;">
                     <div calss="form-group">
                         <div class="row">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-3 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
+                                <label>Offer Instance Id</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="viewOfferCode" ng-model="viewOffer['offer-instance-id']" class="form-control" style="border-style: none; background: none;" disabled>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>
+                    <div calss="form-group">
+                        <div class="row">
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-2 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
@@ -1683,7 +1697,7 @@
                             </div>
                             <div class="col-md-3">
                             </div>
-                        </div> &nbsp;
+                        </div>
                     </div>
                     <div calss="form-group">
                         <div class="row">
@@ -1696,8 +1710,7 @@
                                 <input type="text" id="viewOfferDesc" ng-model="viewOffer['product-description']" class="form-control" style="border-style: none; background: none;" disabled>
                             </div>
                         </div>
-                    </div> &nbsp;
-                    <br>
+                    </div>
                     <br>
                     <div ng-repeat="item in paramForEdit" ng-show="paramForEdit">
                         <div calss="form-group">
@@ -1840,7 +1853,7 @@
 <!-- End modal-edit-future-offer -->
 
 <!-- Start modal view offer  -->
-<div id="modal-view-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false" style="overflow-y: hidden;">
+<div id="modal-view-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal_pdf_width modal-lg">
         <div class="modal-content">
             &nbsp;&nbsp;
@@ -1850,6 +1863,20 @@
             </div>
             <div class="modal-body">
                 <div class="hModal" style="overflow:auto;overflow-x:hidden;">
+                    <div calss="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-3 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
+                                <label>Offer Instance Id</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="viewOfferCode" ng-model="viewOffer['offer-instance-id']" class="form-control" style="border-style: none; background: none;" disabled>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>
                     <div calss="form-group">
                         <div class="row">
                             <div class="col-md-3">
@@ -1862,7 +1889,7 @@
                             </div>
                             <div class="col-md-3">
                             </div>
-                        </div> &nbsp;
+                        </div>
                     </div>
                     <div calss="form-group">
                         <div class="row">
@@ -1875,10 +1902,9 @@
                                 <input type="text" id="viewOfferDesc" ng-model="viewOffer['product-description']" class="form-control" style="border-style: none; background: none;" disabled>
                             </div>
                         </div>
-                    </div> &nbsp;
+                    </div>
                     <br>
-                    <br>
-                    <div ng-repeat="item in paramDetail" ng-show="paramDetail">
+                    <div ng-repeat="item in paramDetail" ng-show="paramDetail && viewOffer['offer-group']!='PROPOSITION'">
                         <div calss="form-group">
                             <div class="row">
                                 <div class="col-md-1">
@@ -1894,7 +1920,136 @@
                             </div> &nbsp;
                         </div>
                     </div>
-                    <div calss="form-group" ng-hide="viewOffer['offer-group']=='PROPOSITION'">
+                    <div ng-if="viewOffer['offer-group']=='PROPOSITION'">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style="top: 5px;">
+                                    <label>Proposition Code</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input ng-disabled="true" type="text" ng-model="viewOffer['original-data']['product-name']" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
+                                    <label>Proposition Description</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input ng-disabled="true" type="text" ng-model="viewOffer['original-data']['product-description']" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
+                                    <label>Contract Number</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" ng-model="viewOffer['param']['TR_CONTRACT_NUMBER'][0]['value']" class="form-control" ng-number-only="viewCN" maxlength="10" ng-keyup="validateAddCp()" disabled>
+                                    <span ng-span-number-only="viewCN" class="hide" style="color:red;">
+                                                                กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                            </span>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
+                                    <label>Term</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" ng-model="viewOffer['param']['TR_CONTRACT_TERM'][0]['value']" class="form-control" ng-number-only="viewTerm" disabled>
+                                    <span ng-span-number-only="viewTerm" class="hide" style="color:red;">
+                                                                กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                            </span>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
+                                    <label>Fee</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" ng-model="viewOffer['param']['TR_CONTRACT_FEE'][0]['value']" class="form-control" id="cpFee" ng-number-only="viewFee" disabled>
+                                    <span ng-span-number-only="viewFee" class="hide" style="color:red;">
+                                                                กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                                            </span>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
+                                    <label>Effective Date</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="has-feedback">
+                                        <input type="text" ng-model="viewOffer['CONTRACT-START-DATE']" class="form-control date-picker-today dateFormat" maxlength="10" ng-disabled="true">
+                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
+                                    <label>Expiration Date</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="has-feedback">
+                                        <input type="text" ng-model="viewOffer['CONTRACT-EXPIRATION-DATE']" class="form-control date-picker-today dateFormat" maxlength="10" disabled>
+                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
+                                    <label>Remark</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" ng-model="viewOffer['param']['TR_CONTRACT_REMARK'][0]['value']" class="form-control" disabled>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div calss="form-group" ng-if="viewOffer['offer-group']!='PROPOSITION'">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
@@ -1902,13 +2057,13 @@
                                 <label>Effective Date</label>
                             </div>
                             <div class="col-md-3">
-                                <input ng-disabled="true" type="text" id="adViewOffer['effective-date']" ng-model="viewOffer['effective-date']" class="form-control">
+                                <input ng-disabled="true" type="text" ng-model="viewOffer['effective-date']" class="form-control">
                             </div>
                             <div class="col-md-3">
                             </div>
                         </div> &nbsp;
                     </div>
-                    <div calss="form-group" ng-hide="viewOffer['offer-group']=='PROPOSITION'">
+                    <div calss="form-group" ng-if="viewOffer['offer-group']!='PROPOSITION'">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
@@ -1916,7 +2071,7 @@
                                 <label>Expiration Date</label>
                             </div>
                             <div class="col-md-3">
-                                <input ng-disabled="true" type="text" id="adViewOffer['expiration-date']" ng-model="viewOffer['expiration-date']" class="form-control">
+                                <input ng-disabled="true" type="text" ng-model="viewOffer['expiration-date']" class="form-control">
                             </div>
                             <div class="col-md-3">
                             </div>
@@ -1924,10 +2079,14 @@
                     </div> 
                 </div>
             </div>
-            <div class="modalOffer-footer" style=" padding-top: 0;">
+            <div class="modalOffer-footer">
+                <div class="col-xs-12">
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelViewOffer();" style="margin-top: -0px;">ปิด</button>    
+                </div>
                 <!-- <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button> -->
-                <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelViewOffer();" style="margin-top: -0px;">ปิด</button>
             </div>
+            <br>
+            <br>
         </div>
     </div>
 </div>
