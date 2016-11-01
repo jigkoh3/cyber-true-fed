@@ -2239,7 +2239,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         if($scope.addNewOfferLists.length > 0){
             newOffer = $scope.addNewOfferLists[0]["name"];
             for(var i = 1; i < $scope.addNewOfferLists.length; i++) {
-                newOffer += "," + $scope.addNewOfferLists[i]["name"];
+                newOffer += ", " + $scope.addNewOfferLists[i]["name"];
             }
         }
         return newOffer;
