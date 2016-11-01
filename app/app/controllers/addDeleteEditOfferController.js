@@ -42,9 +42,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.offerExpirationDate = "unlimited";
     $scope.saveParamData = {};
     //paging
-    $scope.currentPage = 1;
-    $scope.pageSize = 10;
-
     $scope.currentPage_cug = 1;
     $scope.pageSize_cug = 5;
     //end paging
@@ -2240,9 +2237,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.listNewOffer = function(){
         var newOffer = "";
         if($scope.addNewOfferLists.length > 0){
-            newOffer = $scope.addNewOfferLists[0]["name"] + ":" + $scope.addNewOfferLists[0]["description"];
+            newOffer = $scope.addNewOfferLists[0]["name"];
             for(var i = 1; i < $scope.addNewOfferLists.length; i++) {
-                newOffer += "/n" + $scope.addNewOfferLists[i]["name"] + ":" + $scope.addNewOfferLists[i]["description"];
+                newOffer += "," + $scope.addNewOfferLists[i]["name"];
             }
         }
         return newOffer;
