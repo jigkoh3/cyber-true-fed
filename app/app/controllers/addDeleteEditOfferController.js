@@ -25,6 +25,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
 
     // Initialize variables
+    $scope.isCardValueData = false;
     $scope.divID = 'addDeleteEditOfferContent';
     $scope.subNoLength = 10;
     $scope.simSerialLength = 18;
@@ -740,82 +741,160 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         };
     };
 
-    // $scope.openPDFDialog = function() {
+    $scope.openPDFDialog = function() {
 
-    //     if (!validateInput()) {
-    //         return;
-    //     }
+        if (!validateInput()) {
+            return;
+        }
 
-    //     SystemService.showLoading();
+        var cardValueData = {
+            //NEW---
+            "photoIdCard": "",
 
-    //     var customerType = 'O';
-    //     if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
-    //         customerType = 'Y';
-    //     }
+            //SC=Scan
+            //SN=Snap
+            "photoType": "SN",
+            "titleEn": "",
+            "firstnameEn": "",
+            "lastnameEn": "",
+            "expireDay": "",
+            "birthDay": "",
+            "issueDay": "",
 
-    //     var data = {
-    //         'func': 'CMS',
-    //         'header': {
-    //             'title-code': customerType == 'Y' ? "" : $scope.data.customerProfile['title-code'],
-    //             'title': $scope.data.customerProfile['title'],
-    //             'firstname': $scope.data.customerProfile['firstname'],
-    //             'lastname': $scope.data.customerProfile['lastname'],
-    //             'customerType': customerType,
-    //             'authorizeFullName': $('#authorizeFullName').val(),
-    //             'id-number': $scope.data.customerProfile['id-number'],
-    //             'product-id-number': $scope.SubNo,
-    //             'ouId': $scope.data.simData['ouId'],
-    //             'orderId': orderData.orderId,
-    //             'photo': $scope.varPhoto,
+            "titleTh": "",
+            "firstnameTh": "",
+            "lastnameTh": "",
 
-    //             'photoIdCard': '',
-    //             'photoType': 'SN',
-    //             'titleEn': '',
-    //             'firstnameEn': '',
-    //             'lastnameEn': '',
-    //             'expireDay': $scope.data.customerProfile['id-expire-date'],
-    //             'birthDay': $scope.data.customerProfile['birthdate'],
-    //             'issueDay': '',
+            //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+            "homeNumber": "",
+            "moo": "",
+            "trok": "",
+            "soi": "",
+            "road": "",
+            "district": "",
+            "amphur": "",
+            "province": ""
+                //NEW---
+        };
+        if ($scope.isCardValueData) {
+            cardValueData.photoType = "SC";
+            cardValueData.photoIdCard = $scope.cardInfo.CitizenID;
+            cardValueData = {
+                //NEW---
+                "photoIdCard": $scope.cardInfo.Photo,
 
-    //             'homeNumber': '',
-    //             'moo': '',
-    //             'trok': '',
-    //             'soi': '',
-    //             'road': '',
-    //             'district': '',
-    //             'amphur': '',
-    //             'province': ''
-    //         },
-    //         'body': generateOrderRequest()
-    //     };
+                //SC=Scan
+                //SN=Snap
+                "photoType": "SC",
+                "titleEn": $scope.cardInfo.PrefixEN,
+                "firstnameEn": $scope.cardInfo.FirstNameEN,
+                "lastnameEn": $scope.cardInfo.LastNameEN,
+                "expireDay": $scope.cardInfo.ExpireDay,
+                "birthDay": $scope.cardInfo.BirthDay,
+                "issueDay": $scope.cardInfo.IssueDay,
 
-    //     console.log(data);
-    //     SystemService.generatePDF(data, function(url) {
-    //         SystemService.hideLoading();
+                "titleTh": $scope.cardInfo.PrefixTH,
+                "firstnameTh": $scope.cardInfo.FirstNameTH,
+                "lastnameTh": $scope.cardInfo.LastNameTH,
 
-    //         SystemService.printPDF(url);
-    //         //printObjectPdf();
+                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                "homeNumber": $scope.cardInfo.HomeNumber,
+                "moo": $scope.cardInfo.Moo,
+                "trok": $scope.cardInfo.Trok,
+                "soi": $scope.cardInfo.Soi,
+                "road": $scope.cardInfo.Road,
+                "district": $scope.cardInfo.District,
+                "amphur": $scope.cardInfo.Amphur,
+                "province": $scope.cardInfo.Province
+                    //NEW---
+            };
 
-    //         setTimeout(function() {
-    //             $('#modalPDFOpener').click();
+        }
 
-    //             setTimeout(function() {
-    //                 var srcPDF = url;
-    //                 document.getElementById('iframePDF').src = url + '?clearData=N';
-    //                 if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-    //                     setTimeout(function() {
-    //                         printObjectPdf();
-    //                     }, 2000);
-    //                     setTimeout(function() {
-    //                         document.getElementById('iframePDF').src = srcPDF
-    //                     }, 2500);
-    //                 }
-    //             }, 500);
+        SystemService.showLoading();
+
+        var customerType = 'O';
+        if ($scope.data.simData['account-category'] === 'B' || $scope.data.simData['account-category'] === 'C') {
+            customerType = 'Y';
+        }
+
+        var data = {
+            'func': 'OFF',
+            'header': {
+                'title-code': customerType == 'Y' ? "" : $scope.data.customerProfile['title-code'],
+                'title': $scope.data.customerProfile['title'],
+                'firstname': $scope.data.customerProfile['firstname'],
+                'lastname': $scope.data.customerProfile['lastname'],
+                'customerType': customerType,
+                'authorizeFullName': $('#authorizeFullName').val(),
+                'id-number': $scope.data.customerProfile['id-number'],
+                'product-id-number': $scope.SubNo,
+                'ouId': $scope.data.simData['ouId'],
+                'orderId': orderData.orderId,
+                'photo': $scope.varPhoto,
+
+                //NEW---
+                "photoIdCard": cardValueData["photoIdCard"],
+
+                //SC=Scan
+                //SN=Snap
+                "photoType": cardValueData["photoType"],
+                "titleEn": cardValueData["titleEn"],
+                "firstnameEn": cardValueData["firstnameEn"],
+                "lastnameEn": cardValueData["lastnameEn"],
+
+                "titleTh": cardValueData["titleTh"],
+                "firstnameTh": cardValueData["firstnameTh"],
+                "lastnameTh": cardValueData["lastnameTh"],
+
+                "expireDay": cardValueData["expireDay"],
+                "birthDay": cardValueData["birthDay"],
+                "issueDay": cardValueData["issueDay"],
+
+                //HomeNumber : '91',Moo : '10',Trok : '',Soi : '',Road : '',District : 'กังแอน',Amphur : 'ปราสาท',Province : 'สุรินทร์'"
+                "homeNumber": cardValueData["homeNumber"],
+                "moo": cardValueData["moo"],
+                "trok": cardValueData["trok"],
+                "soi": cardValueData["soi"],
+                "road": cardValueData["road"],
+                "district": cardValueData["district"],
+                "amphur": cardValueData["amphur"],
+                "province": cardValueData["province"]
+                    //NEW---
+            },
+            // 'body': generateOrderRequest()
+            'body': {
+                'newOffer': $scope.listNewOffer()
+            }
+        };
+
+        console.log(JSON.stringify(data));
+        SystemService.generatePDF(data, function(url) {
+            SystemService.hideLoading();
+
+            SystemService.printPDF(url);
+            //printObjectPdf();
+
+            setTimeout(function() {
+                $('#modalPDFOpener').click();
+
+                setTimeout(function() {
+                    var srcPDF = url;
+                    document.getElementById('iframePDF').src = url + '?clearData=N';
+                    if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                        setTimeout(function() {
+                            printObjectPdf();
+                        }, 2000);
+                        setTimeout(function() {
+                            document.getElementById('iframePDF').src = srcPDF
+                        }, 2500);
+                    }
+                }, 500);
 
 
-    //         }, 1000);
-    //     });
-    // };
+            }, 1000);
+        });
+    };
 
     $scope.confirmPrint = function() {
         SystemService.demo = true;
@@ -1299,7 +1378,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.pooledOfferType = "";
     $scope.searchOffer = function(offerGroup) {
         $scope.addType = offerGroup;
-        if($scope.addType == '' && $scope.addOfferType.value == "POOLING" && !$scope.pooledOfferType) {
+        if ($scope.addType == '' && $scope.addOfferType.value == "POOLING" && !$scope.pooledOfferType) {
             $scope.addOfferLists = [];
             return;
         }
@@ -2156,6 +2235,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.propoOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'PROPOSITION' });
         $scope.discountOffer = $filter('filter')($scope.existingOffer, { 'product-type': 'DISCOUNT' });
         $scope.pooledOffer = $filter('filter')($scope.existingOffer, { 'offer-group': 'POOLED' });
+    };
+
+    $scope.listNewOffer = function(){
+        var newOffer = "";
+        if($scope.addNewOfferLists.length > 0){
+            newOffer = $scope.addNewOfferLists[0]["name"] + ":" + $scope.addNewOfferLists[0]["description"];
+            for(var i = 1; i < $scope.addNewOfferLists.length; i++) {
+                newOffer += "/n" + $scope.addNewOfferLists[i]["name"] + ":" + $scope.addNewOfferLists[i]["description"];
+            }
+        }
+        return newOffer;
     };
 
 });
