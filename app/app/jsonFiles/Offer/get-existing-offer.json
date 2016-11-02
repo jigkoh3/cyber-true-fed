@@ -117,7 +117,7 @@
                 "is-softsuspend": false,
                 "offer-group": "ADDITIONAL",
                 "effective-date": "03/06/2016",
-                "expiration-date": "03/07/2020",
+                "expire-date": "03/07/2020",
                 "soc-type": "U"
             }, {
                 "product-category": "TMV",
@@ -166,8 +166,7 @@
                 "contract-term": "18",
                 "offer-group": "PROPOSITION",
                 "effective-date": "02/08/2015",
-                "expiration-date": "02/08/2018",
-                "expire-date": "",
+                "expire-date": "02/08/2018",
                 "soc-type": "U"
             }, {
                 "product-category": "TMV",
