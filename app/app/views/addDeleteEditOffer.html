@@ -74,7 +74,7 @@
                                             </button>
                                         </div>
                                         <div align="center" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="item.selected" style="cursor:pointer;">
+                                            <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;">
                                         </div>
                                     </td>
                                     <td class="col-xs-2 contentTb">
@@ -1786,8 +1786,8 @@
                                     <label>Contract Number</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" ng-model="viewOfferForEdit['param']['TR_CONTRACT_NUMBER'][0]['value']" class="form-control" ng-number-only="viewCN" maxlength="10" ng-keyup="validateAddCp()" disabled>
-                                    <span ng-span-number-only="viewCN" class="hide" style="color:red;">
+                                    <input type="text" ng-model="viewOfferForEdit['param']['TR_CONTRACT_NUMBER'][0]['value']" class="form-control" ng-number-only="editCN" maxlength="10" ng-keyup="">
+                                    <span ng-span-number-only="editCN" class="hide" style="color:red;">
                                         กรุณากรอกเฉพาะตัวเลขเท่านั้น
                                     </span>
                                 </div>
@@ -1838,7 +1838,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="has-feedback">
-                                        <input type="text" ng-model="viewOfferForEdit['CONTRACT-START-DATE']" class="form-control date-picker-today dateFormat" maxlength="10" ng-disabled="true">
+                                        <input type="text" ng-model="viewOfferForEdit['CONTRACT-START-DATE']" class="form-control date-picker-today dateFormat" maxlength="10" ng-disabled="viewOfferForEdit['CONTRACT-START-DATE'].length > 0">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1855,7 +1855,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="has-feedback">
-                                        <input type="text" ng-model="viewOfferForEdit['CONTRACT-EXPIRATION-DATE']" class="form-control date-picker-today dateFormat" maxlength="10" disabled>
+                                        <input type="text" ng-model="viewOfferForEdit['CONTRACT-EXPIRATION-DATE']" class="form-control date-picker-today dateFormat" maxlength="10" ng-disabled="viewOfferForEdit['CONTRACT-EXPIRATION-DATE'].length > 0">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1871,7 +1871,7 @@
                                     <label>Remark</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" ng-model="viewOfferForEdit['param']['TR_CONTRACT_REMARK'][0]['value']" class="form-control" disabled>
+                                    <input type="text" ng-model="viewOfferForEdit['param']['TR_CONTRACT_REMARK'][0]['value']" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
