@@ -1338,8 +1338,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     if (result.data['response-data']['customer']['installed-products'][i]['effective-date']) {
                         result.data['response-data']['customer']['installed-products'][i]['effective-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['effective-date'], 'TH');
                     }
-                    if (result.data['response-data']['customer']['installed-products'][i]['expiration-date']) {
-                        result.data['response-data']['customer']['installed-products'][i]['expiration-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['expiration-date'], 'TH');
+                    if (result.data['response-data']['customer']['installed-products'][i]['expire-date']) {
+                        result.data['response-data']['customer']['installed-products'][i]['expire-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['expiration-date'], 'TH');
                     }
                 }
                 $scope.builtInOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'PRICEPLAN-BUILT-IN' });
