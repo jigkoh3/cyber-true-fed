@@ -670,6 +670,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.orderId = order.orderId;
                 localStorage.setItem('orderId', order.orderId);
                 $scope.getExistingOffer();
+                $scope.checkAuthorize();
                 // $scope.initModalReadCard();
             });
         });
@@ -1140,6 +1141,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.changeType = function(offerType) {
         $scope.offerType = offerType;
+        $scope.checkAuthorize();
     };
 
     SystemService.calendarDatePicker();
@@ -2328,6 +2330,18 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $('#addNewOfferExpirationDate').datepicker('setEndDate', endDate);
             $('#addNewOfferExpirationDate2').datepicker('setEndDate', endDate);
         }
+    };
+
+    $scope.checkAuthorize = function() {
+        setTimeout(function() {
+            if (($scope.offerType == "U" && $scope.data.simData["account-category"] == "I") || ($scope.offerType == "D" && $scope.data.simData["account-category"] == "I")) {
+                //hide มอบอำนาจ
+                $('#divShowAuthorize').hide();
+            } else {
+                //show มอบอำนาจ
+                $('#divShowAuthorize').show();
+            }
+        }, 50);
     };
 
 });
