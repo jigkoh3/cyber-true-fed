@@ -16,7 +16,7 @@
                 "process-instance": "tmsapnpr1 (instance: SFF_node4)",
                 "response-data": {
                     "customer": {
-                        "title": "Mr.",
+                        "title": "นาย",
                         "title-code": "T5",
                         "firstname": "พฤกษวดี",
                         "lastname": "พฤกษวดีนงลักษณ์",

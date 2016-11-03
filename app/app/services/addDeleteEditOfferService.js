@@ -160,6 +160,29 @@
         }
     };
 
+    this.getUserGroup = function(roles, fnCallback) {
+        if (!demo) {
+            var target = "aftersales/order/activity-rule/validate?activity=GET_USER_GROUP";
+            var request = {
+                "target": target,
+                "ROLES": roles
+            };
+            SystemService.callServicePost(request, null, function(response) {
+                fnCallback(response);
+            });
+        } else {
+            var url = "/app/jsonFiles/GET_USER_GROUP_CM.json";
+            SystemService.getFileJson(url, function(response) {
+                fnCallback({
+                    status: true,
+                    data: response,
+                    error: "",
+                    msgErr: ""
+                });
+            });
+        }
+    };
+
     this.searchOffer = function(param, type, fnCallback) {
         if (!demo) {
             if (type == "RELATED") {

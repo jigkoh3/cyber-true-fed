@@ -1,0 +1,8 @@
+{
+  "status": "SUCCESSFUL",
+  "trx-id": "5193G6CEKU2WJ",
+  "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+  "response-data": [
+    "USER_GROUP_CM"
+  ]
+}

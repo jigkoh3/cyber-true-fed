@@ -634,6 +634,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     // (End) Get current SIM data ----------------------
     $scope.TrxID = '';
     $scope.orderId = '';
+    $scope.roles = "";
+    $scope.getUserGroup = ""
     var authenticate = function() {
         // SystemService.calendarDatePicker();
         AuthenService.getAuthen(function(authResult) {
@@ -672,6 +674,22 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.getExistingOffer();
                 $scope.checkAuthorize();
                 // $scope.initModalReadCard();
+            });
+
+            $scope.roles = "";
+            if ($scope.getAuthen.userGroup == "DEALER") {
+                $scope.roles = $scope.getAuthen["ssoPartnerPrincipal"]["rolesAsString"];
+                console.log($scope.roles);
+            } else {
+                $scope.roles = $scope.getAuthen["ssoEmployeePrincipal"]["rolesAsString"];
+                console.log($scope.roles);
+            }
+            AddDeleteEditOfferService.getUserGroup($scope.roles, function(response){
+                if (response) {
+                    $scope.getUserGroup = response;
+                } else {
+                    $scope.getUserGroup = "";
+                }
             });
         });
     };
@@ -1341,7 +1359,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         result.data['response-data']['customer']['installed-products'][i]['effective-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['effective-date'], 'TH');
                     }
                     if (result.data['response-data']['customer']['installed-products'][i]['expire-date']) {
-                        result.data['response-data']['customer']['installed-products'][i]['expire-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['expiration-date'], 'TH');
+                        result.data['response-data']['customer']['installed-products'][i]['expire-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['expire-date'], 'TH');
                     }
                 }
                 $scope.builtInOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'PRICEPLAN-BUILT-IN' });
