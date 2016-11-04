@@ -913,37 +913,30 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             // 'body': generateOrderRequest()
             'body': {
                 'newOfferData': {
-                    'newOffer': $scope.listNewOffer()    
+                    'newOffer': $scope.listNewOffer()
                 }
             }
         };
 
         console.log(JSON.stringify(data));
-        SystemService.generatePDF(data, function(url) {
+        SystemService.generatePDF(data, function(result) {
             SystemService.hideLoading();
 
             if (!$scope.isCMUser && $scope.offerType == 'C') {
-                SystemService.printPDF(url);
-                //printObjectPdf();
-
+                var url = result;
                 setTimeout(function() {
-                    $('#modalPDFOpener').click();
+                    var srcPDF = url;
+                    SystemService.printPDF(url);
 
+                    //case for PDF Android ::18-05-2016 //xsam32
+                    SystemService.checkPDFAndroid_show(url);
+                }, 500);
+                if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                    //case for PDF Android ::18-05-2016 //xsam32
                     setTimeout(function() {
-                        var srcPDF = url;
-                        document.getElementById('iframePDF').src = url + '?clearData=N';
-                        if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                            setTimeout(function() {
-                                printObjectPdf();
-                            }, 2000);
-                            setTimeout(function() {
-                                document.getElementById('iframePDF').src = srcPDF
-                            }, 2500);
-                        }
-                    }, 500);
-
-
-                }, 1000);
+                        SystemService.checkPDFAndroid_print(url);
+                    }, 2000);
+                }
             }
         });
     };
