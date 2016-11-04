@@ -1795,8 +1795,18 @@ smartApp.controller('changeOwnershipIBCController', function(
                                         ////str:: issue 27-09-2016 :: case other-title not found data in list array
                                         var checkTOTL_value = customer["title"];
                                         var checkarr = $filter('filter')($scope.titleOtherTypeList, checkTOTL_value);
+                                        //// fixed bug otherTitle :: 04-11-2016 :: xsam32
+                                        var isMatchTitle = false;
                                         $scope.titleOther = checkTOTL_value;
-                                        if (checkarr.length > 0) {
+                                        $.each(checkarr, function(index, el) {
+                                            if (el["description"] == checkTOTL_value) {
+                                                isMatchTitle = true;
+                                                $scope.titleOther = el["value"];
+                                                return false;
+                                            }
+                                        });
+
+                                        if (isMatchTitle) {
                                             // $scope.titleOther = checkTOTL_value;
                                         } else {
                                             var totl = {

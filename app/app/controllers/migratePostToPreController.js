@@ -95,7 +95,7 @@
             $scope.onInputAddress();
         }
     };
-    
+
     $scope.initModalReadCard = function() {
         $scope.isCardValueData = false;
         $('#CitizenID').val("");
@@ -561,8 +561,18 @@
             ////str:: issue 27-09-2016 :: case other-title not found data in list array
             var checkTOTL_value = $scope.data.customerProfile['title'];
             var checkarr = $filter('filter')($scope.titleOtherTypeList, checkTOTL_value);
+            //// fixed bug otherTitle :: 04-11-2016 :: xsam32
+            var isMatchTitle = false;
             $scope.titleOther = checkTOTL_value;
-            if (checkarr.length > 0) {
+            $.each(checkarr, function(index, el) {
+                if (el["description"] == checkTOTL_value) {
+                    isMatchTitle = true;
+                    $scope.titleOther = el["value"];
+                    return false;
+                }
+            });
+
+            if (isMatchTitle) {
                 // $scope.titleOther = checkTOTL_value;
             } else {
                 var totl = {
@@ -579,8 +589,8 @@
                 setTimeout(function() {
                     $('#title5').val(checkTOTL_value);
                 }, 100);
-                if($scope.data.customerProfileNew['title-code'] == "T5"){
-                    $scope.onChangeTitleOther();    
+                if ($scope.data.customerProfileNew['title-code'] == "T5") {
+                    $scope.onChangeTitleOther();
                 };
             }
             ////end:: issue 27-09-2016 :: case other-title not found data in list array
