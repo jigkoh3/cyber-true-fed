@@ -690,7 +690,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 } else {
                     $scope.isCMUser = false;
                 }
-                // console.log($scope.isCMUser);
+                console.log($scope.isCMUser);
             });
         });
     };
@@ -920,7 +920,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
 
-            if ($scope.isCMUser) {
+            if (!$scope.isCMUser && $scope.offerType == 'C') {
                 SystemService.printPDF(url);
                 //printObjectPdf();
 
