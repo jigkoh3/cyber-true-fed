@@ -483,9 +483,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
 
         $scope.paramForEdit['effective-date'] = item['effective-date'];
-        $scope.paramForEdit['expiration-date'] = item['expiration-date'];
+        $scope.paramForEdit['expiration-date'] = item['expire-date'];
         // $('#editOfferEffectiveDate').datepicker("setDate", item['effective-date']);
-        $('#editOfferExpirationDate').datepicker("setDate", item['expiration-date']);
+        $('#editOfferExpirationDate').datepicker("setDate", item['expire-date']);
         setTimeout(function() {
             SystemService.calendarDatePicker();
         }, 1200);
@@ -494,7 +494,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "product-name": item['product-name'],
             "product-description": item['product-description'],
             "effective-date": item['effective-date'],
-            "expiration-date": item['expiration-date'],
+            "expiration-date": item['expire-date'],
             "offer-group": item['offer-group'],
             "offer-instance-id": item["product-properties"]["OFFER-INSTANCE-ID"],
             "CONTRACT-START-DATE": item["product-properties"]["CONTRACT-START-DATE"],
