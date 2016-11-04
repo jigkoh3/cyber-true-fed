@@ -912,7 +912,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             },
             // 'body': generateOrderRequest()
             'body': {
-                'newOffer': $scope.listNewOffer()
+                'newOfferData': {
+                    'newOffer': $scope.listNewOffer()    
+                }
             }
         };
 
