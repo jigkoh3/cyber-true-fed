@@ -635,7 +635,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.TrxID = '';
     $scope.orderId = '';
     $scope.roles = "";
-    $scope.getUserGroup = ""
+    $scope.isCMUser = false;
     var authenticate = function() {
         // SystemService.calendarDatePicker();
         AuthenService.getAuthen(function(authResult) {
@@ -684,12 +684,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.roles = $scope.getAuthen["ssoEmployeePrincipal"]["rolesAsString"];
                 console.log($scope.roles);
             }
-            AddDeleteEditOfferService.getUserGroup($scope.roles, function(response){
-                if (response) {
-                    $scope.getUserGroup = response;
+            AddDeleteEditOfferService.getUserGroup($scope.roles, function(response) {
+                if (response.data["response-data"][0] == "USER_GROUP_CM") {
+                    $scope.isCMUser = true;
                 } else {
-                    $scope.getUserGroup = "";
+                    $scope.isCMUser = false;
                 }
+                // console.log($scope.isCMUser);
             });
         });
     };
@@ -919,27 +920,29 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         SystemService.generatePDF(data, function(url) {
             SystemService.hideLoading();
 
-            SystemService.printPDF(url);
-            //printObjectPdf();
-
-            setTimeout(function() {
-                $('#modalPDFOpener').click();
+            if ($scope.isCMUser) {
+                SystemService.printPDF(url);
+                //printObjectPdf();
 
                 setTimeout(function() {
-                    var srcPDF = url;
-                    document.getElementById('iframePDF').src = url + '?clearData=N';
-                    if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
-                        setTimeout(function() {
-                            printObjectPdf();
-                        }, 2000);
-                        setTimeout(function() {
-                            document.getElementById('iframePDF').src = srcPDF
-                        }, 2500);
-                    }
-                }, 500);
+                    $('#modalPDFOpener').click();
+
+                    setTimeout(function() {
+                        var srcPDF = url;
+                        document.getElementById('iframePDF').src = url + '?clearData=N';
+                        if ($scope.shopType == "1" && $scope.getAuthen['isSecondAuthen'] == true) {
+                            setTimeout(function() {
+                                printObjectPdf();
+                            }, 2000);
+                            setTimeout(function() {
+                                document.getElementById('iframePDF').src = srcPDF
+                            }, 2500);
+                        }
+                    }, 500);
 
 
-            }, 1000);
+                }, 1000);
+            }
         });
     };
 
@@ -953,7 +956,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         data['statusReason'] = $scope.statusReason.id;
         data['statusReasonMemo'] = $scope.statusReasonMemo;
 
-        AddDeleteEditOfferService.submitAddDeleteEditOfferNew(data, function(result) {
+        AddDeleteEditOfferService.submitAddDeleteEditOffer(data, function(result) {
             SystemService.hideLoading();
             console.log(result);
             setTimeout(function() {
