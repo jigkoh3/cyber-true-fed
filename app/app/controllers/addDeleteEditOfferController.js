@@ -41,6 +41,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.offerEffectiveDate = "immediate";
     $scope.offerExpirationDate = "unlimited";
     $scope.saveParamData = {};
+    $scope.radioRelatedOffer = "";
     //paging
     $scope.currentPage_cug = 1;
     $scope.pageSize_cug = 5;
@@ -270,6 +271,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
     $scope.onChangeRadioOffer = function(item) {
         $scope.clearValueAddNewOffer();
+        $scope.onClearRelateOfferValue();
         $scope.selectedOffer = item;
         $scope.saveParamData = {};
         console.log($scope.selectedOffer);
@@ -343,6 +345,31 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         }
                     }
                 }
+
+                if ($scope.selectedOffer['related-offers']) {
+                    for (var i = 0; i < $scope.selectedOffer['related-offers'].length; i++) {
+                        if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications']) {
+                            for (var j = 0; j < $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'].length; j++) {
+                                $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['select-value'] = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['default-value'];
+                                var optionParam = $filter('filter')($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['valid-values']);
+                                $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'] = [];
+                                if (optionParam) {
+                                    $.each(optionParam, function(key, value) {
+                                        var item = {
+                                            "id": key,
+                                            "value": value
+                                        };
+                                        $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'].push(item);
+                                    });
+                                    var defaultItem = $filter('filter')($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'], { "id": $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['default-value'] });
+                                    var index = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'].indexOf(defaultItem[0]);
+                                    $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['select-value'] = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'][index];
+                                }
+                            }
+                        }
+
+                    }
+                };
 
 
                 setTimeout(function() {
@@ -442,10 +469,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.paramForEdit = [];
     $scope.viewOfferForEdit = {};
     $scope.viewOfferDetail = function(item, action) {
+        $scope.onClearRelateOfferValue();
         $scope.idSetDate = false;
         $scope.paramDetail = [];
         $scope.paramForEdit = [];
         $scope.viewOfferForEdit = {};
+        $scope.selectedRelateOffer = [];
         $('#hModal').height(($(window).height()) - 235);
         $('.hModal').height(($(window).height()) - 235);
         var parameter = [];
@@ -1211,8 +1240,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $('input[name=paramCug]').prop('checked', false);
             // $scope.disableSubmitAddOffer = false;
             // console.log($scope.radioDisOffer);
-            $('#idBindDataAgain').click();
             $scope.onChangeRadioOffer(item);
+            $('#idBindDataAgain').click();
         }, 50);
     }
     $scope.checkboxRowClick = function(tableID) {
@@ -2108,10 +2137,24 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
 
         $scope.editValue = $scope.dataForEdit;
+        // $scope.dataForEdit['parameter-specifications'][i]['select-value'] = $scope.dataForEdit['parameter-specifications'][i]['default-value'];
         console.log($scope.editValue);
-        for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
-            if ($scope.editValue.guID == $scope.addNewOfferLists[i].guID) {
-                $scope.addNewOfferLists[i] = $scope.editValue;
+        if ($scope.dataForEdit.type == "editRelate") {
+            for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
+                if ($scope.editValue.guID == $scope.addNewOfferLists[i].guID) {
+                    for (var j = 0; j < $scope.addNewOfferLists[i]["related-offers"].length; j++) {
+                        if ($scope.addNewOfferLists[i]["related-offers"][j]["offer"]["soc"] == $scope.editValue["soc"]) {
+                            $scope.addNewOfferLists[i]["related-offers"][j]["offer"] = $scope.editValue;
+                        }
+                    }
+
+                }
+            }
+        } else {
+            for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
+                if ($scope.editValue.guID == $scope.addNewOfferLists[i].guID) {
+                    $scope.addNewOfferLists[i] = $scope.editValue;
+                }
             }
         }
 
@@ -2119,9 +2162,18 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         console.log($scope.addNewOfferLists);
     };
 
-    $scope.editDetail = function(item) {
+    $scope.editDetail = function(item, relate, action) {
+        $scope.dataForEdit = [];
         $scope.editParam = false;
-        $scope.dataForEdit = angular.copy(item);
+        if (action == 'editRelate') {
+            $scope.dataForEdit = angular.copy(relate.offer);
+            $scope.dataForEdit.guID = item.guID;
+            $scope.dataForEdit.param = item.param;
+            $scope.dataForEdit.type = action;
+        } else {
+            $scope.dataForEdit = angular.copy(item);
+        }
+
         $scope.editValue = {};
         console.log($scope.dataForEdit);
         $scope.editOfferCode = $scope.dataForEdit.name;
@@ -2360,4 +2412,23 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }, 50);
     };
 
+    $scope.selectedRelateOffer = [];
+    $scope.onSelectRelateOffer = function(relatedOffer) {
+        $scope.onClearRelateOfferValue();
+        $scope.selectedRelateOffer = relatedOffer;
+        console.log($scope.selectedRelateOffer);
+    };
+
+    $scope.select = function(selectID) {
+        $('.idActive').removeClass("success");
+        $('#' + selectID).addClass("success");
+    }
+
+    $scope.onClearRelateOfferValue = function() {
+        $('.idActive').removeClass("success");
+        $scope.selectedRelateOffer = [];
+        setTimeout(function() {
+            $('#idBindDataAgain').click();
+        }, 50);
+    };
 });

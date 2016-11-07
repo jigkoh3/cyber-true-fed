@@ -418,8 +418,8 @@
                                     </th> -->
                                 </tr>
                             </thead>
-                            <tbody style="background-color:#fff;">
-                                <tr ng-repeat="item in addNewOfferLists">
+                            <tbody style="background-color:#fff;border-top: 1px;" ng-repeat="item in addNewOfferLists">
+                                <tr>
                                     <td class="col-xs-1 contentTbCenter">
                                         <a style="cursor:pointer; color:red;" type="button" ng-click="deleteRegulaOfferList(item)"><span><i class="fa fa-trash-o fa-1x"></i></span></a>
                                     </td>
@@ -451,6 +451,36 @@
                                     <!-- <td class="contentTbCenter">
                                         {{item['service-level']}}
                                     </td> -->
+                                </tr>
+                                <tr ng-repeat="related in item['related-offers']" ng-show="item['related-offers'].length > 0">
+                                    <td class="col-xs-1 contentTbCenter">
+                                        <!-- <a style="cursor:pointer; color:red;" type="button" ng-click="deleteRegulaOfferList(item)"><span><i class="fa fa-trash-o fa-1x"></i></span></a> -->
+                                    </td>
+                                    <td class="contentTb">
+                                        &nbsp;&nbsp; - {{related['offer']['name']}}
+                                    </td>
+                                    <td class="contentTb">
+                                        {{related['offer']['description']}}
+                                    </td>
+                                    <td class="contentTbCenter">
+                                        <span ng-if="item['param']['effective-date-type']=='specify'">
+                                            {{item['param']['effective-date-value']}}    
+                                        </span>
+                                        <span ng-if="item['param']['effective-date-type']=='immediate'">
+                                            {{setDateNow}}    
+                                        </span>
+                                    </td>
+                                    <td class="contentTbCenter">
+                                        {{item['param']['expiration-date-value']}}
+                                    </td>
+                                    <td class="contentTbCenter">
+                                        {{related['offer']['group']}}
+                                    </td>
+                                    <td class="contentTbCenter">
+                                        <div align="center" class="">
+                                            <button ng-disabled="!isCustomerProfile" href="#modal-edit-newOfferDetail" data-toggle="modal" onclick="return false;" ng-click="editDetail(item, related, 'editRelate'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -634,6 +664,10 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    
+                    <div ng-show="addOfferLists.length == 0" class="text-center">
+                        <h4 style="color:red">*ไม่พบ Offer</h4>
                     </div>
                     <!-- <div class="row" ng-if="addOfferLists.length == 0">
                         <div class="col-md-12" align="center">
@@ -1003,7 +1037,7 @@
                     </div> -->
                     <!-- offer effective & expiration date -->
                     <br>
-                    <div ng-show="radioOffer && selectedOffer.group!='CONTRACT_PROPO'" style="border-top: 1px solid #e5e5e5;"">
+                    <div ng-show="radioOffer && selectedOffer.group!='CONTRACT_PROPO'" style="border-top: 1px solid #e5e5e5;">
                         <br>
                         <div class="form-group">
                             <div class="row">
@@ -1085,6 +1119,92 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-1"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-show="radioOffer && selectedOffer['related-offers'].length>0" style="border-top: 1px solid #e5e5e5;">
+                        <br>
+                        <h4>Relate Offer</h4>
+                        &nbsp;
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableRelatedOffer">
+                                <thead>
+                                    <tr class="well">
+                                        <th class="contentTbHeader">
+                                            เลือก
+                                        </th>
+                                        <th class="contentTbHeader">
+                                            Offer Name
+                                        </th>
+                                        <th class="contentTbHeader">
+                                            Offer Description
+                                        </th>
+                                        <th class="contentTbHeader">
+                                            Level
+                                        </th>
+                                        <th class="contentTbHeader">
+                                            Sale Effective Date
+                                        </th>
+                                        <th class="contentTbHeader">
+                                            Sale Expiration Date
+                                        </th>
+                                        <th class="contentTbHeader" ng-show="addOfferType.value == 'DISCOUNT'">
+                                            Group
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr dir-paginate="relatedOffer in selectedOffer['related-offers'] | itemsPerPage: pageSize" pagination-id="relatedOfferList" current-page="currentPage" style="cursor:pointer;" class="idActive" id="{{relatedOffer['offer']['name']}}">
+                                        <td class="contentTbCenter" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
+                                            <input type="checkbox" name="radioRelatedOffer" value="true" style="cursor:not-allowed;" checked disabled>
+                                        </td>
+                                        <td class="contentTbCenter" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
+                                            {{relatedOffer['offer']['name']}}
+                                        </td>
+                                        <td class="contentTb" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
+                                            {{relatedOffer['offer']['description']}}
+                                        </td>
+                                        <td class="contentTbCenter" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
+                                            {{relatedOffer['offer']['service-level']}}
+                                        </td>
+                                        <td class="contentTbCenter" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
+                                            {{relatedOffer['offer']['sale-period']['start']}}
+                                        </td>
+                                        <td class="contentTbCenter" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
+                                            {{relatedOffer['offer']['sale-period']['end']}}
+                                        </td>
+                                        <td class="contentTbCenter" ng-show="addOfferType.value == 'DISCOUNT'" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
+                                            {{relatedOffer['offer']['properties']['DISCOUNT_GROUP']}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="selectedOffer['related-offers']['offer'].length>=pageSize">
+                                        <td colspan="7" class="text-center">
+                                            <div dir-pagination-controls pagination-id="relatedOfferList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        &nbsp;
+                        <div ng-show="selectedRelateOffer.offer['parameter-specifications'].length > 0">
+                            <div class="form-group row" ng-repeat="item in selectedRelateOffer.offer['parameter-specifications']">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group has-feedback">
+                                        <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD();">
+                                        <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-only="{{item['name']}}" ng-keyup="validateAddAD();">
+                                        <span ng-span-number-only="{{item['name']}}" class="hide" style="color:red;">
+                                                กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                        </span>
+                                        <select ng-if="item['data-type']=='TEXT'&&item['valid-values']"  class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD();"></select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2"></div>
                             </div>
                         </div>
                     </div>
