@@ -367,8 +367,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                     $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['select-value'] = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'][index];
                                 }
                                 if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["required"] == true && !$scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["default-value"]) {
-                                    $scope.relateOfferRequireParam += $scope.selectedOffer['related-offers'][i]['offer']['name'] + " ";
-                                    break;
+                                    if($scope.relateOfferRequireParam == "") {
+                                        $scope.relateOfferRequireParam += $scope.selectedOffer['related-offers'][i]['offer']['name'];    
+                                        break;
+                                    } else {
+                                        $scope.relateOfferRequireParam += " ," + $scope.selectedOffer['related-offers'][i]['offer']['name'];
+                                        break;
+                                    }
                                 }
                             }
                         }
