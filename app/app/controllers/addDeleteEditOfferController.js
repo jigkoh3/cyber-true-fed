@@ -347,6 +347,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
 
                 if ($scope.selectedOffer['related-offers']) {
+                    $scope.relateOfferRequireParam = "";
                     for (var i = 0; i < $scope.selectedOffer['related-offers'].length; i++) {
                         if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications']) {
                             for (var j = 0; j < $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'].length; j++) {
@@ -365,10 +366,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                     var index = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'].indexOf(defaultItem[0]);
                                     $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['select-value'] = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'][index];
                                 }
+                                if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["required"] == true && !$scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["default-value"]) {
+                                    $scope.relateOfferRequireParam += $scope.selectedOffer['related-offers'][i]['offer']['name'] + " ";
+                                }
                             }
                         }
 
                     }
+                    console.log($scope.relateOfferRequireParam);
                 };
 
 
@@ -1381,14 +1386,16 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             var customerData = utils.getObject(result.data['response-data'], 'customer');
             if (customerData) {
                 $scope.existingOffer = [];
-                for (var i = 0; i < result.data['response-data']['customer']['installed-products'].length; i++) {
-                    if (result.data['response-data']['customer']['installed-products'][i]['effective-date']) {
-                        result.data['response-data']['customer']['installed-products'][i]['effective-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['effective-date'], 'TH');
-                    }
-                    if (result.data['response-data']['customer']['installed-products'][i]['expire-date']) {
-                        result.data['response-data']['customer']['installed-products'][i]['expire-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['expire-date'], 'TH');
-                    }
-                }
+                //ยกเลิก convert date เป็น th 20161108
+                // for (var i = 0; i < result.data['response-data']['customer']['installed-products'].length; i++) {
+                //     if (result.data['response-data']['customer']['installed-products'][i]['effective-date']) {
+                //         result.data['response-data']['customer']['installed-products'][i]['effective-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['effective-date'], 'TH');
+                //     }
+                //     if (result.data['response-data']['customer']['installed-products'][i]['expire-date']) {
+                //         result.data['response-data']['customer']['installed-products'][i]['expire-date'] = SystemService.convertDateToTH(result.data['response-data']['customer']['installed-products'][i]['expire-date'], 'TH');
+                //     }
+                // }
+                // ===================================================================================================== //
                 $scope.builtInOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'PRICEPLAN-BUILT-IN' });
                 $scope.regularOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'ADDITIONAL-OFFER' });
                 $scope.propoOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'product-type': 'PROPOSITION' });
@@ -1504,13 +1511,27 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                     // ========================================================================
 
+                    // ยกเลิก convert date เป็น th 20161108
                     if ($scope.addOfferLists[i]["sale-period"].start) {
-                        $scope.addOfferLists[i]["sale-period"].start = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["sale-period"].start, "dd/MM/YYYY");
+                        $scope.addOfferLists[i]["sale-period"].start = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["sale-period"].start, "dd/MM/yyyy");
                     }
 
                     if ($scope.addOfferLists[i]["sale-period"].end) {
-                        $scope.addOfferLists[i]["sale-period"].end = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["sale-period"].end, "dd/MM/YYYY");
+                        $scope.addOfferLists[i]["sale-period"].end = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["sale-period"].end, "dd/MM/yyyy");
                     }
+                    //===================================================================//
+
+                    // if ($scope.addOfferLists[i]["related-offers"]) {
+                    //     for (var j = 0; j < $scope.addOfferLists[i]["related-offers"][j].length; j++) {
+                    //         if ($scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].start) {
+                    //             $scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].start = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].start, "dd/MM/yyyy");
+                    //         }
+
+                    //         if ($scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].end) {
+                    //             $scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].end = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].end, "dd/MM/yyyy");
+                    //         }
+                    //     }
+                    // }
                 }
                 $scope.addOfferLists = $filter('orderBy')($scope.addOfferLists, 'name', false);
                 addOfferLists = $scope.addOfferLists;
@@ -2271,10 +2292,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             if (futureOfferData) {
                 $scope.futureOfferList = angular.copy(result.data["response-data"]["customer"]["installed-products"]);
                 console.log($scope.futureOfferList);
-                for (var i = 0; i < $scope.futureOfferList.length; i++) {
-                    $scope.futureOfferList[i]["effective-date"] = SystemService.convertDateToTH($scope.futureOfferList[i]["effective-date"], "TH")
-                    $scope.futureOfferList[i]["product-properties"]["CREATE-DATE"] = SystemService.convertDateToTH($scope.futureOfferList[i]["product-properties"]["CREATE-DATE"], "TH")
-                }
+                // ยกเลิก convert date เป็น th 20161108
+                // for (var i = 0; i < $scope.futureOfferList.length; i++) {
+                //     $scope.futureOfferList[i]["effective-date"] = SystemService.convertDateToTH($scope.futureOfferList[i]["effective-date"], "TH")
+                //     $scope.futureOfferList[i]["product-properties"]["CREATE-DATE"] = SystemService.convertDateToTH($scope.futureOfferList[i]["product-properties"]["CREATE-DATE"], "TH")
+                // }
+                //===================================================================//
                 $scope.tempFutureOfferList = angular.copy($scope.futureOfferList);
             } else {
                 $scope.futureOfferList = [];

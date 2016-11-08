@@ -2017,6 +2017,14 @@
             startDate: date
         });
 
+        $('.date-picker-start-en').datepicker({
+            clearBtn: true,
+            autoclose: true,
+            todayHighlight: true,
+            language: 'th-en',
+            startDate: date
+        });
+
         $('.date-picker-today').datepicker({
             clearBtn: true,
             autoclose: true,

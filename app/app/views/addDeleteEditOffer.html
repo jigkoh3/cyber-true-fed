@@ -463,21 +463,21 @@
                                         {{related['offer']['description']}}
                                     </td>
                                     <td class="contentTbCenter">
-                                        <span ng-if="item['param']['effective-date-type']=='specify'">
+                                        <!-- <span ng-if="item['param']['effective-date-type']=='specify'">
                                             {{item['param']['effective-date-value']}}    
                                         </span>
                                         <span ng-if="item['param']['effective-date-type']=='immediate'">
                                             {{setDateNow}}    
-                                        </span>
+                                        </span> -->
                                     </td>
                                     <td class="contentTbCenter">
-                                        {{item['param']['expiration-date-value']}}
+                                        <!-- {{item['param']['expiration-date-value']}} -->
                                     </td>
                                     <td class="contentTbCenter">
                                         {{related['offer']['group']}}
                                     </td>
                                     <td class="contentTbCenter">
-                                        <div align="center" class="">
+                                        <div align="center" class="" ng-show="related['offer']['parameter-specifications'].length > 0">
                                             <button ng-disabled="!isCustomerProfile" href="#modal-edit-newOfferDetail" data-toggle="modal" onclick="return false;" ng-click="editDetail(item, related, 'editRelate'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                         </div>
                                     </td>
@@ -1061,7 +1061,7 @@
                                             </div>
                                             <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
                                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                                    <input type="text" ng-model="addNewOfferEffectiveDate" id="addNewOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10" ng-disabled="offerEffectiveDate=='immediate'">
+                                                    <input type="text" ng-model="addNewOfferEffectiveDate" id="addNewOfferEffectiveDate" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="offerEffectiveDate=='immediate'">
                                                     <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
                                                 </div>
                                             </div>
@@ -1093,7 +1093,7 @@
                                             </div>
                                             <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
                                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                                    <input type="text" ng-model="addNewOfferExpirationDate" id="addNewOfferExpirationDate" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10" ng-disabled="offerExpirationDate=='unlimited'">
+                                                    <input type="text" ng-model="addNewOfferExpirationDate" id="addNewOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="offerExpirationDate=='unlimited'">
                                                     <!-- <input type="text" ng-model="addNewOfferExpirationDate" id="addNewOfferExpirationDateDiscount" class="form-control dateManual date-picker-expiredate-discount dateFormat" style="width:120%;" maxlength="10" ng-disabled="offerExpirationDate=='unlimited'" ng-show="selectedOffer.group=='DISCOUNT'"> -->
                                                     <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
                                                 </div>
@@ -1111,7 +1111,7 @@
                                             </div>
                                             <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
                                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                                    <input type="text" ng-model="addNewOfferExpirationDate" id="addNewOfferExpirationDate2" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10" ng-disabled="false">
+                                                    <input type="text" ng-model="addNewOfferExpirationDate" id="addNewOfferExpirationDate2" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="false">
                                                     <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
                                                 </div>
                                             </div>
@@ -1140,7 +1140,7 @@
                                         <th class="contentTbHeader">
                                             Offer Description
                                         </th>
-                                        <th class="contentTbHeader">
+                                        <!-- <th class="contentTbHeader">
                                             Level
                                         </th>
                                         <th class="contentTbHeader">
@@ -1148,9 +1148,12 @@
                                         </th>
                                         <th class="contentTbHeader">
                                             Sale Expiration Date
-                                        </th>
+                                        </th> -->
                                         <th class="contentTbHeader" ng-show="addOfferType.value == 'DISCOUNT'">
                                             Group
+                                        </th>
+                                        <th class="contentTbHeader">
+                                            Param
                                         </th>
                                     </tr>
                                 </thead>
@@ -1165,7 +1168,7 @@
                                         <td class="contentTb" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
                                             {{relatedOffer['offer']['description']}}
                                         </td>
-                                        <td class="contentTbCenter" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
+                                        <!-- <td class="contentTbCenter" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
                                             {{relatedOffer['offer']['service-level']}}
                                         </td>
                                         <td class="contentTbCenter" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
@@ -1173,9 +1176,12 @@
                                         </td>
                                         <td class="contentTbCenter" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
                                             {{relatedOffer['offer']['sale-period']['end']}}
-                                        </td>
+                                        </td> -->
                                         <td class="contentTbCenter" ng-show="addOfferType.value == 'DISCOUNT'" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
                                             {{relatedOffer['offer']['properties']['DISCOUNT_GROUP']}}
+                                        </td>
+                                        <td class="contentTbCenter" ng-click="onSelectRelateOffer(relatedOffer);select(relatedOffer['offer']['name']);">
+                                            <i ng-show="relatedOffer['offer']['parameter-specifications'].length > 0" class="glyphicon glyphicon-option-horizontal editIcon-1x"></i>
                                         </td>
                                     </tr>
                                     <tr ng-show="selectedOffer['related-offers']['offer'].length>=pageSize">
@@ -1738,7 +1744,7 @@
                                                 </div>
                                                 <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
                                                     <div class="form-group has-feedback imp" style="top:5px;">
-                                                        <input type="text" ng-model="dataForEdit['param']['effective-date-value']" id="editNewOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10" ng-disabled="dataForEdit['param']['effective-date-type']=='immediate'">
+                                                        <input type="text" ng-model="dataForEdit['param']['effective-date-value']" id="editNewOfferEffectiveDate" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="dataForEdit['param']['effective-date-type']=='immediate'">
                                                         <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
@@ -1770,7 +1776,7 @@
                                                 </div>
                                                 <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
                                                     <div class="form-group has-feedback imp" style="top:5px;">
-                                                        <input type="text" ng-model="dataForEdit['param']['expiration-date-value']" id="editNewOfferExpirationDate" class="form-control dateManual date-picker-start dateFormat" style="width:120%;" maxlength="10" ng-disabled="dataForEdit['param']['expiration-date-type']=='unlimited'">
+                                                        <input type="text" ng-model="dataForEdit['param']['expiration-date-value']" id="editNewOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="dataForEdit['param']['expiration-date-type']=='unlimited'">
                                                         <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
@@ -1860,7 +1866,7 @@
                                 <div class="col-md-3">
                                     <input ng-if="item.name!='TR_ACTUAL_CONTRACT_START_DATE'&&item.name!='TR_ORIG_CONTRACT_EXPIRE_DATE'" type="text" id="{{item.name}}" ng-model="item.value" class="form-control" ng-change="onModelChange();">
                                     <div ng-if="item.name=='TR_ACTUAL_CONTRACT_START_DATE'||item.name=='TR_ORIG_CONTRACT_EXPIRE_DATE'" class="form-group has-feedback imp" style="top:5px;">
-                                        <input type="text" ng-model="item.value" id="{{item.name}}" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;" ng-click="setDatepicker(item.name, item.value);" ng-disabled="item.name=='TR_ACTUAL_CONTRACT_START_DATE'">
+                                        <input type="text" ng-model="item.value" id="{{item.name}}" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-click="setDatepicker(item.name, item.value);" ng-disabled="item.name=='TR_ACTUAL_CONTRACT_START_DATE'">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -2008,7 +2014,7 @@
                             <div class="col-md-3">
                                 <!-- <input type="text" id="adViewOffer['effective-date']" ng-model="viewOffer['effective-date']" class="form-control"> -->
                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                    <input type="text" ng-model="paramForEdit['effective-date']" id="editOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;" ng-disabled="true">
+                                    <input type="text" ng-model="paramForEdit['effective-date']" id="editOfferEffectiveDate" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-disabled="true">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -2026,7 +2032,7 @@
                             <div class="col-md-3">
                                 <!-- <input type="text" id="adViewOffer['expiration-date']" ng-model="viewOffer['expiration-date']" class="form-control"> -->
                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                    <input type="text" ng-model="paramForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;" ng-change="onModelChange();">
+                                    <input type="text" ng-model="paramForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-change="onModelChange();">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -2098,7 +2104,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                    <input type="text" ng-model="futureOfferDetail['effective-date']" id="editFutureOfferEffectiveDate" class="form-control dateManual date-picker-start dateFormat" maxlength="10" style="margin-top: -9px;">
+                                    <input type="text" ng-model="futureOfferDetail['effective-date']" id="editFutureOfferEffectiveDate" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
