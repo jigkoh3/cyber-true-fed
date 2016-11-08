@@ -2441,8 +2441,8 @@
         }
     };
     this.convertDataMMDDYYYYEN = function(date, lang) {
-        if (dateTH) {
-            var ssc = "-";
+        if (date) {
+            var ssc = "/";
             var arr = date.split("/");
             if (lang == "TH") {
                 return "" + arr[1] + ssc + arr[0]  + ssc + (Number(arr[2]) + 543)

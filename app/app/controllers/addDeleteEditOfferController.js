@@ -977,11 +977,20 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             // data['offer']["OFFER-" + i + "-OFFER-INSTANCE-ID"] = $scope.addNewOfferLists[i]["soc"];
             data['offer']["OFFER-" + i + "-OFFER-GROUP"] = $scope.addNewOfferLists[i]["group"];
             
-            
             if ($scope.addNewOfferLists[i]["param"]["effective-date-type"] == "immediate") {
-                // data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.setDateNow);
+                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.setDateNow);
+                data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
             } else if ($scope.addNewOfferLists[i]["param"]["effective-date-type"] == "specify") {
-                // data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.setDateNow);
+                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.addNewOfferLists[i]["param"]["effective-date-value"]);
+                data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
+            }
+            
+            if ($scope.addNewOfferLists[i]["param"]["expiration-date-type"] == "unlimited") {
+                data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = "";
+                data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "UNLIMITED";
+            } else if ($scope.addNewOfferLists[i]["param"]["expiration-date-type"] == "specify") {
+                data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.addNewOfferLists[i]["param"]["expiration-date-value"]);
+                data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
             }
 
             if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
