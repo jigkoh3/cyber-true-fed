@@ -211,7 +211,7 @@
                 var url = "/app/jsonFiles/Offer/search-offer-ir.json"
             } else if (type == 'IDD') {
                 var url = "/app/jsonFiles/Offer/search-offer-idd.json"
-            } else if (type == 'ADDITIONAL'||type == 'POOLING') {
+            } else if (type == 'ADDITIONAL' || type == 'POOLING') {
                 var url = "/app/jsonFiles/Offer/search-offer-additional.json"
             } else if (type == 'RELATED') {
                 var url = "/app/jsonFiles/Offer/search-related-offer-priceplan2.json"
@@ -284,40 +284,69 @@
                     'partner-type': payload.saleAgent['partnerType']
                 },
                 'order-items': [{
-                    'name': 'AddDeleteEditOffer',
-                    'product-name': payload.productDetails['product-id'],
-                    'product-id-number': payload.productDetails['product-id-number'],
+                    'product-category': payload.productDetails['product-category'],
+                    'name': 'ADD_OFFER',
+                    'order-type': "CHANGE",
                     'product-id-name': payload.productDetails['product-id-name'],
-                    // 'product-category': payload.productDetails['product-category'],
+                    'product-id-number': payload.productDetails['product-id-number'],
+                    'product-name': payload.productDetails['product-id'],
+                    "address-list": {
+                        // "BILLING_ADDRESS": BILLING_ADDRESS,
+                        // "TAX_ADDRESS": TAX_ADDRESS
+                    },
+                    'primary-order-data': {
+                        'ACCOUNT-SUB-TYPE': payload.productDetails['account-sub-type'],
+                        'COMPANY-CODE': payload.productDetails['company-code'],
+                        'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
+                        'NAS-PROPOSITION': "",
+                        'ACCOUNT-ID': "",
+                        'OU-ID': payload.productDetails['ouId']
+                    },
+                    'order-data': {
+                        'OFFER-SIZE': "",
+                        'OFFER-${SIZE}': "",
+                        'OFFER-${SIZE}-SOC-TYPE': "",
+                        'OFFER-${SIZE}-OFFER-INSTANCE-ID':"",
+                        'OFFER-${SIZE}-OFFER-GROUP': "",
+                        'OFFER-${SIZE}-PARAM-SIZE': "",
+                        'OFFER-${SIZE}-PARAM-${SIZE}': "",
+                        'OFFER-${SIZE}-RELATED-OFFER-SIZE': "",
+                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}': "",
+                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}-SOC-TYPE': "",
+                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}-OFFER-INSTANCE-ID': "",
+                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}-OFFER-GROUP': "",
+                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}-PARAM-SIZE': "",
+                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}-PARAM-${SIZE}': "",
+                        'OFFER-${SIZE}-EFFECTIVE-DATE': "",
+                        'OFFER-${SIZE}-EXPIRE-DATE': "",
+                        'OFFER-${SIZE}-CHANGE-EFFECTIVE-OPTION': "",
+                        'OFFER-${SIZE}-CHANGE-EXPIRE-OPTION': "",
+                        'OFFER-${SIZE}-FUTURE-ORDER-ID': "",
+                        'PRICEPLAN-INSTANCE-ID': "",
+                        'SUBSCRIBER-ID': "",
+                        'PARENT-OU-AGREEMENT-ID': "",
+                        'OU-AGREEMENT-ID': "",
+                        'AGREEMENT-ID': "",
+                        'PARENT-OUID': "",
+                        'OU-HIERARCHYTYPE': "",
+                        'ACTION-LEVEL': ""
+                    },
                     'reason-code': payload.statusReason,
                     'user-memo': payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": " + payload.statusReasonMemo,
-                    'order-data': {
-                        'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
-                        'SERVICE-LEVEL': "C",
-                        'SUBSCRIBER-ID': payload.customerProfile['subscriber-id'],
-                        "CHANGE-OPTION": payload.statusCancel,
+                    // 'order-data': {
+                    //     'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
+                    //     'SERVICE-LEVEL': "C",
+                    //     'SUBSCRIBER-ID': payload.customerProfile['subscriber-id'],
+                    //     "CHANGE-OPTION": payload.statusCancel,
                         // "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-DESC']
 
                         // 'OU-ID': payload.productDetails['ouId'],
                         // 'BAN': payload.productDetails['ban'],
                         // 'PREPAID-SUBSCRIBER-ID': payload.productDetails['prepaid-subscriber-id'],
                         // 'IMSI': payload.productDetails['product-id-number']
-                    },
-                    'primary-order-data': {
-                        'OU-ID': payload.productDetails['ouId'],
-                        'BAN': payload.productDetails['ban'],
-                        'ACCOUNT-CATEGORY': payload.productDetails['account-category'],
-                        'ACCOUNT-SUB-TYPE': payload.productDetails['account-sub-type'],
-                        'COMPANY-CODE': payload.productDetails['company-code'],
-                        'PRODUCT-CODE': payload.productDetails['productCodes'],
-                        // 'SIM': payload.productDetails['simSerial'],
-                        "EFFECTIVE-OPTION": "IMMEDIATE",
-                        "EFFECTIVE-DATE": moment().format('YYYY-MM-DDTHH:mm:ss+0700')
-
-                    },
+                    // },
                     'product-category': payload.productDetails['product-category'],
-                    'product-type': "PRICEPLAN",
-                    'order-type': "CHANGE"
+                    'product-type': "PRICEPLAN"
 
                 }],
                 'last-modify-date': ''

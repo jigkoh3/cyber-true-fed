@@ -5,6 +5,7 @@
     //10/02/2016 fix
     var _WEB_METHOD_CHANNEL = "AFTERSALE_SMARTUI_WEB";
     var _REF_WEB_CHANNEL = $routeParams.channel ? $routeParams.channel : '';
+    var _SR_NO = $routeParams.srnum ? $routeParams.srnum : '';
 
     this.demo = false;
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
@@ -324,7 +325,8 @@
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+                'SR_NO': _SR_NO
                     // ,
                     // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
                     // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
@@ -392,7 +394,8 @@
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+                'SR_NO': _SR_NO
                     // ,
                     // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
                     // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
@@ -468,7 +471,8 @@
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+                'SR_NO': _SR_NO
                     // ,
                     // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
                     // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
@@ -540,7 +544,8 @@
                 'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
                 'E2E_REFID': localStorage.getItem('orderId'),
                 'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+                'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+                'SR_NO': _SR_NO
                     // ,
                     // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
                     // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
@@ -598,7 +603,8 @@
             'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
             'E2E_REFID': localStorage.getItem('orderId'),
             'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-            'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+            'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+            'SR_NO': _SR_NO
                 // ,
                 // 'ssoEmployeePrincipal': localStorage.getItem('ssoEmployeePrincipal'),
                 // 'ssoPartnerPrincipal': localStorage.getItem('ssoPartnerPrincipal')
@@ -825,7 +831,8 @@
             'WEB_METHOD_CHANNEL': _WEB_METHOD_CHANNEL,
             'E2E_REFID': localStorage.getItem('orderId'),
             'REF_WEB_CHANNEL': _REF_WEB_CHANNEL,
-            'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode')
+            'SELECTED_SHOPCODE': localStorage.getItem('selectedShopCode'),
+            'SR_NO': _SR_NO
         };
         console.log(httpRequest);
         if (!that.demo) {
@@ -2429,6 +2436,19 @@
             var ssc = "-";
             var arr = dateTH.split("/");
             return "" + (Number(arr[2]) - 543) + ssc + arr[1] + ssc + arr[0] + "T00:00:00+0700";
+        } else {
+            return "";
+        }
+    };
+    this.convertDataMMDDYYYYEN = function(date, lang) {
+        if (dateTH) {
+            var ssc = "-";
+            var arr = date.split("/");
+            if (lang == "TH") {
+                return "" + arr[1] + ssc + arr[0]  + ssc + (Number(arr[2]) + 543)
+            } else {
+                return "" + arr[1] + ssc + arr[0]  + ssc + arr[2];
+            }
         } else {
             return "";
         }
