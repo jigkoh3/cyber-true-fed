@@ -368,6 +368,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                 }
                                 if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["required"] == true && !$scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["default-value"]) {
                                     $scope.relateOfferRequireParam += $scope.selectedOffer['related-offers'][i]['offer']['name'] + " ";
+                                    break;
                                 }
                             }
                         }
@@ -1626,6 +1627,16 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
                 $scope.newOffer.guID = SystemService.guid();
                 $scope.addNewOfferList($scope.newOffer);
+                if ($scope.relateOfferRequireParam) {
+                    SystemService.showAlert({
+                        "message": "",
+                        "message-code": "",
+                        "message-type": "WARNING",
+                        "en-message": "Please Specify Parameter From Relate Offer " + $scope.relateOfferRequireParam,
+                        "th-message": "กรุณาระบุ Parameter ของ Relate Offer " + $scope.relateOfferRequireParam,
+                        "technical-message": "FROM WEBUI"
+                    })
+                }
             } else {
                 SystemService.showAlert($scope.validateOfferResult.data['display-messages'][0]);
             }
