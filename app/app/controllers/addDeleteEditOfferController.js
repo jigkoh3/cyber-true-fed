@@ -346,7 +346,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                 }
 
-                $scope.relateOfferRequireParam = "";
                 if ($scope.selectedOffer['related-offers']) {
                     for (var i = 0; i < $scope.selectedOffer['related-offers'].length; i++) {
                         if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications']) {
@@ -366,6 +365,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                     var index = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'].indexOf(defaultItem[0]);
                                     $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['select-value'] = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'][index];
                                 }
+                            }
+                        }
+
+                    }
+                };
+
+                $scope.relateOfferRequireParam = "";
+                if ($scope.selectedOffer['related-offers']) {
+                    for (var i = 0; i < $scope.selectedOffer['related-offers'].length; i++) {
+                        if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications']) {
+                            for (var j = 0; j < $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'].length; j++) {
                                 if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["required"] == true && !$scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["default-value"]) {
                                     if ($scope.relateOfferRequireParam == "") {
                                         $scope.relateOfferRequireParam += $scope.selectedOffer['related-offers'][i]['offer']['name'];
@@ -968,7 +978,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         data['statusReason'] = $scope.statusReason.id;
         data['statusReasonMemo'] = $scope.statusReasonMemo;
         data['offer'] = {
-            'OFFER-SIZE': $scope.addNewOfferLists.length
+            'OFFER-SIZE': $scope.addNewOfferLists.length,
+            'PRICEPLAN-INSTANCE-ID': "",
+            'SUBSCRIBER-ID': $scope.data.simData["subscriber-id"],
+            'ACTION-LEVEL': "SUBSCRIBER"
         };
 
         for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
@@ -976,7 +989,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             data['offer']["OFFER-" + i + "-SOCK-TYPE"] = $scope.addNewOfferLists[i]["soc-type"];
             // data['offer']["OFFER-" + i + "-OFFER-INSTANCE-ID"] = $scope.addNewOfferLists[i]["soc"];
             data['offer']["OFFER-" + i + "-OFFER-GROUP"] = $scope.addNewOfferLists[i]["group"];
-            
+
             if ($scope.addNewOfferLists[i]["param"]["effective-date-type"] == "immediate") {
                 data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.setDateNow);
                 data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
@@ -984,7 +997,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.addNewOfferLists[i]["param"]["effective-date-value"]);
                 data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
             }
-            
+
             if ($scope.addNewOfferLists[i]["param"]["expiration-date-type"] == "unlimited") {
                 data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = "";
                 data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "UNLIMITED";
@@ -998,7 +1011,25 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
                     var paramValue = $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] ? $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] : $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"];
                     data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + paramValue;
+
                 }
+            }
+
+            if ($scope.addNewOfferLists[i]["related-offers"]) {
+                data['offer']["OFFER-" + i + "-RELATED-OFFER-SIZE"] = $scope.addNewOfferLists[i]["related-offers"].length;
+                $.each($scope.addNewOfferLists[i]["related-offers"], function(relateIndex, item) {
+                    data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex] = item["offer"]["name"] + "|" + item["offer"]["description"];
+                    data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-SOC-TYPE"] = item["offer"]["soc-type"];
+                    data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-OFFER-GROUP"] = item["offer"]["group"];
+
+
+                    $.each(item["offer"]["parameter-specifications"], function(relateParamIndex, relateParam) {
+                        data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-PARAM-SIZE"] = item["offer"]["parameter-specifications"].length;
+                        var relateParamValue = relateParam["select-value"]["id"] ? relateParam["select-value"]["id"] : relateParam["select-value"];
+                        data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "PARAM-" + relateParamIndex] = relateParam["name"] + "|" + relateParamValue;
+                    });
+
+                });
             }
         }
         console.log(data);
@@ -1570,6 +1601,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.newOffer = [];
     $scope.currentOfferParam = ""
     $scope.validateOffer = function(item) {
+        SystemService.showLoading();
         $scope.currentOfferParam = "";
         $scope.selectedNewOffer = item.name;
         $scope.newOffer = item;
@@ -1606,9 +1638,25 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         };
         console.log($scope.currentOfferParam);
 
-        AddDeleteEditOfferService.validateOffer($scope.selectedNewOffer, $scope.currentOfferParam, function(result) {
+        AddDeleteEditOfferService.validateOffer($scope.selectedNewOffer, $scope.currentOfferParam, $scope.data.priceplan['account-category'], function(result) {
             $scope.validateOfferResult = result;
+            SystemService.hideLoading();
             console.log($scope.validateOfferResult.data);
+
+            var msg = utils.getObject(result.data, 'display-messages');
+            if (msg && msg.length > 0) {
+                SystemService.showAlert({
+                    "message": msg[0]["message"],
+                    "message-code": msg[0]["message-code"],
+                    "message-type": "WARNING",
+                    "en-message": msg[0]["en-message"],
+                    "th-message": msg[0]["th-message"],
+                    "technical-message": msg[0]["technical-message"]
+                });
+                return;
+            }
+
+
             if (!$scope.validateOfferResult.data.fault) {
                 $scope.newOffer.param = {};
                 $scope.newOffer.param['effective-date-type'] = $scope.offerEffectiveDate;

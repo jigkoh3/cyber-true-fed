@@ -138,13 +138,13 @@
 
     };
 
-    this.validateOffer = function(name, currentOffer, fnCallback) {
+    this.validateOffer = function(name, currentOffer, cusType, fnCallback) {
         if (!demo) {
-            var target = "/sales/catalog/product/tmv/offer/validate?" + "new-offer=" + name + "&current-offers=" + currentOffer;
+            var target = "/sales/catalog/product/tmv/offer/validate?" + "new-offer=" + name + "&current-offers=" + currentOffer + "&customer-type=" + cusType;
             var request = {
                 "target": target
             };
-            SystemService.callServicePost(request, null, function(result) {
+            SystemService.callServicePostByPass(request, null, function(result) {
                 fnCallback(result);
             });
         } else {
