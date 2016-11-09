@@ -1017,7 +1017,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             if ($scope.addNewOfferLists[i]["related-offers"]) {
                 data['offer']["OFFER-" + i + "-RELATED-OFFER-SIZE"] = $scope.addNewOfferLists[i]["related-offers"].length;
                 $.each($scope.addNewOfferLists[i]["related-offers"], function(relateIndex, item) {
-                    data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex] = item["offer"]["name"] + "|" + item["offer"]["description"];
+                    data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex] = item["offer"]["soc"] + "|" + item["offer"]["name"];
                     data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-SOC-TYPE"] = item["offer"]["soc-type"];
                     data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-OFFER-GROUP"] = item["offer"]["group"];
 
