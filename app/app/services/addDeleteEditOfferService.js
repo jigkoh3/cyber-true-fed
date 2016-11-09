@@ -298,8 +298,8 @@
                         'ACCOUNT-SUB-TYPE': payload.productDetails['account-sub-type'],
                         'COMPANY-CODE': payload.productDetails['company-code'],
                         'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
-                        'NAS-PROPOSITION': "",
-                        'ACCOUNT-ID': "",
+                        // 'NAS-PROPOSITION': "",
+                        'ACCOUNT-ID': payload.productDetails['ban'],
                         'OU-ID': payload.productDetails['ouId']
                     },
                     'order-data': payload['offer'],
