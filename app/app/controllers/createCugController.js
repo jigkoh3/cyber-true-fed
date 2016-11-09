@@ -136,7 +136,7 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
             console.log(txtSearch);
             arr = $filter('filter')(arr, { 'group-name': txtSearch });
             console.log(arr);
-            if(arr.length == 0){
+            if (arr.length == 0) {
                 $scope.isCustomerProfile = false;
             }
             for (var i = 0; i < arr.length; i++) {
@@ -340,6 +340,11 @@ smartApp.controller('CreateCugController', function($scope, $routeParams, Create
 
     var generateOrderRequest = function() {
         // $scope.data.customerProfile['language'] = "TH";
+        /// fixed bug reason CREQ :: 09-11-2016 :: xsam32
+        $scope.statusReason = {
+            id: "CREQ"
+        };
+        /// fixed bug reason CREQ :: 09-11-2016 :: xsam32
         return {
             newCUGData: {
                 groupName: $scope.groupName,
