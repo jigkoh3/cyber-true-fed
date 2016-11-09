@@ -979,7 +979,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         data['statusReasonMemo'] = $scope.statusReasonMemo;
         data['offer'] = {
             'OFFER-SIZE': $scope.addNewOfferLists.length,
-            'PRICEPLAN-INSTANCE-ID': "",
+            'PRICEPLAN-INSTANCE-ID': $scope.priceplan[0]["product-properties"]["OFFER-INSTANCE-ID"],
             'SUBSCRIBER-ID': $scope.data.simData["subscriber-id"],
             'ACTION-LEVEL': "SUBSCRIBER"
         };
@@ -987,7 +987,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
             data['offer']["OFFER-" + i] = $scope.addNewOfferLists[i].name + "|" + $scope.addNewOfferLists[i].description;
             data['offer']["OFFER-" + i + "-SOCK-TYPE"] = $scope.addNewOfferLists[i]["soc-type"];
-            // data['offer']["OFFER-" + i + "-OFFER-INSTANCE-ID"] = $scope.addNewOfferLists[i]["soc"];
             data['offer']["OFFER-" + i + "-OFFER-GROUP"] = $scope.addNewOfferLists[i]["group"];
 
             if ($scope.addNewOfferLists[i]["param"]["effective-date-type"] == "immediate") {

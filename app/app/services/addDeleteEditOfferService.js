@@ -302,48 +302,21 @@
                         'ACCOUNT-ID': "",
                         'OU-ID': payload.productDetails['ouId']
                     },
-                    'order-data': {
-                        'OFFER-SIZE': "",
-                        'OFFER-${SIZE}': "",
-                        'OFFER-${SIZE}-SOC-TYPE': "",
-                        'OFFER-${SIZE}-OFFER-INSTANCE-ID':"",
-                        'OFFER-${SIZE}-OFFER-GROUP': "",
-                        'OFFER-${SIZE}-PARAM-SIZE': "",
-                        'OFFER-${SIZE}-PARAM-${SIZE}': "",
-                        'OFFER-${SIZE}-RELATED-OFFER-SIZE': "",
-                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}': "",
-                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}-SOC-TYPE': "",
-                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}-OFFER-INSTANCE-ID': "",
-                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}-OFFER-GROUP': "",
-                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}-PARAM-SIZE': "",
-                        'OFFER-${SIZE}-RELATED-OFFER-${SIZE}-PARAM-${SIZE}': "",
-                        'OFFER-${SIZE}-EFFECTIVE-DATE': "",
-                        'OFFER-${SIZE}-EXPIRE-DATE': "",
-                        'OFFER-${SIZE}-CHANGE-EFFECTIVE-OPTION': "",
-                        'OFFER-${SIZE}-CHANGE-EXPIRE-OPTION': "",
-                        'OFFER-${SIZE}-FUTURE-ORDER-ID': "",
-                        'PRICEPLAN-INSTANCE-ID': "",
-                        'SUBSCRIBER-ID': "",
-                        'PARENT-OU-AGREEMENT-ID': "",
-                        'OU-AGREEMENT-ID': "",
-                        'AGREEMENT-ID': "",
-                        'PARENT-OUID': "",
-                        'OU-HIERARCHYTYPE': "",
-                        'ACTION-LEVEL': ""
-                    },
-                    'reason-code': payload.statusReason,
+                    'order-data': payload['offer'],
+                    // 'reason-code': payload.statusReason.id,
+                    'reason-code': "CREQ",
                     'user-memo': payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": " + payload.statusReasonMemo,
                     // 'order-data': {
                     //     'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
                     //     'SERVICE-LEVEL': "C",
                     //     'SUBSCRIBER-ID': payload.customerProfile['subscriber-id'],
                     //     "CHANGE-OPTION": payload.statusCancel,
-                        // "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-DESC']
+                    // "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-DESC']
 
-                        // 'OU-ID': payload.productDetails['ouId'],
-                        // 'BAN': payload.productDetails['ban'],
-                        // 'PREPAID-SUBSCRIBER-ID': payload.productDetails['prepaid-subscriber-id'],
-                        // 'IMSI': payload.productDetails['product-id-number']
+                    // 'OU-ID': payload.productDetails['ouId'],
+                    // 'BAN': payload.productDetails['ban'],
+                    // 'PREPAID-SUBSCRIBER-ID': payload.productDetails['prepaid-subscriber-id'],
+                    // 'IMSI': payload.productDetails['product-id-number']
                     // },
                     'product-category': payload.productDetails['product-category'],
                     'product-type': "PRICEPLAN"
@@ -360,39 +333,39 @@
             fnCallback(result);
         };
 
-        // if (!demo) {
-        //     var target = '/aftersales/order/submit';
+        if (!demo) {
+            var target = '/aftersales/order/submit';
 
-        //     SystemService.callServicePost(request, null, function(result) {
-        //         //save report to server
-        //         SystemService.saveReportToServer({}, function(result){
+            SystemService.callServicePost(request, null, function(result) {
+                //save report to server
+                SystemService.saveReportToServer({}, function(result) {
 
-        //         });
+                });
 
-        //         cb(result);
-        //     });
-        // } else {
-        var data = {
-            'status': 'SUCCESSFUL',
-            'display-messages': [{
-                'message': 'Order ORD150700000032 successful saved.',
-                'message-type': 'INFORMATION',
-                'en-message': 'Order ORD150700000032 successful saved.',
-                'th-message': 'รายการคำขอเลขที่ ORD150700000032 ได้รับข้อมูลเรียบร้อยแล้ว'
-            }],
-            'trx-id': '03J5HVSFXH8R',
-            'process-instance': 'tpx61.true.th (instance: sale)'
-        };
-
-        $timeout(function() {
-            cb({
-                status: true,
-                data: data,
-                error: '',
-                msgErr: ''
+                cb(result);
             });
-        }, 1000);
-        // }
+        } else {
+            var data = {
+                'status': 'SUCCESSFUL',
+                'display-messages': [{
+                    'message': 'Order ORD150700000032 successful saved.',
+                    'message-type': 'INFORMATION',
+                    'en-message': 'Order ORD150700000032 successful saved.',
+                    'th-message': 'รายการคำขอเลขที่ ORD150700000032 ได้รับข้อมูลเรียบร้อยแล้ว'
+                }],
+                'trx-id': '03J5HVSFXH8R',
+                'process-instance': 'tpx61.true.th (instance: sale)'
+            };
+
+            $timeout(function() {
+                cb({
+                    status: true,
+                    data: data,
+                    error: '',
+                    msgErr: ''
+                });
+            }, 1000);
+        }
     };
     this.getCapmaxParameter = function(offerCode, fnCallback) {
         var data = {};
