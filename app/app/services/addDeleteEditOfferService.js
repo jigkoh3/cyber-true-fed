@@ -286,10 +286,10 @@
                 'order-items': [{
                     'product-category': payload.productDetails['product-category'],
                     'name': 'ADD_OFFER',
-                    'order-type': "CHANGE",
+                    'order-type': "NEW",
                     'product-id-name': payload.productDetails['product-id-name'],
                     'product-id-number': payload.productDetails['product-id-number'],
-                    'product-name': payload.productDetails['product-id'],
+                    'product-name': payload.currentPricePlan,
                     "address-list": {
                         // "BILLING_ADDRESS": BILLING_ADDRESS,
                         // "TAX_ADDRESS": TAX_ADDRESS

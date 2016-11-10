@@ -812,7 +812,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             saleAgent: $scope.getAuthen,
             reason: $scope.statusReason,
             memo: $scope.statusReasonMemo,
-            approver: $scope.approver
+            approver: $scope.approver,
+            currentPricePlan: $scope.priceplan[0]['product-name']
         };
     };
 
