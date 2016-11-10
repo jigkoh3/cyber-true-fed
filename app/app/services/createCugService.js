@@ -647,6 +647,7 @@
                     'name': 'CREATE_CUG',
                     'product-category': 'TMV',
                     'product-type': 'CUG',
+                    "product-id-number": "CUG",//// update save by p'khang :: 10-11-2016 :: xsam32
                     'order-type': 'NEW',
                     'reason-code': 'CREQ',
                     'user-memo': payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": " + payload.statusReasonMemo,
