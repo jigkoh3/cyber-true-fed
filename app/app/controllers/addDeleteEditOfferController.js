@@ -1560,11 +1560,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     // ========================================================================
 
                     // ยกเลิก convert date เป็น th 20161108
-                    if ($scope.addOfferLists[i]["sale-period"].start) {
+                    if ($scope.addOfferLists[i]["sale-period"] && $scope.addOfferLists[i]["sale-period"].start) {
                         $scope.addOfferLists[i]["sale-period"].start = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["sale-period"].start, "dd/MM/yyyy");
                     }
 
-                    if ($scope.addOfferLists[i]["sale-period"].end) {
+                    if ($scope.addOfferLists[i]["sale-period"] && $scope.addOfferLists[i]["sale-period"].end) {
                         $scope.addOfferLists[i]["sale-period"].end = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["sale-period"].end, "dd/MM/yyyy");
                     }
                     //===================================================================//
