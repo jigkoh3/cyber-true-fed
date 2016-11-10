@@ -489,7 +489,7 @@
                     <br>
                 </div>
 
-                <div id="modal-pdf" tabindsex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
+                <div id="modal-pdf" name="modal-pdf" tabindsex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog" style="width:85%">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -499,7 +499,7 @@
                             </h4>
                             </div>
                             <div class="modal-body modalBodyDivStyle">
-                                <iframe class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
+                                <iframe name="iframePDF" class="modalBodyIframeStyle" id="iframePDF" frameborder="0" scrolling="yes">
                                     <p>It appears your web browser doesn't support iframes.</p>
                                 </iframe>
                             </div>
@@ -513,7 +513,7 @@
                 <div class="col-md-12 form-buttons" ng-if="!isCMUser && offerType == 'C'">
                     <div class="form-group">
                         
-                        <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog();onChkEditOffer();" ng-disabled="addNewOfferLists.length == 0 && offerType == 'C'" />
+                        <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog();onChkEditOffer();" ng-disabled="addNewOfferLists.length == 0 && offerType == 'C'" href="#modal-pdf" data-toggle="modal"/>
                         <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
                         <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
                     </div>
