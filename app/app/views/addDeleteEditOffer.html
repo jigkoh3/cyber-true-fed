@@ -430,15 +430,24 @@
                                         {{item['description']}}
                                     </td>
                                     <td class="contentTbCenter">
-                                        <span ng-if="item['param']['effective-date-type']=='specify'">
+                                        <span ng-if="item['group']!='CONTRACT_PROPO' && item['param']['effective-date-type']=='specify'">
                                             {{item['param']['effective-date-value']}}    
                                         </span>
-                                        <span ng-if="item['param']['effective-date-type']=='immediate'">
+                                        <span ng-if="item['group']!='CONTRACT_PROPO' && item['param']['effective-date-type']=='immediate'">
                                             {{setDateNow}}    
+                                        </span>
+                                        <span ng-if="item['group']=='CONTRACT_PROPO'">
+                                            {{item['param']['start-date']}}                                         
                                         </span>
                                     </td>
                                     <td class="contentTbCenter">
-                                        {{item['param']['expiration-date-value']}}
+                                        <span ng-if="item['group']!='CONTRACT_PROPO'">
+                                            {{item['param']['expiration-date-value']}}    
+                                        </span>
+                                        
+                                        <span ng-if="item['group']=='CONTRACT_PROPO'">
+                                            {{item['param']['expiration-date']}}                                         
+                                        </span>
                                     </td>
                                     <td class="contentTbCenter">
                                         {{item['group']}}
@@ -553,7 +562,7 @@
                         </div>
                         <div class="col-md-4">
                             <select class="form-control" ng-model="addOfferType.value" id="addOfferType" ng-change="onAddOfferType(); searchOffer('');">
-                                <!-- <option value="">All</option> -->
+                                <option value="">All</option>
                                 <option value="ADDITIONAL">Additional Offer</option>
                                 <option value="RELATED">Related Offer</option>
                                 <option value="CUG">CUG</option>
@@ -1001,7 +1010,7 @@
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="cpStartDate" ng-model="cpStartDate" class="form-control date-picker-today dateFormat" maxlength="10" requireds ng-keyup="validateAddCp()">
+                                        <input name="birthDay" type="text" id="cpStartDate" ng-model="cpStartDate" class="form-control date-picker-today-en dateFormat" maxlength="10" requireds ng-keyup="validateAddCp()">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1016,7 +1025,7 @@
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today dateFormat" maxlength="10" required ng-keyup="validateAddCp()">
+                                        <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp()">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1081,7 +1090,7 @@
                                 <div class="col-xs-3" style=" text-align: right; top: 5px;">
                                     <label>วันที่หมดอายุ (Expiration Date)</label><span style="color:red;">*</span>
                                 </div>
-                                <div class="col-xs-7" ng-show="selectedOffer['properties']['DISCOUNT_TYPE']=='CVG' || selectedOffer['properties']['DISCOUNT_TYPE']=='EMP' || !selectedOffer['properties']['DISCOUNT_TYPE'].length">
+                                <div class="col-xs-7" ng-show="selectedOffer['properties']['DISCOUNT_GROUP']=='CVG' || selectedOffer['properties']['DISCOUNT_GROUP']=='EMP' || !selectedOffer['properties']['DISCOUNT_GROUP'].length">
                                     <div class="col-xs-5" style="top:5px;">
                                         <label style="cursor: pointer;">
                                             <input style="cursor: pointer;" type="radio" name="offerExpirationDate" ng-model="offerExpirationDate" value="unlimited" ng-change="onExpirationChange();"> ไม่มีกำหนด (Unlimited)
@@ -1104,7 +1113,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-7" ng-show="selectedOffer['properties']['DISCOUNT_TYPE'].length > 0 && selectedOffer['properties']['DISCOUNT_TYPE']!='CVG' && selectedOffer['properties']['DISCOUNT_TYPE']!='EMP'">
+                                <div class="col-xs-7" ng-show="selectedOffer['properties']['DISCOUNT_GROUP'].length > 0 && selectedOffer['properties']['DISCOUNT_GROUP']!='CVG' && selectedOffer['properties']['DISCOUNT_GROUP']!='EMP'">
                                     <div class="col-xs-7">
                                         <div class="form-group">
                                             <div class="col-xs-4" style="top:5px;left:3px;">
@@ -1114,7 +1123,7 @@
                                             </div>
                                             <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
                                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                                    <input type="text" ng-model="addNewOfferExpirationDate" id="addNewOfferExpirationDate2" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="false">
+                                                    <input type="text" ng-model="addNewOfferExpirationDate" id="addNewOfferExpirationDate2" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="disableExpDateDiscount">
                                                     <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
                                                 </div>
                                             </div>
@@ -1678,7 +1687,7 @@
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="editCpStartDate" ng-model="dataForEdit.param['start-date']" class="form-control date-picker-today dateFormat" maxlength="10" requireds ng-keyup="validateAddCp('edit')">
+                                        <input name="birthDay" type="text" id="editCpStartDate" ng-model="dataForEdit.param['start-date']" class="form-control date-picker-today-en dateFormat" maxlength="10" requireds ng-keyup="validateAddCp('edit')">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1693,7 +1702,7 @@
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="editCpExpirationDate" ng-model="dataForEdit.param['expiration-date']" class="form-control date-picker-today dateFormat" maxlength="10" required ng-keyup="validateAddCp('edit')" ng-click="setDatepickerValue();">
+                                        <input name="birthDay" type="text" id="editCpExpirationDate" ng-model="dataForEdit.param['expiration-date']" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp('edit')" ng-click="setDatepickerValue();">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1767,7 +1776,7 @@
                                     <div class="col-xs-7">
                                         <div class="col-xs-5" style="top:5px;">
                                             <label style="cursor: pointer;">
-                                                <input style="cursor: pointer;" type="radio" name="editOfferExpirationDate" ng-model="dataForEdit['param']['expiration-date-type']" value="unlimited" ng-change="onExpirationChangeForEdit();" ng-disabled="dataForEdit['properties']['DISCOUNT_TYPE'].length > 0 && dataForEdit['properties']['DISCOUNT_TYPE']!='CVG' && dataForEdit['properties']['DISCOUNT_TYPE']!='EMP'"> ไม่มีกำหนด (Unlimited)
+                                                <input style="cursor: pointer;" type="radio" name="editOfferExpirationDate" ng-model="dataForEdit['param']['expiration-date-type']" value="unlimited" ng-change="onExpirationChangeForEdit();" ng-disabled="dataForEdit['properties']['DISCOUNT_GROUP'].length > 0 && dataForEdit['properties']['DISCOUNT_GROUP']!='CVG' && dataForEdit['properties']['DISCOUNT_GROUP']!='EMP'"> ไม่มีกำหนด (Unlimited)
                                             </label>
                                         </div>
                                         <div class="col-xs-7">
@@ -1967,7 +1976,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="has-feedback">
-                                        <input type="text" ng-model="viewOfferForEdit['CONTRACT-START-DATE']" class="form-control date-picker-today dateFormat" maxlength="10" ng-disabled="viewOfferForEdit['CONTRACT-START-DATE'].length > 0">
+                                        <input type="text" ng-model="viewOfferForEdit['CONTRACT-START-DATE']" class="form-control date-picker-today-en dateFormat" maxlength="10" ng-disabled="viewOfferForEdit['CONTRACT-START-DATE'].length > 0">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1984,7 +1993,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="has-feedback">
-                                        <input type="text" ng-model="viewOfferForEdit['CONTRACT-EXPIRATION-DATE']" class="form-control date-picker-today dateFormat" maxlength="10" ng-disabled="viewOfferForEdit['CONTRACT-EXPIRATION-DATE'].length > 0">
+                                        <input type="text" ng-model="viewOfferForEdit['CONTRACT-EXPIRATION-DATE']" class="form-control date-picker-today-en dateFormat" maxlength="10" ng-disabled="viewOfferForEdit['CONTRACT-EXPIRATION-DATE'].length > 0">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -2284,7 +2293,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="has-feedback">
-                                        <input type="text" ng-model="viewOffer['CONTRACT-START-DATE']" class="form-control date-picker-today dateFormat" maxlength="10" ng-disabled="true">
+                                        <input type="text" ng-model="viewOffer['CONTRACT-START-DATE']" class="form-control date-picker-today-en dateFormat" maxlength="10" ng-disabled="true">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -2301,7 +2310,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="has-feedback">
-                                        <input type="text" ng-model="viewOffer['CONTRACT-EXPIRATION-DATE']" class="form-control date-picker-today dateFormat" maxlength="10" disabled>
+                                        <input type="text" ng-model="viewOffer['CONTRACT-EXPIRATION-DATE']" class="form-control date-picker-today-en dateFormat" maxlength="10" disabled>
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>

@@ -1,0 +1,82 @@
+{
+    "status": "SUCCESSFUL",
+    "trx-id": "5R9A08VSHJ1WO",
+    "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+    "response-data": [{
+        "name": "PROSPS03",
+        "description": "Barred Mobile SMS OUT",
+        "soc": "12268817",
+        "properties": {
+            "OFFER_GROUP": "BIZ",
+            "OFFER_TYPE": "N"
+        },
+        "group": "BARRING",
+        "soc-type": "U",
+        "sale-period": {
+            "start": "2016-06-16",
+            "end": "2250-08-08"
+        },
+        "rc": 0.0,
+        "max-instance-allow": 0,
+        "service-level": "C",
+        "sale-context": "S",
+        "available-groups": ["ADDITIONAL"]
+    }, {
+        "name": "PROSPS04",
+        "description": "Barred Mobile SMS In",
+        "soc": "12268917",
+        "properties": {
+            "OFFER_GROUP": "BIZ",
+            "OFFER_TYPE": "N"
+        },
+        "group": "BARRING",
+        "soc-type": "U",
+        "sale-period": {
+            "start": "2016-06-16",
+            "end": "2250-08-08"
+        },
+        "rc": 0.0,
+        "max-instance-allow": 0,
+        "service-level": "C",
+        "sale-context": "S",
+        "available-groups": ["ADDITIONAL"]
+    }, {
+        "name": "PROSPS02",
+        "description": "Barred Voice Mobile Voice In",
+        "soc": "12268717",
+        "properties": {
+            "OFFER_GROUP": "BIZ",
+            "OFFER_TYPE": "N"
+        },
+        "group": "BARRING",
+        "soc-type": "U",
+        "sale-period": {
+            "start": "2016-06-16",
+            "end": "2250-08-08"
+        },
+        "rc": 0.0,
+        "max-instance-allow": 0,
+        "service-level": "C",
+        "sale-context": "S",
+        "available-groups": ["ADDITIONAL"]
+    }, {
+        "name": "PROSPS01",
+        "description": "Barred Voice Mobile Voice Out",
+        "soc": "12268617",
+        "properties": {
+            "OFFER_GROUP": "BIZ",
+            "OFFER_TYPE": "N"
+        },
+        "group": "BARRING",
+        "soc-type": "U",
+        "sale-period": {
+            "start": "2016-06-16",
+            "end": "2250-08-08"
+        },
+        "rc": 0.0,
+        "max-instance-allow": 0,
+        "service-level": "C",
+        "sale-context": "S",
+        "available-groups": ["ADDITIONAL"]
+    }]
+}

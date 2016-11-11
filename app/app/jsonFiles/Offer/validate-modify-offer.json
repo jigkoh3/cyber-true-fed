@@ -1,0 +1,14 @@
+{
+    "status": "SUCCESSFUL",
+    "trx-id": "7R98CRANKAS4G",
+    "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+    "response-data": {
+        "CREDITLIMIT": "EDIT|DELETE",
+        "RMPGPS01": "EDIT|DELETE",
+        "PROSTDA1": "EDIT|DELETE",
+        "FCVBAR": null,
+        "RMHSPS04": "DELETE",
+        "CUGFRS01": "EDIT",
+        "000TestSetDateBUC068": "EDIT"
+    }
+}

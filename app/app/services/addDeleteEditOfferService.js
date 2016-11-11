@@ -138,28 +138,6 @@
 
     };
 
-    this.validateOffer = function(name, currentOffer, cusType, fnCallback) {
-        if (!demo) {
-            var target = "/sales/catalog/product/tmv/offer/validate?" + "new-offer=" + name + "&current-offers=" + currentOffer + "&customer-type=" + cusType;
-            var request = {
-                "target": target
-            };
-            SystemService.callServicePostByPass(request, null, function(result) {
-                fnCallback(result);
-            });
-        } else {
-            var url = "/app/jsonFiles/Offer/validate-offer-success.json";
-            SystemService.getFileJson(url, function(response) {
-                fnCallback({
-                    status: true,
-                    data: response,
-                    error: "",
-                    msgErr: ""
-                });
-            });
-        }
-    };
-
     this.getUserGroup = function(roles, fnCallback) {
         if (!demo) {
             var target = "aftersales/order/activity-rule/validate?activity=GET_USER_GROUP";
@@ -213,6 +191,8 @@
                 var url = "/app/jsonFiles/Offer/search-offer-idd.json"
             } else if (type == 'ADDITIONAL' || type == 'POOLING') {
                 var url = "/app/jsonFiles/Offer/search-offer-additional.json"
+            } else if (type == 'BARRING') {
+                var url = "/app/jsonFiles/Offer/search-offer-barring.json"
             } else if (type == 'RELATED') {
                 var url = "/app/jsonFiles/Offer/search-related-offer-priceplan2.json"
                     // var url = "/app/jsonFiles/Offer/search-offer-notfound.json"
@@ -285,7 +265,7 @@
                 },
                 'order-items': [{
                     'product-category': payload.productDetails['product-category'],
-                    'name': 'ADD_OFFER',
+                    'name': payload.action,
                     'order-type': "NEW",
                     'product-id-name': payload.productDetails['product-id-name'],
                     'product-id-number': payload.productDetails['product-id-number'],
@@ -444,4 +424,50 @@
             });
         }
     };
+
+    this.validateOffer = function(name, currentOffer, cusType, fnCallback) {
+        if (!demo) {
+            var target = "/sales/catalog/product/tmv/offer/validate?" + "new-offer=" + name + "&current-offers=" + currentOffer + "&customer-type=" + cusType;
+            var request = {
+                "target": target
+            };
+            SystemService.callServicePostByPass(request, null, function(result) {
+                fnCallback(result);
+            });
+        } else {
+            var url = "/app/jsonFiles/Offer/validate-offer-success.json";
+            SystemService.getFileJson(url, function(response) {
+                fnCallback({
+                    status: true,
+                    data: response,
+                    error: "",
+                    msgErr: ""
+                });
+            });
+        }
+    };
+
+    this.validateModifyOffer = function(param, fnCallback) {
+        var data = {};
+        if (!demo) {
+            var target = "/sales/catalog/product/tmv/offer/validate-modification?" + param;
+            var request = {
+                "target": target
+            };
+            SystemService.callServicePost(request, null, function(result) {
+                fnCallback(result);
+            });
+        } else {
+            var url = "/app/jsonFiles/Offer/validate-modify-offer.json";
+            SystemService.getFileJson(url, function(response) {
+                fnCallback({
+                    status: true,
+                    data: response,
+                    error: "",
+                    msgErr: ""
+                });
+            });
+        }
+    };
+
 });

@@ -2040,6 +2040,14 @@
             startDate: dateNow
         });
 
+        $('.date-picker-today-en').datepicker({
+            clearBtn: true,
+            autoclose: true,
+            todayHighlight: true,
+            language: 'th-en',
+            startDate: dateNow
+        });
+
         $('.date-picker-expiredate').datepicker({
             clearBtn: true,
             autoclose: true,
