@@ -1,14 +1,14 @@
 {
     "status": "SUCCESSFUL",
-    "trx-id": "7R98CRANKAS4G",
+    "trx-id": "3R98J3SQGJ6M0",
     "process-instance": "tmsapnpr1 (instance: SFF_node3)",
     "response-data": {
-        "CREDITLIMIT": "EDIT|DELETE",
-        "RMPGPS01": "EDIT|DELETE",
-        "PROSTDA1": "EDIT|DELETE",
-        "FCVBAR": null,
-        "RMHSPS04": "DELETE",
-        "CUGFRS01": "EDIT",
-        "000TestSetDateBUC068": "EDIT"
+        "CREDITLIMIT": ["DELETE", "EDIT"],
+        "RMPGPS01": ["DELETE", "EDIT"],
+        "PROSTDA1": ["EDIT"],
+        "FCVBAR": ["DELETE", "EDIT"],
+        "RMHSPS04": ["EDIT"],
+        "CUGFRS01": ["DELETE", "EDIT"],
+        "000TestSetDateBUC068": ["DELETE", "EDIT"]
     }
 }

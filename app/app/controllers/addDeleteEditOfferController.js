@@ -405,19 +405,24 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 break;
 
             case "DISCOUNT":
-                var validateDiscountOfferParam = "current-offers=" + $scope.selectedOffer.name + "&current-priceplan=" + $scope.priceplan[0]['product-name'] + "&level=SUBSCRIBER";
-                AddDeleteEditOfferService.validateModifyOffer(validateDiscountOfferParam, function(result) {
-                    var validateResult = result;
-                    switch (validateResult.data['response-data'][$scope.selectedOffer.name]) {
-                        case "EDIT":
-                        case "EDIT|DELETE":
-                        case "DELETE|EDIT":
-                            $scope.disableExpDateDiscount = false;
-                            break;
-                        default:
-                            $scope.disableExpDateDiscount = true;
-                    }
-                });
+                if ($scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'CVG' && $scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'EMP') {
+                    $scope.disableExpDateDiscount = true;
+                    var validateDiscountOfferParam = "current-offers=" + $scope.selectedOffer.name + "&current-priceplan=" + $scope.priceplan[0]['product-name'] + "&level=SUBSCRIBER";
+                    SystemService.showLoading();
+                    AddDeleteEditOfferService.validateModifyOffer(validateDiscountOfferParam, function(result) {
+                        SystemService.hideLoading();
+                        var validateResult = result;
+                        if (validateResult.data['response-data'][$scope.selectedOffer.name]) {
+                            for (var i = 0; i < validateResult.data['response-data'][$scope.selectedOffer.name].length; i++) {
+                                if (validateResult.data['response-data'][$scope.selectedOffer.name][i] == "EDIT") {
+                                    $scope.disableExpDateDiscount = false;
+                                } else {
+                                    $scope.disableExpDateDiscount = true;
+                                }
+                            }
+                        }
+                    });
+                }
                 break;
         }
 
