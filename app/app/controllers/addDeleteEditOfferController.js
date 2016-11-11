@@ -271,6 +271,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.disableExpDateDiscount = true;
+    $scope.disableExpDateCp = true;
     $scope.onChangeRadioOffer = function(item) {
         $scope.clearValueAddNewOffer();
         $scope.onClearRelateOfferValue();
@@ -301,7 +302,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                             $scope.cpExpireDate = $scope.cpStartDate;
                             $('#cpExpireDate').val($scope.cpExpireDate);
                             var dateToSet = $scope.cpExpireDate.split("/");
-                            $('#cpExpireDate').datepicker("setDate", new Date(Number(dateToSet[2]) - 543, Number(dateToSet[1]) - 1, Number(dateToSet[0])));
+                            $('#cpExpireDate').datepicker("setDate", new Date(dateToSet[2], Number(dateToSet[1]) - 1, Number(dateToSet[0])));
+                        } else {
+                            var currentDate = new Date();
+                            currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));
+                            var setDate = ("0" + currentDate.getDate()).slice(-2) + "/" + ("0" + Number(currentDate.getMonth() + 1)).slice(-2) + "/" + currentDate.getFullYear();
+                            $('#cpExpireDate').datepicker("setDate", new Date(currentDate.getFullYear(), ("0" + Number(currentDate.getMonth() + 0)).slice(-2), ("0" + currentDate.getDate()).slice(-2)));
+                            $('#cpExpireDate').val(setDate);
+                            $scope.cpExpireDate = $('#cpExpireDate').val();
                         }
                     }
                     if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_FEE" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
@@ -312,17 +320,25 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                 }
 
-                if ($scope.cpTerm > 0) {
-                    var currentDate = new Date();
-                    currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));
-                    var setDate = ("0" + currentDate.getDate()).slice(-2) + "/" + ("0" + Number(currentDate.getMonth() + 1)).slice(-2) + "/" + Number(currentDate.getFullYear() + 543);
-                    $('#cpExpireDate').datepicker("setDate", new Date(currentDate.getFullYear(), ("0" + Number(currentDate.getMonth() + 0)).slice(-2), ("0" + currentDate.getDate()).slice(-2)));
-                    $('#cpExpireDate').val(setDate);
-                    $scope.cpExpireDate = $('#cpExpireDate').val();
-                    // console.log(setDate);
-                }
-
                 $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
+
+
+                $scope.disableExpDateCp = true;
+                var validateDiscountOfferParam = "current-offers=" + $scope.selectedOffer.name + "&current-priceplan=" + $scope.priceplan[0]['product-name'] + "&level=SUBSCRIBER";
+                SystemService.showLoading();
+                AddDeleteEditOfferService.validateModifyOffer(validateDiscountOfferParam, function(result) {
+                    SystemService.hideLoading();
+                    var validateResult = result;
+                    if (validateResult.data['response-data'][$scope.selectedOffer.name]) {
+                        for (var i = 0; i < validateResult.data['response-data'][$scope.selectedOffer.name].length; i++) {
+                            if (validateResult.data['response-data'][$scope.selectedOffer.name][i] == "EDIT") {
+                                $scope.disableExpDateCp = false;
+                            } else {
+                                $scope.disableExpDateCp = true;
+                            }
+                        }
+                    }
+                })
                 break;
 
             case "ADDITIONAL":
@@ -2357,6 +2373,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.editOfferGroup = $scope.dataForEdit.group;
         $scope.onEffectiveChangeForEdit();
         setTimeout(function() {
+            $('#editNewOfferEffectiveDate').val($scope.dataForEdit['param']['effective-date-value']);
             $('#editNewOfferEffectiveDate').datepicker("setDate", $scope.dataForEdit['param']['effective-date-value']);
             // $('#editNewOfferExpirationDate').datepicker("setDate", $scope.dataForEdit['param']['expiration-date-value']);
         }, 50);

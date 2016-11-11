@@ -818,7 +818,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="(selectedOffer.group=='ADDITIONAL' || selectedOffer.group=='POOLING') && radioOffer && selectedOffer['parameter-specifications'].length > 0" style="padding: 20px;">
+                    <div ng-show="selectedOffer.group!='CUG' && selectedOffer.group!='FF' && selectedOffer.group!='CONTRACT_PROPO' && radioOffer && selectedOffer['parameter-specifications'].length > 0" style="padding: 20px;">
                         <div class="form-group row" ng-repeat="item in selectedOffer['parameter-specifications']">
                             <div class="col-xs-1">
                             </div>
@@ -964,10 +964,7 @@
                                     <label>Contract Number</label><span style="color: red">*</span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input type="text" ng-model="cpContractNumber" class="form-control" ng-number-only="inputCpCN" maxlength="10" ng-keyup="validateAddCp()">
-                                    <span ng-span-number-only="inputCpCN" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
+                                    <input type="text" ng-model="cpContractNumber" class="form-control" ng-keyup="validateAddCp()">
                                 </div>
                                 <div class="col-xs-2">
                                 </div>
@@ -1025,7 +1022,7 @@
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp()">
+                                        <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp()" ng-disabled="disableExpDateCp">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1529,7 +1526,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-show="dataForEdit.group!='CUG' || dataForEdit.group!='FF' || dataForEdit.group!='CONTRACT_PROPO'" style="padding: 20px;">
+                        <div ng-show="dataForEdit.group!='CUG' && dataForEdit.group!='FF' && dataForEdit.group!='CONTRACT_PROPO'" style="padding: 20px;">
                             <div class="form-group row" ng-repeat="item in dataForEdit['parameter-specifications']">
                             <div class="col-xs-1">
                             </div>
@@ -1552,7 +1549,7 @@
                     </div>
                         <!-- <br> -->
                         <!-- <br> -->
-                    <div style="border-top: 1px solid #e5e5e5;"  ng-hide="dataForEdit['type'] == 'editRelate'">
+                    <div style="border-top: 1px solid #e5e5e5;"  ng-hide="dataForEdit['type'] == 'editRelate' || dataForEdit.group=='CONTRACT_PROPO'">
                         <br>
                        <!--  <label style="cursor: pointer;">
                             <input type="checkbox" ng-model="editExp" id="editExp"> &nbsp;

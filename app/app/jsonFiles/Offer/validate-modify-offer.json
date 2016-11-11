@@ -9,6 +9,7 @@
         "FCVBAR": ["DELETE", "EDIT"],
         "RMHSPS04": ["EDIT"],
         "CUGFRS01": ["DELETE", "EDIT"],
+        "0RMVB00000000362": ["DELETE", "EDIT"],
         "000TestSetDateBUC068": ["DELETE", "EDIT"]
     }
 }

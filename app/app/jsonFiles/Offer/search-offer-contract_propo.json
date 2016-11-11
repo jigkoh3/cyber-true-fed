@@ -4,7 +4,7 @@
   "process-instance": "tmsapnpr1 (instance: SFF_node3)",
   "response-data": [
     {
-      "name": "RMVB00000000362",
+      "name": "0RMVB00000000362",
       "description": "MNP_Smart SME Pool Plan",
       "soc": "12350316",
       "properties": {
