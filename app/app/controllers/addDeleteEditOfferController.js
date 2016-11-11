@@ -97,7 +97,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.currentPage = 1;
     $scope.pageSize = 5;
     $scope.addOfferType = {
-        value: "ADDITIONAL"
+        value: ""
     };
     $scope.txtSearchOffer = "";
     $scope.radioOffer = "";
@@ -326,6 +326,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 break;
 
             case "ADDITIONAL":
+            case "CAP_MAX":
+            case "POOLING":
                 // $scope.adParam = [];
                 // $scope.adParamSpec = $scope.selectedOffer['parameter-specifications'];
                 // $scope.selectedOffer['option-params'] = [];
@@ -1055,6 +1057,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
             switch ($scope.addNewOfferLists[i].group) {
                 case "ADDITIONAL":
+                case "CAP_MAX":
                 case "POOLING":
                     if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
                         data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
@@ -2151,6 +2154,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                     break;
                 case "ADDITIONAL":
+                case "CAP_MAX":
+                case "POOLING":
                     if ($scope.chkValueforAD == false) {
                         $scope.disableSubmitAddOffer = true;
                     } else if ($scope.chkValueforAD == true && $scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
@@ -2224,6 +2229,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                     break;
                 case "ADDITIONAL":
+                case "CAP_MAX":
+                case "POOLING":
                     if ($scope.chkValueforAD == false) {
                         $scope.disableSubmitAddOffer = true;
                     } else if ($scope.chkValueforAD == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
