@@ -189,8 +189,12 @@
                 var url = "/app/jsonFiles/Offer/search-offer-ir.json"
             } else if (type == 'IDD') {
                 var url = "/app/jsonFiles/Offer/search-offer-idd.json"
-            } else if (type == 'ADDITIONAL' || type == 'POOLING') {
+            } else if (type == 'ADDITIONAL') {
                 var url = "/app/jsonFiles/Offer/search-offer-additional.json"
+            } else if (type == 'POOLING') {
+                var url = "/app/jsonFiles/Offer/search-offer-pooling.json"
+            }else if (type == '') {
+                var url = "/app/jsonFiles/Offer/search-offer-all.json"
             } else if (type == 'BARRING') {
                 var url = "/app/jsonFiles/Offer/search-offer-barring.json"
             } else if (type == 'RELATED') {
