@@ -332,11 +332,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     if (validateResult.data['response-data'][$scope.selectedOffer.name]) {
                         for (var i = 0; i < validateResult.data['response-data'][$scope.selectedOffer.name].length; i++) {
                             if (validateResult.data['response-data'][$scope.selectedOffer.name][i] == "EDIT") {
-                                $scope.disableExpDateCp = false;
+                                $scope.selectedOffer.disableExpDateCp = false;
                             } else {
-                                $scope.disableExpDateCp = true;
+                                $scope.selectedOffer.disableExpDateCp = true;
                             }
                         }
+                    } else {
+                        $scope.selectedOffer.disableExpDateCp = true;
                     }
                 })
                 break;

@@ -1022,7 +1022,7 @@
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp()" ng-disabled="disableExpDateCp">
+                                        <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp()" ng-disabled="selectedOffer.disableExpDateCp">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -1445,10 +1445,7 @@
                                     <label>Contract Number</label><span style="color: red">*</span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input type="text" ng-model="dataForEdit.param['contract-number']" class="form-control" ng-number-only="inputEditCpCN" maxlength="10" ng-keyup="validateAddCp('edit')">
-                                    <span ng-span-number-only="inputEditCpCN" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
+                                    <input type="text" ng-model="dataForEdit.param['contract-number']" class="form-control" ng-keyup="validateAddCp('edit')">
                                 </div>
                                 <div class="col-xs-2">
                                 </div>
@@ -1506,7 +1503,7 @@
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="editCpExpirationDate" ng-model="dataForEdit.param['expiration-date']" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp('edit')" ng-click="setDatepickerValue();">
+                                        <input name="birthDay" type="text" id="editCpExpirationDate" ng-model="dataForEdit.param['expiration-date']" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp('edit')" ng-click="setDatepickerValue();" ng-disabled="dataForEdit.disableExpDateCp">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
