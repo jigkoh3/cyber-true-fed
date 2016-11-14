@@ -189,10 +189,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
         //alert(generateOrder_target);
         //call generate-order-id
-        SystemService.generateOrderId(generateOrder_target, function(data) {
-            localStorage.setItem('orderId', data["response-data"]);
-            $scope.TrxID = data["trx-id"];
-            $scope.orderId = data["response-data"];
+        // SystemService.generateOrderId(generateOrder_target, function(data) {
+        //     localStorage.setItem('orderId', data["response-data"]);
+        //     $scope.TrxID = data["trx-id"];
+        //     $scope.orderId = data["response-data"];
 
             if ($scope.OUID == "null") {
                 $scope.OUID = "";
@@ -214,7 +214,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 // SystemService.calendarDatePicker();
             }
 
-        });
+        // });
         //}
     };
 
