@@ -1184,8 +1184,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     data['offer']["OFFER-" + i + "-SOC-TYPE"] = $scope.deleteExistingOfferList[i]["soc-type"];
                     data['offer']["OFFER-" + i + "-OFFER-GROUP"] = $scope.deleteExistingOfferList[i]["offer-group"];
                     data['offer']["OFFER-" + i + "-OFFER-INSTANCE-ID"] = $scope.deleteExistingOfferList[i]["product-properties"]["OFFER-INSTANCE-ID"];
-
+                    data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
+                    data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.setDateNow;
                 }
+            } else {
+                data['offer'] = "";
             }
 
             if ($scope.deleteFutureOfferList.length > 0) {
@@ -1204,7 +1207,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     data2['offer']["OFFER-" + i] = $scope.deleteFutureOfferList[i]["product-soc-code"] + "|" + $scope.deleteFutureOfferList[i]["product-name"];
                     data2['offer']["OFFER-" + i + "-SOC-TYPE"] = $scope.deleteFutureOfferList[i]["soc-type"];
                     // data2['offer']["OFFER-" + i + "-OFFER-GROUP"] = $scope.deleteFutureOfferList[i]["offer-group"];
+                    data2['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
+                    data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.setDateNow;
                 }
+            } else {
+                var data2 = "";
             }
         }
 
