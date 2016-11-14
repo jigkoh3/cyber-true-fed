@@ -296,27 +296,48 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_REMARK" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
                         $scope.cpRemark = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
                     }
-                    if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_TERM" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
-                        $scope.cpTerm = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
-                        if ($scope.cpTerm == 0) {
-                            $scope.cpExpireDate = $scope.cpStartDate;
-                            $('#cpExpireDate').val($scope.cpExpireDate);
-                            var dateToSet = $scope.cpExpireDate.split("/");
-                            $('#cpExpireDate').datepicker("setDate", new Date(dateToSet[2], Number(dateToSet[1]) - 1, Number(dateToSet[0])));
-                        } else {
-                            var currentDate = new Date();
-                            currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));
-                            var setDate = ("0" + currentDate.getDate()).slice(-2) + "/" + ("0" + Number(currentDate.getMonth() + 1)).slice(-2) + "/" + currentDate.getFullYear();
-                            $('#cpExpireDate').datepicker("setDate", new Date(currentDate.getFullYear(), ("0" + Number(currentDate.getMonth() + 0)).slice(-2), ("0" + currentDate.getDate()).slice(-2)));
-                            $('#cpExpireDate').val(setDate);
-                            $scope.cpExpireDate = $('#cpExpireDate').val();
-                        }
-                    }
-                    if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_FEE" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
-                        $scope.cpFee = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
-                    }
+                    // if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_TERM" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
+                    //     $scope.cpTerm = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
+                    //     if ($scope.cpTerm == 0) {
+                    //         $scope.cpExpireDate = $scope.cpStartDate;
+                    //         $('#cpExpireDate').val($scope.cpExpireDate);
+                    //         var dateToSet = $scope.cpExpireDate.split("/");
+                    //         $('#cpExpireDate').datepicker("setDate", new Date(dateToSet[2], Number(dateToSet[1]) - 1, Number(dateToSet[0])));
+                    //     } else {
+                    //         var currentDate = new Date();
+                    //         currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));
+                    //         var setDate = ("0" + currentDate.getDate()).slice(-2) + "/" + ("0" + Number(currentDate.getMonth() + 1)).slice(-2) + "/" + currentDate.getFullYear();
+                    //         $('#cpExpireDate').datepicker("setDate", new Date(currentDate.getFullYear(), ("0" + Number(currentDate.getMonth() + 0)).slice(-2), ("0" + currentDate.getDate()).slice(-2)));
+                    //         $('#cpExpireDate').val(setDate);
+                    //         $scope.cpExpireDate = $('#cpExpireDate').val();
+                    //     }
+                    // }
+                    // if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_FEE" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
+                    //     $scope.cpFee = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
+                    // }
                     if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_NUMBER" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
                         $scope.cpContractNumber = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
+                    }
+                }
+
+                if ($scope.selectedOffer["properties"] && $scope.selectedOffer["properties"]["FEE"]) {
+                    $scope.cpFee = $scope.selectedOffer["properties"]["FEE"];
+                }
+
+                if ($scope.selectedOffer["properties"] && $scope.selectedOffer["properties"]["TERM"]) {
+                    $scope.cpTerm = $scope.selectedOffer["properties"]["TERM"];
+                    if ($scope.cpTerm == 0) {
+                        $scope.cpExpireDate = $scope.cpStartDate;
+                        $('#cpExpireDate').val($scope.cpExpireDate);
+                        var dateToSet = $scope.cpExpireDate.split("/");
+                        $('#cpExpireDate').datepicker("setDate", new Date(dateToSet[2], Number(dateToSet[1]) - 1, Number(dateToSet[0])));
+                    } else {
+                        var currentDate = new Date();
+                        currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));
+                        var setDate = ("0" + currentDate.getDate()).slice(-2) + "/" + ("0" + Number(currentDate.getMonth() + 1)).slice(-2) + "/" + currentDate.getFullYear();
+                        $('#cpExpireDate').datepicker("setDate", new Date(currentDate.getFullYear(), ("0" + Number(currentDate.getMonth() + 0)).slice(-2), ("0" + currentDate.getDate()).slice(-2)));
+                        $('#cpExpireDate').val(setDate);
+                        $scope.cpExpireDate = $('#cpExpireDate').val();
                     }
                 }
 
@@ -1049,7 +1070,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         };
 
         if ($scope.offerType == "C") {
-            data['action'] == "ADD_OFFER";
+            data['action'] = "ADD_OFFER";
         }
 
         for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
@@ -1058,10 +1079,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             data['offer']["OFFER-" + i + "-OFFER-GROUP"] = $scope.addNewOfferLists[i]["group"];
 
             if ($scope.addNewOfferLists[i]["param"]["effective-date-type"] == "immediate") {
-                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.setDateNow);
+                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.setDateNow;
                 data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
             } else if ($scope.addNewOfferLists[i]["param"]["effective-date-type"] == "specify") {
-                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.addNewOfferLists[i]["param"]["effective-date-value"]);
+                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.addNewOfferLists[i]["param"]["effective-date-value"];
                 data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
             }
 
@@ -1069,7 +1090,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = "";
                 data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "UNLIMITED";
             } else if ($scope.addNewOfferLists[i]["param"]["expiration-date-type"] == "specify") {
-                data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.addNewOfferLists[i]["param"]["expiration-date-value"]);
+                data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = $scope.addNewOfferLists[i]["param"]["expiration-date-value"];
                 data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
             }
 
@@ -1107,19 +1128,25 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                 data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["contract-number"];
 
                             } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_ACTUAL_CONTRACT_START_DATE") {
-                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + SystemService.convertDataMMDDYYYYEN($scope.addNewOfferLists[i]["param"]["start-date"]);
-                                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.addNewOfferLists[i]["param"]["start-date"]);
+                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["start-date"];
+                                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.addNewOfferLists[i]["param"]["start-date"];
 
-                                if (SystemService.convertDataMMDDYYYYEN($scope.addNewOfferLists[i]["param"]["start-date"]) == SystemService.convertDataMMDDYYYYEN($scope.setDateNow)) {
+                                if ($scope.addNewOfferLists[i]["param"]["start-date"] == $scope.setDateNow) {
                                     data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
                                 } else {
                                     data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
                                 }
 
                             } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_ORIG_CONTRACT_EXPIRE_DATE") {
-                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + SystemService.convertDataMMDDYYYYEN($scope.addNewOfferLists[i]["param"]["expiration-date"]);
-                                data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = SystemService.convertDataMMDDYYYYEN($scope.addNewOfferLists[i]["param"]["expiration-date"]);
+                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["expiration-date"];
+                                data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = $scope.addNewOfferLists[i]["param"]["expiration-date"];
                                 data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
+
+                            } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_TERM") {
+                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["term"];
+
+                            } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_FEE") {
+                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["fee"];
 
                             } else {
                                 data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["parameter-specifications"][j]["default-value"];
@@ -1968,6 +1995,19 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.cpExpireDate = $('#cpExpireDate').val();
             $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
             $('#cpExpireDate').datepicker("setStartDate", $("#cpStartDate").val());
+            if ($scope.cpTerm == 0) {
+                $scope.cpExpireDate = $scope.cpStartDate;
+                $('#cpExpireDate').val($scope.cpExpireDate);
+                var dateToSet = $scope.cpExpireDate.split("/");
+                $('#cpExpireDate').datepicker("setDate", new Date(dateToSet[2], Number(dateToSet[1]) - 1, Number(dateToSet[0])));
+            } else {
+                var currentDate = new Date(SystemService.convertDataMMDDYYYYEN($scope.cpStartDate));
+                currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));
+                var setDate = ("0" + currentDate.getDate()).slice(-2) + "/" + ("0" + Number(currentDate.getMonth() + 1)).slice(-2) + "/" + currentDate.getFullYear();
+                $('#cpExpireDate').datepicker("setDate", new Date(currentDate.getFullYear(), ("0" + Number(currentDate.getMonth() + 0)).slice(-2), ("0" + currentDate.getDate()).slice(-2)));
+                $('#cpExpireDate').val(setDate);
+                $scope.cpExpireDate = $('#cpExpireDate').val();
+            }
             $scope.validateAddCp();
             $('#idBindDataAgain').click();
         });
@@ -2005,6 +2045,19 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.dataForEdit.param['expiration-date'] = $('#editCpExpirationDate').val();
             $scope.cpDiffResultForEdit = $scope.checkValueCpDate($('#editCpStartDate').val(), $('#editCpExpirationDate').val());
             $('#editCpExpirationDate').datepicker("setStartDate", $("#editCpStartDate").val());
+            if ($scope.dataForEdit.param.term == 0) {
+                $scope.dataForEdit.param['expiration-date'] = $scope.dataForEdit.param['start-date'];
+                $('#editCpExpirationDate').val($scope.dataForEdit.param['expiration-date']);
+                var dateToSet = $scope.dataForEdit.param['expiration-date'].split("/");
+                $('#editCpExpirationDate').datepicker("setDate", new Date(dateToSet[2], Number(dateToSet[1]) - 1, Number(dateToSet[0])));
+            } else {
+                var currentDate = new Date(SystemService.convertDataMMDDYYYYEN($scope.dataForEdit.param['start-date']));
+                currentDate.setMonth(currentDate.getMonth() + Number($scope.dataForEdit.param.term));
+                var setDate = ("0" + currentDate.getDate()).slice(-2) + "/" + ("0" + Number(currentDate.getMonth() + 1)).slice(-2) + "/" + currentDate.getFullYear();
+                $('#editCpExpirationDate').datepicker("setDate", new Date(currentDate.getFullYear(), ("0" + Number(currentDate.getMonth() + 0)).slice(-2), ("0" + currentDate.getDate()).slice(-2)));
+                $('#editCpExpirationDate').val(setDate);
+                $scope.dataForEdit.param['expiration-date'] = $('#editCpExpirationDate').val();
+            }
             $scope.validateAddCp();
             $('#idBindDataAgain').click();
         });
@@ -2678,9 +2731,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         console.log(validateModifyOfferParam);
         AddDeleteEditOfferService.validateModifyOffer(validateModifyOfferParam, function(result) {
             SystemService.hideLoading();
-            $scope.allowModifyOfferList = result.data['response-data'];
-            if ($scope.allowModifyOfferList) {
-                console.log($scope.allowModifyOfferList);
+            $scope.validateModifyOfferList = result.data['response-data'];
+            console.log($scope.existingOffer);
+            if ($scope.validateModifyOfferList) {
+                console.log($scope.validateModifyOfferList);
+
+                for (var i = 0; i < $scope.existingOffer.length; i++) {
+                    // if ($scope.validateModifyOfferList[$scope.existingOffer[i].["product-name"]]) {
+                    // $scope.existingOffer[i].["modify-type"] = $scope.validateModifyOfferList[$scope.existingOffer[i]["product-name"]
+                    // }
+                }
+
             }
         });
     }
