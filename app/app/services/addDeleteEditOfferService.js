@@ -123,7 +123,7 @@
 
         } else {
 
-            var url = "/app/jsonFiles/Offer/get-existing-offer.json";
+            var url = "/app/jsonFiles/Offer/get-existing-offer2.json";
             SystemService.getFileJson(url, function(response) {
                 // console.log(response);
 
@@ -216,7 +216,7 @@
         }
     };
 
-    this.submitAddDeleteEditOffer = function(payload, fnCallback) {
+    this.submitAddDeleteEditOffer = function(payload, payload2, fnCallback) {
 
         var request = {
             "target": "aftersales/order/submit",
@@ -270,7 +270,7 @@
                 'order-items': [{
                     'product-category': payload.productDetails['product-category'],
                     'name': payload.action,
-                    'order-type': "NEW",
+                    'order-type': payload["order-type"],
                     'product-id-name': payload.productDetails['product-id-name'],
                     'product-id-number': payload.productDetails['product-id-number'],
                     'product-name': payload.currentPricePlan,
@@ -312,6 +312,39 @@
             'user-id': payload.saleAgent.logInName,
             'approver': payload.approver
         };
+
+        if (payload2) {
+            var orderItem2 = {
+                    'product-category': payload2.productDetails['product-category'],
+                    'name': payload2.action,
+                    'order-type': "EXISTING",
+                    'product-id-name': payload2.productDetails['product-id-name'],
+                    'product-id-number': payload2.productDetails['product-id-number'],
+                    'product-name': payload2.currentPricePlan,
+                    "address-list": {
+                        // "BILLING_ADDRESS": BILLING_ADDRESS,
+                        // "TAX_ADDRESS": TAX_ADDRESS
+                    },
+                    'primary-order-data': {
+                        'ACCOUNT-SUB-TYPE': payload2.productDetails['account-sub-type'],
+                        'COMPANY-CODE': payload2.productDetails['company-code'],
+                        'MOBILE-SERVICETYPE': payload2.productDetails['mobile-servicetype'],
+                        // 'NAS-PROPOSITION': "",
+                        'ACCOUNT-ID': payload2.productDetails['ban'],
+                        'OU-ID': payload2.productDetails['ouId']
+                    },
+                    'order-data': payload2['offer'],
+                    // 'reason-code': payload.statusReason.id,
+                    'reason-code': "CREQ",
+                    'user-memo': payload2.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload2.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload2.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload2.orderData.orderId + ")" + ": " + payload.statusReasonMemo,
+                    'product-category': payload2.productDetails['product-category'],
+                    'product-type': "PRICEPLAN"
+
+                }
+
+            request['order']['order-items'].push(orderItem2);
+        }
+
         console.log(request);
         var cb = function(result) {
             fnCallback(result);
@@ -388,7 +421,7 @@
     this.getExistingParameter = function(param, fnCallback) {
         var data = {};
         if (demo) {
-            var url = "/app/jsonFiles/Offer/get-existing-parameter.json";
+            var url = "/app/jsonFiles/Offer/get-existing-parameter2.json";
             SystemService.getFileJson(url, function(result) {
                 // console.log(response);
 
@@ -410,7 +443,7 @@
     this.getFutureOffer = function(param, fnCallback) {
         var data = {};
         if (demo) {
-            var url = "/app/jsonFiles/Offer/get-future-offer.json";
+            var url = "/app/jsonFiles/Offer/get-future-offer2.json";
             SystemService.getFileJson(url, function(result) {
                 // console.log(response);
 

@@ -1,0 +1,136 @@
+{
+    "status": "SUCCESSFUL",
+    "display-messages": [],
+    "trx-id": "3W9CT9LJYG08R",
+    "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+    "response-data": {
+        "customer": {
+            "installed-products": [{
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "SMSAUS12G",
+                "product-description": "B&E Pool SMS(P2P) 10sms",
+                "service-level": "C",
+                "product-soc-code": "11245212",
+                "product-properties": {
+                    "PARAM-SIZE": "2",
+                    "AGREEMENT-ID": "98844",
+                    "PARAM-0": "200975387|Agreement level offer instance ID|669889",
+                    "PARAM-1": "200975386|Occurrence cap max|-1",
+                    "OFFER-INSTANCE-ID": "669901"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "31/10/2016",
+                "expire-date": "",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "CGPAUS01D",
+                "product-description": "Child_Pooled GPRS",
+                "service-level": "G",
+                "product-soc-code": "10524711",
+                "product-properties": {
+                    "PARAM-SIZE": "2",
+                    "AGREEMENT-ID": "98844",
+                    "PARAM-0": "200975336|Agr billing arrangement|10066440",
+                    "PARAM-1": "200975335|Agr pay channel|10066440",
+                    "OFFER-INSTANCE-ID": "669883"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "31/10/2016",
+                "expire-date": "",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "EB CREDITLIMIT",
+                "product-description": "Credit Limit offer",
+                "service-level": "G",
+                "product-soc-code": "97076",
+                "product-properties": {
+                    "PARAM-15": "200825411|EB Temporary credit limit|0.0",
+                    "PARAM-SIZE": "18",
+                    "PARAM-16": "200825418|EB Temporary credit limit exp date|01/01/1960 19:50:00",
+                    "PARAM-17": "200825409|EB Temporary credit limit exp date|01/01/1960 19:50:00",
+                    "AGREEMENT-ID": "98844",
+                    "PARAM-11": "200825415|EB Credit limit waiver indicator|N",
+                    "PARAM-12": "200826886|EB Personal credit limit|1600",
+                    "PARAM-13": "200888282|EB Personal credit limit|5800",
+                    "PARAM-14": "200825420|EB Temporary credit limit|0.0",
+                    "PARAM-8": "200825405|EB Credit limit waiver expiry date|01/01/1960 19:50:00",
+                    "PARAM-9": "200825414|EB Credit limit waiver expiry date|01/01/1960 19:50:00",
+                    "PARAM-10": "200825406|EB Credit limit waiver indicator|N",
+                    "PARAM-0": "200825422|EB Account ID|10066439",
+                    "PARAM-1": "200825413|EB Account ID|10066440",
+                    "PARAM-2": "200825421|EB Account sub type|ENT",
+                    "PARAM-3": "200825412|EB Account sub type|ENT",
+                    "OFFER-INSTANCE-ID": "527104",
+                    "PARAM-4": "200825417|EB Company code|RF",
+                    "PARAM-5": "200825408|EB Company code|RF",
+                    "PARAM-6": "200825410|EB Credit class|BZ",
+                    "PARAM-7": "200825419|EB Credit class|BZ"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "28/03/2016",
+                "expire-date": "",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "CSMAUS01D",
+                "product-description": "Child_Pooled SMS",
+                "service-level": "G",
+                "product-soc-code": "10536111",
+                "product-properties": {
+                    "PARAM-SIZE": "2",
+                    "AGREEMENT-ID": "98844",
+                    "PARAM-0": "200975352|Agr billing arrangement|10066440",
+                    "PARAM-1": "200975351|Agr pay channel|10066440",
+                    "OFFER-INSTANCE-ID": "669890"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "31/10/2016",
+                "expire-date": "",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "CCUGAS01",
+                "product-description": "CUG On/Off Net (Package level)",
+                "service-level": "C",
+                "product-soc-code": "55092",
+                "product-properties": {
+                    "PARAM-SIZE": "1",
+                    "AGREEMENT-ID": "98844",
+                    "PARAM-0": "200982315|CUG ID|290",
+                    "OFFER-INSTANCE-ID": "675124"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "10/11/2016",
+                "expire-date": "",
+                "soc-type": "U"
+            }]
+        }
+    }
+}

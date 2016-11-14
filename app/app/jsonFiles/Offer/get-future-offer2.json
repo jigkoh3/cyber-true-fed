@@ -1,0 +1,131 @@
+{
+    "status": "SUCCESSFUL",
+    "display-messages": [],
+    "trx-id": "3W9CT9M0EBHKA",
+    "process-instance": "tmsapnpr1 (instance: SFF_node3)",
+    "response-data": {
+        "customer": {
+            "installed-products": [{
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "BFF01S01",
+                "product-description": "Friend and Family service",
+                "service-level": "C",
+                "product-soc-code": "262798",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "13399",
+                    "AGREEMENT-ID": "98844",
+                    "FUTURE-ORDER-ID": "12698",
+                    "ALLOW-DELETE": "TRUE",
+                    "FUTURE-SOURCE": "OMX",
+                    "REMARK": "",
+                    "FUTURE-TYPE": "FUTSOC",
+                    "CREATE-DATE": "10/11/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "16/11/2016",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "BARNRS01",
+                "product-description": "Bar National Roaming1800 RMV/RFT",
+                "service-level": "C",
+                "product-soc-code": "121187",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "13401",
+                    "AGREEMENT-ID": "98844",
+                    "FUTURE-ORDER-ID": "12699",
+                    "ALLOW-DELETE": "TRUE",
+                    "FUTURE-SOURCE": "OMX",
+                    "REMARK": "",
+                    "FUTURE-TYPE": "FUTSOC",
+                    "CREATE-DATE": "10/11/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "20/11/2016",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "PROINTL1",
+                "product-description": "International Call Enabling",
+                "service-level": "C",
+                "product-soc-code": "41581",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "13367",
+                    "AGREEMENT-ID": "98844",
+                    "FUTURE-ORDER-ID": "12667",
+                    "ALLOW-DELETE": "TRUE",
+                    "FUTURE-SOURCE": "OMX",
+                    "REMARK": "",
+                    "FUTURE-TYPE": "FUTSOC",
+                    "CREATE-DATE": "08/11/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "19/11/2016",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "PROINTL1",
+                "product-description": "International Call Enabling",
+                "service-level": "C",
+                "product-soc-code": "41581",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "13368",
+                    "AGREEMENT-ID": "98844",
+                    "FUTURE-ORDER-ID": "12668",
+                    "ALLOW-DELETE": "TRUE",
+                    "FUTURE-SOURCE": "OMX",
+                    "REMARK": "",
+                    "FUTURE-TYPE": "FUTSOC",
+                    "CREATE-DATE": "08/11/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "03/12/2016",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "AAADDS02",
+                "product-description": "Double A : Free call to 1759",
+                "service-level": "C",
+                "product-soc-code": "261678",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "13400",
+                    "AGREEMENT-ID": "98844",
+                    "FUTURE-ORDER-ID": "12699",
+                    "ALLOW-DELETE": "TRUE",
+                    "FUTURE-SOURCE": "OMX",
+                    "REMARK": "",
+                    "FUTURE-TYPE": "FUTSOC",
+                    "CREATE-DATE": "10/11/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "12/11/2016",
+                "soc-type": "U"
+            }]
+        }
+    }
+}

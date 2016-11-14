@@ -74,7 +74,7 @@
                                             </button>
                                         </div>
                                         <div align="center" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;">
+                                            <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
                                         </div>
                                     </td>
                                     <td class="col-xs-2 contentTb">
@@ -120,7 +120,7 @@
                                             <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                         </div>
                                         <div align="center" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
+                                            <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
                                         </div>
                                     </td>
                                     <td class="contentTb">
@@ -165,8 +165,8 @@
                                                 <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='Agreement'">
                                                 <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                             </div>
-                                        <div align="center" class="" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
+                                        <div align="center" ng-show="offerType=='D'">
+                                            <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
                                         </div>
                                     </td>
                                     <td class="contentTb">
@@ -211,8 +211,8 @@
                                             <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='Agreement'">
                                             <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span>   </button>
                                         </div>
-                                        <div align="center" class="" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="deleteOffer" style="cursor:pointer;">
+                                        <div align="center" ng-show="offerType=='D'">
+                                            <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
                                         </div>
                                     </td>
                                     <td class="contentTb">
@@ -279,7 +279,7 @@
                                 <tr ng-repeat="item in futureOfferList">
                                     <td class="contentTb" ng-hide="offerType=='C'">
                                         <div align="center" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="deleteFutureOffer" style="cursor:pointer;">
+                                            <input type="checkbox" ng-model="item.selected" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_FUTURE_OFFER')">
                                         </div>
                                         <div align="center" class="" ng-show="offerType=='U'">
                                             <button ng-disabled="!isCustomerProfile" href="#modal-edit-future-offer" data-toggle="modal" onclick="return false;" ng-click="editFutureOffer(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>

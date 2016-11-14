@@ -10,6 +10,11 @@
         "RMHSPS04": ["EDIT"],
         "CUGFRS01": ["DELETE", "EDIT"],
         "0RMVB00000000362": ["DELETE", "EDIT"],
+        "RMGPSS62": ["DELETE", "EDIT"],
+        "PROROAM6": ["DELETE", "EDIT"],
+        "3GVDCS01": ["DELETE", "EDIT"],
+        "BFF01S01": ["DELETE", "EDIT"],
+        "AAADDS02": ["DELETE", "EDIT"],
         "000TestSetDateBUC068": ["DELETE", "EDIT"]
     }
 }

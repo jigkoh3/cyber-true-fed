@@ -1071,113 +1071,147 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
         if ($scope.offerType == "C") {
             data['action'] = "ADD_OFFER";
-        }
+            data["order-type"] = "NEW";
+            for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
+                data['offer']["OFFER-" + i] = $scope.addNewOfferLists[i].soc + "|" + $scope.addNewOfferLists[i].name;
+                data['offer']["OFFER-" + i + "-SOC-TYPE"] = $scope.addNewOfferLists[i]["soc-type"];
+                data['offer']["OFFER-" + i + "-OFFER-GROUP"] = $scope.addNewOfferLists[i]["group"];
 
-        for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
-            data['offer']["OFFER-" + i] = $scope.addNewOfferLists[i].soc + "|" + $scope.addNewOfferLists[i].name;
-            data['offer']["OFFER-" + i + "-SOC-TYPE"] = $scope.addNewOfferLists[i]["soc-type"];
-            data['offer']["OFFER-" + i + "-OFFER-GROUP"] = $scope.addNewOfferLists[i]["group"];
+                if ($scope.addNewOfferLists[i]["param"]["effective-date-type"] == "immediate") {
+                    data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.setDateNow;
+                    data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
+                } else if ($scope.addNewOfferLists[i]["param"]["effective-date-type"] == "specify") {
+                    data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.addNewOfferLists[i]["param"]["effective-date-value"];
+                    data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
+                }
 
-            if ($scope.addNewOfferLists[i]["param"]["effective-date-type"] == "immediate") {
-                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.setDateNow;
-                data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
-            } else if ($scope.addNewOfferLists[i]["param"]["effective-date-type"] == "specify") {
-                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.addNewOfferLists[i]["param"]["effective-date-value"];
-                data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
-            }
+                if ($scope.addNewOfferLists[i]["param"]["expiration-date-type"] == "unlimited") {
+                    data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = "";
+                    data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "UNLIMITED";
+                } else if ($scope.addNewOfferLists[i]["param"]["expiration-date-type"] == "specify") {
+                    data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = $scope.addNewOfferLists[i]["param"]["expiration-date-value"];
+                    data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
+                }
 
-            if ($scope.addNewOfferLists[i]["param"]["expiration-date-type"] == "unlimited") {
-                data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = "";
-                data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "UNLIMITED";
-            } else if ($scope.addNewOfferLists[i]["param"]["expiration-date-type"] == "specify") {
-                data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = $scope.addNewOfferLists[i]["param"]["expiration-date-value"];
-                data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
-            }
-
-            switch ($scope.addNewOfferLists[i].group) {
-                case "ADDITIONAL":
-                case "CAP_MAX":
-                case "POOLING":
-                    if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
-                        data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
-                        for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
-                            var paramValue = $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] ? $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] : $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"];
-                            data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + paramValue;
-                        }
-                    }
-                    break;
-
-                case "FF":
-                    data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
-                    data['offer']["OFFER-" + i + "-PARAM-0"] = $scope.addNewOfferLists[i]["parameter-specifications"][0]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["ff-number"];
-                    break;
-
-                case "CUG":
-                    data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
-                    data['offer']["OFFER-" + i + "-PARAM-0"] = $scope.addNewOfferLists[i]["parameter-specifications"][0]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["cug-group-id"];
-                    break;
-
-                case "CONTRACT_PROPO":
-                    if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
-                        data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
-                        for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
-                            if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_REMARK") {
-                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["remark"];
-
-                            } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_NUMBER") {
-                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["contract-number"];
-
-                            } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_ACTUAL_CONTRACT_START_DATE") {
-                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["start-date"];
-                                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.addNewOfferLists[i]["param"]["start-date"];
-
-                                if ($scope.addNewOfferLists[i]["param"]["start-date"] == $scope.setDateNow) {
-                                    data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
-                                } else {
-                                    data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
-                                }
-
-                            } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_ORIG_CONTRACT_EXPIRE_DATE") {
-                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["expiration-date"];
-                                data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = $scope.addNewOfferLists[i]["param"]["expiration-date"];
-                                data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
-
-                            } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_TERM") {
-                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["term"];
-
-                            } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_FEE") {
-                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["fee"];
-
-                            } else {
-                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["parameter-specifications"][j]["default-value"];
+                switch ($scope.addNewOfferLists[i].group) {
+                    case "ADDITIONAL":
+                    case "CAP_MAX":
+                    case "POOLING":
+                        if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
+                            data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
+                            for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
+                                var paramValue = $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] ? $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] : $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"];
+                                data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + paramValue;
                             }
                         }
-                    }
-                    break;
+                        break;
+
+                    case "FF":
+                        data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
+                        data['offer']["OFFER-" + i + "-PARAM-0"] = $scope.addNewOfferLists[i]["parameter-specifications"][0]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["ff-number"];
+                        break;
+
+                    case "CUG":
+                        data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
+                        data['offer']["OFFER-" + i + "-PARAM-0"] = $scope.addNewOfferLists[i]["parameter-specifications"][0]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["cug-group-id"];
+                        break;
+
+                    case "CONTRACT_PROPO":
+                        if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
+                            data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
+                            for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
+                                if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_REMARK") {
+                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["remark"];
+
+                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_NUMBER") {
+                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["contract-number"];
+
+                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_ACTUAL_CONTRACT_START_DATE") {
+                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["start-date"];
+                                    data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.addNewOfferLists[i]["param"]["start-date"];
+
+                                    if ($scope.addNewOfferLists[i]["param"]["start-date"] == $scope.setDateNow) {
+                                        data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
+                                    } else {
+                                        data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
+                                    }
+
+                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_ORIG_CONTRACT_EXPIRE_DATE") {
+                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["expiration-date"];
+                                    data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = $scope.addNewOfferLists[i]["param"]["expiration-date"];
+                                    data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
+
+                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_TERM") {
+                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["term"];
+
+                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_FEE") {
+                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["fee"];
+
+                                } else {
+                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["parameter-specifications"][j]["default-value"];
+                                }
+                            }
+                        }
+                        break;
+                }
+
+
+                if ($scope.addNewOfferLists[i]["related-offers"]) {
+                    data['offer']["OFFER-" + i + "-RELATED-OFFER-SIZE"] = $scope.addNewOfferLists[i]["related-offers"].length;
+                    $.each($scope.addNewOfferLists[i]["related-offers"], function(relateIndex, item) {
+                        data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex] = item["offer"]["soc"] + "|" + item["offer"]["name"];
+                        data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-SOC-TYPE"] = item["offer"]["soc-type"];
+                        data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-OFFER-GROUP"] = item["offer"]["group"];
+
+                        if (item["offer"]["parameter-specifications"]) {
+                            $.each(item["offer"]["parameter-specifications"], function(relateParamIndex, relateParam) {
+                                data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-PARAM-SIZE"] = item["offer"]["parameter-specifications"].length;
+                                var relateParamValue = relateParam["select-value"]["id"] ? relateParam["select-value"]["id"] : relateParam["select-value"];
+                                data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-PARAM-" + relateParamIndex] = relateParam["name"] + "|" + relateParamValue;
+                            });
+                        }
+
+                    });
+                }
+            }
+        } else if ($scope.offerType == "D") {
+            if ($scope.deleteExistingOfferList.length > 0) {
+                data["order-type"] = "EXISTING";
+                data['action'] = "DELETE_EXISTING_OFFER";
+                data['offer']['OFFER-SIZE'] = $scope.deleteExistingOfferList.length;
+                for (var i = 0; i < $scope.deleteExistingOfferList.length; i++) {
+                    data['offer']["OFFER-" + i] = $scope.deleteExistingOfferList[i]["product-soc-code"] + "|" + $scope.deleteExistingOfferList[i]["product-name"];
+                    data['offer']["OFFER-" + i + "-SOC-TYPE"] = $scope.deleteExistingOfferList[i]["soc-type"];
+                    data['offer']["OFFER-" + i + "-OFFER-GROUP"] = $scope.deleteExistingOfferList[i]["offer-group"];
+                    data['offer']["OFFER-" + i + "-OFFER-INSTANCE-ID"] = $scope.deleteExistingOfferList[i]["product-properties"]["OFFER-INSTANCE-ID"];
+
+                }
             }
 
-
-            if ($scope.addNewOfferLists[i]["related-offers"]) {
-                data['offer']["OFFER-" + i + "-RELATED-OFFER-SIZE"] = $scope.addNewOfferLists[i]["related-offers"].length;
-                $.each($scope.addNewOfferLists[i]["related-offers"], function(relateIndex, item) {
-                    data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex] = item["offer"]["soc"] + "|" + item["offer"]["name"];
-                    data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-SOC-TYPE"] = item["offer"]["soc-type"];
-                    data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-OFFER-GROUP"] = item["offer"]["group"];
-
-                    if (item["offer"]["parameter-specifications"]) {
-                        $.each(item["offer"]["parameter-specifications"], function(relateParamIndex, relateParam) {
-                            data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-PARAM-SIZE"] = item["offer"]["parameter-specifications"].length;
-                            var relateParamValue = relateParam["select-value"]["id"] ? relateParam["select-value"]["id"] : relateParam["select-value"];
-                            data['offer']["OFFER-" + i + "-RELATED-OFFER-" + relateIndex + "-PARAM-" + relateParamIndex] = relateParam["name"] + "|" + relateParamValue;
-                        });
-                    }
-
-                });
+            if ($scope.deleteFutureOfferList.length > 0) {
+                var data2 = generateOrderRequest();
+                data2["order-type"] = "EXISTING";
+                data2['action'] = "DELETE_FUTURE_OFFER";
+                data2['statusReason'] = $scope.statusReason.id;
+                data2['statusReasonMemo'] = $scope.statusReasonMemo;
+                data2['offer'] = {
+                    'OFFER-SIZE': $scope.deleteFutureOfferList.length,
+                    'PRICEPLAN-INSTANCE-ID': $scope.priceplan[0]["product-properties"]["OFFER-INSTANCE-ID"],
+                    'SUBSCRIBER-ID': $scope.data.simData["subscriber-id"],
+                    'ACTION-LEVEL': "SUBSCRIBER"
+                };
+                for (var i = 0; i < $scope.deleteFutureOfferList.length; i++) {
+                    data2['offer']["OFFER-" + i] = $scope.deleteFutureOfferList[i]["product-soc-code"] + "|" + $scope.deleteFutureOfferList[i]["product-name"];
+                    data2['offer']["OFFER-" + i + "-SOC-TYPE"] = $scope.deleteFutureOfferList[i]["soc-type"];
+                    // data2['offer']["OFFER-" + i + "-OFFER-GROUP"] = $scope.deleteFutureOfferList[i]["offer-group"];
+                }
             }
         }
-        console.log(data);
 
-        AddDeleteEditOfferService.submitAddDeleteEditOffer(data, function(result) {
+
+        console.log(data);
+        console.log(data2);
+        AddDeleteEditOfferService.submitAddDeleteEditOffer(data, data2, function(result) {
             SystemService.hideLoading();
             console.log(result);
             setTimeout(function() {
@@ -1420,6 +1454,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.existingOffer = angular.copy($scope.existingOfferTemp);
         $scope.setDefaultExistingOffer();
         $scope.addNewOfferLists = [];
+        $scope.deleteExistingOfferList = [];
+        $scope.deleteFutureOfferList = [];
     }
     $scope.addOffer = function() {
         $scope.enableAddOffer = true;
@@ -2525,6 +2561,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 //     $scope.futureOfferList[i]["product-properties"]["CREATE-DATE"] = SystemService.convertDateToTH($scope.futureOfferList[i]["product-properties"]["CREATE-DATE"], "TH")
                 // }
                 //===================================================================//
+                for (var i = 0; i < $scope.futureOfferList.length; i++) {
+                    $scope.futureOfferList[i]["selected"] = false;
+                    $scope.futureOfferList[i]["edited"] = false;
+                    $scope.futureOfferList[i]["guID"] = SystemService.guid();
+                }
                 $scope.tempFutureOfferList = angular.copy($scope.futureOfferList);
             } else {
                 $scope.futureOfferList = [];
@@ -2732,17 +2773,72 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         AddDeleteEditOfferService.validateModifyOffer(validateModifyOfferParam, function(result) {
             SystemService.hideLoading();
             $scope.validateModifyOfferList = result.data['response-data'];
-            console.log($scope.existingOffer);
-            if ($scope.validateModifyOfferList) {
-                console.log($scope.validateModifyOfferList);
+            console.log($scope.validateModifyOfferList);
 
-                for (var i = 0; i < $scope.existingOffer.length; i++) {
-                    // if ($scope.validateModifyOfferList[$scope.existingOffer[i].["product-name"]]) {
-                    // $scope.existingOffer[i].["modify-type"] = $scope.validateModifyOfferList[$scope.existingOffer[i]["product-name"]
-                    // }
+            for (var i = 0; i < $scope.existingOffer.length; i++) {
+                var name = $scope.existingOffer[i]["product-name"];
+                $scope.existingOffer[i]["canEdit"] = false;
+                $scope.existingOffer[i]["canDelete"] = false;
+                if ($scope.validateModifyOfferList[name]) {
+                    for (var j = 0; j < $scope.validateModifyOfferList[name].length; j++) {
+                        if ($scope.validateModifyOfferList[name][j] == "EDIT") {
+                            $scope.existingOffer[i]["canEdit"] = true;
+                        }
+
+                        if ($scope.validateModifyOfferList[name][j] == "DELETE") {
+                            $scope.existingOffer[i]["canDelete"] = true;
+                        }
+                    }
                 }
-
             }
+
+            for (var i = 0; i < $scope.futureOfferList.length; i++) {
+                var name = $scope.futureOfferList[i]["product-name"];
+                $scope.futureOfferList[i]["canEdit"] = false;
+                $scope.futureOfferList[i]["canDelete"] = false;
+                if ($scope.validateModifyOfferList[name]) {
+                    for (var j = 0; j < $scope.validateModifyOfferList[name].length; j++) {
+                        if ($scope.validateModifyOfferList[name][j] == "EDIT") {
+                            $scope.futureOfferList[i]["canEdit"] = true;
+                        }
+
+                        if ($scope.validateModifyOfferList[name][j] == "DELETE") {
+                            $scope.futureOfferList[i]["canDelete"] = true;
+                        }
+                    }
+                }
+            }
+
+            $scope.existingOfferTemp = angular.copy($scope.existingOffer);
+            $scope.tempFutureOfferList = angular.copy($scope.futureOfferList)
+            $scope.setDefaultExistingOffer();
+            // console.log($scope.existingOffer);
         });
-    }
+    };
+
+    $scope.deleteExistingOfferList = [];
+    $scope.deleteFutureOfferList = [];
+    $scope.addDeleteList = function(item, type) {
+        if (type == "DELETE_EXISTING_OFFER" && item.selected == true) {
+            $scope.deleteExistingOfferList.push(item)
+        } else if (type == "DELETE_EXISTING_OFFER" && item.selected == false) {
+            for (var i = 0; i < $scope.deleteExistingOfferList.length; i++) {
+                if (item.guID == $scope.deleteExistingOfferList[i].guID) {
+                    $scope.deleteExistingOfferList.splice(i, 1);
+                    break;
+                }
+            }
+        } else if (type == "DELETE_FUTURE_OFFER" && item.selected == true) {
+            $scope.deleteFutureOfferList.push(item);
+        } else if (type == "DELETE_FUTURE_OFFER" && item.selected == false) {
+            for (var i = 0; i < $scope.deleteFutureOfferList.length; i++) {
+                if (item.guID == $scope.deleteFutureOfferList[i].guID) {
+                    $scope.deleteFutureOfferList.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        console.log($scope.deleteExistingOfferList);
+        console.log($scope.deleteFutureOfferList);
+    };
 });
