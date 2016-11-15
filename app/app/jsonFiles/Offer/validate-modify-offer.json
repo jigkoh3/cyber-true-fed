@@ -16,6 +16,7 @@
         "BFF01S01": ["DELETE", "EDIT"],
         "AAADDS02": ["DELETE", "EDIT"],
         "CCUGAS01": ["DELETE", "EDIT"],
+        "CGPAUS01D": ["DELETE", "EDIT"],
         "000TestSetDateBUC068": ["DELETE", "EDIT"]
     }
 }
