@@ -1776,7 +1776,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
                 if ($scope.addOfferType.value == "CUG") {
                     $scope.ischkCugValue = false;
-                    $scope.getCUGLists();
+                    // $scope.getCUGLists();
                 }
 
             } else {
@@ -2579,6 +2579,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.tempFutureOfferList = [];
             }
             SystemService.hideLoading();
+            $scope.getCUGLists();
             $scope.validateModifyOffer();
             $scope.initModalReadCard();
         });
@@ -2608,6 +2609,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         for (var i = 0; i < $scope.futureOfferList.length; i++) {
             if ($scope.futureOfferList[i]["product-name"] === $scope.futureOfferDetail["product-name"]) {
                 $scope.futureOfferList[i]["effective-date"] = $scope.futureOfferDetail["effective-date"];
+                $scope.futureOfferList[i]["edited"] = true;
+                console.log($scope.futureOfferList);
             }
         }
         $scope.onCancelEditFutureOffer();
@@ -2710,6 +2713,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             if (($scope.offerType == "U" && $scope.data.simData["account-category"] == "I") || ($scope.offerType == "D" && $scope.data.simData["account-category"] == "I")) {
                 //hide มอบอำนาจ
                 $('#divShowAuthorize').hide();
+                $('#authorize').prop('checked', false);
+                $scope.isAuthorize = false;
+                $('#divShowAuthorizeID').hide();
             } else {
                 //show มอบอำนาจ
                 $('#divShowAuthorize').show();

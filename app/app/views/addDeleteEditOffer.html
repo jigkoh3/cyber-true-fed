@@ -68,7 +68,7 @@
                                             </button>
                                         </div>
                                         <div align="center" ng-show="offerType=='U'">
-                                            <input id="item['product-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'product-name']);" ng-hide="item[ 'Level']=='Agreement'">
+                                            <input id="item['product-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'product-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
                                             <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button">
                                                 <span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span>
                                             </button>
@@ -116,7 +116,7 @@
                                             <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
                                         </div>
                                         <div align="center" class="" ng-show="offerType=='U'">
-                                            <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='Agreement'">
+                                            <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
                                             <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                         </div>
                                         <div align="center" ng-show="offerType=='D'">
@@ -162,7 +162,7 @@
                                             <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
                                         </div>
                                         <div align="center" class="" ng-show="offerType=='U'">
-                                                <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='Agreement'">
+                                                <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
                                                 <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                             </div>
                                         <div align="center" ng-show="offerType=='D'">
@@ -208,7 +208,7 @@
                                             <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
                                         </div>
                                         <div align="center" class="" ng-show="offerType=='U'">
-                                            <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='Agreement'">
+                                            <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
                                             <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span>   </button>
                                         </div>
                                         <div align="center" ng-show="offerType=='D'">
@@ -281,7 +281,7 @@
                                         <div align="center" ng-show="offerType=='D'">
                                             <input type="checkbox" ng-model="item.selected" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_FUTURE_OFFER')">
                                         </div>
-                                        <div align="center" class="" ng-show="offerType=='U'">
+                                        <div align="center" class="" ng-show="offerType=='U' && item.canEdit">
                                             <button ng-disabled="!isCustomerProfile" href="#modal-edit-future-offer" data-toggle="modal" onclick="return false;" ng-click="editFutureOffer(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                         </div>
                                     </td>
@@ -1708,6 +1708,54 @@
                             </div> &nbsp;
                         </div>
                     </div>
+                    <div ng-show="viewOfferForEdit['offer-group']=='CUG'">
+                        <br>
+                        <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <input type="text" placeholder="ค้นหา CUG" ng-model="searchCug" class="form-control" ng-keyup="smartSearchCug(searchCug)">
+                                </div>
+                                <div class="col-md-2"></div>
+                        </div>
+                        &nbsp;
+                        <div class="table-responsive">
+                            <label class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-1">&nbsp;</div>
+                                    <div class="col-xs-3">
+                                        <span><b> Group ID</b></span>
+                                    </div>
+                                    <div class="col-xs-8 text-center">
+                                        <span><b> Group Name</b></span>
+                                    </div>
+                                </div>
+                            </label>
+                            <table class="table" style="width: 98%; margin-bottom: 0px;">
+                            <!--<tr class="row" ng-repeat="item in cugList | filter: saveDataCUG.filter">-->
+                                <tr class="row" dir-paginate="item in cugList | filter: onSearchCUG  | itemsPerPage: pageSize_cug" current-page="currentPage_cug" pagination-id="cugList">
+                                    <th style="padding: 5px; padding-bottom: 0px;">
+                                        <label class="col-xs-12" style="cursor:pointer;" ng-click="onSelectCUG(item)">
+                                            <div class="row">
+                                                <div class="col-xs-1"><input name="paramCug" type="radio" class="radioCUG" value="{{item['group-id']}}" ng-model="cugParam['group-id']"/></div>
+                                                <div class="col-xs-3">{{item['group-id']}}</div>
+                                                <div class="col-xs-8 text-center">{{item['group-name']}}</div>
+                                            </div>
+                                        </label>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="text-center" style="margin-bottom: 0px;">
+                                        <style>
+                                            .pagination {
+                                                margin: 0;
+                                            }
+                                        </style>
+                                        <div dir-pagination-controls pagination-id="cugList" boundary-links=" true" template-url="lib/paging/dirPagination.tpl.html?v=3456785999000"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div> &nbsp;
                     <div ng-if="viewOfferForEdit['offer-group']=='PROPOSITION'">
                         <div class="form-group">
                             <div class="row">
