@@ -352,17 +352,6 @@
         var cb = function(result) {
             var displayMsg = utils.getObject(result.data, 'display-messages.0');
             console.log(displayMsg);
-            if (!displayMsg || !displayMsg['message-type']) {
-                SystemService.showBeforeClose({
-                    "message": "" + result.data["display-messages"][0]["th-message"],
-                    "message2": ""
-                });
-            } else {
-                SystemService.showBeforeClose({
-                    "message": result.data["display-messages"][0]["th-message"],
-                    "message2": ""
-                });
-            }
             fnCallback(result);
         };
 
