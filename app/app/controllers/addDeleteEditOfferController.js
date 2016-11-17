@@ -2922,5 +2922,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
         console.log($scope.deleteExistingOfferList);
         console.log($scope.deleteFutureOfferList);
+        $scope.validateDeleteUI();
+    };
+
+    $scope.disabledSubmitBtn = true;
+    $scope.validateDeleteUI = function() {
+        if ($scope.deleteExistingOfferList.length > 0 || $scope.deleteFutureOfferList.length > 0) {
+            $scope.disabledSubmitBtn = false;
+        } else {
+            $scope.disabledSubmitBtn = true;
+        }
     };
 });

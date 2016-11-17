@@ -515,14 +515,14 @@
                 </div>
                 <div class="col-md-12 form-buttons" ng-if="!isCMUser && offerType == 'C'">
                     <div class="form-group">
-                        <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog();onChkEditOffer();" ng-disabled="addNewOfferLists.length == 0 && offerType == 'C'" href="#modal-pdf" data-toggle="modal" />
+                        <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog();onChkEditOffer();" ng-disabled="addNewOfferLists.length == 0 && offerType == 'C' || disabledSubmitBtn && offerType == 'D'" href="#modal-pdf" data-toggle="modal" />
                         <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
                         <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
                     </div>
                 </div>
                 <div class="col-md-12 form-buttons" ng-if="isCMUser || offerType != 'C'">
                     <div class="form-group">
-                        <input type="button" value="ยืนยัน" class="btn btn-success" ng-click="onChkEditOffer();" ng-disabled="addNewOfferLists.length == 0 && offerType == 'C'" href="#modalSubmit" data-toggle="modal" />
+                        <input type="button" value="ยืนยัน" class="btn btn-success" ng-click="onChkEditOffer();" ng-disabled="addNewOfferLists.length == 0 && offerType == 'C' || disabledSubmitBtn && offerType == 'D'" href="#modalSubmit" data-toggle="modal" />
                         <input type="button" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
                     </div>
                 </div>
