@@ -28,7 +28,6 @@
                         <thead>
                             <tr class="well">
                                 <th class="contentTbHeader">
-                                
                                 </th>
                                 <th class="contentTbHeader">
                                     Offer Name
@@ -55,199 +54,198 @@
                         </thead>
                         <tbody>
                             <!-- ### -->
-                                <tr>
-                                    <th class="headColor" colspan="8" style="margin-bottom: 0px;">
-                                        Price Plan Built-In Offer
-                                    </th>
-                                </tr>
-                                <tr ng-repeat="item in builtInOffer" style="margin-bottom: 0px;">
-                                    <td class="contentTb" style="width: 7%">
-                                        <div align="center" class="" ng-show="offerType=='C'">
-                                            <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button">
-                                                <span><i class="fa fa-file-text-o editIcon-1x"></i></span>
-                                            </button>
-                                        </div>
-                                        <div align="center" ng-show="offerType=='U'">
-                                            <input id="item['product-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'product-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
-                                            <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button">
-                                                <span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span>
-                                            </button>
-                                        </div>
-                                        <div align="center" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
-                                        </div>
-                                    </td>
-                                    <td class="col-xs-2 contentTb">
-                                        {{item['product-name']}}
-                                    </td>
-                                    <td class="col-xs-4 contentTb">
-                                        {{item['product-description']}}
-                                    </td>
-                                    <td class="col-xs-1 contentTb" style="text-align: center;">
-                                        <span ng-if="item[ 'service-level']=='C'">Subscriber</span>
-                                        <span ng-if="item[ 'service-level']=='G'">Agreement</span>
-                                    </td>
-                                    <td class="col-xs-1 contentTb">
-                                        {{item['product-properties']['PARENT-SOC-NAME']}}
-                                    </td>
-                                    <td class="col-xs-1 contentTbCenter">
-                                        {{item['effective-date']}}
-                                    </td>
-                                    <td class="col-xs-1 contentTbCenter">
-                                        {{item['expire-date']}}
-                                    </td>
-                                    <td class="col-xs-1 contentTbCenter">
-                                        {{item['offer-group']}}
-                                    </td>
-                                </tr>
-                                <tr ng-show="builtInOffer==''">
-                                    <td class="contentTb" colspan="8">
-                                        -
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="headColor" colspan="8" style="margin-bottom: 0px;">
-                                        Regular Offer
-                                    </th>
-                                </tr>
-                                <tr ng-repeat="item in regularOffer" style="margin-bottom: 0px;">
-                                    <td class="contentTb">
-                                        <div align="center" class="" ng-show="offerType=='C'">
-                                            <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
-                                        </div>
-                                        <div align="center" class="" ng-show="offerType=='U'">
-                                            <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
-                                            <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
-                                        </div>
-                                        <div align="center" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
-                                        </div>
-                                    </td>
-                                    <td class="contentTb">
-                                        {{item['product-name']}}
-                                    </td>
-                                    <td class="contentTb">
-                                        {{item['product-description']}}
-                                    </td>
-                                    <td class="contentTb" style="text-align: center;">
-                                        <span ng-if="item[ 'service-level']=='C'">Subscriber</span>
-                                        <span ng-if="item[ 'service-level']=='G'">Agreement</span>
-                                    </td>
-                                    <td class="contentTb">
-                                        {{item['product-properties']['PARENT-SOC-NAME']}}
-                                    </td>
-                                    <td class="contentTbCenter">
-                                        {{item['effective-date']}}
-                                    </td>
-                                    <td class="contentTbCenter">
-                                        {{item['expire-date']}}
-                                    </td>
-                                    <td class="contentTbCenter">
-                                        {{item['offer-group']}}
-                                    </td>
-                                </tr>
-                                <tr ng-show="regularOffer==''">
-                                    <td class="contentTb" colspan="8">
-                                        -
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="headColor" colspan="8">
-                                        Contract & Prop
-                                    </th>
-                                </tr>
-                                <tr ng-repeat="item in propoOffer" style="margin-bottom: 0px;"> 
-                                    <td class="contentTb">
-                                        <div align="center" class="" ng-show="offerType=='C'">
-                                            <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
-                                        </div>
-                                        <div align="center" class="" ng-show="offerType=='U'">
-                                                <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
-                                                <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
-                                            </div>
-                                        <div align="center" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
-                                        </div>
-                                    </td>
-                                    <td class="contentTb">
-                                        {{item['product-name']}}
-                                    </td>
-                                    <td class="contentTb">
-                                        {{item['product-description']}}
-                                    </td>
-                                    <td class="contentTb" style="text-align: center;">
-                                        <span ng-if="item[ 'service-level']=='C'">Subscriber</span>
-                                        <span ng-if="item[ 'service-level']=='G'">Agreement</span>
-                                    </td>
-                                    <td class="contentTb">
-                                        {{item['product-properties']['PARENT-SOC-NAME']}}
-                                    </td>
-                                    <td class="contentTbCenter">
-                                        {{item['effective-date']}}
-                                    </td>
-                                    <td class="contentTbCenter">
-                                        {{item['expire-date']}}
-                                    </td>
-                                    <td class="contentTbCenter">
-                                        {{item['offer-group']}}
-                                    </td>
-                                </tr>
-                                <tr ng-show="propoOffer==''">
-                                    <td class="contentTb" colspan="8">
-                                        -
-                                    </td>
-                                </tr>
-                                <tr style="margin-bottom: 0px;">
-                                    <th class="headColor" colspan="8">
-                                        Discount
-                                    </th>
-                                </tr>
-                                <tr ng-repeat="item in discountOffer" style="margin-bottom: 0px;">
-                                    <td class="contentTb">
-                                        <div align="center" class="" ng-show="offerType=='C'">
-                                            <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
-                                        </div>
-                                        <div align="center" class="" ng-show="offerType=='U'">
-                                            <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
-                                            <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span>   </button>
-                                        </div>
-                                        <div align="center" ng-show="offerType=='D'">
-                                            <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
-                                        </div>
-                                    </td>
-                                    <td class="contentTb">
-                                        {{item['product-name']}}
-                                    </td>
-                                    <td class="contentTb">
-                                        {{item['product-description']}}
-                                    </td>
-                                    <td class="contentTb" style="text-align: center;">
-                                        <span ng-if="item[ 'service-level']=='C'">Subscriber</span>
-                                        <span ng-if="item[ 'service-level']=='G'">Agreement</span>
-                                    </td>
-                                    <td class="contentTb">
-                                        {{item['product-properties']['PARENT-SOC-NAME']}}
-                                    </td>
-                                    <td class="contentTbCenter">
-                                        {{item['effective-date']}}
-                                    </td>
-                                    <td class="contentTbCenter">
-                                        {{item['expire-date']}}
-                                    </td>
-                                    <td class="contentTbCenter">
-                                        {{item['product-properties']['OFFER-GROUP']}}
-                                    </td>
-                                </tr>   
-                                <tr ng-show="discountOffer==''">
-                                    <td class="contentTb" colspan="8">
-                                        -
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th class="headColor" colspan="8" style="margin-bottom: 0px;">
+                                    Price Plan Built-In Offer
+                                </th>
+                            </tr>
+                            <tr ng-repeat="item in builtInOffer" style="margin-bottom: 0px;">
+                                <td class="contentTb" style="width: 7%">
+                                    <div align="center" class="" ng-show="offerType=='C'">
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button">
+                                            <span><i class="fa fa-file-text-o editIcon-1x"></i></span>
+                                        </button>
+                                    </div>
+                                    <div align="center" ng-show="offerType=='U'">
+                                        <input id="item['product-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'product-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
+                                        <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button">
+                                            <span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span>
+                                        </button>
+                                    </div>
+                                    <div align="center" ng-show="offerType=='D'">
+                                        <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
+                                    </div>
+                                </td>
+                                <td class="col-xs-2 contentTb">
+                                    {{item['product-name']}}
+                                </td>
+                                <td class="col-xs-4 contentTb">
+                                    {{item['product-description']}}
+                                </td>
+                                <td class="col-xs-1 contentTb" style="text-align: center;">
+                                    <span ng-if="item[ 'service-level']=='C'">Subscriber</span>
+                                    <span ng-if="item[ 'service-level']=='G'">Agreement</span>
+                                </td>
+                                <td class="col-xs-1 contentTb">
+                                    {{item['product-properties']['PARENT-SOC-NAME']}}
+                                </td>
+                                <td class="col-xs-1 contentTbCenter">
+                                    {{item['effective-date']}}
+                                </td>
+                                <td class="col-xs-1 contentTbCenter">
+                                    {{item['expire-date']}}
+                                </td>
+                                <td class="col-xs-1 contentTbCenter">
+                                    {{item['offer-group']}}
+                                </td>
+                            </tr>
+                            <tr ng-show="builtInOffer==''">
+                                <td class="contentTb" colspan="8">
+                                    -
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="headColor" colspan="8" style="margin-bottom: 0px;">
+                                    Regular Offer
+                                </th>
+                            </tr>
+                            <tr ng-repeat="item in regularOffer" style="margin-bottom: 0px;">
+                                <td class="contentTb">
+                                    <div align="center" class="" ng-show="offerType=='C'">
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
+                                    </div>
+                                    <div align="center" class="" ng-show="offerType=='U'">
+                                        <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
+                                        <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    </div>
+                                    <div align="center" ng-show="offerType=='D'">
+                                        <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
+                                    </div>
+                                </td>
+                                <td class="contentTb">
+                                    {{item['product-name']}}
+                                </td>
+                                <td class="contentTb">
+                                    {{item['product-description']}}
+                                </td>
+                                <td class="contentTb" style="text-align: center;">
+                                    <span ng-if="item[ 'service-level']=='C'">Subscriber</span>
+                                    <span ng-if="item[ 'service-level']=='G'">Agreement</span>
+                                </td>
+                                <td class="contentTb">
+                                    {{item['product-properties']['PARENT-SOC-NAME']}}
+                                </td>
+                                <td class="contentTbCenter">
+                                    {{item['effective-date']}}
+                                </td>
+                                <td class="contentTbCenter">
+                                    {{item['expire-date']}}
+                                </td>
+                                <td class="contentTbCenter">
+                                    {{item['offer-group']}}
+                                </td>
+                            </tr>
+                            <tr ng-show="regularOffer==''">
+                                <td class="contentTb" colspan="8">
+                                    -
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="headColor" colspan="8">
+                                    Contract & Prop
+                                </th>
+                            </tr>
+                            <tr ng-repeat="item in propoOffer" style="margin-bottom: 0px;">
+                                <td class="contentTb">
+                                    <div align="center" class="" ng-show="offerType=='C'">
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
+                                    </div>
+                                    <div align="center" class="" ng-show="offerType=='U'">
+                                        <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
+                                        <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                    </div>
+                                    <div align="center" ng-show="offerType=='D'">
+                                        <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
+                                    </div>
+                                </td>
+                                <td class="contentTb">
+                                    {{item['product-name']}}
+                                </td>
+                                <td class="contentTb">
+                                    {{item['product-description']}}
+                                </td>
+                                <td class="contentTb" style="text-align: center;">
+                                    <span ng-if="item[ 'service-level']=='C'">Subscriber</span>
+                                    <span ng-if="item[ 'service-level']=='G'">Agreement</span>
+                                </td>
+                                <td class="contentTb">
+                                    {{item['product-properties']['PARENT-SOC-NAME']}}
+                                </td>
+                                <td class="contentTbCenter">
+                                    {{item['effective-date']}}
+                                </td>
+                                <td class="contentTbCenter">
+                                    {{item['expire-date']}}
+                                </td>
+                                <td class="contentTbCenter">
+                                    {{item['offer-group']}}
+                                </td>
+                            </tr>
+                            <tr ng-show="propoOffer==''">
+                                <td class="contentTb" colspan="8">
+                                    -
+                                </td>
+                            </tr>
+                            <tr style="margin-bottom: 0px;">
+                                <th class="headColor" colspan="8">
+                                    Discount
+                                </th>
+                            </tr>
+                            <tr ng-repeat="item in discountOffer" style="margin-bottom: 0px;">
+                                <td class="contentTb">
+                                    <div align="center" class="" ng-show="offerType=='C'">
+                                        <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
+                                    </div>
+                                    <div align="center" class="" ng-show="offerType=='U'">
+                                        <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
+                                        <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span> </button>
+                                    </div>
+                                    <div align="center" ng-show="offerType=='D'">
+                                        <input type="checkbox" ng-model="item.selected" ng-disabled="!isCustomerProfile" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_EXISTING_OFFER')">
+                                    </div>
+                                </td>
+                                <td class="contentTb">
+                                    {{item['product-name']}}
+                                </td>
+                                <td class="contentTb">
+                                    {{item['product-description']}}
+                                </td>
+                                <td class="contentTb" style="text-align: center;">
+                                    <span ng-if="item[ 'service-level']=='C'">Subscriber</span>
+                                    <span ng-if="item[ 'service-level']=='G'">Agreement</span>
+                                </td>
+                                <td class="contentTb">
+                                    {{item['product-properties']['PARENT-SOC-NAME']}}
+                                </td>
+                                <td class="contentTbCenter">
+                                    {{item['effective-date']}}
+                                </td>
+                                <td class="contentTbCenter">
+                                    {{item['expire-date']}}
+                                </td>
+                                <td class="contentTbCenter">
+                                    {{item['product-properties']['OFFER-GROUP']}}
+                                </td>
+                            </tr>
+                            <tr ng-show="discountOffer==''">
+                                <td class="contentTb" colspan="8">
+                                    -
+                                </td>
+                            </tr>
                             <!-- ### -->
                         </tbody>
                     </table>
                 </div>
-                
                 <div ng-show="futureOfferList.length > 0">
                     <h4>Future Order</h4>
                     <!-- Future Order Table -->
@@ -256,7 +254,6 @@
                             <thead>
                                 <tr class="well">
                                     <th class="contentTbHeader" ng-hide="offerType=='C'">
-                                    
                                     </th>
                                     <th class="contentTbHeader">
                                         Offer Name
@@ -319,7 +316,7 @@
                                 <i class="fa fa-plus fa-plus">
                                     </i> สมัครบริการใหม่ &nbsp;&nbsp;
                             </button>
-                        </div> 
+                        </div>
                         <label>
                             <h4>(กรุณาเลือกบริการที่ต้องการ)</h4>
                         </label>
@@ -387,7 +384,6 @@
                             <div style="padding-top: 3px; padding-right: 20px"> เพิ่ม Discount</div>
                         </button>
                     </div>
-                   
                     <div class="table-responsive">
                         <table ng-show="addNewOfferLists.length > 0" class="table table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                             <thead class="well">
@@ -444,7 +440,6 @@
                                         <span ng-if="item['group']!='CONTRACT_PROPO'">
                                             {{item['param']['expiration-date-value']}}    
                                         </span>
-                                        
                                         <span ng-if="item['group']=='CONTRACT_PROPO'">
                                             {{item['param']['expiration-date']}}                                         
                                         </span>
@@ -497,7 +492,6 @@
                     <br>
                     <br>
                 </div>
-
                 <div id="modal-pdf" name="modal-pdf" tabindsex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog" style="width:85%">
                         <div class="modal-content">
@@ -521,8 +515,7 @@
                 </div>
                 <div class="col-md-12 form-buttons" ng-if="!isCMUser && offerType == 'C'">
                     <div class="form-group">
-                        
-                        <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog();onChkEditOffer();" ng-disabled="addNewOfferLists.length == 0 && offerType == 'C'" href="#modal-pdf" data-toggle="modal"/>
+                        <input type="submit" value="พิมพ์" class="btn btn-success" ng-click="openPDFDialog();onChkEditOffer();" ng-disabled="addNewOfferLists.length == 0 && offerType == 'C'" href="#modal-pdf" data-toggle="modal" />
                         <input id="modalPDFOpener" type="hidden" href="#modal-pdf" data-toggle="modal" />
                         <input type="reset" value="ยกเลิก" class="btn btn-cancel" onclick="window.close()">
                     </div>
@@ -548,7 +541,6 @@
                 <div ng-if="addType=='CONTRACT_PROPO'" style="font-size: 1.5em;">เพิ่มบริการ Contract & Proposition</div>
                 <div ng-if="addType=='DISCOUNT'" style="font-size: 1.5em;">เพิ่มบริการ Discount</div>
             </div>
-            
             <!--<div class="modal-header">
                 <button type="button" id="btnReadCardClose" class="close" data-dismiss="modal">&times;</button>
                 <h5>Price Plan</h5>
@@ -588,7 +580,7 @@
                         </div>
                         <div class="col-md-4"></div>
                     </div>
-                   <!--  &nbsp;
+                    <!--  &nbsp;
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4 text-right" style="margin-top: 9px;">
@@ -610,7 +602,7 @@
                             </div>
                             <div class="col-md-4">
                                 <input type="text" placeholder="ค้นหา" ng-model="txtSearchOffer" class="form-control" ng-keyup="smartSearchOffer(txtSearchOffer)">
-                            </div> 
+                            </div>
                             <div class="col-md-4">
                             </div>
                         </div>
@@ -641,12 +633,15 @@
                                     <th class="contentTbHeader" ng-show="addOfferType.value == 'DISCOUNT'">
                                         Group
                                     </th>
+                                    <th class="contentTbHeader" ng-show="addOfferType.value == 'DISCOUNT'">
+                                        Type
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr dir-paginate="item in addOfferLists| itemsPerPage: pageSize" pagination-id="offerList" current-page="currentPage" style="cursor:pointer;">
-                                <!-- <label class="col-xs-12"> -->
-                                <!-- <div class="row"> -->
+                                    <!-- <label class="col-xs-12"> -->
+                                    <!-- <div class="row"> -->
                                     <td class="contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)">
                                         <input id="{{item['name']}}" type="radio" name="radioOffer" ng-model="radioOffer" ng-click="radioRowClick(tableAddOffer,item)" value="{{item['name']}}" style="cursor:pointer;">
                                     </td>
@@ -668,16 +663,18 @@
                                     <td class="contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)" ng-show="addOfferType.value == 'DISCOUNT'">
                                         {{item.properties.DISCOUNT_GROUP}}
                                     </td>
+                                    <td class="contentTbCenter" ng-click="radioRowClick(tableAddOffer,item)" ng-show="addOfferType.value == 'DISCOUNT'">
+                                        {{item.properties.DISCOUNT_TYPE}}
+                                    </td>
                                 </tr>
                                 <tr ng-show="addOfferLists.length>=pageSize">
-                                    <td colspan="7" class="text-center">
+                                    <td colspan="8" class="text-center">
                                         <div dir-pagination-controls pagination-id="offerList" boundary-links="true" template-url="lib/paging/dirPagination.tpl.html?v={{runTime}}"></div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    
                     <div ng-show="addOfferLists.length == 0" class="text-center">
                         <h4 style="color:red">*ไม่พบ Offer</h4>
                     </div>
@@ -695,11 +692,11 @@
                     <div ng-show="selectedOffer.group=='CUG'&& radioOffer">
                         <br>
                         <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
-                                    <input type="text" placeholder="ค้นหา CUG" ng-model="searchCug" class="form-control" ng-keyup="smartSearchCug(searchCug)">
-                                </div>
-                                <div class="col-md-2"></div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="ค้นหา CUG" ng-model="searchCug" class="form-control" ng-keyup="smartSearchCug(searchCug)">
+                            </div>
+                            <div class="col-md-2"></div>
                         </div>
                         &nbsp;
                         <div class="table-responsive">
@@ -715,12 +712,14 @@
                                 </div>
                             </label>
                             <table class="table" style="width: 98%; margin-bottom: 0px;">
-                            <!--<tr class="row" ng-repeat="item in cugList | filter: saveDataCUG.filter">-->
+                                <!--<tr class="row" ng-repeat="item in cugList | filter: saveDataCUG.filter">-->
                                 <tr class="row" dir-paginate="item in cugList | filter: onSearchCUG  | itemsPerPage: pageSize_cug" current-page="currentPage_cug" pagination-id="cugList">
                                     <th style="padding: 5px; padding-bottom: 0px;">
                                         <label class="col-xs-12" style="cursor:pointer;" ng-click="onSelectCUG(item)">
                                             <div class="row">
-                                                <div class="col-xs-1"><input name="paramCug" type="radio" class="radioCUG" value="{{item['group-id']}}" ng-model="cugParam['group-id']"/></div>
+                                                <div class="col-xs-1">
+                                                    <input name="paramCug" type="radio" class="radioCUG" value="{{item['group-id']}}" ng-model="cugParam['group-id']" />
+                                                </div>
                                                 <div class="col-xs-3">{{item['group-id']}}</div>
                                                 <div class="col-xs-8 text-center">{{item['group-name']}}</div>
                                             </div>
@@ -730,9 +729,9 @@
                                 <tr>
                                     <td colspan="5" class="text-center" style="margin-bottom: 0px;">
                                         <style>
-                                            .pagination {
-                                                margin: 0;
-                                            }
+                                        .pagination {
+                                            margin: 0;
+                                        }
                                         </style>
                                         <div dir-pagination-controls pagination-id="cugList" boundary-links=" true" template-url="lib/paging/dirPagination.tpl.html?v=3456785999000"></div>
                                     </td>
@@ -832,12 +831,12 @@
                                     <span ng-span-number-only="{{item['name']}}" class="hide" style="color:red;">
                                         กรุณากรอกเฉพาะตัวเลขเท่านั้น
                                     </span>
-                                    <select ng-if="item['data-type']=='TEXT'&&item['valid-values']"  class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD();"></select>
+                                    <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD();"></select>
                                 </div>
                             </div>
                             <div class="col-xs-2"></div>
                         </div>
-                           <!--  <div class="form-group row">
+                        <!--  <div class="form-group row">
                                 <div class="col-xs-2">
                                 </div>
                                 <div class="col-xs-4" style=" text-align: right; top: 5px;">
@@ -933,114 +932,114 @@
                             </div> -->
                     </div>
                     <div ng-show="selectedOffer.group=='CONTRACT_PROPO' && radioOffer" style="padding: 20px;">
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Proposition Code</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input ng-disabled="true" type="text" ng-model="cpPropCode" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
                             </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Proposition Description</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input ng-disabled="true" type="text" ng-model="cpPropDesc" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Proposition Code</label>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Contract Number</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="cpContractNumber" class="form-control" ng-keyup="validateAddCp()">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
+                            <div class="col-xs-4">
+                                <input ng-disabled="true" type="text" ng-model="cpPropCode" class="form-control">
                             </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Term</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="cpTerm" class="form-control" ng-number-only="inputCpTerm" disabled>
-                                    <span ng-span-number-only="inputCpTerm" class="hide" style="color:red;">
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Proposition Description</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <input ng-disabled="true" type="text" ng-model="cpPropDesc" class="form-control">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Contract Number</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" ng-model="cpContractNumber" class="form-control" ng-keyup="validateAddCp()">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Term</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" ng-model="cpTerm" class="form-control" ng-number-only="inputCpTerm" disabled>
+                                <span ng-span-number-only="inputCpTerm" class="hide" style="color:red;">
                                         กรุณากรอกเฉพาะตัวเลขเท่านั้น
                                     </span>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Fee</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="cpFee" class="form-control" id="cpFee" ng-number-only="inputCpFee" disabled>
-                                    <span ng-span-number-only="inputCpFee" class="hide" style="color:red;">
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Fee</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" ng-model="cpFee" class="form-control" id="cpFee" ng-number-only="inputCpFee" disabled>
+                                <span ng-span-number-only="inputCpFee" class="hide" style="color:red;">
                                         กรุณากรอกเฉพาะตัวเลขเท่านั้น
                                     </span>
-                                </div>
-                                <div class="col-xs-2">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Start Date</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="has-feedback">
+                                    <input name="birthDay" type="text" id="cpStartDate" ng-model="cpStartDate" class="form-control date-picker-today-en dateFormat" maxlength="10" requireds ng-keyup="validateAddCp()">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Start Date</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="cpStartDate" ng-model="cpStartDate" class="form-control date-picker-today-en dateFormat" maxlength="10" requireds ng-keyup="validateAddCp()">
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Expiration Date</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="has-feedback">
+                                    <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp()" ng-disabled="selectedOffer.disableExpDateCp">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Expiration Date</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp()" ng-disabled="selectedOffer.disableExpDateCp">
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
+                            <div class="col-xs-2">
                             </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Remark</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input name="cpRemark" type="text" ng-model="cpRemark" class="form-control" ng-keyup="validateAddCp()">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
                             </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Remark</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input name="cpRemark" type="text" ng-model="cpRemark" class="form-control" ng-keyup="validateAddCp()">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
                     </div>
                     <!-- <div ng-show="selectedOffer.group=='DISCOUNT' && radioOffer" style="padding: 20px;">
                     </div> -->
@@ -1048,6 +1047,23 @@
                     <br>
                     <div ng-show="radioOffer && selectedOffer.group!='CONTRACT_PROPO'" style="border-top: 1px solid #e5e5e5;">
                         <br>
+                        <div class="form-group" ng-show="addOfferType.value == 'DISCOUNT'">
+                            <div class="row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-3" style=" text-align: right; top: 5px; margin-bottom: 10px;">
+                                    <label>ระยะเวลา (Duration)</label>&nbsp;&nbsp;
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="col-xs-5" style="top:5px;">
+                                        {{selectedOffer['properties']['DURATION']}}&nbsp;{{selectedOffer['properties']['DURATION_UNIT']}}
+                                    </div>
+                                    <div class="col-xs-7">
+                                    </div>
+                                </div>
+                                <div class="col-xs-1"></div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-xs-1">
@@ -1065,7 +1081,7 @@
                                         <div class="form-group has-feedback">
                                             <div class="col-xs-5" style="top:5px;">
                                                 <label style="cursor: pointer;">
-                                                    <input style="cursor: pointer;" type="radio" ng-model="offerEffectiveDate" value="specify" style="cursor: pointer;" ng-change="onEffectiveChange();" > ระบุวันที่
+                                                    <input style="cursor: pointer;" type="radio" ng-model="offerEffectiveDate" value="specify" style="cursor: pointer;" ng-change="onEffectiveChange();"> ระบุวันที่
                                                 </label>
                                             </div>
                                             <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
@@ -1097,7 +1113,7 @@
                                         <div class="form-group has-feedback">
                                             <div class="col-xs-5" style="top:5px;">
                                                 <label style="cursor: pointer;">
-                                                    <input style="cursor: pointer;" type="radio" name="offerExpirationDate" ng-model="offerExpirationDate" ng-model="" value="specify" style="cursor: pointer;" ng-change="onExpirationChange();">ระบุวันที่
+                                                    <input style="cursor: pointer;" type="radio" name="offerExpirationDate" ng-model="offerExpirationDate" ng-model="" value="specify" style="cursor: pointer;" ng-change="onExpirationChange();"> ระบุวันที่
                                                 </label>
                                             </div>
                                             <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
@@ -1111,14 +1127,22 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-7" ng-show="selectedOffer['properties']['DISCOUNT_GROUP'].length > 0 && selectedOffer['properties']['DISCOUNT_GROUP']!='CVG' && selectedOffer['properties']['DISCOUNT_GROUP']!='EMP'">
+                                    <div class="col-xs-5" style="top:5px;">
+                                        <label style="cursor: pointer;">
+                                            <input style="cursor: pointer;" type="radio" ng-disabled="true"> ไม่มีกำหนด (Unlimited)
+                                        </label>
+                                    </div>
                                     <div class="col-xs-7">
                                         <div class="form-group">
-                                            <div class="col-xs-4" style="top:5px;left:3px;">
+                                            <div class="col-xs-4" style="top:5px;">
                                                 <!-- <label style="cursor: pointer;"> -->
-                                                    ระบุวันที่
+                                                <!-- ระบุวันที่ -->
                                                 <!-- </label> -->
+                                                <label style="cursor: pointer;">
+                                                    <input style="cursor: pointer;" type="radio" ng-disabled="true" checked="true"> ระบุวันที่
+                                                </label>
                                             </div>
-                                            <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
+                                            <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-2%">
                                                 <div class="form-group has-feedback imp" style="top:5px;">
                                                     <input type="text" ng-model="addNewOfferExpirationDate" id="addNewOfferExpirationDate2" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="disableExpDateDiscount">
                                                     <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
@@ -1131,11 +1155,9 @@
                             </div>
                         </div>
                     </div>
-
                     <div ng-show="radioOffer && selectedOffer['related-offers'].length>0" style="border-top: 1px solid #e5e5e5;">
                         <br>
-                        <h4>Relate Offer</h4>
-                        &nbsp;
+                        <h4>Relate Offer</h4> &nbsp;
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 0px;" id="tableRelatedOffer">
                                 <thead>
@@ -1216,7 +1238,7 @@
                                         <span ng-span-number-only="{{item['name']}}" class="hide" style="color:red;">
                                                 กรุณากรอกเฉพาะตัวเลขเท่านั้น
                                         </span>
-                                        <select ng-if="item['data-type']=='TEXT'&&item['valid-values']"  class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD();"></select>
+                                        <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD();"></select>
                                     </div>
                                 </div>
                                 <div class="col-xs-2"></div>
@@ -1232,7 +1254,6 @@
         </div>
     </div>
 </div>
-
 <!-- Start modal-edit-newOfferDetail -->
 <div id="modal-edit-newOfferDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
@@ -1274,7 +1295,7 @@
                     </div> &nbsp;
                     <!-- <br> -->
                     <!-- <br> -->
-                   <!--  <label style="cursor: pointer;">
+                    <!--  <label style="cursor: pointer;">
                         <input type="checkbox" ng-model="editParam" id="editParam"> &nbsp;
                         <span style="font-weight: bold; font-size:16px;"> Parameter</span>
                     </label> -->
@@ -1283,130 +1304,131 @@
                         <div ng-show="dataForEdit.group=='CUG'">
                             <br>
                             <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
-                                    <input type="text" placeholder="ค้นหา CUG" ng-model="searchCugForEdit" class="form-control" ng-keyup="smartSearchCug(searchCugForEdit); chkCugValue('edit');">
-                                </div>
-                                <div class="col-md-2"></div>
-                            </div>
-                            &nbsp;
-                            <div class="table-responsive">
-                                <label class="col-xs-12">
-                                    <div class="row">
-                                        <div class="col-xs-1">&nbsp;</div>
-                                        <div class="col-xs-3">
-                                            <span><b> Group ID</b></span>
-                                        </div>
-                                        <div class="col-xs-8 text-center">
-                                            <span><b> Group Name</b></span>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8">
+                                        <input type="text" placeholder="ค้นหา CUG" ng-model="searchCugForEdit" class="form-control" ng-keyup="smartSearchCug(searchCugForEdit); chkCugValue('edit');">
                                     </div>
-                                </label>
-                                <table class="table" style="width: 98%; margin-bottom: 0px;">
-                                <!--<tr class="row" ng-repeat="item in cugList | filter: saveDataCUG.filter">-->
-                                    <tr class="row" dir-paginate="item in cugList | filter: onSearchCUG  | itemsPerPage: pageSize_cug" current-page="currentPage_cug" pagination-id="cugList">
-
-                                        <th style="padding: 5px; padding-bottom: 0px;">
-                                            <label class="col-xs-12" style="cursor:pointer;" ng-click="onEditCUGParam(item)">
-                                                <div class="row">
-                                                    <div class="col-xs-1"><input name="paramCugEdit" type="radio" class="radioCUG" value="{{item['group-id']}}" ng-change="chkValueAddNewOffer('edit')" ng-model="editCugParam" id="{{item['group-id']}}"></div>
-                                                    <div class="col-xs-3">{{item['group-id']}}</div>
-                                                    <div class="col-xs-8 text-center">{{item['group-name']}}</div>
-                                                </div>
-                                            </label>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5" class="text-center" style="margin-bottom: 0px;">
-                                            <style>
+                                    <div class="col-md-2"></div>
+                                </div>
+                                &nbsp;
+                                <div class="table-responsive">
+                                    <label class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-1">&nbsp;</div>
+                                            <div class="col-xs-3">
+                                                <span><b> Group ID</b></span>
+                                            </div>
+                                            <div class="col-xs-8 text-center">
+                                                <span><b> Group Name</b></span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <table class="table" style="width: 98%; margin-bottom: 0px;">
+                                        <!--<tr class="row" ng-repeat="item in cugList | filter: saveDataCUG.filter">-->
+                                        <tr class="row" dir-paginate="item in cugList | filter: onSearchCUG  | itemsPerPage: pageSize_cug" current-page="currentPage_cug" pagination-id="cugList">
+                                            <th style="padding: 5px; padding-bottom: 0px;">
+                                                <label class="col-xs-12" style="cursor:pointer;" ng-click="onEditCUGParam(item)">
+                                                    <div class="row">
+                                                        <div class="col-xs-1">
+                                                            <input name="paramCugEdit" type="radio" class="radioCUG" value="{{item['group-id']}}" ng-change="chkValueAddNewOffer('edit')" ng-model="editCugParam" id="{{item['group-id']}}">
+                                                        </div>
+                                                        <div class="col-xs-3">{{item['group-id']}}</div>
+                                                        <div class="col-xs-8 text-center">{{item['group-name']}}</div>
+                                                    </div>
+                                                </label>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" class="text-center" style="margin-bottom: 0px;">
+                                                <style>
                                                 .pagination {
                                                     margin: 0;
                                                 }
-                                            </style>
-                                            <div dir-pagination-controls pagination-id="cugList" boundary-links=" true" template-url="lib/paging/dirPagination.tpl.html?v=3456785999000"></div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                                                </style>
+                                                <div dir-pagination-controls pagination-id="cugList" boundary-links=" true" template-url="lib/paging/dirPagination.tpl.html?v=3456785999000"></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <div ng-show="dataForEdit.group=='FF'" style="padding: 20px;">
                             <div class="form-group row">
-                            <div class="col-md-3 text-right" style="top:9px;">
-                                F&F <span style="color:red;">*</span>
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 1">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF1" ng-model="saveParamData.ff1" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 2">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF2" ng-model="saveParamData.ff2" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
+                                <div class="col-md-3 text-right" style="top:9px;">
+                                    F&F <span style="color:red;">*</span>
+                                </div>
+                                <div class="col-md-3" ng-show="ffData.max >= 1">
+                                    <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF1" ng-model="saveParamData.ff1" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                </div>
+                                <div class="col-md-3" ng-show="ffData.max >= 2">
+                                    <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF2" ng-model="saveParamData.ff2" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                </div>
                             </div>
                             <div class="form-group row" ng-show="ffData.max >= 3">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 3">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF3" ng-model="saveParamData.ff3" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 4">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF4" ng-model="saveParamData.ff4" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3" ng-show="ffData.max >= 3">
+                                    <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF3" ng-model="saveParamData.ff3" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                </div>
+                                <div class="col-md-3" ng-show="ffData.max >= 4">
+                                    <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF4" ng-model="saveParamData.ff4" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                </div>
                             </div>
                             <div class="form-group row" ng-show="ffData.max >= 5">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 5">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF5" ng-model="saveParamData.ff5" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 6">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF6" ng-model="saveParamData.ff6" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3" ng-show="ffData.max >= 5">
+                                    <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF5" ng-model="saveParamData.ff5" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                </div>
+                                <div class="col-md-3" ng-show="ffData.max >= 6">
+                                    <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF6" ng-model="saveParamData.ff6" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                </div>
                             </div>
                             <div class="form-group row" ng-show="ffData.max >= 7">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 7">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF7" ng-model="saveParamData.ff7" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 8">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF8" ng-model="saveParamData.ff8" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3" ng-show="ffData.max >= 7">
+                                    <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF7" ng-model="saveParamData.ff7" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                </div>
+                                <div class="col-md-3" ng-show="ffData.max >= 8">
+                                    <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF8" ng-model="saveParamData.ff8" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                </div>
                             </div>
                             <div class="form-group row" ng-show="ffData.max >= 9">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 9">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF9" ng-model="saveParamData.ff9" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
-                            <div class="col-md-3" ng-show="ffData.max >= 10">
-                                <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF10" ng-model="saveParamData.ff10" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3" ng-show="ffData.max >= 9">
+                                    <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF9" ng-model="saveParamData.ff9" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                </div>
+                                <div class="col-md-3" ng-show="ffData.max >= 10">
+                                    <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF10" ng-model="saveParamData.ff10" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
+                                </div>
                             </div>
                             <div class="row">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-6" style="text-align:center;">
-                                <span ng-span-number-only="ifff" class="hide" style="color:red;">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-6" style="text-align:center;">
+                                    <span ng-span-number-only="ifff" class="hide" style="color:red;">
                                     กรุณากรอกเฉพาะตัวเลขเท่านั้น
                                 </span>
-                                <span ng-show="isNumberTelLengthFF" style="color:red;">
+                                    <span ng-show="isNumberTelLengthFF" style="color:red;">
                                     กรุณากรอกหมายเลข9-10ตัว
                                 </span>
-                                <span ng-show="isNumberTelZeroFF" style="color:red;">
+                                    <span ng-show="isNumberTelZeroFF" style="color:red;">
                                     กรุณากรอก 0 เป็นตัวแรก
                                 </span>
-                            </div>
-                            <div class="col-md-3">
-                            </div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
                             </div>
                             <br>
                             <div class="row">
-                            <div class="col-md-12" style="color:red;text-align:center;">
-                                <span>
+                                <div class="col-md-12" style="color:red;text-align:center;">
+                                    <span>
                                     กรุณาระบุเลขหมายเลขคนสนิท(Friend & Family) อย่างน้อย {{selectedOffer['parameter-specifications'][0].min}} เบอร์
                                 </span>
-                            </div>
+                                </div>
                             </div>
                         </div>
                         <div ng-show="dataForEdit.group=='CONTRACT_PROPO'" style="padding: 20px;">
@@ -1525,100 +1547,100 @@
                         </div>
                         <div ng-show="dataForEdit.group!='CUG' && dataForEdit.group!='FF' && dataForEdit.group!='CONTRACT_PROPO'" style="padding: 20px;">
                             <div class="form-group row" ng-repeat="item in dataForEdit['parameter-specifications']">
-                            <div class="col-xs-1">
-                            </div>
-                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="form-group has-feedback">
-                                    <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD('edit');">
-                                    <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-only="{{item['name']}}" ng-keyup="validateAddAD('edit');">
-                                    <span ng-span-number-only="{{item['name']}}" class="hide" style="color:red;">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                    <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group has-feedback">
+                                        <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD('edit');">
+                                        <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-only="{{item['name']}}" ng-keyup="validateAddAD('edit');">
+                                        <span ng-span-number-only="{{item['name']}}" class="hide" style="color:red;">
                                         กรุณากรอกเฉพาะตัวเลขเท่านั้น
                                     </span>
-                                    <select ng-if="item['data-type']=='TEXT'&&item['valid-values']"  class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD('edit');"></select>
+                                        <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD('edit');"></select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-2"></div>
+                                <div class="col-xs-2"></div>
                             </div>
                         </div>
                     </div>
-                        <!-- <br> -->
-                        <!-- <br> -->
-                    <div style="border-top: 1px solid #e5e5e5;"  ng-hide="dataForEdit['type'] == 'editRelate' || dataForEdit.group=='CONTRACT_PROPO'">
+                    <!-- <br> -->
+                    <!-- <br> -->
+                    <div style="border-top: 1px solid #e5e5e5;" ng-hide="dataForEdit['type'] == 'editRelate' || dataForEdit.group=='CONTRACT_PROPO'">
                         <br>
-                       <!--  <label style="cursor: pointer;">
+                        <!--  <label style="cursor: pointer;">
                             <input type="checkbox" ng-model="editExp" id="editExp"> &nbsp;
                             <span style="font-weight: bold; font-size:16px;"> Expiration Date</span>
                         </label> -->
                         <!-- <div ng-show="editExp"> -->
                         <!-- <div> -->
-                             <!-- <br> -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-xs-1">
-                                    </div>
-                                    <div class="col-xs-3" style=" text-align: right; top: 5px;">
-                                        <label>วันที่มีผล (Effective Date)</label><span style="color:red;">*</span>
+                        <!-- <br> -->
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-3" style=" text-align: right; top: 5px;">
+                                    <label>วันที่มีผล (Effective Date)</label><span style="color:red;">*</span>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="col-xs-5" style="top:5px;">
+                                        <label style="cursor: pointer;">
+                                            <input style="cursor: pointer;" type="radio" ng-model="dataForEdit['param']['effective-date-type']" value="immediate" ng-change="onEffectiveChangeForEdit();"> ทันที (Immediate)
+                                        </label>
                                     </div>
                                     <div class="col-xs-7">
-                                        <div class="col-xs-5" style="top:5px;">
-                                            <label style="cursor: pointer;">
-                                                <input style="cursor: pointer;" type="radio" ng-model="dataForEdit['param']['effective-date-type']" value="immediate" ng-change="onEffectiveChangeForEdit();"> ทันที (Immediate)
-                                            </label>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="form-group has-feedback">
-                                                <div class="col-xs-5" style="top:5px;">
-                                                    <label style="cursor: pointer;">
-                                                        <input style="cursor: pointer;" type="radio" ng-model="dataForEdit['param']['effective-date-type']" value="specify" style="cursor: pointer;" ng-change="onEffectiveChangeForEdit();" > ระบุวันที่
-                                                    </label>
-                                                </div>
-                                                <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
-                                                    <div class="form-group has-feedback imp" style="top:5px;">
-                                                        <input type="text" ng-model="dataForEdit['param']['effective-date-value']" id="editNewOfferEffectiveDate" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="dataForEdit['param']['effective-date-type']=='immediate'">
-                                                        <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
-                                                    </div>
+                                        <div class="form-group has-feedback">
+                                            <div class="col-xs-5" style="top:5px;">
+                                                <label style="cursor: pointer;">
+                                                    <input style="cursor: pointer;" type="radio" ng-model="dataForEdit['param']['effective-date-type']" value="specify" style="cursor: pointer;" ng-change="onEffectiveChangeForEdit();"> ระบุวันที่
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
+                                                <div class="form-group has-feedback imp" style="top:5px;">
+                                                    <input type="text" ng-model="dataForEdit['param']['effective-date-value']" id="editNewOfferEffectiveDate" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="dataForEdit['param']['effective-date-type']=='immediate'">
+                                                    <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-1"></div>
                                 </div>
+                                <div class="col-xs-1"></div>
                             </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-xs-1">
-                                    </div>
-                                    <div class="col-xs-3" style=" text-align: right; top: 5px;">
-                                        <label>วันที่หมดอายุ (Expiration Date)</label><span style="color:red;">*</span>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-3" style=" text-align: right; top: 5px;">
+                                    <label>วันที่หมดอายุ (Expiration Date)</label><span style="color:red;">*</span>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="col-xs-5" style="top:5px;">
+                                        <label style="cursor: pointer;">
+                                            <input style="cursor: pointer;" type="radio" name="editOfferExpirationDate" ng-model="dataForEdit['param']['expiration-date-type']" value="unlimited" ng-change="onExpirationChangeForEdit();" ng-disabled="dataForEdit['properties']['DISCOUNT_GROUP'].length > 0 && dataForEdit['properties']['DISCOUNT_GROUP']!='CVG' && dataForEdit['properties']['DISCOUNT_GROUP']!='EMP'"> ไม่มีกำหนด (Unlimited)
+                                        </label>
                                     </div>
                                     <div class="col-xs-7">
-                                        <div class="col-xs-5" style="top:5px;">
-                                            <label style="cursor: pointer;">
-                                                <input style="cursor: pointer;" type="radio" name="editOfferExpirationDate" ng-model="dataForEdit['param']['expiration-date-type']" value="unlimited" ng-change="onExpirationChangeForEdit();" ng-disabled="dataForEdit['properties']['DISCOUNT_GROUP'].length > 0 && dataForEdit['properties']['DISCOUNT_GROUP']!='CVG' && dataForEdit['properties']['DISCOUNT_GROUP']!='EMP'"> ไม่มีกำหนด (Unlimited)
-                                            </label>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="form-group has-feedback">
-                                                <div class="col-xs-5" style="top:5px;">
-                                                    <label style="cursor: pointer;">
-                                                        <input style="cursor: pointer;" type="radio" name="editOfferExpirationDate" ng-model="dataForEdit['param']['expiration-date-type']" value="specify" style="cursor: pointer;" ng-change="onExpirationChangeForEdit();">ระบุวันที่
-                                                    </label>
-                                                </div>
-                                                <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
-                                                    <div class="form-group has-feedback imp" style="top:5px;">
-                                                        <input type="text" ng-model="dataForEdit['param']['expiration-date-value']" id="editNewOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="dataForEdit['param']['expiration-date-type']=='unlimited'">
-                                                        <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
-                                                    </div>
+                                        <div class="form-group has-feedback">
+                                            <div class="col-xs-5" style="top:5px;">
+                                                <label style="cursor: pointer;">
+                                                    <input style="cursor: pointer;" type="radio" name="editOfferExpirationDate" ng-model="dataForEdit['param']['expiration-date-type']" value="specify" style="cursor: pointer;" ng-change="onExpirationChangeForEdit();">ระบุวันที่
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
+                                                <div class="form-group has-feedback imp" style="top:5px;">
+                                                    <input type="text" ng-model="dataForEdit['param']['expiration-date-value']" id="editNewOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" style="width:120%;" maxlength="10" ng-disabled="dataForEdit['param']['expiration-date-type']=='unlimited'">
+                                                    <span class="form-control-feedback is-bound" style="right: -20%;"><i class="fa fa-calendar"></i></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-1"></div>
                                 </div>
+                                <div class="col-xs-1"></div>
                             </div>
+                        </div>
                         <!-- </div> -->
                     </div>
                 </div>
@@ -1635,7 +1657,6 @@
         </div>
     </div>
 </div>
-
 <!-- Start modal-edit-offerDetail -->
 <div id="modal-edit-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal_pdf_width modal-lg">
@@ -1711,11 +1732,11 @@
                     <div ng-show="viewOfferForEdit['offer-group']=='CUG'">
                         <br>
                         <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
-                                    <input type="text" placeholder="ค้นหา CUG" ng-model="searchCug" class="form-control" ng-keyup="smartSearchCug(searchCug)">
-                                </div>
-                                <div class="col-md-2"></div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="ค้นหา CUG" ng-model="searchCug" class="form-control" ng-keyup="smartSearchCug(searchCug)">
+                            </div>
+                            <div class="col-md-2"></div>
                         </div>
                         &nbsp;
                         <div class="table-responsive">
@@ -1731,12 +1752,14 @@
                                 </div>
                             </label>
                             <table class="table" style="width: 98%; margin-bottom: 0px;">
-                            <!--<tr class="row" ng-repeat="item in cugList | filter: saveDataCUG.filter">-->
+                                <!--<tr class="row" ng-repeat="item in cugList | filter: saveDataCUG.filter">-->
                                 <tr class="row" dir-paginate="item in cugList | filter: onSearchCUG  | itemsPerPage: pageSize_cug" current-page="currentPage_cug" pagination-id="cugList">
                                     <th style="padding: 5px; padding-bottom: 0px;">
                                         <label class="col-xs-12" style="cursor:pointer;" ng-click="onSelectCUG(item)">
                                             <div class="row">
-                                                <div class="col-xs-1"><input name="paramCug" type="radio" class="radioCUG" value="{{item['group-id']}}" ng-model="cugParam['group-id']"/></div>
+                                                <div class="col-xs-1">
+                                                    <input name="paramCug" type="radio" class="radioCUG" value="{{item['group-id']}}" ng-model="cugParam['group-id']" />
+                                                </div>
                                                 <div class="col-xs-3">{{item['group-id']}}</div>
                                                 <div class="col-xs-8 text-center">{{item['group-name']}}</div>
                                             </div>
@@ -1746,9 +1769,9 @@
                                 <tr>
                                     <td colspan="5" class="text-center" style="margin-bottom: 0px;">
                                         <style>
-                                            .pagination {
-                                                margin: 0;
-                                            }
+                                        .pagination {
+                                            margin: 0;
+                                        }
                                         </style>
                                         <div dir-pagination-controls pagination-id="cugList" boundary-links=" true" template-url="lib/paging/dirPagination.tpl.html?v=3456785999000"></div>
                                     </td>
@@ -1920,7 +1943,7 @@
                             <div class="col-md-3">
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
             <div class="modalOffer-footer" style="">
@@ -1936,7 +1959,6 @@
     </div>
 </div>
 <!-- End modal-edit-offerDetail -->
-
 <!-- Start modal-edit-future-offer -->
 <div id="modal-edit-future-offer" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal_pdf_width modal-lg">
@@ -2004,7 +2026,6 @@
     </div>
 </div>
 <!-- End modal-edit-future-offer -->
-
 <!-- Start modal view offer  -->
 <div id="modal-view-offerDetail" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal_pdf_width modal-lg">
@@ -2229,12 +2250,12 @@
                             <div class="col-md-3">
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
             <div class="modalOffer-footer">
                 <div class="col-xs-12">
-                    <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelViewOffer();" style="margin-top: -0px;">ปิด</button>    
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="onCancelViewOffer();" style="margin-top: -0px;">ปิด</button>
                 </div>
                 <!-- <button class="btn btn-success btnPrintOffer" data-dismiss="modal" ng-click="disableEditOffer(); onCancelPricePlan();" style="margin-top: -0px;">ตกลง</button> -->
             </div>
@@ -2244,7 +2265,6 @@
     </div>
 </div>
 <!-- End modal view offer -->
-
 <!-- Start Submit Modal -->
 <div id="modalSubmit" tabindex="-1" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" style="width: 350px;">
