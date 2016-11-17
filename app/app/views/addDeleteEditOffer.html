@@ -30,25 +30,25 @@
                                 <th class="contentTbHeader">
                                 
                                 </th>
-                                <th class="contentTbHeader"">
+                                <th class="contentTbHeader">
                                     Offer Name
                                 </th>
-                                <th class="contentTbHeader"">
+                                <th class="contentTbHeader">
                                     Offer Description
                                 </th>
-                                <th class="contentTbHeader"">
+                                <th class="contentTbHeader">
                                     Level
                                 </th>
-                                <th class="contentTbHeader"">
+                                <th class="contentTbHeader">
                                     Parent
                                 </th>
-                                <th class="contentTbHeader"">
+                                <th class="contentTbHeader">
                                     Effective Date
                                 </th>
-                                <th class="contentTbHeader"">
+                                <th class="contentTbHeader">
                                     Expiration Date
                                 </th>
-                                <th class="contentTbHeader"">
+                                <th class="contentTbHeader">
                                     Type
                                 </th>
                             </tr>
@@ -203,7 +203,7 @@
                                     </th>
                                 </tr>
                                 <tr ng-repeat="item in discountOffer" style="margin-bottom: 0px;">
-                                    <td class="contentTb"">
+                                    <td class="contentTb">
                                         <div align="center" class="" ng-show="offerType=='C'">
                                             <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
                                         </div>
@@ -235,7 +235,7 @@
                                         {{item['expire-date']}}
                                     </td>
                                     <td class="contentTbCenter">
-                                        {{item['offer-group']}}
+                                        {{item['product-properties']['OFFER-GROUP']}}
                                     </td>
                                 </tr>   
                                 <tr ng-show="discountOffer==''">
@@ -329,19 +329,19 @@
                     <!-- <h4>Offer แนะนำ</h4>
                     <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom: 0px;">
                         <tr>
-                            <th class="col-xs-1 contentTbHeader"">
+                            <th class="col-xs-1 contentTbHeader">
                                 <h>สมัคร</h>
                             </th>
-                            <th class="col-xs-3 contentTbHeader"">
+                            <th class="col-xs-3 contentTbHeader">
                                 <h>Related Offer Name</h>
                             </th>
-                            <th class="col-xs-4 contentTbHeader"">
+                            <th class="col-xs-4 contentTbHeader>
                                 <h>Offer Description</h>
                             </th>
-                            <th class="col-xs-2 contentTbHeader"">
+                            <th class="col-xs-2 contentTbHeader>
                                 <h>Type</h>
                             </th>
-                            <th class="col-xs-1 contentTbHeader"">
+                            <th class="col-xs-1 contentTbHeader">
                                 <h>Parameter</h>
                             </th>
                         </tr>
@@ -1080,7 +1080,7 @@
                                 <div class="col-xs-1"></div>
                             </div>
                         </div>
-                        <div class="form-group"">
+                        <div class="form-group">
                             <div class="row">
                                 <div class="col-xs-1">
                                 </div>

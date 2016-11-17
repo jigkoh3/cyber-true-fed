@@ -123,7 +123,7 @@
 
         } else {
 
-            var url = "/app/jsonFiles/Offer/get-existing-offer2.json";
+            var url = "/app/jsonFiles/Offer/get-existing-offer-tDiscount.json";
             SystemService.getFileJson(url, function(response) {
                 // console.log(response);
 

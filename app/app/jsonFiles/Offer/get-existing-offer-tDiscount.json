@@ -1,0 +1,155 @@
+{
+  "status" : "SUCCESSFUL",
+  "display-messages" : [ ],
+  "trx-id" : "4B9F5QFE8AXI6",
+  "process-instance" : "tmsapnpr1 (instance: SFF_node2)",
+  "response-data" : {
+    "customer" : {
+      "installed-products" : [ {
+        "product-category" : "TMV",
+        "product-type" : "DISCOUNT",
+        "product-status" : "A",
+        "product-id" : "BSP001",
+        "product-name" : "BSP001",
+        "product-description" : "Advance per month",
+        "service-level" : "C",
+        "product-soc-code" : "12346316",
+        "product-properties" : {
+          "OFFER-GROUP" : "DIS_SPEBUC",
+          "AGREEMENT-ID" : "1158022",
+          "PARENT-SOC-SEQUENCE" : "",
+          "AGREEMENT-SOC-SEQUENCE" : "562643",
+          "OFFER-INSTANCE-ID" : "562643",
+          "DISCOUNT-GROUP" : "SPECIAL_BUCKET"
+        },
+        "product-id-name" : "MSISDN",
+        "has-splitcharge" : false,
+        "is-childsim" : false,
+        "is-softsuspend" : false,
+        "offer-group" : "DISCOUNT",
+        "effective-date" : "02/11/2016",
+        "expire-date" : "02/10/2017",
+        "soc-type" : "D"
+      }, {
+        "product-category" : "TMV",
+        "product-type" : "PRICEPLAN-BUILT-IN",
+        "product-status" : "A",
+        "product-id" : "FCVBAR",
+        "product-name" : "FCVBAR",
+        "product-description" : "First Call Verification, Barring",
+        "service-level" : "C",
+        "product-soc-code" : "41861",
+        "product-properties" : {
+          "PARENT-SOC-NAME" : "BTMV1P03",
+          "AGREEMENT-ID" : "1158022",
+          "PARENT-SOC-SEQUENCE" : "550207",
+          "AGREEMENT-SOC-SEQUENCE" : "550209",
+          "OFFER-INSTANCE-ID" : "550209"
+        },
+        "product-id-name" : "MSISDN",
+        "has-splitcharge" : false,
+        "is-childsim" : false,
+        "is-softsuspend" : false,
+        "offer-group" : "ADDITIONAL",
+        "effective-date" : "12/10/2016",
+        "expire-date" : "",
+        "soc-type" : "U"
+      }, {
+        "product-category" : "TMV",
+        "product-type" : "PRICEPLAN-BUILT-IN",
+        "product-status" : "A",
+        "product-id" : "PROSTDA1",
+        "product-name" : "PROSTDA1",
+        "product-description" : "Standard Provisioning Services for Post Pay # 1",
+        "service-level" : "C",
+        "product-soc-code" : "40941",
+        "product-properties" : {
+          "PARENT-SOC-NAME" : "BTMV1P03",
+          "AGREEMENT-ID" : "1158022",
+          "PARENT-SOC-SEQUENCE" : "550207",
+          "AGREEMENT-SOC-SEQUENCE" : "550208",
+          "OFFER-INSTANCE-ID" : "550208"
+        },
+        "product-id-name" : "MSISDN",
+        "has-splitcharge" : false,
+        "is-childsim" : false,
+        "is-softsuspend" : false,
+        "offer-group" : "ADDITIONAL",
+        "effective-date" : "12/10/2016",
+        "expire-date" : "",
+        "soc-type" : "U"
+      }, {
+        "product-category" : "TMV",
+        "product-type" : "PRICEPLAN",
+        "product-status" : "A",
+        "product-id" : "BTMV1P03",
+        "product-name" : "BTMV1P03",
+        "product-description" : "Biz Talk 1,000 Get 1,000 Bt.All Network 1.25Bt.",
+        "service-level" : "C",
+        "product-soc-code" : "121196",
+        "product-properties" : {
+          "AGREEMENT-ID" : "1158022",
+          "PARENT-SOC-SEQUENCE" : "",
+          "AGREEMENT-SOC-SEQUENCE" : "550207",
+          "OFFER-INSTANCE-ID" : "550207"
+        },
+        "product-id-name" : "MSISDN",
+        "has-splitcharge" : false,
+        "is-childsim" : false,
+        "is-softsuspend" : false,
+        "offer-group" : "PRICEPLAN",
+        "effective-date" : "12/10/2016",
+        "expire-date" : "",
+        "soc-type" : "P"
+      }, {
+        "product-category" : "TMV",
+        "product-type" : "ADDITIONAL-OFFER",
+        "product-status" : "A",
+        "product-id" : "EB CREDITLIMIT",
+        "product-name" : "EB CREDITLIMIT",
+        "product-description" : "Credit Limit offer",
+        "service-level" : "G",
+        "product-soc-code" : "97076",
+        "product-properties" : {
+          "AGREEMENT-ID" : "1158022",
+          "PARENT-SOC-SEQUENCE" : "",
+          "AGREEMENT-SOC-SEQUENCE" : "551058",
+          "OFFER-INSTANCE-ID" : "550210"
+        },
+        "product-id-name" : "MSISDN",
+        "has-splitcharge" : false,
+        "is-childsim" : false,
+        "is-softsuspend" : false,
+        "offer-group" : "ADDITIONAL",
+        "effective-date" : "12/10/2016",
+        "expire-date" : "",
+        "soc-type" : "U"
+      }, {
+        "product-category" : "TMV",
+        "product-type" : "DISCOUNT",
+        "product-status" : "A",
+        "product-id" : "REP001",
+        "product-name" : "REP001",
+        "product-description" : "Proactive Discount 100Bht 6mth",
+        "service-level" : "C",
+        "product-soc-code" : "11099212",
+        "product-properties" : {
+          "OFFER-GROUP" : "DIS_NORMAL",
+          "AGREEMENT-ID" : "1158022",
+          "PARENT-SOC-SEQUENCE" : "",
+          "AGREEMENT-SOC-SEQUENCE" : "561158",
+          "OFFER-INSTANCE-ID" : "561158",
+          "DISCOUNT-GROUP" : "PROACTIVE_RETENTION"
+        },
+        "product-id-name" : "MSISDN",
+        "has-splitcharge" : false,
+        "is-childsim" : false,
+        "is-softsuspend" : false,
+        "offer-group" : "DISCOUNT",
+        "effective-date" : "01/11/2016",
+        "expire-date" : "01/03/2017",
+        "soc-type" : "D"
+      } ]
+    }
+  }
+}
