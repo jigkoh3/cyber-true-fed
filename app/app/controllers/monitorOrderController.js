@@ -368,7 +368,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
 
         if ($("#serviceType").val() != 'undefined' && ($("#serviceListbox").val() != "")) {
             //          data['activity'] = $scope.serviceTypes[$("#serviceListbox").val()].id ;
-            requestUrl += ('activity=' + $scope.serviceTypes[$("#serviceListbox").val()].id + "&");
+            requestUrl += ('activity=' + $scope.serviceTypes[$("#serviceListbox").val()].key + "&");
         }
         //      console.log("Service Type Listbox : ",$("#serviceListbox").val());
         /*
