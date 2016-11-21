@@ -681,6 +681,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 console.log($scope.existingOffer);
             }
         }
+
+        for (var i = 0; i < $scope.existingParameter.length; i++) {
+            if ($scope.existingParameter[i]["product-properties"]["OFFER-INSTANCE-ID"] == $scope.paramForEdit["OFFER-INSTANCE-ID"]) {
+                $scope.existingParameter[i]["product-properties"] = $scope.paramForEdit;
+            }
+        }
         $scope.setDefaultExistingOffer();
     };
 
@@ -1610,6 +1616,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             for (var i = 0; i < $scope.existingOffer.length; i++) {
                 if ($scope.existingOffer[i]["product-name"] == item["product-name"] && $scope.existingOffer[i]["product-name"] == $scope.existingOfferTemp[i]["product-name"]) {
                     $scope.existingOffer[i] = angular.copy($scope.existingOfferTemp[i]);
+                }
+            }
+
+            for (var i = 0; i < $scope.existingParameter.length; i++) {
+                if ($scope.existingParameter[i]["product-properties"]["OFFER-INSTANCE-ID"] == $scope.paramForEdit["OFFER-INSTANCE-ID"]) {
+                    $scope.existingParameter[i]["product-properties"] = angular.copy($scope.existingParameterTemp[i]["product-properties"]);
                 }
             }
             $scope.setDefaultExistingOffer();
@@ -2595,6 +2607,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.checkEditExp = false;
     $scope.checkEditParam = false;
     $scope.existingParameter = [];
+    $scope.existingParameterTemp = [];
     $scope.getExistingOfferParam = function() {
         SystemService.showLoading();
         var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"] + "&account-id=" + $scope.data.simData.ban;
@@ -2626,8 +2639,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
 
                 }
+                $scope.existingParameterTemp = angular.copy($scope.existingParameter);
             } else {
                 $scope.existingParameter = [];
+                $scope.existingParameterTemp  = [];
             }
             console.log($scope.existingParameter);
             SystemService.hideLoading();
@@ -2698,7 +2713,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.futureOfferList[i]["effective-date"] = $scope.futureOfferDetail["effective-date"];
                 $scope.futureOfferList[i]["edited"] = true;
                 $scope.futureOfferList[i]["selected"] = true;
-                
+
             } else {
                 $scope.futureOfferList[i]["edited"] = false;
                 $scope.futureOfferList[i]["selected"] = false;
