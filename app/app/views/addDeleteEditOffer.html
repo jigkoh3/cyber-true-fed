@@ -161,7 +161,7 @@
                                         <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
                                     </div>
                                     <div align="center" class="" ng-show="offerType=='U'">
-                                        <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
+                                        <input id="item['offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="openEditModal(item.selected, item, item[ 'offer-name']);" ng-hide="item[ 'Level']=='G' || !item.canEdit">
                                         <button id="editModal" ng-show="item.selected==true" ng-disabled="!isCustomerProfile" href="#modal-edit-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item, 'edit'); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                     </div>
                                     <div align="center" ng-show="offerType=='D'">
@@ -279,7 +279,8 @@
                                             <input type="checkbox" ng-model="item.selected" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_FUTURE_OFFER')">
                                         </div>
                                         <div align="center" class="" ng-show="offerType=='U' && item.canEdit">
-                                            <button ng-disabled="!isCustomerProfile" href="#modal-edit-future-offer" data-toggle="modal" onclick="return false;" ng-click="editFutureOffer(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
+                                            <input id="item[ 'offer-name']" ng-disabled="!isCustomerProfile" type="checkbox" ng-model="item.selected" style="cursor: pointer;" ng-change="chkEditFutureOffer(item);">
+                                            <button id="btnEditFutureOffer" ng-show="item.selected" href="#modal-edit-future-offer" data-toggle="modal" onclick="return false;" ng-click="editFutureOffer(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="glyphicon glyphicon-pencil editIcon-1x"></i></span></button>
                                         </div>
                                     </td>
                                     <td class="contentTb">
@@ -1709,7 +1710,20 @@
                         </div>
                     </div>
                     <br>
-                    <div ng-repeat="item in paramForEdit" ng-show="paramForEdit && viewOfferForEdit['offer-group']!='PROPOSITION'">
+                    <div calss="form-group" ng-show="paramForEdit">
+                        <div class="row" style="border-top: 1px solid #e5e5e5;">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="checkbox checkbox-circle2 checkbox-inline col-md-6" style="left: 4%">
+                                <br>
+                                <input ng-model="checkEditParam" id="checkEditParam" type="checkbox" class="styled ng-pristine ng-valid" ng-change="">
+                                <label for="checkEditParam" class="ng-binding" style="font-weight: bold;">Parameter</label>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>&nbsp;
+                    <div ng-repeat="item in paramForEdit['param-detail']" ng-show="checkEditParam && viewOfferForEdit['offer-group']!='PROPOSITION'">
                         <div calss="form-group">
                             <div class="row">
                                 <div class="col-md-1">
@@ -1729,7 +1743,7 @@
                             </div> &nbsp;
                         </div>
                     </div>
-                    <div ng-show="viewOfferForEdit['offer-group']=='CUG'">
+                    <div ng-show="checkEditParam && viewOfferForEdit['offer-group']=='CUG'">
                         <br>
                         <div class="row">
                             <div class="col-md-2"></div>
@@ -1778,8 +1792,8 @@
                                 </tr>
                             </table>
                         </div>
-                    </div> &nbsp;
-                    <div ng-if="viewOfferForEdit['offer-group']=='PROPOSITION'">
+                    </div>
+                    <div ng-if="checkEditParam && viewOfferForEdit['offer-group']=='PROPOSITION'">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-1">
@@ -1908,42 +1922,63 @@
                             </div>
                         </div>
                     </div>
+                    &nbsp;
+                    
                     <div calss="form-group" ng-hide="viewOfferForEdit['offer-group']=='PROPOSITION'">
+                        <div class="row" style="border-top: 1px solid #e5e5e5;">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="checkbox checkbox-circle2 checkbox-inline col-md-6" style="left: 4%">
+                                <br>
+                                <input ng-checked="checkEditExp" ng-model="checkEditExp" id="checkEditExp" type="checkbox" class="styled ng-pristine ng-valid" ng-change="">
+                                <label for="checkEditExp" class="ng-binding" style="font-weight: bold;">Expiration Date</label>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>&nbsp;
+
+                    <div calss="form-group" ng-show="checkEditExp">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2 text-right" style="top: 5px;">
-                                <label>Effective Date</label>
-                            </div>
-                            <div class="col-md-3">
-                                <!-- <input type="text" id="adViewOffer['effective-date']" ng-model="viewOffer['effective-date']" class="form-control"> -->
-                                <div class="form-group has-feedback imp" style="top:5px;">
-                                    <input type="text" ng-model="paramForEdit['effective-date']" id="editOfferEffectiveDate" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-disabled="true">
-                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                </div>
+                            <div class="col-md-2" style="top: 5px;"  style="cursor: pointer;">
+                                <label style="cursor: pointer;">
+                                    <input type="radio" id="" value="UNLIMITED" ng-model="editExpType" ng-change="onEditExpChange();">  ไม่มีกำหนด
+                                </label>
                             </div>
                             <div class="col-md-3">
                             </div>
-                        </div> &nbsp;
-                    </div>
-                    <div calss="form-group" ng-hide="viewOfferForEdit['offer-group']=='PROPOSITION'">
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>&nbsp;
+
+                    <div calss="form-group" ng-show="checkEditExp">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2 text-right" style="top: 5px;">
-                                <label>Expiration Date</label>
+                            <div class="col-md-2" style="top: 5px;">
+                                <label style="cursor: pointer;">
+                                    <input type="radio" id="" value="FUTURE" ng-model="editExpType" ng-change="onEditExpChange();">  ระบุวันที่
+                                </label>
+
+                            <!-- <label style="cursor: pointer;">
+                                <input style="cursor: pointer;" type="radio" ng-model="offerEffectiveDate" value="immediate" ng-change="onEffectiveChange();"> ทันที (Immediate)
+                            </label> -->
+
                             </div>
                             <div class="col-md-3">
-                                <!-- <input type="text" id="adViewOffer['expiration-date']" ng-model="viewOffer['expiration-date']" class="form-control"> -->
                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                    <input type="text" ng-model="paramForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-change="onModelChange();">
+                                    <input type="text" ng-model="paramForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-change="onModelChange();" ng-disabled="editExpType=='UNLIMITED'">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-3">
                             </div>
                         </div>
-                    </div>
+                    </div>&nbsp;
+
                 </div>
             </div>
             <div class="modalOffer-footer" style="">

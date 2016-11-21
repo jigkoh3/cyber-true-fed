@@ -240,6 +240,33 @@
                 "soc-type": "U"
             }, {
                 "product-category": "TMV",
+                "product-type": "PROPOSITION",
+                "product-id": "RMV000000000001",
+                "product-name": "RMV000000000001",
+                "product-description": "New Sim Only",
+                "service-level": "C",
+                "product-soc-code": "45552",
+                "product-properties": {
+                    "IS-CONTRACT": "Y",
+                    "CONTRACT-EXPIRATION-DATE": "27/02/2018",
+                    "CONTRACT-FEE": "0",
+                    "CONTRACT-START-DATE": "17/02/2016",
+                    "CONTRACT-TERM": "24",
+                    "OFFER-INSTANCE-ID": "501274"
+                },
+                "product-id-name": "MSISDN",
+                "product-id-number": "",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "contract-fee": "0",
+                "contract-term": "24",
+                "offer-group": "PROPOSITION",
+                "effective-date": "14/02/2016",
+                "expire-date": "27/02/2018",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
                 "product-type": "ADDITIONAL-OFFER",
                 "product-status": "A",
                 "product-id": "CSMAUS01D",
