@@ -216,7 +216,7 @@
         }
     };
 
-    this.submitAddDeleteEditOffer = function(payload, payload2, fnCallback) {
+    this.submitAddDeleteEditOffer = function(payload, orderItem, fnCallback) {
 
         var request = {
             "target": "aftersales/order/submit",
@@ -267,87 +267,13 @@
                     'sale-code': payload.saleAgent['saleCode'],
                     'partner-type': payload.saleAgent['partnerType']
                 },
-                'order-items': [],
+                'order-items': orderItem,
                 'last-modify-date': ''
             },
             'ref-id': payload.orderData.orderId,
             'user-id': payload.saleAgent.logInName,
             'approver': payload.approver
         };
-
-        if (payload['offer']) {
-            var orderItem1 = {
-                'product-category': payload.productDetails['product-category'],
-                'name': payload.action,
-                'order-type': payload["order-type"],
-                'product-id-name': payload.productDetails['product-id-name'],
-                'product-id-number': payload.productDetails['product-id-number'],
-                'product-name': payload.currentPricePlan,
-                "address-list": {
-                    // "BILLING_ADDRESS": BILLING_ADDRESS,
-                    // "TAX_ADDRESS": TAX_ADDRESS
-                },
-                'primary-order-data': {
-                    'ACCOUNT-SUB-TYPE': payload.productDetails['account-sub-type'],
-                    'COMPANY-CODE': payload.productDetails['company-code'],
-                    'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
-                    // 'NAS-PROPOSITION': "",
-                    'ACCOUNT-ID': payload.productDetails['ban'],
-                    'OU-ID': payload.productDetails['ouId']
-                },
-                'order-data': payload['offer'],
-                // 'reason-code': payload.statusReason.id,
-                'reason-code': "CREQ",
-                'user-memo': payload.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload.orderData.orderId + ")" + ": " + payload.statusReasonMemo,
-                // 'order-data': {
-                //     'MOBILE-SERVICETYPE': payload.productDetails['mobile-servicetype'],
-                //     'SERVICE-LEVEL': "C",
-                //     'SUBSCRIBER-ID': payload.customerProfile['subscriber-id'],
-                //     "CHANGE-OPTION": payload.statusCancel,
-                // "PRODUCT-STATUS-DESC": payload.productDetails['product-properties']['PRODUCT-STATUS-DESC']
-
-                // 'OU-ID': payload.productDetails['ouId'],
-                // 'BAN': payload.productDetails['ban'],
-                // 'PREPAID-SUBSCRIBER-ID': payload.productDetails['prepaid-subscriber-id'],
-                // 'IMSI': payload.productDetails['product-id-number']
-                // },
-                'product-category': payload.productDetails['product-category'],
-                'product-type': "PRICEPLAN"
-            }
-            request['order']['order-items'].push(orderItem1);
-        }
-
-        if (payload2) {
-            var orderItem2 = {
-                'product-category': payload2.productDetails['product-category'],
-                'name': payload2.action,
-                'order-type': "EXISTING",
-                'product-id-name': payload2.productDetails['product-id-name'],
-                'product-id-number': payload2.productDetails['product-id-number'],
-                'product-name': payload2.currentPricePlan,
-                "address-list": {
-                    // "BILLING_ADDRESS": BILLING_ADDRESS,
-                    // "TAX_ADDRESS": TAX_ADDRESS
-                },
-                'primary-order-data': {
-                    'ACCOUNT-SUB-TYPE': payload2.productDetails['account-sub-type'],
-                    'COMPANY-CODE': payload2.productDetails['company-code'],
-                    'MOBILE-SERVICETYPE': payload2.productDetails['mobile-servicetype'],
-                    // 'NAS-PROPOSITION': "",
-                    'ACCOUNT-ID': payload2.productDetails['ban'],
-                    'OU-ID': payload2.productDetails['ouId']
-                },
-                'order-data': payload2['offer'],
-                // 'reason-code': payload.statusReason.id,
-                'reason-code': "CREQ",
-                'user-memo': payload2.saleAgent.ssoEmployeePrincipal.loginName + "(" + payload2.saleAgent.ssoEmployeePrincipal.employeeId + ": " + payload2.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + payload2.orderData.orderId + ")" + ": " + payload.statusReasonMemo,
-                'product-category': payload2.productDetails['product-category'],
-                'product-type': "PRICEPLAN"
-
-            }
-            request['order']['order-items'].push(orderItem2);
-        }
-
         console.log(request);
         var cb = function(result) {
             var displayMsg = utils.getObject(result.data, 'display-messages.0');

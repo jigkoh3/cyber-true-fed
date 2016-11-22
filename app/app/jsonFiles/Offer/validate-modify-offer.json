@@ -20,6 +20,7 @@
         "RMV000000000001": ["DELETE", "EDIT"],
         "BSP001": ["DELETE", "EDIT"],
         "EB CREDITLIMIT": ["DELETE", "EDIT"],
+        "BARNRS01": ["DELETE", "EDIT"],
         "000TestSetDateBUC068": ["DELETE", "EDIT"]
     }
 }

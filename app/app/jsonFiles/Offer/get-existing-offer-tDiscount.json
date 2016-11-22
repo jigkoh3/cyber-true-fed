@@ -199,6 +199,76 @@
                 "effective-date": "28/03/2016",
                 "expire-date": "",
                 "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-status": "A",
+                "product-id": "SMSAUS12G",
+                "product-name": "SMSAUS12G",
+                "product-description": "B&E Pool SMS(P2P) 10sms",
+                "service-level": "C",
+                "product-soc-code": "11245212",
+                "product-properties": {
+                    "PARENT-SOC-NAME": "CSMAUS01D",
+                    "AGREEMENT-ID": "98844",
+                    "PARENT-SOC-SEQUENCE": "669890",
+                    "AGREEMENT-SOC-SEQUENCE": "669901",
+                    "OFFER-INSTANCE-ID": "669901"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "POOLING",
+                "effective-date": "31/10/2016",
+                "expire-date": "",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-status": "A",
+                "product-id": "CGPAUS01D",
+                "product-name": "CGPAUS01D",
+                "product-description": "Child_Pooled GPRS",
+                "service-level": "G",
+                "product-soc-code": "10524711",
+                "product-properties": {
+                    "AGREEMENT-ID": "98844",
+                    "PARENT-SOC-SEQUENCE": "",
+                    "AGREEMENT-SOC-SEQUENCE": "669882",
+                    "OFFER-INSTANCE-ID": "669883"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "POOLED",
+                "effective-date": "31/10/2016",
+                "expire-date": "",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-status": "A",
+                "product-id": "CSMAUS01D",
+                "product-name": "CSMAUS01D",
+                "product-description": "Child_Pooled SMS",
+                "service-level": "G",
+                "product-soc-code": "10536111",
+                "product-properties": {
+                    "AGREEMENT-ID": "98844",
+                    "PARENT-SOC-SEQUENCE": "",
+                    "AGREEMENT-SOC-SEQUENCE": "669889",
+                    "OFFER-INSTANCE-ID": "669890"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "POOLED",
+                "effective-date": "31/10/2016",
+                "expire-date": "",
+                "soc-type": "U"
             }]
         }
     }

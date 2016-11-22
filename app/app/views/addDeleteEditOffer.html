@@ -59,7 +59,7 @@
                                     Price Plan Built-In Offer
                                 </th>
                             </tr>
-                            <tr ng-repeat="item in builtInOffer" style="margin-bottom: 0px;">
+                            <tr ng-repeat="item in builtInOffer | orderBy:['group','name']" style="margin-bottom: 0px;">
                                 <td class="contentTb" style="width: 7%">
                                     <div align="center" class="" ng-show="offerType=='C'">
                                         <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button">
@@ -109,7 +109,7 @@
                                     Regular Offer
                                 </th>
                             </tr>
-                            <tr ng-repeat="item in regularOffer" style="margin-bottom: 0px;">
+                            <tr ng-repeat="item in regularOffer | orderBy:['group','name']" style="margin-bottom: 0px;">
                                 <td class="contentTb">
                                     <div align="center" class="" ng-show="offerType=='C'">
                                         <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
@@ -155,7 +155,7 @@
                                     Contract & Prop
                                 </th>
                             </tr>
-                            <tr ng-repeat="item in propoOffer" style="margin-bottom: 0px;">
+                            <tr ng-repeat="item in propoOffer | orderBy:['group','name']" style="margin-bottom: 0px;">
                                 <td class="contentTb">
                                     <div align="center" class="" ng-show="offerType=='C'">
                                         <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
@@ -201,7 +201,7 @@
                                     Discount
                                 </th>
                             </tr>
-                            <tr ng-repeat="item in discountOffer" style="margin-bottom: 0px;">
+                            <tr ng-repeat="item in discountOffer | orderBy:['group','name']" style="margin-bottom: 0px;">
                                 <td class="contentTb">
                                     <div align="center" class="" ng-show="offerType=='C'">
                                         <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>
@@ -273,7 +273,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="item in futureOfferList">
+                                <tr ng-repeat="item in futureOfferList | orderBy:'name'">
                                     <td class="contentTb" ng-hide="offerType=='C'">
                                         <div align="center" ng-show="offerType=='D'">
                                             <input type="checkbox" ng-model="item.selected" style="cursor:pointer;" ng-show="item.canDelete" ng-change="addDeleteList(item, 'DELETE_FUTURE_OFFER')">
@@ -576,7 +576,7 @@
                         <div class="col-md-4">
                             <select class="form-control" ng-model="pooledOfferType" id="pooledOfferType" ng-change="searchOffer('')">
                                 <option value="">--กรุณาระบุ--</option>
-                                <option ng-repeat="item in pooledOffer" value="{{item['product-name']}}">{{item['product-name']}}</option>
+                                <option ng-repeat="item in pooledList" value="{{item}}">{{item}}</option>
                             </select>
                         </div>
                         <div class="col-md-4"></div>
