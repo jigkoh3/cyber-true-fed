@@ -1944,7 +1944,7 @@
                             </div>
                             <div class="col-md-2" style="top: 5px;"  style="cursor: pointer;">
                                 <label style="cursor: pointer;">
-                                    <input type="radio" id="" value="UNLIMITED" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange();">  ไม่มีกำหนด
+                                    <input type="radio" id="" value="UNLIMITED" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange('EXISTING');">  ไม่มีกำหนด
                                 </label>
                             </div>
                             <div class="col-md-3">
@@ -1960,7 +1960,7 @@
                             </div>
                             <div class="col-md-2" style="top: 5px;">
                                 <label style="cursor: pointer;">
-                                    <input type="radio" id="" value="FUTURE" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange();">  ระบุวันที่
+                                    <input type="radio" id="" value="FUTURE" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange('EXISTING');">  ระบุวันที่
                                 </label>
 
                             <!-- <label style="cursor: pointer;">

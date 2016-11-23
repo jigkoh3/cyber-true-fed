@@ -220,28 +220,6 @@
             }, {
                 "product-category": "TMV",
                 "product-type": "ADDITIONAL-OFFER",
-                "product-name": "CGPAUS01D",
-                "product-description": "Child_Pooled GPRS",
-                "service-level": "G",
-                "product-soc-code": "10524711",
-                "product-properties": {
-                    "PARAM-SIZE": "2",
-                    "AGREEMENT-ID": "98844",
-                    "PARAM-0": "200975336|Agr billing arrangement|10066440",
-                    "PARAM-1": "200975335|Agr pay channel|10066440",
-                    "OFFER-INSTANCE-ID": "669883"
-                },
-                "product-id-name": "MSISDN",
-                "has-splitcharge": false,
-                "is-childsim": false,
-                "is-softsuspend": false,
-                "offer-group": "",
-                "effective-date": "31/10/2016",
-                "expire-date": "",
-                "soc-type": "U"
-            }, {
-                "product-category": "TMV",
-                "product-type": "ADDITIONAL-OFFER",
                 "product-name": "CSMAUS01D",
                 "product-description": "Child_Pooled SMS",
                 "service-level": "G",
