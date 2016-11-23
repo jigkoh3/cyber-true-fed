@@ -574,7 +574,7 @@
                             <b>Pooled Offer</b>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-control" ng-model="pooledOfferType" id="pooledOfferType" ng-change="searchOffer('')">
+                            <select class="form-control" ng-model="pooledOfferType" id="pooledOfferType" ng-change="searchOffer('');setPooledOffer();">
                                 <option value="">--กรุณาระบุ--</option>
                                 <option ng-repeat="item in pooledList" value="{{item}}">{{item}}</option>
                             </select>
@@ -1716,14 +1716,14 @@
                             </div>
                             <div class="checkbox checkbox-circle2 checkbox-inline col-md-6" style="left: 4%">
                                 <br>
-                                <input ng-model="checkEditParam" id="checkEditParam" type="checkbox" class="styled ng-pristine ng-valid" ng-change="">
+                                <input ng-model="viewOfferForEdit['checkEditParam']" id="checkEditParam" type="checkbox" class="styled ng-pristine ng-valid" ng-change="">
                                 <label for="checkEditParam" class="ng-binding" style="font-weight: bold;">Parameter</label>
                             </div>
                             <div class="col-md-3">
                             </div>
                         </div>
                     </div>&nbsp;
-                    <div ng-repeat="item in paramForEdit['param-detail']" ng-show="checkEditParam && viewOfferForEdit['offer-group']!='PROPOSITION'">
+                    <div ng-repeat="item in paramForEdit['param-detail']" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']!='PROPOSITION'">
                         <div calss="form-group">
                             <div class="row">
                                 <div class="col-md-1">
@@ -1743,7 +1743,7 @@
                             </div> &nbsp;
                         </div>
                     </div>
-                    <div ng-show="checkEditParam && viewOfferForEdit['offer-group']=='CUG'">
+                    <div ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='CUG'">
                         <br>
                         <div class="row">
                             <div class="col-md-2"></div>
@@ -1793,7 +1793,7 @@
                             </table>
                         </div>
                     </div>
-                    <div ng-if="checkEditParam && viewOfferForEdit['offer-group']=='PROPOSITION'">
+                    <div ng-if="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='PROPOSITION'">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-1">
@@ -1930,7 +1930,7 @@
                             </div>
                             <div class="checkbox checkbox-circle2 checkbox-inline col-md-6" style="left: 4%">
                                 <br>
-                                <input ng-checked="checkEditExp" ng-model="checkEditExp" id="checkEditExp" type="checkbox" class="styled ng-pristine ng-valid" ng-change="">
+                                <input ng-checked="checkEditExp" ng-model="viewOfferForEdit['checkEditExp']" id="checkEditExp" type="checkbox" class="styled ng-pristine ng-valid" ng-change="">
                                 <label for="checkEditExp" class="ng-binding" style="font-weight: bold;">Expiration Date</label>
                             </div>
                             <div class="col-md-3">
@@ -1938,13 +1938,13 @@
                         </div>
                     </div>&nbsp;
 
-                    <div calss="form-group" ng-show="checkEditExp">
+                    <div calss="form-group" ng-show="viewOfferForEdit['checkEditExp']">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-2" style="top: 5px;"  style="cursor: pointer;">
                                 <label style="cursor: pointer;">
-                                    <input type="radio" id="" value="UNLIMITED" ng-model="editExpType" ng-change="onEditExpChange();">  ไม่มีกำหนด
+                                    <input type="radio" id="" value="UNLIMITED" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange();">  ไม่มีกำหนด
                                 </label>
                             </div>
                             <div class="col-md-3">
@@ -1954,13 +1954,13 @@
                         </div>
                     </div>&nbsp;
 
-                    <div calss="form-group" ng-show="checkEditExp">
+                    <div calss="form-group" ng-show="viewOfferForEdit['checkEditExp']">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-2" style="top: 5px;">
                                 <label style="cursor: pointer;">
-                                    <input type="radio" id="" value="FUTURE" ng-model="editExpType" ng-change="onEditExpChange();">  ระบุวันที่
+                                    <input type="radio" id="" value="FUTURE" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange();">  ระบุวันที่
                                 </label>
 
                             <!-- <label style="cursor: pointer;">
@@ -1970,7 +1970,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                    <input type="text" ng-model="paramForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-change="onModelChange();" ng-disabled="editExpType=='UNLIMITED'">
+                                    <input type="text" ng-model="viewOfferForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-change="onModelChange();" ng-disabled="viewOfferForEdit['expire-date-option']=='UNLIMITED'">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
