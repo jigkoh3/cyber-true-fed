@@ -573,9 +573,16 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.paramDetail = [];
     $scope.paramForEdit = [];
     $scope.viewOfferForEdit = {};
+    $scope.currentPage_cug_edit = 1;
+    $scope.searchEditCug = "";
     $scope.viewOfferDetail = function(item, action) {
         $scope.onClearRelateOfferValue();
+        $scope.currentPage_cug_edit = 1;
         $scope.idSetDate = false;
+        $scope.cugSelectValue = "";
+        $scope.searchEditCug = "";
+        $scope.smartSearchCug($scope.searchEditCug);
+        $('.radioCUG').prop('checked', false);
         $scope.paramDetail = [];
         $scope.paramForEdit = [];
         $scope.viewOfferForEdit = {};
@@ -613,6 +620,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             if (item.group == "FF") {
                 $scope.paramDetail[0]["value"] = $scope.paramDetail[0]["value"].split(",");
             };
+            if (item.group == "CUG") {
+                $scope.paramDetail[0]["cugSelectValue"] = "";
+                $scope.paramDetail[0]["cugValue"] = $scope.paramDetail[0]["value"] + " : ";
+                for (var i = 0; i < $scope.cugList.length; i++) {
+                    if ($scope.cugList[i]["group-id"] == $scope.paramDetail[0]["value"]) {
+                        $scope.paramDetail[0]["cugValue"] = $scope.paramDetail[0]["value"] + " : " + $scope.cugList[i]["group-name"];
+                    }
+                }
+            };
             console.log($scope.paramDetail);
             if (action == "edit") {
                 $scope.paramForEdit = angular.copy($scope.offerParam[0]["product-properties"]);
@@ -636,7 +652,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "checkEditParam": item["checkEditParam"],
             "checkEditExp": item["checkEditExp"],
             "expire-date-option": item["expire-date-option"],
-            "expiration-date": item['expiration-date'],
+            "expiration-date": item['expire-date'],
+            "expire-date": item['expire-date'],
             "offer-group": item['offer-group'],
             "offer-instance-id": item["product-properties"]["OFFER-INSTANCE-ID"],
             "CONTRACT-START-DATE": item["product-properties"]["CONTRACT-START-DATE"],
@@ -649,7 +666,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 "TR_CONTRACT_REMARK": $filter('filter')($scope.paramDetail, "TR_CONTRACT_REMARK")
             }
         }
-        if ($scope.viewOffer['expiration-date']) {
+        if ($scope.viewOffer['expire-date']) {
             $scope.viewOffer['expire-date-option'] = "FUTURE";
         } else {
             $scope.viewOffer['expire-date-option'] = "UNLIMITED";
@@ -809,7 +826,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.TrxID = order.TrxID;
                 $scope.orderId = order.orderId;
                 localStorage.setItem('orderId', order.orderId);
-                $scope.getExistingOffer();
+                $scope.getCUGLists();
                 $scope.checkAuthorize();
                 // $scope.initModalReadCard();
             });
@@ -1399,7 +1416,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
                             case "CUG":
                                 data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
-                                data['offer']["OFFER-" + i + "-PARAM-0"] = editExistingOfferList[i]["parameter-specifications"][0]["name"] + "|" + editExistingOfferList[i]["param"]["cug-group-id"];
+                                data['offer']["OFFER-" + i + "-PARAM-0"] = editExistingOfferList[i]["parameter-specifications"][0]["name"] + "|" + editExistingOfferList[i]["parameter-specifications"][0]["value"];
                                 break;
 
                             case "CONTRACT_PROPO":
@@ -1999,14 +2016,23 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     }
 
     $scope.modelChange = false;
-    $scope.unChk = function(editOfferCode) {
-        if ($scope.modelChange == false) {
+    $scope.unChk = function(editOfferCode, btnType) {
+        if (btnType == "closeBtn") {
             for (var i = 0; i < $scope.existingOffer.length; i++) {
                 if (editOfferCode == $scope.existingOffer[i]['product-name'] && $scope.existingOffer[i].edited == false) {
                     $scope.existingOffer[i].selected = false;
                 }
             }
+        } else {
+            if ($scope.modelChange == false) {
+                for (var i = 0; i < $scope.existingOffer.length; i++) {
+                    if (editOfferCode == $scope.existingOffer[i]['product-name'] && $scope.existingOffer[i].edited == false) {
+                        $scope.existingOffer[i].selected = false;
+                    }
+                }
+            }
         }
+
         // $scope.dataForEdit = {};
         console.log($scope.addNewOfferLists);
     }
@@ -2434,6 +2460,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.cugList = result.data["cug-list"];
             cugList = result.data["cug-list"];
             console.log($scope.cugList);
+            $scope.getExistingOffer();
         })
     }
 
@@ -3062,6 +3089,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                     if ($scope.existingParameter[i]["product-properties"]["param-detail"][0]["name"] == "Friend numbers offer level") {
                         $scope.existingParameter[i]["product-properties"]["param-detail"][0]["value"] = $scope.existingParameter[i]["product-properties"]["param-detail"][0]["value"].split(",");
+                    } else if ($scope.existingParameter[i]["product-properties"]["param-detail"][0]["name"] == "CUG ID") {
+                        $scope.existingParameter[i]["product-properties"]["param-detail"][0]["cugSelectValue"] = "";
+                        $scope.existingParameter[i]["product-properties"]["param-detail"][0]["cugValue"] = $scope.existingParameter[i]["product-properties"]["param-detail"][0]["value"] + " : ";
+                        for (var cugNo = 0; cugNo < $scope.cugList.length; cugNo++) {
+                            if ($scope.cugList[cugNo]["group-id"] == $scope.existingParameter[i]["product-properties"]["param-detail"][0]["value"]) {
+                                $scope.existingParameter[i]["product-properties"]["param-detail"][0]["cugValue"] = $scope.existingParameter[i]["product-properties"]["param-detail"][0]["value"] + " : " + $scope.cugList[cugNo]["group-name"];
+                                $scope.existingParameter[i]["product-properties"]["param-detail"][0]["cugSelectValue"] = "";
+                            }
+                        }
                     };
                 }
                 $scope.existingParameterTemp = angular.copy($scope.existingParameter);
@@ -3101,7 +3137,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.tempFutureOfferList = [];
             }
             SystemService.hideLoading();
-            $scope.getCUGLists();
             $scope.validateModifyOffer();
             $scope.initModalReadCard();
         });
@@ -3447,5 +3482,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else {
             $scope.disabledSubmitBtn = true;
         }
+    };
+
+    $scope.unlimitedExp = "ไม่มีกำหนด";
+    $scope.cugSelectValue = "";
+    $scope.onEditCUG = function(item) {
+        $scope.paramForEdit['param-detail'][0]['cugValue'] = item['group-id'] + " : " + item['group-name'];
+        $scope.paramForEdit['param-detail'][0]['value'] = item['group-id'];
+        $scope.modelChange = true;
     };
 });
