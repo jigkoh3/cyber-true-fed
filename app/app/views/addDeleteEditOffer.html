@@ -1683,7 +1683,7 @@
                             </div>
                         </div>
                     </div>
-                    <div calss="form-group">
+                    <div calss="form-group" ng-hide="viewOfferForEdit['offer-group']=='PROPOSITION'">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
@@ -1697,7 +1697,7 @@
                             </div>
                         </div>
                     </div>
-                    <div calss="form-group">
+                    <div calss="form-group" ng-hide="viewOfferForEdit['offer-group']=='PROPOSITION'">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
@@ -1723,7 +1723,7 @@
                             </div>
                         </div>
                     </div>&nbsp;
-                    <div ng-repeat="item in paramForEdit['param-detail']" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']!='PROPOSITION'">
+                    <div ng-repeat="item in paramForEdit['param-detail']" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']!='PROPOSITION' && viewOfferForEdit['offer-group']!='FF'">
                         <div calss="form-group">
                             <div class="row">
                                 <div class="col-md-1">
@@ -1922,6 +1922,39 @@
                             </div>
                         </div>
                     </div>
+                    <div ng-repeat="item in paramForEdit['param-detail'][0]['value'] track by $index" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='FF'">
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style="top: 5px;">
+                                    <label ng-hide="{{$index}} != 0"> F&F</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" ng-model="item" class="form-control" ng-change="onModelChange();" maxlength="10" ng-blur="onCheckFFForEdit(item, $index);" ng-number-only="ifff">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-6" style="text-align:center;">
+                            <span ng-span-number-only="ifff" class="hide" style="color:red;">
+                                กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                            </span>
+                            <span ng-show="isNumberTelLengthFF" style="color:red;">
+                                กรุณากรอกหมายเลข9-10ตัว
+                            </span>
+                            <span ng-show="isNumberTelZeroFF" style="color:red;">
+                                กรุณากรอก 0 เป็นตัวแรก
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
                     &nbsp;
                     
                     <div calss="form-group" ng-hide="viewOfferForEdit['offer-group']=='PROPOSITION'">
@@ -2086,7 +2119,7 @@
                             </div>
                         </div>
                     </div>
-                    <div calss="form-group">
+                    <div calss="form-group" ng-hide="viewOffer['offer-group']=='PROPOSITION'">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
@@ -2100,7 +2133,7 @@
                             </div>
                         </div>
                     </div>
-                    <div calss="form-group">
+                    <div calss="form-group" ng-hide="viewOffer['offer-group']=='PROPOSITION'">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
@@ -2113,7 +2146,7 @@
                         </div>
                     </div>
                     <br>
-                    <div ng-repeat="item in paramDetail" ng-show="paramDetail && viewOffer['offer-group']!='PROPOSITION'">
+                    <div ng-repeat="item in paramDetail" ng-show="paramDetail && viewOffer['offer-group']!='PROPOSITION' && viewOffer['offer-group']!='FF'">
                         <div calss="form-group">
                             <div class="row">
                                 <div class="col-md-1">
@@ -2123,6 +2156,22 @@
                                 </div>
                                 <div class="col-md-3">
                                     <input ng-disabled="true" type="text" id="adViewOffer['effective-date']" ng-model="item.value" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                    </div>
+                    <div ng-repeat="item in paramDetail[0]['value']" ng-show="paramDetail && viewOffer['offer-group']=='FF'">
+                        <div calss="form-group">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style="top: 5px;">
+                                    <label ng-hide="{{$index}} != 0">F&F</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input ng-disabled="true" type="text" id="adViewOffer['effective-date']" ng-model="item" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 </div>
@@ -2258,6 +2307,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Effective & Expire Date -->
                     <div calss="form-group" ng-if="viewOffer['offer-group']!='PROPOSITION'">
                         <div class="row">
                             <div class="col-md-3">
@@ -2286,6 +2337,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- ================================ -->
                 </div>
             </div>
             <div class="modalOffer-footer">

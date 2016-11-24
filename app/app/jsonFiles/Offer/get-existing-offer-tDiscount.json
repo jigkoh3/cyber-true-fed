@@ -269,6 +269,52 @@
                 "effective-date": "31/10/2016",
                 "expire-date": "",
                 "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-status": "A",
+                "product-id": "CCUGAS01",
+                "product-name": "CCUGAS01",
+                "product-description": "CUG On/Off Net (Package level)",
+                "service-level": "C",
+                "product-soc-code": "55092",
+                "product-properties": {
+                    "AGREEMENT-ID": "98844",
+                    "PARENT-SOC-SEQUENCE": "",
+                    "AGREEMENT-SOC-SEQUENCE": "675124",
+                    "OFFER-INSTANCE-ID": "675124"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "CUG",
+                "effective-date": "10/11/2016",
+                "expire-date": "",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-status": "A",
+                "product-id": "FFVSMS02",
+                "product-name": "FFVSMS02",
+                "product-description": "TrueSmartChoice_Call Free in Family GroupUnlimited",
+                "service-level": "C",
+                "product-soc-code": "1081879",
+                "product-properties": {
+                    "AGREEMENT-ID": "1158024",
+                    "PARENT-SOC-SEQUENCE": "",
+                    "AGREEMENT-SOC-SEQUENCE": "583963",
+                    "OFFER-INSTANCE-ID": "583963"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "FF",
+                "effective-date": "23/11/2016",
+                "expire-date": "23/11/2017",
+                "soc-type": "U"
             }]
         }
     }

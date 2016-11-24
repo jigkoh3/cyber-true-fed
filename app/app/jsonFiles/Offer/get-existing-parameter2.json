@@ -239,6 +239,27 @@
                 "effective-date": "31/10/2016",
                 "expire-date": "",
                 "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "FFVSMS02",
+                "product-description": "TrueSmartChoice_Call Free in Family GroupUnlimited",
+                "service-level": "C",
+                "product-soc-code": "1081879",
+                "product-properties": {
+                    "PARAM-SIZE": "1",
+                    "AGREEMENT-ID": "1158024",
+                    "PARAM-0": "201187812|Friend numbers offer level|0912345678,0934568909,0936799004,0987656789",
+                    "OFFER-INSTANCE-ID": "583963"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "23/11/2016",
+                "expire-date": "",
+                "soc-type": "U"
             }]
         }
     }

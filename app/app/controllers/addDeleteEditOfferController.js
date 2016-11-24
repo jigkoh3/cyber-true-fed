@@ -610,6 +610,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     });
                 }
             }
+            if (item.group == "FF") {
+                $scope.paramDetail[0]["value"] = $scope.paramDetail[0]["value"].split(",");
+            };
             console.log($scope.paramDetail);
             if (action == "edit") {
                 $scope.paramForEdit = angular.copy($scope.offerParam[0]["product-properties"]);
@@ -1382,8 +1385,16 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                 break;
 
                             case "FF":
+                                var ffValue = "";
+                                ffValue = editExistingOfferList[i]["parameter-specifications"][0]["value"][0]
+                                if (editExistingOfferList[i]["parameter-specifications"][0]["value"].length > 1) {
+                                    for (var j = 1; j < editExistingOfferList[i]["parameter-specifications"][0]["value"].length; j++) {
+                                        ffValue += "," + editExistingOfferList[i]["parameter-specifications"][0]["value"][j];
+                                    }
+                                }
+
                                 data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
-                                data['offer']["OFFER-" + i + "-PARAM-0"] = editExistingOfferList[i]["parameter-specifications"][0]["name"] + "|" + editExistingOfferList[i]["param"]["ff-number"];
+                                data['offer']["OFFER-" + i + "-PARAM-0"] = editExistingOfferList[i]["parameter-specifications"][0]["name"] + "|" + ffValue;
                                 break;
 
                             case "CUG":
@@ -2381,6 +2392,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
     };
 
+    $scope.onCheckFFForEdit = function(item, index) {
+        if (item.length < 3) {
+            $scope.paramForEdit['param-detail'][0]['value'][index] = "";
+            $scope.modelChange = false;
+        } else {
+            $scope.paramForEdit['param-detail'][0]['value'][index] = item;
+        }
+    };
+
     $scope.ffNumber = "";
     $scope.chkValueforFF = false;
     $scope.onInputFF = function(charCode) {
@@ -3040,7 +3060,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                             });
                         }
                     }
-
+                    if ($scope.existingParameter[i]["product-properties"]["param-detail"][0]["name"] == "Friend numbers offer level") {
+                        $scope.existingParameter[i]["product-properties"]["param-detail"][0]["value"] = $scope.existingParameter[i]["product-properties"]["param-detail"][0]["value"].split(",");
+                    };
                 }
                 $scope.existingParameterTemp = angular.copy($scope.existingParameter);
             } else {
@@ -3417,7 +3439,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
     };
 
-    $scope.validateEditUI = function () {
+    $scope.validateEditUI = function() {
         var existingOfferList = $filter('filter')($scope.existingOffer, { 'edited': true });
         var futureOfferList = $filter('filter')($scope.futureOfferList, { 'edited': true });
         if (existingOfferList.length > 0 || futureOfferList.length > 0) {
