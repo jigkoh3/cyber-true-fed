@@ -695,6 +695,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
         console.log($scope.existingOffer);
         $scope.setDefaultExistingOffer();
+        $scope.validateEditUI();
     };
 
     $scope.idSetDate = false;
@@ -1972,6 +1973,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
             }
             $scope.setDefaultExistingOffer();
+            $scope.validateEditUI();
         }
         $scope.chkBoxLength = item['offer-name'];
     }
@@ -3127,6 +3129,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $('#editFutureOfferEffectiveDate').val("");
             $('#editFutureOfferEffectiveDate').datepicker("setDate", "");
         }, 100);
+        $scope.validateEditUI();
     };
 
     $scope.chkFutureOfferEffDate = function() {
@@ -3182,15 +3185,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.listNewOffer = function() {
-        // var newOffer = "";
-        // if($scope.addNewOfferLists.length > 0){
-        //     newOffer = $scope.addNewOfferLists[0]["name"];
-        //     for(var i = 1; i < $scope.addNewOfferLists.length; i++) {
-        //         newOffer += ", " + $scope.addNewOfferLists[i]["name"];
-        //     }
-        // }
-        // return newOffer;
-
         var newOffer = "";
         var effectiveDate = "";
         var effectiveDates = "";
@@ -3406,6 +3400,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     $scope.futureOfferList[i] = angular.copy($scope.tempFutureOfferList[i]);
                 }
             }
+            $scope.validateEditUI();
         }
     };
 
@@ -3420,5 +3415,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else {
             $scope.pooledParam = "";
         }
-    }
+    };
+
+    $scope.validateEditUI = function () {
+        var existingOfferList = $filter('filter')($scope.existingOffer, { 'edited': true });
+        var futureOfferList = $filter('filter')($scope.futureOfferList, { 'edited': true });
+        if (existingOfferList.length > 0 || futureOfferList.length > 0) {
+            $scope.disabledSubmitBtn = false;
+        } else {
+            $scope.disabledSubmitBtn = true;
+        }
+    };
 });
