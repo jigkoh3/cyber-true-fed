@@ -200,7 +200,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
         //call validate-change-offer
         if ($scope.SubNo !== 'null') {
-            SystemService.showLoading();
+            // SystemService.showLoading();
             AddDeleteEditOfferService.getSIMData($scope.SubNo, $scope.level, onGetSIMData);
             // $scope.getOfferList();
             // $scope.getReleteOfferList();
@@ -2051,10 +2051,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.poolingOffer = [];
     $scope.existingOfferTemp = [];
     $scope.getExistingOffer = function() {
-        SystemService.showLoading();
+        // SystemService.showLoading();
         $scope.existingOfferTemp = [];
         AddDeleteEditOfferService.getExistingOffer($scope.level, $scope.data.simData['product-id-number'], $scope.data.simData['subscriber-id'], function(result) {
-            SystemService.hideLoading();
+            // SystemService.hideLoading();
             var msg = utils.getObject(result.data, 'display-messages');
 
             if (msg && msg.length > 0) {
@@ -2105,8 +2105,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         if ($scope.poolingOffer) {
                             for (var j = 0; j < $scope.poolingOffer.length; j++) {
                                 if ($scope.pooledOffer[i]["product-properties"]["OFFER-INSTANCE-ID"] != $scope.poolingOffer[j]["product-properties"]["PARENT-SOC-SEQUENCE"]) {
-                                    $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);
+                                    var arr = $filter('filter')($scope.pooledList, $scope.pooledOffer[i]["product-name"]);
+                                    if (arr.length > 0) {
+                                        
+                                    } else {
+                                        $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);    
+                                    }
                                 }
+                                break;
                             }
                         } else {
                             $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);
@@ -2454,9 +2460,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.searchCug = "";
         $scope.cugParam = {};
         $scope.currentPage_cug = 1;
-        SystemService.showLoading();
+        // SystemService.showLoading();
         ChangePricePlanService.getCUGList(function(result) {
-            SystemService.hideLoading();
+            // SystemService.hideLoading();
             $scope.cugList = result.data["cug-list"];
             cugList = result.data["cug-list"];
             console.log($scope.cugList);
@@ -3050,7 +3056,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.existingParameter = [];
     $scope.existingParameterTemp = [];
     $scope.getExistingOfferParam = function() {
-        SystemService.showLoading();
+        // SystemService.showLoading();
         var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"] + "&account-id=" + $scope.data.simData.ban;
         console.log(param);
         AddDeleteEditOfferService.getExistingParameter(param, function(result) {
@@ -3106,13 +3112,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.existingParameterTemp = [];
             }
             console.log($scope.existingParameter);
-            SystemService.hideLoading();
+            // SystemService.hideLoading();
             $scope.callGetFutureOffer();
         });
     };
 
     $scope.callGetFutureOffer = function() {
-        SystemService.showLoading();
+        // SystemService.showLoading();
         var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"] + "&future-order-type=OFFER";
         AddDeleteEditOfferService.getFutureOffer(param, function(result) {
             var futureOfferData = utils.getObject(result.data['response-data'], 'customer');
@@ -3136,7 +3142,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.futureOfferList = [];
                 $scope.tempFutureOfferList = [];
             }
-            SystemService.hideLoading();
+            // SystemService.hideLoading();
             $scope.validateModifyOffer();
             $scope.initModalReadCard();
         });
@@ -3345,7 +3351,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.validateModifyOffer = function() {
         $scope.getCurrentOffer();
-        SystemService.showLoading();
+        // SystemService.showLoading();
 
         var validateModifyOfferParam = "current-offers=" + $scope.currentOfferParam + "&current-priceplan=" + $scope.priceplan[0]['product-name'] + "&level=SUBSCRIBER";
         console.log(validateModifyOfferParam);
