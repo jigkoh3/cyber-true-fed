@@ -658,13 +658,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "offer-instance-id": item["product-properties"]["OFFER-INSTANCE-ID"],
             "CONTRACT-START-DATE": item["product-properties"]["CONTRACT-START-DATE"],
             "CONTRACT-EXPIRATION-DATE": item["product-properties"]["CONTRACT-EXPIRATION-DATE"],
-            "original-data": item,
-            "param": {
-                "TR_CONTRACT_NUMBER": $filter('filter')($scope.paramDetail, "TR_CONTRACT_NUMBER"),
-                "TR_CONTRACT_TERM": $filter('filter')($scope.paramDetail, "TR_CONTRACT_TERM"),
-                "TR_CONTRACT_FEE": $filter('filter')($scope.paramDetail, "TR_CONTRACT_FEE"),
-                "TR_CONTRACT_REMARK": $filter('filter')($scope.paramDetail, "TR_CONTRACT_REMARK")
-            }
+            "original-data": item
+        }
+        if ($scope.offerParam.length > 0) {
+            $scope.viewOffer.param = {
+                "TR_CONTRACT_NUMBER": $filter('filter')($scope.offerParam[0]["product-properties"]["param-detail"], { "name": "TR_CONTRACT_NUMBER" }),
+                "TR_CONTRACT_TERM": $filter('filter')($scope.offerParam[0]["product-properties"]["param-detail"], { "name": "TR_CONTRACT_TERM" }),
+                "TR_CONTRACT_FEE": $filter('filter')($scope.offerParam[0]["product-properties"]["param-detail"], { "name": "TR_CONTRACT_FEE" }),
+                "TR_CONTRACT_REMARK": $filter('filter')($scope.offerParam[0]["product-properties"]["param-detail"], { "name": "TR_CONTRACT_REMARK" })
+            };
         }
         if ($scope.viewOffer['expire-date']) {
             $scope.viewOffer['expire-date-option'] = "FUTURE";
@@ -702,7 +704,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.existingOffer[i]["expire-date"] = $scope.viewOfferForEdit['expiration-date'];
                 $scope.existingOffer[i].edited = true;
                 $scope.existingOffer[i]["checkEditExp"] = true;
-
             }
 
             for (var j = 0; j < $scope.existingParameter.length; j++) {
@@ -710,10 +711,29 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     $scope.existingParameter[j]["product-properties"] = $scope.paramForEdit;
                     $scope.existingOffer[i].edited = true;
                     $scope.existingOffer[i]["checkEditParam"] = true;
+                    if ($scope.existingOffer[i]["group"] == "PROPOSITION") {
+                        for (var detailNo = 0; detailNo < $scope.existingParameter[j]["product-properties"]["param-detail"].length; detailNo++) {
+                            if ($scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["name"] == "TR_CONTRACT_NUMBER") {
+                                $scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["value"] = $scope.viewOfferForEdit['param']['TR_CONTRACT_NUMBER'][0]['value'];
+                            } else if ($scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["name"] == "TR_CONTRACT_TERM") {
+                                $scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["value"] = $scope.viewOfferForEdit['param']['TR_CONTRACT_TERM'][0]['value'];
+                            } else if ($scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["name"] == "TR_CONTRACT_FEE") {
+                                $scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["value"] = $scope.viewOfferForEdit['param']['TR_CONTRACT_FEE'][0]['value'];
+                            } else if ($scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["name"] == "TR_CONTRACT_REMARK") {
+                                $scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["value"] = $scope.viewOfferForEdit['param']['TR_CONTRACT_REMARK'][0]['value'];
+                            } else if ($scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["name"] == "TR_ORIG_CONTRACT_EXPIRE_DATE") {
+                                TR_ACTUAL_CONTRACT_START_DATE
+                                $scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["value"] = $scope.viewOfferForEdit['CONTRACT-EXPIRATION-DATE'];
+                            } else if ($scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["name"] == "TR_ACTUAL_CONTRACT_START_DATE") {
+                                $scope.existingParameter[j]["product-properties"]["param-detail"][detailNo]["value"] = $scope.viewOfferForEdit['CONTRACT-START-DATE'];
+                            }
+                        }
+                    }
                 }
             }
         }
         console.log($scope.existingOffer);
+        console.log($scope.existingParameter);
         $scope.setDefaultExistingOffer();
         $scope.validateEditUI();
     };
@@ -1892,6 +1912,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.chkEdit = false
         $scope.futureOfferList = angular.copy($scope.tempFutureOfferList);
         $scope.existingOffer = angular.copy($scope.existingOfferTemp);
+        $scope.existingParameter = angular.copy($scope.existingParameterTemp);
         $scope.setDefaultExistingOffer();
         $scope.addNewOfferLists = [];
         $scope.deleteExistingOfferList = [];
@@ -1982,8 +2003,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.chkID = "";
     $scope.chkEdit = false
     $scope.openEditModal = function(chkModel, item, chkId) {
-        console.log(chkModel);
-        if (chkModel == true) {
+        if (chkModel) {
             $scope.chkID = chkId;
             $scope.viewOfferDetail(item, 'edit');
             $('#editModal').click();
@@ -1995,9 +2015,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
             }
 
-            for (var i = 0; i < $scope.existingParameter.length; i++) {
-                if ($scope.existingParameter[i]["product-properties"]["OFFER-INSTANCE-ID"] == $scope.paramForEdit["OFFER-INSTANCE-ID"]) {
-                    $scope.existingParameter[i]["product-properties"] = angular.copy($scope.existingParameterTemp[i]["product-properties"]);
+            for (var j = 0; j < $scope.existingParameter.length; j++) {
+                if ($scope.existingParameter[j]["product-properties"]["OFFER-INSTANCE-ID"] == $scope.paramForEdit["OFFER-INSTANCE-ID"]) {
+                    $scope.existingParameter[j]["product-properties"] = angular.copy($scope.existingParameterTemp[j]["product-properties"]);
+                    console.log($scope.existingParameter[j]);
+                    break;
                 }
             }
             $scope.setDefaultExistingOffer();
@@ -2107,9 +2129,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                 if ($scope.pooledOffer[i]["product-properties"]["OFFER-INSTANCE-ID"] != $scope.poolingOffer[j]["product-properties"]["PARENT-SOC-SEQUENCE"]) {
                                     var arr = $filter('filter')($scope.pooledList, $scope.pooledOffer[i]["product-name"]);
                                     if (arr.length > 0) {
-                                        
+
                                     } else {
-                                        $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);    
+                                        $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);
                                     }
                                 }
                                 break;
