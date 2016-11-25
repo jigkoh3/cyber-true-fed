@@ -617,8 +617,18 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     });
                 }
             }
+            
+            $scope.paramForEdit = angular.copy($scope.offerParam[0]["product-properties"]);
             if (item.group == "FF") {
                 $scope.paramDetail[0]["value"] = $scope.paramDetail[0]["value"].split(",");
+                AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
+                    if (response.data["response-data"]) {
+                        $scope.paramDetail[0]["FF_NUMBER"] = parseInt(response.data["response-data"]["properties"]["FF_NUMBER"]);
+                        $scope.paramForEdit['param-detail'][0]['FF_NUMBER'] = $scope.paramDetail[0]["FF_NUMBER"];
+                        $scope.paramDetail[0]["FF_MIN"] = response.data["response-data"]["parameter-specifications"][0]["min"];
+                        $scope.paramForEdit['param-detail'][0]["FF_MIN"] = $scope.paramDetail[0]["FF_MIN"];
+                    };
+                });
             };
             if (item.group == "CUG") {
                 $scope.paramDetail[0]["cugSelectValue"] = "";
@@ -630,9 +640,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
             };
             console.log($scope.paramDetail);
-            if (action == "edit") {
-                $scope.paramForEdit = angular.copy($scope.offerParam[0]["product-properties"]);
-            }
+
         }
 
         $scope.paramForEdit['effective-date'] = item['effective-date'];
@@ -2029,13 +2037,28 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     }
 
     $scope.modelChange = false;
-    $scope.onModelChange = function() {
+    $scope.onModelChange = function(group) {
         if ($scope.editExpType == "FUTURE" && $scope.paramForEdit['expiration-date'] == "") {
             $scope.modelChange = false;
         } else {
             $scope.modelChange = true;
         }
-    }
+
+        if (group == 'FF') {
+            var count = 0;
+            for (var i = 0; i < $scope.paramForEdit['param-detail'][0]['value']; i++) {
+                if ($scope.paramForEdit['param-detail'][0]['value']) {
+                    count++
+                };
+            }
+
+            if (count >= $scope.paramForEdit['param-detail'][0]["FF_MIN"]) {
+                $scope.modelChange = false;   
+            } else {
+                $scope.modelChange = true;
+            }
+        }
+    };
 
     $scope.modelChange = false;
     $scope.unChk = function(editOfferCode, btnType) {

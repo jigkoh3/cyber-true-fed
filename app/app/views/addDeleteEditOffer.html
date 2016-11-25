@@ -747,7 +747,7 @@
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 1">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF1" ng-model="saveParamData.ff1" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
+                            </div>&nbsp;&nbsp;
                             <div class="col-md-3" ng-show="ffData.max >= 2">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF2" ng-model="saveParamData.ff2" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
@@ -757,7 +757,7 @@
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 3">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF3" ng-model="saveParamData.ff3" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
+                            </div>&nbsp;&nbsp;
                             <div class="col-md-3" ng-show="ffData.max >= 4">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF4" ng-model="saveParamData.ff4" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
@@ -767,7 +767,7 @@
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 5">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF5" ng-model="saveParamData.ff5" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
+                            </div>&nbsp;&nbsp;
                             <div class="col-md-3" ng-show="ffData.max >= 6">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF6" ng-model="saveParamData.ff6" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
@@ -777,7 +777,7 @@
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 7">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF7" ng-model="saveParamData.ff7" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
+                            </div>&nbsp;&nbsp;
                             <div class="col-md-3" ng-show="ffData.max >= 8">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF8" ng-model="saveParamData.ff8" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
@@ -787,7 +787,7 @@
                             </div>
                             <div class="col-md-3" ng-show="ffData.max >= 9">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF9" ng-model="saveParamData.ff9" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
-                            </div>
+                            </div>&nbsp;&nbsp;
                             <div class="col-md-3" ng-show="ffData.max >= 10">
                                 <input type="text" placeholder="" maxlength="10" class="form-control telephone" id="txtFF10" ng-model="saveParamData.ff10" ng-blur="onCheckFF();" ng-number-only="ifff" ng-keyup="onInputFF($event.keyCode);">
                             </div>
@@ -1748,15 +1748,15 @@
                             <div class="row">
                                 <div class="col-md-1">
                                 </div>
-                                <div class="col-md-4 text-right" style="top: 5px;">
+                                <div class="col-md-3 text-right" style="top: 9px;">
                                     <label> CUG <span style="color:red;">*</span> </label>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <input ng-model="paramForEdit['param-detail'][0]['cugValue']" class="form-control" ng-change="onModelChange();" disabled>
                                 </div>
                                 <div class="col-md-3">
                                 </div>
-                            </div> &nbsp;
+                            </div>
                         </div>
                         <br>
                         <div class="row">
@@ -1936,18 +1936,65 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-repeat="item in paramForEdit['param-detail'][0]['value'] track by $index" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='FF'">
+                    <div ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='FF'">
                         <div calss="form-group">
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-md-3 text-right" style="top: 5px;">
+                                    <label> F&F</label>
                                 </div>
-                                <div class="col-md-4 text-right" style="top: 5px;">
-                                    <label ng-hide="{{$index}} != 0"> F&F</label>
+                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 1">
+                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][0]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][0], 0);" ng-number-only="ifff">
+                                </div>&nbsp;&nbsp;
+                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 2">
+                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][1]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][1], 1);" ng-number-only="ifff">
                                 </div>
-                                <div class="col-md-3">
-                                    <input type="text" ng-model="item" class="form-control" ng-change="onModelChange();" maxlength="10" ng-blur="onCheckFFForEdit(item, $index);" ng-number-only="ifff">
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 3">
+                            <div class="row">
+                                <div class="col-md-3 text-right" style="top: 5px;">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 3">
+                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][2]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][2], 2);" ng-number-only="ifff">
+                                </div>&nbsp;&nbsp;
+                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 4">
+                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][3]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][3], 3);" ng-number-only="ifff">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 5">
+                            <div class="row">
+                                <div class="col-md-3 text-right" style="top: 5px;">
+                                </div>
+                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 5">
+                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][4]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][4], 4);" ng-number-only="ifff">
+                                </div>&nbsp;&nbsp;
+                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 6">
+                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][5]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][5], 5);" ng-number-only="ifff">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 7">
+                            <div class="row">
+                                <div class="col-md-3 text-right" style="top: 5px;">
+                                </div>
+                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 7">
+                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][6]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][6], 6);" ng-number-only="ifff">
+                                </div>&nbsp;&nbsp;
+                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 8">
+                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][7]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][7], 7);" ng-number-only="ifff">
+                                </div>
+                            </div> &nbsp;
+                        </div>
+                        <div calss="form-group" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 9">
+                            <div class="row">
+                                <div class="col-md-3 text-right" style="top: 5px;">
+                                </div>
+                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 9">
+                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][8]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][8], 8);" ng-number-only="ifff">
+                                </div>&nbsp;&nbsp;
+                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 10">
+                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][9]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][9], 9);" ng-number-only="ifff">
                                 </div>
                             </div> &nbsp;
                         </div>
@@ -1969,8 +2016,13 @@
                         <div class="col-md-3">
                         </div>
                     </div>
-                    &nbsp;
-                    
+                    <div class="row" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='FF'">
+                        <div class="col-md-12" style="color:red;text-align:center;">
+                            <span>
+                                กรุณาระบุเลขหมายเลขคนสนิท(Friend & Family) อย่างน้อย {{paramForEdit['param-detail'][0]["FF_MIN"]}} เบอร์
+                            </span>
+                        </div>
+                    </div>&nbsp;&nbsp;
                     <div calss="form-group" ng-hide="viewOfferForEdit['offer-group']=='PROPOSITION'">
                         <div class="row" style="border-top: 1px solid #e5e5e5;">
                             <div class="col-md-2">
@@ -2182,10 +2234,10 @@
                                 <div class="col-md-4 text-right" style="top: 5px;">
                                     <label> CUG Name </label>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <input ng-disabled="true" type="text" id="adViewOffer['effective-date']" ng-model="item.cugValue" class="form-control">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                 </div>
                             </div> &nbsp;
                         </div>

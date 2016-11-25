@@ -216,6 +216,28 @@
         }
     };
 
+    this.searchOfferByName = function(offerName, fnCallback) {
+        if (!demo) {
+            var target = '/sales/catalog/product/tmv/offer/' + offerName;
+
+            SystemService.callServiceGet(target, null, function(result) {
+                fnCallback(result);
+            });
+        } else { 
+            var url = "/app/jsonFiles/Offer/search-offer-FFVSMS02.json"
+
+            SystemService.getFileJson(url, function(response) {
+                // console.log(response);
+                fnCallback({
+                    status: true,
+                    data: response,
+                    error: "",
+                    msgErr: ""
+                });
+            });
+        }
+    };
+
     this.submitAddDeleteEditOffer = function(payload, orderItem, fnCallback) {
 
         var request = {
