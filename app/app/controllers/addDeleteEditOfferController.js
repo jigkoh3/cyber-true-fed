@@ -621,7 +621,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.paramForEdit = angular.copy($scope.offerParam[0]["product-properties"]);
             if (item.group == "FF") {
                 $scope.paramDetail[0]["value"] = $scope.paramDetail[0]["value"].split(",");
+                SystemService.showLoading();
                 AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
+                    SystemService.hideLoading();
                     if (response.data["response-data"]) {
                         $scope.paramDetail[0]["FF_NUMBER"] = parseInt(response.data["response-data"]["properties"]["FF_NUMBER"]);
                         $scope.paramForEdit['param-detail'][0]['FF_NUMBER'] = $scope.paramDetail[0]["FF_NUMBER"];
@@ -2163,6 +2165,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                             $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);
                         }
                     }
+                    $scope.pooledList =[];
                 }
                 console.log($scope.pooledList);
                 if ($scope.priceplan.length > 0) {

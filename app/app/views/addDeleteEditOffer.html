@@ -676,8 +676,11 @@
                             </tbody>
                         </table>
                     </div>
-                    <div ng-show="addOfferLists.length == 0" class="text-center">
+                    <div ng-show="(addOfferType.value != 'POOLING' && addOfferLists.length == 0) || (addOfferType.value == 'POOLING'&& pooledList.length > 0 && addOfferLists.length == 0)" class="text-center">
                         <h4 style="color:red">*ไม่พบ Offer</h4>
+                    </div>
+                    <div ng-show="addOfferType.value == 'POOLING' && pooledList.length == 0" class="text-center">
+                        <h4 style="color:red">*ไม่พบ Pooled ที่สามารถเลือก Pooling ได้</h4>
                     </div>
                     <!-- <div class="row" ng-if="addOfferLists.length == 0">
                         <div class="col-md-12" align="center">
