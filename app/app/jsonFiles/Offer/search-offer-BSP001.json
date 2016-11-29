@@ -1,0 +1,31 @@
+{
+    "status": "SUCCESSFUL",
+    "trx-id": "4P9M3NWI6SH91",
+    "process-instance": "tmsapnpr1 (instance: SFF_node2)",
+    "response-data": {
+        "name": "BSP001",
+        "description": "Advance per month",
+        "soc": "12346316",
+        "properties": {
+            "DISCOUNT_GROUP": "SPECIAL_BUCKET",
+            "OFFER_GROUP": "DIS_SPEBUC",
+            "MAX_DURATION_UNIT": "MONTH",
+            "DURATION_UNIT": "MONTH",
+            "DURATION": "11",
+            "DISCOUNT_TYPE": "SPECIAL",
+            "MAX_DURATION": "24",
+            "OFFER_TYPE": "N"
+        },
+        "group": "DISCOUNT",
+        "soc-type": "D",
+        "sale-period": {
+            "start": "2016-03-22",
+            "end": "2018-01-31"
+        },
+        "rc": 0.0,
+        "max-instance-allow": 0,
+        "service-level": "C",
+        "sale-context": "S",
+        "available-groups": ["DISCOUNT"]
+    }
+}

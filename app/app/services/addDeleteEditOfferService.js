@@ -224,7 +224,7 @@
                 fnCallback(result);
             });
         } else { 
-            var url = "/app/jsonFiles/Offer/search-offer-FFVSMS02.json"
+            var url = "/app/jsonFiles/Offer/search-offer-" + offerName + ".json"
 
             SystemService.getFileJson(url, function(response) {
                 // console.log(response);

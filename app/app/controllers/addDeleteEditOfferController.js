@@ -610,8 +610,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         $scope.paramForEdit['param-detail'][0]["FF_MIN"] = $scope.paramDetail[0]["FF_MIN"];
                     };
                 });
-            };
-            if (item.group == "CUG") {
+            } else if (item.group == "CUG") {
                 $scope.paramDetail[0]["cugSelectValue"] = "";
                 $scope.paramDetail[0]["cugValue"] = $scope.paramDetail[0]["value"] + " : ";
                 for (var i = 0; i < $scope.cugList.length; i++) {
@@ -619,9 +618,19 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         $scope.paramDetail[0]["cugValue"] = $scope.paramDetail[0]["value"] + " : " + $scope.cugList[i]["group-name"];
                     }
                 }
-            };
-            console.log($scope.paramDetail);
+            }
 
+            console.log($scope.paramDetail);
+        }
+
+        if (item.group == "DISCOUNT") {
+            SystemService.showLoading();
+            AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
+                SystemService.hideLoading();
+                if (response.data["response-data"]) {
+                    $scope.paramForEdit["properties"] = response.data["response-data"]["properties"];
+                }
+            });
         }
 
         $scope.paramForEdit['effective-date'] = item['effective-date'];
@@ -1415,7 +1424,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
                             case "FF":
                                 var ffValue = "";
-                                ffValue = editExistingOfferList[i]["parameter-specifications"][0]["value"][0]
+                                for (var ffNum = 0; ffNum < editExistingOfferList[i]["parameter-specifications"][0]["value"].length; ffNum++) {
+                                    if (editExistingOfferList[i]["parameter-specifications"][0]["value"][ffNum] == "" || editExistingOfferList[i]["parameter-specifications"][0]["value"][ffNum] == undefined) {
+                                        editExistingOfferList[i]["parameter-specifications"][0]["value"].splice(ffNum, 1);
+                                    }
+                                }
+
+                                ffValue = editExistingOfferList[i]["parameter-specifications"][0]["value"][0];
                                 if (editExistingOfferList[i]["parameter-specifications"][0]["value"].length > 1) {
                                     for (var j = 1; j < editExistingOfferList[i]["parameter-specifications"][0]["value"].length; j++) {
                                         ffValue += "," + editExistingOfferList[i]["parameter-specifications"][0]["value"][j];
@@ -2451,7 +2466,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.onCheckFFForEdit = function(item, index) {
-        if (item.length < 3) {
+        if (item && item.length < 3) {
             $scope.paramForEdit['param-detail'][0]['value'][index] = "";
             $scope.modelChange = false;
         } else {
