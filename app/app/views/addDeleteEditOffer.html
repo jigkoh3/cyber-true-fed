@@ -11,13 +11,13 @@
                 <div ng-include="template.customerprofile" scope="" onload=""></div>
                 <div align="center">
                     <div data-toggle="buttons" class="btn-group btn-group-justified divOfferTypeWidth btnOfferAction">
-                        <label class="btn btn-default active" ng-click="changeType('C');changeOfferType();">
+                        <label ng-hide="retention.action=='DELETE' || retention.action=='EDIT'" class="btn btn-default {{activeTab.C}}" ng-click="changeType('C');changeOfferType();">
                             <input type="radio" name="type" ng-model="offerType" value="C"> สมัครบริการ
                         </label>
-                        <label class="btn btn-default" ng-click="changeType('D');changeOfferType();">
+                        <label ng-hide="retention.action=='ADD' || retention.action=='EDIT'" class="btn btn-default {{activeTab.D}}" ng-click="changeType('D');changeOfferType();">
                             <input type="radio" name="type" ng-model="offerType" value="D"> ยกเลิกบริการ
                         </label>
-                        <label class="btn btn-default" ng-click="changeType('U');changeOfferType();">
+                        <label ng-hide="retention.action=='ADD' || retention.action=='DELETE'" class="btn btn-default {{activeTab.U}}" ng-click="changeType('U');changeOfferType();">
                             <input type="radio" name="type" ng-model="offerType" value="U"> แก้ไขบริการ
                         </label>
                     </div>
@@ -1736,8 +1736,8 @@
                             </div>
                             <div class="col-md-3">
                             </div>
-                        </div>
-                    </div>&nbsp;
+                        </div>&nbsp;
+                    </div>
                     <div ng-repeat="item in paramForEdit['param-detail']" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']!='PROPOSITION' && viewOfferForEdit['offer-group']!='FF' && viewOfferForEdit['offer-group']!='CUG'">
                         <div calss="form-group">
                             <div class="row">

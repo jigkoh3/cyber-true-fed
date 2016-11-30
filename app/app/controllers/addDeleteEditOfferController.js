@@ -22,6 +22,33 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.Id = "";
     $scope.shopType = '1';
     $scope.SubNo = $routeParams.subno ? $routeParams.subno : 'null'; //$routeParams.SubNo;
+    ////str :: add solution retention :: 18-11-2016 :: xsam32
+    $scope.retention = {
+        "app_token": ($routeParams.app_token ? $routeParams.app_token : ''),
+        "activity": ($routeParams.activity ? $routeParams.activity : ''), /// RTE
+        "offercode": ($routeParams.offercode ? $routeParams.offercode : ''), /// xxx,xxx,xxxx
+        "action": ($routeParams.action ? $routeParams.action : ''), /// ADD, EDIT, DELETE
+    };
+    $scope.activeTab = {
+        "C": "",
+        "D": "",
+        "U": ""
+    };
+    var checkProcessType = "";
+    if ($scope.retention.action == 'ADD') {
+        checkProcessType = "C";
+        $scope.activeTab.C = "active";
+    } else if ($scope.retention.action == 'DELETE') {
+        checkProcessType = "D";
+        $scope.activeTab.D = "active";
+    } else if ($scope.retention.action == 'EDIT') {
+        checkProcessType = "U";
+        $scope.activeTab.U = "active";
+    } else {
+        checkProcessType = "C";
+        $scope.activeTab.C = "active";
+    }
+    ////end :: add solution retention :: 18-11-2016 :: xsam32
 
 
     // Initialize variables
@@ -49,7 +76,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.data = {};
     $scope.isReadCardSuccess = false;
-    $scope.offerType = "C";
+    $scope.offerType = checkProcessType;
     $scope.statusReason = '';
     $scope.statusReasonMemo = '';
     $scope.readOnlyOffer = true;
