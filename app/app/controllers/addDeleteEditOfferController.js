@@ -623,16 +623,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             console.log($scope.paramDetail);
         }
 
-        if (item.group == "DISCOUNT") {
-            SystemService.showLoading();
-            AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
-                SystemService.hideLoading();
-                if (response.data["response-data"]) {
-                    $scope.paramForEdit["properties"] = response.data["response-data"]["properties"];
-                }
-            });
-        }
-
+// รอ BA สรุป 20161130
+        // if (item.group == "DISCOUNT") {
+        //     SystemService.showLoading();
+        //     AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
+        //         SystemService.hideLoading();
+        //         if (response.data["response-data"]) {
+        //             $scope.paramForEdit["properties"] = response.data["response-data"]["properties"];
+        //         }
+        //     });
+        // }
+// ===========================
         $scope.paramForEdit['effective-date'] = item['effective-date'];
         $scope.paramForEdit['expiration-date'] = item['expire-date'];
 
@@ -2297,18 +2298,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         $scope.addOfferLists[i]["sale-period"].end = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["sale-period"].end, "dd/MM/yyyy");
                     }
                     //===================================================================//
-
-                    // if ($scope.addOfferLists[i]["related-offers"]) {
-                    //     for (var j = 0; j < $scope.addOfferLists[i]["related-offers"][j].length; j++) {
-                    //         if ($scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].start) {
-                    //             $scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].start = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].start, "dd/MM/yyyy");
-                    //         }
-
-                    //         if ($scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].end) {
-                    //             $scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].end = SystemService.convertDateENNoTToFomat($scope.addOfferLists[i]["related-offers"][j]["offer"]["sale-period"].end, "dd/MM/yyyy");
-                    //         }
-                    //     }
-                    // }
+                }
+                if ($scope.addOfferType.value == 'RELATED' && $scope.existingOffer && $scope.addOfferLists) {
+                    for (var i = 0; i < $scope.existingOffer.length; i++) {
+                        for (var j = 0; j < $scope.addOfferLists.length; j++) {
+                            if ($scope.existingOffer[i]["product-name"] == $scope.addOfferLists[j].name) {
+                                $scope.addOfferLists.splice(j, 1);
+                            }
+                        }
+                    }
                 }
                 $scope.addOfferLists = $filter('orderBy')($scope.addOfferLists, 'name', false);
                 addOfferLists = $scope.addOfferLists;
