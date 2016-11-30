@@ -659,6 +659,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "CONTRACT-EXPIRATION-DATE": item["product-properties"]["CONTRACT-EXPIRATION-DATE"],
             "original-data": item
         }
+        if(item.group == "POOLING") {
+            $scope.viewOffer["pooled-offer"] = item["product-properties"]["PARENT-SOC-NAME"];
+        }
         if ($scope.offerParam.length > 0) {
             $scope.viewOffer.param = {
                 "TR_CONTRACT_NUMBER": $filter('filter')($scope.offerParam[0]["product-properties"]["param-detail"], { "name": "TR_CONTRACT_NUMBER" }),

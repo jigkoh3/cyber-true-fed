@@ -22,6 +22,7 @@
         "EB CREDITLIMIT": ["DELETE", "EDIT"],
         "BARNRS01": ["DELETE", "EDIT"],
         "FFVSMS02": ["DELETE", "EDIT"],
+        "SMSAUS12G": ["DELETE", "EDIT"],
         "000TestSetDateBUC068": ["DELETE", "EDIT"]
     }
 }

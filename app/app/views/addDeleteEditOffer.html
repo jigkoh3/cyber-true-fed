@@ -1712,6 +1712,18 @@
                             </div>
                         </div>
                     </div>
+                    <div calss="form-group" ng-show="viewOfferForEdit['offer-group'] == 'POOLING'">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
+                                <label>Pooled Offer</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" id="viewOfferDesc" ng-model="viewOfferForEdit['pooled-offer']" class="form-control" style="border-style: none; background: none;" disabled>
+                            </div>
+                        </div>
+                    </div> 
                     <br>
                     <div calss="form-group" ng-show="paramForEdit['param-detail'].length > 0">
                         <div class="row" style="border-top: 1px solid #e5e5e5;">
