@@ -622,7 +622,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }
 
             $scope.paramForEdit = angular.copy($scope.offerParam[0]["product-properties"]);
-            if (item.group == "FF") {
+            if (item.group == "FF" && action == "edit") {
                 $scope.paramDetail[0]["value"] = $scope.paramDetail[0]["value"].split(",");
                 SystemService.showLoading();
                 AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
@@ -634,7 +634,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         $scope.paramForEdit['param-detail'][0]["FF_MIN"] = $scope.paramDetail[0]["FF_MIN"];
                     };
                 });
-            } else if (item.group == "CUG") {
+            } else if (item.group == "CUG" && action == "edit") {
                 $scope.paramDetail[0]["cugSelectValue"] = "";
                 $scope.paramDetail[0]["cugValue"] = $scope.paramDetail[0]["value"] + " : ";
                 for (var i = 0; i < $scope.cugList.length; i++) {
@@ -666,7 +666,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $('#editOfferExpirationDate').datepicker("setDate", item['expiration-date']);
         setTimeout(function() {
             SystemService.calendarDatePicker();
-        }, 1200);
+            setTimeout(function() {
+                $('#contractExpDate').datepicker("setStartDate", $scope.viewOfferForEdit['CONTRACT-START-DATE']);
+            }, 1000);
+        }, 2000);
 
         $scope.viewOffer = {
             "product-name": item['product-name'],
@@ -3581,7 +3584,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.checkFirstDiscountBill = function(billCycle, effDate) {
-        if(!effDate) {
+        if (!effDate) {
             effDate = angular.copy($scope.setDateNow);
         }
         $scope.firstDiscountBill = "";
