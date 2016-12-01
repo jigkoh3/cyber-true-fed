@@ -1717,7 +1717,7 @@
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-2 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
-                                <label>Pooled Offer</label>
+                                <label>Parent Code</label>
                             </div>
                             <div class="col-md-7">
                                 <input type="text" id="viewOfferDesc" ng-model="viewOfferForEdit['pooled-offer']" class="form-control" style="border-style: none; background: none;" disabled>
@@ -2237,6 +2237,18 @@
                             </div>
                         </div>
                     </div>
+                    <div calss="form-group" ng-show="viewOffer['offer-group'] == 'POOLING'">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2 text-right" style="top: 5px; font-weight: bold; font-size:16px;">
+                                <label>Parent Code</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" id="viewOfferDesc" ng-model="viewOffer['pooled-offer']" class="form-control" style="border-style: none; background: none;" disabled>
+                            </div>
+                        </div>
+                    </div> 
                     <br>
                     <div ng-repeat="item in paramDetail" ng-show="paramDetail && viewOffer['offer-group']!='PROPOSITION' && viewOffer['offer-group']!='FF'">
                         <div calss="form-group">
