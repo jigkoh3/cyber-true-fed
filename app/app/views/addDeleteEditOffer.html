@@ -1099,6 +1099,13 @@
                                 </div>
                                 <div class="col-xs-1"></div>
                             </div>
+                            <div class="row" ng-show="addOfferType.value == 'DISCOUNT'">
+                                <div class="col-xs-2">
+                                </div>
+                                <div class="col-xs-8">
+                                    <label style="color:red;">*รอบบิลแรกที่ได้รับส่วนลดคือ  {{firstDiscountBill}}</label>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -1723,7 +1730,7 @@
                                 <input type="text" id="viewOfferDesc" ng-model="viewOfferForEdit['pooled-offer']" class="form-control" style="border-style: none; background: none;" disabled>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <br>
                     <div calss="form-group" ng-show="paramForEdit['param-detail'].length > 0">
                         <div class="row" style="border-top: 1px solid #e5e5e5;">
@@ -1781,7 +1788,6 @@
                             </div>
                             <div class="col-md-2"></div>
                         </div>
-                        
                         <div class="table-responsive">
                             <label class="col-xs-12">
                                 <div class="row">
@@ -1856,7 +1862,7 @@
                                 <div class="col-md-1">
                                 </div>
                                 <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
-                                    <label>Contract Number</label>
+                                    <label>Contract Number<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-3">
                                     <input type="text" ng-model="viewOfferForEdit['param']['TR_CONTRACT_NUMBER'][0]['value']" class="form-control" ng-number-only="editCN" maxlength="10" ng-keyup="" ng-change="onModelChange();">
@@ -1873,7 +1879,7 @@
                                 <div class="col-md-1">
                                 </div>
                                 <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
-                                    <label>Term</label>
+                                    <label>Term<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-3">
                                     <input type="text" ng-model="viewOfferForEdit['param']['TR_CONTRACT_TERM'][0]['value']" class="form-control" ng-number-only="viewTerm" disabled ng-change="onModelChange();">
@@ -1890,7 +1896,7 @@
                                 <div class="col-md-1">
                                 </div>
                                 <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
-                                    <label>Fee</label>
+                                    <label>Fee<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-3">
                                     <input type="text" ng-model="viewOfferForEdit['param']['TR_CONTRACT_FEE'][0]['value']" class="form-control" id="cpFee" ng-number-only="viewFee" disabled ng-change="onModelChange();">
@@ -1907,7 +1913,7 @@
                                 <div class="col-md-1">
                                 </div>
                                 <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
-                                    <label>Effective Date</label>
+                                    <label>Effective Date<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="has-feedback">
@@ -1924,7 +1930,7 @@
                                 <div class="col-md-1">
                                 </div>
                                 <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
-                                    <label>Expiration Date</label>
+                                    <label>Expiration Date<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="has-feedback">
@@ -1941,7 +1947,7 @@
                                 <div class="col-md-1">
                                 </div>
                                 <div class="col-md-4 text-right" style=" text-align: right; top: 5px;">
-                                    <label>Remark</label>
+                                    <label>Remark<span style="color:red;">*</span></label>
                                 </div>
                                 <div class="col-md-3">
                                     <input type="text" ng-model="viewOfferForEdit['param']['TR_CONTRACT_REMARK'][0]['value']" class="form-control" ng-change="onModelChange();">
@@ -2067,9 +2073,9 @@
                         <div class="row">
                             <div class="col-md-3">
                             </div>
-                            <div class="col-md-2" style="top: 5px;"  style="cursor: pointer;">
+                            <div class="col-md-2" style="top: 5px;" style="cursor: pointer;">
                                 <label style="cursor: pointer;">
-                                    <input type="radio" id="" value="UNLIMITED" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange('EXISTING');">  ไม่มีกำหนด
+                                    <input type="radio" id="" value="UNLIMITED" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange('EXISTING');"> ไม่มีกำหนด
                                 </label>
                             </div>
                             <div class="col-md-3">
@@ -2078,20 +2084,17 @@
                             </div>
                         </div>
                     </div>&nbsp;
-
                     <div calss="form-group" ng-show="viewOfferForEdit['checkEditExp']">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-2" style="top: 5px;">
                                 <label style="cursor: pointer;">
-                                    <input type="radio" id="" value="FUTURE" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange('EXISTING');">  ระบุวันที่
+                                    <input type="radio" id="" value="FUTURE" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange('EXISTING');"> ระบุวันที่
                                 </label>
-
-                            <!-- <label style="cursor: pointer;">
+                                <!-- <label style="cursor: pointer;">
                                 <input style="cursor: pointer;" type="radio" ng-model="offerEffectiveDate" value="immediate" ng-change="onEffectiveChange();"> ทันที (Immediate)
                             </label> -->
-
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group has-feedback imp" style="top:5px;">
@@ -2103,7 +2106,6 @@
                             </div>
                         </div>
                     </div>&nbsp;
-
                 </div>
             </div>
             <div class="modalOffer-footer" style="">
@@ -2248,7 +2250,7 @@
                                 <input type="text" id="viewOfferDesc" ng-model="viewOffer['pooled-offer']" class="form-control" style="border-style: none; background: none;" disabled>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <br>
                     <div ng-repeat="item in paramDetail" ng-show="paramDetail && viewOffer['offer-group']!='PROPOSITION' && viewOffer['offer-group']!='FF'">
                         <div calss="form-group">
@@ -2425,7 +2427,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Effective & Expire Date -->
                     <div calss="form-group" ng-if="viewOffer['offer-group']!='PROPOSITION'">
                         <div class="row">
