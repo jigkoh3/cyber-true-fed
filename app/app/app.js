@@ -288,6 +288,78 @@ smartApp
             };
         })
     .directive(
+        'ngNumberForCapmax',
+        function() {
+            // require ng-model="yourModal"
+            // span alert add class="hide"
+            return {
+                restrict: 'A',
+                link: function(scope, element, attrs) {
+                    var showSpan = function() {
+                        $('span[ng-span-number-for-capmax="' + attrs.ngNumberForCapmax + '"]').removeClass('hide');
+                    }
+                    var hideSpan = function() {
+                        $('span[ng-span-number-for-capmax="' + attrs.ngNumberForCapmax + '"]').addClass('hide');
+                    }
+                    $(element)
+                        .keypress(function(e) {
+                            //alert(this.value);
+                            var charCode = (e.which) ? e.which : e.keyCode;
+                            // if (this.value.indexOf(".") >= 0) {
+                            //     if (charCode == 46) {
+                            //         // show msg
+                            //         showSpan();
+                            //         return false;
+                            //     }
+                            // }
+                            if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 45) {
+                                // show msg
+                                showSpan();
+                                return false;
+                            } else {
+                                hideSpan();
+                            }
+                        })
+                        .keyup(function(e) {
+                            if (isNaN(this.value)) {
+                                // show msg
+                                showSpan();
+                                //this.value = "";
+                                scope['' + attrs.ngNumberForCapmax] = "";
+                            } else {
+                                //hideSpan();
+                            }
+                        })
+                        .blur(function(event) {
+                            /* Act on the event */
+                            if (isNaN(this.value)) {
+                                // show msg
+                                showSpan();
+                                this.value = "";
+                                scope['' + attrs.ngNumberForCapmax] = "";
+                                setTimeout(function() {
+                                    hideSpan();
+                                }, 2000);
+                            } else if (Number(this.value) < -2) {
+                                showSpan();
+                                this.value = "";
+                                scope['' + attrs.ngNumberForCapmax] = "";
+                                setTimeout(function() {
+                                    hideSpan();
+                                }, 2000);
+                            } else {
+                                hideSpan();
+                            }
+                        })
+                        .keydown(function(event) {
+                            /* Act on the event */
+                            hideSpan();
+                            //return false;
+                        });
+                }
+            };
+        })
+    .directive(
         'ngNumberOnly',
         function() {
             // require ng-model="yourModal"
@@ -325,7 +397,7 @@ smartApp
                                 // show msg
                                 showSpan();
                                 //this.value = "";
-                                scope[''+attrs.ngNumberOnly] = "";
+                                scope['' + attrs.ngNumberOnly] = "";
                             } else {
                                 //hideSpan();
                             }
@@ -336,8 +408,8 @@ smartApp
                                 // show msg
                                 showSpan();
                                 //this.value = "";
-                                scope[''+attrs.ngNumberOnly] = "";
-                                setTimeout(function(){
+                                scope['' + attrs.ngNumberOnly] = "";
+                                setTimeout(function() {
                                     hideSpan();
                                 }, 10000);
                             } else {

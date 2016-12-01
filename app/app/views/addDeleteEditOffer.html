@@ -831,9 +831,9 @@
                             <div class="col-xs-4">
                                 <div class="form-group has-feedback">
                                     <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD();">
-                                    <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-only="{{item['name']}}" ng-keyup="validateAddAD();">
-                                    <span ng-span-number-only="{{item['name']}}" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                    <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-for-capmax="{{item['name']}}" ng-keyup="validateAddAD();">
+                                    <span ng-span-number-for-capmax="{{item['name']}}" class="hide" style="color:red;">
+                                        กรุณาระบุตัวเลข -1 -2 และมากกว่า 0 เท่านั้น
                                     </span>
                                     <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD();"></select>
                                 </div>
