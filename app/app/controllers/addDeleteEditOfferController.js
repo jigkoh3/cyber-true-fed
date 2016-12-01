@@ -2170,9 +2170,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.poolingOffer = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'offer-group': 'POOLING' });
                 $scope.priceplan = $filter('filter')(result.data['response-data']['customer']['installed-products'], { 'offer-group': 'PRICEPLAN' });
 
+                $scope.pooledList = [];
                 if ($scope.pooledOffer) {
                     for (var i = 0; i < $scope.pooledOffer.length; i++) {
-                        if ($scope.poolingOffer) {
+                        if ($scope.poolingOffer.length > 0) {
                             for (var j = 0; j < $scope.poolingOffer.length; j++) {
                                 if ($scope.pooledOffer[i]["product-properties"]["OFFER-INSTANCE-ID"] != $scope.poolingOffer[j]["product-properties"]["PARENT-SOC-SEQUENCE"]) {
                                     var arr = $filter('filter')($scope.pooledList, $scope.pooledOffer[i]["product-name"]);
@@ -2188,7 +2189,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                             $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);
                         }
                     }
-                    $scope.pooledList = [];
                 }
                 console.log($scope.pooledList);
                 if ($scope.priceplan.length > 0) {
