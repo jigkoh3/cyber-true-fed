@@ -1751,7 +1751,7 @@
                                 <div class="col-md-1">
                                 </div>
                                 <div class="col-md-4 text-right" style="top: 5px;">
-                                    <label> {{item.name}} </label>
+                                    <label>{{item.name}}<span style="color:red">*</span></label>
                                 </div>
                                 <div class="col-md-3">
                                     <input ng-if="item.name!='TR_ACTUAL_CONTRACT_START_DATE'&&item.name!='TR_ORIG_CONTRACT_EXPIRE_DATE'" type="text" id="{{item.name}}" ng-model="item.value" class="form-control" ng-change="onModelChange();">
