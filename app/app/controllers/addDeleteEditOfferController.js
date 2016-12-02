@@ -3369,7 +3369,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
             if ($scope.selectedOffer.properties["DURATION_UNIT"] == "MONTH" && $scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'CVG' && $scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'EMP') {
                 var disDateParam = new Date(SystemService.convertDataMMDDYYYYEN(date));
-                disDateParam.setMonth(disDateParam.getMonth() + parseInt($scope.selectedOffer.properties["DURATION"]));
+                disDateParam.setMonth(disDateParam.getMonth() + (Number($scope.selectedOffer.properties["DURATION"]) - 1));
                 // $("#addNewOfferExpirationDate").datepicker("setDate", param);
                 $("#addNewOfferExpirationDate2").datepicker("setDate", disDateParam);
             } else if ($scope.selectedOffer.properties["DURATION_UNIT"] == "DATE" && $scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'CVG' && $scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'EMP') {
@@ -3621,10 +3621,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.onChangeDisDuration = function() {
         if ($scope.selectedOffer['properties']['DURATION'] < $scope.selectedOffer['properties']['DURATION_TEMP']) {
             $scope.selectedOffer['properties']['DURATION_TEMP'] = "";
+        } else {
+            $scope.discountDurationChange($scope.selectedOffer['properties']['DURATION_TEMP']);
         }
     };
 
     $scope.discountDurationChange = function(newDuration) {
-
+        var disDateParam = new Date(SystemService.convertDataMMDDYYYYEN($scope.firstDiscountBill));
+        disDateParam.setMonth(disDateParam.getMonth() + (Number(newDuration) - 1));
+        // $("#addNewOfferExpirationDate").datepicker("setDate", param);
+        $("#addNewOfferExpirationDate2").datepicker("setDate", disDateParam);
     };
 });
