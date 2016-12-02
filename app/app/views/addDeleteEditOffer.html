@@ -840,100 +840,6 @@
                             </div>
                             <div class="col-xs-2"></div>
                         </div>
-                        <!--  <div class="form-group row">
-                                <div class="col-xs-2">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>TR_ACTUAL_CONTRACT_START_DATE</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="form-group has-feedback">
-                                        <input name="birthDay" type="text" ng-model="trActualContractStartDate" class="form-control date-picker dateFormat" maxlength="10" required>
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-2">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>TR_ORIG_CONTRACT_EXPIRE_DATE</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="form-group has-feedback">
-                                        <input name="birthDay" type="text" ng-model="trOrigContractExpireDate" class="form-control date-picker dateFormat" maxlength="10" required>
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-2">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>TR_CONTRACT_FEE</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="trContractFee" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-2">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>TR_CONTRACT_NUMBER</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="trContractNumber" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-2">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>TR_GENERATE_CHARGE_YES_NO</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <select type="text" ng-model="trGenerateChargeYesNo" class="form-control" id="trGenerateChargeYesNo" ng-init="trGenerateChargeYesNo =''">
-                                        <option value="">--กรุณาเลือก--</option>
-                                        <option value="Y">Y</option>
-                                        <option value="N">N</option>
-                                    </select>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-2">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>TR_CONTRACT_TERM</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="trContractTerm" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-2">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>TR_CONTRACT_REMARK</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="trContractRemark" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div> -->
                     </div>
                     <div ng-show="selectedOffer.group=='CONTRACT_PROPO' && radioOffer" style="padding: 20px;">
                         <div class="form-group row">
@@ -1045,8 +951,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div ng-show="selectedOffer.group=='DISCOUNT' && radioOffer" style="padding: 20px;">
-                    </div> -->
+                    
                     <!-- offer effective & expiration date -->
                     <br>
                     <div ng-show="radioOffer && selectedOffer.group!='CONTRACT_PROPO'" style="border-top: 1px solid #e5e5e5;">
@@ -1055,14 +960,16 @@
                             <div class="row">
                                 <div class="col-xs-1">
                                 </div>
-                                <div class="col-xs-3" style=" text-align: right; top: 5px; margin-bottom: 10px;">
+                                <div class="col-xs-3" style=" text-align: right; top: 10px; margin-bottom: 10px;">
                                     <label>ระยะเวลา (Duration)</label>&nbsp;&nbsp;
                                 </div>
                                 <div class="col-xs-7">
-                                    <div class="col-xs-5" style="top:5px;">
-                                        {{selectedOffer['properties']['DURATION']}}&nbsp;{{selectedOffer['properties']['DURATION_UNIT']}}
+                                    <div class="col-xs-4">
+                                        <input name="cpRemark" type="number" ng-model="selectedOffer['properties']['DURATION_TEMP']" class="form-control" ng-blur="onChangeDisDuration();">
+                                        <!-- {{selectedOffer['properties']['DURATION']}}&nbsp;{{selectedOffer['properties']['DURATION_UNIT']}} -->
                                     </div>
-                                    <div class="col-xs-7">
+                                    <div class="col-xs-7" style="top: 10px;"">
+                                        <span>{{selectedOffer['properties']['DURATION_UNIT']}}</span>
                                     </div>
                                 </div>
                                 <div class="col-xs-1"></div>

@@ -500,6 +500,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
 
         if ($scope.selectedOffer.group == "DISCOUNT") {
+            $scope.selectedOffer['properties']['DURATION_TEMP'] = angular.copy($scope.selectedOffer['properties']['DURATION']);
             if ($scope.selectedOffer.properties["MAX_DURATION"]) {
                 var expiredateDiscount = new Date();
                 expiredateDiscount.setMonth(expiredateDiscount.getMonth() + parseInt($scope.selectedOffer.properties.MAX_DURATION));
@@ -702,7 +703,23 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else {
             $scope.viewOffer['expire-date-option'] = "UNLIMITED";
         }
+
         $scope.viewOfferForEdit = angular.copy($scope.viewOffer);
+        if (item.group == "PROPOSITION" && action == "edit") {
+            if ($scope.viewOfferForEdit.param["TR_CONTRACT_TERM"][0]["value"] > 0) {
+                var expCpDate = new Date();
+                var cpDateArr = $scope.viewOfferForEdit['CONTRACT-START-DATE'].split("/");
+                expCpDate.setDate(cpDateArr[0]);
+                expCpDate.setMonth(Number(cpDateArr[1]) - 1);
+                expCpDate.setYear(cpDateArr[2]);
+                console.log(expCpDate);
+                expCpDate.setMonth(expCpDate.getMonth() + Number($scope.viewOfferForEdit.param["TR_CONTRACT_TERM"][0]["value"]));
+                $scope.viewOfferForEdit['CONTRACT-EXPIRATION-DATE'] = $filter('date')(expCpDate, 'dd/MM/yyyy');
+            } else {
+                $scope.viewOfferForEdit['CONTRACT-EXPIRATION-DATE'] = angular.copy($scope.viewOfferForEdit['CONTRACT-START-DATE']);
+            }
+        }
+
         setTimeout(function() {
             $('#editOfferExpirationDate').datepicker("setDate", $scope.viewOfferForEdit['expiration-date']);
             $scope.modelChange = false;
@@ -3599,5 +3616,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             toDay.setMonth(toDay.getMonth() + 1);
         }
         $scope.firstDiscountBill = $filter('date')(toDay, 'dd/MM/yyyy');
+    };
+
+    $scope.onChangeDisDuration = function() {
+        if ($scope.selectedOffer['properties']['DURATION'] < $scope.selectedOffer['properties']['DURATION_TEMP']) {
+            $scope.selectedOffer['properties']['DURATION_TEMP'] = "";
+        }
+    };
+
+    $scope.discountDurationChange = function(newDuration) {
+
     };
 });
