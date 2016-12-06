@@ -11,6 +11,20 @@
     //this.secondAuthenURL = "https://sso-devt.true.th:11443/";//DEV
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/"; //UAT
     //this.secondAuthenURL = "https://xxo-uat.true.th:11443/SSORESTFul/";//PRO
+    //// show sr no :: by p'nin, p'mam :: 23-11-2016 :: xsam32
+    this.setUrlParam = function() {
+        setTimeout(function() {
+            $('#sr_num').html(($routeParams.srnum ? $routeParams.srnum : '-'));
+        }, 1000);
+        setTimeout(function() {
+            $('#sr_num').html(($routeParams.srnum ? $routeParams.srnum : '-'));
+        }, 2000);
+        setTimeout(function() {
+            $('#sr_num').html(($routeParams.srnum ? $routeParams.srnum : '-'));
+        }, 3000);
+    };
+    //// show sr no :: by p'nin, p'mam :: 23-11-2016 :: xsam32
+
     this.limitAddressList = 20;
     localStorage.setItem('pdfShopCode', "");
     //for get by env
