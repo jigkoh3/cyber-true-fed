@@ -2843,6 +2843,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                     break;
                 case "DISCOUNT":
+                case "FUB":
+                case "BARRING":
                     if ($scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
                         $scope.disableSubmitAddOffer = true;
                     } else if ($scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
@@ -2918,6 +2920,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                     break;
                 case "DISCOUNT":
+                case "FUB":
+                case "BARRING":
                     if ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
                         $scope.disableSubmitAddOffer = true;
                     } else if ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
