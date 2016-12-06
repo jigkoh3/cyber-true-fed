@@ -10,6 +10,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     SystemService,
     ChangePricePlanService) {
 
+    SystemService.setUrlParam();
     // Templates
     var runTime = new Date().getTime();
     $scope.template = {
