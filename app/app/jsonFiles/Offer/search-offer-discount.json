@@ -53,16 +53,16 @@
         "sale-context": "S",
         "available-groups": ["DISCOUNT"]
     }, {
-        "name": "DIR201",
+        "name": "0TestCVGNoDuration",
         "description": "Advance per month",
         "soc": "1098009",
         "properties": {
-            "DISCOUNT_GROUP": "NORMAL",
-            "OFFER_GROUP": "DIS_NORMAL",
+            "DISCOUNT_GROUP": "CVG",
+            "OFFER_GROUP": "CVG",
             "MAX_DURATION_UNIT": "MONTH",
             "DURATION_UNIT": "MONTH",
-            "DURATION": "19",
-            "DISCOUNT_TYPE": "DIS_NORMAL",
+            "DURATION": "",
+            "DISCOUNT_TYPE": "CVG",
             "MAX_DURATION": "24",
             "OFFER_TYPE": "N"
         },
@@ -1180,7 +1180,7 @@
             "OFFER_GROUP": "DIS_NORMAL",
             "MAX_DURATION_UNIT": "MONTH",
             "DURATION_UNIT": "MONTH",
-            "DURATION": "11",
+            "DURATION": "",
             "DISCOUNT_TYPE": "DIS_NORMAL",
             "MAX_DURATION": "24",
             "OFFER_TYPE": "N"

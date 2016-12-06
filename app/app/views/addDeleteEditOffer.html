@@ -561,7 +561,7 @@
                                 <option value="CUG">CUG</option>
                                 <option value="FF">F&F</option>
                                 <option ng-if="pooledOffer.length > 0" value="POOLING">Pooling</option>
-                                <option value="CAP_MAX">Capmax</option>
+                                <!-- <option value="CAP_MAX">Capmax</option> --> <!-- เนื่องจากมีการ Update Requriement ใหม่ Confirm ว่า Offer Type Cap Max คือประเภทเดียวกันกับ Offer Pooling  -->
                                 <option value="BARRING">Barring SOC</option>
                                 <option value="FUP">FUP</option>
                             </select>
@@ -963,16 +963,19 @@
                                 <div class="col-xs-3" style=" text-align: right; top: 10px; margin-bottom: 10px;">
                                     <label>ระยะเวลา (Duration)</label>&nbsp;&nbsp;
                                 </div>
-                                <div class="col-xs-7">
-                                    <div class="col-xs-4">
-                                        <input name="cpRemark" type="text" ng-model="selectedOffer['properties']['DURATION_TEMP']" class="form-control numberic" ng-change="onChangeDisDuration();">
+                                <div class="col-xs-4">
+                                    <div class="col-xs-3"></div>
+                                    <div class="col-xs-6">
+                                        <input type="text" ng-model="selectedOffer['properties']['DURATION_TEMP']" class="form-control numberic" ng-change="onChangeDisDuration();" style="text-align: center;" ng-disabled="selectedOffer['properties']['DURATION']" maxlength="2">
                                         <!-- {{selectedOffer['properties']['DURATION']}}&nbsp;{{selectedOffer['properties']['DURATION_UNIT']}} -->
                                     </div>
-                                    <div class="col-xs-7" style="top: 10px;"">
+                                    <div class="col-xs-3" style="top: 10px;">
                                         <span>{{selectedOffer['properties']['DURATION_UNIT']}}</span>
                                     </div>
                                 </div>
-                                <div class="col-xs-1"></div>
+                                <div class="col-xs-3" style="text-align: left;color: red;top: 10px; margin-bottom: 10px;">
+                                    <label ng-show="!selectedOffer['properties']['DURATION']">(ระยะเวลาสูงสุด  {{selectedOffer['properties']['MAX_DURATION']}}  {{selectedOffer['properties']['DURATION_UNIT']}})</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -1007,10 +1010,12 @@
                                 <div class="col-xs-1"></div>
                             </div>
                             <div class="row" ng-show="addOfferType.value == 'DISCOUNT'">
-                                <div class="col-xs-2">
+                                <div class="col-xs-1"></div>
+                                <div class="col-xs-3" style="text-align: right;color:red;">
+                                    *รอบบิลแรกที่ได้รับส่วนลดคือ
                                 </div>
-                                <div class="col-xs-8">
-                                    <label style="color:red;">*รอบบิลแรกที่ได้รับส่วนลดคือ {{firstDiscountBill}}</label>
+                                <div class="col-xs-7" style="color:red; padding-left: 29px;">
+                                    {{firstDiscountBill}}
                                 </div>
                             </div>
                         </div>
@@ -1021,7 +1026,7 @@
                                 <div class="col-xs-3" style=" text-align: right; top: 5px;">
                                     <label>วันที่หมดอายุ (Expiration Date)</label><span style="color:red;">*</span>
                                 </div>
-                                <div class="col-xs-7" ng-show="selectedOffer['properties']['DISCOUNT_GROUP']=='CVG' || selectedOffer['properties']['DISCOUNT_GROUP']=='EMP' || !selectedOffer['properties']['DISCOUNT_GROUP'].length">
+                                <div class="col-xs-7" ng-show="!selectedOffer['properties']['DISCOUNT_GROUP'].length">
                                     <div class="col-xs-5" style="top:5px;">
                                         <label style="cursor: pointer;">
                                             <input style="cursor: pointer;" type="radio" name="offerExpirationDate" ng-model="offerExpirationDate" value="unlimited" ng-change="onExpirationChange();"> ไม่มีกำหนด (Unlimited)
@@ -1044,7 +1049,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-7" ng-show="selectedOffer['properties']['DISCOUNT_GROUP'].length > 0 && selectedOffer['properties']['DISCOUNT_GROUP']!='CVG' && selectedOffer['properties']['DISCOUNT_GROUP']!='EMP'">
+                                <div class="col-xs-7" ng-show="selectedOffer['properties']['DISCOUNT_GROUP'].length > 0">
                                     <div class="col-xs-5" style="top:5px;">
                                         <label style="cursor: pointer;">
                                             <input style="cursor: pointer;" type="radio" ng-disabled="true"> ไม่มีกำหนด (Unlimited)
@@ -1488,13 +1493,6 @@
                     <!-- <br> -->
                     <div style="border-top: 1px solid #e5e5e5;" ng-hide="dataForEdit['type'] == 'editRelate' || dataForEdit.group=='CONTRACT_PROPO'">
                         <br>
-                        <!--  <label style="cursor: pointer;">
-                            <input type="checkbox" ng-model="editExp" id="editExp"> &nbsp;
-                            <span style="font-weight: bold; font-size:16px;"> Expiration Date</span>
-                        </label> -->
-                        <!-- <div ng-show="editExp"> -->
-                        <!-- <div> -->
-                        <!-- <br> -->
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-xs-1">
