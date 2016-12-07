@@ -561,7 +561,8 @@
                                 <option value="CUG">CUG</option>
                                 <option value="FF">F&F</option>
                                 <option ng-if="pooledOffer.length > 0" value="POOLING">Pooling</option>
-                                <!-- <option value="CAP_MAX">Capmax</option> --> <!-- เนื่องจากมีการ Update Requriement ใหม่ Confirm ว่า Offer Type Cap Max คือประเภทเดียวกันกับ Offer Pooling  -->
+                                <!-- <option value="CAP_MAX">Capmax</option> -->
+                                <!-- เนื่องจากมีการ Update Requriement ใหม่ Confirm ว่า Offer Type Cap Max คือประเภทเดียวกันกับ Offer Pooling  -->
                                 <option value="BARRING">Barring SOC</option>
                                 <option value="FUP">FUP</option>
                             </select>
@@ -951,7 +952,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <!-- offer effective & expiration date -->
                     <br>
                     <div ng-show="radioOffer && selectedOffer.group!='CONTRACT_PROPO'" style="border-top: 1px solid #e5e5e5;">
@@ -974,7 +974,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-3" style="text-align: left;color: red;top: 10px; margin-bottom: 10px;">
-                                    <label ng-show="!selectedOffer['properties']['DURATION']">(ระยะเวลาสูงสุด  {{selectedOffer['properties']['MAX_DURATION']}}  {{selectedOffer['properties']['DURATION_UNIT']}})</label>
+                                    <label ng-show="!selectedOffer['properties']['DURATION']">(ระยะเวลาสูงสุด {{selectedOffer['properties']['MAX_DURATION']}} {{selectedOffer['properties']['DURATION_UNIT']}})</label>
                                 </div>
                             </div>
                         </div>
@@ -1511,7 +1511,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-3" style="text-align: left;color: red;top: 10px; margin-bottom: 10px;">
-                                    <label ng-show="!dataForEdit['properties']['DURATION']">(ระยะเวลาสูงสุด  {{dataForEdit['properties']['MAX_DURATION']}}  {{dataForEdit['properties']['DURATION_UNIT']}})</label>
+                                    <label ng-show="!dataForEdit['properties']['DURATION']">(ระยะเวลาสูงสุด {{dataForEdit['properties']['MAX_DURATION']}} {{dataForEdit['properties']['DURATION_UNIT']}})</label>
                                 </div>
                             </div>
                         </div>
@@ -1556,7 +1556,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-xs-1">
@@ -1993,7 +1992,7 @@
                             <div class="col-md-3">
                             </div>
                         </div>
-                    </div>&nbsp;
+                    </div>
                     <!-- พักไว้ก่อน 20161129 -->
                     <!-- <div class="form-group" ng-show="viewOfferForEdit['offer-group'] == 'DISCOUNT' && viewOfferForEdit['checkEditExp']">
                         <div class="row">
@@ -2006,13 +2005,39 @@
                         </div>
                     </div> -->
                     <!-- ======================== -->
+                    <div class="form-group row" ng-show="viewOfferForEdit['checkEditExp'] && viewOfferForEdit['offer-group'] == 'DISCOUNT'">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-xs-2" style="top: 10px;">
+                            <label>ระยะเวลา (Duration)<span style="color:red;">*</span></label>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="col-md-4"></div>
+                            <div class="col-xs-6" style="left:-15px;">
+                                <input type="text" ng-model="viewOfferForEdit['properties']['DURATION_TEMP']" class="form-control numberic" ng-change="onChangeDisDuration('editExisting');" maxlength="2" style="text-align: center;">
+                            </div>
+                            <div class="col-xs-2" style="top: 10px;">
+                                <label>MONTH</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-3" style="text-align: left;color: red;top: 10px;">
+                            <label>(ระยะเวลาสูงสุด {{viewOfferForEdit['properties']['MAX_DURATION']}} MONTH)</label>
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-show="viewOfferForEdit['checkEditExp'] && viewOfferForEdit['offer-group'] == 'DISCOUNT'">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-9" style="color: red;">
+                            <label>*รอบบิลแรกที่ได้รับส่วนลดคือ {{viewOfferForEdit['properties']['firstDiscountBill']}}</label>
+                        </div>
+                    </div>
                     <div calss="form-group" ng-show="viewOfferForEdit['checkEditExp']">
                         <div class="row">
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-2" style="top: 5px;" style="cursor: pointer;">
                                 <label style="cursor: pointer;">
-                                    <input type="radio" id="" value="UNLIMITED" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange('EXISTING');"> ไม่มีกำหนด
+                                    <input type="radio" id="" value="UNLIMITED" ng-model="viewOfferForEdit['expire-date-option']" ng-change="onEditExpChange('EXISTING');" ng-disabled="viewOfferForEdit['offer-group'] == 'DISCOUNT'"> ไม่มีกำหนด
                                 </label>
                             </div>
                             <div class="col-md-3">
@@ -2035,7 +2060,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group has-feedback imp" style="top:5px;">
-                                    <input type="text" ng-model="viewOfferForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-change="onModelChange();" ng-disabled="viewOfferForEdit['expire-date-option']=='UNLIMITED'">
+                                    <input type="text" ng-model="viewOfferForEdit['expiration-date']" id="editOfferExpirationDate" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-change="onModelChange();" ng-disabled="viewOfferForEdit['expire-date-option']=='UNLIMITED'||viewOfferForEdit['offer-group'] == 'DISCOUNT'">
                                     <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>

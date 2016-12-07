@@ -453,8 +453,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 break;
 
             case "DISCOUNT":
-                if($scope.selectedOffer.properties["DURATION"]) {
-                    $scope.selectedOffer.properties["DURATION"] = angular.copy(Number($scope.selectedOffer.properties["DURATION"] - 1));    
+                if ($scope.selectedOffer.properties["DURATION"]) {
+                    $scope.selectedOffer.properties["DURATION"] = angular.copy(Number($scope.selectedOffer.properties["DURATION"] - 1));
                 }
                 if ($scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'CVG' && $scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'EMP') {
                     $scope.disableExpDateDiscount = true;
@@ -597,7 +597,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $('#hModal').height(($(window).height()) - 235);
         $('.hModal').height(($(window).height()) - 235);
         var parameter = [];
-        console.log(item);
+        // console.log(item);
         if (item["product-properties"]["OFFER-INSTANCE-ID"]) {
             $scope.offerParam = $filter('filter')($scope.existingParameter, item["product-properties"]["OFFER-INSTANCE-ID"]);
         } else {
@@ -648,7 +648,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
             }
 
-            console.log($scope.paramDetail);
+            // console.log($scope.paramDetail);
         }
 
         // รอ BA สรุป 20161130
@@ -665,7 +665,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.paramForEdit['effective-date'] = item['effective-date'];
         $scope.paramForEdit['expiration-date'] = item['expire-date'];
 
-        console.log($scope.paramForEdit);
+        // console.log($scope.paramForEdit);
         // $('#editOfferEffectiveDate').datepicker("setDate", item['effective-date']);
         $('#editOfferExpirationDate').datepicker("setDate", item['expiration-date']);
         setTimeout(function() {
@@ -688,7 +688,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             "offer-instance-id": item["product-properties"]["OFFER-INSTANCE-ID"],
             "CONTRACT-START-DATE": item["product-properties"]["CONTRACT-START-DATE"],
             "CONTRACT-EXPIRATION-DATE": item["product-properties"]["CONTRACT-EXPIRATION-DATE"],
-            "original-data": item
+            "original-data": item,
+            "properties": {
+                "firstDiscountBill": ""
+            }
         }
         if (item.group == "POOLING") {
             $scope.viewOffer["pooled-offer"] = item["product-properties"]["PARENT-SOC-NAME"];
@@ -721,13 +724,23 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             } else {
                 $scope.viewOfferForEdit['CONTRACT-EXPIRATION-DATE'] = angular.copy($scope.viewOfferForEdit['CONTRACT-START-DATE']);
             }
+        } else if (item.group == "DISCOUNT" && action == "edit") {
+            $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], $scope.viewOfferForEdit["effective-date"], "editExisting");
+            SystemService.showLoading();
+            AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
+                SystemService.hideLoading();
+                if (response.data["response-data"]) {
+                    $scope.viewOfferForEdit["properties"]["MAX_DURATION"] = response.data["response-data"]["properties"]["MAX_DURATION"];
+                } else {
+                    $scope.viewOfferForEdit["properties"]["MAX_DURATION"] = "24";
+                };
+            });
         }
 
         setTimeout(function() {
             $('#editOfferExpirationDate').datepicker("setDate", $scope.viewOfferForEdit['expiration-date']);
             $scope.modelChange = false;
         }, 500);
-        console.log($scope.viewOffer);
         // $scope.editExpType = "effective";
         $scope.editParam = false;
         $scope.editExp = false;
@@ -747,6 +760,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }, 50);
             });
         }, 2000);
+        console.log($scope.viewOffer);
+        console.log($scope.viewOfferForEdit);
     };
 
     $scope.onEditCurrentOffer = function(productName) {
@@ -2784,7 +2799,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $("#editNewOfferExpirationDate").datepicker("setStartDate", $scope.setDateTomorrow)
             }
             if ($scope.selectedOffer.group == "DISCOUNT") {
-                $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], $('#editNewOfferEffectiveDate').val(), "edit");
+                $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], $('#editNewOfferEffectiveDate').val(), "editNew");
             }
             $scope.chkValueAddNewOffer("edit");
             $('#idBindDataAgain').click();
@@ -3630,25 +3645,56 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         if (diff <= 0) {
             toDay.setMonth(toDay.getMonth() + 1);
         }
-        
-        if(action == "edit") {
+
+        if (action == "editNew") {
             $scope.dataForEdit['properties']['firstDiscountBill'] = $filter('date')(toDay, 'dd/MM/yyyy');
+        } else if (action == "editExisting") {
+            $scope.viewOfferForEdit['properties']['firstDiscountBill'] = $filter('date')(toDay, 'dd/MM/yyyy');
+            if ($scope.viewOfferForEdit['properties']['firstDiscountBill'].length == 10 && $scope.viewOfferForEdit["expiration-date"].length == 10) {
+                var month1 = $scope.viewOfferForEdit['properties']['firstDiscountBill'].split("/");
+                var month2 = $scope.viewOfferForEdit["expiration-date"].split("/");
+                var a = moment([(Number(month2[2])), month2[1], month2[0]]);
+                var b = moment([(Number(month1[2])), month1[1], month1[0]]);
+                $scope.viewOfferForEdit['properties']['DURATION'] = a.diff(b, 'months');
+                $scope.viewOfferForEdit['properties']['DURATION_TEMP'] = angular.copy(Number($scope.viewOfferForEdit['properties']['DURATION']) + 1);
+                $scope.viewOfferForEdit['properties']['DURATION_TEMP'] = $scope.viewOfferForEdit['properties']['DURATION_TEMP'].toString()
+                $scope.viewOfferForEdit['properties']['DURATION_UNIT'] = "MONTH";
+                console.log(a.diff(b, 'months'));
+            }
         } else {
-            $scope.firstDiscountBill = $filter('date')(toDay, 'dd/MM/yyyy');    
+            $scope.firstDiscountBill = $filter('date')(toDay, 'dd/MM/yyyy');
         }
     };
 
-    $scope.onChangeDisDuration = function() {
-        if (Number($scope.selectedOffer['properties']['MAX_DURATION']) < Number($scope.selectedOffer['properties']['DURATION_TEMP'])) {
-            $scope.selectedOffer['properties']['DURATION_TEMP'] = "";
+    $scope.onChangeDisDuration = function(action) {
+        if (action == "editExisting") {
+            if (Number($scope.viewOfferForEdit['properties']['MAX_DURATION']) < Number($scope.viewOfferForEdit['properties']['DURATION_TEMP'])) {
+                $scope.viewOfferForEdit['properties']['DURATION_TEMP'] = "";
+            }
+            $scope.discountDurationChange($scope.viewOfferForEdit['properties']['DURATION_TEMP'], "editExisting");
+        } else {
+            if (Number($scope.selectedOffer['properties']['MAX_DURATION']) < Number($scope.selectedOffer['properties']['DURATION_TEMP'])) {
+                $scope.selectedOffer['properties']['DURATION_TEMP'] = "";
+            }
+            $scope.discountDurationChange($scope.selectedOffer['properties']['DURATION_TEMP']);
         }
-        $scope.discountDurationChange($scope.selectedOffer['properties']['DURATION_TEMP']);
     };
 
     $scope.discountDurationChange = function(newDuration, action) {
-        var disDateParam = new Date(SystemService.convertDataMMDDYYYYEN($scope.firstDiscountBill));
-        disDateParam.setMonth(disDateParam.getMonth() + (Number(newDuration) - 1));
-        // $("#addNewOfferExpirationDate").datepicker("setDate", param);
-        $("#addNewOfferExpirationDate2").datepicker("setDate", disDateParam);
+        if (action == "editExisting") {
+            var disDateParam = new Date(SystemService.convertDataMMDDYYYYEN($scope.viewOfferForEdit['properties']['firstDiscountBill']));
+            disDateParam.setMonth(disDateParam.getMonth() + (Number(newDuration) - 1));
+            $("#editOfferExpirationDate").datepicker("setDate", disDateParam);
+            if ($scope.viewOfferForEdit['expiration-date'] == "") {
+                $scope.modelChange = false;
+            } else {
+                $scope.modelChange = true;
+            }
+        } else {
+            var disDateParam = new Date(SystemService.convertDataMMDDYYYYEN($scope.firstDiscountBill));
+            disDateParam.setMonth(disDateParam.getMonth() + (Number(newDuration) - 1));
+            // $("#addNewOfferExpirationDate").datepicker("setDate", param);
+            $("#addNewOfferExpirationDate2").datepicker("setDate", disDateParam);
+        }
     };
 });
