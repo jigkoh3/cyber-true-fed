@@ -626,7 +626,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }
 
             $scope.paramForEdit = angular.copy($scope.offerParam[0]["product-properties"]);
-            if (item.group == "FF" && action == "edit") {
+            if (item.group == "FF") {
                 $scope.paramDetail[0]["value"] = $scope.paramDetail[0]["value"].split(",");
                 SystemService.showLoading();
                 AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
@@ -638,7 +638,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         $scope.paramForEdit['param-detail'][0]["FF_MIN"] = $scope.paramDetail[0]["FF_MIN"];
                     };
                 });
-            } else if (item.group == "CUG" && action == "edit") {
+            } else if (item.group == "CUG") {
                 $scope.paramDetail[0]["cugSelectValue"] = "";
                 $scope.paramDetail[0]["cugValue"] = $scope.paramDetail[0]["value"] + " : ";
                 for (var i = 0; i < $scope.cugList.length; i++) {
@@ -648,7 +648,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
             }
 
-            // console.log($scope.paramDetail);
+            console.log($scope.paramDetail);
         }
 
         // รอ BA สรุป 20161130
@@ -3496,6 +3496,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 var name = $scope.existingOffer[i]["product-name"];
                 $scope.existingOffer[i]["canEdit"] = false;
                 $scope.existingOffer[i]["canDelete"] = false;
+                $scope.existingOffer[i]["canEditExpireDate"] = true;
                 if ($scope.validateModifyOfferList[name]) {
                     for (var j = 0; j < $scope.validateModifyOfferList[name].length; j++) {
                         if ($scope.validateModifyOfferList[name][j] == "EDIT") {
@@ -3505,6 +3506,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         if ($scope.validateModifyOfferList[name][j] == "DELETE") {
                             $scope.existingOffer[i]["canDelete"] = true;
                         }
+
+                        if($scope.validateModifyOfferList[name][j] == "RELATED_REQUIRED") {
+                            $scope.existingOffer[i]["canEditExpireDate"] = false;
+                        }
                     }
                 }
             }
@@ -3513,6 +3518,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 var name = $scope.futureOfferList[i]["product-name"];
                 $scope.futureOfferList[i]["canEdit"] = false;
                 $scope.futureOfferList[i]["canDelete"] = false;
+                $scope.futureOfferList[i]["canEditExpireDate"] = false;
                 if ($scope.validateModifyOfferList[name]) {
                     for (var j = 0; j < $scope.validateModifyOfferList[name].length; j++) {
                         if ($scope.validateModifyOfferList[name][j] == "EDIT") {
@@ -3522,9 +3528,19 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         if ($scope.validateModifyOfferList[name][j] == "DELETE") {
                             $scope.futureOfferList[i]["canDelete"] = true;
                         }
+
+                        if($scope.validateModifyOfferList[name][j] == "RELATED_REQUIRED") {
+                            $scope.futureOfferList[i]["canEditExpireDate"] = false;
+                        }
                     }
                 }
             }
+
+            // for (var i = 0; i < $scope.existingOffer.length; i++) {
+            //     for (var j = 0; j < $scope.futureOfferList.length; j++) {
+                    
+            //     }
+            // }
 
             $scope.existingOfferTemp = angular.copy($scope.existingOffer);
             $scope.tempFutureOfferList = angular.copy($scope.futureOfferList)

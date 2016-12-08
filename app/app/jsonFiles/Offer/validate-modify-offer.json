@@ -5,8 +5,8 @@
     "response-data": {
         "CREDITLIMIT": ["DELETE", "EDIT"],
         "RMPGPS01": ["DELETE", "EDIT"],
-        "PROSTDA1": ["EDIT"],
-        "FCVBAR": ["DELETE", "EDIT"],
+        "PROSTDA1": ["EDIT", "RELATED_REQUIRED"],
+        "FCVBAR": ["DELETE", "EDIT", "RELATED_OPTIONAL"],
         "RMHSPS04": ["EDIT"],
         "CUGFRS01": ["DELETE", "EDIT"],
         "0RMVB00000000362": ["DELETE", "EDIT"],
