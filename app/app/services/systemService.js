@@ -196,6 +196,35 @@
         });
         return result;
     };
+    this.uniqueSize = function(list, filterName) {
+        //// support angularJS only :: (array, nameForFilter) :: 8-12-2016
+        list = $filter('orderBy')(list, filterName);
+        var result = [];
+        var size = 0;
+        var item = {};
+        var uniqueTxt = "";
+        $.each(list, function(i, e) {
+            if (i == 0) {
+                uniqueTxt = e[filterName];
+            }
+            if (e[filterName] == uniqueTxt) {
+                item = e;
+                size++;
+                item['dupSize'] = size;
+            } else {
+                size = 0;
+                result.push(item);
+                uniqueTxt = e[filterName];
+                item = {};
+            }
+            if (i == list.length - 1) {
+                size++;
+                item['dupSize'] = size;
+                result.push(item);
+            }
+        });
+        return result;
+    };
     //trim
     this.myTrim = function(str) {
         var x = str;
@@ -2467,9 +2496,9 @@
             var ssc = "/";
             var arr = date.split("/");
             if (lang == "TH") {
-                return "" + arr[1] + ssc + arr[0]  + ssc + (Number(arr[2]) + 543)
+                return "" + arr[1] + ssc + arr[0] + ssc + (Number(arr[2]) + 543)
             } else {
-                return "" + arr[1] + ssc + arr[0]  + ssc + arr[2];
+                return "" + arr[1] + ssc + arr[0] + ssc + arr[2];
             }
         } else {
             return "";

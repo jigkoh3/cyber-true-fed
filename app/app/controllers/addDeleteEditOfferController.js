@@ -294,7 +294,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     }
 
     $scope.ffData = {
-        "mun": 0,
+        "min": 0,
         "max": 0
     };
 
@@ -305,10 +305,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.onClearRelateOfferValue();
         $scope.selectedOffer = angular.copy(item);
         $scope.saveParamData = {};
-        console.log($scope.selectedOffer);
+        
         $('.modal-backdrop').css('height', '200%');
 
         // add new param value for add new offer
+        if ($scope.selectedOffer['parameter-specifications'].length > 0) {
+            $scope.selectedOffer['parameter-unique'] = SystemService.uniqueSize($scope.selectedOffer['parameter-specifications'], "name");       
+        }
+        console.log($scope.selectedOffer);
         $scope.relateOfferRequireParam = "";
         switch ($scope.selectedOffer.group) {
             case "FF":
@@ -3258,6 +3262,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     $scope.futureOfferList[i]["guID"] = SystemService.guid();
                 }
                 $scope.tempFutureOfferList = angular.copy($scope.futureOfferList);
+                $scope.futureOfferList = $filter('filter')($scope.tempFutureOfferList, "ADD OFFER" );
             } else {
                 $scope.futureOfferList = [];
                 $scope.tempFutureOfferList = [];
@@ -3282,7 +3287,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.onCancelEditFutureOffer = function() {
         for (var i = 0; i < $scope.futureOfferList.length; i++) {
-            if ($scope.futureOfferList[i].guID == $scope.futureOfferDetail.guID && ($scope.futureOfferDetail["effective-date"] && $scope.futureOfferList[i]["effective-date"]) == $scope.tempFutureOfferList[i]["effective-date"]) {
+            // if ($scope.futureOfferList[i].guID == $scope.futureOfferDetail.guID && ($scope.futureOfferDetail["effective-date"] && $scope.futureOfferList[i]["effective-date"]) == $scope.tempFutureOfferList[i]["effective-date"]) {
+                if ($scope.futureOfferList[i].guID == $scope.futureOfferDetail.guID) {
                 $scope.futureOfferList[i].selected = false;
             }
         }
@@ -3518,7 +3524,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 var name = $scope.futureOfferList[i]["product-name"];
                 $scope.futureOfferList[i]["canEdit"] = false;
                 $scope.futureOfferList[i]["canDelete"] = false;
-                $scope.futureOfferList[i]["canEditExpireDate"] = false;
+                $scope.futureOfferList[i]["canEditExpireDate"] = true;
                 if ($scope.validateModifyOfferList[name]) {
                     for (var j = 0; j < $scope.validateModifyOfferList[name].length; j++) {
                         if ($scope.validateModifyOfferList[name][j] == "EDIT") {
@@ -3536,11 +3542,16 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
             }
 
-            // for (var i = 0; i < $scope.existingOffer.length; i++) {
-            //     for (var j = 0; j < $scope.futureOfferList.length; j++) {
-                    
-            //     }
-            // }
+            for (var i = 0; i < $scope.existingOffer.length; i++) {
+                for (var j = 0; j < $scope.existingParameter.length; j++) {
+                    if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] != $scope.existingParameter[j]["product-soc-code"])) {
+                        $scope.existingOffer[i]["canEdit"] = false;
+                    } else if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] == $scope.existingParameter[j]["product-soc-code"])) {
+                        $scope.existingOffer[i]["canEdit"] = true;
+                        break;
+                    }
+                }
+            }
 
             $scope.existingOfferTemp = angular.copy($scope.existingOffer);
             $scope.tempFutureOfferList = angular.copy($scope.futureOfferList)

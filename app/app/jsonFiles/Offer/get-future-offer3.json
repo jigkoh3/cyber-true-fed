@@ -1,0 +1,138 @@
+{
+    "status": "SUCCESSFUL",
+    "display-messages": [],
+    "trx-id": "6K9X6MCD5MUJ6",
+    "process-instance": "tmsapnpr1 (instance: SFF_node2)",
+    "response-data": {
+        "customer": {
+            "installed-products": [{
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "RMV000000000361",
+                "product-description": "Invi ManU. Aircard3G",
+                "service-level": "C",
+                "product-soc-code": "94065",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "40939",
+                    "AGREEMENT-ID": "1158914",
+                    "FUTURE-ORDER-ID": "23406",
+                    "ALLOW-DELETE": "TRUE",
+                    "FUTURE-SOURCE": "OMX",
+                    "REMARK": "",
+                    "FUTURE-TYPE": "FUTSOC",
+                    "FUTURE-OFFER-TYPE": "REMOVE OFFER",
+                    "FUTURE-PRICEPLAN-TYPE": "",
+                    "CREATE-DATE": "08/12/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "BRM000000000004",
+                "product-description": "MNP Biz TMV to TMH SIM Only Contract 12 months",
+                "service-level": "C",
+                "product-soc-code": "93256",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "40938",
+                    "AGREEMENT-ID": "1158914",
+                    "FUTURE-ORDER-ID": "23405",
+                    "ALLOW-DELETE": "TRUE",
+                    "FUTURE-SOURCE": "OMX",
+                    "REMARK": "",
+                    "FUTURE-TYPE": "FUTSOC",
+                    "FUTURE-OFFER-TYPE": "REMOVE OFFER",
+                    "FUTURE-PRICEPLAN-TYPE": "",
+                    "CREATE-DATE": "08/12/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "CUGFRS12",
+                "product-description": "Biz CUG@PP level & 1FnF(True02), 24hrs. Unlimited",
+                "service-level": "C",
+                "product-soc-code": "261868",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "592228",
+                    "AGREEMENT-ID": "1158914",
+                    "ALLOW-DELETE": "TRUE",
+                    "FUTURE-SOURCE": "REQUEST",
+                    "REMARK": "",
+                    "FUTURE-TYPE": "UPDATESERVICES",
+                    "FUTURE-OFFER-TYPE": "REMOVE OFFER",
+                    "FUTURE-PRICEPLAN-TYPE": "",
+                    "CREATE-DATE": "08/12/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "02/12/2016",
+                "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "DISCOUNT",
+                "product-name": "CVG007",
+                "product-description": "SmartChoice/3Products Discount",
+                "service-level": "C",
+                "product-soc-code": "11340012",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "559884",
+                    "AGREEMENT-ID": "1158914",
+                    "ALLOW-DELETE": "TRUE",
+                    "FUTURE-SOURCE": "REQUEST",
+                    "REMARK": "",
+                    "FUTURE-TYPE": "UPDATESERVICES",
+                    "FUTURE-OFFER-TYPE": "ADD OFFER",
+                    "FUTURE-PRICEPLAN-TYPE": "",
+                    "CREATE-DATE": "18/12/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "31/10/2016",
+                "soc-type": "D"
+            }, {
+                "product-category": "TMV",
+                "product-type": "ADDITIONAL-OFFER",
+                "product-name": "RMV000000000603",
+                "product-description": "MNP for Dealer L2",
+                "service-level": "C",
+                "product-soc-code": "109667",
+                "product-properties": {
+                    "FUTURE-SOC-ID": "591151",
+                    "AGREEMENT-ID": "1158914",
+                    "ALLOW-DELETE": "TRUE",
+                    "FUTURE-SOURCE": "REQUEST",
+                    "REMARK": "",
+                    "FUTURE-TYPE": "UPDATESERVICES",
+                    "FUTURE-OFFER-TYPE": "ADD OFFER",
+                    "FUTURE-PRICEPLAN-TYPE": "",
+                    "CREATE-DATE": "08/12/2016"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "",
+                "effective-date": "01/12/2016",
+                "soc-type": "U"
+            }]
+        }
+    }
+}

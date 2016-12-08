@@ -1978,9 +1978,9 @@
                             <span>
                                 กรุณาระบุเลขหมายเลขคนสนิท(Friend & Family) อย่างน้อย {{paramForEdit['param-detail'][0]["FF_MIN"]}} เบอร์
                             </span>
-                        </div>
-                    </div>&nbsp;&nbsp;
-                    <div calss="form-group" ng-hide="viewOfferForEdit['offer-group']=='PROPOSITION'">
+                        </div>&nbsp;&nbsp;
+                    </div>
+                    <div calss="form-group" ng-hide="viewOfferForEdit['offer-group']=='PROPOSITION' || viewOfferForEdit['original-data']['canEditExpireDate'] == false">
                         <div class="row" style="border-top: 1px solid #e5e5e5;">
                             <div class="col-md-2">
                             </div>
