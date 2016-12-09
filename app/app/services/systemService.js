@@ -200,26 +200,31 @@
         //// support angularJS only :: (array, nameForFilter) :: 8-12-2016
         list = $filter('orderBy')(list, filterName);
         var result = [];
-        var size = 0;
         var item = {};
         var uniqueTxt = "";
+        var getSize = function(getName) {
+            var s = 0;
+            $.each(list, function(i, e) {
+                if (e[filterName] == getName) {
+                    s++;
+                }
+            });
+            return s;
+        };
         $.each(list, function(i, e) {
             if (i == 0) {
                 uniqueTxt = e[filterName];
             }
             if (e[filterName] == uniqueTxt) {
                 item = e;
-                size++;
-                item['dupSize'] = size;
+                item['dupSize'] = getSize(uniqueTxt);
             } else {
-                size = 0;
                 result.push(item);
                 uniqueTxt = e[filterName];
                 item = {};
             }
             if (i == list.length - 1) {
-                size++;
-                item['dupSize'] = size;
+                item['dupSize'] = getSize(uniqueTxt);
                 result.push(item);
             }
         });
