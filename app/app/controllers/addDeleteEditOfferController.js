@@ -2449,8 +2449,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
             var msg = utils.getObject(result.data, 'display-messages');
             if (msg && msg.length > 0) {
-                // if (msg[0]["message-code"] == "OFFER-VALIDATION-1003" || msg[0]["message-code"] == "OFFER-VALIDATION-1001") {
-                if (msg[0]["message-code"] == "OFFER-VALIDATION-1003") {
+                if (msg[0]["message-code"] == "OFFER-VALIDATION-1003" || msg[0]["message-code"] == "OFFER-VALIDATION-1001") {
                     SystemService.showAlertAddDiscountOffer({
                         "message": msg[0]["message"],
                         "message-code": msg[0]["message-code"],
