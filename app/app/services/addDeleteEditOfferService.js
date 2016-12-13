@@ -425,7 +425,8 @@
                 fnCallback(result);
             });
         } else {
-            var url = "/app/jsonFiles/Offer/validate-offer-success.json";
+            // var url = "/app/jsonFiles/Offer/validate-offer-success.json";
+            var url = "/app/jsonFiles/Offer/validate-offer-discount-normal.json";
             SystemService.getFileJson(url, function(response) {
                 fnCallback({
                     status: true,

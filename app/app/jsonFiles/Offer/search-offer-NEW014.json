@@ -1,0 +1,31 @@
+{
+    "status": "SUCCESSFUL",
+    "trx-id": "59A1FJ1E4VS9L",
+    "process-instance": "tmsapnpr1 (instance: SFF_node2)",
+    "response-data": {
+        "name": "NEW014",
+        "description": "Discount 100% on Monthly fee",
+        "soc": "11118412",
+        "properties": {
+            "DISCOUNT_GROUP": "NEW",
+            "OFFER_GROUP": "DIS_NORMAL",
+            "MAX_DURATION_UNIT": "MONTH",
+            "DURATION_UNIT": "MONTH",
+            "DURATION": "25",
+            "DISCOUNT_TYPE": "DIS_NORMAL",
+            "MAX_DURATION": "24",
+            "OFFER_TYPE": "N"
+        },
+        "group": "DISCOUNT",
+        "soc-type": "D",
+        "sale-period": {
+            "start": "2015-08-25",
+            "end": "2250-08-08"
+        },
+        "rc": 0.0,
+        "max-instance-allow": 0,
+        "service-level": "C",
+        "sale-context": "S",
+        "available-groups": ["DISCOUNT"]
+    }
+}

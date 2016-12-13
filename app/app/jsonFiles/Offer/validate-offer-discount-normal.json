@@ -1,0 +1,19 @@
+{
+  "trx-id" : "3YA1BRV8E5760",
+  "status" : "SUCCESSFUL",
+  "process-instance" : "tmsapnpr1 (instance: SFF_node2)",
+  "fault" : {
+    "name" : "th.co.truecorp.ads.sale.catalog.product.tmv.OfferValidationException",
+    "code" : "OFFER-VALIDATION-1003",
+    "message" : "Invalid offer null. New discount NEW034 type DIS_NORMAL already exists. ",
+    "detailed-message" : "OfferValidationException Invalid offer null. New discount NEW034 type DIS_NORMAL already exists. . "
+  },
+  "display-messages" : [ {
+    "message" : "Sorry,  Discount NEW034 is not eligible.  It is already have discount NEW014.  Click Yes if you want to select this discount code after NEW014 expired or click No if you want to try again.",
+    "message-code" : "OFFER-VALIDATION-1003",
+    "message-type" : "WARNING",
+    "en-message" : "Sorry,  Discount NEW034 is not eligible.  It is already have discount NEW014.  Click Yes if you want to select this discount code after NEW014 expired or click No if you want to try again.",
+    "th-message" : "ขออภัยค่ะ ระบบไม่อนุญาติให้ทำการเเลือกส่วนลด NEW034 ได้ในทันที เเนื่องจากเลขหมายนี้มีส่วนลดปัจจุบัน NEW014 อยู่แล้ว. กด Yes หากต้องการเพิ่มส่วนลดนี้หลังวันที่ส่วนลดปัจจุบันหมดอายุ  หรือ กด No เพื่อไปทำการยกเลิกที่ Tab \"ยกเลิกบริการ\" และดำเนินการสมัครอีกครั้ง",
+    "technical-message" : "Current discount (current-discount:NEW014) already has discount type DIS_NORMAL."
+  } ]
+}

@@ -691,7 +691,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             SystemService.calendarDatePicker();
             setTimeout(function() {
                 $('#contractExpDate').datepicker("setStartDate", $scope.setDateTomorrow);
-            }, 1000);
+            }, 500);
         }, 2000);
 
         $scope.viewOffer = {
@@ -2434,6 +2434,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.currentOfferParam = ""
     $scope.validateOffer = function(item) {
         SystemService.showLoading();
+        $scope.oldOfferName = "";
         $scope.currentOfferParam = "";
         $scope.selectedNewOffer = item.name;
         $scope.newOffer = item;
@@ -2448,14 +2449,34 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
             var msg = utils.getObject(result.data, 'display-messages');
             if (msg && msg.length > 0) {
-                SystemService.showAlert({
-                    "message": msg[0]["message"],
-                    "message-code": msg[0]["message-code"],
-                    "message-type": "WARNING",
-                    "en-message": msg[0]["en-message"],
-                    "th-message": msg[0]["th-message"],
-                    "technical-message": msg[0]["technical-message"]
-                });
+                // if (msg[0]["message-code"] == "OFFER-VALIDATION-1003" || msg[0]["message-code"] == "OFFER-VALIDATION-1001") {
+                if (msg[0]["message-code"] == "OFFER-VALIDATION-1003") {
+                    SystemService.showAlertAddDiscountOffer({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
+
+                    var technicalMessage = msg[0]["technical-message"];
+                    var a = technicalMessage.indexOf("(");
+                    var b = technicalMessage.indexOf(")");
+                    var c = technicalMessage.slice(parseInt(a) + 1, b);
+                    var oldOffer = c.split(":");
+                    $scope.oldOfferName = oldOffer[1];
+                    console.log($scope.oldOfferName);
+                } else {
+                    SystemService.showAlert({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
+                }
                 return;
             }
 
@@ -2546,6 +2567,47 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         });
 
     };
+
+    $scope.findExpDateOldOffer = function() {
+        SystemService.showLoading();
+        AddDeleteEditOfferService.searchOfferByName($scope.oldOfferName, function(response) {
+            SystemService.hideLoading();
+            if (response.data["response-data"]) {
+                console.log(response.data["response-data"]);
+                if (response.data["response-data"]["sale-period"].end) {
+                    var oldEndDateOffer = SystemService.convertDateENNoTToFomat(response.data["response-data"]["sale-period"].end, "dd/MM/yyyy");
+                    var oldEndDate = new Date(SystemService.convertDataMMDDYYYYEN(oldEndDateOffer));
+                    oldEndDate.setDate(oldEndDate.getDate() + 1);
+                } else {
+                    var oldEndDateOffer = "";
+                }
+                $scope.newOffer.param = {};
+                // $scope.newOffer.param['effective-date-type'] = $scope.offerEffectiveDate;
+                // if ($scope.newOffer.param['effective-date-type'] == "immediate") {
+                //     $scope.newOffer.param['effective-date-value'] = "";
+                // } else {
+                //     $scope.newOffer.param['effective-date-value'] = $('#addNewOfferEffectiveDate').val();
+                // }
+                // $scope.newOffer.param['expiration-date-type'] = $scope.offerExpirationDate;
+                // $('#addNewOfferExpirationDate').val($filter('date')(oldEndDate, 'dd/MM/yyyy'))
+                // $scope.newOffer.param['expiration-date-value'] = $('#addNewOfferExpirationDate').val();
+                $scope.newOffer.param['effective-date-type'] = "specify";
+                $scope.newOffer.param['expiration-date-type'] = "specify";
+                $('#addNewOfferEffectiveDate').val($filter('date')(oldEndDate, 'dd/MM/yyyy'));
+                $scope.newOffer.param['effective-date-value'] = $('#addNewOfferEffectiveDate').val();
+                $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], $('#addNewOfferEffectiveDate').val());
+                $scope.newOffer.properties.firstDiscountBill = $scope.firstDiscountBill;
+
+                var newEndDate = new Date(SystemService.convertDataMMDDYYYYEN($scope.firstDiscountBill));
+                newEndDate.setMonth(newEndDate.getMonth() + (Number($scope.newOffer.properties["DURATION_TEMP"]) - 1));
+                $('#addNewOfferExpirationDate').val($filter('date')(newEndDate, 'dd/MM/yyyy'))
+                $scope.newOffer.param['expiration-date-value'] = $('#addNewOfferExpirationDate').val();
+                $scope.newOffer.guID = SystemService.guid();
+                $scope.addNewOfferList($scope.newOffer);
+
+            };
+        });
+    }
 
     $scope.onEffectiveChange = function() {
         if ($scope.offerEffectiveDate == "immediate") {
@@ -3056,17 +3118,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         $scope.disableSubmitAddOffer = false;
                     }
                     break;
-                // case "FF":
-                //     if ($scope.chkValueforFF == false) {
-                //         $scope.disableSubmitAddOffer = true;
-                //     } else if ($scope.chkValueforFF == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
-                //         $scope.disableSubmitAddOffer = true;
-                //     } else if ($scope.chkValueforFF == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
-                //         $scope.disableSubmitAddOffer = true;
-                //     } else {
-                //         $scope.disableSubmitAddOffer = false;
-                //     }
-                //     break;
+                    // case "FF":
+                    //     if ($scope.chkValueforFF == false) {
+                    //         $scope.disableSubmitAddOffer = true;
+                    //     } else if ($scope.chkValueforFF == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
+                    //         $scope.disableSubmitAddOffer = true;
+                    //     } else if ($scope.chkValueforFF == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
+                    //         $scope.disableSubmitAddOffer = true;
+                    //     } else {
+                    //         $scope.disableSubmitAddOffer = false;
+                    //     }
+                    //     break;
                 case "RELATED":
                     if ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
                         $scope.disableSubmitAddOffer = true;
@@ -3793,6 +3855,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
         if (action == "editNew") {
             $scope.dataForEdit['properties']['firstDiscountBill'] = $filter('date')(toDay, 'dd/MM/yyyy');
+            $scope.discountDurationChange($scope.dataForEdit['properties']['DURATION_TEMP'], "editNew");
         } else if (action == "editExisting") {
             $scope.viewOfferForEdit['properties']['firstDiscountBill'] = $filter('date')(toDay, 'dd/MM/yyyy');
             if ($scope.viewOfferForEdit['properties']['firstDiscountBill'].length == 10 && $scope.viewOfferForEdit["expiration-date"].length == 10) {
@@ -3835,6 +3898,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             } else {
                 $scope.modelChange = true;
             }
+        } else if (action == "editNew") {
+            var disDateParam = new Date(SystemService.convertDataMMDDYYYYEN($scope.dataForEdit['properties']['firstDiscountBill']));
+            disDateParam.setMonth(disDateParam.getMonth() + (Number(newDuration) - 1));
+            $("#editNewOfferExpirationDate").datepicker("setDate", disDateParam);
         } else {
             var disDateParam = new Date(SystemService.convertDataMMDDYYYYEN($scope.firstDiscountBill));
             disDateParam.setMonth(disDateParam.getMonth() + (Number(newDuration) - 1));

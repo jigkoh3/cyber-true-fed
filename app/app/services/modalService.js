@@ -576,6 +576,19 @@ smartApp.controller('ngAlertController', function($scope, SystemService, $ngBoot
 
         //$("#btn-fancy-ReadCard").fancybox().trigger('click');
     };
+    $scope.ngBootBoxYesBtn = function() {
+        //$('#modalReadCard').click();
+        //$('.modal-backdrop').removeClass('in');
+        //$('.modal-backdrop').addClass('out');
+        //$('.modal-backdrop').addClass('hide');
+        bootbox.hideAll();
+        try {
+            angular.element(document.getElementById('' + $('#divID').val())).scope().findExpDateOldOffer();
+            angular.element(document.getElementById('' + $('#divID').val())).scope().afterCloseWarning();
+        } catch (e) {}
+
+        //$("#btn-fancy-ReadCard").fancybox().trigger('click');
+    };
 });
 smartApp.controller('ngBootboxPricePlanController', function($scope, SystemService, $ngBootbox) {
     $scope.pricePlans = SystemService.pricePlans;

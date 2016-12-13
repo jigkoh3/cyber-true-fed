@@ -1413,6 +1413,26 @@
         }, 800);
 
     };
+    this.showAlertAddDiscountOffer = function(msgModel) {
+        //ModalService.showAlert(msgModel);
+
+        that.ngDialogData = msgModel;
+
+        $ngBootbox.customDialog({
+            templateUrl: 'app/views/ngBootbox-template-addDiscountOffer.html?v=' + runTime,
+            onEscape: function() {
+                return false;
+            },
+            show: true,
+            backdrop: true,
+            closeButton: false,
+            animate: true
+        });
+        setTimeout(function() {
+            $("#btn_ngbOK").focus();
+        }, 800);
+
+    };
     this.showLoading = function() {
         //ModalService.showLoading();
         $ngBootbox.customDialog({
