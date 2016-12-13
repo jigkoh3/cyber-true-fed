@@ -690,7 +690,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         setTimeout(function() {
             SystemService.calendarDatePicker();
             setTimeout(function() {
-                $('#contractExpDate').datepicker("setStartDate", $scope.viewOfferForEdit['CONTRACT-START-DATE']);
+                $('#contractExpDate').datepicker("setStartDate", $scope.setDateTomorrow);
             }, 1000);
         }, 2000);
 
