@@ -2751,7 +2751,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.checkValueCpDate = function(dateValue1, dateValue2) {
-        if (dateValue1.length == 10 && dateValue2.length == 10) {
+        if (dateValue1 && dateValue1.length == 10 && dateValue2 && dateValue2.length == 10) {
             var date1 = dateValue1.split("/");
             var date2 = dateValue2.split("/");
             var a = moment([(Number(date2[2])), date2[1], date2[0]]);

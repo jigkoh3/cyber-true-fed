@@ -823,139 +823,139 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-show="selectedOffer.group!='CUG' && selectedOffer.group!='FF' && selectedOffer.group!='CONTRACT_PROPO' && radioOffer && selectedOffer['parameter-specifications'].length > 0" style="padding: 20px;">
-                            <div class="form-group row" ng-repeat="item in selectedOffer['parameter-specifications']">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="form-group has-feedback">
-                                        <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD();">
-                                        <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-for-capmax="{{item['name']}}" ng-keyup="validateAddAD();">
-                                        <span ng-span-number-for-capmax="{{item['name']}}" class="hide" style="color:red;">
+                        <!-- offer effective & expiration date -->
+                    </div>
+                    <div ng-show="selectedOffer.group!='CUG' && selectedOffer.group!='FF' && selectedOffer.group!='CONTRACT_PROPO' && radioOffer && selectedOffer['parameter-specifications'].length > 0" style="padding: 20px;">
+                        <div class="form-group row" ng-repeat="item in selectedOffer['parameter-specifications']">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group has-feedback">
+                                    <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD();">
+                                    <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-for-capmax="{{item['name']}}" ng-keyup="validateAddAD();">
+                                    <span ng-span-number-for-capmax="{{item['name']}}" class="hide" style="color:red;">
                                         กรุณาระบุตัวเลข -1 -2 และมากกว่า 0 เท่านั้น
                                     </span>
-                                        <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD();"></select>
-                                    </div>
+                                    <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD();"></select>
                                 </div>
-                                <div class="col-xs-2"></div>
                             </div>
+                            <div class="col-xs-2"></div>
                         </div>
-                        <div ng-show="selectedOffer.group=='CONTRACT_PROPO' && radioOffer" style="padding: 20px;">
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Proposition Code</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input ng-disabled="true" type="text" ng-model="cpPropCode" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Proposition Description</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input ng-disabled="true" type="text" ng-model="cpPropDesc" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Contract Number</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="cpContractNumber" class="form-control" ng-keyup="validateAddCp()">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Term</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="cpTerm" class="form-control" ng-number-only="inputCpTerm" disabled>
-                                    <span ng-span-number-only="inputCpTerm" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Fee</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="cpFee" class="form-control" id="cpFee" ng-number-only="inputCpFee" disabled>
-                                    <span ng-span-number-only="inputCpFee" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Start Date</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="cpStartDate" ng-model="cpStartDate" class="form-control date-picker-today-en dateFormat" maxlength="10" requireds ng-keyup="validateAddCp()">
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Expiration Date</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp()" ng-disabled="selectedOffer.disableExpDateCp">
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Remark</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input name="cpRemark" type="text" ng-model="cpRemark" class="form-control" ng-keyup="validateAddCp()">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- offer effective & expiration date -->
-                        <br>
                     </div>
+                    <div ng-show="selectedOffer.group=='CONTRACT_PROPO' && radioOffer" style="padding: 20px;">
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Proposition Code</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <input ng-disabled="true" type="text" ng-model="cpPropCode" class="form-control">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Proposition Description</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <input ng-disabled="true" type="text" ng-model="cpPropDesc" class="form-control">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Contract Number</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" ng-model="cpContractNumber" class="form-control" ng-keyup="validateAddCp()">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Term</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" ng-model="cpTerm" class="form-control" ng-number-only="inputCpTerm" disabled>
+                                <span ng-span-number-only="inputCpTerm" class="hide" style="color:red;">
+                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                    </span>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Fee</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" ng-model="cpFee" class="form-control" id="cpFee" ng-number-only="inputCpFee" disabled>
+                                <span ng-span-number-only="inputCpFee" class="hide" style="color:red;">
+                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                    </span>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Start Date</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="has-feedback">
+                                    <input name="birthDay" type="text" id="cpStartDate" ng-model="cpStartDate" class="form-control date-picker-today-en dateFormat" maxlength="10" requireds ng-keyup="validateAddCp()">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Expiration Date</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="has-feedback">
+                                    <input name="birthDay" type="text" id="cpExpireDate" ng-model="cpExpireDate" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp()" ng-disabled="selectedOffer.disableExpDateCp">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Remark</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input name="cpRemark" type="text" ng-model="cpRemark" class="form-control" ng-keyup="validateAddCp()">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <div ng-show="radioOffer && selectedOffer.group!='CONTRACT_PROPO'" style="border-top: 1px solid #e5e5e5;">
                         <br>
                         <div class="form-group" ng-show="addOfferType.value == 'DISCOUNT'">
