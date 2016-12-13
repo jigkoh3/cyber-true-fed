@@ -315,6 +315,31 @@
                 "effective-date": "23/11/2016",
                 "expire-date": "23/11/2017",
                 "soc-type": "U"
+            }, {
+                "product-category": "TMV",
+                "product-type": "DISCOUNT",
+                "product-status": "A",
+                "product-id": "NEW014",
+                "product-name": "NEW014",
+                "product-description": "Discount 100% on Monthly fee",
+                "service-level": "C",
+                "product-soc-code": "11118412",
+                "product-properties": {
+                    "OFFER-GROUP": "DIS_NORMAL",
+                    "AGREEMENT-ID": "1159897",
+                    "PARENT-SOC-SEQUENCE": "",
+                    "AGREEMENT-SOC-SEQUENCE": "559775",
+                    "OFFER-INSTANCE-ID": "559775",
+                    "DISCOUNT-GROUP": "NEW"
+                },
+                "product-id-name": "MSISDN",
+                "has-splitcharge": false,
+                "is-childsim": false,
+                "is-softsuspend": false,
+                "offer-group": "DISCOUNT",
+                "effective-date": "31/10/2016",
+                "expire-date": "30/11/2018",
+                "soc-type": "D"
             }]
         }
     }

@@ -2568,44 +2568,26 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     };
 
     $scope.findExpDateOldOffer = function() {
-        SystemService.showLoading();
-        AddDeleteEditOfferService.searchOfferByName($scope.oldOfferName, function(response) {
-            SystemService.hideLoading();
-            if (response.data["response-data"]) {
-                console.log(response.data["response-data"]);
-                if (response.data["response-data"]["sale-period"].end) {
-                    var oldEndDateOffer = SystemService.convertDateENNoTToFomat(response.data["response-data"]["sale-period"].end, "dd/MM/yyyy");
-                    var oldEndDate = new Date(SystemService.convertDataMMDDYYYYEN(oldEndDateOffer));
-                    oldEndDate.setDate(oldEndDate.getDate() + 1);
-                } else {
-                    var oldEndDateOffer = "";
-                }
-                $scope.newOffer.param = {};
-                // $scope.newOffer.param['effective-date-type'] = $scope.offerEffectiveDate;
-                // if ($scope.newOffer.param['effective-date-type'] == "immediate") {
-                //     $scope.newOffer.param['effective-date-value'] = "";
-                // } else {
-                //     $scope.newOffer.param['effective-date-value'] = $('#addNewOfferEffectiveDate').val();
-                // }
-                // $scope.newOffer.param['expiration-date-type'] = $scope.offerExpirationDate;
-                // $('#addNewOfferExpirationDate').val($filter('date')(oldEndDate, 'dd/MM/yyyy'))
-                // $scope.newOffer.param['expiration-date-value'] = $('#addNewOfferExpirationDate').val();
-                $scope.newOffer.param['effective-date-type'] = "specify";
-                $scope.newOffer.param['expiration-date-type'] = "specify";
-                $('#addNewOfferEffectiveDate').val($filter('date')(oldEndDate, 'dd/MM/yyyy'));
-                $scope.newOffer.param['effective-date-value'] = $('#addNewOfferEffectiveDate').val();
-                $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], $('#addNewOfferEffectiveDate').val());
-                $scope.newOffer.properties.firstDiscountBill = $scope.firstDiscountBill;
+        var oldOfferData = $filter('filter')($scope.existingOffer, { "product-name": $scope.oldOfferName });
+        // var oldEndDateOffer = SystemService.convertDateENNoTToFomat(oldOfferData[0]["expire-date"], "dd/MM/yyyy");
+        var oldEndDateOffer = oldOfferData[0]["expire-date"];
+        var oldEndDate = new Date(SystemService.convertDataMMDDYYYYEN(oldEndDateOffer));
+        oldEndDate.setDate(oldEndDate.getDate() + 1);
+        $scope.newOffer.param = {};
+        
+        $scope.newOffer.param['effective-date-type'] = "specify";
+        $scope.newOffer.param['expiration-date-type'] = "specify";
+        $('#addNewOfferEffectiveDate').val($filter('date')(oldEndDate, 'dd/MM/yyyy'));
+        $scope.newOffer.param['effective-date-value'] = $('#addNewOfferEffectiveDate').val();
+        $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], $('#addNewOfferEffectiveDate').val());
+        $scope.newOffer.properties.firstDiscountBill = $scope.firstDiscountBill;
 
-                var newEndDate = new Date(SystemService.convertDataMMDDYYYYEN($scope.firstDiscountBill));
-                newEndDate.setMonth(newEndDate.getMonth() + (Number($scope.newOffer.properties["DURATION_TEMP"]) - 1));
-                $('#addNewOfferExpirationDate').val($filter('date')(newEndDate, 'dd/MM/yyyy'))
-                $scope.newOffer.param['expiration-date-value'] = $('#addNewOfferExpirationDate').val();
-                $scope.newOffer.guID = SystemService.guid();
-                $scope.addNewOfferList($scope.newOffer);
-
-            };
-        });
+        var newEndDate = new Date(SystemService.convertDataMMDDYYYYEN($scope.firstDiscountBill));
+        newEndDate.setMonth(newEndDate.getMonth() + (Number($scope.newOffer.properties["DURATION_TEMP"]) - 1));
+        $('#addNewOfferExpirationDate').val($filter('date')(newEndDate, 'dd/MM/yyyy'))
+        $scope.newOffer.param['expiration-date-value'] = $('#addNewOfferExpirationDate').val();
+        $scope.newOffer.guID = SystemService.guid();
+        $scope.addNewOfferList($scope.newOffer);
     }
 
     $scope.onEffectiveChange = function() {
