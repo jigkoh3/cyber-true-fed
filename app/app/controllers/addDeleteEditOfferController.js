@@ -476,7 +476,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         if (validateResult.data['response-data'][$scope.selectedOffer.name]) {
                             for (var i = 0; i < validateResult.data['response-data'][$scope.selectedOffer.name].length; i++) {
                                 if (validateResult.data['response-data'][$scope.selectedOffer.name][i] == "EDIT") {
-                                    $scope.disableExpDateDiscount = false;
+                                    // $scope.disableExpDateDiscount = false;
+                                    $scope.disableExpDateDiscount = true;
                                 } else {
                                     $scope.disableExpDateDiscount = true;
                                 }
