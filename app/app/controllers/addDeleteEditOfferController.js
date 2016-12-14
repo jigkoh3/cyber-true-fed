@@ -1204,6 +1204,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         });
     };
 
+    // Submit Order Function
     $scope.confirmPrint = function() {
         SystemService.demo = true;
         SystemService.showLoading();
@@ -1623,89 +1624,140 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
             }
 
-            if (editExistingExpOfferList.length > 0) {
-                //========================= รอพี่กวางให้คำขอบเรื่อง FUTURE-ORDER-ID=========================
-
-                // var orderByFutureOrderId = [{
-                //     "FUTURE-ORDER-ID": editFutureOfferList[0]["product-properties"]["FUTURE-ORDER-ID"],
-                //     "offer": [editFutureOfferList[0]]
-                // }];
-
-                // for (var i = 1; i < editFutureOfferList.length; i++) {
-                //     var findByFutureOrderId = $filter('filter')(orderByFutureOrderId, editFutureOfferList[i]["product-properties"]["FUTURE-ORDER-ID"]);
-
-                //     if (findByFutureOrderId.length > 0) {
-                //         for (var j = 0; j < orderByFutureOrderId.length; j++) {
-                //             if (editFutureOfferList[i]["product-properties"]["FUTURE-ORDER-ID"] == orderByFutureOrderId[j]["FUTURE-ORDER-ID"]) {
-                //                 orderByFutureOrderId[j]["offer"].push(editFutureOfferList[i]);
-                //             }
-                //         }
-                //     } else {
-                //         orderByFutureOrderId.push({
-                //             "FUTURE-ORDER-ID": editFutureOfferList[i]["product-properties"]["FUTURE-ORDER-ID"],
-                //             "offer": [editFutureOfferList[i]]
-                //         });
-                //     }
-                // }
-                // console.log(orderByFutureOrderId);
-
-
-                var data2 = generateOrderRequest();
-                data2['statusReason'] = $scope.statusReason.id;
-                data2['statusReasonMemo'] = $scope.statusReasonMemo;
-                data2['offer'] = {
-                    'OFFER-SIZE': editExistingExpOfferList.length,
-                    'PRICEPLAN-INSTANCE-ID': $scope.priceplan[0]["product-properties"]["OFFER-INSTANCE-ID"],
-                    'SUBSCRIBER-ID': $scope.data.simData["subscriber-id"],
-                    'ACTION-LEVEL': "SUBSCRIBER"
-                };
-
-                for (var i = 0; i < editExistingExpOfferList.length; i++) {
-                    data2['offer']["OFFER-" + i] = editExistingExpOfferList[i]["product-soc-code"] + "|" + editExistingExpOfferList[i]["product-name"];
-                    data2['offer']["OFFER-" + i + "-SOC-TYPE"] = editExistingExpOfferList[i]["soc-type"];
-                    // data2['offer']["OFFER-" + i + "-OFFER-GROUP"] = editExistingExpOfferList[i]["offer-group"];
-                    data2['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
-                    // data2['offer']["OFFER-" + i + "-FUTURE-SOC-ID"] = editExistingExpOfferList[i]["product-properties"]["FUTURE-SOC-ID"];
-                    data2['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = editExistingExpOfferList[i]["effective-date"];
-                    // data2['offer']["FUTURE-ORDER-ID"] = editExistingExpOfferList[i]["FUTURE-ORDER-ID"];
+            if (editExistingExpOfferList && editExistingExpOfferList.length > 0) {
+                var updateFuture = [];
+                var deleteFuture = [];
+                for (var index = 0; index < editExistingExpOfferList.length; index++) {
+                    if (editExistingExpOfferList[index]["expire-date"]) {
+                        updateFuture.push(editExistingExpOfferList[index]);
+                    } else {
+                        deleteFuture.push(editExistingExpOfferList[index]);
+                    }
                 }
-                orderItem.push({
-                    'product-category': data2.productDetails['product-category'],
-                    'name': "UPDATE_FUTURE_ORDER",
-                    'order-type': "EXISTING",
-                    'product-id-name': data2.productDetails['product-id-name'],
-                    'product-id-number': data2.productDetails['product-id-number'],
-                    'product-name': data2.currentPricePlan,
-                    "address-list": {
-                        // "BILLING_ADDRESS": BILLING_ADDRESS,
-                        // "TAX_ADDRESS": TAX_ADDRESS
-                    },
-                    'primary-order-data': {
-                        'ACCOUNT-SUB-TYPE': data2.productDetails['account-sub-type'],
-                        'COMPANY-CODE': data2.productDetails['company-code'],
-                        'MOBILE-SERVICETYPE': data2.productDetails['mobile-servicetype'],
-                        'ACCOUNT-ID': data2.productDetails['ban'],
-                        'OU-ID': data2.productDetails['ouId'],
-                        'SUB-ACTIVITY': "FUTURE-OFFER"
-                    },
-                    'order-data': data2['offer'],
-                    // 'reason-code': data.statusReason.id,
-                    'reason-code': "CREQ",
-                    'user-memo': data2.saleAgent.ssoEmployeePrincipal.loginName + "(" + data.saleAgent.ssoEmployeePrincipal.employeeId + ": " + data.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + data.orderData.orderId + ")" + ": " + data.statusReasonMemo,
-                    'product-category': data2.productDetails['product-category'],
-                    'product-type': "PRICEPLAN"
-                });
+
+                if (deleteFuture && deleteFuture.length > 0) {
+                    var data2 = generateOrderRequest();
+                    data2['statusReason'] = $scope.statusReason.id;
+                    data2['statusReasonMemo'] = $scope.statusReasonMemo;
+                    data2['offer'] = {
+                        'OFFER-SIZE': deleteFuture.length,
+                        'PRICEPLAN-INSTANCE-ID': $scope.priceplan[0]["product-properties"]["OFFER-INSTANCE-ID"],
+                        'SUBSCRIBER-ID': $scope.data.simData["subscriber-id"],
+                        'ACTION-LEVEL': "SUBSCRIBER"
+                    };
+
+                    for (var i = 0; i < deleteFuture.length; i++) {
+                        data2['offer']["OFFER-" + i] = deleteFuture[i]["product-soc-code"] + "|" + deleteFuture[i]["product-name"];
+                        data2['offer']["OFFER-" + i + "-SOC-TYPE"] = deleteFuture[i]["soc-type"];
+                        // data2['offer']["OFFER-" + i + "-OFFER-GROUP"] = deleteFuture[i]["offer-group"];
+                        data2['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
+                        data2['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "UNLIMITED";
+                        data2['offer']["OFFER-" + i + "-FUTURE-SOC-ID"] = deleteFuture[i]["product-properties"]["FUTURE-SOC-ID"];
+                        data2['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = deleteFuture[i]["effective-date"];
+                        data2['offer']["OFFER-" + i + "-EXPIRE-DATE"] = deleteFuture[i]["expire-date"];
+                        if (deleteFuture[i]["product-properties"]["FUTURE-ORDER-ID"]) {
+                            data2['offer']["OFFER-" + i + "-FUTURE-ORDER-ID"] = deleteFuture[i]["product-properties"]["FUTURE-ORDER-ID"];
+                        } else if (deleteFuture[i]["product-properties"]["OFFER-INSTANCE-ID"]) {
+                            data2['offer']["OFFER-" + i + "-OFFER-INSTANCE-ID"] = deleteFuture[i]["product-properties"]["OFFER-INSTANCE-ID"];
+                        }
+
+                        if (deleteFuture[i]["expire-date"]) {
+                            data2['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
+                        }
+                        // data2['offer']["FUTURE-ORDER-ID"] = deleteFuture[i]["product-properties"]["FUTURE-ORDER-ID"];
+                    }
+                    orderItem.push({
+                        'product-category': data2.productDetails['product-category'],
+                        'name': "DELETE_FUTURE_OFFER",
+                        'order-type': "EXISTING",
+                        'product-id-name': data2.productDetails['product-id-name'],
+                        'product-id-number': data2.productDetails['product-id-number'],
+                        'product-name': data2.currentPricePlan,
+                        "address-list": {
+                            // "BILLING_ADDRESS": BILLING_ADDRESS,
+                            // "TAX_ADDRESS": TAX_ADDRESS
+                        },
+                        'primary-order-data': {
+                            'ACCOUNT-SUB-TYPE': data2.productDetails['account-sub-type'],
+                            'COMPANY-CODE': data2.productDetails['company-code'],
+                            'MOBILE-SERVICETYPE': data2.productDetails['mobile-servicetype'],
+                            'ACCOUNT-ID': data2.productDetails['ban'],
+                            'OU-ID': data2.productDetails['ouId'],
+                            'SUB-ACTIVITY': "FUTURE-OFFER"
+                        },
+                        'order-data': data2['offer'],
+                        // 'reason-code': data.statusReason.id,
+                        'reason-code': "CREQ",
+                        'user-memo': data2.saleAgent.ssoEmployeePrincipal.loginName + "(" + data.saleAgent.ssoEmployeePrincipal.employeeId + ": " + data.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + data.orderData.orderId + ")" + ": " + data.statusReasonMemo,
+                        'product-category': data2.productDetails['product-category'],
+                        'product-type': "PRICEPLAN"
+                    });
+                }
+
+                if (updateFuture && updateFuture.length > 0) {
+                    var data2 = generateOrderRequest();
+                    data2['statusReason'] = $scope.statusReason.id;
+                    data2['statusReasonMemo'] = $scope.statusReasonMemo;
+                    data2['offer'] = {
+                        'OFFER-SIZE': updateFuture.length,
+                        'PRICEPLAN-INSTANCE-ID': $scope.priceplan[0]["product-properties"]["OFFER-INSTANCE-ID"],
+                        'SUBSCRIBER-ID': $scope.data.simData["subscriber-id"],
+                        'ACTION-LEVEL': "SUBSCRIBER"
+                    };
+
+                    for (var i = 0; i < updateFuture.length; i++) {
+                        data2['offer']["OFFER-" + i] = updateFuture[i]["product-soc-code"] + "|" + updateFuture[i]["product-name"];
+                        data2['offer']["OFFER-" + i + "-SOC-TYPE"] = updateFuture[i]["soc-type"];
+                        // data2['offer']["OFFER-" + i + "-OFFER-GROUP"] = updateFuture[i]["offer-group"];
+                        // data2['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
+                        data2['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "UNLIMITED";
+                        data2['offer']["OFFER-" + i + "-FUTURE-SOC-ID"] = updateFuture[i]["product-properties"]["FUTURE-SOC-ID"];
+                        // data2['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = updateFuture[i]["effective-date"];
+                        data2['offer']["OFFER-" + i + "-EXPIRE-DATE"] = updateFuture[i]["expire-date"];
+                        if (updateFuture[i]["product-properties"]["FUTURE-ORDER-ID"]) {
+                            data2['offer']["OFFER-" + i + "-FUTURE-ORDER-ID"] = updateFuture[i]["product-properties"]["FUTURE-ORDER-ID"];
+                        } else if (updateFuture[i]["product-properties"]["OFFER-INSTANCE-ID"]) {
+                            data2['offer']["OFFER-" + i + "-OFFER-INSTANCE-ID"] = updateFuture[i]["product-properties"]["OFFER-INSTANCE-ID"];
+                        }
+
+                        if (updateFuture[i]["expire-date"]) {
+                            data2['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
+                        }
+                        // data2['offer']["FUTURE-ORDER-ID"] = updateFuture[i]["product-properties"]["FUTURE-ORDER-ID"];
+                    }
+                    orderItem.push({
+                        'product-category': data2.productDetails['product-category'],
+                        'name': "UPDATE_FUTURE_ORDER",
+                        'order-type': "EXISTING",
+                        'product-id-name': data2.productDetails['product-id-name'],
+                        'product-id-number': data2.productDetails['product-id-number'],
+                        'product-name': data2.currentPricePlan,
+                        "address-list": {
+                            // "BILLING_ADDRESS": BILLING_ADDRESS,
+                            // "TAX_ADDRESS": TAX_ADDRESS
+                        },
+                        'primary-order-data': {
+                            'ACCOUNT-SUB-TYPE': data2.productDetails['account-sub-type'],
+                            'COMPANY-CODE': data2.productDetails['company-code'],
+                            'MOBILE-SERVICETYPE': data2.productDetails['mobile-servicetype'],
+                            'ACCOUNT-ID': data2.productDetails['ban'],
+                            'OU-ID': data2.productDetails['ouId'],
+                            'SUB-ACTIVITY': "FUTURE-OFFER"
+                        },
+                        'order-data': data2['offer'],
+                        // 'reason-code': data.statusReason.id,
+                        'reason-code': "CREQ",
+                        'user-memo': data2.saleAgent.ssoEmployeePrincipal.loginName + "(" + data.saleAgent.ssoEmployeePrincipal.employeeId + ": " + data.saleAgent.ssoEmployeePrincipal.englishName + ")" + "(" + "Order ID: " + data.orderData.orderId + ")" + ": " + data.statusReasonMemo,
+                        'product-category': data2.productDetails['product-category'],
+                        'product-type': "PRICEPLAN"
+                    });
+                }
                 // }
 
                 // ===================================================================================
             }
 
             if (editFutureOfferList.length > 0) {
-                var orderByFutureOrderId = [{
-                    "FUTURE-ORDER-ID": editFutureOfferList[0]["product-properties"]["FUTURE-ORDER-ID"],
-                    "offer": [editFutureOfferList[0]]
-                }];
-
                 var orderByFutureOrderId = [{
                     "FUTURE-ORDER-ID": editFutureOfferList[0]["product-properties"]["FUTURE-ORDER-ID"],
                     "offer": [editFutureOfferList[0]]
@@ -2575,7 +2627,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         var oldEndDate = new Date(SystemService.convertDataMMDDYYYYEN(oldEndDateOffer));
         oldEndDate.setDate(oldEndDate.getDate() + 1);
         $scope.newOffer.param = {};
-        
+
         $scope.newOffer.param['effective-date-type'] = "specify";
         $scope.newOffer.param['expiration-date-type'] = "specify";
         $('#addNewOfferEffectiveDate').val($filter('date')(oldEndDate, 'dd/MM/yyyy'));
@@ -3403,11 +3455,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         });
     };
 
+    $scope.removeFutureOfferList = [];
     $scope.callGetFutureOffer = function() {
         // SystemService.showLoading();
         var param = "level=SUBSCRIBER&key-value=" + $scope.SubNo + "&key-id=" + $scope.data.simData["subscriber-id"] + "&future-order-type=OFFER";
         AddDeleteEditOfferService.getFutureOffer(param, function(result) {
             var futureOfferData = utils.getObject(result.data['response-data'], 'customer');
+            $scope.removeFutureOfferList = [];
             if (futureOfferData) {
                 $scope.futureOfferList = angular.copy(result.data["response-data"]["customer"]["installed-products"]);
                 console.log($scope.futureOfferList);
@@ -3425,9 +3479,25 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
                 $scope.tempFutureOfferList = angular.copy($scope.futureOfferList);
                 $scope.futureOfferList = $filter('filter')($scope.tempFutureOfferList, "ADD OFFER");
+                $scope.removeFutureOfferList = $filter('filter')($scope.tempFutureOfferList, "REMOVE OFFER");
+
+                for (var i = 0; i < $scope.tempFutureOfferList.length; i++) {
+                    for (var j = 0; j < $scope.tempFutureOfferList.length; j++) {
+                        if (($scope.existingOffer[i]["product-soc-code"] == $scope.tempFutureOfferList[j]["product-soc-code"]) && $scope.tempFutureOfferList[j]["product-properties"]["FUTURE-ORDER-ID"]) {
+                            $scope.existingOffer[i]["product-properties"]["FUTURE-ORDER-ID"] = $scope.tempFutureOfferList[j]["product-properties"]["FUTURE-ORDER-ID"];
+                        }
+                        if (($scope.existingOffer[i]["product-soc-code"] == $scope.tempFutureOfferList[j]["product-soc-code"]) && $scope.tempFutureOfferList[j]["product-properties"]["FUTURE-SOC-ID"]) {
+                            $scope.existingOffer[i]["product-properties"]["FUTURE-SOC-ID"] = $scope.tempFutureOfferList[j]["product-properties"]["FUTURE-SOC-ID"];
+                        }
+                    }
+                }
+                console.log($scope.existingOffer);
+                $scope.existingOfferTemp = angular.copy($scope.existingOffer);
+
             } else {
                 $scope.futureOfferList = [];
                 $scope.tempFutureOfferList = [];
+                $scope.removeFutureOfferList = [];
             }
             // SystemService.hideLoading();
             $scope.validateModifyOffer();
@@ -3680,6 +3750,15 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         }
                     }
                 }
+
+                for (var k = 0; k < $scope.removeFutureOfferList.length; k++) {
+                    if ($scope.existingOffer[i]["product-soc-code"] == $scope.removeFutureOfferList[k]["product-soc-code"]) {
+                        $scope.existingOffer[i]["canEditExpireDate"] = true;
+                        break;
+                    } else {
+                        $scope.existingOffer[i]["canEditExpireDate"] = false;
+                    }
+                }
             }
 
             for (var i = 0; i < $scope.futureOfferList.length; i++) {
@@ -3718,7 +3797,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.existingOfferTemp = angular.copy($scope.existingOffer);
             $scope.tempFutureOfferList = angular.copy($scope.futureOfferList)
             $scope.setDefaultExistingOffer();
-            // console.log($scope.existingOffer);
+            // console.log($scope.removeFutureOfferList);
         });
     };
 
