@@ -2606,6 +2606,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     $scope.newOffer.param['remark'] = $scope.cpRemark;
                     $scope.newOffer.param['fee'] = $scope.cpFee;
                     $scope.newOffer.param['term'] = $scope.cpTerm;
+                    $scope.newOffer.param['effective-date-value'] = $scope.cpStartDate;
+                    $scope.newOffer.param['effective-date-type'] = "specify"
+                    if (!$scope.newOffer.param['effective-date-value'] || $scope.newOffer.param['effective-date-value'] == $scope.setDateNow) {
+                        $scope.newOffer.param['effective-date-type'] = "immediate";
+                    }
                 }
 
                 if ($scope.newOffer.group == "POOLING") {
