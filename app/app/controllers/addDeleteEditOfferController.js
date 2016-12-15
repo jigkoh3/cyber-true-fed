@@ -3819,7 +3819,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 for (var j = 0; j < $scope.existingParameter.length; j++) {
                     if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] != $scope.existingParameter[j]["product-soc-code"])) {
                         $scope.existingOffer[i]["canEdit"] = false;
-                    } else if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] == $scope.existingParameter[j]["product-soc-code"])) {
+                    } else if ($scope.existingOffer[i]["canEdit"] == true && $scope.existingOffer[i]["canEditExpireDate"] == false && $scope.existingOffer[i]["product-soc-code"] == $scope.existingParameter[j]["product-soc-code"]) {
                         $scope.existingOffer[i]["canEdit"] = true;
                         break;
                     }
