@@ -3667,7 +3667,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.checkAuthorize = function() {
         setTimeout(function() {
-            if (($scope.offerType == "U" && $scope.data.simData["account-category"] == "I") || ($scope.offerType == "D" && $scope.data.simData["account-category"] == "I") || ($scope.offerType == "C" && $scope.shopType == "0")) {
+            if (($scope.offerType == "U" && $scope.data.simData["account-category"] == "I") || ($scope.offerType == "D" && $scope.data.simData["account-category"] == "I") || $scope.shopType == "0") {
                 //hide มอบอำนาจ
                 $('#divShowAuthorize').hide();
                 $('#authorize').prop('checked', false);
