@@ -1221,6 +1221,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             'ACTION-LEVEL': "SUBSCRIBER"
         };
 
+        if ($('#CitizenID2').val() && $('#authorizeFullName').val()) {
+            data['POA'] = {
+                "id-number": $('#CitizenID2').val(),
+                "firstname": $('#authorizeFullName').val(),
+                "lastname": $('#authorizeFullName').val()
+            };
+        }
+
         var orderItem = [];
         if ($scope.offerType == "C") {
             for (var i = 0; i < $scope.addNewOfferLists.length; i++) {

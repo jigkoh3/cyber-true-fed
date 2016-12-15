@@ -296,6 +296,12 @@
             'user-id': payload.saleAgent.logInName,
             'approver': payload.approver
         };
+
+        if (payload.POA) {
+            request.order.customer['customer-agents'] = {
+                'POA': payload.POA
+            };
+        }
         console.log(request);
         var cb = function(result) {
             var displayMsg = utils.getObject(result.data, 'display-messages.0');
