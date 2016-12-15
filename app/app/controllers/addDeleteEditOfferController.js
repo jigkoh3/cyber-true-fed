@@ -2519,43 +2519,44 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             if (msg && msg.length > 0) {
 
                 // ============================พักไว้ก่อนหลังบ้านไม่รองรับ 20161215 ======================================
-                
+
                 // if (msg[0]["message-code"] == "OFFER-VALIDATION-1003" || msg[0]["message-code"] == "OFFER-VALIDATION-1001") {
-                //     SystemService.showAlertAddDiscountOffer({
-                //         "message": msg[0]["message"],
-                //         "message-code": msg[0]["message-code"],
-                //         "message-type": "WARNING",
-                //         "en-message": msg[0]["en-message"],
-                //         "th-message": msg[0]["th-message"],
-                //         "technical-message": msg[0]["technical-message"]
-                //     });
+                if (msg[0]["message-code"] == "OFFER-VALIDATION-1003") {
+                    SystemService.showAlertAddDiscountOffer({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
 
-                //     var technicalMessage = msg[0]["technical-message"];
-                //     var a = technicalMessage.indexOf("(");
-                //     var b = technicalMessage.indexOf(")");
-                //     var c = technicalMessage.slice(parseInt(a) + 1, b);
-                //     var oldOffer = c.split(":");
-                //     $scope.oldOfferName = oldOffer[1];
-                //     console.log($scope.oldOfferName);
-                // } else {
-                //     SystemService.showAlert({
-                //         "message": msg[0]["message"],
-                //         "message-code": msg[0]["message-code"],
-                //         "message-type": "WARNING",
-                //         "en-message": msg[0]["en-message"],
-                //         "th-message": msg[0]["th-message"],
-                //         "technical-message": msg[0]["technical-message"]
-                //     });
-                // }
+                    var technicalMessage = msg[0]["technical-message"];
+                    var a = technicalMessage.indexOf("(");
+                    var b = technicalMessage.indexOf(")");
+                    var c = technicalMessage.slice(parseInt(a) + 1, b);
+                    var oldOffer = c.split(":");
+                    $scope.oldOfferName = oldOffer[1];
+                    console.log($scope.oldOfferName);
+                } else {
+                    SystemService.showAlert({
+                        "message": msg[0]["message"],
+                        "message-code": msg[0]["message-code"],
+                        "message-type": "WARNING",
+                        "en-message": msg[0]["en-message"],
+                        "th-message": msg[0]["th-message"],
+                        "technical-message": msg[0]["technical-message"]
+                    });
+                }
 
-                SystemService.showAlert({
-                    "message": msg[0]["message"],
-                    "message-code": msg[0]["message-code"],
-                    "message-type": "WARNING",
-                    "en-message": msg[0]["en-message"],
-                    "th-message": msg[0]["th-message"],
-                    "technical-message": msg[0]["technical-message"]
-                });
+                // SystemService.showAlert({
+                //     "message": msg[0]["message"],
+                //     "message-code": msg[0]["message-code"],
+                //     "message-type": "WARNING",
+                //     "en-message": msg[0]["en-message"],
+                //     "th-message": msg[0]["th-message"],
+                //     "technical-message": msg[0]["technical-message"]
+                // });
                 return;
             }
 
