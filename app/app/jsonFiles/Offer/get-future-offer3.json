@@ -92,6 +92,7 @@
                 "product-properties": {
                     "FUTURE-SOC-ID": "559884",
                     "AGREEMENT-ID": "1158914",
+                    "FUTURE-ORDER-ID": "00000",
                     "ALLOW-DELETE": "TRUE",
                     "FUTURE-SOURCE": "REQUEST",
                     "REMARK": "",
@@ -117,6 +118,7 @@
                 "product-properties": {
                     "FUTURE-SOC-ID": "591151",
                     "AGREEMENT-ID": "1158914",
+                    "OFFER-INSTANCE-ID": "55555",
                     "ALLOW-DELETE": "TRUE",
                     "FUTURE-SOURCE": "REQUEST",
                     "REMARK": "",

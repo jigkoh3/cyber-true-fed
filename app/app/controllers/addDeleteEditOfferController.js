@@ -1421,26 +1421,27 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }
             if ($scope.deleteFutureOfferList.length > 0) {
                 var orderByFutureOrderId = [{
-                    "FUTURE-ORDER-ID": $scope.deleteFutureOfferList[0]["product-properties"]["FUTURE-ORDER-ID"],
-                    "offer": [$scope.deleteFutureOfferList[0]]
+                    // "FUTURE-ORDER-ID": $scope.deleteFutureOfferList[0]["product-properties"]["FUTURE-ORDER-ID"],
+                    // "offer": [$scope.deleteFutureOfferList[0]]
+                    "offer": $scope.deleteFutureOfferList
                 }];
 
-                for (var i = 1; i < $scope.deleteFutureOfferList.length; i++) {
-                    var findByFutureOrderId = $filter('filter')(orderByFutureOrderId, $scope.deleteFutureOfferList[i]["product-properties"]["FUTURE-ORDER-ID"]);
+                // for (var i = 1; i < $scope.deleteFutureOfferList.length; i++) {
+                //     var findByFutureOrderId = $filter('filter')(orderByFutureOrderId, $scope.deleteFutureOfferList[i]["product-properties"]["FUTURE-ORDER-ID"]);
 
-                    if (findByFutureOrderId.length > 0) {
-                        for (var j = 0; j < orderByFutureOrderId.length; j++) {
-                            if ($scope.deleteFutureOfferList[i]["product-properties"]["FUTURE-ORDER-ID"] == orderByFutureOrderId[j]["FUTURE-ORDER-ID"]) {
-                                orderByFutureOrderId[j]["offer"].push($scope.deleteFutureOfferList[i]);
-                            }
-                        }
-                    } else {
-                        orderByFutureOrderId.push({
-                            "FUTURE-ORDER-ID": $scope.deleteFutureOfferList[i]["product-properties"]["FUTURE-ORDER-ID"],
-                            "offer": [$scope.deleteFutureOfferList[i]]
-                        });
-                    }
-                }
+                //     if (findByFutureOrderId.length > 0) {
+                //         for (var j = 0; j < orderByFutureOrderId.length; j++) {
+                //             if ($scope.deleteFutureOfferList[i]["product-properties"]["FUTURE-ORDER-ID"] == orderByFutureOrderId[j]["FUTURE-ORDER-ID"]) {
+                //                 orderByFutureOrderId[j]["offer"].push($scope.deleteFutureOfferList[i]);
+                //             }
+                //         }
+                //     } else {
+                //         orderByFutureOrderId.push({
+                //             "FUTURE-ORDER-ID": $scope.deleteFutureOfferList[i]["product-properties"]["FUTURE-ORDER-ID"],
+                //             "offer": [$scope.deleteFutureOfferList[i]]
+                //         });
+                //     }
+                // }
                 console.log(orderByFutureOrderId);
 
                 for (var i = 0; i < orderByFutureOrderId.length; i++) {
@@ -1461,7 +1462,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         data2['offer']["OFFER-" + j + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
                         data2['offer']["OFFER-" + j + "-FUTURE-SOC-ID"] = orderByFutureOrderId[i]["offer"][j]["product-properties"]["FUTURE-SOC-ID"];
                         data2['offer']["OFFER-" + j + "-EFFECTIVE-DATE"] = $scope.setDateNow;
-                        data2['offer']["FUTURE-ORDER-ID"] = orderByFutureOrderId[i]["FUTURE-ORDER-ID"];
+                        // data2['offer']["OFFER-" + j + "-FUTURE-ORDER-ID"] = orderByFutureOrderId[i]["offer"][j]["product-properties"]["FUTURE-ORDER-ID"];
+                        // data2['offer']["FUTURE-ORDER-ID"] = orderByFutureOrderId[i]["offer"][j]["product-properties"]["FUTURE-ORDER-ID"];
+                        if (orderByFutureOrderId[i]["offer"][j]["product-properties"]["FUTURE-ORDER-ID"]) {
+                            data2['offer']["OFFER-" + j + "-FUTURE-ORDER-ID"] = orderByFutureOrderId[i]["offer"][j]["product-properties"]["FUTURE-ORDER-ID"];
+                        } else if (orderByFutureOrderId[i]["offer"][j]["product-properties"]["OFFER-INSTANCE-ID"]) {
+                            data2['offer']["OFFER-" + j + "-OFFER-INSTANCE-ID"] = orderByFutureOrderId[i]["offer"][j]["product-properties"]["OFFER-INSTANCE-ID"];
+                        }
                     }
                     orderItem.push({
                         'product-category': data2.productDetails['product-category'],
