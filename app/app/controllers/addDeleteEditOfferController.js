@@ -4003,4 +4003,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $("#addNewOfferExpirationDate2").datepicker("setDate", disDateParam);
         }
     };
+    $scope.capmaxSpecify = "";
+    $scope.chkInputCapmax = function(capmaxSpecify, selectedValue, name) {
+        if (capmaxSpecify && selectedValue == '' && (name == 'Volume cap max' || name == 'Monetary cap max' || name == 'Occurrence cap max' || name == 'Duration cap max')) {
+            $scope.disableSubmitAddOffer = false;
+        } else {
+            $scope.validateAddAD();
+        }
+    };
 });
