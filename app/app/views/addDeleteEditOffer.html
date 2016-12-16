@@ -834,10 +834,10 @@
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group has-feedback">
-                                    <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD();">
+                                    <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD();" ng-disabled="item['name'] == 'Agreement level offer instance ID'">
                                     <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-for-capmax="{{item['name']}}" ng-keyup="validateAddAD();">
                                     <span ng-span-number-for-capmax="{{item['name']}}" class="hide" style="color:red;">
-                                        กรุณาระบุตัวเลข -1 -2 และมากกว่า 0 เท่านั้น
+                                        กรุณาระบุตัวเลข -1 -2 และมากกว่าหรือเท่ากับ 0 เท่านั้น
                                     </span>
                                     <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD();"></select>
                                 </div>
@@ -1356,143 +1356,141 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-show="dataForEdit.group=='CONTRACT_PROPO'" style="padding: 20px;">
-                            <div class="form-group">
-                                <div style="font-size: 1.23em; font-weight: bold; padding-left: 100px;">Offer Parameter</div>
+                    </div>
+                    <div ng-show="dataForEdit.group=='CONTRACT_PROPO'" style="padding: 20px;">
+                        <div class="form-group">
+                            <div style="font-size: 1.23em; font-weight: bold; padding-left: 100px;">Offer Parameter</div>
+                        </div>
+                        &nbsp;
+                        <div class="form-group row">
+                            <div class="col-xs-1">
                             </div>
-                            &nbsp;
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Proposition Code</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input ng-disabled="true" type="text" ng-model="dataForEdit.name" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Proposition Code</label>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Proposition Description</label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input ng-disabled="true" type="text" ng-model="dataForEdit.description" class="form-control">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
+                            <div class="col-xs-4">
+                                <input ng-disabled="true" type="text" ng-model="dataForEdit.name" class="form-control">
                             </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Contract Number</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="dataForEdit.param['contract-number']" class="form-control" ng-keyup="validateAddCp('edit')">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Term</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="dataForEdit.param.term" class="form-control" ng-number-only="inputCpTerm" disabled>
-                                    <span ng-span-number-only="inputCpTerm" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Fee</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="text" ng-model="dataForEdit.param.fee" class="form-control" id="cpFee" ng-number-only="inputCpFee" disabled>
-                                    <span ng-span-number-only="inputCpFee" class="hide" style="color:red;">
-                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                                    </span>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Start Date</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="editCpStartDate" ng-model="dataForEdit.param['start-date']" class="form-control date-picker-today-en dateFormat" maxlength="10" requireds ng-keyup="validateAddCp('edit')">
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Expiration Date</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="has-feedback">
-                                        <input name="birthDay" type="text" id="editCpExpirationDate" ng-model="dataForEdit.param['expiration-date']" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp('edit')" ng-click="setDatepickerValue();" ng-disabled="dataForEdit.disableExpDateCp">
-                                        <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>Remark</label><span style="color: red">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <input name="cpRemark" type="text" ng-model="dataForEdit.param['remark']" class="form-control" ng-keyup="validateAddCp('edit')">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
+                            <div class="col-xs-2">
                             </div>
                         </div>
-                        <div ng-show="dataForEdit.group!='CUG' && dataForEdit.group!='FF' && dataForEdit.group!='CONTRACT_PROPO'" style="padding: 20px;">
-                            <div class="form-group row" ng-repeat="item in dataForEdit['parameter-specifications']">
-                                <div class="col-xs-1">
-                                </div>
-                                <div class="col-xs-4" style=" text-align: right; top: 5px;">
-                                    <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="form-group has-feedback">
-                                        <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD('edit');">
-                                        <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-only="{{item['name']}}" ng-keyup="validateAddAD('edit');">
-                                        <span ng-span-number-only="{{item['name']}}" class="hide" style="color:red;">
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Proposition Description</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <input ng-disabled="true" type="text" ng-model="dataForEdit.description" class="form-control">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Contract Number</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" ng-model="dataForEdit.param['contract-number']" class="form-control" ng-keyup="validateAddCp('edit')">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Term</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" ng-model="dataForEdit.param.term" class="form-control" ng-number-only="inputCpTerm" disabled>
+                                <span ng-span-number-only="inputCpTerm" class="hide" style="color:red;">
                                         กรุณากรอกเฉพาะตัวเลขเท่านั้น
                                     </span>
-                                        <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD('edit');"></select>
-                                    </div>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Fee</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" ng-model="dataForEdit.param.fee" class="form-control" id="cpFee" ng-number-only="inputCpFee" disabled>
+                                <span ng-span-number-only="inputCpFee" class="hide" style="color:red;">
+                                        กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                                    </span>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Start Date</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="has-feedback">
+                                    <input name="birthDay" type="text" id="editCpStartDate" ng-model="dataForEdit.param['start-date']" class="form-control date-picker-today-en dateFormat" maxlength="10" requireds ng-keyup="validateAddCp('edit')">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <div class="col-xs-2"></div>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Expiration Date</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="has-feedback">
+                                    <input name="birthDay" type="text" id="editCpExpirationDate" ng-model="dataForEdit.param['expiration-date']" class="form-control date-picker-today-en dateFormat" maxlength="10" required ng-keyup="validateAddCp('edit')" ng-click="setDatepickerValue();" ng-disabled="dataForEdit.disableExpDateCp">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>Remark</label><span style="color: red">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input name="cpRemark" type="text" ng-model="dataForEdit.param['remark']" class="form-control" ng-keyup="validateAddCp('edit')">
+                            </div>
+                            <div class="col-xs-2">
                             </div>
                         </div>
                     </div>
-                    <!-- <br> -->
-                    <!-- <br> -->
+                    <div ng-show="dataForEdit.group!='CUG' && dataForEdit.group!='FF' && dataForEdit.group!='CONTRACT_PROPO'" style="padding: 20px;">
+                        <div class="form-group row" ng-repeat="item in dataForEdit['parameter-specifications']">
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-4" style=" text-align: right; top: 5px;">
+                                <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group has-feedback">
+                                    <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD('edit');" ng-disabled="item['name'] == 'Agreement level offer instance ID'">
+                                    <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-for-capmax="{{item['name']}}" ng-keyup="validateAddAD('edit');">
+                                    <span ng-span-number-for-capmax="{{item['name']}}" class="hide" style="color:red;">
+                                        กรุณาระบุตัวเลข -1 -2 และมากกว่าหรือเท่ากับ 0 เท่านั้น
+                                    </span>
+                                    <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD('edit');"></select>
+                                </div>
+                            </div>
+                            <div class="col-xs-2"></div>
+                        </div>
+                    </div>
                     <div style="border-top: 1px solid #e5e5e5;" ng-hide="dataForEdit['type'] == 'editRelate' || dataForEdit.group=='CONTRACT_PROPO'">
                         <br>
                         <div class="form-group" ng-show="dataForEdit.group == 'DISCOUNT'">
