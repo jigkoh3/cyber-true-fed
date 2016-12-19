@@ -1272,6 +1272,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                     data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["cug-group-id"];
                                 } else {
                                     var paramValue = $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] ? $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] : $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"];
+                                    if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"] == '') {
+                                        paramValue = $scope.addNewOfferLists[i]["parameter-specifications"][j]["capmax-specify"];
+                                    }
                                     data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + paramValue;
                                 }
                             }
@@ -1305,6 +1308,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         //     break;
 
                     case "CONTRACT_PROPO":
+                        delete data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"];
+                        delete data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"];
+                        delete data['offer']["OFFER-" + i + "-EXPIRE-DATE"];
+                        delete data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"];
                         if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
                             data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
                             for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
@@ -1537,6 +1544,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                     data['offer']["OFFER-" + i + "-PARAM-SIZE"] = editExistingOfferList[i]["parameter-specifications"].length;
                                     for (var j = 0; j < editExistingOfferList[i]["parameter-specifications"].length; j++) {
                                         var paramValue = editExistingOfferList[i]["parameter-specifications"][j]["value"]["id"] ? editExistingOfferList[i]["parameter-specifications"][j]["value"]["id"] : editExistingOfferList[i]["parameter-specifications"][j]["value"];
+                                        if (editExistingOfferList[i]["parameter-specifications"][j]["value"] == "") {
+                                            paramValue = editExistingOfferList[i]["parameter-specifications"][j]["capmax-specify"]
+                                        }
                                         data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + paramValue;
                                     }
                                 }
@@ -2206,8 +2216,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     }
 
     $scope.modelChange = false;
-    $scope.onModelChange = function(group) {
+    $scope.onModelChange = function(group, model) {
         if ($scope.editExpType == "FUTURE" && $scope.paramForEdit['expiration-date'] == "") {
+            $scope.modelChange = false;
+        } else if (model == '') {
             $scope.modelChange = false;
         } else {
             $scope.modelChange = true;

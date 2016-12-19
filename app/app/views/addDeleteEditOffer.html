@@ -832,17 +832,18 @@
                             <div class="col-xs-4" style=" text-align: right; top: 5px;">
                                 <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
                             </div>
-                            <div class="col-xs-4" ng-hide="item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max'" >
+                            <div class="col-xs-4" ng-hide="item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max'">
                                 <div class="form-group has-feedback">
                                     <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD();" ng-disabled="item['name'] == 'Agreement level offer instance ID'">
-                                    <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-for-capmax="{{item['name']}}" ng-keyup="validateAddAD();" ng-disabled="item['name'] == 'Agreement level offer instance ID'">
-                                    <span ng-span-number-for-capmax="{{item['name']}}" class="hide" style="color:red;">
+                                    <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-numeric="{{item['name']}}" ng-keyup="validateAddAD();" ng-disabled="item['name'] == 'Agreement level offer instance ID'">
+                                    <!-- <span ng-span-number-for-capmax="{{item['name']}}" class="hide" style="color:red;">
                                         กรุณาระบุตัวเลข -1 -2 และมากกว่าหรือเท่ากับ 0 เท่านั้น
-                                    </span>
+                                    </span> -->
+                                    <span ng-span-numeric="{{item['name']}}" class="hide" style="color:red;">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
                                     <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD();"></select>
                                 </div>
                             </div>
-                            <div class="col-xs-5" ng-if="item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max'" >
+                            <div class="col-xs-5" ng-if="item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max'">
                                 <select ng-model="item['select-value']" class="form-control" ng-change="validateAddAD(); item['capmax-specify']=''">
                                     <option value="-2">ใช้ค่า Default จากระบบ</option>
                                     <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
@@ -1483,23 +1484,35 @@
                         </div>
                     </div>
                     <div ng-show="dataForEdit.group!='CUG' && dataForEdit.group!='FF' && dataForEdit.group!='CONTRACT_PROPO'" style="padding: 20px;">
-                        <div class="form-group row" ng-repeat="item in dataForEdit['parameter-specifications']">
+                        <div class="form-group row" ng-repeat="item in dataForEdit['parameter-specifications'] | orderBy: 'name'">
                             <div class="col-xs-1">
                             </div>
                             <div class="col-xs-4" style=" text-align: right; top: 5px;">
                                 <label>{{item['name']}}</label> <span ng-if="item['required']==true" style="color:red;">*</span>
                             </div>
-                            <div class="col-xs-4">
+                            <div class="col-xs-4" ng-hide="item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max'">
                                 <div class="form-group has-feedback">
                                     <input ng-if="item['data-type']=='TEXT'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-keyup="validateAddAD('edit');" ng-disabled="item['name'] == 'Agreement level offer instance ID'">
-                                    <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-number-for-capmax="{{item['name']}}" ng-keyup="validateAddAD('edit');">
-                                    <span ng-span-number-for-capmax="{{item['name']}}" class="hide" style="color:red;">
+                                    <input ng-if="item['data-type']=='NUMBER'&&!item['valid-values']" type="text" ng-model="item['select-value']" class="form-control" ng-numeric="{{item['name']}}" ng-keyup="validateAddAD('edit');" ng-disabled="item['name'] == 'Agreement level offer instance ID'">
+                                    <!-- <span ng-span-number-for-capmax="{{item['name']}}" class="hide" style="color:red;">
                                         กรุณาระบุตัวเลข -1 -2 และมากกว่าหรือเท่ากับ 0 เท่านั้น
-                                    </span>
+                                    </span> -->
+                                    <span ng-span-numeric="{{item['name']}}" class="hide" style="color:red;">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
                                     <select ng-if="item['data-type']=='TEXT'&&item['valid-values']" class="form-control" ng-options="option.value for option in item['option-values'] track by option.id" ng-model="item['select-value']" ng-change="validateAddAD('edit');"></select>
                                 </div>
                             </div>
-                            <div class="col-xs-2"></div>
+                            <div class="col-xs-5" ng-if="item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max'">
+                                <select ng-model="item['select-value']" class="form-control" ng-change="validateAddAD('edit'); item['capmax-specify']=''">
+                                    <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                    <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                    <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
+                                    <option value="0">Not Allow</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="text" class="form-control" ng-model="item['capmax-specify']" ng-show="item['select-value']=='' && (item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max')" ng-numeric="{{item['name']}}" maxlength="10" ng-keyup="chkInputCapmax(item['capmax-specify'], item['select-value'], item['name']);"> <span ng-span-numeric="{{item['name']}}" class="hide" style="color:red;">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
+                                <input type="text" class="form-control" ng-model="item['select-value']" ng-show="item['select-value']!='' && (item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max')" disabled>
+                            </div>
                         </div>
                     </div>
                     <div style="border-top: 1px solid #e5e5e5;" ng-hide="dataForEdit['type'] == 'editRelate' || dataForEdit.group=='CONTRACT_PROPO'">
@@ -1692,7 +1705,7 @@
                             </div>
                         </div>&nbsp;
                     </div>
-                    <div ng-repeat="item in paramForEdit['param-detail']" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']!='PROPOSITION' && viewOfferForEdit['offer-group']!='FF' && viewOfferForEdit['offer-group']!='CUG'">
+                    <div ng-repeat="item in paramForEdit['param-detail'] | orderBy: 'name'" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']!='PROPOSITION' && viewOfferForEdit['offer-group']!='FF' && viewOfferForEdit['offer-group']!='CUG'">
                         <div calss="form-group">
                             <div class="row">
                                 <div class="col-md-1">
@@ -1700,14 +1713,24 @@
                                 <div class="col-md-4 text-right" style="top: 5px;">
                                     <label>{{item.name}}<span style="color:red">*</span></label>
                                 </div>
-                                <div class="col-md-3">
-                                    <input ng-if="item.name!='TR_ACTUAL_CONTRACT_START_DATE'&&item.name!='TR_ORIG_CONTRACT_EXPIRE_DATE'" type="text" id="{{item.name}}" ng-model="item.value" class="form-control" ng-change="onModelChange();" mg-disable="item.name == 'Agreement level offer instance ID'">
+                                <div class="col-md-3" ng-hide="item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max'">
+                                    <input ng-if="item.name!='TR_ACTUAL_CONTRACT_START_DATE'&&item.name!='TR_ORIG_CONTRACT_EXPIRE_DATE'" type="text" id="{{item.name}}" ng-model="item.value" class="form-control" ng-change="onModelChange();" ng-disable="item.name == 'Agreement level offer instance ID'">
                                     <div ng-if="item.name=='TR_ACTUAL_CONTRACT_START_DATE'||item.name=='TR_ORIG_CONTRACT_EXPIRE_DATE'" class="form-group has-feedback imp" style="top:5px;">
                                         <input type="text" ng-model="item.value" id="{{item.name}}" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-click="setDatepicker(item.name, item.value);" ng-disabled="item.name=='TR_ACTUAL_CONTRACT_START_DATE'">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-xs-5" ng-if="item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max'">
+                                    <select ng-model="item['value']" class="form-control" ng-change="onModelChange('', item['value']); item['capmax-specify']=''">
+                                        <option value="-2">ใช้ค่า Default จากระบบ</option>
+                                        <option value="-1">สามารถใช้ Bundle ได้ไม่จำกัดจำนวน (Unlimited Capping)</option>
+                                        <option value="">สามารถใช้ Bundle ได้ตามจำนวนที่ระบุเท่านั้น (Limited Capping)</option>
+                                        <option value="0">Not Allow</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <input type="text" class="form-control" ng-model="item['capmax-specify']" ng-show="item['value']=='' && (item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max')" ng-numeric="{{item['name']}}" maxlength="10" ng-keyup="onModelChange('', item['capmax-specify']);"> <span ng-span-numeric="{{item['name']}}" class="hide" style="color:red;">กรุณากรอกเฉพาะตัวเลขเท่านั้น</span>
+                                    <input type="text" class="form-control" ng-model="item['value']" ng-show="item['value']!='' && (item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max')" disabled>
                                 </div>
                             </div> &nbsp;
                         </div>
