@@ -2726,7 +2726,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $('#addNewOfferEffectiveDate').val($scope.addNewOfferEffectiveDate);
             $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], "");
             if ($scope.selectedOffer.group == "DISCOUNT") {
-                $scope.setEndDateValue($scope.firstDiscountBill);
+                // $scope.setEndDateValue($scope.firstDiscountBill);
+                var disDateParam = new Date(SystemService.convertDataMMDDYYYYEN($scope.firstDiscountBill));
+                disDateParam.setMonth(disDateParam.getMonth() + (Number($scope.selectedOffer.properties["DURATION"]) - 1));
+                // $("#addNewOfferExpirationDate").datepicker("setDate", param);
+                $("#addNewOfferExpirationDate2").datepicker("setDate", disDateParam);
             } else {
                 $scope.setEndDateValue($scope.setDateNow);
             }
