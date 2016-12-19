@@ -1714,7 +1714,7 @@
                                     <label>{{item.name}}<span style="color:red">*</span></label>
                                 </div>
                                 <div class="col-md-3" ng-hide="item['name']=='Volume cap max' || item['name']=='Monetary cap max' || item['name']=='Occurrence cap max' || item['name']=='Duration cap max'">
-                                    <input ng-if="item.name!='TR_ACTUAL_CONTRACT_START_DATE'&&item.name!='TR_ORIG_CONTRACT_EXPIRE_DATE'" type="text" id="{{item.name}}" ng-model="item.value" class="form-control" ng-change="onModelChange();" ng-disable="item.name == 'Agreement level offer instance ID'">
+                                    <input ng-if="item.name!='TR_ACTUAL_CONTRACT_START_DATE'&&item.name!='TR_ORIG_CONTRACT_EXPIRE_DATE'" type="text" id="{{item.name}}" ng-model="item.value" class="form-control" ng-change="onModelChange();" ng-disabled="item.name == 'Agreement level offer instance ID'">
                                     <div ng-if="item.name=='TR_ACTUAL_CONTRACT_START_DATE'||item.name=='TR_ORIG_CONTRACT_EXPIRE_DATE'" class="form-group has-feedback imp" style="top:5px;">
                                         <input type="text" ng-model="item.value" id="{{item.name}}" class="form-control dateManual date-picker-start-en dateFormat" maxlength="10" style="margin-top: -9px;" ng-click="setDatepicker(item.name, item.value);" ng-disabled="item.name=='TR_ACTUAL_CONTRACT_START_DATE'">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
