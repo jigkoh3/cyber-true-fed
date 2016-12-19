@@ -349,7 +349,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         $scope.cpExpireDate = $scope.cpStartDate;
                         $('#cpExpireDate').val($scope.cpExpireDate);
                         var dateToSet = $scope.cpExpireDate.split("/");
-                        $('#cpExpireDate').datepicker("setDate", new Date(dateToSet[2], Number(dateToSet[1]) - 1, Number(dateToSet[0])));
+                        $('#cpExpireDate').datepicker("setDate", new Date(2099, Number(dateToSet[1]) - 1, Number(dateToSet[0])));
                     } else {
                         var currentDate = new Date();
                         currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));
@@ -755,6 +755,37 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     $scope.viewOfferForEdit["properties"]["MAX_DURATION"] = "24";
                 };
             });
+        } else if (item.group == "POOLING" && action == "edit") {
+            SystemService.showLoading();
+            AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
+                SystemService.hideLoading();
+                if (response.data["response-data"]) {
+                    for (var i = 0; i < response.data["response-data"]["parameter-specifications"].length; i++) {
+                        for (var j = 0; j < $scope.paramForEdit["param-detail"].length; j++) {
+                            if (response.data["response-data"]["parameter-specifications"][i].name == $scope.paramForEdit["param-detail"][j].name && response.data["response-data"]["parameter-specifications"][i]["valid-values"]) {
+                                $scope.paramForEdit["param-detail"][j]["valid-values"] = response.data["response-data"]["parameter-specifications"][i]["valid-values"];
+                                $scope.paramForEdit["param-detail"][j]["default-value"] = response.data["response-data"]["parameter-specifications"][i]["default-value"];
+                                var optionParam = $filter('filter')($scope.paramForEdit['param-detail'][j]['valid-values']);
+                                $scope.paramForEdit['param-detail'][j]['option-values'] = [];
+                                if (optionParam) {
+                                    $.each(optionParam, function(key, value) {
+                                        var item = {
+                                            "id": key,
+                                            "value": value
+                                        };
+                                        $scope.paramForEdit['param-detail'][j]['option-values'].push(item);
+                                    });
+                                    var defaultItem = $filter('filter')($scope.paramForEdit['param-detail'][j]['option-values'], { "id": $scope.paramForEdit["param-detail"][j]["default-value"] });
+                                    var index = $scope.paramForEdit['param-detail'][j]['option-values'].indexOf(defaultItem[0]);
+                                    $scope.paramForEdit['param-detail'][j]['select-value'] = $scope.paramForEdit['param-detail'][j]['option-values'][index];
+                                    $scope.paramForEdit["param-detail"][j]["value"] = $scope.paramForEdit['param-detail'][j]['select-value'];
+                                    console.log($scope.paramForEdit["param-detail"][j]["value"]);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         setTimeout(function() {
@@ -782,6 +813,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }, 2000);
         console.log($scope.viewOffer);
         console.log($scope.viewOfferForEdit);
+        console.log($scope.paramForEdit);
     };
 
     $scope.onEditCurrentOffer = function(productName) {
@@ -2871,7 +2903,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.cpExpireDate = $scope.cpStartDate;
                 $('#cpExpireDate').val($scope.cpExpireDate);
                 var dateToSet = $scope.cpExpireDate.split("/");
-                $('#cpExpireDate').datepicker("setDate", new Date(dateToSet[2], Number(dateToSet[1]) - 1, Number(dateToSet[0])));
+                $('#cpExpireDate').datepicker("setDate", new Date(2099, Number(dateToSet[1]) - 1, Number(dateToSet[0])));
             } else {
                 var currentDate = new Date(SystemService.convertDataMMDDYYYYEN($scope.cpStartDate));
                 currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));

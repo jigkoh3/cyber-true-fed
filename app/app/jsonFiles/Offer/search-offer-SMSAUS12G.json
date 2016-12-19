@@ -1,0 +1,56 @@
+{
+    "status": "SUCCESSFUL",
+    "trx-id": "4P9M3NWI6SH91",
+    "process-instance": "tmsapnpr1 (instance: SFF_node2)",
+    "response-data": {
+        "name": "SMSAUS12G",
+        "description": "B&E Pool SMS(P2P) 10sms",
+        "soc": "11245212",
+        "properties": {
+            "TR_SPECIAL_OFFER_IND": "PLG",
+            "OFFER_TYPE": "PL"
+        },
+        "group": "POOLING",
+        "soc-type": "U",
+        "sale-period": {
+            "start": "2015-11-04",
+            "end": "2250-08-08"
+        },
+        "rc": 0,
+        "max-instance-allow": 99,
+        "service-level": "C",
+        "parameter-specifications": [{
+            "name": "Occurrence cap max",
+            "required": true,
+            "min": 1,
+            "max": 1,
+            "data-type": "NUMBER",
+            "default-value": "-2"
+        }, {
+            "name": "Agreement level offer instance ID",
+            "required": true,
+            "min": 1,
+            "max": 1,
+            "data-type": "NUMBER",
+            "default-value": "0"
+        }, {
+            "name": "Volume cap max UOM",
+            "required": true,
+            "min": 1,
+            "max": 1,
+            "data-type": "TEXT",
+            "default-value": "MB",
+            "valid-values": {
+                "KB": "KiloBytes",
+                "B": "Bytes",
+                "GB": "GigaBytes",
+                "TB": "TeraBytes",
+                "MB": "MegaBytes"
+            }
+        }],
+        "available-groups": [
+            "ADDITIONAL",
+            "POOLING"
+        ]
+    }
+}

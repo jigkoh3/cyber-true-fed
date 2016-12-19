@@ -13,10 +13,11 @@
                 "service-level": "C",
                 "product-soc-code": "11245212",
                 "product-properties": {
-                    "PARAM-SIZE": "2",
+                    "PARAM-SIZE": "3",
                     "AGREEMENT-ID": "1158081",
                     "PARAM-0": "201184281|Agreement level offer instance ID|0",
                     "PARAM-1": "201184280|Occurrence cap max|-2",
+                    "PARAM-2": "201184279|Volume cap max UOM|MB",
                     "OFFER-INSTANCE-ID": "580176"
                 },
                 "product-id-name": "MSISDN",
