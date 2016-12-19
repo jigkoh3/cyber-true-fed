@@ -2725,7 +2725,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.addNewOfferEffectiveDate = "";
             $('#addNewOfferEffectiveDate').val($scope.addNewOfferEffectiveDate);
             $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], "");
-            $scope.setEndDateValue($scope.setDateNow);
+            if ($scope.selectedOffer.group == "DISCOUNT") {
+                $scope.setEndDateValue($scope.firstDiscountBill);
+            } else {
+                $scope.setEndDateValue($scope.setDateNow);
+            }
         }
 
         $scope.chkValueAddNewOffer();
