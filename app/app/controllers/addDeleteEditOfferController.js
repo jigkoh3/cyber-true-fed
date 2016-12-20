@@ -2545,6 +2545,21 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.newOffer = [];
     $scope.currentOfferParam = ""
     $scope.validateOffer = function(item) {
+        if (item.group == "DISCOUNT") {
+            for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
+                if ($scope.addNewOfferLists[i]["properties"]["DISCOUNT_GROUP"] == "NORMAL") {
+                    SystemService.showAlert({
+                        "message": "Sorry, Discount " + item.name + " is not eligible. It is already select discount " + $scope.addNewOfferLists[i]["name"] + ".",
+                        "message-code": "",
+                        "message-type": "WARNING",
+                        "en-message": "Sorry, Discount " + item.name + " is not eligible. It is already select discount " + $scope.addNewOfferLists[i]["name"] + ".",
+                        "th-message": "ขออภัยค่ะ ระบบไม่อนุญาตให้ทำการเลือกส่วนลด " + item.name + " ได้ในทันที เนื่องจากเลขหมายนี้มีการเลือกส่วนลด " + $scope.addNewOfferLists[i]["name"] + " อยู่แล้ว.",
+                        "technical-message": "From WEBUI"
+                    });
+                    return;
+                }
+            }
+        }
         SystemService.showLoading();
         $scope.oldOfferName = "";
         $scope.currentOfferParam = "";
