@@ -3561,12 +3561,23 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     $scope.futureOfferList[i]["selected"] = false;
                     $scope.futureOfferList[i]["edited"] = false;
                     $scope.futureOfferList[i]["guID"] = SystemService.guid();
+                    $scope.futureOfferList[i]["canEdit"] = false;
+                    $scope.futureOfferList[i]["canDelete"] = false;
+                    $scope.futureOfferList[i]["canEditExpireDate"] = true;
+
+                    if ($scope.futureOfferList[i]["product-properties"]["PROVISIONING-SYSTEM"] == "OMX") {
+                        $scope.futureOfferList[i]["canEdit"] = true;
+                    }
+
+                    if ($scope.futureOfferList[i]["product-properties"]["ALLOW-DELETE"] == "TRUE") {
+                        $scope.futureOfferList[i]["canDelete"] = true;
+                    }
                 }
                 $scope.tempFutureOfferList = angular.copy($scope.futureOfferList);
                 $scope.futureOfferList = $filter('filter')($scope.tempFutureOfferList, "ADD OFFER");
                 $scope.removeFutureOfferList = $filter('filter')($scope.tempFutureOfferList, "REMOVE OFFER");
 
-                for (var i = 0; i < $scope.tempFutureOfferList.length; i++) {
+                for (var i = 0; i < $scope.existingOffer.length; i++) {
                     for (var j = 0; j < $scope.tempFutureOfferList.length; j++) {
                         if (($scope.existingOffer[i]["product-soc-code"] == $scope.tempFutureOfferList[j]["product-soc-code"]) && $scope.tempFutureOfferList[j]["product-properties"]["FUTURE-ORDER-ID"]) {
                             $scope.existingOffer[i]["product-properties"]["FUTURE-ORDER-ID"] = $scope.tempFutureOfferList[j]["product-properties"]["FUTURE-ORDER-ID"];
@@ -3846,27 +3857,28 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
             }
 
-            for (var i = 0; i < $scope.futureOfferList.length; i++) {
-                var name = $scope.futureOfferList[i]["product-name"];
-                $scope.futureOfferList[i]["canEdit"] = false;
-                $scope.futureOfferList[i]["canDelete"] = false;
-                $scope.futureOfferList[i]["canEditExpireDate"] = true;
-                if ($scope.validateModifyOfferList[name]) {
-                    for (var j = 0; j < $scope.validateModifyOfferList[name].length; j++) {
-                        if ($scope.validateModifyOfferList[name][j] == "EDIT") {
-                            $scope.futureOfferList[i]["canEdit"] = true;
-                        }
+            // Update 20161220 เปลี่ยนไปยึดค่าจาก getFutureOffer แทน
+            // for (var i = 0; i < $scope.futureOfferList.length; i++) {
+            //     var name = $scope.futureOfferList[i]["product-name"];
+            //     $scope.futureOfferList[i]["canEdit"] = false;
+            //     $scope.futureOfferList[i]["canDelete"] = false;
+            //     $scope.futureOfferList[i]["canEditExpireDate"] = true;
+            //     if ($scope.validateModifyOfferList[name]) {
+            //         for (var j = 0; j < $scope.validateModifyOfferList[name].length; j++) {
+            //             if ($scope.validateModifyOfferList[name][j] == "EDIT") {
+            //                 $scope.futureOfferList[i]["canEdit"] = true;
+            //             }
 
-                        if ($scope.validateModifyOfferList[name][j] == "DELETE") {
-                            $scope.futureOfferList[i]["canDelete"] = true;
-                        }
+            //             if ($scope.validateModifyOfferList[name][j] == "DELETE") {
+            //                 $scope.futureOfferList[i]["canDelete"] = true;
+            //             }
 
-                        if ($scope.validateModifyOfferList[name][j] == "RELATED_REQUIRED") {
-                            $scope.futureOfferList[i]["canEditExpireDate"] = false;
-                        }
-                    }
-                }
-            }
+            //             if ($scope.validateModifyOfferList[name][j] == "RELATED_REQUIRED") {
+            //                 $scope.futureOfferList[i]["canEditExpireDate"] = false;
+            //             }
+            //         }
+            //     }
+            // }
 
             for (var i = 0; i < $scope.existingOffer.length; i++) {
                 for (var j = 0; j < $scope.existingParameter.length; j++) {

@@ -402,7 +402,7 @@
     this.getFutureOffer = function(param, fnCallback) {
         var data = {};
         if (demo) {
-            var url = "/app/jsonFiles/Offer/get-future-offer3.json";
+            var url = "/app/jsonFiles/Offer/get-future-offer.json";
             SystemService.getFileJson(url, function(result) {
                 // console.log(response);
 
