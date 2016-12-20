@@ -1340,10 +1340,6 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         //     break;
 
                     case "CONTRACT_PROPO":
-                        delete data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"];
-                        delete data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"];
-                        delete data['offer']["OFFER-" + i + "-EXPIRE-DATE"];
-                        delete data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"];
                         if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
                             data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
                             for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
@@ -1379,6 +1375,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                 }
                             }
                         }
+                        delete data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"];
+                        delete data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"];
+                        delete data['offer']["OFFER-" + i + "-EXPIRE-DATE"];
+                        delete data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"];
                         break;
                 }
 
