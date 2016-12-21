@@ -2565,7 +2565,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         "message-code": "",
                         "message-type": "WARNING",
                         "en-message": "Sorry, Discount " + item.name + " is not eligible. It is already select discount " + $scope.addNewOfferLists[i]["name"] + ".",
-                        "th-message": "ขออภัยค่ะ ระบบไม่อนุญาตให้ทำการเลือกส่วนลด " + item.name + " ได้ในทันที เนื่องจากเลขหมายนี้มีการเลือกส่วนลด " + $scope.addNewOfferLists[i]["name"] + " อยู่แล้ว.",
+                        "th-message": "ขออภัยค่ะ ระบบไม่อนุญาตให้ทำการเลือกส่วนลด " + item.name + " ได้ เนื่องจากเลขหมายนี้มีการเลือกส่วนลด " + $scope.addNewOfferLists[i]["name"] + " อยู่แล้ว.",
                         "technical-message": "From WEBUI"
                     });
                     return;
