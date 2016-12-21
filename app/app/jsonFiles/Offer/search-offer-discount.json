@@ -35,8 +35,8 @@
             "DISCOUNT_GROUP": "NORMAL",
             "OFFER_GROUP": "DIS_NORMAL",
             "MAX_DURATION_UNIT": "MONTH",
-            "DURATION_UNIT": "DATE",
-            "DURATION": "5",
+            "DURATION_UNIT": "MONTH",
+            "DURATION": "56",
             "DISCOUNT_TYPE": "DIS_NORMAL",
             "MAX_DURATION": "24",
             "OFFER_TYPE": "N"

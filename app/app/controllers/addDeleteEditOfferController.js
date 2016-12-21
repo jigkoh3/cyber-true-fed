@@ -276,10 +276,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.smartSearchOffer = function(txtSearch) {
         // $scope.radioOffer = "";
-        if(txtSearch) {
-            $scope.clearSelectOffer();    
+        if (txtSearch) {
+            $scope.clearSelectOffer();
         }
-        
+
         if (txtSearch.indexOf(' ') > 0) {
             var txtList = txtSearch.split(' ');
             var arr = addOfferLists;
@@ -2559,7 +2559,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.validateOffer = function(item) {
         if (item.group == "DISCOUNT") {
             for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
-                if ($scope.addNewOfferLists[i]["properties"]["DISCOUNT_GROUP"] == "NORMAL") {
+                if ($scope.addNewOfferLists[i]["properties"]["DISCOUNT_TYPE"] == "DIS_NORMAL" && item["properties"]["DISCOUNT_TYPE"] == "DIS_NORMAL") {
                     SystemService.showAlert({
                         "message": "Sorry, Discount " + item.name + " is not eligible. It is already select discount " + $scope.addNewOfferLists[i]["name"] + ".",
                         "message-code": "",
@@ -2609,6 +2609,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     var oldOffer = c.split(":");
                     $scope.oldOfferName = oldOffer[1];
                     console.log($scope.oldOfferName);
+                    $scope.newOffer["isSetEffDate"] = true;
                 } else {
                     SystemService.showAlert({
                         "message": msg[0]["message"],
@@ -3422,6 +3423,13 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $('#editNewOfferEffectiveDate').val($scope.dataForEdit['param']['effective-date-value']);
             $('#editNewOfferEffectiveDate').datepicker("setDate", $scope.dataForEdit['param']['effective-date-value']);
             // $('#editNewOfferExpirationDate').datepicker("setDate", $scope.dataForEdit['param']['expiration-date-value']);
+            if ($scope.dataForEdit.isSetEffDate) {
+                var setStartDateEff = new Date(SystemService.convertDataMMDDYYYYEN($scope.dataForEdit.param["effective-date-value"]))
+                $('#editNewOfferEffectiveDate').datepicker("setStartDate", setStartDateEff);
+            } else {
+                var setStartDateEff = new Date(SystemService.convertDataMMDDYYYYEN($scope.setDateTomorrow))
+                $('#editNewOfferEffectiveDate').datepicker("setStartDate", setStartDateEff);
+            }
         }, 50);
 
         switch ($scope.dataForEdit.group) {
@@ -3754,6 +3762,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         if ($scope.selectedOffer.group == "DISCOUNT") {
             if ($scope.selectedOffer.properties["MAX_DURATION"]) {
                 var expiredateDiscount = new Date(SystemService.convertDataMMDDYYYYEN(date));
+                if (Number($scope.selectedOffer.properties["DURATION"]) > Number($scope.selectedOffer.properties["MAX_DURATION"])) {
+                    $scope.selectedOffer.properties["MAX_DURATION"] = $scope.selectedOffer.properties["DURATION"]
+                }
                 expiredateDiscount.setMonth(expiredateDiscount.getMonth() + parseInt($scope.selectedOffer.properties.MAX_DURATION));
                 $("#addNewOfferExpirationDate").datepicker("setEndDate", expiredateDiscount);
                 $("#addNewOfferExpirationDate2").datepicker("setEndDate", expiredateDiscount);
