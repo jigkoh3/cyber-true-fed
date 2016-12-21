@@ -2737,6 +2737,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.newOffer.param['expiration-date-type'] = "specify";
         $('#addNewOfferEffectiveDate').val($filter('date')(oldEndDate, 'dd/MM/yyyy'));
         $scope.newOffer.param['effective-date-value'] = $('#addNewOfferEffectiveDate').val();
+        $scope.newOffer["SetEffDate"] = angular.copy($scope.newOffer.param['effective-date-value']);
         $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], $('#addNewOfferEffectiveDate').val());
         $scope.newOffer.properties.firstDiscountBill = $scope.firstDiscountBill;
 
@@ -3424,7 +3425,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $('#editNewOfferEffectiveDate').datepicker("setDate", $scope.dataForEdit['param']['effective-date-value']);
             // $('#editNewOfferExpirationDate').datepicker("setDate", $scope.dataForEdit['param']['expiration-date-value']);
             if ($scope.dataForEdit.isSetEffDate) {
-                var setStartDateEff = new Date(SystemService.convertDataMMDDYYYYEN($scope.dataForEdit.param["effective-date-value"]))
+                var setStartDateEff = new Date(SystemService.convertDataMMDDYYYYEN($scope.newOffer["SetEffDate"]));
                 $('#editNewOfferEffectiveDate').datepicker("setStartDate", setStartDateEff);
             } else {
                 var setStartDateEff = new Date(SystemService.convertDataMMDDYYYYEN($scope.setDateTomorrow))
