@@ -276,6 +276,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.smartSearchOffer = function(txtSearch) {
         // $scope.radioOffer = "";
+        if(txtSearch) {
+            $scope.clearSelectOffer();    
+        }
+        
         if (txtSearch.indexOf(' ') > 0) {
             var txtList = txtSearch.split(' ');
             var arr = addOfferLists;
@@ -297,6 +301,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         "min": 0,
         "max": 0
     };
+
+    $scope.clearSelectOffer = function() {
+        $scope.currentPage = 1;
+        $scope.radioOffer = "";
+    }
 
     $scope.disableExpDateDiscount = true;
     $scope.disableExpDateCp = true;
@@ -2143,6 +2152,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     }
     $scope.tableAddOffer = 'tableAddOffer';
     $scope.radioRowClick = function(tableID, item) {
+        $scope.cugParam['group-id'] = "";
+        $scope.currentPage_cug = 1;
+        $scope.disableSubmitAddOffer = true;
         $('.hModal').height(($(window).height()) - 235);
         $('#' + tableID + ' tr').click(function() {
             $(this).find('td input:radio').prop('checked', true);
@@ -2841,6 +2853,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     }
 
     $scope.smartSearchCug = function(txtSearch) {
+        if (txtSearch) {
+            $scope.cugParam['group-id'] = "";
+            $scope.currentPage_cug = 1;
+            $scope.disableSubmitAddOffer = true;
+        }
+
         if (txtSearch.indexOf(' ') > 0) {
             var txtList = txtSearch.split(' ');
             var arr = cugList;
