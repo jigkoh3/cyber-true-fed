@@ -2559,7 +2559,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.validateOffer = function(item) {
         if (item.group == "DISCOUNT") {
             for (var i = 0; i < $scope.addNewOfferLists.length; i++) {
-                if ($scope.addNewOfferLists[i]["properties"]["DISCOUNT_TYPE"] == "DIS_NORMAL" && item["properties"]["DISCOUNT_TYPE"] == "DIS_NORMAL") {
+                if ($scope.addNewOfferLists[i]["properties"]["DISCOUNT_TYPE"] == "DIS_NORMAL" && item["properties"]["DISCOUNT_TYPE"] == "DIS_NORMAL" || $scope.addNewOfferLists[i]["properties"]["DISCOUNT_TYPE"] == "DIS_SPECIAL" && item["properties"]["DISCOUNT_TYPE"] == "DIS_SPECIAL") {
                     SystemService.showAlert({
                         "message": "Sorry, Discount " + item.name + " is not eligible. It is already select discount " + $scope.addNewOfferLists[i]["name"] + ".",
                         "message-code": "",
