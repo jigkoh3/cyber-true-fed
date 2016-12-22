@@ -702,6 +702,16 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             setTimeout(function() {
                 $('#contractExpDate').datepicker("setStartDate", $scope.setDateTomorrow);
             }, 500);
+            setTimeout(function() {
+                $("#contractExpDate").change(function() {
+                    $scope.viewOfferForEdit['CONTRACT-EXPIRATION-DATE'] = $('#contractExpDate').val();
+                    $scope.onModelChange('', $('#contractExpDate').val())
+                    if ($scope.viewOfferForEdit['CONTRACT-EXPIRATION-DATE'].length < 10) {
+                        $scope.modelChange = false;
+                    }
+                    $('#idBindDataAgain').click();
+                });
+            }, 1000);
         }, 2000);
 
         $scope.viewOffer = {
@@ -820,6 +830,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }, 50);
             });
         }, 2000);
+
         console.log($scope.viewOffer);
         console.log($scope.viewOfferForEdit);
         console.log($scope.paramForEdit);
