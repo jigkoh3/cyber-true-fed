@@ -1204,7 +1204,9 @@
             "DISCOUNT_GROUP": "CVG",
             "OFFER_GROUP": "DIS_NORMAL",
             "DISCOUNT_TYPE": "DIS_NORMAL",
-            "OFFER_TYPE": "N"
+            "OFFER_TYPE": "N",
+            "DURATION_UNIT": "MONTH",
+            "DURATION": "4"
         },
         "group": "DISCOUNT",
         "soc-type": "D",

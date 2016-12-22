@@ -525,6 +525,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             if ($scope.selectedOffer.group == "DISCOUNT") {
                 $scope.offerExpirationDate = "specify"
                 $scope.disableSubmitAddOffer = true;
+                if (($scope.selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || $scope.selectedOffer.properties.DISCOUNT_GROUP == 'EMP') && !$scope.selectedOffer['properties']['DURATION'] && $scope.selectedOffer.group == "DISCOUNT") {
+                    $scope.disableSubmitAddOffer = false;
+                }
             }
 
         } else {
@@ -711,8 +714,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     }
                     $('#idBindDataAgain').click();
                 });
-            }, 1000);
-        }, 2000);
+            }, 2000);
+        }, 2500);
 
         $scope.viewOffer = {
             "product-name": item['product-name'],
@@ -2715,6 +2718,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
                 if ($scope.newOffer.group == "DISCOUNT") {
                     $scope.newOffer.properties.firstDiscountBill = $scope.firstDiscountBill;
+                    if ($scope.newOffer.param["expiration-date-value"] == "") {
+                        $scope.newOffer.param["expiration-date-type"] = "unlimited";
+                    }
                 }
 
                 $scope.newOffer.guID = SystemService.guid();
@@ -3279,6 +3285,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         $scope.disableSubmitAddOffer = true;
                     } else if ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
                         $scope.disableSubmitAddOffer = true;
+                        if (($scope.selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || $scope.selectedOffer.properties.DISCOUNT_GROUP == 'EMP') && !$scope.selectedOffer['properties']['DURATION'] && $scope.selectedOffer.group == "DISCOUNT") {
+                            $scope.disableSubmitAddOffer = false;
+                        }
                     } else {
                         $scope.disableSubmitAddOffer = false;
                     }
@@ -3937,10 +3946,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             // }
 
             for (var i = 0; i < $scope.existingOffer.length; i++) {
+                var name = $scope.existingOffer[i]["name"];
                 for (var j = 0; j < $scope.existingParameter.length; j++) {
-                    if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] != $scope.existingParameter[j]["product-soc-code"])) {
+                    if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] != $scope.existingParameter[j]["product-soc-code"]) && ($scope.validateModifyOfferList[name] && $scope.validateModifyOfferList[name][0] != null)) {
                         $scope.existingOffer[i]["canEdit"] = false;
-                    } else if ($scope.existingOffer[i]["canEdit"] == true && $scope.existingOffer[i]["canEditExpireDate"] == false && $scope.existingOffer[i]["product-soc-code"] == $scope.existingParameter[j]["product-soc-code"]) {
+                    } else if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] == $scope.existingParameter[j]["product-soc-code"]) && ($scope.validateModifyOfferList[name] && $scope.validateModifyOfferList[name][0] != null)) {
+                        $scope.existingOffer[i]["canEdit"] = true;
+                        break;
+                    } else if ($scope.existingOffer[i]["canEdit"] == true && $scope.existingOffer[i]["canEditExpireDate"] == false && $scope.existingOffer[i]["product-soc-code"] == $scope.existingParameter[j]["product-soc-code"] && ($scope.validateModifyOfferList[name] && $scope.validateModifyOfferList[name][0] != null)) {
                         $scope.existingOffer[i]["canEdit"] = true;
                         break;
                     }
