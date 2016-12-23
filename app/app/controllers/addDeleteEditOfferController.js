@@ -3223,7 +3223,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         } else {
             $scope.difDateForAdd = $scope.checkValueCpDate($('#addNewOfferEffectiveDate').val(), $('#addNewOfferExpirationDate').val());
             // console.log($scope.difDateForAdd);
-            if ($scope.difDateForAdd < 0) {
+            if ($scope.difDateForAdd <= 0) {
                 $('#addNewOfferExpirationDate').val('');
                 $('#addNewOfferExpirationDate2').val('');
                 $scope.addNewOfferExpirationDate = "";
