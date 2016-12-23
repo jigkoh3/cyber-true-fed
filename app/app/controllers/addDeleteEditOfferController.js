@@ -475,7 +475,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 if ($scope.selectedOffer.properties["DURATION"]) {
                     $scope.selectedOffer.properties["DURATION"] = angular.copy(Number($scope.selectedOffer.properties["DURATION"] - 1));
                 }
-                if ($scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'CVG' && $scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'EMP') {
+                if ($scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'CVG' && $scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'EMPLOYEE') {
                     $scope.disableExpDateDiscount = true;
                     var validateDiscountOfferParam = "current-offers=" + $scope.selectedOffer.name + "&current-priceplan=" + $scope.priceplan[0]['product-name'] + "&level=SUBSCRIBER";
                     SystemService.showLoading();
@@ -525,7 +525,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             if ($scope.selectedOffer.group == "DISCOUNT") {
                 $scope.offerExpirationDate = "specify"
                 $scope.disableSubmitAddOffer = true;
-                if (($scope.selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || $scope.selectedOffer.properties.DISCOUNT_GROUP == 'EMP') && !$scope.selectedOffer['properties']['DURATION'] && $scope.selectedOffer.group == "DISCOUNT") {
+                if (($scope.selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || $scope.selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE') && !$scope.selectedOffer['properties']['DURATION'] && $scope.selectedOffer.group == "DISCOUNT") {
                     $scope.disableSubmitAddOffer = false;
                 }
             }
@@ -3285,7 +3285,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         $scope.disableSubmitAddOffer = true;
                     } else if ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
                         $scope.disableSubmitAddOffer = true;
-                        if (($scope.selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || $scope.selectedOffer.properties.DISCOUNT_GROUP == 'EMP') && !$scope.selectedOffer['properties']['DURATION'] && $scope.selectedOffer.group == "DISCOUNT") {
+                        if (($scope.selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || $scope.selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE') && !$scope.selectedOffer['properties']['DURATION'] && $scope.selectedOffer.group == "DISCOUNT") {
                             $scope.disableSubmitAddOffer = false;
                         }
                     } else {

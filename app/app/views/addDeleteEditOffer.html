@@ -977,7 +977,7 @@
                                 <div class="col-xs-3" style=" text-align: right; top: 10px; margin-bottom: 10px;">
                                     <label>ระยะเวลา (Duration)<span style="color:red;">*</span></label>&nbsp;&nbsp;
                                 </div>
-                                <div class="col-xs-4" ng-show="selectedOffer.properties.DISCOUNT_GROUP != 'CVG' && selectedOffer.properties.DISCOUNT_GROUP != 'EMP' || ( selectedOffer['properties']['DURATION_TEMP'] && selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMP')">
+                                <div class="col-xs-4" ng-show="selectedOffer.properties.DISCOUNT_GROUP != 'CVG' && selectedOffer.properties.DISCOUNT_GROUP != 'EMPLOYEE' || ( selectedOffer['properties']['DURATION_TEMP'] && selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE')">
                                     <div class="col-xs-3"></div>
                                     <div class="col-xs-6">
                                         <input type="text" ng-model="selectedOffer['properties']['DURATION_TEMP']" class="form-control numberic" ng-change="onChangeDisDuration();" style="text-align: center;" ng-disabled="selectedOffer['properties']['DURATION']" maxlength="2">
@@ -987,10 +987,10 @@
                                         <span>{{selectedOffer['properties']['DURATION_UNIT']}}</span>
                                     </div>
                                 </div>
-                                <div class="col-xs-3" style="text-align: left;color: red;top: 10px; margin-bottom: 10px;" ng-hide="selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMP'">
+                                <div class="col-xs-3" style="text-align: left;color: red;top: 10px; margin-bottom: 10px;" ng-hide="selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE'">
                                     <label ng-show="!selectedOffer['properties']['DURATION']">(ระยะเวลาสูงสุด {{selectedOffer['properties']['MAX_DURATION']}} {{selectedOffer['properties']['DURATION_UNIT']}})</label>
                                 </div>
-                                <div class="col-xs-4" ng-show="(selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMP') && !selectedOffer['properties']['DURATION_TEMP']" style="top: 10px; margin-bottom: 10px;padding-left: 29px;">
+                                <div class="col-xs-4" ng-show="(selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE') && !selectedOffer['properties']['DURATION_TEMP']" style="top: 10px; margin-bottom: 10px;padding-left: 29px;">
                                     <label>ไม่มีกำหนด</label>
                                 </div>
                             </div>
@@ -1069,7 +1069,7 @@
                                 <div class="col-xs-7" ng-show="selectedOffer['properties']['DISCOUNT_GROUP'].length > 0">
                                     <div class="col-xs-5" style="top:5px;">
                                         <label style="cursor: pointer;">
-                                            <input ng-model="expDiscount" style="cursor: pointer;" type="radio" ng-disabled="true" ng-checked="(selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMP') && !selectedOffer['properties']['DURATION_TEMP']"> ไม่มีกำหนด (Unlimited)
+                                            <input ng-model="expDiscount" style="cursor: pointer;" type="radio" ng-disabled="true" ng-checked="(selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE') && !selectedOffer['properties']['DURATION_TEMP']"> ไม่มีกำหนด (Unlimited)
                                         </label>
                                     </div>
                                     <div class="col-xs-7">
@@ -1079,7 +1079,7 @@
                                                 <!-- ระบุวันที่ -->
                                                 <!-- </label> -->
                                                 <label style="cursor: pointer;">
-                                                    <input ng-model="expDiscount" style="cursor: pointer;" type="radio" ng-disabled="true" ng-checked="selectedOffer.properties.DISCOUNT_GROUP != 'CVG' && selectedOffer.properties.DISCOUNT_GROUP != 'EMP' || ( selectedOffer['properties']['DURATION_TEMP'] && selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMP')"> ระบุวันที่
+                                                    <input ng-model="expDiscount" style="cursor: pointer;" type="radio" ng-disabled="true" ng-checked="selectedOffer.properties.DISCOUNT_GROUP != 'CVG' && selectedOffer.properties.DISCOUNT_GROUP != 'EMPLOYEE' || ( selectedOffer['properties']['DURATION_TEMP'] && selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE')"> ระบุวันที่
                                                 </label>
                                             </div>
                                             <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
@@ -1527,7 +1527,7 @@
                                 <div class="col-xs-3" style=" text-align: right; top: 10px; margin-bottom: 10px;">
                                     <label>ระยะเวลา (Duration)<span style="color:red;">*</span></label>&nbsp;&nbsp;
                                 </div>
-                                <div class="col-xs-4" ng-show="dataForEdit.properties.DISCOUNT_GROUP != 'CVG' && dataForEdit.properties.DISCOUNT_GROUP != 'EMP' || ( dataForEdit['properties']['DURATION_TEMP'] && dataForEdit.properties.DISCOUNT_GROUP == 'CVG' || dataForEdit.properties.DISCOUNT_GROUP == 'EMP')">
+                                <div class="col-xs-4" ng-show="dataForEdit.properties.DISCOUNT_GROUP != 'CVG' && dataForEdit.properties.DISCOUNT_GROUP != 'EMPLOYEE' || ( dataForEdit['properties']['DURATION_TEMP'] && dataForEdit.properties.DISCOUNT_GROUP == 'CVG' || dataForEdit.properties.DISCOUNT_GROUP == 'EMPLOYEE')">
                                     <div class="col-xs-3"></div>
                                     <div class="col-xs-6">
                                         <input type="text" ng-model="dataForEdit['properties']['DURATION_TEMP']" class="form-control numberic" ng-change="onChangeDisDuration();" style="text-align: center;" ng-disabled="dataForEdit['properties']['DURATION']" maxlength="2">
@@ -1536,10 +1536,10 @@
                                         <span>{{dataForEdit['properties']['DURATION_UNIT']}}</span>
                                     </div>
                                 </div>
-                                <div class="col-xs-3" style="text-align: left;color: red;top: 10px; margin-bottom: 10px;" ng-hide="dataForEdit.properties.DISCOUNT_GROUP == 'CVG' || dataForEdit.properties.DISCOUNT_GROUP == 'EMP'">
+                                <div class="col-xs-3" style="text-align: left;color: red;top: 10px; margin-bottom: 10px;" ng-hide="dataForEdit.properties.DISCOUNT_GROUP == 'CVG' || dataForEdit.properties.DISCOUNT_GROUP == 'EMPLOYEE'">
                                     <label ng-show="!dataForEdit['properties']['DURATION']">(ระยะเวลาสูงสุด {{dataForEdit['properties']['MAX_DURATION']}} {{dataForEdit['properties']['DURATION_UNIT']}})</label>
                                 </div>
-                                <div class="col-xs-4" ng-show="(dataForEdit.properties.DISCOUNT_GROUP == 'CVG' || dataForEdit.properties.DISCOUNT_GROUP == 'EMP') && !dataForEdit['properties']['DURATION_TEMP']" style="top: 10px; margin-bottom: 10px;padding-left: 29px;">
+                                <div class="col-xs-4" ng-show="(dataForEdit.properties.DISCOUNT_GROUP == 'CVG' || dataForEdit.properties.DISCOUNT_GROUP == 'EMPLOYEE') && !dataForEdit['properties']['DURATION_TEMP']" style="top: 10px; margin-bottom: 10px;padding-left: 29px;">
                                     <label>ไม่มีกำหนด</label>
                                 </div>
                             </div>
