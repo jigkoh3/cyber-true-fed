@@ -3907,6 +3907,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $scope.existingOffer[i]["canEdit"] = false;
                 $scope.existingOffer[i]["canDelete"] = false;
                 $scope.existingOffer[i]["canEditExpireDate"] = true;
+                $scope.existingOffer[i]["isRELATED_REQUIRED"] = false;
                 if ($scope.validateModifyOfferList[name]) {
                     for (var j = 0; j < $scope.validateModifyOfferList[name].length; j++) {
                         if ($scope.validateModifyOfferList[name][j] == "EDIT") {
@@ -3920,6 +3921,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         if ($scope.existingOffer[i]["expire-date"] && $scope.existingOffer[i]["canEdit"] == true) {
                             if ($scope.validateModifyOfferList[name][j] == "RELATED_REQUIRED") {
                                 $scope.existingOffer[i]["canEditExpireDate"] = false;
+                                $scope.existingOffer[i]["isRELATED_REQUIRED"] = true;
                             }
                         } else if (!$scope.existingOffer[i]["expire-date"] && $scope.existingOffer[i]["canEdit"] == true) {
                             $scope.existingOffer[i]["canEditExpireDate"] = true;
@@ -3934,7 +3936,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                             $scope.existingOffer[i]["canEditExpireDate"] = true;
                             break;
                         } else {
-                            if (!$scope.existingOffer[i]["expire-date"]) {
+                            if (!$scope.existingOffer[i]["expire-date"] && !$scope.existingOffer[i]["isRELATED_REQUIRED"]) {
                                 $scope.existingOffer[i]["canEditExpireDate"] = true;
                                 break;
                             } else {
