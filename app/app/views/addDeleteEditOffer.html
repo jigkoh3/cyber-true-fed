@@ -1545,7 +1545,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-show="dataForEdit.group != 'CONTRACT_PROPO'">
                         <div class="row">
                             <div class="col-xs-1">
                             </div>
@@ -1576,7 +1576,7 @@
                             </div>
                             <div class="col-xs-1"></div>
                         </div>
-                        <div class="row" ng-show="addOfferType.value == 'DISCOUNT'">
+                        <div class="row" ng-show="dataForEdit.group == 'DISCOUNT'">
                             <div class="col-xs-1"></div>
                             <div class="col-xs-3" style="text-align: right;color:red;">
                                 *รอบบิลแรกที่ได้รับส่วนลดคือ
@@ -1586,7 +1586,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-show="dataForEdit.group != 'CONTRACT_PROPO'">
                         <div class="row">
                             <div class="col-xs-1">
                             </div>
