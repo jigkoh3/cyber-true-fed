@@ -3917,20 +3917,33 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                             $scope.existingOffer[i]["canDelete"] = true;
                         }
 
-                        if ($scope.validateModifyOfferList[name][j] == "RELATED_REQUIRED") {
-                            $scope.existingOffer[i]["canEditExpireDate"] = false;
+                        if ($scope.existingOffer[i]["expire-date"] && $scope.existingOffer[i]["canEdit"] == true) {
+                            if ($scope.validateModifyOfferList[name][j] == "RELATED_REQUIRED") {
+                                $scope.existingOffer[i]["canEditExpireDate"] = false;
+                            }
+                        } else if (!$scope.existingOffer[i]["expire-date"] && $scope.existingOffer[i]["canEdit"] == true) {
+                            $scope.existingOffer[i]["canEditExpireDate"] = true;
+                        }
+
+                    }
+                }
+
+                if ($scope.removeFutureOfferList) {
+                    for (var k = 0; k < $scope.removeFutureOfferList.length; k++) {
+                        if ($scope.existingOffer[i]["product-soc-code"] == $scope.removeFutureOfferList[k]["product-soc-code"]) {
+                            $scope.existingOffer[i]["canEditExpireDate"] = true;
+                            break;
+                        } else {
+                            if (!$scope.existingOffer[i]["expire-date"]) {
+                                $scope.existingOffer[i]["canEditExpireDate"] = true;
+                                break;
+                            } else {
+                                $scope.existingOffer[i]["canEditExpireDate"] = false;
+                            }
                         }
                     }
                 }
 
-                for (var k = 0; k < $scope.removeFutureOfferList.length; k++) {
-                    if ($scope.existingOffer[i]["product-soc-code"] == $scope.removeFutureOfferList[k]["product-soc-code"]) {
-                        $scope.existingOffer[i]["canEditExpireDate"] = true;
-                        break;
-                    } else {
-                        $scope.existingOffer[i]["canEditExpireDate"] = false;
-                    }
-                }
             }
 
             // Update 20161220 เปลี่ยนไปยึดค่าจาก getFutureOffer แทน
