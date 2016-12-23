@@ -516,8 +516,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $scope.addNewOfferExpirationDate = "";
         $('#addNewOfferExpirationDate').val("");
         $('#addNewOfferExpirationDate2').val("");
-        $('#addNewOfferExpirationDate').datepicker('setStartDate', $scope.setDateNow);
-        $('#addNewOfferExpirationDate2').datepicker('setStartDate', $scope.setDateNow);
+        $('#addNewOfferExpirationDate').datepicker('setStartDate', $scope.setDateTomorrow);
+        $('#addNewOfferExpirationDate2').datepicker('setStartDate', $scope.setDateTomorrow);
 
         if ($scope.selectedOffer.group == "DISCOUNT" || $scope.selectedOffer.group == "RELATED" || $scope.selectedOffer.group == "IDD" || $scope.selectedOffer.group == "IR" || $scope.selectedOffer.group == "BARRING" || $scope.selectedOffer.group == "FUP") {
             $scope.disableSubmitAddOffer = false;
@@ -2770,6 +2770,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         if ($scope.offerEffectiveDate == "immediate") {
             $scope.addNewOfferEffectiveDate = "";
             $('#addNewOfferEffectiveDate').val($scope.addNewOfferEffectiveDate);
+            $('#addNewOfferExpirationDate').datepicker('setStartDate', $scope.setDateTomorrow);
+            $('#addNewOfferExpirationDate2').datepicker('setStartDate', $scope.setDateTomorrow);
             $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], "");
             if ($scope.selectedOffer.group == "DISCOUNT") {
                 // $scope.setEndDateValue($scope.firstDiscountBill);
@@ -3042,8 +3044,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $(document).ready(function() {
         $("#addNewOfferEffectiveDate").change(function() {
             $scope.addNewOfferEffectiveDate = $('#addNewOfferEffectiveDate').val();
-            $('#addNewOfferExpirationDate').datepicker('setStartDate', $('#addNewOfferEffectiveDate').val());
-            $('#addNewOfferExpirationDate2').datepicker('setStartDate', $('#addNewOfferEffectiveDate').val());
+            var expNewOfferDate = new Date(SystemService.convertDataMMDDYYYYEN($scope.addNewOfferEffectiveDate));
+            expNewOfferDate.setDate(expNewOfferDate.getDate() + 1);
+            $('#addNewOfferExpirationDate').datepicker('setStartDate', expNewOfferDate);
+            $('#addNewOfferExpirationDate2').datepicker('setStartDate', expNewOfferDate);
             $scope.chkValueAddNewOffer();
             if ($scope.selectedOffer.group == "DISCOUNT") {
                 $scope.checkFirstDiscountBill($scope.data.customerProfile["customer-properties"]["BILL-CYCLE"], $('#addNewOfferEffectiveDate').val());
@@ -3053,8 +3057,10 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         });
         $("#addNewOfferEffectiveDate").blur(function() {
             $scope.addNewOfferEffectiveDate = $('#addNewOfferEffectiveDate').val();
-            $('#addNewOfferExpirationDate').datepicker('setStartDate', $('#addNewOfferEffectiveDate').val());
-            $('#addNewOfferExpirationDate2').datepicker('setStartDate', $('#addNewOfferEffectiveDate').val());
+            var expNewOfferDate = new Date(SystemService.convertDataMMDDYYYYEN($scope.addNewOfferEffectiveDate));
+            expNewOfferDate.setDate(expNewOfferDate.getDate() + 1);
+            $('#addNewOfferExpirationDate').datepicker('setStartDate', expNewOfferDate);
+            $('#addNewOfferExpirationDate2').datepicker('setStartDate', expNewOfferDate);
             $scope.chkValueAddNewOffer();
             $('#idBindDataAgain').click();
         });
@@ -3091,7 +3097,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         $("#editNewOfferEffectiveDate").change(function() {
             $scope.dataForEdit['param']['effective-date-value'] = $('#editNewOfferEffectiveDate').val();
             if ($scope.dataForEdit['param']['effective-date-value']) {
-                $("#editNewOfferExpirationDate").datepicker("setStartDate", $('#editNewOfferEffectiveDate').val());
+                var expNewOfferDate = new Date(SystemService.convertDataMMDDYYYYEN($scope.dataForEdit['param']['effective-date-value']));
+                expNewOfferDate.setDate(expNewOfferDate.getDate() + 1);
+                $("#editNewOfferExpirationDate").datepicker("setStartDate", expNewOfferDate);
             } else {
                 $("#editNewOfferExpirationDate").datepicker("setStartDate", $scope.setDateTomorrow)
             }
@@ -3105,7 +3113,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             $scope.dataForEdit['param']['effective-date-value'] = $('#editNewOfferEffectiveDate').val();
             $("#editNewOfferExpirationDate").datepicker("setStartDate", $scope.setDateTomorrow)
             if ($scope.dataForEdit['param']['effective-date-value']) {
-                $("#editNewOfferExpirationDate").datepicker("setStartDate", $('#editNewOfferEffectiveDate').val())
+                var expNewOfferDate = new Date(SystemService.convertDataMMDDYYYYEN($scope.dataForEdit['param']['effective-date-value']));
+                expNewOfferDate.setDate(expNewOfferDate.getDate() + 1);
+                $("#editNewOfferExpirationDate").datepicker("setStartDate", expNewOfferDate);
             } else {
                 $("#editNewOfferExpirationDate").datepicker("setStartDate", $scope.setDateTomorrow)
             }
@@ -3137,7 +3147,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         if (action == "edit") {
             $scope.difDateForEdit = $scope.checkValueCpDate($('#editNewOfferEffectiveDate').val(), $('#editNewOfferExpirationDate').val());
             // console.log($scope.difDateForEdit);
-            if ($scope.difDateForEdit < 0) {
+            if ($scope.difDateForEdit <= 0) {
                 $('#editNewOfferExpirationDate').val('');
                 $scope.dataForEdit['param']['expiration-date-value'] = "";
             }

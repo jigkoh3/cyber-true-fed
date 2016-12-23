@@ -1079,7 +1079,7 @@
                                                 <!-- ระบุวันที่ -->
                                                 <!-- </label> -->
                                                 <label style="cursor: pointer;">
-                                                    <input ng-model="expDiscount" style="cursor: pointer;" type="radio" ng-disabled="true" ng-checked="selectedOffer.properties.DISCOUNT_GROUP != 'CVG' && selectedOffer.properties.DISCOUNT_GROUP != 'EMPLOYEE' || ( selectedOffer['properties']['DURATION_TEMP'] && selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE')"> ระบุวันที่
+                                                    <input ng-model="expDiscount" style="cursor: pointer;" type="radio" ng-disabled="true" ng-checked="selectedOffer.properties.DISCOUNT_GROUP != 'CVG' && selectedOffer.properties.DISCOUNT_GROUP != 'EMPLOYEE' || selectedOffer['properties']['DURATION_TEMP'] && (selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE')"> ระบุวันที่
                                                 </label>
                                             </div>
                                             <div class="col-xs-7" style="margin-top:-5px; margin-bottom:-5px;left:-10%">
