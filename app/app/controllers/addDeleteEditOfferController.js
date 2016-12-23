@@ -2791,6 +2791,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         if ($scope.dataForEdit['param']['effective-date-type'] == "immediate") {
             $scope.dataForEdit['param']['effective-date-value'] = "";
             $('#editNewOfferEffectiveDate').val($scope.dataForEdit['param']['effective-date-value']);
+            $("#editNewOfferExpirationDate").datepicker("setStartDate", $scope.setDateTomorrow);
         }
 
         $scope.chkValueAddNewOffer("edit");
