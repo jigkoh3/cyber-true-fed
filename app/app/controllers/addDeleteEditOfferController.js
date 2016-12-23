@@ -3918,7 +3918,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                             $scope.existingOffer[i]["canDelete"] = true;
                         }
 
-                        if ($scope.existingOffer[i]["expire-date"] && $scope.existingOffer[i]["canEdit"] == true) {
+                        if ($scope.existingOffer[i]["canEdit"] == true) {
                             if ($scope.validateModifyOfferList[name][j] == "RELATED_REQUIRED") {
                                 $scope.existingOffer[i]["canEditExpireDate"] = false;
                                 $scope.existingOffer[i]["isRELATED_REQUIRED"] = true;
