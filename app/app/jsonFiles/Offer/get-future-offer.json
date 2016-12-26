@@ -389,6 +389,7 @@
                     "AGREEMENT-ID": "1158914",
                     "ALLOW-DELETE": "TRUE",
                     "FUTURE-SOURCE": "REQUEST",
+                    "PROVISIONING-SYSTEM": "CCBS",
                     "REMARK": "",
                     "FUTURE-TYPE": "UPDATESERVICES",
                     "FUTURE-OFFER-TYPE": "REMOVE OFFER",

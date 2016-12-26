@@ -3934,6 +3934,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     for (var k = 0; k < $scope.removeFutureOfferList.length; k++) {
                         if ($scope.existingOffer[i]["product-soc-code"] == $scope.removeFutureOfferList[k]["product-soc-code"]) {
                             $scope.existingOffer[i]["canEditExpireDate"] = true;
+                            $scope.existingOffer[i]["product-properties"]["PROVISIONING-SYSTEM"] = $scope.removeFutureOfferList[k]["product-properties"]["PROVISIONING-SYSTEM"];
                             break;
                         } else {
                             if (!$scope.existingOffer[i]["expire-date"] && !$scope.existingOffer[i]["isRELATED_REQUIRED"]) {
