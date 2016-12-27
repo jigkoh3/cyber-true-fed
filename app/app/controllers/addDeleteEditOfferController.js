@@ -2390,22 +2390,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         if ($scope.poolingOffer.length > 0) {
                             for (var j = 0; j < $scope.poolingOffer.length; j++) {
                                 if ($scope.pooledOffer[i]["product-properties"]["OFFER-INSTANCE-ID"] != $scope.poolingOffer[j]["product-properties"]["PARENT-SOC-SEQUENCE"]) {
-                                    var arr = $filter('filter')($scope.pooledList, $scope.pooledOffer[i]["product-name"]);
-                                    if (arr.length > 0) {
-
-                                    } else {
-                                        $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);
-                                    }
+                                    $scope.pooledList.push($scope.pooledOffer[i]);
                                 }
                                 break;
                             }
                         } else {
-                            var arr = $filter('filter')($scope.pooledList, $scope.pooledOffer[i]["product-name"]);
-                            if (arr.length > 0) {
-
-                            } else {
-                                $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);
-                            }
+                            $scope.pooledList.push($scope.pooledOffer[i]);
                         }
                     }
                 }
@@ -4068,14 +4058,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.pooledParam = "";
     $scope.setPooledOffer = function() {
         $scope.pooledParam = "";
-        var pooledDetail = $filter('filter')($scope.existingOfferTemp, { 'product-name': $scope.pooledOfferType });
-        console.log(pooledDetail);
-        if (pooledDetail.length == 1) {
-            $scope.pooledParam = pooledDetail[0]["product-properties"]["AGREEMENT-SOC-SEQUENCE"] + "|" + pooledDetail[0]["product-soc-code"] + "|" + pooledDetail[0]["product-name"];
-            console.log($scope.pooledParam);
-        } else {
-            $scope.pooledParam = "";
-        }
+        $scope.pooledParam = $scope.pooledOfferType;
+        console.log($scope.pooledParam);
     };
 
     $scope.validateEditUI = function() {

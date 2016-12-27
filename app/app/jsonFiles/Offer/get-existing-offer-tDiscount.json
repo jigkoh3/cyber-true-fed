@@ -234,7 +234,7 @@
                 "product-properties": {
                     "AGREEMENT-ID": "98844",
                     "PARENT-SOC-SEQUENCE": "",
-                    "AGREEMENT-SOC-SEQUENCE": "669889",
+                    "AGREEMENT-SOC-SEQUENCE": "00000",
                     "OFFER-INSTANCE-ID": "669890"
                 },
                 "product-id-name": "MSISDN",
@@ -257,7 +257,7 @@
                 "product-properties": {
                     "AGREEMENT-ID": "98844",
                     "PARENT-SOC-SEQUENCE": "",
-                    "AGREEMENT-SOC-SEQUENCE": "669889",
+                    "AGREEMENT-SOC-SEQUENCE": "11111",
                     "OFFER-INSTANCE-ID": "669890"
                 },
                 "product-id-name": "MSISDN",
