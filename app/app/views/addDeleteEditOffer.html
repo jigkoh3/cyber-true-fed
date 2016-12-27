@@ -109,7 +109,7 @@
                                     Regular Offer
                                 </th>
                             </tr>
-                            <tr ng-repeat="item in regularOffer | orderBy:['group','name']" style="margin-bottom: 0px;">
+                            <tr ng-repeat="item in regularOffer | orderBy:['group','name'] track by $index" style="margin-bottom: 0px;">
                                 <td class="contentTb">
                                     <div align="center" class="" ng-show="offerType=='C'">
                                         <button ng-disabled="!isCustomerProfile" href="#modal-view-offerDetail" data-toggle="modal" onclick="return false;" ng-click="viewOfferDetail(item); readOnlyOffer=false" style="cursor:pointer; background:none; border:none; color:#333;" type="button"><span><i class="fa fa-file-text-o editIcon-1x"></i></span></button>

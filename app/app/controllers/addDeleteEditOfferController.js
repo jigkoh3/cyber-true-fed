@@ -2400,7 +2400,12 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                 break;
                             }
                         } else {
-                            $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);
+                            var arr = $filter('filter')($scope.pooledList, $scope.pooledOffer[i]["product-name"]);
+                            if (arr.length > 0) {
+
+                            } else {
+                                $scope.pooledList.push($scope.pooledOffer[i]["product-name"]);
+                            }
                         }
                     }
                 }
