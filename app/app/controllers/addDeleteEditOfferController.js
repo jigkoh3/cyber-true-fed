@@ -4066,7 +4066,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         var pooledDetail = $filter('filter')($scope.existingOfferTemp, { 'product-name': $scope.pooledOfferType });
         console.log(pooledDetail);
         if (pooledDetail.length == 1) {
-            $scope.pooledParam = pooledDetail[0]["product-properties"]["OFFER-INSTANCE-ID"] + "|" + pooledDetail[0]["product-soc-code"] + "|" + pooledDetail[0]["product-name"];
+            $scope.pooledParam = pooledDetail[0]["product-properties"]["AGREEMENT-SOC-SEQUENCE"] + "|" + pooledDetail[0]["product-soc-code"] + "|" + pooledDetail[0]["product-name"];
             console.log($scope.pooledParam);
         } else {
             $scope.pooledParam = "";
