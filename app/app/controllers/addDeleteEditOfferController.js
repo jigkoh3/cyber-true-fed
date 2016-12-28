@@ -2388,12 +2388,17 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 if ($scope.pooledOffer) {
                     for (var i = 0; i < $scope.pooledOffer.length; i++) {
                         if ($scope.poolingOffer.length > 0) {
+                            var count = 0;
                             for (var j = 0; j < $scope.poolingOffer.length; j++) {
-                                if ($scope.pooledOffer[i]["product-properties"]["OFFER-INSTANCE-ID"] != $scope.poolingOffer[j]["product-properties"]["PARENT-SOC-SEQUENCE"]) {
-                                    $scope.pooledList.push($scope.pooledOffer[i]);
+                                if ($scope.pooledOffer[i]["product-properties"]["OFFER-INSTANCE-ID"] == $scope.poolingOffer[j]["product-properties"]["PARENT-SOC-SEQUENCE"]) {
+                                    count++;
                                 }
-                                break;
                             }
+
+                            if (count == 0) {
+                                $scope.pooledList.push($scope.pooledOffer[i]);
+                            }
+
                         } else {
                             $scope.pooledList.push($scope.pooledOffer[i]);
                         }
@@ -2503,7 +2508,9 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             if ($scope.addOfferType.value == 'RELATED') {
                 var searchParam = "current-priceplan=" + $scope.priceplan[0]['product-name'] + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel;
             } else if ($scope.addOfferType.value == 'POOLING' && $scope.pooledOfferType) {
-                var searchParam = "offer-group=" + $scope.addOfferType.value + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&current-pooled=" + $scope.pooledOfferType;
+                var pooledOffer = angular.copy($scope.pooledOfferType);
+                var pooledOfferArr = pooledOffer.split("|");
+                var searchParam = "offer-group=" + $scope.addOfferType.value + "&company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel + "&current-pooled=" + pooledOfferArr[2];
             } else if ($scope.addOfferType.value == '') {
                 var searchParam = "company-code=" + $scope.data.simData['company-code'] + "&customer-type=" + $scope.data.customerProfile['customer-type'] + "&account-subtype=" + $scope.data.simData['account-sub-type'] + "&service-level=" + $scope.serviceLevel;
             } else {

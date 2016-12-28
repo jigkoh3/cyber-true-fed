@@ -577,7 +577,7 @@
                         <div class="col-md-4">
                             <select class="form-control" ng-model="pooledOfferType" id="pooledOfferType" ng-change="searchOffer('');setPooledOffer();">
                                 <option value="">--กรุณาระบุ--</option>
-                                <option ng-repeat="item in pooledList" value="{{item['product-properties']['AGREEMENT-SOC-SEQUENCE']}}|{{item['product-soc-code']}}|{{item['product-name']}}">{{item['product-properties']['AGREEMENT-SOC-SEQUENCE']}}|{{item['product-soc-code']}}|{{item['product-name']}}"</option>
+                                <option ng-repeat="item in pooledList" value="{{item['product-properties']['AGREEMENT-SOC-SEQUENCE']}}|{{item['product-soc-code']}}|{{item['product-name']}}">{{item['product-name']}}</option>
                             </select>
                         </div>
                         <div class="col-md-4"></div>
