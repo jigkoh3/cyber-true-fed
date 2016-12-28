@@ -312,6 +312,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
     $scope.onChangeRadioOffer = function(item) {
         $scope.clearValueAddNewOffer();
         $scope.onClearRelateOfferValue();
+        $scope.smartSearchCug("");
         $scope.selectedOffer = angular.copy(item);
         $scope.saveParamData = {};
 
@@ -2675,7 +2676,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                             $scope.newOffer.param['ff-number'] = $scope.ffNumber;
                         }
 
-                        if ($scope.newOffer["parameter-unique"][i]["name"] == "Friend numbers offer level") {
+                        if ($scope.newOffer["parameter-unique"][i]["name"] == "CUG ID") {
                             $scope.newOffer.param['cug-group-id'] = $scope.cugParam['group-id'];
                             $scope.newOffer.param['cug-group-name'] = $scope.cugParam['group-name'];
                         }
