@@ -250,8 +250,8 @@
                 "product-properties": {
                     "PARAM-SIZE": "2",
                     "AGREEMENT-ID": "1158024",
-                    "PARAM-0": "201187812|Friend numbers offer level|0912345678,0934568909,0936799004,0987656789",
-                    "PARAM-1": "201226231|CUG ID|303",
+                    "PARAM-0": "201226231|CUG ID|303",
+                    "PARAM-1": "201187812|Friend numbers offer level|0912345678",
                     "OFFER-INSTANCE-ID": "583963"
                 },
                 "product-id-name": "MSISDN",

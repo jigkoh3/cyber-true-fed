@@ -686,6 +686,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 var paramName = param.split('|');
                 if (paramName[1] == 'Friend numbers offer level') {
                     $scope.paramDetail[i]["value"] = $scope.paramDetail[i]["value"].split(",");
+                    $scope.paramForEdit['param-detail'][i]["value"] = $scope.paramDetail[i]["value"];
                     var indexParam = i;
                     SystemService.showLoading();
                     AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
