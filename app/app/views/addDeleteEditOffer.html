@@ -1744,69 +1744,159 @@
                             </div> &nbsp;
                         </div>
                     </div>
-                    <div ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='CUG'">
-                        <div calss="form-group">
-                            <div class="row">
-                                <div class="col-md-1">
-                                </div>
-                                <div class="col-md-3 text-right" style="top: 9px;">
-                                    <label> CUG <span style="color:red;">*</span> </label>
-                                </div>
-                                <div class="col-md-5">
-                                    <input ng-model="paramForEdit['param-detail'][0]['cugValue']" class="form-control" ng-change="onModelChange();" disabled>
-                                </div>
-                                <div class="col-md-3">
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
-                                <input type="text" placeholder="ค้นหา CUG" ng-model="searchEditCug" class="form-control" ng-keyup="smartSearchCug(searchEditCug)">
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                        <div class="table-responsive">
-                            <label class="col-xs-12">
+                    <div ng-repeat="item in paramForEdit['param-detail']" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='FF' || viewOfferForEdit['offer-group']=='CUG'">
+                        <div ng-show="viewOfferForEdit['checkEditParam'] && item['name']=='CUG ID'">
+                            <div calss="form-group">
                                 <div class="row">
-                                    <div class="col-xs-1">&nbsp;</div>
-                                    <div class="col-xs-3">
-                                        <span><b> Group ID</b></span>
+                                    <div class="col-md-1">
                                     </div>
-                                    <div class="col-xs-8 text-center">
-                                        <span><b> Group Name</b></span>
+                                    <div class="col-md-3 text-right" style="top: 9px;">
+                                        <label> CUG <span style="color:red;">*</span> </label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input ng-model="item['cugValue']" class="form-control" ng-change="onModelChange();" disabled>
+                                    </div>
+                                    <div class="col-md-3">
                                     </div>
                                 </div>
-                            </label>
-                            <table class="table" style="width: 98%; margin-bottom: 0px;">
-                                <!--<tr class="row" ng-repeat="item in cugList | filter: saveDataCUG.filter">-->
-                                <tr class="row" dir-paginate="item in cugList | filter: onSearchCUG  | itemsPerPage: pageSize_cug" current-page="currentPage_cug_edit" pagination-id="cugList">
-                                    <th style="padding: 5px; padding-bottom: 0px;">
-                                        <label class="col-xs-12" style="cursor:pointer;" ng-click="onEditCUG(item)">
-                                            <div class="row">
-                                                <div class="col-xs-1">
-                                                    <input name="paramEditCug" type="radio" class="radioCUG" value="{{item['group-id']}}" ng-model="cugSelectValue" />
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <input type="text" placeholder="ค้นหา CUG" ng-model="searchEditCug" class="form-control" ng-keyup="smartSearchCug(searchEditCug)">
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="table-responsive">
+                                <label class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-1">&nbsp;</div>
+                                        <div class="col-xs-3">
+                                            <span><b> Group ID</b></span>
+                                        </div>
+                                        <div class="col-xs-8 text-center">
+                                            <span><b> Group Name</b></span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <table class="table" style="width: 98%; margin-bottom: 0px;">
+                                    <!--<tr class="row" ng-repeat="item in cugList | filter: saveDataCUG.filter">-->
+                                    <tr class="row" dir-paginate="item in cugList | filter: onSearchCUG  | itemsPerPage: pageSize_cug" current-page="currentPage_cug_edit" pagination-id="cugList">
+                                        <th style="padding: 5px; padding-bottom: 0px;">
+                                            <label class="col-xs-12" style="cursor:pointer;" ng-click="onEditCUG(item)">
+                                                <div class="row">
+                                                    <div class="col-xs-1">
+                                                        <input name="paramEditCug" type="radio" class="radioCUG" value="{{item['group-id']}}" ng-model="cugSelectValue" />
+                                                    </div>
+                                                    <div class="col-xs-3">{{item['group-id']}}</div>
+                                                    <div class="col-xs-8 text-center">{{item['group-name']}}</div>
                                                 </div>
-                                                <div class="col-xs-3">{{item['group-id']}}</div>
-                                                <div class="col-xs-8 text-center">{{item['group-name']}}</div>
-                                            </div>
-                                        </label>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td colspan="5" class="text-center" style="margin-bottom: 0px;">
-                                        <style>
-                                        .pagination {
-                                            margin: 0;
-                                        }
-                                        </style>
-                                        <div dir-pagination-controls pagination-id="cugList" boundary-links=" true" template-url="lib/paging/dirPagination.tpl.html?v=3456785999000"></div>
-                                    </td>
-                                </tr>
-                            </table>
+                                            </label>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="text-center" style="margin-bottom: 0px;">
+                                            <style>
+                                            .pagination {
+                                                margin: 0;
+                                            }
+                                            </style>
+                                            <div dir-pagination-controls pagination-id="cugList" boundary-links=" true" template-url="lib/paging/dirPagination.tpl.html?v=3456785999000"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div ng-show="viewOfferForEdit['checkEditParam'] && item['name']=='Friend numbers offer level'">
+                            <div calss="form-group">
+                                <div class="row">
+                                    <div class="col-md-3 text-right" style="top: 5px;">
+                                        <label> F&F</label>
+                                    </div>
+                                    <div class="col-md-3" ng-show="item['FF_NUMBER'] >= 1">
+                                        <input type="text" ng-model="item['value'][0]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(item['value'][0], 0);" ng-number-only="ifff">
+                                    </div>&nbsp;&nbsp;
+                                    <div class="col-md-3" ng-show="item['FF_NUMBER'] >= 2">
+                                        <input type="text" ng-model="item['value'][1]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(item['value'][1], 1);" ng-number-only="ifff">
+                                    </div>
+                                </div> &nbsp;
+                            </div>
+                            <div calss="form-group" ng-show="item['FF_NUMBER'] >= 3">
+                                <div class="row">
+                                    <div class="col-md-3 text-right" style="top: 5px;">
+                                    </div>
+                                    <div class="col-md-3" ng-show="item['FF_NUMBER'] >= 3">
+                                        <input type="text" ng-model="item['value'][2]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(item['value'][2], 2);" ng-number-only="ifff">
+                                    </div>&nbsp;&nbsp;
+                                    <div class="col-md-3" ng-show="item['FF_NUMBER'] >= 4">
+                                        <input type="text" ng-model="item['value'][3]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(item['value'][3], 3);" ng-number-only="ifff">
+                                    </div>
+                                </div> &nbsp;
+                            </div>
+                            <div calss="form-group" ng-show="item['FF_NUMBER'] >= 5">
+                                <div class="row">
+                                    <div class="col-md-3 text-right" style="top: 5px;">
+                                    </div>
+                                    <div class="col-md-3" ng-show="item['FF_NUMBER'] >= 5">
+                                        <input type="text" ng-model="item['value'][4]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(item['value'][4], 4);" ng-number-only="ifff">
+                                    </div>&nbsp;&nbsp;
+                                    <div class="col-md-3" ng-show="item['FF_NUMBER'] >= 6">
+                                        <input type="text" ng-model="item['value'][5]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(item['value'][5], 5);" ng-number-only="ifff">
+                                    </div>
+                                </div> &nbsp;
+                            </div>
+                            <div calss="form-group" ng-show="item['FF_NUMBER'] >= 7">
+                                <div class="row">
+                                    <div class="col-md-3 text-right" style="top: 5px;">
+                                    </div>
+                                    <div class="col-md-3" ng-show="item['FF_NUMBER'] >= 7">
+                                        <input type="text" ng-model="item['value'][6]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(item['value'][6], 6);" ng-number-only="ifff">
+                                    </div>&nbsp;&nbsp;
+                                    <div class="col-md-3" ng-show="item['FF_NUMBER'] >= 8">
+                                        <input type="text" ng-model="item['value'][7]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(item['value'][7], 7);" ng-number-only="ifff">
+                                    </div>
+                                </div> &nbsp;
+                            </div>
+                            <div calss="form-group" ng-show="item['FF_NUMBER'] >= 9">
+                                <div class="row">
+                                    <div class="col-md-3 text-right" style="top: 5px;">
+                                    </div>
+                                    <div class="col-md-3" ng-show="item['FF_NUMBER'] >= 9">
+                                        <input type="text" ng-model="item['value'][8]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(item['value'][8], 8);" ng-number-only="ifff">
+                                    </div>&nbsp;&nbsp;
+                                    <div class="col-md-3" ng-show="item['FF_NUMBER'] >= 10">
+                                        <input type="text" ng-model="item['value'][9]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(item['value'][9], 9);" ng-number-only="ifff">
+                                    </div>
+                                </div> &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6" style="text-align:center;">
+                                <span ng-span-number-only="ifff" class="hide" style="color:red;">
+                                กรุณากรอกเฉพาะตัวเลขเท่านั้น
+                            </span>
+                                <span ng-show="isNumberTelLengthFF" style="color:red;">
+                                กรุณากรอกหมายเลข9-10ตัว
+                            </span>
+                                <span ng-show="isNumberTelZeroFF" style="color:red;">
+                                กรุณากรอก 0 เป็นตัวแรก
+                            </span>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                        <div class="row" ng-show="viewOfferForEdit['checkEditParam'] && item['name']=='Friend numbers offer level'">
+                            <div class="col-md-12" style="color:red;text-align:center;">
+                                <span>
+                                กรุณาระบุเลขหมายเลขคนสนิท(Friend & Family) อย่างน้อย {{item["FF_MIN"]}} เบอร์
+                            </span>
+                            </div>&nbsp;&nbsp;
                         </div>
                     </div>
+                    
                     <div ng-if="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='PROPOSITION'">
                         <div class="form-group">
                             <div class="row">
@@ -1936,93 +2026,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='FF'">
-                        <div calss="form-group">
-                            <div class="row">
-                                <div class="col-md-3 text-right" style="top: 5px;">
-                                    <label> F&F</label>
-                                </div>
-                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 1">
-                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][0]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][0], 0);" ng-number-only="ifff">
-                                </div>&nbsp;&nbsp;
-                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 2">
-                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][1]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][1], 1);" ng-number-only="ifff">
-                                </div>
-                            </div> &nbsp;
-                        </div>
-                        <div calss="form-group" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 3">
-                            <div class="row">
-                                <div class="col-md-3 text-right" style="top: 5px;">
-                                </div>
-                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 3">
-                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][2]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][2], 2);" ng-number-only="ifff">
-                                </div>&nbsp;&nbsp;
-                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 4">
-                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][3]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][3], 3);" ng-number-only="ifff">
-                                </div>
-                            </div> &nbsp;
-                        </div>
-                        <div calss="form-group" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 5">
-                            <div class="row">
-                                <div class="col-md-3 text-right" style="top: 5px;">
-                                </div>
-                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 5">
-                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][4]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][4], 4);" ng-number-only="ifff">
-                                </div>&nbsp;&nbsp;
-                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 6">
-                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][5]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][5], 5);" ng-number-only="ifff">
-                                </div>
-                            </div> &nbsp;
-                        </div>
-                        <div calss="form-group" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 7">
-                            <div class="row">
-                                <div class="col-md-3 text-right" style="top: 5px;">
-                                </div>
-                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 7">
-                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][6]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][6], 6);" ng-number-only="ifff">
-                                </div>&nbsp;&nbsp;
-                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 8">
-                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][7]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][7], 7);" ng-number-only="ifff">
-                                </div>
-                            </div> &nbsp;
-                        </div>
-                        <div calss="form-group" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 9">
-                            <div class="row">
-                                <div class="col-md-3 text-right" style="top: 5px;">
-                                </div>
-                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 9">
-                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][8]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][8], 8);" ng-number-only="ifff">
-                                </div>&nbsp;&nbsp;
-                                <div class="col-md-3" ng-show="paramForEdit['param-detail'][0]['FF_NUMBER'] >= 10">
-                                    <input type="text" ng-model="paramForEdit['param-detail'][0]['value'][9]" class="form-control" ng-change="onModelChange('FF');" maxlength="10" ng-blur="onCheckFFForEdit(paramForEdit['param-detail'][0]['value'][9], 9);" ng-number-only="ifff">
-                                </div>
-                            </div> &nbsp;
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                        </div>
-                        <div class="col-md-6" style="text-align:center;">
-                            <span ng-span-number-only="ifff" class="hide" style="color:red;">
-                                กรุณากรอกเฉพาะตัวเลขเท่านั้น
-                            </span>
-                            <span ng-show="isNumberTelLengthFF" style="color:red;">
-                                กรุณากรอกหมายเลข9-10ตัว
-                            </span>
-                            <span ng-show="isNumberTelZeroFF" style="color:red;">
-                                กรุณากรอก 0 เป็นตัวแรก
-                            </span>
-                        </div>
-                        <div class="col-md-3">
-                        </div>
-                    </div>
-                    <div class="row" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='FF'">
-                        <div class="col-md-12" style="color:red;text-align:center;">
-                            <span>
-                                กรุณาระบุเลขหมายเลขคนสนิท(Friend & Family) อย่างน้อย {{paramForEdit['param-detail'][0]["FF_MIN"]}} เบอร์
-                            </span>
-                        </div>&nbsp;&nbsp;
-                    </div>
+                    
                     <div calss="form-group" ng-hide="viewOfferForEdit['offer-group']=='PROPOSITION' || viewOfferForEdit['original-data']['canEditExpireDate'] == false">
                         <div class="row" style="border-top: 1px solid #e5e5e5;">
                             <div class="col-md-2">
@@ -2257,9 +2261,9 @@
                         </div>
                     </div>
                     <br>
-                    <div ng-repeat="item in paramDetail" ng-show="paramDetail && viewOffer['offer-group']!='PROPOSITION' && viewOffer['offer-group']!='FF'">
-                        <div calss="form-group">
-                            <div class="row" ng-hide="viewOffer['offer-group']=='CUG'">
+                    <div ng-repeat="item in paramDetail" ng-show="paramDetail && viewOffer['offer-group']!='PROPOSITION'">
+                        <div calss="form-group" ng-hide="item['name']=='CUG ID' || item['name']=='Friend numbers offer level'">
+                            <div class="row">
                                 <div class="col-md-1">
                                 </div>
                                 <div class="col-md-4 text-right" style="top: 5px;">
@@ -2272,7 +2276,7 @@
                                 </div>
                             </div> &nbsp;
                         </div>
-                        <div calss="form-group" ng-show="viewOffer['offer-group']=='CUG'">
+                        <div calss="form-group" ng-show="item['name']=='CUG ID'">
                             <div class="row">
                                 <div class="col-md-1">
                                 </div>
@@ -2286,9 +2290,23 @@
                                 </div>
                             </div> &nbsp;
                         </div>
+                        <div calss="form-group" ng-show="item['name']=='Friend numbers offer level'" ng-repeat="ff in item['value'] track by $index">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4 text-right" style="top: 5px;">
+                                    <label ng-hide="{{$index}} != 0">F&F</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input ng-disabled="true" type="text" id="adViewOffer['effective-date']" ng-model="ff" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div> &nbsp;
+                        </div>
                     </div>
-                    <div ng-repeat="item in paramDetail[0]['value'] track by $index" ng-show="paramDetail && viewOffer['offer-group']=='FF'">
-                        <div calss="form-group">
+                    <!-- <div ng-repeat="item in paramDetail[0]['value'] track by $index" >
+                        <div calss="form-group" ng-show="paramDetail && paramDetail['name']=='Friend numbers offer level'">
                             <div class="row">
                                 <div class="col-md-1">
                                 </div>
@@ -2302,7 +2320,7 @@
                                 </div>
                             </div> &nbsp;
                         </div>
-                    </div>
+                    </div> -->
                     <div ng-if="viewOffer['offer-group']=='PROPOSITION'">
                         <div class="form-group">
                             <div class="row">
