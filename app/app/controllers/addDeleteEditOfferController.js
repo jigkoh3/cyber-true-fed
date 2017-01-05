@@ -1651,29 +1651,29 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                 // }
                                 break;
 
-                            // case "FF":
-                            //     var ffValue = "";
-                            //     for (var ffNum = 0; ffNum < editExistingOfferList[i]["parameter-specifications"][0]["value"].length; ffNum++) {
-                            //         if (editExistingOfferList[i]["parameter-specifications"][0]["value"][ffNum] == "" || editExistingOfferList[i]["parameter-specifications"][0]["value"][ffNum] == undefined) {
-                            //             editExistingOfferList[i]["parameter-specifications"][0]["value"].splice(ffNum, 1);
-                            //         }
-                            //     }
+                                // case "FF":
+                                //     var ffValue = "";
+                                //     for (var ffNum = 0; ffNum < editExistingOfferList[i]["parameter-specifications"][0]["value"].length; ffNum++) {
+                                //         if (editExistingOfferList[i]["parameter-specifications"][0]["value"][ffNum] == "" || editExistingOfferList[i]["parameter-specifications"][0]["value"][ffNum] == undefined) {
+                                //             editExistingOfferList[i]["parameter-specifications"][0]["value"].splice(ffNum, 1);
+                                //         }
+                                //     }
 
-                            //     ffValue = editExistingOfferList[i]["parameter-specifications"][0]["value"][0];
-                            //     if (editExistingOfferList[i]["parameter-specifications"][0]["value"].length > 1) {
-                            //         for (var j = 1; j < editExistingOfferList[i]["parameter-specifications"][0]["value"].length; j++) {
-                            //             ffValue += "," + editExistingOfferList[i]["parameter-specifications"][0]["value"][j];
-                            //         }
-                            //     }
+                                //     ffValue = editExistingOfferList[i]["parameter-specifications"][0]["value"][0];
+                                //     if (editExistingOfferList[i]["parameter-specifications"][0]["value"].length > 1) {
+                                //         for (var j = 1; j < editExistingOfferList[i]["parameter-specifications"][0]["value"].length; j++) {
+                                //             ffValue += "," + editExistingOfferList[i]["parameter-specifications"][0]["value"][j];
+                                //         }
+                                //     }
 
-                            //     data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
-                            //     data['offer']["OFFER-" + i + "-PARAM-0"] = editExistingOfferList[i]["parameter-specifications"][0]["name"] + "|" + ffValue;
-                            //     break;
+                                //     data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
+                                //     data['offer']["OFFER-" + i + "-PARAM-0"] = editExistingOfferList[i]["parameter-specifications"][0]["name"] + "|" + ffValue;
+                                //     break;
 
-                            // case "CUG":
-                            //     data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
-                            //     data['offer']["OFFER-" + i + "-PARAM-0"] = editExistingOfferList[i]["parameter-specifications"][0]["name"] + "|" + editExistingOfferList[i]["parameter-specifications"][0]["value"];
-                            //     break;
+                                // case "CUG":
+                                //     data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
+                                //     data['offer']["OFFER-" + i + "-PARAM-0"] = editExistingOfferList[i]["parameter-specifications"][0]["name"] + "|" + editExistingOfferList[i]["parameter-specifications"][0]["value"];
+                                //     break;
 
                             case "CONTRACT_PROPO":
                                 if (editExistingOfferList[i]["parameter-specifications"]) {
@@ -4016,16 +4016,23 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
             for (var i = 0; i < $scope.existingOffer.length; i++) {
                 var name = $scope.existingOffer[i]["name"];
-                for (var j = 0; j < $scope.existingParameter.length; j++) {
-                    if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] != $scope.existingParameter[j]["product-soc-code"]) && ($scope.validateModifyOfferList[name] && $scope.validateModifyOfferList[name][0] != null)) {
-                        $scope.existingOffer[i]["canEdit"] = false;
-                    } else if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] == $scope.existingParameter[j]["product-soc-code"]) && ($scope.validateModifyOfferList[name] && $scope.validateModifyOfferList[name][0] != null)) {
-                        $scope.existingOffer[i]["canEdit"] = true;
-                        break;
-                    } else if ($scope.existingOffer[i]["canEdit"] == true && $scope.existingOffer[i]["canEditExpireDate"] == false && $scope.existingOffer[i]["product-soc-code"] == $scope.existingParameter[j]["product-soc-code"] && ($scope.validateModifyOfferList[name] && $scope.validateModifyOfferList[name][0] != null)) {
-                        $scope.existingOffer[i]["canEdit"] = true;
-                        break;
+                if ($scope.existingParameter) {
+                    for (var j = 0; j < $scope.existingParameter.length; j++) {
+                        if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] != $scope.existingParameter[j]["product-soc-code"]) && ($scope.validateModifyOfferList[name] && $scope.validateModifyOfferList[name][0] != null)) {
+                            $scope.existingOffer[i]["canEdit"] = false;
+                        } else if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] == $scope.existingParameter[j]["product-soc-code"]) && ($scope.validateModifyOfferList[name] && $scope.validateModifyOfferList[name][0] != null)) {
+                            $scope.existingOffer[i]["canEdit"] = true;
+                            break;
+                        } else if ($scope.existingOffer[i]["canEdit"] == true && $scope.existingOffer[i]["canEditExpireDate"] == false && $scope.existingOffer[i]["product-soc-code"] == $scope.existingParameter[j]["product-soc-code"] && ($scope.validateModifyOfferList[name] && $scope.validateModifyOfferList[name][0] != null)) {
+                            $scope.existingOffer[i]["canEdit"] = true;
+                            break;
+                        }
                     }
+                } else {
+                    if ($scope.existingOffer[i]["canEditExpireDate"] == false) {
+                        $scope.existingOffer[i]["canEdit"] = false;
+                    }
+
                 }
             }
 
