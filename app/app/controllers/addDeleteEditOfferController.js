@@ -4016,7 +4016,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
             for (var i = 0; i < $scope.existingOffer.length; i++) {
                 var name = $scope.existingOffer[i]["name"];
-                if ($scope.existingParameter) {
+                if ($scope.existingParameter && $scope.existingParameter.length > 0) {
                     for (var j = 0; j < $scope.existingParameter.length; j++) {
                         if ($scope.existingOffer[i]["canEditExpireDate"] == false && ($scope.existingOffer[i]["product-soc-code"] != $scope.existingParameter[j]["product-soc-code"]) && ($scope.validateModifyOfferList[name] && $scope.validateModifyOfferList[name][0] != null)) {
                             $scope.existingOffer[i]["canEdit"] = false;
