@@ -1896,7 +1896,6 @@
                             </div>&nbsp;&nbsp;
                         </div>
                     </div>
-                    
                     <div ng-if="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='PROPOSITION'">
                         <div class="form-group">
                             <div class="row">
@@ -2026,7 +2025,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <div calss="form-group" ng-hide="viewOfferForEdit['offer-group']=='PROPOSITION' || viewOfferForEdit['original-data']['canEditExpireDate'] == false">
                         <div class="row" style="border-top: 1px solid #e5e5e5;">
                             <div class="col-md-2">
@@ -2409,7 +2407,7 @@
                                     <label>Effective Date</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="has-feedback">
+                                    <div class="form-group has-feedback">
                                         <input type="text" ng-model="viewOffer['CONTRACT-START-DATE']" class="form-control date-picker-today-en dateFormat" maxlength="10" ng-disabled="true">
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
@@ -2426,7 +2424,7 @@
                                     <label>Expiration Date</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="has-feedback">
+                                    <div class="form-group has-feedback">
                                         <input type="text" ng-model="viewOffer['CONTRACT-EXPIRATION-DATE']" class="form-control date-picker-today-en dateFormat" maxlength="10" disabled>
                                         <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
                                     </div>
@@ -2459,7 +2457,10 @@
                                 <label>Effective Date</label>
                             </div>
                             <div class="col-md-3">
-                                <input ng-disabled="true" type="text" ng-model="viewOffer['effective-date']" class="form-control">
+                                <div class="form-group has-feedback">
+                                    <input ng-disabled="true" type="text" ng-model="viewOffer['effective-date']" class="form-control">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                </div>
                             </div>
                             <div class="col-md-3">
                             </div>
@@ -2473,10 +2474,16 @@
                                 <label>Expiration Date</label>
                             </div>
                             <div class="col-md-3" ng-show="viewOffer['expire-date'].length > 0">
-                                <input ng-disabled="true" type="text" ng-model="viewOffer['expire-date']" class="form-control">
+                                <div class="form-group has-feedback">
+                                    <input ng-disabled="true" type="text" ng-model="viewOffer['expire-date']" class="form-control">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                </div>
                             </div>
                             <div class="col-md-3" ng-show="viewOffer['expire-date'].length == 0">
-                                <input ng-disabled="true" type="text" ng-model="unlimitedExp" class="form-control" value="ไม่มีกำหนด">
+                                <div class="form-group has-feedback">
+                                    <input ng-disabled="true" type="text" ng-model="unlimitedExp" class="form-control" value="ไม่มีกำหนด">
+                                    <span class="form-control-feedback is-bound"><i class="fa fa-calendar"></i></span>
+                                </div>
                             </div>
                             <div class="col-md-3">
                             </div>
