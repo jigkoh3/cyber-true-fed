@@ -1710,7 +1710,7 @@
                             </div>
                         </div>&nbsp;
                     </div>
-                    <div ng-repeat="item in paramForEdit['param-detail'] | orderBy: 'name'" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']!='PROPOSITION' && viewOfferForEdit['offer-group']!='FF' && viewOfferForEdit['offer-group']!='CUG'">
+                    <div ng-repeat="item in paramForEdit['param-detail'] | orderBy: 'name'" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']!='PROPOSITION' && viewOfferForEdit['offer-group'].indexOf('FF') == -1 && viewOfferForEdit['offer-group'].indexOf('CUG') == -1">
                         <div calss="form-group">
                             <div class="row">
                                 <div class="col-md-1">
@@ -1744,7 +1744,7 @@
                             </div> &nbsp;
                         </div>
                     </div>
-                    <div ng-repeat="item in paramForEdit['param-detail']" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group']=='FF' || viewOfferForEdit['offer-group']=='CUG'">
+                    <div ng-repeat="item in paramForEdit['param-detail']" ng-show="viewOfferForEdit['checkEditParam'] && viewOfferForEdit['offer-group'].indexOf('FF') || viewOfferForEdit['offer-group'].indexOf('CUG')">
                         <div ng-show="viewOfferForEdit['checkEditParam'] && item['name']=='CUG ID'">
                             <div calss="form-group">
                                 <div class="row">
