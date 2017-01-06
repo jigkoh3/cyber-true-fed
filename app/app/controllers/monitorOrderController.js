@@ -321,6 +321,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
     };
 
     $scope.callReport = function(rowPerPage, page) {
+        SystemService.showLoading();
         var isValid = validate();
         if (!isValid) {
             return false;
@@ -527,7 +528,6 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         //        });
         console.log(requestUrl);
         if (SystemService.demo == true) {
-            SystemService.showLoading();
             $http.get(requestUrl).success(function(response) {
                 //      $http.post(encodeURI(requestUrl) ,{ headers: objectSSO }).success(function(response) {   
                 if (response.status == "SUCCESSFUL") {
@@ -600,11 +600,12 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
             });
         } else {
             $http.post(requestUrl, /*data*/ null).success(function(response) {
+                SystemService.hideLoading();
                 //      $http.post(encodeURI(requestUrl) ,{ headers: objectSSO }).success(function(response) {   
                 if (response.status == "SUCCESSFUL") {
 
                     if (response['response-data'] != 'undefined') {
-                        SystemService.hideLoading();
+                        // SystemService.hideLoading();
                         try {
                             if (response['page']['current'] != 'undefined') {
                                 $scope.totalPage = response['page']['total'];
@@ -657,6 +658,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                 }
 
             }).error(function(err) {
+                SystemService.hideLoading();
                 console.log(err);
                 // SystemService.timeOut = 500;
                 // SystemService.hideLoading();
