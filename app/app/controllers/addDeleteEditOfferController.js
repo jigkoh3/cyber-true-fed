@@ -324,160 +324,58 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }
         console.log($scope.selectedOffer);
         $scope.relateOfferRequireParam = "";
-        switch ($scope.selectedOffer.group) {
-            case "FF":
-                // $scope.ffData.max = $scope.selectedOffer.properties.FF_NUMBER;
-                // $scope.ffData.min = $scope.selectedOffer["parameter-specifications"][0].min;
-                // if ($scope.selectedOffer["parameter-unique"] && $scope.selectedOffer["parameter-unique"].length > 0) {
-                //     for (var i = 0; i < $scope.selectedOffer["parameter-unique"].length; i++) {
-                //         if ($scope.selectedOffer["parameter-unique"][i]["name"] == "Friend numbers offer level") {
-                //             $scope.ffData.max = $scope.selectedOffer.properties.FF_NUMBER;
-                //             $scope.ffData.min = $scope.selectedOffer["parameter-unique"][i].min;
-                //         }
-                //     }
-                // }
-                break;
-            case "CONTRACT_PROPO":
-                $scope.cpPropCode = $scope.selectedOffer.name;
-                $scope.cpPropDesc = $scope.selectedOffer.description;
-                $scope.cpStartDate = $scope.setDateNow;
-                $('#cpStartDate').val($scope.cpStartDate);
-                for (var i = 0; i < $scope.selectedOffer['parameter-specifications'].length; i++) {
-                    if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_REMARK" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
-                        $scope.cpRemark = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
-                    }
-                    if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_NUMBER" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
-                        $scope.cpContractNumber = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
-                    }
-                }
-                if ($scope.selectedOffer["properties"] && $scope.selectedOffer["properties"]["FEE"]) {
-                    $scope.cpFee = $scope.selectedOffer["properties"]["FEE"];
-                }
-                if ($scope.selectedOffer["properties"] && $scope.selectedOffer["properties"]["TERM"]) {
-                    $scope.cpTerm = $scope.selectedOffer["properties"]["TERM"];
-                    if ($scope.cpTerm == 0) {
-                        $scope.cpExpireDate = $scope.cpStartDate;
-                        $('#cpExpireDate').val($scope.cpExpireDate);
-                        var dateToSet = $scope.cpExpireDate.split("/");
-                        $('#cpExpireDate').datepicker("setDate", new Date(2099, Number(dateToSet[1]) - 1, Number(dateToSet[0])));
-                    } else {
-                        var currentDate = new Date();
-                        currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));
-                        var setDate = ("0" + currentDate.getDate()).slice(-2) + "/" + ("0" + Number(currentDate.getMonth() + 1)).slice(-2) + "/" + currentDate.getFullYear();
-                        $('#cpExpireDate').datepicker("setDate", new Date(currentDate.getFullYear(), ("0" + Number(currentDate.getMonth() + 0)).slice(-2), ("0" + currentDate.getDate()).slice(-2)));
-                        $('#cpExpireDate').val(setDate);
-                        $scope.cpExpireDate = $('#cpExpireDate').val();
-                    }
-                }
-
-                $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
-
-
-                $scope.disableExpDateCp = true;
-                var validateDiscountOfferParam = "current-offers=" + $scope.selectedOffer.name + "&current-priceplan=" + $scope.priceplan[0]['product-name'] + "&level=SUBSCRIBER";
-                SystemService.showLoading();
-                AddDeleteEditOfferService.validateModifyOffer(validateDiscountOfferParam, function(result) {
-                    SystemService.hideLoading();
-                    var validateResult = result;
-                    if (validateResult.data['response-data'][$scope.selectedOffer.name]) {
-                        for (var i = 0; i < validateResult.data['response-data'][$scope.selectedOffer.name].length; i++) {
-                            if (validateResult.data['response-data'][$scope.selectedOffer.name][i] == "EDIT") {
-                                $scope.selectedOffer.disableExpDateCp = false;
-                            } else {
-                                $scope.selectedOffer.disableExpDateCp = true;
-                            }
-                        }
-                    } else {
-                        $scope.selectedOffer.disableExpDateCp = true;
-                    }
-                })
-                break;
-            case "ADDITIONAL":
-            case "CAP_MAX":
-            case "POOLING":
-                // $scope.adParam = [];
-                // $scope.adParamSpec = $scope.selectedOffer['parameter-specifications'];
-                // $scope.selectedOffer['option-params'] = [];
-                if ($scope.selectedOffer['parameter-specifications']) {
+        var arrGroup = $scope.selectedOffer.group.split(",");
+        for (var indexGroup = 0; indexGroup < arrGroup.length; indexGroup++) {
+            switch (arrGroup[indexGroup]) {
+                case "FF":
+                    // $scope.ffData.max = $scope.selectedOffer.properties.FF_NUMBER;
+                    // $scope.ffData.min = $scope.selectedOffer["parameter-specifications"][0].min;
+                    // if ($scope.selectedOffer["parameter-unique"] && $scope.selectedOffer["parameter-unique"].length > 0) {
+                    //     for (var i = 0; i < $scope.selectedOffer["parameter-unique"].length; i++) {
+                    //         if ($scope.selectedOffer["parameter-unique"][i]["name"] == "Friend numbers offer level") {
+                    //             $scope.ffData.max = $scope.selectedOffer.properties.FF_NUMBER;
+                    //             $scope.ffData.min = $scope.selectedOffer["parameter-unique"][i].min;
+                    //         }
+                    //     }
+                    // }
+                    break;
+                case "CONTRACT_PROPO":
+                    $scope.cpPropCode = $scope.selectedOffer.name;
+                    $scope.cpPropDesc = $scope.selectedOffer.description;
+                    $scope.cpStartDate = $scope.setDateNow;
+                    $('#cpStartDate').val($scope.cpStartDate);
                     for (var i = 0; i < $scope.selectedOffer['parameter-specifications'].length; i++) {
-                        $scope.selectedOffer['parameter-specifications'][i]['select-value'] = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
-                        var optionParam = $filter('filter')($scope.selectedOffer['parameter-specifications'][i]['valid-values']);
-                        $scope.selectedOffer['parameter-specifications'][i]['option-values'] = [];
-                        if (optionParam) {
-                            $.each(optionParam, function(key, value) {
-                                var item = {
-                                    "id": key,
-                                    "value": value
-                                };
-                                $scope.selectedOffer['parameter-specifications'][i]['option-values'].push(item);
-                            });
-                            var defaultItem = $filter('filter')($scope.selectedOffer['parameter-specifications'][i]['option-values'], { "id": $scope.selectedOffer['parameter-specifications'][i]['default-value'] });
-                            var index = $scope.selectedOffer['parameter-specifications'][i]['option-values'].indexOf(defaultItem[0]);
-                            $scope.selectedOffer['parameter-specifications'][i]['select-value'] = $scope.selectedOffer['parameter-specifications'][i]['option-values'][index];
+                        if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_REMARK" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
+                            $scope.cpRemark = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
+                        }
+                        if ($scope.selectedOffer['parameter-specifications'][i].name == "TR_CONTRACT_NUMBER" && $scope.selectedOffer['parameter-specifications'][i]['default-value']) {
+                            $scope.cpContractNumber = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
                         }
                     }
-                }
-
-                if ($scope.selectedOffer['related-offers']) {
-                    for (var i = 0; i < $scope.selectedOffer['related-offers'].length; i++) {
-                        if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications']) {
-                            for (var j = 0; j < $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'].length; j++) {
-                                $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['select-value'] = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['default-value'];
-                                var optionParam = $filter('filter')($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['valid-values']);
-                                $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'] = [];
-                                if (optionParam) {
-                                    $.each(optionParam, function(key, value) {
-                                        var item = {
-                                            "id": key,
-                                            "value": value
-                                        };
-                                        $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'].push(item);
-                                    });
-                                    var defaultItem = $filter('filter')($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'], { "id": $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['default-value'] });
-                                    var index = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'].indexOf(defaultItem[0]);
-                                    $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['select-value'] = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'][index];
-                                }
-                            }
-                        }
-
+                    if ($scope.selectedOffer["properties"] && $scope.selectedOffer["properties"]["FEE"]) {
+                        $scope.cpFee = $scope.selectedOffer["properties"]["FEE"];
                     }
-                };
-
-                if ($scope.selectedOffer['related-offers']) {
-                    for (var i = 0; i < $scope.selectedOffer['related-offers'].length; i++) {
-                        if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications']) {
-                            for (var j = 0; j < $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'].length; j++) {
-                                if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["required"] == true && !$scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["default-value"]) {
-                                    if ($scope.relateOfferRequireParam == "") {
-                                        $scope.relateOfferRequireParam += $scope.selectedOffer['related-offers'][i]['offer']['name'];
-                                        break;
-                                    } else {
-                                        $scope.relateOfferRequireParam += " ," + $scope.selectedOffer['related-offers'][i]['offer']['name'];
-                                        break;
-                                    }
-                                }
-                            }
+                    if ($scope.selectedOffer["properties"] && $scope.selectedOffer["properties"]["TERM"]) {
+                        $scope.cpTerm = $scope.selectedOffer["properties"]["TERM"];
+                        if ($scope.cpTerm == 0) {
+                            $scope.cpExpireDate = $scope.cpStartDate;
+                            $('#cpExpireDate').val($scope.cpExpireDate);
+                            var dateToSet = $scope.cpExpireDate.split("/");
+                            $('#cpExpireDate').datepicker("setDate", new Date(2099, Number(dateToSet[1]) - 1, Number(dateToSet[0])));
+                        } else {
+                            var currentDate = new Date();
+                            currentDate.setMonth(currentDate.getMonth() + Number($scope.cpTerm));
+                            var setDate = ("0" + currentDate.getDate()).slice(-2) + "/" + ("0" + Number(currentDate.getMonth() + 1)).slice(-2) + "/" + currentDate.getFullYear();
+                            $('#cpExpireDate').datepicker("setDate", new Date(currentDate.getFullYear(), ("0" + Number(currentDate.getMonth() + 0)).slice(-2), ("0" + currentDate.getDate()).slice(-2)));
+                            $('#cpExpireDate').val(setDate);
+                            $scope.cpExpireDate = $('#cpExpireDate').val();
                         }
-
                     }
-                    console.log($scope.relateOfferRequireParam);
-                };
+
+                    $scope.cpDiffResult = $scope.checkValueCpDate($('#cpStartDate').val(), $('#cpExpireDate').val());
 
 
-                setTimeout(function() {
-                    $scope.validateAddAD();
-                    $('#idBindDataAgain').click();
-                }, 50);
-
-                $('#idBindDataAgain').click();
-                console.log($scope.selectedOffer);
-                break;
-            case "DISCOUNT":
-                if ($scope.selectedOffer.properties["DURATION"]) {
-                    $scope.selectedOffer.properties["DURATION"] = angular.copy(Number($scope.selectedOffer.properties["DURATION"] - 1));
-                }
-                if ($scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'CVG' && $scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'EMPLOYEE') {
-                    $scope.disableExpDateDiscount = true;
+                    $scope.disableExpDateCp = true;
                     var validateDiscountOfferParam = "current-offers=" + $scope.selectedOffer.name + "&current-priceplan=" + $scope.priceplan[0]['product-name'] + "&level=SUBSCRIBER";
                     SystemService.showLoading();
                     AddDeleteEditOfferService.validateModifyOffer(validateDiscountOfferParam, function(result) {
@@ -486,16 +384,121 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                         if (validateResult.data['response-data'][$scope.selectedOffer.name]) {
                             for (var i = 0; i < validateResult.data['response-data'][$scope.selectedOffer.name].length; i++) {
                                 if (validateResult.data['response-data'][$scope.selectedOffer.name][i] == "EDIT") {
-                                    // $scope.disableExpDateDiscount = false;
-                                    $scope.disableExpDateDiscount = true;
+                                    $scope.selectedOffer.disableExpDateCp = false;
                                 } else {
-                                    $scope.disableExpDateDiscount = true;
+                                    $scope.selectedOffer.disableExpDateCp = true;
                                 }
                             }
+                        } else {
+                            $scope.selectedOffer.disableExpDateCp = true;
                         }
-                    });
-                }
-                break;
+                    })
+                    break;
+                case "ADDITIONAL":
+                case "CAP_MAX":
+                case "POOLING":
+                    // $scope.adParam = [];
+                    // $scope.adParamSpec = $scope.selectedOffer['parameter-specifications'];
+                    // $scope.selectedOffer['option-params'] = [];
+                    if ($scope.selectedOffer['parameter-specifications']) {
+                        for (var i = 0; i < $scope.selectedOffer['parameter-specifications'].length; i++) {
+                            $scope.selectedOffer['parameter-specifications'][i]['select-value'] = $scope.selectedOffer['parameter-specifications'][i]['default-value'];
+                            var optionParam = $filter('filter')($scope.selectedOffer['parameter-specifications'][i]['valid-values']);
+                            $scope.selectedOffer['parameter-specifications'][i]['option-values'] = [];
+                            if (optionParam) {
+                                $.each(optionParam, function(key, value) {
+                                    var item = {
+                                        "id": key,
+                                        "value": value
+                                    };
+                                    $scope.selectedOffer['parameter-specifications'][i]['option-values'].push(item);
+                                });
+                                var defaultItem = $filter('filter')($scope.selectedOffer['parameter-specifications'][i]['option-values'], { "id": $scope.selectedOffer['parameter-specifications'][i]['default-value'] });
+                                var index = $scope.selectedOffer['parameter-specifications'][i]['option-values'].indexOf(defaultItem[0]);
+                                $scope.selectedOffer['parameter-specifications'][i]['select-value'] = $scope.selectedOffer['parameter-specifications'][i]['option-values'][index];
+                            }
+                        }
+                    }
+
+                    if ($scope.selectedOffer['related-offers']) {
+                        for (var i = 0; i < $scope.selectedOffer['related-offers'].length; i++) {
+                            if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications']) {
+                                for (var j = 0; j < $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'].length; j++) {
+                                    $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['select-value'] = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['default-value'];
+                                    var optionParam = $filter('filter')($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['valid-values']);
+                                    $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'] = [];
+                                    if (optionParam) {
+                                        $.each(optionParam, function(key, value) {
+                                            var item = {
+                                                "id": key,
+                                                "value": value
+                                            };
+                                            $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'].push(item);
+                                        });
+                                        var defaultItem = $filter('filter')($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'], { "id": $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['default-value'] });
+                                        var index = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'].indexOf(defaultItem[0]);
+                                        $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['select-value'] = $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]['option-values'][index];
+                                    }
+                                }
+                            }
+
+                        }
+                    };
+
+                    if ($scope.selectedOffer['related-offers']) {
+                        for (var i = 0; i < $scope.selectedOffer['related-offers'].length; i++) {
+                            if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications']) {
+                                for (var j = 0; j < $scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'].length; j++) {
+                                    if ($scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["required"] == true && !$scope.selectedOffer['related-offers'][i]['offer']['parameter-specifications'][j]["default-value"]) {
+                                        if ($scope.relateOfferRequireParam == "") {
+                                            $scope.relateOfferRequireParam += $scope.selectedOffer['related-offers'][i]['offer']['name'];
+                                            break;
+                                        } else {
+                                            $scope.relateOfferRequireParam += " ," + $scope.selectedOffer['related-offers'][i]['offer']['name'];
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        console.log($scope.relateOfferRequireParam);
+                    };
+
+
+                    setTimeout(function() {
+                        $scope.validateAddAD();
+                        $('#idBindDataAgain').click();
+                    }, 50);
+
+                    $('#idBindDataAgain').click();
+                    console.log($scope.selectedOffer);
+                    break;
+                case "DISCOUNT":
+                    if ($scope.selectedOffer.properties["DURATION"]) {
+                        $scope.selectedOffer.properties["DURATION"] = angular.copy(Number($scope.selectedOffer.properties["DURATION"] - 1));
+                    }
+                    if ($scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'CVG' && $scope.selectedOffer.properties['DISCOUNT_GROUP'] != 'EMPLOYEE') {
+                        $scope.disableExpDateDiscount = true;
+                        var validateDiscountOfferParam = "current-offers=" + $scope.selectedOffer.name + "&current-priceplan=" + $scope.priceplan[0]['product-name'] + "&level=SUBSCRIBER";
+                        SystemService.showLoading();
+                        AddDeleteEditOfferService.validateModifyOffer(validateDiscountOfferParam, function(result) {
+                            SystemService.hideLoading();
+                            var validateResult = result;
+                            if (validateResult.data['response-data'][$scope.selectedOffer.name]) {
+                                for (var i = 0; i < validateResult.data['response-data'][$scope.selectedOffer.name].length; i++) {
+                                    if (validateResult.data['response-data'][$scope.selectedOffer.name][i] == "EDIT") {
+                                        // $scope.disableExpDateDiscount = false;
+                                        $scope.disableExpDateDiscount = true;
+                                    } else {
+                                        $scope.disableExpDateDiscount = true;
+                                    }
+                                }
+                            }
+                        });
+                    }
+                    break;
+            }
         }
 
         if ($scope.selectedOffer["parameter-unique"] && $scope.selectedOffer["parameter-unique"].length > 0) {
@@ -1331,99 +1334,78 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 }
 
                 // 20161209 Change submit in case multi parameter by waramun
-                switch ($scope.addNewOfferLists[i].group) {
-                    case "ADDITIONAL":
-                    case "CAP_MAX":
-                    case "POOLING":
-                    case "FF":
-                    case "CUG":
-                        if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
-                            data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
-                            for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
-                                if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "Friend numbers offer level") {
-                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["ff-number"];
-                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "CUG ID") {
-                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["cug-group-id"];
-                                } else {
-                                    var paramValue = $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] ? $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] : $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"];
-                                    if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"] == '') {
-                                        paramValue = $scope.addNewOfferLists[i]["parameter-specifications"][j]["capmax-specify"];
-                                    }
-                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + paramValue;
-                                }
-                            }
-                        }
-
-                        if ($scope.addNewOfferLists[i].group == "POOLING") {
-                            data['offer']["OFFER-" + i + "-POOLED-OFFER"] = $scope.addNewOfferLists[i].param['parent-pooled'];
-                        }
-                        break;
-
-                        // case "FF":
-                        // case "CUG":
-                        // data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
-                        // data['offer']["OFFER-" + i + "-PARAM-0"] = $scope.addNewOfferLists[i]["parameter-specifications"][0]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["ff-number"];
-
-                        // if ($scope.addNewOfferLists[i]["parameter-specifications"] && $scope.addNewOfferLists[i]["parameter-specifications"].length > 0) {
-                        //     data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
-                        //     for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
-                        //         if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "Friend numbers offer level") {
-                        //             data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["ff-number"];
-                        //         } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "CUG ID") {
-                        //             data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["cug-group-id"];
-                        //         }
-                        //     }
-                        // }
-                        // break;
-
-                        // case "CUG":
-                        //     data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
-                        //     data['offer']["OFFER-" + i + "-PARAM-0"] = $scope.addNewOfferLists[i]["parameter-specifications"][0]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["cug-group-id"];
-                        //     break;
-
-                    case "CONTRACT_PROPO":
-                        if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
-                            data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
-                            for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
-                                if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_REMARK") {
-                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["remark"];
-
-                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_NUMBER") {
-                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["contract-number"];
-
-                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_ACTUAL_CONTRACT_START_DATE") {
-                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["start-date"];
-                                    data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.addNewOfferLists[i]["param"]["start-date"];
-
-                                    if ($scope.addNewOfferLists[i]["param"]["start-date"] == $scope.setDateNow) {
-                                        data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
+                var arrGroup = $scope.addNewOfferLists[i].group.split(",");
+                for (var indexGroup = 0; indexGroup < arrGroup.length; indexGroup++) {
+                    switch (arrGroup[indexGroup]) {
+                        case "ADDITIONAL":
+                        case "CAP_MAX":
+                        case "POOLING":
+                        case "FF":
+                        case "CUG":
+                            if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
+                                data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
+                                for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
+                                    if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "Friend numbers offer level") {
+                                        data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["ff-number"];
+                                    } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "CUG ID") {
+                                        data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["cug-group-id"];
                                     } else {
-                                        data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
+                                        var paramValue = $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] ? $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"]["id"] : $scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"];
+                                        if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["select-value"] == '') {
+                                            paramValue = $scope.addNewOfferLists[i]["parameter-specifications"][j]["capmax-specify"];
+                                        }
+                                        data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + paramValue;
                                     }
-
-                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_ORIG_CONTRACT_EXPIRE_DATE") {
-                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["expiration-date"];
-                                    data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = $scope.addNewOfferLists[i]["param"]["expiration-date"];
-                                    data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
-
-                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_TERM") {
-                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["term"];
-
-                                } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_FEE") {
-                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["fee"];
-
-                                } else {
-                                    data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["parameter-specifications"][j]["default-value"];
                                 }
                             }
-                        }
-                        delete data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"];
-                        delete data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"];
-                        delete data['offer']["OFFER-" + i + "-EXPIRE-DATE"];
-                        delete data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"];
-                        break;
-                }
 
+                            if ($scope.addNewOfferLists[i].group == "POOLING") {
+                                data['offer']["OFFER-" + i + "-POOLED-OFFER"] = $scope.addNewOfferLists[i].param['parent-pooled'];
+                            }
+                            break;
+                        case "CONTRACT_PROPO":
+                            if ($scope.addNewOfferLists[i]["parameter-specifications"]) {
+                                data['offer']["OFFER-" + i + "-PARAM-SIZE"] = $scope.addNewOfferLists[i]["parameter-specifications"].length;
+                                for (var j = 0; j < $scope.addNewOfferLists[i]["parameter-specifications"].length; j++) {
+                                    if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_REMARK") {
+                                        data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["remark"];
+
+                                    } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_NUMBER") {
+                                        data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["contract-number"];
+
+                                    } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_ACTUAL_CONTRACT_START_DATE") {
+                                        data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["start-date"];
+                                        data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = $scope.addNewOfferLists[i]["param"]["start-date"];
+
+                                        if ($scope.addNewOfferLists[i]["param"]["start-date"] == $scope.setDateNow) {
+                                            data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
+                                        } else {
+                                            data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
+                                        }
+
+                                    } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_ORIG_CONTRACT_EXPIRE_DATE") {
+                                        data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["expiration-date"];
+                                        data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = $scope.addNewOfferLists[i]["param"]["expiration-date"];
+                                        data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
+
+                                    } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_TERM") {
+                                        data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["term"];
+
+                                    } else if ($scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_FEE") {
+                                        data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["param"]["fee"];
+
+                                    } else {
+                                        data['offer']["OFFER-" + i + "-PARAM-" + j] = $scope.addNewOfferLists[i]["parameter-specifications"][j]["name"] + "|" + $scope.addNewOfferLists[i]["parameter-specifications"][j]["default-value"];
+                                    }
+                                }
+                            }
+                            delete data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"];
+                            delete data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"];
+                            delete data['offer']["OFFER-" + i + "-EXPIRE-DATE"];
+                            delete data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"];
+                            break;
+                    }
+                }
                 // ================================================================================
 
                 if ($scope.addNewOfferLists[i]["related-offers"]) {
@@ -1609,109 +1591,84 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     if (parameter.length > 0) {
                         var paramSpec = parameter[0]["product-properties"]["param-detail"];
                         editExistingOfferList[i]["parameter-specifications"] = paramSpec;
-                        switch (editExistingOfferList[i].group) {
-                            case "ADDITIONAL":
-                            case "CAP_MAX":
-                            case "POOLED":
-                            case "POOLING":
-                            case "FF":
-                            case "CUG":
-                                if (editExistingOfferList[i]["parameter-specifications"]) {
-                                    data['offer']["OFFER-" + i + "-PARAM-SIZE"] = editExistingOfferList[i]["parameter-specifications"].length;
-                                    for (var j = 0; j < editExistingOfferList[i]["parameter-specifications"].length; j++) {
-                                        if (editExistingOfferList[i]["parameter-specifications"][j].name == "Friend numbers offer level") {
-                                            var ffValue = "";
-                                            for (var ffNum = 0; ffNum < editExistingOfferList[i]["parameter-specifications"][j]["value"].length; ffNum++) {
-                                                if (editExistingOfferList[i]["parameter-specifications"][j]["value"][ffNum] == "" || editExistingOfferList[i]["parameter-specifications"][0]["value"][ffNum] == undefined) {
-                                                    editExistingOfferList[i]["parameter-specifications"][j]["value"].splice(ffNum, 1);
+
+                        var arrGroup = editExistingOfferList[i].group.split(",");
+                        for (var indexGroup = 0; indexGroup < arrGroup.length; indexGroup++) {
+                            switch (arrGroup[indexGroup]) {
+                                case "ADDITIONAL":
+                                case "CAP_MAX":
+                                case "POOLED":
+                                case "POOLING":
+                                case "FF":
+                                case "CUG":
+                                    if (editExistingOfferList[i]["parameter-specifications"]) {
+                                        data['offer']["OFFER-" + i + "-PARAM-SIZE"] = editExistingOfferList[i]["parameter-specifications"].length;
+                                        for (var j = 0; j < editExistingOfferList[i]["parameter-specifications"].length; j++) {
+                                            if (editExistingOfferList[i]["parameter-specifications"][j].name == "Friend numbers offer level") {
+                                                var ffValue = "";
+                                                for (var ffNum = 0; ffNum < editExistingOfferList[i]["parameter-specifications"][j]["value"].length; ffNum++) {
+                                                    if (editExistingOfferList[i]["parameter-specifications"][j]["value"][ffNum] == "" || editExistingOfferList[i]["parameter-specifications"][0]["value"][ffNum] == undefined) {
+                                                        editExistingOfferList[i]["parameter-specifications"][j]["value"].splice(ffNum, 1);
+                                                    }
                                                 }
-                                            }
 
-                                            ffValue = editExistingOfferList[i]["parameter-specifications"][j]["value"][0];
-                                            if (editExistingOfferList[i]["parameter-specifications"][j]["value"].length > 1) {
-                                                for (var k = 1; k < editExistingOfferList[i]["parameter-specifications"][j]["value"].length; k++) {
-                                                    ffValue += "," + editExistingOfferList[i]["parameter-specifications"][j]["value"][k];
+                                                ffValue = editExistingOfferList[i]["parameter-specifications"][j]["value"][0];
+                                                if (editExistingOfferList[i]["parameter-specifications"][j]["value"].length > 1) {
+                                                    for (var k = 1; k < editExistingOfferList[i]["parameter-specifications"][j]["value"].length; k++) {
+                                                        ffValue += "," + editExistingOfferList[i]["parameter-specifications"][j]["value"][k];
+                                                    }
                                                 }
-                                            }
-                                            data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + ffValue;
-                                        } else if (editExistingOfferList[i]["parameter-specifications"][j].name == "CUG ID") {
-                                            data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["parameter-specifications"][j]["value"];
-                                        } else {
-                                            var paramValue = editExistingOfferList[i]["parameter-specifications"][j]["value"]["id"] ? editExistingOfferList[i]["parameter-specifications"][j]["value"]["id"] : editExistingOfferList[i]["parameter-specifications"][j]["value"];
-                                            if (editExistingOfferList[i]["parameter-specifications"][j]["value"] == "") {
-                                                paramValue = editExistingOfferList[i]["parameter-specifications"][j]["capmax-specify"]
-                                            }
-                                            data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + paramValue;
-                                        }
-                                    }
-                                }
-
-                                // if (editExistingOfferList[i].group == "POOLING") {
-                                //     data['offer']["OFFER-" + i + "-POOLED-OFFER"] = editExistingOfferList[i].param['parent-pooled'];
-                                // }
-                                break;
-
-                                // case "FF":
-                                //     var ffValue = "";
-                                //     for (var ffNum = 0; ffNum < editExistingOfferList[i]["parameter-specifications"][0]["value"].length; ffNum++) {
-                                //         if (editExistingOfferList[i]["parameter-specifications"][0]["value"][ffNum] == "" || editExistingOfferList[i]["parameter-specifications"][0]["value"][ffNum] == undefined) {
-                                //             editExistingOfferList[i]["parameter-specifications"][0]["value"].splice(ffNum, 1);
-                                //         }
-                                //     }
-
-                                //     ffValue = editExistingOfferList[i]["parameter-specifications"][0]["value"][0];
-                                //     if (editExistingOfferList[i]["parameter-specifications"][0]["value"].length > 1) {
-                                //         for (var j = 1; j < editExistingOfferList[i]["parameter-specifications"][0]["value"].length; j++) {
-                                //             ffValue += "," + editExistingOfferList[i]["parameter-specifications"][0]["value"][j];
-                                //         }
-                                //     }
-
-                                //     data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
-                                //     data['offer']["OFFER-" + i + "-PARAM-0"] = editExistingOfferList[i]["parameter-specifications"][0]["name"] + "|" + ffValue;
-                                //     break;
-
-                                // case "CUG":
-                                //     data['offer']["OFFER-" + i + "-PARAM-SIZE"] = 1;
-                                //     data['offer']["OFFER-" + i + "-PARAM-0"] = editExistingOfferList[i]["parameter-specifications"][0]["name"] + "|" + editExistingOfferList[i]["parameter-specifications"][0]["value"];
-                                //     break;
-
-                            case "CONTRACT_PROPO":
-                                if (editExistingOfferList[i]["parameter-specifications"]) {
-                                    data['offer']["OFFER-" + i + "-PARAM-SIZE"] = editExistingOfferList[i]["parameter-specifications"].length;
-                                    for (var j = 0; j < editExistingOfferList[i]["parameter-specifications"].length; j++) {
-                                        if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_REMARK") {
-                                            data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["remark"];
-
-                                        } else if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_NUMBER") {
-                                            data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["contract-number"];
-
-                                        } else if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_ACTUAL_CONTRACT_START_DATE") {
-                                            data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["start-date"];
-                                            data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = editExistingOfferList[i]["param"]["start-date"];
-
-                                            if (editExistingOfferList[i]["param"]["start-date"] == $scope.setDateNow) {
-                                                data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
+                                                data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + ffValue;
+                                            } else if (editExistingOfferList[i]["parameter-specifications"][j].name == "CUG ID") {
+                                                data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["parameter-specifications"][j]["value"];
                                             } else {
-                                                data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
+                                                var paramValue = editExistingOfferList[i]["parameter-specifications"][j]["value"]["id"] ? editExistingOfferList[i]["parameter-specifications"][j]["value"]["id"] : editExistingOfferList[i]["parameter-specifications"][j]["value"];
+                                                if (editExistingOfferList[i]["parameter-specifications"][j]["value"] == "") {
+                                                    paramValue = editExistingOfferList[i]["parameter-specifications"][j]["capmax-specify"]
+                                                }
+                                                data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + paramValue;
                                             }
-
-                                        } else if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_ORIG_CONTRACT_EXPIRE_DATE") {
-                                            data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["expiration-date"];
-                                            data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = editExistingOfferList[i]["param"]["expiration-date"];
-                                            data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
-
-                                        } else if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_TERM") {
-                                            data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["term"];
-
-                                        } else if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_FEE") {
-                                            data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["fee"];
-
-                                        } else {
-                                            data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["parameter-specifications"][j]["default-value"];
                                         }
                                     }
-                                }
-                                break;
+                                    break;
+                                case "CONTRACT_PROPO":
+                                    if (editExistingOfferList[i]["parameter-specifications"]) {
+                                        data['offer']["OFFER-" + i + "-PARAM-SIZE"] = editExistingOfferList[i]["parameter-specifications"].length;
+                                        for (var j = 0; j < editExistingOfferList[i]["parameter-specifications"].length; j++) {
+                                            if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_REMARK") {
+                                                data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["remark"];
+
+                                            } else if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_NUMBER") {
+                                                data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["contract-number"];
+
+                                            } else if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_ACTUAL_CONTRACT_START_DATE") {
+                                                data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["start-date"];
+                                                data['offer']["OFFER-" + i + "-EFFECTIVE-DATE"] = editExistingOfferList[i]["param"]["start-date"];
+
+                                                if (editExistingOfferList[i]["param"]["start-date"] == $scope.setDateNow) {
+                                                    data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "IMMEDIATE";
+                                                } else {
+                                                    data['offer']["OFFER-" + i + "-CHANGE-EFFECTIVE-OPTION"] = "FUTURE";
+                                                }
+
+                                            } else if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_ORIG_CONTRACT_EXPIRE_DATE") {
+                                                data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["expiration-date"];
+                                                data['offer']["OFFER-" + i + "-EXPIRE-DATE"] = editExistingOfferList[i]["param"]["expiration-date"];
+                                                data['offer']["OFFER-" + i + "-CHANGE-EXPIRE-OPTION"] = "FUTURE";
+
+                                            } else if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_TERM") {
+                                                data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["term"];
+
+                                            } else if (editExistingOfferList[i]["parameter-specifications"][j]["name"] == "TR_CONTRACT_FEE") {
+                                                data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["param"]["fee"];
+
+                                            } else {
+                                                data['offer']["OFFER-" + i + "-PARAM-" + j] = editExistingOfferList[i]["parameter-specifications"][j]["name"] + "|" + editExistingOfferList[i]["parameter-specifications"][j]["default-value"];
+                                            }
+                                        }
+                                    }
+                                    break;
+                            }
                         }
                     }
                 }
@@ -3194,74 +3151,78 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $('#editNewOfferExpirationDate').val('');
                 $scope.dataForEdit['param']['expiration-date-value'] = "";
             }
-            switch ($scope.dataForEdit.group) {
-                case "CUG":
-                    // console.log($scope.cugParam);
-                    if ($scope.ischkCugValue == false) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.ischkCugValue == true && $scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.ischkCugValue == true && $scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else {
-                        $scope.disableSubmitAddOffer = false;
-                    }
-                    break;
-                case "CONTRACT_PROPO":
-                    if ($scope.chkValueforCp == false) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.chkValueforCp == true && $scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.chkValueforCp == true && $scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else {
-                        $scope.disableSubmitAddOffer = false;
-                    }
-                    break;
-                case "DISCOUNT":
-                case "FUP":
-                case "BARRING":
-                    if ($scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else {
-                        $scope.disableSubmitAddOffer = false;
-                    }
-                    break;
-                case "FF":
-                    if ($scope.chkValueforFF == false) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.chkValueforFF == true && $scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.chkValueforFF == true && $scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else {
-                        $scope.disableSubmitAddOffer = false;
-                    }
-                    break;
-                case "RELATED":
-                    if ($scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else {
-                        $scope.disableSubmitAddOffer = false;
-                    }
-                    break;
-                case "ADDITIONAL":
-                case "CAP_MAX":
-                case "POOLING":
-                    if ($scope.chkValueforAD == false) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.chkValueforAD == true && $scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.chkValueforAD == true && $scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else {
-                        $scope.disableSubmitAddOffer = false;
-                    }
-                    break;
+
+            var arrGroup = $scope.dataForEdit.group.split(",");
+            for (var indexGroup = 0; indexGroup < arrGroup.length; indexGroup++) {
+                switch (arrGroup[indexGroup]) {
+                    case "CUG":
+                        // console.log($scope.cugParam);
+                        if ($scope.ischkCugValue == false) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.ischkCugValue == true && $scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.ischkCugValue == true && $scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else {
+                            $scope.disableSubmitAddOffer = false;
+                        }
+                        break;
+                    case "CONTRACT_PROPO":
+                        if ($scope.chkValueforCp == false) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.chkValueforCp == true && $scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.chkValueforCp == true && $scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else {
+                            $scope.disableSubmitAddOffer = false;
+                        }
+                        break;
+                    case "DISCOUNT":
+                    case "FUP":
+                    case "BARRING":
+                        if ($scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else {
+                            $scope.disableSubmitAddOffer = false;
+                        }
+                        break;
+                    case "FF":
+                        if ($scope.chkValueforFF == false) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.chkValueforFF == true && $scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.chkValueforFF == true && $scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else {
+                            $scope.disableSubmitAddOffer = false;
+                        }
+                        break;
+                    case "RELATED":
+                        if ($scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else {
+                            $scope.disableSubmitAddOffer = false;
+                        }
+                        break;
+                    case "ADDITIONAL":
+                    case "CAP_MAX":
+                    case "POOLING":
+                        if ($scope.chkValueforAD == false) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.chkValueforAD == true && $scope.dataForEdit['param']['effective-date-type'] == "specify" && !$scope.dataForEdit['param']['effective-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.chkValueforAD == true && $scope.dataForEdit['param']['expiration-date-type'] == "specify" && !$scope.dataForEdit['param']['expiration-date-value']) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else {
+                            $scope.disableSubmitAddOffer = false;
+                        }
+                        break;
+                }
             }
         } else {
             $scope.difDateForAdd = $scope.checkValueCpDate($('#addNewOfferEffectiveDate').val(), $('#addNewOfferExpirationDate').val());
@@ -3271,113 +3232,117 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 $('#addNewOfferExpirationDate2').val('');
                 $scope.addNewOfferExpirationDate = "";
             }
-            switch ($scope.selectedOffer.group) {
-                case "CUG":
-                case "FF":
-                    // console.log($scope.cugParam);
-                    // if ($scope.ischkCugValue == false) {
-                    //     $scope.disableSubmitAddOffer = true;
-                    // } else if ($scope.ischkCugValue == true && ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate)) {
-                    //     $scope.disableSubmitAddOffer = true;
-                    // } else if ($scope.ischkCugValue == true && ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate)) {
-                    //     $scope.disableSubmitAddOffer = true;
-                    // } else {
-                    //     $scope.disableSubmitAddOffer = false;
-                    // }
 
-                    if ($scope.selectedOffer["parameter-unique"] && $scope.selectedOffer["parameter-unique"].length > 0) {
-                        for (var i = 0; i < $scope.selectedOffer["parameter-unique"].length; i++) {
-                            if ($scope.selectedOffer["parameter-unique"][i]["name"] == "Friend numbers offer level") {
-                                if ($scope.chkValueforFF == false) {
-                                    $scope.disableSubmitAddOffer = true;
-                                    break;
-                                } else if ($scope.chkValueforFF == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
-                                    $scope.disableSubmitAddOffer = true;
-                                    break;
-                                } else if ($scope.chkValueforFF == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
-                                    $scope.disableSubmitAddOffer = true;
-                                    break;
-                                } else {
-                                    $scope.disableSubmitAddOffer = false;
+            var arrGroup = $scope.selectedOffer.group.split(",");
+            for (var indexGroup = 0; indexGroup < arrGroup.length; indexGroup++) {
+                switch (arrGroup[indexGroup]) {
+                    case "CUG":
+                    case "FF":
+                        // console.log($scope.cugParam);
+                        // if ($scope.ischkCugValue == false) {
+                        //     $scope.disableSubmitAddOffer = true;
+                        // } else if ($scope.ischkCugValue == true && ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate)) {
+                        //     $scope.disableSubmitAddOffer = true;
+                        // } else if ($scope.ischkCugValue == true && ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate)) {
+                        //     $scope.disableSubmitAddOffer = true;
+                        // } else {
+                        //     $scope.disableSubmitAddOffer = false;
+                        // }
+
+                        if ($scope.selectedOffer["parameter-unique"] && $scope.selectedOffer["parameter-unique"].length > 0) {
+                            for (var i = 0; i < $scope.selectedOffer["parameter-unique"].length; i++) {
+                                if ($scope.selectedOffer["parameter-unique"][i]["name"] == "Friend numbers offer level") {
+                                    if ($scope.chkValueforFF == false) {
+                                        $scope.disableSubmitAddOffer = true;
+                                        break;
+                                    } else if ($scope.chkValueforFF == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
+                                        $scope.disableSubmitAddOffer = true;
+                                        break;
+                                    } else if ($scope.chkValueforFF == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
+                                        $scope.disableSubmitAddOffer = true;
+                                        break;
+                                    } else {
+                                        $scope.disableSubmitAddOffer = false;
+                                    }
                                 }
-                            }
 
-                            if ($scope.selectedOffer["parameter-unique"][i]["name"] == "CUG ID") {
-                                if ($scope.ischkCugValue == false) {
-                                    $scope.disableSubmitAddOffer = true;
-                                    break;
-                                } else if ($scope.ischkCugValue == true && ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate)) {
-                                    $scope.disableSubmitAddOffer = true;
-                                    break;
-                                } else if ($scope.ischkCugValue == true && ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate)) {
-                                    $scope.disableSubmitAddOffer = true;
-                                    break;
-                                } else {
-                                    $scope.disableSubmitAddOffer = false;
+                                if ($scope.selectedOffer["parameter-unique"][i]["name"] == "CUG ID") {
+                                    if ($scope.ischkCugValue == false) {
+                                        $scope.disableSubmitAddOffer = true;
+                                        break;
+                                    } else if ($scope.ischkCugValue == true && ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate)) {
+                                        $scope.disableSubmitAddOffer = true;
+                                        break;
+                                    } else if ($scope.ischkCugValue == true && ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate)) {
+                                        $scope.disableSubmitAddOffer = true;
+                                        break;
+                                    } else {
+                                        $scope.disableSubmitAddOffer = false;
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    break;
-                case "CONTRACT_PROPO":
-                    if ($scope.chkValueforCp == false) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.chkValueforCp == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.chkValueforCp == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else {
-                        $scope.disableSubmitAddOffer = false;
-                    }
-                    break;
-                case "DISCOUNT":
-                case "FUP":
-                case "BARRING":
-                    if ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
-                        $scope.disableSubmitAddOffer = true;
-                        if (($scope.selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || $scope.selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE') && !$scope.selectedOffer['properties']['DURATION'] && $scope.selectedOffer.group == "DISCOUNT") {
+                        break;
+                    case "CONTRACT_PROPO":
+                        if ($scope.chkValueforCp == false) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.chkValueforCp == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.chkValueforCp == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else {
                             $scope.disableSubmitAddOffer = false;
                         }
-                    } else {
-                        $scope.disableSubmitAddOffer = false;
-                    }
-                    break;
-                    // case "FF":
-                    //     if ($scope.chkValueforFF == false) {
-                    //         $scope.disableSubmitAddOffer = true;
-                    //     } else if ($scope.chkValueforFF == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
-                    //         $scope.disableSubmitAddOffer = true;
-                    //     } else if ($scope.chkValueforFF == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
-                    //         $scope.disableSubmitAddOffer = true;
-                    //     } else {
-                    //         $scope.disableSubmitAddOffer = false;
-                    //     }
-                    //     break;
-                case "RELATED":
-                    if ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else {
-                        $scope.disableSubmitAddOffer = false;
-                    }
-                    break;
-                case "ADDITIONAL":
-                case "CAP_MAX":
-                case "POOLING":
-                    if ($scope.chkValueforAD == false) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.chkValueforAD == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else if ($scope.chkValueforAD == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
-                        $scope.disableSubmitAddOffer = true;
-                    } else {
-                        $scope.disableSubmitAddOffer = false;
-                    }
-                    break;
+                        break;
+                    case "DISCOUNT":
+                    case "FUP":
+                    case "BARRING":
+                        if ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
+                            $scope.disableSubmitAddOffer = true;
+                            if (($scope.selectedOffer.properties.DISCOUNT_GROUP == 'CVG' || $scope.selectedOffer.properties.DISCOUNT_GROUP == 'EMPLOYEE') && !$scope.selectedOffer['properties']['DURATION'] && $scope.selectedOffer.group == "DISCOUNT") {
+                                $scope.disableSubmitAddOffer = false;
+                            }
+                        } else {
+                            $scope.disableSubmitAddOffer = false;
+                        }
+                        break;
+                        // case "FF":
+                        //     if ($scope.chkValueforFF == false) {
+                        //         $scope.disableSubmitAddOffer = true;
+                        //     } else if ($scope.chkValueforFF == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
+                        //         $scope.disableSubmitAddOffer = true;
+                        //     } else if ($scope.chkValueforFF == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
+                        //         $scope.disableSubmitAddOffer = true;
+                        //     } else {
+                        //         $scope.disableSubmitAddOffer = false;
+                        //     }
+                        //     break;
+                    case "RELATED":
+                        if ($scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else {
+                            $scope.disableSubmitAddOffer = false;
+                        }
+                        break;
+                    case "ADDITIONAL":
+                    case "CAP_MAX":
+                    case "POOLING":
+                        if ($scope.chkValueforAD == false) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.chkValueforAD == true && $scope.offerEffectiveDate == "specify" && !$scope.addNewOfferEffectiveDate) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else if ($scope.chkValueforAD == true && $scope.offerExpirationDate == "specify" && !$scope.addNewOfferExpirationDate) {
+                            $scope.disableSubmitAddOffer = true;
+                        } else {
+                            $scope.disableSubmitAddOffer = false;
+                        }
+                        break;
+                }
             }
         }
     };
@@ -3426,27 +3391,31 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.editNewOffer = function() {
         $scope.ffNumberEdit = "";
-        switch ($scope.dataForEdit.group) {
-            case "CUG":
-                $scope.dataForEdit.param['cug-group-id'] = $scope.cugParamForEdit['group-id'];
-                $scope.dataForEdit.param['cug-group-name'] = $scope.cugParamForEdit['group-name'];
-                break;
-            case "FF":
-                if ($scope.dataForEdit.group == "FF") {
-                    for (var i = 0; i <= $scope.ffData.max; i++) {
-                        if ($scope.saveParamData["ff" + i]) {
-                            if (!$scope.ffNumberEdit) {
-                                $scope.ffNumberEdit = $scope.saveParamData["ff" + i];
-                            } else {
-                                $scope.ffNumberEdit += "|" + $scope.saveParamData["ff" + i];
+
+        var arrGroup = $scope.dataForEdit.group.split(",");
+        for (var indexGroup = 0; indexGroup < arrGroup.length; indexGroup++) {
+            switch (arrGroup[indexGroup]) {
+                case "CUG":
+                    $scope.dataForEdit.param['cug-group-id'] = $scope.cugParamForEdit['group-id'];
+                    $scope.dataForEdit.param['cug-group-name'] = $scope.cugParamForEdit['group-name'];
+                    break;
+                case "FF":
+                    if ($scope.dataForEdit.group == "FF") {
+                        for (var i = 0; i <= $scope.ffData.max; i++) {
+                            if ($scope.saveParamData["ff" + i]) {
+                                if (!$scope.ffNumberEdit) {
+                                    $scope.ffNumberEdit = $scope.saveParamData["ff" + i];
+                                } else {
+                                    $scope.ffNumberEdit += "|" + $scope.saveParamData["ff" + i];
+                                }
                             }
                         }
+                        $scope.dataForEdit.param['ff-number'] = $scope.ffNumberEdit;
                     }
-                    $scope.dataForEdit.param['ff-number'] = $scope.ffNumberEdit;
-                }
-                break;
-            case "CONTRACT_PROPO":
-                break;
+                    break;
+                case "CONTRACT_PROPO":
+                    break;
+            }
         }
 
         $scope.editValue = $scope.dataForEdit;
@@ -3506,51 +3475,52 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             }
         }, 50);
 
-        switch ($scope.dataForEdit.group) {
-            case "CUG":
-            case "FF":
-                // $scope.searchCugForEdit = $scope.dataForEdit.param['cug-group-id'];
-                // $scope.editCugParam = $scope.dataForEdit.param['cug-group-id'];
-                // $scope.smartSearchCug($scope.searchCugForEdit);
+        var arrGroup = $scope.dataForEdit.group.split(",");
+        for (var indexGroup = 0; indexGroup < arrGroup.length; indexGroup++) {
+            switch (arrGroup[indexGroup]) {
+                case "CUG":
+                case "FF":
+                    // $scope.searchCugForEdit = $scope.dataForEdit.param['cug-group-id'];
+                    // $scope.editCugParam = $scope.dataForEdit.param['cug-group-id'];
+                    // $scope.smartSearchCug($scope.searchCugForEdit);
 
-                if ($scope.dataForEdit["parameter-unique"] && $scope.dataForEdit["parameter-unique"].length > 0) {
-                    for (var i = 0; i < $scope.dataForEdit["parameter-unique"].length; i++) {
-                        if ($scope.dataForEdit["parameter-unique"][i]["name"] == "Friend numbers offer level") {
-                            $scope.ffData.max = $scope.dataForEdit.properties.FF_NUMBER;
-                            $scope.ffData.min = $scope.dataForEdit["parameter-unique"][i].min;
-                            var arrFF = $scope.dataForEdit['param']['ff-number'].split('|');
-                            for (var i = 0; i < arrFF.length; i++) {
-                                $scope.saveParamData['ff' + Number(i + 1)] = arrFF[i];
-                                console.log($scope.saveParamData[i]);
+                    if ($scope.dataForEdit["parameter-unique"] && $scope.dataForEdit["parameter-unique"].length > 0) {
+                        for (var i = 0; i < $scope.dataForEdit["parameter-unique"].length; i++) {
+                            if ($scope.dataForEdit["parameter-unique"][i]["name"] == "Friend numbers offer level") {
+                                $scope.ffData.max = $scope.dataForEdit.properties.FF_NUMBER;
+                                $scope.ffData.min = $scope.dataForEdit["parameter-unique"][i].min;
+                                var arrFF = $scope.dataForEdit['param']['ff-number'].split('|');
+                                for (var i = 0; i < arrFF.length; i++) {
+                                    $scope.saveParamData['ff' + Number(i + 1)] = arrFF[i];
+                                    console.log($scope.saveParamData[i]);
+                                }
+                            }
+
+                            if ($scope.dataForEdit["parameter-unique"][i]["name"] == "CUG ID") {
+                                $scope.searchCugForEdit = $scope.dataForEdit.param['cug-group-id'];
+                                $scope.editCugParam = $scope.dataForEdit.param['cug-group-id'];
+                                $scope.smartSearchCug($scope.searchCugForEdit);
                             }
                         }
-
-                        if ($scope.dataForEdit["parameter-unique"][i]["name"] == "CUG ID") {
-                            $scope.searchCugForEdit = $scope.dataForEdit.param['cug-group-id'];
-                            $scope.editCugParam = $scope.dataForEdit.param['cug-group-id'];
-                            $scope.smartSearchCug($scope.searchCugForEdit);
-                        }
                     }
-                }
 
-                break;
+                    break;
+                    // case "FF":
+                    //     $scope.ffData.max = $scope.dataForEdit.properties.FF_NUMBER;
+                    //     $scope.ffData.min = $scope.dataForEdit['parameter-specifications'][0].min;
+                    //     var arrFF = $scope.dataForEdit['param']['ff-number'].split('|');
+                    //     for (var i = 0; i < arrFF.length; i++) {
+                    //         $scope.saveParamData['ff' + Number(i + 1)] = arrFF[i];
+                    //         console.log($scope.saveParamData[i]);
+                    //     }
+                    //     break;
+                case "CONTRACT_PROPO":
 
-                // case "FF":
-                //     $scope.ffData.max = $scope.dataForEdit.properties.FF_NUMBER;
-                //     $scope.ffData.min = $scope.dataForEdit['parameter-specifications'][0].min;
-                //     var arrFF = $scope.dataForEdit['param']['ff-number'].split('|');
-                //     for (var i = 0; i < arrFF.length; i++) {
-                //         $scope.saveParamData['ff' + Number(i + 1)] = arrFF[i];
-                //         console.log($scope.saveParamData[i]);
-                //     }
-                //     break;
-
-            case "CONTRACT_PROPO":
-
-                var setDatepicker = $scope.dataForEdit.param['expiration-date'].split("/");
-                console.log(setDatepicker);
-                // $('#editCpExpirationDate').datepicker("setDate", new Date(Number(setDatepicker[2]) - 543,Number(setDatepicker[1]) - 1, Number(setDatepicker[0])) );
-                break;
+                    var setDatepicker = $scope.dataForEdit.param['expiration-date'].split("/");
+                    console.log(setDatepicker);
+                    // $('#editCpExpirationDate').datepicker("setDate", new Date(Number(setDatepicker[2]) - 543,Number(setDatepicker[1]) - 1, Number(setDatepicker[0])) );
+                    break;
+            }
         }
     };
 

@@ -754,6 +754,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
     };
 
     $scope.data_detail = [];
+    $scope.data_offer = [];
     $scope.popup = function(data) {
         //
         SystemService.showLoading();
@@ -800,6 +801,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                 */
                 if (response['response-data']['order-items'].length > 0) {
                     $scope.data_detail = response['response-data']['order-items'][0];
+                    $scope.data_offer = response['response-data']['order-items'];
                     $scope.data_detail['approver'] = response['response-data']['approver'];
                     var inventoryStatus_ = $scope.data_detail['order-data']['INVEN-STATUS'];
                     if (inventoryStatus_ != undefined && null != inventoryStatus_ && "" != inventoryStatus_.trim()) {

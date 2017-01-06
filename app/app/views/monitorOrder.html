@@ -142,9 +142,9 @@
                                 <td class="col-xs-2 contentTb wrapword">
                                     {{data['activity-description']}}
                                 </td>
-                                <td align="right" class="col-xs-1 contentTb wrapword" style="text-align:center;">    {{data['submit-date'] | date:"dd/MM/yyyy HH:mm:ss"}}
+                                <td align="right" class="col-xs-1 contentTb wrapword" style="text-align:center;"> {{data['submit-date'] | date:"dd/MM/yyyy HH:mm:ss"}}
                                 </td>
-                                <td align="center" class="col-xs-1 contentTb" style="text-align:center;">   {{data['status']}}
+                                <td align="center" class="col-xs-1 contentTb" style="text-align:center;"> {{data['status']}}
                                 </td>
                                 <!-- <td style="vertical-align: middle;" >{{data['partner-code']}}</td> -->
                                 <!-- <td style="vertical-align: middle;" >{{data['sale-code']}}</td> -->
@@ -200,14 +200,13 @@
                             <div class="row">
                                 <div class="col-md-11">
                                     <span style="vertical-align: middle; width: 5px;"><i class="fa fa-print fa-2x" ng-click="callPrint(orderData)" ng-if="orderData['reprint']==true" style="cursor: pointer; "></i>
-                                    </span>
-                                    {{ orderData['product-id-number'] }}
+                                    </span> {{ orderData['product-id-number'] }}
                                 </div>
                             </div>
                             <div class="row">
                                 <!-- <div class="col-xs-12"> -->
                                 <div class="col-xs-6" style="text-align:left;">
-                                <span  ng-if="orderData['partner-code'] || orderData['sale-code']">
+                                    <span ng-if="orderData['partner-code'] || orderData['sale-code']">
                                     {{orderData['partner-code']}} / {{orderData['sale-code']}}
                                 </span>
                                 </div>
@@ -222,7 +221,7 @@
                     <!-- Right Side -->
                     <div class="well view2" ng-show="selectedData" style="background-color:#ffffff;">
                         <div class="panel">
-                        <br>
+                            <br>
                             <div class="row">
                                 <div class="col-md-3 text-right">
                                     <label>เลขที่คำขอ(Order id): </label>
@@ -231,7 +230,7 @@
                                     <b>{{ data_detail['item-id'] }}</b>
                                 </div>
                                 <div class="col-md-2 text-right">
-                                    สถานะ Order: 
+                                    สถานะ Order:
                                 </div>
                                 <div class="col-md-3"><b>{{ data_detail.status }}</b></div>
                             </div>
@@ -250,7 +249,7 @@
                                 </div>
                                 <div class="col-md-4"><b>{{ selectedData['submit-date'] }}</b></div>
                                 <div class="col-md-2 text-right">
-                                    รหัสผู้ใช้งาน: 
+                                    รหัสผู้ใช้งาน:
                                 </div>
                                 <div class="col-md-3"><b>{{ selectedData['create-by'] }}</b></div>
                             </div>
@@ -260,7 +259,7 @@
                                 </div>
                                 <div class="col-md-4"><b>{{ selectedData['partner-code'] }}</b></div>
                                 <div class="col-md-2 text-right">
-                                    รหัสตัวแทนขาย: 
+                                    รหัสตัวแทนขาย:
                                 </div>
                                 <div class="col-md-3"><b>{{ selectedData['sale-code'] }}</b></div>
                             </div>
@@ -277,7 +276,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2 text-right">
-                                    หมายเลขบริการ: 
+                                    หมายเลขบริการ:
                                 </div>
                                 <div class="col-md-3"><b>{{ selectedData['product-id-number'] }}</b></div>
                             </div>
@@ -852,7 +851,7 @@ CHANGE_PROMOTION_SPEED -->
                                 <b>{{ data_detail['item-id'] }}</b>
                             </div>
                             <div class="col-md-2 text-right">
-                                สถานะ Order: 
+                                สถานะ Order:
                             </div>
                             <div class="col-md-3"><b>{{ data_detail.status }}</b></div>
                         </div>
@@ -873,7 +872,7 @@ CHANGE_PROMOTION_SPEED -->
                                 <b>{{ selectedData['submit-date'] }}</b>
                             </div>
                             <div class="col-md-2 text-right">
-                                รหัสผู้ใช้งาน: 
+                                รหัสผู้ใช้งาน:
                             </div>
                             <div class="col-md-3">
                                 <b>{{ selectedData['create-by'] }}</b>
@@ -885,7 +884,7 @@ CHANGE_PROMOTION_SPEED -->
                             </div>
                             <div class="col-md-4"><b>{{ selectedData['partner-code'] }}</b></div>
                             <div class="col-md-2 text-right">
-                                รหัสตัวแทนขาย: 
+                                รหัสตัวแทนขาย:
                             </div>
                             <div class="col-md-3"><b>{{ selectedData['sale-code'] }}</b></div>
                         </div>
@@ -902,7 +901,7 @@ CHANGE_PROMOTION_SPEED -->
                                 </div>
                             </div>
                             <div class="col-md-2 text-right">
-                                หมายเลขบริการ: 
+                                หมายเลขบริการ:
                             </div>
                             <div class="col-md-3"><b>{{ selectedData['product-id-number'] }}</b></div>
                         </div>
@@ -1131,6 +1130,36 @@ CHANGE_PROMOTION_SPEED -->
                                 <div class="col-md-9"><b>{{ data_detail['order-data']['DOC-NUMBER'] }}</b></div>
                             </div>
                         </div>
+                        <!-- ************************************* -->
+                        <!-- ADD_OFFER -->
+                        <!-- <div ng-show="selectedData['order-name']=='ADD_OFFER'">
+                            <div ng-repeat="dataOffer in data_offer">
+                                <div class="row">
+                                    <div class="col-md-3 text-right">
+                                        <label>Offer: </label>
+                                    </div>
+                                    <div class="col-md-9"><b>{{ data_detail['primary-order-data']['COMPANY-CODE'] }}</b></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 text-right">
+                                        <label>มีผล: </label>
+                                    </div>
+                                    <div class="col-md-9"><b>{{ data_detail['primary-order-data']['COMPANY-CODE'] }}</b></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 text-right">
+                                        <label>วันที่มีผล: </label>
+                                    </div>
+                                    <div class="col-md-9"><b>{{ data_detail['primary-order-data']['COMPANY-CODE'] }}</b></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 text-right">
+                                        <label>วันที่หมดอายุ: </label>
+                                    </div>
+                                    <div class="col-md-9"><b>{{ data_detail['primary-order-data']['COMPANY-CODE'] }}</b></div>
+                                </div>
+                            </div>
+                        </div> -->
                         <!-- ************************************* -->
                         <div class="row">
                             <div class="col-md-3 text-right">
