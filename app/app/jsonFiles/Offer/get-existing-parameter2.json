@@ -43,7 +43,7 @@
                     "PARAM-SIZE": "3",
                     "AGREEMENT-ID": "98844",
                     "PARAM-0": "200975387|Agreement level offer instance ID|669889",
-                    "PARAM-1": "200975386|Occurrence cap max|-1",
+                    "PARAM-1": "200975386|Occurrence cap max|10000",
                     "PARAM-2": "201184279|Volume cap max UOM|MB",
                     "OFFER-INSTANCE-ID": "669901"
                 },

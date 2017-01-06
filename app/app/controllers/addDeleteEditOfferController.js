@@ -757,7 +757,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                 "firstDiscountBill": ""
             }
         }
-        if (item.group == "POOLING") {
+        // if (item.group == "POOLING") {
+        if (item.group.indexOf("POOLING") != -1) {
             $scope.viewOffer["pooled-offer"] = item["product-properties"]["PARENT-SOC-NAME"];
         }
         if ($scope.offerParam.length > 0) {
@@ -799,7 +800,8 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     $scope.viewOfferForEdit["properties"]["MAX_DURATION"] = "24";
                 };
             });
-        } else if (item.group == "POOLING" && action == "edit") {
+        // } else if (item.group == "POOLING" && action == "edit") {
+        } else if (item.group.indexOf("POOLING") != -1 && action == "edit") {
             SystemService.showLoading();
             AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
                 SystemService.hideLoading();
