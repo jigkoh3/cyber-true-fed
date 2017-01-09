@@ -421,9 +421,12 @@
         }
     };
 
-    this.validateOffer = function(name, currentOffer, cusType, fnCallback) {
+    this.validateOffer = function(name, currentOffer, cusType, futureOffer, fnCallback) {
         if (!demo) {
             var target = "/sales/catalog/product/tmv/offer/validate?" + "new-offer=" + name + "&current-offers=" + currentOffer + "&customer-type=" + cusType;
+            if (futureOffer) {
+                target = "/sales/catalog/product/tmv/offer/validate?" + "new-offer=" + name + "&current-offers=" + currentOffer + "&customer-type=" + cusType + "&future-offers=" + futureOffer;
+            }
             var request = {
                 "target": target
             };

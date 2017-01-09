@@ -2595,13 +2595,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         SystemService.showLoading();
         $scope.oldOfferName = "";
         $scope.currentOfferParam = "";
+        $scope.futureOfferParam = "";
         $scope.selectedNewOffer = item.name;
         $scope.newOffer = item;
         console.log($scope.newOffer);
         $scope.getCurrentOffer();
         console.log($scope.currentOfferParam);
 
-        AddDeleteEditOfferService.validateOffer($scope.selectedNewOffer, $scope.currentOfferParam, $scope.data.priceplan['account-category'], function(result) {
+        AddDeleteEditOfferService.validateOffer($scope.selectedNewOffer, $scope.currentOfferParam, $scope.data.priceplan['account-category'], $scope.futureOfferParam, function(result) {
             $scope.validateOfferResult = result;
             SystemService.hideLoading();
             console.log($scope.validateOfferResult.data);
@@ -3878,6 +3879,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
 
     $scope.getCurrentOffer = function() {
         $scope.currentOfferParam = "";
+        $scope.futureOfferParam = "";
         if ($scope.existingOffer.length > 0) {
             $scope.currentOfferParam = $scope.existingOffer[0]['product-name'];
             for (var i = 1; i < $scope.existingOffer.length; i++) {
@@ -3885,14 +3887,14 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
             };
         };
         if ($scope.futureOfferList.length > 0) {
-            if ($scope.currentOfferParam == "") {
-                $scope.currentOfferParam = $scope.futureOfferList[0]['product-name'];
+            if ($scope.futureOfferParam == "") {
+                $scope.futureOfferParam = $scope.futureOfferList[0]['product-name'];
                 for (var i = 1; i < $scope.futureOfferList.length; i++) {
-                    $scope.currentOfferParam += "|" + $scope.futureOfferList[i]['product-name'];
+                    $scope.futureOfferParam += "|" + $scope.futureOfferList[i]['product-name'];
                 };
             } else {
                 for (var i = 0; i < $scope.futureOfferList.length; i++) {
-                    $scope.currentOfferParam += "|" + $scope.futureOfferList[i]['product-name'];
+                    $scope.futureOfferParam += "|" + $scope.futureOfferList[i]['product-name'];
                 }
             }
         };
