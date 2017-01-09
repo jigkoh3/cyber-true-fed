@@ -740,24 +740,24 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
         }, 2500);
 
         $scope.viewOffer = {
-            "product-name": item['product-name'],
-            "product-description": item['product-description'],
-            "effective-date": item['effective-date'],
-            "checkEditParam": item["checkEditParam"],
-            "checkEditExp": item["checkEditExp"],
-            "expire-date-option": item["expire-date-option"],
-            "expiration-date": item['expire-date'],
-            "expire-date": item['expire-date'],
-            "offer-group": item['offer-group'],
-            "offer-instance-id": item["product-properties"]["OFFER-INSTANCE-ID"],
-            "CONTRACT-START-DATE": item["product-properties"]["CONTRACT-START-DATE"],
-            "CONTRACT-EXPIRATION-DATE": item["product-properties"]["CONTRACT-EXPIRATION-DATE"],
-            "original-data": item,
-            "properties": {
-                "firstDiscountBill": ""
+                "product-name": item['product-name'],
+                "product-description": item['product-description'],
+                "effective-date": item['effective-date'],
+                "checkEditParam": item["checkEditParam"],
+                "checkEditExp": item["checkEditExp"],
+                "expire-date-option": item["expire-date-option"],
+                "expiration-date": item['expire-date'],
+                "expire-date": item['expire-date'],
+                "offer-group": item['offer-group'],
+                "offer-instance-id": item["product-properties"]["OFFER-INSTANCE-ID"],
+                "CONTRACT-START-DATE": item["product-properties"]["CONTRACT-START-DATE"],
+                "CONTRACT-EXPIRATION-DATE": item["product-properties"]["CONTRACT-EXPIRATION-DATE"],
+                "original-data": item,
+                "properties": {
+                    "firstDiscountBill": ""
+                }
             }
-        }
-        // if (item.group == "POOLING") {
+            // if (item.group == "POOLING") {
         if (item.group.indexOf("POOLING") != -1) {
             $scope.viewOffer["pooled-offer"] = item["product-properties"]["PARENT-SOC-NAME"];
         }
@@ -800,7 +800,7 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                     $scope.viewOfferForEdit["properties"]["MAX_DURATION"] = "24";
                 };
             });
-        // } else if (item.group == "POOLING" && action == "edit") {
+            // } else if (item.group == "POOLING" && action == "edit") {
         } else if (item.group.indexOf("POOLING") != -1 && action == "edit") {
             SystemService.showLoading();
             AddDeleteEditOfferService.searchOfferByName(item["product-name"], function(response) {
@@ -827,6 +827,11 @@ smartApp.controller('AddDeleteEditOfferController', function($scope,
                                     $scope.paramForEdit["param-detail"][j]["value"] = $scope.paramForEdit['param-detail'][j]['select-value'];
                                     console.log($scope.paramForEdit["param-detail"][j]["value"]);
                                 }
+                            }
+
+                            if (Number($scope.paramForEdit["param-detail"][j]["value"]) > 0 && ($scope.paramForEdit["param-detail"][j]["name"] == "Volume cap max" || $scope.paramForEdit["param-detail"][j]["name"] == "Monetary cap max" || $scope.paramForEdit["param-detail"][j]["name"] == "Occurrence cap max" || $scope.paramForEdit["param-detail"][j]["name"] == "Duration cap max")) {
+                                $scope.paramForEdit["param-detail"][j]['capmax-specify'] = angular.copy($scope.paramForEdit["param-detail"][j]["value"]);
+                                $scope.paramForEdit["param-detail"][j]["value"] = "";
                             }
                         }
                     }
