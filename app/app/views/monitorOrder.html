@@ -21,7 +21,7 @@
                                 <div class="form-group">
                                     <select class="form-control" ng-model="condition" ng-click="reset()" id="condition">
                                         <option value="" selected="selected">เลือก</option>
-                                        <option ng-repeat="condition in conditions " value="{{condition.id}}">{{condition.name}}</option>
+                                        <option ng-repeat="condition in conditions track by $index" value="{{condition.id}}">{{condition.name}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                             <!-- <th class="word-wrap:break word;"><span style="color:white;">หมายเหตุ</span></th> -->
                         </tr>
                         <tbody style="background-color:white;">
-                            <tr ng-repeat="data in datas" valign="top">
+                            <tr ng-repeat="data in datas track by $index" valign="top">
                                 <td align="center" style="vertical-align: middle; width: 5px;">
                                     <i class="fa fa-print fa-2x" ng-click="callPrint(data)" ng-if="data['reprint']==true" style="cursor: pointer; "></i>
                                 </td>
@@ -186,7 +186,7 @@
                                 <input class="form-control" type="text" placeholder="ค้นหา" ng-model="searchOrder" ng-keyup="smartSearchOrder(searchOrder)">
                             </div>
                         </li>
-                        <li ng-repeat="orderData in orderDatas" id="{{orderData['order-id']}}" ng-click="select(orderData['order-id']); popup(orderData);" data-toggle="modal" class="list-group-item idActive orderLists" style="cursor: pointer;">
+                        <li ng-repeat="orderData in orderDatas track by $index" id="{{orderData['order-id']}}" ng-click="select(orderData['order-id']); popup(orderData);" data-toggle="modal" class="list-group-item idActive orderLists" style="cursor: pointer;">
                             <span align="center" style="vertical-align: middle; width: 5px;"><i class="fa fa-print fa-lg badge" ng-click="callPrint(orderData)" ng-if="orderData['reprint']==true" style="cursor: pointer; "></i>
                             </span>
                             <div class="row">
