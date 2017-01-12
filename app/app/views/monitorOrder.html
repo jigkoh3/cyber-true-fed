@@ -127,7 +127,7 @@
                                 <td align="center" style="vertical-align: middle; width: 5px;">
                                     <i class="fa fa-print fa-2x" ng-click="callPrint(data)" ng-if="data['reprint']==true" style="cursor: pointer; "></i>
                                 </td>
-                                <td style="cursor:pointer; text-align:center;" align="center" class="col-xs-2 contentTb wrapword"><a ng-click="popup(data)" data-toggle="modal" data-target="#modal-order-detail">{{data['order-id']}}</a>
+                                <td style="cursor:pointer; text-align:center;" align="center" class="col-xs-2 contentTb wrapword"><a ng-click="popup(data)" data-toggle="modal" data-target="#modal-order-detail">{{data['order-item-id']}}</a>
                                 </td>
                                 <!-- <td  align="right"><a href="" ng-click="popup(data)" class="btn" data-toggle="modal" data-target="#myModal">myModal</a></td> -->
                                 <td align="center" class="col-xs-2 contentTb wrapword">{{data['provisioning-id']}}</td>
@@ -186,12 +186,12 @@
                                 <input class="form-control" type="text" placeholder="ค้นหา" ng-model="searchOrder" ng-keyup="smartSearchOrder(searchOrder)">
                             </div>
                         </li>
-                        <li ng-repeat="orderData in orderDatas track by $index" id="{{orderData['order-id']}}" ng-click="select(orderData['order-id']); popup(orderData);" data-toggle="modal" class="list-group-item idActive orderLists" style="cursor: pointer;">
+                        <li ng-repeat="orderData in orderDatas track by $index" id="{{orderData['order-item-id']}}" ng-click="select(orderData['order-item-id']); popup(orderData);" data-toggle="modal" class="list-group-item idActive orderLists" style="cursor: pointer;">
                             <span align="center" style="vertical-align: middle; width: 5px;"><i class="fa fa-print fa-lg badge" ng-click="callPrint(orderData)" ng-if="orderData['reprint']==true" style="cursor: pointer; "></i>
                             </span>
                             <div class="row">
                                 <!-- <div class="col-xs-12"> -->
-                                <div class="col-xs-6" style="text-align:left;">{{orderData['order-id']}}
+                                <div class="col-xs-6" style="text-align:left;">{{orderData['order-item-id']}}
                                 </div>
                                 <div class="col-xs-5" style="text-align:right;">{{orderData['status']}}
                                 </div>

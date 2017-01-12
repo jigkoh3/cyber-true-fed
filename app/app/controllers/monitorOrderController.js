@@ -24,13 +24,13 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
     $scope.statuses[4] = { id: "COMPLETED", name: "COMPLETED" };
     $scope.service = window.location.protocol + "//" + window.location.hostname + (null != window.location.port ? ":" + window.location.port : "");
     var dateNow = new Date();
-    $scope.setDateNow = ("0" + dateNow.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/"  + Number(dateNow.getFullYear() + 543);
-    console.log( $scope.setDateNow);
+    $scope.setDateNow = ("0" + dateNow.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/" + Number(dateNow.getFullYear() + 543);
+    console.log($scope.setDateNow);
     var fromDay = new Date(dateNow.getTime() - (6 * 24 * 60 * 60 * 1000));
     console.log(fromDay);
-    $scope.fromdate =  ("0" + fromDay.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/"  + Number(dateNow.getFullYear() + 543);
+    $scope.fromdate = ("0" + fromDay.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/" + Number(dateNow.getFullYear() + 543);
     $('#fromdate').val($scope.fromdate);
-    $scope.todate =  $scope.setDateNow;
+    $scope.todate = $scope.setDateNow;
     $('#todate').val($scope.todate);
 
     dateDiff = function(datepart, fromdate, todate) {
@@ -63,11 +63,11 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
 
     $scope.init = function() {
         SystemService.calendarDatePicker();
-        for(var i = 0; i < 2; i++){
+        for (var i = 0; i < 2; i++) {
             setTimeout(function() { console.log(i) }, 100)
         }
 
-        for(var j = 0; j < 2; j++){
+        for (var j = 0; j < 2; j++) {
             setTimeout(function() { console.log(j) }, 100)
         }
 
@@ -140,9 +140,9 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         //           if((fromdate == "" || todate == "" )&&(condition == 'E' || condition == 'B')){
 
         // 20160830 by waramun add check condition != "A" && condition != "C" && condition != "D"
-        if(condition != "A" && condition != "C" && condition != "D"){
+        if (condition != "A" && condition != "C" && condition != "D") {
             if ((fromdate == "" || todate == "")) {
-            //               alert("Please input Begin and End Date!!!");
+                //               alert("Please input Begin and End Date!!!");
                 msgModel = {
                     "message": "You must fill the date.",
                     "message-code": "SYS-000",
@@ -156,9 +156,9 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                 return false;
             }
         }
-        
+
         // if ((condition != undefined && "" != condition) && $("#product-number").val() == "" && $("#customer-id").val() == "" && $("#order-id").val() == "" && $("#provisioning-id").val() == "" && $("#sale-code").val() == "") {
-            if ((condition == "A" && $('#product-number').val() == "") || (condition == "B" && $('#customer-id').val() == "") || (condition == "C" && $('#order-id').val() == "") || (condition == "D" && $('#provisioning-id').val() == "") || (condition == "E" && $('#sale-code').val() == "")) {
+        if ((condition == "A" && $('#product-number').val() == "") || (condition == "B" && $('#customer-id').val() == "") || (condition == "C" && $('#order-id').val() == "") || (condition == "D" && $('#provisioning-id').val() == "") || (condition == "E" && $('#sale-code').val() == "")) {
             msgModel = {
                 "message": "You must fill value of condition.",
                 "message-code": "SYS-000",
@@ -324,6 +324,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         SystemService.showLoading();
         var isValid = validate();
         if (!isValid) {
+            SystemService.hideLoading();
             return false;
         }
         //console.log('callReport!!!!! step validate:'+ isValid) ;
@@ -533,7 +534,7 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
                 if (response.status == "SUCCESSFUL") {
                     SystemService.hideLoading();
                     if (response['response-data'] != 'undefined') {
-                        SystemService.hideLoading();
+                        // SystemService.hideLoading();
                         try {
                             if (response['page']['current'] != 'undefined') {
                                 $scope.totalPage = response['page']['total'];
@@ -681,7 +682,6 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         $scope.isLoadOrder = false;
         $scope.totalPage = 0;
         $scope.data_detail = [];
-
         $("#product-number").val("");
         $("#customer-id").val("");
         $("#order-id").val("");
@@ -691,10 +691,12 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         $scope.condition = "";
         $("#statusListbox").val("");
         $("#serviceListbox").val("");
-
         $("#shopCode").val($scope.shopCode);
         $("#customShopCode").val($scope.shopCode);
-
+        $scope.fromdate = ("0" + fromDay.getDate()).slice(-2) + "/" + ("0" + Number(dateNow.getMonth() + 1)).slice(-2) + "/" + Number(dateNow.getFullYear() + 543);
+        $('#fromdate').val($scope.fromdate);
+        $scope.todate = $scope.setDateNow;
+        $('#todate').val($scope.todate);
         // $scope.showDate();
     };
 
@@ -869,23 +871,23 @@ smartApp.controller('MonitorOrderController', function($scope, $filter, $routePa
         }
     }
 
-    $scope.select = function(selectID){
+    $scope.select = function(selectID) {
         $('.idActive').removeClass("success");
-        $('#' + selectID ).addClass("success");
+        $('#' + selectID).addClass("success");
 
     }
 
     $scope.leyoutType = "layout-table";
-    $scope.selectLayout = function(selectID){
+    $scope.selectLayout = function(selectID) {
         $scope.selectedData = [];
         $scope.data_detail = [];
-        if(selectID == "layout-table"){
-            $('#' + selectID ).addClass("leyout-type");
+        if (selectID == "layout-table") {
+            $('#' + selectID).addClass("leyout-type");
             $('#layout-columns').removeClass("leyout-type");
             $('.idActive').removeClass("success");
             $scope.leyoutType = "layout-table";
         } else {
-            $('#' + selectID ).addClass("leyout-type");
+            $('#' + selectID).addClass("leyout-type");
             $('#layout-table').removeClass("leyout-type");
             $scope.leyoutType = "layout-columns";
         }
